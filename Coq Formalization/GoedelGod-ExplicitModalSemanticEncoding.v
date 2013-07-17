@@ -6,50 +6,173 @@ Require Import Coq.Logic.Classical.
 Require Import Coq.Logic.Classical_Pred_Type.
 
 
-(* Type for individuals and objects in the world *)
+(* Type for individuals in the world *)
 Parameter u: Type.
 
+(* Type for worlds *)
+Parameter i: Type.
+
+Definition o := i -> Prop.
+
+(* Acessibility relation for worlds *)
+Parameter r: i -> i -> Prop.
+
 (* Constant predicate that distinguishes positive properties *)
-Parameter Positive: (u -> Prop) -> Prop.
+Parameter Positive: (u -> o) -> o.
+
+(* Modal negation *)
+Definition n (p: o)(w: i) := ~ (p w).
 
 (* Constant for the modal operator for 'necessarily' *)
-Parameter box: Prop -> Prop.
+Definition box (p: o) := fun w => forall w1, (r w w1) -> (p w1).
 
 (* Constant for the modal operator for 'possibly' *)
-Definition diamond (p: Prop) := ~ (box (~ p)).
+Definition diamond (p: o) := fun w => exists w1, (r w w1) /\ (p w1).
+
+(* Modal quantification *)
+Definition A {t: Type}(p: t -> o) := fun w => forall x, p x w.
+Definition E {t: Type}(p: t -> o) := fun w => exists x, p x w.
+
+Definition mand (p: o)(q:o)(w: i) := (p w) /\ (q w).
+Notation "p m/\ q" := (mand p q) (at level 80, right associativity).
+
+Definition mimplies (p: o)(q:o)(w:i) := (p w) -> (q w).
+Notation "p m-> q" := (mimplies p q) (at level 90, right associativity).
+
+(* Modal validity *)
+Definition V (p: o) := forall w, p w.
+
+Ltac modal_valid := unfold V; intro.
+Ltac modal_intro := unfold A; intro.
+Ltac diamond := unfold diamond.
+
+Lemma n_diamond_box_n : V (A (fun p => (n (diamond p)) m-> (box (n p)))).
+Proof.
+modal_valid.
+unfold A; intro p.
+unfold mimplies; intro H1.
+unfold box; intro w1. intro R1.
+unfold n. unfold n in H1.
+unfold diamond in H1.
+apply not_ex_all_not with (n := w1) in H1.
+apply not_and_or in H1.
+destruct H1.
+  contradiction.
+
+  exact H.
+Qed.
+
+
+Lemma n_box_n__diamond : V (A (fun p => (n (box (n p))) m-> (diamond p))).
+Proof.
+modal_valid.
+unfold A; intro p.
+unfold mimplies; intro H1.
+unfold n in H1.
+unfold box in H1.
+unfold diamond. 
+apply not_all_ex_not in H1.
+destruct H1 as [w1 H].
+exists w1.
+split.
+  apply not_imply_elim in H.
+  exact H.
+
+  apply not_imply_elim2 in H.
+  apply NNPP in H.
+  exact H.
+Qed.
+
 
 (* Modal logic axioms *)
-(* ToDo: Necessitation cannot be naively encoded as an axiom *)
-Axiom Necessitation: forall p: Prop, p -> (box p).
-Axiom T: forall p: Prop, (box p) -> p.
+Lemma Necessitation: forall p, (V p) -> (V (box p)).
+Proof.
+Admitted.
+
+Lemma T: forall p w, ((box p) w) -> (p w).  (* check this *)
+Proof.
+Admitted.
+
+
+
+
+
+
 
 (* Axiom 1: properties necessarily entailed by positive properties are also positive *)
-Axiom axiom1: forall p q: u -> Prop, Positive p /\ (box (forall x,(p x) -> (q x))) -> Positive q.
+Axiom axiom1: V (A (fun p => (A (fun q => Positive p m/\ (box (A (fun x: u => (p x) m-> (q x)))) m-> Positive q)))).
+
+
 
 (* Axiom 2: the negation of a property is positive iff the property is not positive *)
-Axiom axiom2 : forall p: u -> Prop, Positive (fun x => ~ (p x)) <-> ~ (Positive p).
+Axiom axiom2a : V (A (fun p => (Positive (fun x: u => n (p x))) m-> (n (Positive p)))).
+Axiom axiom2b : V (A (fun p => (n (Positive p)) m-> (Positive (fun x: u => n (p x))) )).
+
+
+
+
+
+Axiom reflexivity: forall w, r w w.
 
 (* Theorem 1: positive properties possibly have a witness *)
-Theorem theorem1: forall p: u -> Prop, (Positive p) -> diamond (exists x, p x ).
+Theorem theorem1: V (A (fun p: u -> o => (Positive p) m-> diamond (E (fun x => p x) ) )).
 Proof.
-intro.
-intro H1.
-unfold diamond.
-intro H2.
-absurd (Positive p).
-  apply axiom2.
-  apply axiom1 with (p := p).
-  split.
-    exact H1.
-  
-    apply Necessitation.
-    intro.
-    intro H3.
-    apply T in H2.
-    apply not_ex_all_not with (n := x) in H2.
-    exact H2.
-  exact H1.
-Qed.
+modal_valid.
+unfold A. intro p.
+unfold mimplies.
+cut ((Positive p w) /\ ((box (A (fun x => (n (p x))))) w) -> (n (Positive p)) w).
+  intro H.
+  intro H2.
+  apply imply_to_or in H.
+  destruct H.
+    apply not_and_or in H.
+    destruct H.
+      contradiction.
+    
+      unfold diamond.
+      unfold box in H.
+      apply not_all_ex_not in H.
+      destruct H as [w1  H3].
+      exists w1.
+      apply imply_to_and in H3.
+      destruct H3 as [H31 H32].
+      split.
+        exact H31.
+
+        unfold E.
+        unfold A in H32.
+        apply not_all_ex_not in H32.
+        unfold n in H32.
+        destruct H32 as [x H32].
+        exists x.
+        apply NNPP in H32.
+        exact H32.
+
+    unfold n in H.
+    contradiction.
+
+  intro H4. destruct H4 as [H41 H42].
+  apply axiom2a.
+  apply (axiom1 w p).
+  unfold mand. split.
+    exact H41.
+
+    unfold box. intro. intro R1.
+    unfold A. intro.
+    unfold mimplies.
+    intro W5.
+    unfold n.
+    intro H5.
+    unfold A in H42. unfold box in H42.
+    absurd (n (p x) w1).
+      unfold n. intro. contradiction.
+
+      apply H42.
+      exact R1.
+Qed.  
+
+
+(* ToDo: Everything below this point is garbage... *)
 
 
 (* Definition of God *)
