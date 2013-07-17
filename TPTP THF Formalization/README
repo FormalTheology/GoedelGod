@@ -1,0 +1,114 @@
+%----Goedel's Ontological Proof of the Existence of God
+%----Authors: Christoph Benzmueller and Bruno Woltzenlogel-Paleo
+%----July, 16 2013
+
+We present a formalization and (partial) automation of Goedel's
+ontological argument in quantified modal logic S5 (QML S5). QML S5 is in 
+turn modeled as a fragment of Church's simple type theory (HOL). Thus, the
+formalization is essentially a formalization in HOL. For our encoding
+of HOL formulas we employ the TPTP THF0 syntax. For more information
+on this syntax we refer to:
+
+-- Automated Reasoning in Higher-Order Logic using the TPTP THF 
+   Infrastructure (Geoff Sutcliffe, Christoph Benzmüller), In Journal 
+   of Formalized Reasoning, volume 3, number 1, pp. 1-27, 2010.
+   http://jfr.unibo.it/article/view/1710/1179
+
+Automated theorem provers and model finders for HOL (LEO-II, Satallax and 
+Nitpick) are employed to 
+- show the consistency of the axioms and definitions employed
+- to automate the ontological argument in 4 (resp. 5) single steps
+
+The set of axioms and definitions considered is as follows:
+
+ (axiom_1) Any property strictly implied by a positive property is positive.
+ (axiom_2) A property is positive if and only if its negation is not positive.
+ (def_1)   X is God-like if and only if X incorporates all positive properties.
+ (axiom_3) The property of being God-like is positive.
+ (def_2)   Property P is an essence of X if and only if P is a property of X 
+           and every property Q that X has is strictly implied by P.
+ (axiom_4) Positive properties are necessary positive properties.
+ (def_3)   X necessarily exists if and only if every essence of X is necessarily 
+           exemplified.
+ (axiom_5) Necessary existence is positive.
+
+
+Informal explanation of the automation of Goedel's arguments:
+
+The consistency of this set of axioms in our formalization can be
+shown in about 7 seconds by Nitrox (Nitpick); see file 
+GoedelGod_consistentAssumptions.p
+
+Step 1:  
+We show (lemma_1): Positive properties are eventually exemplified.
+It holds:
+  (axiom_1), (axiom_2) |- (lemma_1)
+This can be proved by LEO-II and Satallax much less than second; see 
+GoedelGod_lemma_1.p
+Remark: only the left to right direction of (axiom_2) is required here.
+
+Step 2: 
+We show (lemma_2): Eventually God exists.
+It holds:
+  (axiom_2), (lemma_1), (def_1), (axioms_3) |- (lemma_2) 
+This can be proved by LEO-II and Satallax much less than second; see 
+GoedelGod_lemma_2.p
+Remark: only the left to right direction of (axiom_2) is required here.
+
+Step 3: 
+We show (lemma_3): If X is a God-like being, then the property of being 
+God-like is an essence of X.
+It holds:
+  (axiom_2), (def_1), (def_2), (axiom_4) |- (lemma_3)
+This can be proved by LEO-II and Satallax quickly; see GoedelGod_lemma_3.p. 
+LEO-II needs about 18 seconds and Satallax about 3 seconds.
+Remark: both directions of (axiom_2) are required here; otherwise Nitrox 
+(Nitpick) finds a counterexample.
+
+Step 4: 
+We show (theorem_1): Necessarily God exists.
+It holds:
+  (def_1), (lemma_2), (lemma_3), (def_3), (axiom_5) |- (theorem_1)
+This can be proved by LEO-II and Satallax quickly; see GoedelGod_theorem_1.p. 
+LEO-II needs about 23 seconds and Satallax about 3 seconds.
+
+Step 5: 
+We show (corrollary_1): God exists.
+It holds:
+  (theorem_1) |- (corollary_1)
+This can be proved by LEO-II and Satallax much less than second; see 
+GoedelGod_corollary_1.p
+
+
+
+In the experiments above the provers were run with a 60 seconds timeout via 
+Geoff Sutcliffe's SystemOnTPTP interface on standard PCs; big thanks to Geoff!
+
+We are currently testing whether (theorem_1) can eventually be proved
+directly from the axioms and definitions in one step; see file 
+GoedelGod_theorem_1_oneStep.p. So far the provers failed.
+
+
+The employed embedding of QML in HOL is adapting the ideas as presented in 
+
+-- Quantified Multimodal Logics in Simple Type Theory (Christoph Benzmueller, 
+   Lawrence Paulson), In Logica Universalis (Special Issue on Multimodal 
+   Logics), volume 7, number 1, pp. 7-20, 2013. 
+
+and in 
+
+-- Exploring Properties of Normal Multimodal Logics in Simple Type Theory 
+   with LEO-II (Christoph Benzmueller, Lawrence Paulson), Chapter in Reasoning 
+   in Simple Type Theory --- Festschrift in Honor of Peter B. Andrews on His 
+   70th Birthday (Christoph Benzmueller, Chad Brown, Joerg Siekmann, Richard 
+   Statman, eds.), College Publications, Studies in Logic, Mathematical Logic 
+   and Foundations, pp. 386-406, 2008.
+
+Note that our QML formalization employs quantification over individuals and 
+quantification over sets of individuals.
+
+
+Best regards,
+   Christoph Benzmueller and Bruno Woltzenlogel-Paleo
+
+

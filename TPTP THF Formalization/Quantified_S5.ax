@@ -5,7 +5,7 @@
 % This embedding has been worked out by Christoph Benzmueller as an adaptation
 % of the work presented in the following article: 
 %
-%   Quantified Multimodal Logics in Simple Type Theory (Christoph Benzmüller, 
+%   Quantified Multimodal Logics in Simple Type Theory (Christoph Benzmueller, 
 %   Lawrence Paulson), In Logica Universalis (Special Issue on Multimodal 
 %   Logics), volume 7, number 1, pp. 7-20, 2013. 
 %
@@ -14,9 +14,9 @@
 % following paper:
 %
 %   Exploring Properties of Normal Multimodal Logics in Simple Type Theory 
-%   with LEO-II (Christoph Benzmüller, Lawrence Paulson), Chapter in Reasoning 
+%   with LEO-II (Christoph Benzmueller, Lawrence Paulson), Chapter in Reasoning 
 %   in Simple Type Theory --- Festschrift in Honor of Peter B. Andrews on His 
-%   70th Birthday (Christoph Benzmüller, Chad Brown, Jörg Siekmann, Richard 
+%   70th Birthday (Christoph Benzmüller, Chad Brown, Joerg Siekmann, Richard 
 %   Statman, eds.), College Publications, Studies in Logic, Mathematical Logic 
 %   and Foundations, pp. 386-406, 2008.
 %
