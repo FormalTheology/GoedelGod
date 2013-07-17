@@ -1,0 +1,236 @@
+%--------------------------------------------------------------------------
+% This file contains an semantic embedding of quantified modal logic S5 into
+% classical higher-order logic (Church's simple type theory).-
+% 
+% This embedding has been worked out by Christoph Benzmueller as an adaptation
+% of the work presented in the following article: 
+%
+%   Quantified Multimodal Logics in Simple Type Theory (Christoph Benzmüller, 
+%   Lawrence Paulson), In Logica Universalis (Special Issue on Multimodal 
+%   Logics), volume 7, number 1, pp. 7-20, 2013. 
+%
+% New is a quantifier supporting quantification over sets of individuals. 
+% Embeddings of such higher quantifiers have already been presented in the 
+% following paper:
+%
+%   Exploring Properties of Normal Multimodal Logics in Simple Type Theory 
+%   with LEO-II (Christoph Benzmüller, Lawrence Paulson), Chapter in Reasoning 
+%   in Simple Type Theory --- Festschrift in Honor of Peter B. Andrews on His 
+%   70th Birthday (Christoph Benzmüller, Chad Brown, Jörg Siekmann, Richard 
+%   Statman, eds.), College Publications, Studies in Logic, Mathematical Logic 
+%   and Foundations, pp. 386-406, 2008.
+%
+% Christoph Benzmueller, July 2013
+%--------------------------------------------------------------------------
+%----Declaration of additional base type mu (for individuals)
+%----type $i stands for possible worlds
+thf(mu_type,type,(
+    mu: $tType )).
+
+%----Modal operators not, or, box
+thf(mnot_type,type,(
+    mnot: ( $i > $o ) > $i > $o )).
+
+thf(mnot,definition,
+    ( mnot
+    = ( ^ [Phi: $i > $o,W: $i] :
+          ~ ( Phi @ W ) ) )).
+
+thf(mor_type,type,(
+    mor: ( $i > $o ) > ( $i > $o ) > $i > $o )).
+
+thf(mor,definition,
+    ( mor
+    = ( ^ [Phi: $i > $o,Psi: $i > $o,W: $i] :
+          ( ( Phi @ W )
+          | ( Psi @ W ) ) ) )).
+
+thf(mbox_type,type,(
+    mbox: ( $i > $i > $o ) > ( $i > $o ) > $i > $o )).
+
+thf(mbox,definition,
+    ( mbox
+    = ( ^ [R: $i > $i > $o,Phi: $i > $o,W: $i] :
+        ! [V: $i] :
+          ( ~ ( R @ W @ V )
+          | ( Phi @ V ) ) ) )).
+
+%----Modal quantifier (as constant Pi) for individuals and propositions 
+
+thf(mforall_ind_type,type,(
+    mforall_ind: ( mu > $i > $o ) > $i > $o )).
+
+thf(mforall_ind,definition,
+    ( mforall_ind
+    = ( ^ [Phi: mu > $i > $o,W: $i] :
+        ! [X: mu] :
+          ( Phi @ X @ W ) ) )).
+
+%----Modal quantifier for sets of individuals
+%----this is new!
+
+thf(mforall_indset_type,type,(
+    mforall_indset: ( ( mu > $i > $o ) > $i > $o ) > $i > $o )).
+
+thf(mforall_indset,definition,
+    ( mforall_indset
+    = ( ^ [Phi: ( mu > $i > $o ) > $i > $o,W: $i] :
+        ! [X: mu > $i > $o] :
+          ( Phi @ X @ W ) ) )).
+
+%----Further modal operators
+thf(mtrue_type,type,(
+    mtrue: $i > $o )).
+
+thf(mtrue,definition,
+    ( mtrue
+    = ( ^ [W: $i] : $true ) )).
+
+thf(mfalse_type,type,(
+    mfalse: $i > $o )).
+
+thf(mfalse,definition,
+    ( mfalse
+    = ( mnot @ mtrue ) )).
+
+thf(mand_type,type,(
+    mand: ( $i > $o ) > ( $i > $o ) > $i > $o )).
+
+thf(mand,definition,
+    ( mand
+    = ( ^ [Phi: $i > $o,Psi: $i > $o] :
+          ( mnot @ ( mor @ ( mnot @ Phi ) @ ( mnot @ Psi ) ) ) ) )).
+
+thf(mimplies_type,type,(
+    mimplies: ( $i > $o ) > ( $i > $o ) > $i > $o )).
+
+thf(mimplies,definition,
+    ( mimplies
+    = ( ^ [Phi: $i > $o,Psi: $i > $o] :
+          ( mor @ ( mnot @ Phi ) @ Psi ) ) )).
+
+thf(mimplied_type,type,(
+    mimplied: ( $i > $o ) > ( $i > $o ) > $i > $o )).
+
+thf(mimplied,definition,
+    ( mimplied
+    = ( ^ [Phi: $i > $o,Psi: $i > $o] :
+          ( mor @ ( mnot @ Psi ) @ Phi ) ) )).
+
+thf(mequiv_type,type,(
+    mequiv: ( $i > $o ) > ( $i > $o ) > $i > $o )).
+
+thf(mequiv,definition,
+    ( mequiv
+    = ( ^ [Phi: $i > $o,Psi: $i > $o] :
+          ( mand @ ( mimplies @ Phi @ Psi ) @ ( mimplies @ Psi @ Phi ) ) ) )).
+
+thf(mxor_type,type,(
+    mxor: ( $i > $o ) > ( $i > $o ) > $i > $o )).
+
+thf(mxor,definition,
+    ( mxor
+    = ( ^ [Phi: $i > $o,Psi: $i > $o] :
+          ( mnot @ ( mequiv @ Phi @ Psi ) ) ) )).
+
+thf(mdia_type,type,(
+    mdia: ( $i > $i > $o ) > ( $i > $o ) > $i > $o )).
+
+thf(mdia,definition,
+    ( mdia
+    = ( ^ [R: $i > $i > $o,Phi: $i > $o] :
+          ( mnot @ ( mbox @ R @ ( mnot @ Phi ) ) ) ) )).
+
+thf(mexists_ind_type,type,(
+    mexists_ind: ( mu > $i > $o ) > $i > $o )).
+
+thf(mexists_ind,definition,
+    ( mexists_ind
+    = ( ^ [Phi: mu > $i > $o] :
+          ( mnot
+          @ ( mforall_ind
+            @ ^ [X: mu] :
+                ( mnot @ ( Phi @ X ) ) ) ) ) )).
+
+%----Definition of validity
+thf(mvalid_type,type,(
+    mvalid: ( $i > $o ) > $o )).
+
+thf(mvalid,definition,
+    ( mvalid
+    = ( ^ [Phi: $i > $o] :
+        ! [W: $i] :
+          ( Phi @ W ) ) )).
+
+%----Definition of properties of accessibility relations
+thf(mreflexive_type,type,(
+    mreflexive: ( $i > $i > $o ) > $o )).
+
+thf(mreflexive,definition,
+    ( mreflexive
+    = ( ^ [R: $i > $i > $o] :
+        ! [S: $i] :
+          ( R @ S @ S ) ) )).
+
+thf(msymmetric_type,type,(
+    msymmetric: ( $i > $i > $o ) > $o )).
+
+thf(msymmetric,definition,
+    ( msymmetric
+    = ( ^ [R: $i > $i > $o] :
+        ! [S: $i,T: $i] :
+          ( ( R @ S @ T )
+         => ( R @ T @ S ) ) ) )).
+
+thf(mtransitive_type,type,(
+    mtransitive: ( $i > $i > $o ) > $o )).
+
+thf(mtransitive,definition,
+    ( mtransitive
+    = ( ^ [R: $i > $i > $o] :
+        ! [S: $i,T: $i,U: $i] :
+          ( ( ( R @ S @ T )
+            & ( R @ T @ U ) )
+         => ( R @ S @ U ) ) ) )).
+
+%------------------------------------------------------------------------------
+%----We work with an S5 logic
+%----We reserve an accessibility relation constant rel_s5
+thf(rel_s5_type,type,(
+    rel_s5: $i > $i > $o )).
+
+%----We define mbox_s5 and mdia_s5 based on rel_s5
+thf(mbox_s5_type,type,(
+    mbox_s5: ( $i > $o ) > $i > $o )).
+
+thf(mbox_s5,definition,
+    ( mbox_s5
+    = ( ^ [Phi: $i > $o,W: $i] :
+        ! [V: $i] :
+          ( ~ ( rel_s5 @ W @ V )
+          | ( Phi @ V ) ) ) )).
+
+thf(mdia_s5_type,type,(
+    mdia_s5: ( $i > $o ) > $i > $o )).
+
+thf(mdia_s5,definition,
+    ( mdia_s5
+    = ( ^ [Phi: $i > $o] :
+          ( mnot @ ( mbox_s5 @ ( mnot @ Phi ) ) ) ) )).
+
+%----We have now two options for stating the S5 conditions: 
+%----We can (i) directly formulate conditions for the accessibility relation
+%----constant or we can (ii) state corresponding axioms. We here prefer (i)
+thf(a1,axiom,
+    ( mreflexive @ rel_s5 )).
+
+thf(a2,axiom,
+    ( mtransitive @ rel_s5 )).
+
+thf(a3,axiom,
+    ( msymmetric @ rel_s5 )).
+
+%------------------------------------------------------------------------------
+
+
+
