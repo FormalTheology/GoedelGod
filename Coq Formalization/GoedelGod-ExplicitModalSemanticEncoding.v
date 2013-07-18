@@ -258,42 +258,44 @@ unfold mand; split.
 Qed.
 
 
-(* ToDo: Everything below this point is garbage.. *)
 
 
-Axiom reflexivity: forall w, r w w.
+
 
 (* Definition of necessary existence *)
-Definition NecExists(x: i) := forall p, (Essential p x) -> box (exists y, (p y)).
+Definition NecExists(x: u) := A (fun p => (Essential p x) m-> box (E (fun y => (p y)))).
 
 (* Axiom 5: necessary existence is a positive property *)
-Axiom axiom5: (Positive NecExists).
+Axiom axiom5: V (Positive NecExists).
 
 
-(* The following lemma could be proved trivially (with intro and apply Necessitation). *)
-(* The more complex proof below shows, however, that axiom Necessitation is not necessary if we use the definition of God *)
-Lemma lemma: (exists z, (G z)) -> box (exists x, (G x)).
+
+Lemma lemma: V ((E (fun z => (G z))) m-> box (E (fun x => (G x)))).
 Proof.
+modal_valid.
 intro H1.
 destruct H1 as [g H2].
-cut (Essential G g).
-  cut (NecExists g).
+cut (Essential G g w).
+  cut (NecExists g w).
     intro H3.
     unfold NecExists in H3.
     apply H3.
 
-    cut (Positive NecExists).
+    cut (Positive NecExists w).
       unfold G in H2.
       apply H2.
 
       apply axiom5.
 
-  cut (G g).
+  cut (G g w).
     apply theorem3.
 
     exact H2.
 Qed.
 
+
+
+(* ToDo: Everything below this point is garbage.. *)
 
 (* This lemma is not true. It should be (diamond p) -> (box (p -> q)) -> (diamond q) *)
 Lemma modus_ponens_inside_diamond: forall p q: Prop, (diamond p) -> (p -> q) -> (diamond q).
@@ -357,3 +359,4 @@ apply T.
 apply theorem4.
 Qed.
 
+Axiom reflexivity: forall w, r w w.
