@@ -294,37 +294,26 @@ cut (Essential G g w).
 Qed.
 
 
-
-(* ToDo: Everything below this point is garbage.. *)
-
-(* This lemma is not true. It should be (diamond p) -> (box (p -> q)) -> (diamond q) *)
-Lemma modus_ponens_inside_diamond: forall p q: Prop, (diamond p) -> (p -> q) -> (diamond q).
-(* ToDo: it might be possible to simplify the following proof *)
+Lemma modus_ponens_inside_diamond: V (A (fun p => A (fun q => (diamond p) m-> (box (p m-> q)) m-> (diamond q)))).
 Proof.
-intro. intro.
+modal_valid.
+intro p. intro q.
 intro H1.
 intro H2.
-unfold diamond.
-intro H3.
-absurd q.
-  apply T.
-  exact H3.
+unfold diamond in H1.
+destruct H1 as [w1  [R1 H1]].
+exists w1.
+split.
+  exact R1.
 
-  apply H2.
-  apply imply_to_or in H2.
-  destruct H2 as [H4|H5].
-    unfold diamond in H1.
-    apply Necessitation in H4.
+  apply H2. 
+    exact R1.
 
-    absurd (box (~ p)).
-      exact H1.
-      exact H4.
-
-      apply T in H3.
-      exfalso.
-      contradiction.
+    exact H1.
 Qed.
 
+
+(* ToDo: Everything below this point is garbage.. *)
 
 
 (* More modal logic axioms *)
