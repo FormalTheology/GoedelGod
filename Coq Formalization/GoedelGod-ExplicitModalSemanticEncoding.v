@@ -114,7 +114,7 @@ Axiom axiom2b : V (A (fun p => (n (Positive p)) m-> (Positive (fun x: u => n (p 
 
 
 
-Axiom reflexivity: forall w, r w w.
+
 
 (* Theorem 1: positive properties possibly have a witness *)
 Theorem theorem1: V (A (fun p: u -> o => (Positive p) m-> diamond (E (fun x => p x) ) )).
@@ -174,74 +174,81 @@ cut ((Positive p w) /\ ((box (A (fun x => (n (p x))))) w) -> (n (Positive p)) w)
 Qed.  
 
 
-(* ToDo: Everything below this point is garbage.. *)
+
 
 
 (* Definition of God *)
-Definition G(x: i) := forall p, (Positive p) -> (p x).
+Definition G(x: u) := A (fun p => (Positive p) m-> (p x)).
 
 (* Axiom 3: Being God is a positive property *)
-Axiom axiom3: (Positive G).
+Axiom axiom3: V (Positive G).
 
 (* Theorem 2: it is possible that God exists *)
-Theorem theorem2: diamond (exists x, G x). 
+Theorem theorem2: V (diamond (E (fun x => G x))). 
 Proof.
-apply theorem1.
+unfold V. intro. apply theorem1.
 apply axiom3.
 Qed.
 
 
+
+
+
+
 (* Definition of essentiality *)
-Definition Essential(p: i-> Prop)(x: i) := (p x) /\ forall q: (u -> Prop),((q x) -> box (forall y, (p y) -> (q y))).
+Definition Essential(p: u -> o)(x: u) := (p x) m/\ A (fun q: (u -> o) => ((q x) m-> box (A (fun y => (p y) m-> (q y))))).
 
 (* Axiom 4: positive properties are necessarily positive *)
-Axiom axiom4: forall p, (Positive p) -> box (Positive p).
+Axiom axiom4: V (A (fun p => (Positive p) m-> box (Positive p))).
 
 (* Theorem 3: if an individual is a God, then being God is an essential property for that individual *)
-Theorem theorem3: forall y, (G y) -> (Essential G y).
+Theorem theorem3: V (A (fun y => (G y) m-> (Essential G y))).
 Proof.
-intro.
-intro H1.
+modal_valid.
+unfold A. intro y.
+unfold mimplies. intro H1.
 unfold Essential.
-split.
+unfold mand; split.
   exact H1.
 
-  intro.
-  intro H2.
-  cut (box (Positive q)).
+  red. intro q.
+  red; intro H2.
+  cut (box (Positive q) w).
     intro H3.
-    apply Necessitation.
-    cut (Positive q).
+    red. intro. intro R1.
+    red. intro y0.
+    red.
+    cut (Positive q w1). (* trying w0 *)
       intro H4.
-      intro.
       intro H5.
-      cut (Positive q).
+      cut (Positive q w1).
         unfold G in H5.
+        red in H5. red in H5.
         apply H5.
 
         exact H4.
      
-      apply T.
-      exact H3.
+      apply H3.
+      exact R1.
 
-  cut (q y).
+  cut (q y w).
     intro H6.
-    cut (Positive q).
+    cut (Positive q w).
       apply axiom4.
 
-      cut (q y).
+      cut (q y w).
         intro H7.
         apply NNPP.
         intro not_Pos_q.
-        absurd (q y).
-          cut (Positive (fun x => ~ (q x))).
+        absurd (q y w).
+          cut (Positive (fun x => n (q x)) w).
             unfold G in H1.
             apply H1.
 
-            cut (~ (Positive q)).
-              apply axiom2.
+            cut (n (Positive q) w).
+              apply axiom2b.
 
-              exact not_Pos_q.
+              red. exact not_Pos_q.
 
           exact H7.
 
@@ -250,6 +257,11 @@ split.
     exact H2.
 Qed.
 
+
+(* ToDo: Everything below this point is garbage.. *)
+
+
+Axiom reflexivity: forall w, r w w.
 
 (* Definition of necessary existence *)
 Definition NecExists(x: i) := forall p, (Essential p x) -> box (exists y, (p y)).
