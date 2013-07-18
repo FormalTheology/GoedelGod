@@ -344,13 +344,14 @@ cut (diamond (box (E (fun x => G x))) w).
 Qed.
 
 
-(* ToDo: Everything below this point is garbage.. *)
+Axiom reflexivity: forall w, r w w.
 
 (* Theorem 5: There exists a god *)
-Theorem God_exists: exists x, (G x).
+Theorem God_exists: V (E (fun x => (G x))).
 Proof.
-apply T.
-apply theorem4.
+modal_valid.
+apply (theorem4 w).
+apply reflexivity.
 Qed.
 
-Axiom reflexivity: forall w, r w w.
+
