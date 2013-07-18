@@ -313,33 +313,38 @@ split.
 Qed.
 
 
-(* ToDo: Everything below this point is garbage.. *)
+
 
 
 (* More modal logic axioms *)
-Axiom Five: forall p, (diamond p) -> box (diamond p).
+Axiom Five: V (A (fun p => (diamond p) m-> box (diamond p))).
 
 (* In modal logic S5, iterations of modal operators can be collapsed *)
-Theorem modal_iteration_S5: forall p, (diamond (box p)) <-> (box p).
+Theorem modal_iteration_S5: V (A (fun p => (diamond (box p)) m-> (box p))).
 Proof.
 Admitted. (* ToDo *)
 
 
 (* Theorem 4: the existence of a God is necessary *)
-Theorem theorem4: box (exists x, G x).
+Theorem theorem4: V (box (E (fun x => (G x)))).
 Proof.
-cut (diamond (box (exists x, G x))).
+modal_valid.
+cut (diamond (box (E (fun x => G x))) w).
   apply modal_iteration_S5.
-  cut (diamond (exists x, G x)).
+  cut (diamond (E (fun x => G x)) w).
     intro H1.
-    apply modus_ponens_inside_diamond with (p := exists z, G z).
+    apply (modus_ponens_inside_diamond w (E (fun z => G z))).
     exact H1.
      
+    
+    intro. intro R1.
     apply lemma.
 
   apply theorem2.
 Qed.
 
+
+(* ToDo: Everything below this point is garbage.. *)
 
 (* Theorem 5: There exists a god *)
 Theorem God_exists: exists x, (G x).
