@@ -36,7 +36,7 @@ thf(essential_tp,type,(
 %----axiom_2: A property is positive if and only if its negation is not positive.
 %----         (Remark: to prove lemma_3 both directions of axiom_2 are required;
 %----          if mimplies is used instead of mequiv then Nitrox finds a counterexample;
-%----          see also the "Introductory note to *1970", p.401, to "Kurt Goedel (1995).
+%----          see also the "Introductory note to *1970", p.401, to "Kurt Goedel (1995),
 %----          Ontological Proof, Collected Works: Unpublished Essays & Lectures, Volume III.
 %----          pp. 403-404. Oxford University Press.")
 thf(axiom2,axiom,
