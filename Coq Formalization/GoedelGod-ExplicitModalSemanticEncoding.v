@@ -1,6 +1,8 @@
-(* Author: Bruno Woltzenlogel Paleo (bruno@logic.at) *)
-
 (* Formalization of Goedel's Ontological Proof of God's Existence *)
+
+(* Authors: Bruno Woltzenlogel Paleo (bruno@logic.at) and Christoph Benzmueller *)
+
+
 
 Require Import Coq.Logic.Classical.
 Require Import Coq.Logic.Classical_Pred_Type.
@@ -172,7 +174,7 @@ cut ((Positive p w) /\ ((box (A (fun x => (n (p x))))) w) -> (n (Positive p)) w)
 Qed.  
 
 
-(* ToDo: Everything below this point is garbage... *)
+(* ToDo: Everything below this point is garbage.. *)
 
 
 (* Definition of God *)
