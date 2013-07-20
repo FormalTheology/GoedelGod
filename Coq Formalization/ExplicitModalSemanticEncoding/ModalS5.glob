@@ -1,0 +1,24 @@
+FModalS5
+R169 Modal <> <> lib
+ax 216 <> reflexivity
+R239 Modal <> r defax
+ax 253 <> transitivity
+R311 Modal <> r defax
+R298 Modal <> r defax
+R285 Modal <> r defax
+ax 328 <> symmetry
+R366 Modal <> r defax
+R353 Modal <> r defax
+prf 456 <> modal_iteration
+R473 Modal <> V def
+R476 Modal <> A def
+R488:488 Modal <> ::x_'m->'_x not
+R500:506 Modal <> ::x_'m->'_x not
+R512:512 Modal <> ::x_'m->'_x not
+R489 Modal <> dia def
+R494 Modal <> box def
+R507 Modal <> box def
+R612 ModalS5 <> transitivity prfax
+R612 ModalS5 <> transitivity prfax
+R649 ModalS5 <> symmetry prfax
+R649 ModalS5 <> symmetry prfax
