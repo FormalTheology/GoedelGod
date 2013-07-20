@@ -1,5 +1,5 @@
 %--------------------------------------------------------------------------
-% This file contains an semantic embedding of quantified modal logic S5 into
+% This file contains a semantic embedding of quantified modal logic S5 into
 % classical higher-order logic (Church's simple type theory).-
 % 
 % This embedding has been worked out by Christoph Benzmueller as an adaptation
