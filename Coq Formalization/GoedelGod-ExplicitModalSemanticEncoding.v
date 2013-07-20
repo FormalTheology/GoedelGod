@@ -86,14 +86,14 @@ split.
 Qed.
 
 
-(* Modal logic axioms *)
+(* Modal logic axioms 
 Lemma Necessitation: forall p, (V p) -> (V (box p)).
 Proof.
 Admitted.
 
 Lemma T: forall p w, ((box p) w) -> (p w).  (* check this *)
 Proof.
-Admitted.
+Admitted.*)
 
 
 
@@ -314,15 +314,49 @@ Qed.
 
 
 
+Axiom reflexivity: forall w, r w w.
+
+Axiom transitivity: forall w1 w2 w3, (r w1 w2) -> (r w2 w3) -> (r w1 w3).
+
+Axiom symmetry: forall w1 w2, (r w1 w2) -> (r w2 w1).
 
 
 (* More modal logic axioms *)
-Axiom Five: V (A (fun p => (diamond p) m-> box (diamond p))).
+Lemma Five: V (A (fun p => (diamond p) m-> box (diamond p))).
+Proof.
+intro.
+intro p.
+intro H1.
+destruct H1 as [w1 [R1 H1]].
+intros w2 R2.
+exists w1.
+split.
+  apply transitivity with (w2 := w).
+  apply symmetry.
+    exact R2.
+
+    exact R1.
+
+  exact H1.
+Qed.
+  
+
 
 (* In modal logic S5, iterations of modal operators can be collapsed *)
-Theorem modal_iteration_S5: V (A (fun p => (diamond (box p)) m-> (box p))).
+Lemma modal_iteration_S5: V (A (fun p => (diamond (box p)) m-> (box p))).
 Proof.
-Admitted. (* ToDo *)
+intro.
+intro p.
+intro H1.
+destruct H1 as [w1 [R1 H1]].
+intro. intro R0.
+apply H1.
+apply transitivity with (w2 := w).
+  apply symmetry.
+  exact R1.
+
+  exact R0.
+Qed. (* ToDo *)
 
 
 (* Theorem 4: the existence of a God is necessary *)
@@ -344,7 +378,7 @@ cut (diamond (box (E (fun x => G x))) w).
 Qed.
 
 
-Axiom reflexivity: forall w, r w w.
+
 
 (* Theorem 5: There exists a god *)
 Theorem God_exists: V (E (fun x => (G x))).
