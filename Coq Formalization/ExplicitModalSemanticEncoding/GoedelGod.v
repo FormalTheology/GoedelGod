@@ -13,20 +13,20 @@ Require Import Modal.
 Parameter Positive: (u -> o) -> o.
 
 (* Axiom 1: properties necessarily entailed by positive properties are also positive *)
-Axiom axiom1: V (A (fun p => (A (fun q => Positive p m/\ (box (A (fun x: u => (p x) m-> (q x)))) m-> Positive q)))).
+Axiom axiom1: V (mforall p, mforall q, Positive p m/\ (box (A (fun x: u => (p x) m-> (q x)))) m-> Positive q).
 
 
 (* Axiom 2: the negation of a property is positive iff the property is not positive *)
-Axiom axiom2a : V (A (fun p => (Positive (fun x: u => m~(p x))) m-> (m~ (Positive p)))).
-Axiom axiom2b : V (A (fun p => (m~ (Positive p)) m-> (Positive (fun x: u => m~ (p x))) )).
+Axiom axiom2a : V (mforall p, (Positive (fun x: u => m~(p x))) m-> (m~ (Positive p))).
+Axiom axiom2b : V (mforall p, (m~ (Positive p)) m-> (Positive (fun x: u => m~ (p x))) ).
 
 
 (* Theorem 1: positive properties possibly have a witness *)
-Theorem theorem1: V (A (fun p: u -> o => (Positive p) m-> dia (E (fun x => p x) ) )).
+Theorem theorem1: V (mforall p, (Positive p) m-> dia (mexists x, p x) ).
 Proof.
 intro w.
 intro p.
-cut ((Positive p w) /\ ((box (A (fun x => (m~ (p x))))) w) -> (m~ (Positive p)) w).
+cut ((Positive p w) /\ ((box (mforall x, (m~ (p x)))) w) -> (m~ (Positive p)) w).
   intro H.
   intro H2.
   apply imply_to_or in H.
@@ -71,13 +71,13 @@ cut ((Positive p w) /\ ((box (A (fun x => (m~ (p x))))) w) -> (m~ (Positive p)) 
 Qed.  
 
 (* Definition of God *)
-Definition G(x: u) := A (fun p => (Positive p) m-> (p x)).
+Definition G(x: u) := mforall p, (Positive p) m-> (p x).
 
 (* Axiom 3: Being God is a positive property *)
 Axiom axiom3: V (Positive G).
 
 (* Theorem 2: it is possible that God exists *)
-Theorem theorem2: V (dia (E (fun x => G x))). 
+Theorem theorem2: V (dia (mexists x, G x)). 
 Proof.
 intro w. 
 apply theorem1.
@@ -85,13 +85,13 @@ apply axiom3.
 Qed.
 
 (* Definition of essentiality *)
-Definition Essential(p: u -> o)(x: u) := (p x) m/\ A (fun q: (u -> o) => ((q x) m-> box (A (fun y => (p y) m-> (q y))))).
+Definition Essential(p: u -> o)(x: u) := (p x) m/\ mforall q, ((q x) m-> box (mforall y, (p y) m-> (q y))).
 
 (* Axiom 4: positive properties are necessarily positive *)
-Axiom axiom4: V (A (fun p => (Positive p) m-> box (Positive p))).
+Axiom axiom4: V (mforall p, (Positive p) m-> box (Positive p)).
 
 (* Theorem 3: if an individual is a God, then being God is an essential property for that individual *)
-Theorem theorem3: V (A (fun y => (G y) m-> (Essential G y))).
+Theorem theorem3: V (mforall y, (G y) m-> (Essential G y)).
 Proof.
 intro.
 intro y.
@@ -128,7 +128,7 @@ split.
         apply NNPP.
         intro H8.
         absurd (q y w).
-          cut (Positive (fun x => m~(q x)) w).
+          cut (Positive (fun x => m~ (q x)) w).
             unfold G in H1.
             apply H1.
 
@@ -146,13 +146,13 @@ Qed.
 
 
 (* Definition of necessary existence *)
-Definition NecExists(x: u) := A (fun p => (Essential p x) m-> box (E (fun y => (p y)))).
+Definition NecExists(x: u) := mforall p, (Essential p x) m-> box (mexists y, (p y)).
 
 (* Axiom 5: necessary existence is a positive property *)
 Axiom axiom5: V (Positive NecExists).
 
 
-Lemma lemma: V ((E (fun z => (G z))) m-> box (E (fun x => (G x)))).
+Lemma lemma: V ((mexists z, (G z)) m-> box (mexists x, (G x))).
 Proof.
 intro w.
 intro H1.
@@ -180,14 +180,14 @@ Qed.
 Require Import ModalS5.
 
 (* Theorem 4: the existence of a God is necessary *)
-Theorem theorem4: V (box (E (fun x => (G x)))).
+Theorem theorem4: V (box (mexists x, (G x))).
 Proof.
 intro.
-cut (dia (box (E (fun x => G x))) w).
+cut (dia (box (mexists x, G x)) w).
   apply modal_iteration.
-  cut (dia (E (fun x => G x)) w).
+  cut (dia (mexists x, G x) w).
     intro H1.
-    apply (modus_ponens_inside_dia w (E (fun z => G z))).
+    apply (modus_ponens_inside_dia w (mexists z, G z)).
     exact H1.
      
     
@@ -199,7 +199,7 @@ Qed.
 
 
 (* Theorem 5: There exists a god *)
-Theorem God_exists: V (E (fun x => (G x))).
+Theorem God_exists: V (mexists x, (G x)).
 Proof.
 intro.
 apply (theorem4 w).

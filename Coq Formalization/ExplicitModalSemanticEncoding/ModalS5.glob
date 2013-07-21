@@ -11,14 +11,15 @@ R366 Modal <> r defax
 R353 Modal <> r defax
 prf 456 <> modal_iteration
 R473 Modal <> V def
-R476 Modal <> A def
-R488:488 Modal <> ::x_'m->'_x not
-R500:506 Modal <> ::x_'m->'_x not
-R512:512 Modal <> ::x_'m->'_x not
-R489 Modal <> dia def
-R494 Modal <> box def
-R507 Modal <> box def
-R612 ModalS5 <> transitivity prfax
-R612 ModalS5 <> transitivity prfax
-R649 ModalS5 <> symmetry prfax
-R649 ModalS5 <> symmetry prfax
+R476:483 Modal <> :type_scope:'mforall'_x_','_x not
+R485:486 Modal <> :type_scope:'mforall'_x_','_x not
+R487:487 Modal <> ::x_'m->'_x not
+R499:505 Modal <> ::x_'m->'_x not
+R511:511 Modal <> ::x_'m->'_x not
+R488 Modal <> dia def
+R493 Modal <> box def
+R506 Modal <> box def
+R610 ModalS5 <> transitivity prfax
+R610 ModalS5 <> transitivity prfax
+R647 ModalS5 <> symmetry prfax
+R647 ModalS5 <> symmetry prfax

@@ -14,50 +14,57 @@ R438:438 Coq.Init.Logic <> :type_scope:'~'_x not
 R462 Modal <> mnot def
 not 450 <> ::'m~'_x
 def 518 <> mand
-R527 Modal <> o def
-R532 Modal <> o def
-R538 Modal <> i defax
-R544:544 Coq.Init.Logic <> :type_scope:x_'/\'_x not
-R548:553 Coq.Init.Logic <> :type_scope:x_'/\'_x not
-R557:557 Coq.Init.Logic <> :type_scope:x_'/\'_x not
-R583 Modal <> mand def
-not 569 <> ::x_'m/\'_x
-def 641 <> mimplies
-R654 Modal <> o def
-R659 Modal <> o def
-R664 Modal <> i defax
-R709 Modal <> mimplies def
-not 695 <> ::x_'m->'_x
-def 795 <> A
-R815 Modal <> o def
-not 856 <> ::x_x_'\'_x
-def 930 <> E
-R950 Modal <> o def
-R965:971 Coq.Init.Logic <> :type_scope:'exists'_x_','_x not
-R973:974 Coq.Init.Logic <> :type_scope:'exists'_x_','_x not
-def 1034 <> box
-R1042 Modal <> o def
-R1069 Modal <> r defax
-def 1136 <> dia
-R1144 Modal <> o def
-R1159:1165 Coq.Init.Logic <> :type_scope:'exists'_x_','_x not
-R1168:1169 Coq.Init.Logic <> :type_scope:'exists'_x_','_x not
-R1170:1170 Coq.Init.Logic <> :type_scope:x_'/\'_x not
-R1177:1182 Coq.Init.Logic <> :type_scope:x_'/\'_x not
-R1187:1187 Coq.Init.Logic <> :type_scope:x_'/\'_x not
-R1171 Modal <> r defax
-def 1246 <> V
-R1252 Modal <> o def
-prf 1282 <> modus_ponens_inside_dia
-R1307 Modal <> V def
-R1310 Modal <> A def
-R1322 Modal <> A def
-R1334:1334 Modal <> ::x_'m->'_x not
-R1340:1345 Modal <> ::x_'m->'_x not
-R1335 Modal <> dia def
-R1346:1346 Modal <> ::x_'m->'_x not
-R1360:1366 Modal <> ::x_'m->'_x not
-R1372:1372 Modal <> ::x_'m->'_x not
-R1347 Modal <> box def
-R1353:1357 Modal <> ::x_'m->'_x not
-R1367 Modal <> dia def
+R528 Modal <> o def
+R534 Modal <> i defax
+R540:540 Coq.Init.Logic <> :type_scope:x_'/\'_x not
+R544:549 Coq.Init.Logic <> :type_scope:x_'/\'_x not
+R553:553 Coq.Init.Logic <> :type_scope:x_'/\'_x not
+R579 Modal <> mand def
+not 565 <> ::x_'m/\'_x
+def 637 <> mimplies
+R651 Modal <> o def
+R656 Modal <> i defax
+R701 Modal <> mimplies def
+not 687 <> ::x_'m->'_x
+def 787 <> A
+R807 Modal <> o def
+R871 Modal <> A def
+not 848 <> :type_scope:'mforall'_x_','_x
+R983 Modal <> A def
+not 957 <> :type_scope:'mforall'_x_':'_x_','_x
+def 1133 <> E
+R1153 Modal <> o def
+R1168:1174 Coq.Init.Logic <> :type_scope:'exists'_x_','_x not
+R1176:1177 Coq.Init.Logic <> :type_scope:'exists'_x_','_x not
+R1216 Modal <> E def
+not 1194 <> :type_scope:'mexists'_x_','_x
+R1328 Modal <> E def
+not 1302 <> :type_scope:'mexists'_x_':'_x_','_x
+def 1518 <> box
+R1526 Modal <> o def
+R1553 Modal <> r defax
+def 1620 <> dia
+R1628 Modal <> o def
+R1643:1649 Coq.Init.Logic <> :type_scope:'exists'_x_','_x not
+R1652:1653 Coq.Init.Logic <> :type_scope:'exists'_x_','_x not
+R1654:1654 Coq.Init.Logic <> :type_scope:x_'/\'_x not
+R1661:1666 Coq.Init.Logic <> :type_scope:x_'/\'_x not
+R1671:1671 Coq.Init.Logic <> :type_scope:x_'/\'_x not
+R1655 Modal <> r defax
+def 1730 <> V
+R1736 Modal <> o def
+prf 1765 <> modus_ponens_inside_dia
+R1790 Modal <> V def
+R1793:1800 Modal <> :type_scope:'mforall'_x_','_x not
+R1802:1803 Modal <> :type_scope:'mforall'_x_','_x not
+R1804:1811 Modal <> :type_scope:'mforall'_x_','_x not
+R1813:1814 Modal <> :type_scope:'mforall'_x_','_x not
+R1815:1815 Modal <> ::x_'m->'_x not
+R1821:1826 Modal <> ::x_'m->'_x not
+R1816 Modal <> dia def
+R1827:1827 Modal <> ::x_'m->'_x not
+R1841:1847 Modal <> ::x_'m->'_x not
+R1853:1853 Modal <> ::x_'m->'_x not
+R1828 Modal <> box def
+R1834:1838 Modal <> ::x_'m->'_x not
+R1848 Modal <> dia def

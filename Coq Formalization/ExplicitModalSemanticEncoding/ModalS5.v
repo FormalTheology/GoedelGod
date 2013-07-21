@@ -14,7 +14,7 @@ Axiom symmetry: forall w1 w2, (r w1 w2) -> (r w2 w1).
 
 
 (* In modal logic S5, iterations of modal operators can be collapsed *)
-Lemma modal_iteration: V (A (fun p => (dia (box p)) m-> (box p))).
+Lemma modal_iteration: V (mforall p, (dia (box p)) m-> (box p)).
 Proof.
 intro.
 intro p.
