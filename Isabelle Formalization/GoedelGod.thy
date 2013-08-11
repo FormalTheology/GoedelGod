@@ -1,6 +1,6 @@
 (* Formalization of Goedel's ontological argument in Isabelle/HOL *)
 (* Authors: Christoph Benzmueller and Bruno Woltzenlogel-Paleo *)
-(* Date: August 9, 2013 *)
+(* Date: August 11, 2013 *)
 
 (*
 We present a formalization and (partial) automation of Goedel's
@@ -35,7 +35,7 @@ b) The Isabelle/HOL formalization is also closely related to the Coq formalizati
 c) In the Isabelle/HOL formalization all steps in the argument have been automated with
    sledgehammer performing remote calls to Satallax and LEO-II. These calls then 
    suggested respective metis calls as given below. 
-d) In the case of theorem_1, however, metis seems still to weak to (re-)produce 
+d) In the case of thm1, however, metis seems still to weak to (re-)produce 
    the proof. (Larry, Nik: Can you help here?)
 *)
 
