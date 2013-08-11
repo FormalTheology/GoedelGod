@@ -2,6 +2,43 @@
 (* Authors: Christoph Benzmueller and Bruno Woltzenlogel-Paleo *)
 (* Date: August 9, 2013 *)
 
+(*
+We present a formalization and (partial) automation of Goedel's
+ontological argument in quantified modal logic S5 (QML S5). QML S5 is in 
+turn modeled as a fragment of Church's simple type theory (HOL). Thus, the
+formalization is essentially a formalization in HOL. 
+
+The employed embedding of QML S5 in HOL is adapting the ideas as presented in 
+-- Quantified Multimodal Logics in Simple Type Theory (Christoph Benzmueller, 
+   Lawrence Paulson), In Logica Universalis (Special Issue on Multimodal 
+   Logics), volume 7, number 1, pp. 7-20, 2013. 
+and in 
+-- Exploring Properties of Normal Multimodal Logics in Simple Type Theory 
+   with LEO-II (Christoph Benzmueller, Lawrence Paulson), Chapter in Reasoning 
+   in Simple Type Theory --- Festschrift in Honor of Peter B. Andrews on His 
+   70th Birthday (Christoph Benzmueller, Chad Brown, Joerg Siekmann, Richard 
+   Statman, eds.), College Publications, Studies in Logic, Mathematical Logic 
+   and Foundations, pp. 386-406, 2008.
+Note that our QML S5 formalization employs quantification over individuals and 
+quantification over sets of individuals.
+
+Some further notes:
+a) The Isabelle/HOL formalization closely follows the THF formalization available at: 
+   https://github.com/FormalTheology/GoedelGod/tree/master/TPTP%20THF%20Formalization
+   This THF formalization has been the first successful attempt to formalize and 
+   automate Goedel's ontological (July 2013). 
+   Note that both LEO-II and Satallax can effectively automate the four steps in 
+   the THF formalization. 
+b) The Isabelle/HOL formalization is also closely related to the Coq formalization at:  
+   https://github.com/FormalTheology/GoedelGod/blob/master/Coq%20Formalization/ExplicitModalSemanticEncoding/GoedelGod.v
+   This interactive Coq formalization was produced shortly after the THF formalization.
+c) In the Isabelle/HOL formalization all steps in the argument have been automated with
+   sledgehammer performing remote calls to Satallax and LEO-II. These calls then 
+   suggested respective metis calls as given below. 
+d) In the case of theorem_1, however, metis seems still to weak to (re-)produce 
+   the proof. (Larry, Nik: Can you help here?)
+*)
+
 theory GoedelGod
 imports Main HOL
 
@@ -70,7 +107,7 @@ lemma lemma1: "v (\<forall>iset (%P. (positive P) \<Rightarrow>m \<diamond> (\<e
   (* lemma1 can be proved from ax1 and ax2a.
      sledgehammer with leo2 and satallax does find the proof; just try:
        sledgehammer [provers = remote_leo2 remote_satallax] 
-     Even metis succeeds in finding the proof; see next *)
+     This call then suggests the use of metis; see below. *)
   using ax1 ax2a 
   unfolding mand_def mbox_s5_def mdia_s5_def mexists_ind_def 
             mforall_ind_def mforall_indset_def mimplies_def 
@@ -88,10 +125,10 @@ axiomatization where
 
 (* lemma2: Eventually God exists. *)
 lemma lemma2: "v (\<diamond> (\<exists>i (% X. god X)))" 
-  (* lemma2 can be proved from ax2a ax2b lemma1 ax3.
-     sledgehammer succeeds; try this: 
-     sledgehammer [provers = remote_leo2 remote_satallax] 
-     Note below that god_def is not even needed.
+  (* lemma2 can be proved from lemma1 and ax3.
+       sledgehammer succeeds; try this: 
+       sledgehammer [provers = remote_leo2 remote_satallax] 
+     Note that god_def is not even needed.
    *)
   using ax3 lemma1 unfolding mforall_indset_def mimplies_def valid_def
   by metis
@@ -134,11 +171,11 @@ theorem thm1: "v (\<box> (\<exists>i (%X. god X)))"
        sledgehammer [timeout = 120, provers = remote_leo2 remote_satallax] 
      and then it is suggested to use 
         by metis (> 3 s)
-     but this does not succeed *)
+     but this does unfortunately not succeed *)
 
- 
 (* Corollary cor1: God exists. *)
 theorem cor1: "v (\<exists>i (%X. god X))"
+  (* metis can easily prove this *)
   using thm1 refl
   unfolding valid_def mbox_s5_def
   by metis
