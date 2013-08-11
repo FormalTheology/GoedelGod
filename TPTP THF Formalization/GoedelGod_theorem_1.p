@@ -84,6 +84,3 @@ thf(theorem_1,conjecture,
         @ ^ [X: mu] :
             ( god @ X ) ) ) )).
 
-% Results of an experiment with SystemOnTPTP on July 17, 2013:
-% Satallax---2.7 : GoedelGod_theorem_1.p +++60 secTimeout+++ RESULT: SOT_g7d8ZJ - Satallax---2.7 says Theorem - CPU = 3.27 WC = 3.50
-% LEO-II---1.6.0 : GoedelGod_theorem_1.p +++60 secTimeout+++ RESULT: SOT_jjRbEd - LEO-II---1.6.0 says Theorem - CPU = 22.80 WC = 22.91

@@ -1,6 +1,6 @@
 %----Goedel's Ontological Proof of the Existence of God
 %----Authors: Christoph Benzmueller and Bruno Woltzenlogel-Paleo
-%----July, 16 2013
+%----July, 16 2013 (update on August 10, 2013)
 
 We present a formalization and (partial) automation of Goedel's
 ontological argument in quantified modal logic S5 (QML S5). QML S5 is in 
@@ -21,17 +21,17 @@ Nitpick) are employed to
 
 The set of axioms and definitions considered is as follows:
 
- (axiom_1) Any property strictly implied by a positive property is positive.
- (axiom_2) A property is positive if and only if its negation is not positive.
- (def_1)   X is God-like if and only if X incorporates all positive properties.
- (axiom_3) The property of being God-like is positive.
- (def_2)   Property P is an essence of X if and only if P is a property of X 
-           and every property Q that X has is strictly implied by P.
- (axiom_4) Positive properties are necessary positive properties.
- (def_3)   X necessarily exists if and only if every essence of X is necessarily 
-           exemplified.
- (axiom_5) Necessary existence is positive.
-
+ (axiom_1)  Any property strictly implied by a positive property is positive.
+ (axiom_2a) When a property is positive then its negation is not positive.
+ (axiom_2b) A property is positive if its negation is not positive.
+ (def_1)    X is God-like if and only if X incorporates all positive properties.
+ (axiom_3)  The property of being God-like is positive.
+ (def_2)    Property P is essential for X (and essence of X) if and only if P is 
+            a property of X and every property Q that X has is strictly implied by P.
+ (axiom_4)  Positive properties are necessary positive properties.
+ (def_3)    X necessarily exists if and only if every essence of X is necessarily 
+            exemplified.
+ (axiom_5)  Necessary existence is positive.
 
 Informal explanation of the automation of Goedel's arguments:
 
@@ -40,45 +40,47 @@ shown in about 7 seconds by Nitrox (Nitpick); see file
 GoedelGod_consistentAssumptions.p
 
 Step 1:  
+
 We show (lemma_1): Positive properties are eventually exemplified.
-It holds:
-  (axiom_1), (axiom_2) |- (lemma_1)
+It holds: (axiom_1), (axiom_2a) |- (lemma_1)
 This can be proved by LEO-II and Satallax much less than second; see 
 GoedelGod_lemma_1.p
 Remark: only the left to right direction of (axiom_2) is required here.
 
 Step 2: 
+
 We show (lemma_2): Eventually God exists.
-It holds:
-  (axiom_2), (lemma_1), (def_1), (axioms_3) |- (lemma_2) 
+It holds: (lemma_1), (def_1), (axiom_3) |- (lemma_2) 
 This can be proved by LEO-II and Satallax much less than second; see 
 GoedelGod_lemma_2.p
-Remark: only the left to right direction of (axiom_2) is required here.
+Comments: The definition of God (def_1) seems not required to obtain lemma_2;
+(Modification August 9, 2013: 
+ in a previous version we did also include axiom_2 in the assumptions;
+ axiom_2 is not needed here)
 
 Step 3: 
+
 We show (lemma_3): If X is a God-like being, then the property of being 
 God-like is an essence of X.
-It holds:
-  (axiom_2), (def_1), (def_2), (axiom_4) |- (lemma_3)
+It holds: (axiom_2a/b), (def_1), (def_2), (axiom_4) |- (lemma_3)
 This can be proved by LEO-II and Satallax quickly; see GoedelGod_lemma_3.p. 
 LEO-II needs about 18 seconds and Satallax about 3 seconds.
 Remark: both directions of (axiom_2) are required here; otherwise Nitrox 
 (Nitpick) finds a counterexample.
 
 Step 4: 
+
 We show (theorem_1): Necessarily God exists.
-It holds:
-  (def_1), (lemma_2), (lemma_3), (def_3), (axiom_5) |- (theorem_1)
+It holds: (def_1), (lemma_2), (lemma_3), (def_3), (axiom_5) |- (theorem_1)
 This can be proved by LEO-II and Satallax quickly; see GoedelGod_theorem_1.p. 
 LEO-II needs about 23 seconds and Satallax about 3 seconds.
 
 Step 5: 
+
 We show (corrollary_1): God exists.
-It holds:
-  (theorem_1) |- (corollary_1)
+It holds: (theorem_1) |- (corollary_1)
 This can be proved by LEO-II and Satallax much less than second; see 
 GoedelGod_corollary_1.p
-
 
 
 In the experiments above the provers were run with a 60 seconds timeout via 

@@ -4,7 +4,7 @@
 %----Embedding of Quantified (Multi-)Modallogic in THF (HOL)
 %----
 %----Authors: Christoph Benzmueller and Bruno Woltzenlogel-Paleo
-%----July, 16 2013
+%----July, 16 2013 (update on August 10, 2013)
 
 % Informal explanation:
 % From
@@ -14,7 +14,8 @@
 %           every property Q that X has is strictly implied by P.
 % (axiom_4) Positive properties are necessary positive properties.
 % we infer
-% (lemma_3) If X is a God-like being, then the property of being God-like is an essence of X.
+% (lemma_3) If X is a God-like being, then the property of being God-like is an
+%           essence of X.
 
 %------------------------------------------------------------------------------
 %----Axioms for Quantified Modal Logic S5 (providing quantification over 
@@ -35,8 +36,7 @@ thf(essential_tp,type,(
 
 %----axiom_2: A property is positive if and only if its negation is not positive.
 %----         (Remark: to prove lemma_3 both directions of axiom_2 are required;
-%----          if mimplies is used instead of mequiv then Nitrox finds a counterexample;
-%----          see also the "Introductory note to *1970", p.401, to "Kurt Goedel (1995),
+%----          see also the "Introductory note to *1970", p.401, to "Kurt Goedel (1995).
 %----          Ontological Proof, Collected Works: Unpublished Essays & Lectures, Volume III.
 %----          pp. 403-404. Oxford University Press.")
 thf(axiom2,axiom,
@@ -58,8 +58,8 @@ thf(def_1,definition,
           @ ^ [P: mu > $i > $o] :
               ( mimplies @ ( positive @ P ) @ ( P @ X ) ) ) ) )).
 
-%----def_2: Property P is an essence of X if and only if P is a property of X and
-%----       every property Q that X has is strictly implied by P
+%----def_2: Property P is essential for X (and essence of X) if and only if P is 
+%----       a property of X and every property Q that X has is strictly implied by P.
 thf(def_2,definition,
     ( essential
     = ( ^ [P: mu > $i > $o,X: mu] :
@@ -85,7 +85,3 @@ thf(lemma_3,conjecture,
     @ ( mforall_ind
       @ ^ [X: mu] :
           ( mimplies @ ( god @ X ) @ ( essential @ god @ X ) ) ) )).
-
-% Results of an experiment with SystemOnTPTP on July 17, 2013:
-% Satallax---2.7 : GoedelGod_lemma_3.p +++60 secTimeout+++ RESULT: SOT_w3T2j7 - Satallax---2.7 says Theorem - CPU = 3.29 WC = 3.99
-% LEO-II---1.6.0 : GoedelGod_lemma_3.p +++60 secTimeout+++ RESULT: SOT_usJ6qA - LEO-II---1.6.0 says Theorem - CPU = 17.75 WC = 17.86

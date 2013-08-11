@@ -38,8 +38,6 @@ thf(corollary_1,conjecture,
       @ ^ [X: mu] :
           ( god @ X ) ) )).
 
-% Results of an experiment with SystemOnTPTP on July 17, 2013:
-% LEO-II---1.6.0 : GoedelGod_corollary_1.p +++60 secTimeout+++ RESULT: SOT_LI4ykR - LEO-II---1.6.0 says Theorem - CPU = 0.00 WC = 0.04
-% Satallax---2.7 : GoedelGod_corollary_1.p +++60 secTimeout+++ RESULT: SOT_WV09Pf - Satallax---2.7 says Theorem - CPU = 0.00 WC = 0.01
+
 
 

@@ -4,19 +4,21 @@
 %----Embedding of Quantified (Multi-)Modallogic in THF (HOL)
 %----
 %----Authors: Christoph Benzmueller and Bruno Woltzenlogel-Paleo
-%----July 2013
+%----July, 16 2013 (update on August 10, 2013)
 
 % Informal explanation:
 % We prove consistency of all basic assumptions as used in our proofs for GoedelGod:
-% (axiom_1) Any property strictly implied by a positive property is positive.
-% (axiom_2) A property is positive if and only if its negation is not positive.
-% (def_1)   X is God-like if and only if X incorporates all positive properties.
-% (axiom_3) The property of being God-like is positive.
-% (def_2)   Property P is an essence of X if and only if P is a property of X and
-%           every property Q that X has is strictly implied by P.
-% (axiom_4) Positive properties are necessary positive properties.
-% (def_3)   X necessarily exists if and only if every essence of X is necessarily exemplified.
-% (axiom_5) Necessary existence is positive.
+% (axiom_1)  Any property strictly implied by a positive property is positive.
+% (axiom_2a) When a property is positive then its negation is not positive.
+% (axiom_2b) A property is positive if its negation is not positive.
+% (def_1)    X is God-like if and only if X incorporates all positive properties.
+% (axiom_3)  The property of being God-like is positive.
+% (def_2)    Property P is essential for X (an essence of X) if and only if P is
+%            a property of X and every property Q that X has is strictly implied by P.
+% (axiom_4)  Positive properties are necessary positive properties.
+% (def_3)    X necessarily exists if and only if every essence of X is necessarily
+%            exemplified.
+% (axiom_5)  Necessary existence is positive.
 
 %------------------------------------------------------------------------------
 %----Axioms for Quantified Modal Logic S5 (providing quantification over 
@@ -53,17 +55,29 @@ thf(axiom_1,axiom,
                             ( mimplies @ ( P @ X ) @ ( Q @ X ) ) ) ) )
                   @ ( positive @ Q ) ) ) ) ) ).
 
-%----axiom_2: A property is positive if and only if its negation is not positive.
-thf(axiom2,axiom,
+%----axiom_2a: When property is positive then its negation is not positive.
+thf(axiom2a,axiom,
     ( mvalid @
           ( mforall_indset
           @ ^ [P: mu > $i > $o] :
-              ( mequiv
+              ( mimplies
               @ ( positive @ P )                
               @ ( mnot
                 @ ( positive 
                   @ ^ [W: mu] :
                     ( mnot @ ( P @ W ) ) ) ) ) ) )).
+
+%----axiom_2b: A property is positive if its negation is not positive.
+thf(axiom_2b,axiom, 
+    ( mvalid @
+          ( mforall_indset
+          @ ^ [P: mu > $i > $o] :
+              ( mimplies         
+              @ ( mnot
+                @ ( positive 
+                  @ ^ [W: mu] :
+                      ( mnot @ ( P @ W ) ) ) )
+              @ ( positive @ P ) ) ) )).
 
 %----def_1: X is God-like if and only if X incorporates all positive properties.
 thf(def_1,definition,
@@ -77,8 +91,8 @@ thf(def_1,definition,
 thf(axiom_3,axiom,
     ( mvalid @ ( positive @ god ) )).
 
-%----def_2: Property P is an essence of X if and only if P is a property of X and
-%           every property Q that X has is strictly implied by P.
+%----def_2: Property P is essential for X (an essence of X) if and only if P is
+%----a property of X and every property Q that X has is strictly implied by P.
 thf(def_2,definition,
     ( essential
     = ( ^ [P: mu > $i > $o,X: mu] :
@@ -98,7 +112,8 @@ thf(axiom_4,axiom,
       @ ^ [P: mu > $i > $o] :
           ( mimplies @ ( positive @ P ) @ ( mbox_s5 @ ( positive @ P ) ) ) ) )).
 
-%----def_3: X necessarily exists if and only if every essence of X is necessarily exemplified.
+%----def_3: X necessarily exists if and only if every essence of X is necessarily
+%----exemplified.
 thf(def_3,definition,
     ( nec_exists
     = ( ^ [X: mu] :
@@ -114,24 +129,3 @@ thf(def_3,definition,
 thf(axiom_5,axiom,
     ( mvalid @ ( positive @ nec_exists ) )).
 
-% Results of an experiment with SystemOnTPTP on July 17, 2013:
-% Nitrox---2013 : GoedelGod_consistentAssumptions.p +++60 secTimeout+++ RESULT: SOT_xKMpmb - Nitrox---2013 says Satisfiable - CPU = 5.88 WC = 9.77
-
-% Nitrox refers to Nitpick (from Jasmin Blanchette)
-% Here is the finite model it generates
-% SZS status Satisfiable
-% SZS output start FiniteModel
-% Nitpick found a model for card TPTP_Interpret.ind = 1 and card bnd_mu = 1:
-%
-%  Constants:
-%    bnd_positive =
-%      (%x. _)
-%      ((%x. _)(b1 := (%x. _)(i1 := True)) := (%x. _)(i1 := True),
-%       (%x. _)(b1 := (%x. _)(i1 := False)) := (%x. _)(i1 := False))
-%    bnd_rel_s5 = (%x. _)(i1 := (%x. _)(i1 := True))
-% SZS output end FiniteModel
-% Total time: 4.66 s.
-%
-% END OF SYSTEM OUTPUT
-% RESULT: SOT_kBmYMI - Nitrox---2013 says Satisfiable - CPU = 7.44 WC = 7.26 
-% OUTPUT: SOT_kBmYMI - Nitrox---2013 says FiniteModel - CPU = 7.44 WC = 7.27 

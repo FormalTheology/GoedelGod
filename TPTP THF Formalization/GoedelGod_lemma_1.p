@@ -4,12 +4,12 @@
 %----Embedding of Quantified (Multi-)Modallogic in THF (HOL)
 %----
 %----Authors: Christoph Benzmueller and Bruno Woltzenlogel-Paleo
-%----July, 16 2013
+%----July, 16 2013 (update on August 10, 2013)
 
 % Informal explanation:
 % From 
-% (axiom_1) Any property strictly implied by a positive property is positive.
-% (axiom_2) A property is positive if and only if its negation is not positive.
+% (axiom_1)  Any property strictly implied by a positive property is positive.
+% (axiom_2a) When a property is positive then its negation is not positive.
 % we infer
 % (lemma_1) Positive properties are eventually exemplified.
 
@@ -38,13 +38,13 @@ thf(axiom_1,axiom,
                             ( mimplies @ ( P @ X ) @ ( Q @ X ) ) ) ) )
                   @ ( positive @ Q ) ) ) ) )).
 
-%----axiom_2: A property is positive if and only if its negation is not positive.
-%             (Remark: only the left to right is actually needed for proving lemma_1)
-thf(axiom2,axiom,
+%----axiom_2a: When a property is positive then its negation is not positive.
+%----(Remark: only the left to right is actually needed for proving lemma_1)
+thf(axiom2a,axiom,
     ( mvalid @
           ( mforall_indset
           @ ^ [P: mu > $i > $o] :
-              ( mequiv
+              ( mimplies
               @ ( positive @ P )                
               @ ( mnot
                 @ ( positive 
@@ -62,6 +62,3 @@ thf(lemma1,conjecture,
               @ ^ [X: mu] :
                   ( P @ X ) ) ) ) ) )).
 
-% Results of an experiment with SystemOnTPTP on July 17, 2013:
-% LEO-II---1.6.0 : GoedelGod_lemma_1.p +++60 secTimeout+++ RESULT: SOT_JfS0K1 - LEO-II---1.6.0 says Theorem - CPU = 0.06 WC = 0.17
-% Satallax---2.7 : GoedelGod_lemma_1.p +++60 secTimeout+++ RESULT: SOT_CLp2TK - Satallax---2.7 says Theorem - CPU = 2.24 WC = 3.49
