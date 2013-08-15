@@ -1,0 +1,80 @@
+\documentclass{article}
+
+\usepackage{latexsym}
+\usepackage{bussproofs}
+\EnableBpAbbreviations
+\newcommand{\rl}[1]{\RightLabel{#1}}
+
+% Logical symbols
+\newcommand{\imp}{\rightarrow}
+\newcommand{\biimp}{\leftrightarrow}
+\newcommand{\all}{\forall}
+\newcommand{\ex}{\exists}
+\newcommand{\seq}{\vdash}
+\newcommand{\nec}{\Box} % necessarily
+\newcommand{\pos}{\Diamond} % possibly
+
+\author{Christoph Benzm\"{u}ller and Bruno Woltzenlogel Paleo}
+
+\title{Formalizations of G\"{o}del's Ontological Proof of God's Existence}
+
+\begin{document}
+
+\maketitle
+
+Das Logikgenie Kurt Gödel (1906-1978) hat vor seinem Tod ein
+Argumentationsformalismus für den Beweis der Existenz Gottes
+vorgeschlagen. Nun ist es Christoph Benzmüller, Wissenschaftler an der FU
+Berlin im Dahlem Center for Intelligent Systems, in Kooperation mit
+Bruno Woltzenlogel-Paleo von der TU Wien gelungen, Kurt Gödel's
+Gottesbeweis auf dem Computer abzubilden, den Formalismus zu
+verifizieren und zu automatisieren. Der Computer hat dann von Gödels
+Prämissen ausgehend bewiesen: es gäbe Gott. "Theorembeweisen" heisst
+die mathematische Disziplin bei der solche automatisierten Systemen
+entwickelt werden.
+
+Versuche sich der Existenz (oder Nichtexistenz) Gottes mithilfe
+abstrakter, ontologischer Argumentationen zu nähern haben eine lange
+Tradition in der Philosophie. Vor Gödel haben schon St. Anselm,
+Descartes und Leibniz ihre jeweilige Beweise vorgelegt. Was Gödel als
+Logiker antrieb war die Frage, ob sich ausgehend von einer kleinen
+Anzahl (debattierbarer) grundlegender Axiome und Begriffsdefinitionen
+die notwendige Existenz Gottes mithilfe einer mathematisch präzisen,
+formal-logischen Argumentationskette nachweisen lässt.
+
+In dem Computer wurde die Kernaussage, die notwendige Existenz Gottes,
+wie von Gödel vorgeschlagen in vier Einzelargumente zerlegt und die
+Beweisführung und Verifikation jedes dieser vier Einzelargumente wurde
+dann mithilfe von Theorembeweisern automatisch erzeugt. Auch die
+Widerspruchsfreiheit der grundlegenden Axiome und Definitionen konnte
+mithilfe des Computers analysiert werden.
+
+In der theoretischen Philosophie erfolgt die formal-logische
+Auseinandersetzung mit solchen Gottesbeweisen bisher ausschließlich
+mit Papier und Bleistift. Der Einsatz von Computern scheiterte bisher,
+weil es den "Logiken" der verfügbaren Systeme noch an Ausdruckstärke
+fehlte um die abstrakten Begriffe adäquat zu erfassen. Gödels
+Gottesbeweis verwendet beispielsweise eine komplexe höherstufige
+sogenannte Modallogik, die mit Begriffen wie "möglich" und
+"notwendig" arbeitet.
+
+Aktuelle Arbeiten von Christoph Benzmüller und Larry Paulson
+(Cambridge University, UK) zeigen jedoch, dass sich viele
+ausdrucksstarke Logiken, einschliesslich höherstufige Modallogiken, in
+die klassische höherstufige Logik einbetten lassen. Letztere kann
+also, mit einigen Einschränkungen, als eine universelle Logik
+angesehen werden. Für die klassische höherstufige Logik wurden aber in
+den vergangenen Jahren leistungsfähige
+Theorembeweiser entwickelt und solche Systeme kommen nun in den
+Arbeiten von Benzmüller und Woltzenlogel-Paleo zum Einsatz.
+
+Die von den Wissenschaftlern gewählte Herangehensweise eröffnet damit
+neue Perspektiven für eine computer-assistierte theoretische
+Philosophie. Dabei bleibt die kritische Auseinandersetzung mit
+grundlegenden Begriffen und Axiomen dem Menschen vorbehalten. Der
+Computer kann aber helfen, Fehler in den formal-logischen Anteilen zu
+minimieren: der Computer kann die Argumentationskette überprüfen und so
+teilweise Leibniz Diktum bei logischen Streiterien einsetzen:
+Calculemus --- Lasst es uns berechnen!
+
+\end{document}
