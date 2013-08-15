@@ -1,26 +1,4 @@
-\documentclass{article}
-
-\usepackage{latexsym}
-\usepackage{bussproofs}
-\EnableBpAbbreviations
-\newcommand{\rl}[1]{\RightLabel{#1}}
-
-% Logical symbols
-\newcommand{\imp}{\rightarrow}
-\newcommand{\biimp}{\leftrightarrow}
-\newcommand{\all}{\forall}
-\newcommand{\ex}{\exists}
-\newcommand{\seq}{\vdash}
-\newcommand{\nec}{\Box} % necessarily
-\newcommand{\pos}{\Diamond} % possibly
-
-\author{Christoph Benzm\"{u}ller and Bruno Woltzenlogel Paleo}
-
-\title{Formalizations of G\"{o}del's Ontological Proof of God's Existence}
-
-\begin{document}
-
-\maketitle
+Computer proves the Existence of God
 
 The genius of logic Kurt Gödel (1906-1978) proposed an argumentation
 formalism to prove the existence of God.
@@ -66,5 +44,3 @@ concepts, definitions and axioms remains a human responsibility. But the compute
 help to avoid mistakes of a logical nature: the computer can check the aurgumentation chain
 and partially fulfill Leibniz' dictum in case of logical disputes:
 Calculemus --- Let us calculate!
-
-\end{document}
