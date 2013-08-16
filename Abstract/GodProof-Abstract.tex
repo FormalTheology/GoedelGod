@@ -50,19 +50,19 @@ this tradition, following particularly the footsteps of Leibniz.
 G\"{o}del defines God as a being who possesses all \emph{positive} properties.
 He does not extensively discuss what positive properties are, 
 but instead he states a few reasonable but debatable axioms that they should satisfy.
-%
-In our recent work we did employ the following axioms\footnote{Say where they come from and how they relate to G\"odel.}: (1) Any property strictly implied by a positive property is positive,
-(2) A property is positive if and only if its negation is not positive, and (3) the property of being God-like is positive. Moreover, the following definitions are employed:
-(A) x is God-like if and only if x incorporates all positive properties, (B) a property P is essential for x (and essence of x) if and only if P is a property of x and every property Q that x has is strictly implied by P, (C) x necessarily exists if and only if every essence of x is necessarily exemplified.
+Various slightly different versions of axioms and definitions have been considered by G\"{o}del and by several philosophers who commented on his proof. Our formalization employs the following axioms\footnote{Say where they come from and how they relate to G\"odel.}: (1) Any property necessarily implied by a positive property is positive;
+(2) A property is positive if and only if its negation is not positive; (3) the property of being God-like is positive; (4) positive properties are necessarily positive; and (5) necessary existence is a positive property.
+Moreover, the following definitions are employed:
+(D1) x is God-like if and only if x has every positive property, (D2) a property P is an essence of x if and only if P is a property of x and every property Q that x has is necessarily implied by P, (D3) x necessarily exists if and only if every essence of x is necessarily exemplified.
 
 From these axioms and definitions we then infer:
-\begin{itemize}
-\item Positive properties are eventually exemplified.
-\item Eventually God exists.
+\begin{enumerate}
+\item Positive properties are possibly exemplified.
+\item Possibly God exists.
 \item If x is God-like, then the property of being 
 God-like is an essence of x.
 \item Necessarily God exists.
-\end{itemize}
+\end{enumerate}
 
 % From these axioms, he claims (without detailed proof) that:
 % \begin{enumerate}
@@ -70,10 +70,7 @@ God-like is an essence of x.
 % \item It is possible that God exists.
 % \end{enumerate}
 
-
-In the literature \cite{ToDo} slightly different versions of the axioms and definitions exist 
-and derivations of the above mentioned claims are presented with various degrees
-of detail and formality. The above variant of G\"{o}del's proof has now been 
+The above variant of G\"{o}del's proof has now been 
 constructed for the first-time
 with the utmost degree of detail and formality; cf.~\cite{ToDo:GitHubRepository}. The following has been done:
 \begin{itemize}
@@ -93,7 +90,7 @@ definitions with Nitpick \cite{Nitpick}.
 
 G\"{o}del's proof is challenging to formalize and verify 
 because it requires very expressive logical languages with 
-modal operators (\emph{possible} and \emph{necessary}) and higher-order quantifiers. 
+modal operators (\emph{possibily} and \emph{necessarily}) and higher-order quantifiers. 
 Our computer-assisted formalizations rely on an embedding of the modal logic S5 
 into classical higher-order logic with Henkin 
 semantics \cite{J23} and 
