@@ -16,7 +16,7 @@
 
 
 \title{
-  Formalizations of G\"{o}del's Ontological Proof of \\
+  Formalization and Automation of Variants of G\"{o}del's Ontological Proof of 
   God's Existence
   %\thanks{Supported by ... }
 }
@@ -31,66 +31,89 @@
 
 
 \institute{
-  Theory and Logic Group, Vienna University of Technology, Austria \\
-  \email{bruno@logic.at}
-  \and
   Dahlem Center for Intelligent Systems, Freie Universit\"{a}t Berlin, Germany\\
   \email{c.benzmueller@gmail.com}
+  \and 
+  Theory and Logic Group, Vienna University of Technology, Austria \\
+  \email{bruno@logic.at}
 }
 
 \begin{document}
 
 \maketitle
 
-Attempts to prove the existence (or non-existence) of God by means of 
-abstract ontological arguments are an old tradition in philosophy and theology,
-G\"{o}del's proof is a modern culmination of this tradition, following particularly 
-the footsteps of Leibniz.
+Attempts to prove the existence (or non-existence) of God by means of
+abstract ontological arguments are an old tradition in philosophy and
+theology.  G\"{o}del's proof \cite{Goedel} is a modern culmination of
+this tradition, following particularly the footsteps of Leibniz.
 %
 G\"{o}del defines God as a being who possesses all \emph{positive} properties.
 He does not extensively discuss what positive properties are, 
 but instead he states a few reasonable but debatable axioms that they should satisfy.
-From these axioms, he claims (without detailed proof) that:
-\begin{enumerate}
-\item If it is possible that God exists, then it is necessary that God exists.
-\item It is possible that God exists.
-\end{enumerate}
+%
+In our recent work we did employ the following axioms\footnote{Say where they come from and how they relate to G\"odel.}: (1) Any property strictly implied by a positive property is positive,
+(2) A property is positive if and only if its negation is not positive, and (3) the property of being God-like is positive. Moreover, the following definitions are employed:
+(A) x is God-like if and only if x incorporates all positive properties, (B) a property P is essential for x (and essence of x) if and only if P is a property of x and every property Q that x has is strictly implied by P, (C) x necessarily exists if and only if every essence of x is necessarily exemplified.
 
-In the literature \cite{ToDo} slightly different versions of the axioms exist 
+From these axioms and definitions we then infer:
+\begin{itemize}
+\item Positive properties are eventually exemplified.
+\item Eventually God exists.
+\item If x is God-like, then the property of being 
+God-like is an essence of x.
+\item Necessarily God exists.
+\end{itemize}
+
+% From these axioms, he claims (without detailed proof) that:
+% \begin{enumerate}
+% \item If it is possible that God exists, then it is necessary that God exists.
+% \item It is possible that God exists.
+% \end{enumerate}
+
+
+In the literature \cite{ToDo} slightly different versions of the axioms and definitions exist 
 and derivations of the above mentioned claims are presented with various degrees
-of detail and formality. Here \cite{ToDo: GitHub Repository} (a version of) G\"{o}del's proof is 
+of detail and formality. The above variant of G\"{o}del's proof has now been 
 constructed for the first-time
-with the utmost degree of detail and formality. The following has been done:
+with the utmost degree of detail and formality; cf.~\cite{ToDo:GitHubRepository}. The following has been done:
 \begin{itemize}
 \item A detailed natural deduction proof.
 %
-\item A formalization of the axioms and theorems in the TPTP THF format \cite{ToDo}.
+\item A formalization of the axioms and theorems in the TPTP THF format \cite{J22}.
 %
 \item Automatic verification of the consistency of the axioms and 
-definitions with ToDo \cite{ToDo}.
+definitions with Nitpick \cite{Nitpick}.
 %
-\item Automatic demonstration of the theorems with the provers LEO-II \cite{ToDo} and Satallax \cite{ToDo}.
+\item Automatic demonstration of the theorems with the provers LEO-II \cite{LEO-II} and Satallax \cite{Satallax}.
 
 \item A step-by-step formalization using the Coq proof assistant \cite{ToDo}.
 
-\item A formalization using the Isabelle proof assistant \cite{ToDo} partially automated with Sledgehammer \cite{ToDo} and Metis \cite{ToDo}.
+\item A formalization using the Isabelle proof assistant \cite{Isabelle} partially automated with Sledgehammer \cite{ToDo} and Metis \cite{ToDo}.
 \end{itemize}
 
-G\"{o}del's proof is challenging to formalize and automatically verify 
+G\"{o}del's proof is challenging to formalize and verify 
 because it requires very expressive logical languages with 
 modal operators (\emph{possible} and \emph{necessary}) and higher-order quantifiers. 
-The computer-assisted formalizations rely on an embedding of the modal logic S5 
+Our computer-assisted formalizations rely on an embedding of the modal logic S5 
 into classical higher-order logic with Henkin 
-semantics \cite{ToDo: Current works of Christoph Benzmüller and Larry Paulson} and 
+semantics \cite{J23} and 
 employed recently developed interactive and automated deduction tools designed for this logic.
 
-This work attests the maturity of contemporary interactive and 
-automated deduction tools and 
-opens new perspectives for a computer-assisted theoretical philosophy. 
-The critical discussion of the underlying 
-concepts, definitions and axioms remains a human responsibility, but the computer can assist 
-in building and checking rigorously correct logical arguments. In case of 
-logico-philosophical disputes, the computer can check the disputing arguments
-and partially fulfill Leibniz' dictum:
-Calculemus --- Let us calculate!
+This work attests the maturity of contemporary interactive and
+automated deduction tools and opens new perspectives for a
+computer-assisted theoretical philosophy.  
+The critical discussion of the underlying concepts, definitions and
+axioms remains a human responsibility, but the computer can assist in
+building and checking rigorously correct logical arguments. In case of
+logico-philosophical disputes, the computer can check the disputing
+arguments and partially fulfill Leibniz' dictum: Calculemus --- Let us
+calculate!
+
+Future work includes an
+extensive study of other formalizations of ontological arguments with
+our machinery.
+
+\bibliographystyle{plain}
+\bibliography{Bibliography}
+
 \end{document}
