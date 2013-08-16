@@ -72,7 +72,7 @@ thf(def_2,definition,
                     @ ^ [Y: mu] :
                         ( mimplies @ ( P @ Y ) @ ( Q @ Y ) ) ) ) ) ) ) ) )).
 
-%----axiom_4: Positive properties are necessary positive properties.
+%----axiom_4: Positive properties are necessarily positive properties.
 thf(axiom_4,axiom,
     ( mvalid
     @ ( mforall_indset

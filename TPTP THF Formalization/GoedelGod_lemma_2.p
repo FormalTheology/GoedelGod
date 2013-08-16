@@ -53,7 +53,7 @@ thf(def_1,definition,
 thf(axiom_3,axiom,
     ( mvalid @ ( positive @ god ) )).
 
-%----lemma_2: Eventually God exists.
+%----lemma_2: Possibly God exists.
 thf(lemma_2,conjecture,
     ( mvalid
     @ ( mdia_s5
