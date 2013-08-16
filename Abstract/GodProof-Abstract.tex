@@ -56,13 +56,15 @@ Moreover, the following definitions are employed:
 (D1) x is God-like if and only if x has every positive property, (D2) a property P is an essence of x if and only if P is a property of x and every property Q that x has is necessarily implied by P, (D3) x necessarily exists if and only if every essence of x is necessarily exemplified.
 
 From these axioms and definitions we then infer:
-\begin{enumerate}
-\item (L1) Positive properties are possibly exemplified.
-\item (L2) Possibly God exists.
-\item (L3) If x is God-like, then the property of being 
+
+
+\begin{description}
+\item {(L1)} Positive properties are possibly exemplified.
+\item {(L2)} Possibly God exists.
+\item {(L3)} If x is God-like, then the property of being 
 God-like is an essence of x.
-\item (T) Necessarily God exists.
-\end{enumerate}
+\item {(T)} \ Necessarily God exists.
+\end{description}
 
 % From these axioms, he claims (without detailed proof) that:
 % \begin{enumerate}
@@ -85,7 +87,7 @@ definitions with Nitpick \cite{Nitpick}.
 
 \item A step-by-step formalization using the Coq proof assistant \cite{ToDo}.
 
-\item A formalization using the Isabelle proof assistant \cite{Isabelle} partially automated with Sledgehammer \cite{ToDo} and Metis \cite{ToDo}.
+\item A formalization using the Isabelle proof assistant \cite{Isabelle} partially automated with Sledgehammer \cite{Sledgehammer} and Metis \cite{Hurd03first-orderproof}.
 \end{itemize}
 
 G\"{o}del's proof is challenging to formalize and verify 
@@ -93,7 +95,7 @@ because it requires very expressive logical languages with
 modal operators (\emph{possibily} and \emph{necessarily}) and higher-order quantifiers. 
 Our computer-assisted formalizations rely on an embedding of the modal logic S5 
 into classical higher-order logic with Henkin 
-semantics \cite{J23} and 
+semantics \cite{J23,B9} and 
 employed recently developed interactive and automated deduction tools designed for this logic.
 
 This work attests the maturity of contemporary interactive and
@@ -106,9 +108,11 @@ logico-philosophical disputes, the computer can check the disputing
 arguments and partially fulfill Leibniz' dictum: Calculemus --- Let us
 calculate!
 
-Future work includes an
-extensive study of other formalizations of ontological arguments with
-our machinery.
+Future work includes an extensive study of other formalizations of
+ontological arguments with our machinery. Variations of the
+distinctive features of the base logic S5 (e.g. non-rigid symbols, 
+varying domains, etc.) are enabled in these studies due
+to the flexibility of the embeddings based approach.
 
 \bibliographystyle{plain}
 \bibliography{Bibliography}
