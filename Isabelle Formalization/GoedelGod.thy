@@ -35,8 +35,8 @@ b) The Isabelle/HOL formalization is also closely related to the Coq formalizati
 c) In the Isabelle/HOL formalization all steps in the argument have been automated with
    sledgehammer performing remote calls to Satallax and LEO-II. These calls then 
    suggested respective metis calls as given below. 
-d) In the case of thm1, however, metis seems still to weak to (re-)produce 
-   the proof. (Larry, Nik: Can you help here?)
+d) The re-proof/reconstruction with metis still fails for thm1, but when some further
+   lemmata are introduced we get success; the respective lemmata are called help1-4.
 *)
 
 theory GoedelGod
@@ -162,16 +162,45 @@ definition nec_exists :: "mu => (i => bool)" where
 axiomatization where
   ax5: "v (positive nec_exists)"
 
+(* We now introduce some help lemmata that are useful for proving thm1 with metis *)
+(* With Sledgehammer thm1 can be proved directly; but proof reconstruction with 
+   metis still fails. To see this just try the following:
+
+  theorem thm1: "v (\<box> (\<exists>i god))"
+    using lemma2 lemma3 ax5 sym refl
+    unfolding valid_def mforall_indset_def mforall_ind_def mexists_ind_def mnot_def mand_def mimplies_def mdia_s5_def mbox_s5_def god_def essential_def nec_exists_def 
+    sledgehammer [timeout = 60, provers = remote_satallax] 
+   
+  This call is successful and suggests to use metis for reconstruction; but this metis 
+  call still fails.  
+*)
+  
+lemma help1: "v (\<diamond> (\<box> (\<exists>i god))) \<longrightarrow> v (\<box> (\<exists>i god))"  
+  using sym trans
+  unfolding valid_def mdia_s5_def mbox_s5_def mimplies_def
+  by metis
+
+lemma help2: "   v (\<diamond> (\<exists>i god))
+               & v ((\<exists>i god) \<Rightarrow>m  \<box> (\<exists>i god)) 
+               \<longrightarrow> v (\<diamond> (\<box> (\<exists>i god)))"  
+  unfolding valid_def mdia_s5_def mbox_s5_def mimplies_def      
+  by metis
+  
+(* help3 is only required to prove help4 *)  
+lemma help3:  "\<forall> X. v ((god X) \<Rightarrow>m  ((essential god X) \<Rightarrow>m (\<box> (\<exists>i god))))"
+  using ax3 ax5
+  unfolding god_def mforall_indset_def mimplies_def nec_exists_def valid_def
+  by (metis (lifting, mono_tags)) 
+
+lemma help4: "v ((\<exists>i god) \<Rightarrow>m  \<box> (\<exists>i god))"
+  using help3 lemma3 
+  unfolding mexists_ind_def mforall_ind_def mimplies_def valid_def
+  by metis
+
 (* thm1: Necessarily God exists. *)
 theorem thm1: "v (\<box> (\<exists>i (%X. god X)))"
-  using lemma2 lemma3 ax5 sym refl
-  unfolding valid_def mforall_indset_def mforall_ind_def mexists_ind_def mnot_def mand_def mimplies_def mdia_s5_def mbox_s5_def god_def essential_def nec_exists_def 
-  sledgehammer [timeout = 60, provers = remote_satallax] 
-  (* sledgehammer can prove this statement; just try:
-       sledgehammer [timeout = 120, provers = remote_leo2 remote_satallax] 
-     and then it is suggested to use 
-        by metis (> 3 s)
-     but this does unfortunately not succeed *)
+  using help1 help2 lemma2 help4
+  by metis
 
 (* Corollary cor1: God exists. *)
 theorem cor1: "v (\<exists>i (%X. god X))"
