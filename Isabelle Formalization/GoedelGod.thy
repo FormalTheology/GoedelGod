@@ -198,12 +198,12 @@ lemma help4: "v ((\<exists>i god) \<Rightarrow>m  \<box> (\<exists>i god))"
   by metis
 
 (* thm1: Necessarily God exists. *)
-theorem thm1: "v (\<box> (\<exists>i (%X. god X)))"
+theorem thm1: "v (\<box> (\<exists>i god))"
   using help1 help2 lemma2 help4
   by metis
 
 (* Corollary cor1: God exists. *)
-theorem cor1: "v (\<exists>i (%X. god X))"
+theorem cor1: "v (\<exists>i god)"
   (* metis can easily prove this *)
   using thm1 refl
   unfolding valid_def mbox_s5_def
