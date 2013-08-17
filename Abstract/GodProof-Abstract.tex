@@ -1,9 +1,6 @@
 \documentclass{llncs}
 
-\usepackage{latexsym}
-\usepackage{bussproofs}
-\EnableBpAbbreviations
-\newcommand{\rl}[1]{\RightLabel{#1}}
+\usepackage{url}
 
 % Logical symbols
 \newcommand{\imp}{\rightarrow}
@@ -44,20 +41,31 @@
 
 Attempts to prove the existence (or non-existence) of God by means of
 abstract ontological arguments are an old tradition in philosophy and
-theology.  G\"{o}del's proof \cite{Goedel} is a modern culmination of
+theology.  G\"{o}del's proof \cite{Goedel1970} is a modern culmination of
 this tradition, following particularly the footsteps of Leibniz.
 %
 G\"{o}del defines God as a being who possesses all \emph{positive} properties.
 He does not extensively discuss what positive properties are, 
 but instead he states a few reasonable but debatable axioms that they should satisfy.
-Various slightly different versions of axioms and definitions have been considered by G\"{o}del and by several philosophers who commented on his proof. Our formalization employs the following axioms\footnote{Say where they come from and how they relate to G\"odel.}: (1) Any property necessarily implied by a positive property is positive;
-(2) A property is positive if and only if its negation is not positive; (3) the property of being God-like is positive; (4) positive properties are necessarily positive; and (5) necessary existence is a positive property.
-Moreover, the following definitions are employed:
-(D1) x is God-like if and only if x has every positive property, (D2) a property P is an essence of x if and only if P is a property of x and every property Q that x has is necessarily implied by P, (D3) x necessarily exists if and only if every essence of x is necessarily exemplified.
+Various slightly different versions of axioms and definitions have been considered by G\"{o}del and by several philosophers who commented on his proof (e.g. \cite{Scott,Sobel,AndersonGettings,Fitting,Adams,ContemporaryBibliography}). Our formalization employs the following axioms and definitions\footnote{
+(A1), (A2), (A5), (D1), (D3) are logically equivalent to, respectively, axioms 5, 2 and 4 and definitions 1 and 3 in G\"odel's manuscript \cite{Goedel1970}. (A3) was introduced by Scott \cite{Scott} and could be derived from G\"odel's axiom 1 and (D1) in a logic with infinitary conjunction. (A4) is a weaker form of G\"odel's axiom 3. (D2) has an extra conjunct lacking in G\"odel's definition 2; this lack is believed to have been an oversight by G\"odel \cite{Hazen}.
+}: 
+ToDo: Include formulas too??
+\begin{description}
+\item {(A1)} Any property necessarily implied by a positive property is positive;
+\item {(A2)} A property is positive if and only if its negation is not positive; 
+\item {(A3)} the property of being God-like is positive; 
+\item {(A4)} positive properties are necessarily positive; 
+\item {(A5)} necessary existence is a positive property.
+\item {(D1)} x is God-like if and only if x has every positive property, 
+\item {(D2)} a property P is an essence of x if and only if P is a property of x and every property Q that x has is necessarily implied by P, 
+\item {(D3)} x necessarily exists if and only if every essence of x is necessarily exemplified.
+\end{description}
 
+\noindent
 From these axioms and definitions we then infer:
-
-
+%
+ToDo: Include formulas too??
 \begin{description}
 \item {(L1)} Positive properties are possibly exemplified.
 \item {(L2)} Possibly God exists.
@@ -74,7 +82,7 @@ God-like is an essence of x.
 
 The above variant of G\"{o}del's proof has now been 
 constructed for the first-time
-with the utmost degree of detail and formality; cf.~\cite{ToDo:GitHubRepository}. The following has been done:
+with an unprecedent degree of detail and formality; cf.~\cite{FormalTheologyRepository}. The following has been done:
 \begin{itemize}
 \item A detailed natural deduction proof.
 %
