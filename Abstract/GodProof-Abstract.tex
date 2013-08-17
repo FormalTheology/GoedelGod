@@ -1,6 +1,6 @@
 \documentclass{llncs}
 
-\usepackage{url}
+\usepackage{url,amsmath,amssymb,a4wide}
 
 % Logical symbols
 \newcommand{\imp}{\rightarrow}
@@ -13,9 +13,8 @@
 
 
 \title{
-  Formalization and Automation of Variants of G\"{o}del's Ontological Proof of 
-  God's Existence
-  %\thanks{Supported by ... }
+  Formalization, Mechanization and Automation of Variants of G\"{o}del's Proof of 
+  God's Existence\thanks{This work has been supported by the German Research Foundation under grant BE2501/9-1. Bruno ????}
 }
 
 \author{
@@ -49,17 +48,23 @@ He does not extensively discuss what positive properties are,
 but instead he states a few reasonable but debatable axioms that they should satisfy.
 Various slightly different versions of axioms and definitions have been considered by G\"{o}del and by several philosophers who commented on his proof (e.g. \cite{Scott,Sobel,AndersonGettings,Fitting,Adams,ContemporaryBibliography}). Our formalization employs the following axioms and definitions\footnote{
 (A1), (A2), (A5), (D1), (D3) are logically equivalent to, respectively, axioms 5, 2 and 4 and definitions 1 and 3 in G\"odel's manuscript \cite{Goedel1970}. (A3) was introduced by Scott \cite{Scott} and could be derived from G\"odel's axiom 1 and (D1) in a logic with infinitary conjunction. (A4) is a weaker form of G\"odel's axiom 3. (D2) has an extra conjunct lacking in G\"odel's definition 2; this lack is believed to have been an oversight by G\"odel \cite{Hazen}.
-}: 
-ToDo: Include formulas too??
+}.
+
+\begin{align}
+
+\emd{align}
+
 \begin{description}
-\item {(A1)} Any property necessarily implied by a positive property is positive;
-\item {(A2)} A property is positive if and only if its negation is not positive; 
-\item {(A3)} the property of being God-like is positive; 
-\item {(A4)} positive properties are necessarily positive; 
-\item {(A5)} necessary existence is a positive property.
-\item {(D1)} x is God-like if and only if x has every positive property, 
-\item {(D2)} a property P is an essence of x if and only if P is a property of x and every property Q that x has is necessarily implied by P, 
-\item {(D3)} x necessarily exists if and only if every essence of x is necessarily exemplified.
+\item[(A1)] Any property necessarily implied by a positive property is positive: \\
+       $\forall P \forall Q (positive P \wedge \Box \forall x (P x \Rightarrow Q x)) \Rightarrow positive Q)$
+\item[(A2)] A property is positive if and only if its negation is not positive\\
+       $\forall P ((positive P) \Leftrightarrow \neg (positive \neg P))$ 
+\item[(A3)] the property of being God-like is positive; 
+\item[(A4)] positive properties are necessarily positive; 
+\item[(A5)] necessary existence is a positive property.
+\item[(D1)] x is God-like if and only if x has every positive property, 
+\item[(D2)] a property P is an essence of x if and only if P is a property of x and every property Q that x has is necessarily implied by P, 
+\item[(D3)] x necessarily exists if and only if every essence of x is necessarily exemplified.
 \end{description}
 
 \noindent
@@ -67,11 +72,11 @@ From these axioms and definitions we then infer:
 %
 ToDo: Include formulas too??
 \begin{description}
-\item {(L1)} Positive properties are possibly exemplified.
-\item {(L2)} Possibly God exists.
-\item {(L3)} If x is God-like, then the property of being 
+\item[(L1)] Positive properties are possibly exemplified.
+\item[(L2)] Possibly God exists.
+\item[(L3)] If x is God-like, then the property of being 
 God-like is an essence of x.
-\item {(T)} \ Necessarily God exists.
+\item[(T)] \ Necessarily God exists.
 \end{description}
 
 % From these axioms, he claims (without detailed proof) that:
@@ -84,9 +89,9 @@ The above variant of G\"{o}del's proof has now been
 constructed for the first-time
 with an unprecedent degree of detail and formality; cf.~\cite{FormalTheologyRepository}. The following has been done:
 \begin{itemize}
-\item A detailed natural deduction proof.
+\item A detailed natural deduction proof; this proof has guided our work.
 %
-\item A formalization of the axioms and theorems in the TPTP THF format \cite{J22}.
+\item A formalization of the axioms, definitions and theorems in the TPTP THF syntax \cite{J22}.
 %
 \item Automatic verification of the consistency of the axioms and 
 definitions with Nitpick \cite{Nitpick}.
@@ -95,7 +100,7 @@ definitions with Nitpick \cite{Nitpick}.
 
 \item A step-by-step formalization using the Coq proof assistant \cite{Coq}.
 
-\item A formalization using the Isabelle proof assistant \cite{Isabelle} partially automated with Sledgehammer \cite{Sledgehammer} and Metis \cite{Hurd03first-orderproof}.
+\item A formalization using the Isabelle proof assistant \cite{Isabelle} where the theorems (and some additional lemmata) have been automated with Sledgehammer \cite{Sledgehammer} and Metis \cite{Hurd03first-orderproof}.
 \end{itemize}
 
 G\"{o}del's proof is challenging to formalize and verify 
