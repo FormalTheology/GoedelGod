@@ -22,7 +22,7 @@ Axiom axiom2b : V (mforall p, (m~ (Positive p)) m-> (Positive (fun x: u => m~ (p
 
 
 (* Theorem 1: positive properties possibly have a witness *)
-Theorem theorem1: V (mforall p, (Positive p) m-> dia (mexists x, p x) ).
+Theorem lemma1: V (mforall p, (Positive p) m-> dia (mexists x, p x) ).
 Proof.
 intro w.
 intro p.
@@ -70,28 +70,28 @@ cut ((Positive p w) /\ ((box (mforall x, (m~ (p x)))) w) -> (m~ (Positive p)) w)
       exact R1.
 Qed.  
 
-(* Definition of God *)
+(* Definition 1: God *)
 Definition G(x: u) := mforall p, (Positive p) m-> (p x).
 
 (* Axiom 3: Being God is a positive property *)
 Axiom axiom3: V (Positive G).
 
 (* Theorem 2: it is possible that God exists *)
-Theorem theorem2: V (dia (mexists x, G x)). 
+Theorem lemma2: V (dia (mexists x, G x)). 
 Proof.
 intro w. 
-apply theorem1.
+apply lemma1.
 apply axiom3.
 Qed.
 
-(* Definition of essentiality *)
+(* Definition 2: essence *)
 Definition Essential(p: u -> o)(x: u) := (p x) m/\ mforall q, ((q x) m-> box (mforall y, (p y) m-> (q y))).
 
 (* Axiom 4: positive properties are necessarily positive *)
 Axiom axiom4: V (mforall p, (Positive p) m-> box (Positive p)).
 
 (* Theorem 3: if an individual is a God, then being God is an essential property for that individual *)
-Theorem theorem3: V (mforall y, (G y) m-> (Essential G y)).
+Theorem lemma3: V (mforall y, (G y) m-> (Essential G y)).
 Proof.
 intro.
 intro y.
@@ -145,7 +145,7 @@ split.
 Qed.
 
 
-(* Definition of necessary existence *)
+(* Definition 3: necessary existence *)
 Definition NecExists(x: u) := mforall p, (Essential p x) m-> box (mexists y, (p y)).
 
 (* Axiom 5: necessary existence is a positive property *)
@@ -170,7 +170,7 @@ cut (Essential G g w).
       apply axiom5.
 
   cut (G g w).
-    apply theorem3.
+    apply lemma3.
 
     exact H2.
 Qed.
@@ -179,8 +179,8 @@ Qed.
 
 Require Import ModalS5.
 
-(* Theorem 4: the existence of a God is necessary *)
-Theorem theorem4: V (box (mexists x, (G x))).
+(* Theorem: the existence of a God is necessary *)
+Theorem theorem: V (box (mexists x, (G x))).
 Proof.
 intro.
 cut (dia (box (mexists x, G x)) w).
@@ -194,14 +194,14 @@ cut (dia (box (mexists x, G x)) w).
     intro. intro R1.
     apply lemma.
 
-  apply theorem2.
+  apply lemma2.
 Qed.
 
 
-(* Theorem 5: There exists a god *)
+(* Corollary: There exists a god *)
 Theorem God_exists: V (mexists x, (G x)).
 Proof.
 intro.
-apply (theorem4 w).
+apply (theorem w).
 apply reflexivity.
 Qed.
