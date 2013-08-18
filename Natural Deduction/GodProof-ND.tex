@@ -16,7 +16,7 @@
 
 \author{Bruno Woltzenlogel Paleo, Annika Siders}
 
-\title{G\"{o}del's Ontological Proof of God's Existence }
+\title{G\"{o}del's Ontological Proof of God's Existence (Draft)}
 
 \begin{document}
 
@@ -34,19 +34,19 @@ which deals with concepts of the highest abstractness; and this is also most hig
 
 \textbf{Axioms:}
 \begin{itemize}
-\item \textbf{(1)} Properties necessarily entailed by \emph{positive} properties are also positive:
+\item \textbf{(A1)} Properties necessarily entailed by \emph{positive} properties are also positive:
 $$
 \all \varphi. \all \psi.[(P(\varphi) \wedge \nec \all x.[\varphi(x) \imp \psi(x)]) \imp P(\psi)]
 $$
 %
-\item \textbf{(2)} A property's negation is positive iff the property is not positive:
+\item \textbf{(A2)} A property's negation is positive iff the property is not positive:
 $$
 \all \varphi. [P(\neg \varphi) \biimp \neg P(\varphi)]
 $$
 \end{itemize}
 
 \noindent
-\textbf{Theorem 1:} Positive properties possibly have a witness:
+\textbf{Lemma 1:} Positive properties possibly have a witness:
 $$
 \all \varphi. [P(\varphi) \imp \pos \ex x.\varphi(x)]
 $$
@@ -73,14 +73,14 @@ $$
 
 \textbf{Axioms:}
 \begin{itemize}
-\item \textbf{(3)} Being God is a positive property:
+\item \textbf{(A3)} Being God is a positive property:
 $$
 P(G)
 $$
 \end{itemize}
 
 \noindent
-\textbf{Theorem 2:} It is possible that a God exists:
+\textbf{Lemma 2:} It is possible that a God exists:
 $$
 \pos \ex x. G(x)
 $$
@@ -101,20 +101,20 @@ $$
 
 \textbf{Definitions:}
 \begin{itemize}
-\item A property is \emph{essential} for an individual if and only if it holds for that inidividual and necessarily entails every other property that holds for that individual: $\ess{\varphi}{x} \biimp \varphi(x) \wedge \all \psi. (\psi(x) \imp \nec \all x. (\varphi(x) \imp \psi(x)))$
+\item \textbf{(D1)} A property is \emph{essential} for an individual if and only if it holds for that inidividual and necessarily entails every other property that holds for that individual: $\ess{\varphi}{x} \biimp \varphi(x) \wedge \all \psi. (\psi(x) \imp \nec \all x. (\varphi(x) \imp \psi(x)))$
 \end{itemize}
 
 \noindent
 \textbf{Axioms:}
 \begin{itemize}
-\item \textbf{(4)} Positive properties are necessarily positive:
+\item \textbf{(A4)} Positive properties are necessarily positive:
 $$
 \all \varphi.[P(\varphi) \to \Box \; P(\varphi)]
 $$
 \end{itemize}
 
 \noindent
-\textbf{Theorem 3}: If an individual is a God, then being God is an essential property for that individual:
+\textbf{Lemma 3}: If an individual is a God, then being God is an essential property for that individual:
 $$
 \all y.[G(y) \imp \ess{G}{y}]
 $$
@@ -208,11 +208,11 @@ We construct a derivation of theorem 3 with a subderivation $\Pi_4[G(x)^1]$, whi
 
 \textbf{Definitions:}
 \begin{itemize}
-\item An individual is a \emph{God} if and only if he possesses all positive properties:
+\item \textbf{(D2)} An individual is a \emph{God} if and only if he possesses all positive properties:
 $$
 G(x) \biimp \forall \varphi. [P(\varphi) \to \varphi(x)]
 $$
-\item An individual \emph{necessarily exists} if and only if all its essential properties are necessarily witnessed:
+\item \textbf{(D3)} An individual \emph{necessarily exists} if and only if all its essential properties are necessarily witnessed:
 $$
 E(x) \biimp \all \varphi.[\ess{\varphi}{x} \imp \nec \ex x.\varphi(x)]
 $$
@@ -221,14 +221,14 @@ $$
 \noindent
 \textbf{Axioms:}
 \begin{itemize}
-\item \textbf{(5)} Necessary existence is a positive property:
+\item \textbf{(A5)} Necessary existence is a positive property:
 $$
 P(E)
 $$
 \end{itemize}
 
 \noindent
-\textbf{Theorem A:} If there is a God, then there necessarily exists a God:
+\textbf{Auxiliary Lemma:} If there is a God, then there necessarily exists a God:
 $$
 \ex z. G(z) \imp \nec \ex x. G(x)
 $$
@@ -267,7 +267,7 @@ $$
 
 
 \noindent
-\textbf{Theorem 4:} The existence of a God is necessary:
+\textbf{Theorem:} The existence of a God is necessary:
 $$
 \nec \ex x. G(x)
 $$
@@ -304,7 +304,7 @@ $$
 \end{itemize}
 
 \noindent
-\textbf{Theorem:} There exists a God:
+\textbf{Corollary:} There exists a God:
 $$
 \ex x. G(x)
 $$
