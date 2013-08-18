@@ -60,6 +60,7 @@ Various slightly different versions of axioms and definitions have been consider
 & \quad pos\,god \tag{A3} \\
 & \text{Positive properties are necessarily positive.} \notag \\
 & \quad \forall P (pos\,P \Rightarrow \Box (pos\,P))\tag{A4} \\
+<<<<<<< HEAD
 & \text{Necessary existence is a positive property.} \notag \\
 & \quad pos\,nec\_exists \tag{A5} 
 \end{align}
@@ -70,6 +71,14 @@ Various slightly different versions of axioms and definitions have been consider
 & \quad ess\,P\,x := P\,x \wedge \forall Q (Q\,x \Rightarrow \Box \forall y (P\,y \Rightarrow Q\,y)) \tag{D2} \\
 & \parbox[c][2em][c]{0.8\textwidth}{x necessarily exists if and only if every essence of x is necessarily exemplified.} \notag \\
 & \quad nec\_exists\,x := \forall P (ess\,P\,x \Rightarrow \Box \exists y (P\,y)) \tag{D3} 
+=======
+& \text{Necessary existence is a positive property:} \notag \\
+& \quad pos\,nec\_exists \tag{A5} \\
+& \parbox[c][2em][c]{0.8\textwidth}{A property P is an essence of x if and only if P is a property of x and every property Q that x has is necessarily implied by P:}\notag \\
+& \quad ess\,P\,x := P\,x \wedge \forall Q (Q\,x \Rightarrow \Box (\forall y (P\,y \Rightarrow Q\,y))) \tag{D1} \\
+& \text{x is God-like if and only if x has every positive property:} \notag \\
+& \quad god\,x := \forall P (pos\,P \Rightarrow P x) \tag{D2}
+>>>>>>> 5a379f5268dc8d4392b2f6671030a686821135aa
 \end{align}
 
 % \begin{description}
@@ -79,12 +88,21 @@ Various slightly different versions of axioms and definitions have been consider
 %        $\forall P ((positive P) \Leftrightarrow \neg (positive \neg P))$ 
 % \item[(A3)] The property of being God-like is positive:
       
+<<<<<<< HEAD
 % \item[(A4)] positive properties are necessarily positive; 
 % \item[(A5)] necessary existence is a positive property.
 % \item[(D1)] x is God-like if and only if x has every positive property, 
 % \item[(D2)] a property P is an essence of x if and only if P is a property of x and every property Q that x has is necessarily implied by P, 
 % \item[(D3)] x necessarily exists if and only if every essence of x is necessarily exemplified.
 % \end{description}
+=======
+\item[(A4)] positive properties are necessarily positive; 
+\item[(A5)] necessary existence is a positive property.
+\item[(D1)] a property P is an essence of x if and only if P is a property of x and every property Q that x has is necessarily implied by P, 
+\item[(D2)] x is God-like if and only if x has every positive property, 
+\item[(D3)] x necessarily exists if and only if every essence of x is necessarily exemplified.
+\end{description}
+>>>>>>> 5a379f5268dc8d4392b2f6671030a686821135aa
 
 \noindent
 From these axioms and definitions we then infer:
