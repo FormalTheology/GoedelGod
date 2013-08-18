@@ -1,6 +1,6 @@
 \documentclass{llncs}
 
-\usepackage{url,amsmath,amssymb,a4wide}
+\usepackage{url,amsmath,amssymb}
 
 % Logical symbols
 \newcommand{\imp}{\rightarrow}
@@ -12,10 +12,10 @@
 \newcommand{\pos}{\Diamond} % possibly
 
 
-\title{
-  Formalization, Mechanization and Automation of Variants of G\"{o}del's Proof of 
-  God's Existence\thanks{This work has been supported by the German Research Foundation under grant BE2501/9-1. Bruno ????}
-}
+\title{ Formalization, Mechanization and Automation % of Variants
+  of G\"{o}del's Proof of God's Existence\thanks{This work has been
+    supported by the German Research Foundation under grant
+    BE2501/9-1. Bruno ????}  }
 
 \author{
   Christoph Benzm\"{u}ller\inst{1} 
@@ -49,49 +49,66 @@ but instead he states a few reasonable but debatable axioms that they should sat
 Various slightly different versions of axioms and definitions have been considered by G\"{o}del and by several philosophers who commented on his proof (e.g. \cite{Scott,Sobel,AndersonGettings,Fitting,Adams,ContemporaryBibliography}). Our formalization employs the following axioms (A*) and definitions (D*):\footnote{
 (A1), (A2), (A5), (D1), (D3) are logically equivalent to, respectively, axioms 5, 2 and 4 and definitions 1 and 3 in G\"odel's manuscript \cite{Goedel1970}. (A3) was introduced by Scott \cite{Scott} and could be derived from G\"odel's axiom 1 and (D1) in a logic with infinitary conjunction. (A4) is a weaker form of G\"odel's axiom 3. (D2) has an extra conjunct lacking in G\"odel's definition 2; this lack is believed to have been an oversight by G\"odel \cite{Hazen}.
 }
-
+\marginpar{\scriptsize Chris: The reference to Scott's version is kind of confusing, we need to verify this sources.}
+\allowdisplaybreaks[1] 
 \begin{align}
-& \text{Any property necessarily implied by a positive property is positive:} \notag \\
+& \text{Any property necessarily implied by a positive property is positive.} \notag \\
 & \quad \forall P \forall Q (pos\,P \wedge (\Box \forall x (P\,x \Rightarrow Q\,x)) \Rightarrow pos\,Q) \tag{A1} \\
-& \text{A property is positive if and only if its negation is not positive:} \notag \\
+& \text{A property is positive if and only if its negation is not positive.} \notag \\
 & \quad \forall P (pos\,P \Leftrightarrow \neg (pos\,\neg P)) \tag{A2} \\
-& \text{The property of being God-like is positive:} \notag \\
+& \text{The property of being God-like is positive.} \notag \\
 & \quad pos\,god \tag{A3} \\
-& \text{Positive properties are necessarily positive:} \notag \\
+& \text{Positive properties are necessarily positive.} \notag \\
 & \quad \forall P (pos\,P \Rightarrow \Box (pos\,P))\tag{A4} \\
-& \text{Necessary existence is a positive property:} \notag \\
-& \quad pos\,nec\_exists \tag{A5} \\
-& \text{x is God-like if and only if x has every positive property:} \notag \\
-& \quad god\,x := \forall P (pos\,P \Rightarrow P x) \tag{D1} \\
-& \parbox[c][2em][c]{0.8\textwidth}{A property P is an essence of x if and only if P is a property of x and every property Q that x has is necessarily implied by P:}\notag \\
-& \quad ess\,P\,x := P\,x \wedge \forall Q (Q\,x \Rightarrow \Box (\forall y (P\,y \Rightarrow Q\,y))) \tag{D2} 
+& \text{Necessary existence is a positive property.} \notag \\
+& \quad pos\,nec\_exists \tag{A5} 
+\end{align}
+\begin{align}
+& \text{x is God-like if and only if x has every positive property.} \notag \\
+& \quad god\,x := \forall P (pos\,P \Rightarrow P\,x) \tag{D1} \\ 
+& \parbox[c][2em][c]{0.8\textwidth}{A property P is an essence of x if and only if P is a property of x and every property Q that x has is necessarily implied by P.}\notag \\
+& \quad ess\,P\,x := P\,x \wedge \forall Q (Q\,x \Rightarrow \Box \forall y (P\,y \Rightarrow Q\,y)) \tag{D2} \\
+& \parbox[c][2em][c]{0.8\textwidth}{x necessarily exists if and only if every essence of x is necessarily exemplified.} \notag \\
+& \quad nec\_exists\,x := \forall P (ess\,P\,x \Rightarrow \Box \exists y (P\,y)) \tag{D3} 
 \end{align}
 
-\begin{description}
-\item[(A1)] Any property necessarily implied by a positive property is positive: \\
-       $\forall P \forall Q ((positive P \wedge (\Box \forall x (P x \Rightarrow Q x))) \Rightarrow positive Q)$
-\item[(A2)] A property is positive if and only if its negation is not positive:\\
-       $\forall P ((positive P) \Leftrightarrow \neg (positive \neg P))$ 
-\item[(A3)] The property of being God-like is positive:
+% \begin{description}
+% \item[(A1)] Any property necessarily implied by a positive property is positive: \\
+%        $\forall P \forall Q ((positive P \wedge (\Box \forall x (P x \Rightarrow Q x))) \Rightarrow positive Q)$
+% \item[(A2)] A property is positive if and only if its negation is not positive:\\
+%        $\forall P ((positive P) \Leftrightarrow \neg (positive \neg P))$ 
+% \item[(A3)] The property of being God-like is positive:
       
-\item[(A4)] positive properties are necessarily positive; 
-\item[(A5)] necessary existence is a positive property.
-\item[(D1)] x is God-like if and only if x has every positive property, 
-\item[(D2)] a property P is an essence of x if and only if P is a property of x and every property Q that x has is necessarily implied by P, 
-\item[(D3)] x necessarily exists if and only if every essence of x is necessarily exemplified.
-\end{description}
+% \item[(A4)] positive properties are necessarily positive; 
+% \item[(A5)] necessary existence is a positive property.
+% \item[(D1)] x is God-like if and only if x has every positive property, 
+% \item[(D2)] a property P is an essence of x if and only if P is a property of x and every property Q that x has is necessarily implied by P, 
+% \item[(D3)] x necessarily exists if and only if every essence of x is necessarily exemplified.
+% \end{description}
 
 \noindent
 From these axioms and definitions we then infer:
+\begin{align}
+& \text{Positive properties are possibly exemplified.} \notag \\
+& \quad \forall P (pos\,P \Rightarrow \Diamond \exists x (P\,x)) \tag{L1} \\
+& \text{Possibly God exists.} \notag \\
+& \quad \Diamond \exists x (god\,x) \tag{L2} \\
+& \parbox[c][2em][c]{0.8\textwidth}{If x is God-like, then the property of being God-like is an essence of x.} \notag \\
+& \quad \forall x (god\,x \Rightarrow ess\,god\,x) \tag{L3} \\
+& \text{Necessarily God exists.} \notag \\
+& \quad \Box \exists x (god\,x) \tag{T}
+\end{align}
+
+
 %
-ToDo: Include formulas too??
-\begin{description}
-\item[(L1)] Positive properties are possibly exemplified.
-\item[(L2)] Possibly God exists.
-\item[(L3)] If x is God-like, then the property of being 
-God-like is an essence of x.
-\item[(T)] \ Necessarily God exists.
-\end{description}
+%ToDo: Include formulas too??
+% \begin{description}
+% \item[(L1)] Positive properties are possibly exemplified.
+% \item[(L2)] Possibly God exists.
+% \item[(L3)] If x is God-like, then the property of being 
+% God-like is an essence of x.
+% \item[(T)] \ Necessarily God exists.
+% \end{description}
 
 % From these axioms, he claims (without detailed proof) that:
 % \begin{enumerate}
@@ -103,7 +120,7 @@ The above variant of G\"{o}del's proof has now been
 constructed for the first-time
 with an unprecedent degree of detail and formality; cf.~\cite{FormalTheologyRepository}. The following has been done (and in this order):
 \begin{itemize}
-\item A detailed natural deduction proof; this proof has guided our work.
+\item A detailed natural deduction proof.\marginpar{\scriptsize Chris: We need to make sure that this ND proof is based on a sound calculus.}
 %
 \item A formalization of the axioms, definitions and theorems in the TPTP THF syntax \cite{J22}.
 %
@@ -117,23 +134,24 @@ definitions with Nitpick \cite{Nitpick}.
 \item A formalization using the Isabelle proof assistant \cite{Isabelle} where the theorems (and some additional lemmata) have been automated with Sledgehammer \cite{Sledgehammer} and Metis \cite{Hurd03first-orderproof}.
 \end{itemize}
 
-G\"{o}del's proof is challenging to formalize and verify 
-because it requires very expressive logical languages with 
-modal operators (\emph{possibily} and \emph{necessarily}) and higher-order quantifiers. 
-Our computer-assisted formalizations rely on an embedding of the modal logic S5 
-into classical higher-order logic with Henkin 
-semantics \cite{J23,B9} and 
-employed recently developed interactive and automated deduction tools designed for this logic.
+G\"{o}del's proof is challenging to formalize and verify because it
+requires an expressive logical language with modal operators
+(\emph{possibily} and \emph{necessarily}) and with
+quantififiers for individuals and sets of individuals (properties).  Our computer-assisted formalizations rely on an
+embedding of the modal logic S5 into classical higher-order logic with
+Henkin semantics \cite{J23,B9}. The formalization is thus essentially
+done in classical higher-order logic where quantified S5 is emulated.
 
 This work attests the maturity of contemporary interactive and
-automated deduction tools and opens new perspectives for a
-computer-assisted theoretical philosophy.  
-The critical discussion of the underlying concepts, definitions and
-axioms remains a human responsibility, but the computer can assist in
-building and checking rigorously correct logical arguments. In case of
-logico-philosophical disputes, the computer can check the disputing
-arguments and partially fulfill Leibniz' dictum: Calculemus --- Let us
-calculate!
+automated deduction tools for classical higher-order logic and it
+demonstrates the elegance and practical relevance of the embeddings
+based approach.  Most importantly, our work opens new perspectives for
+a computer-assisted theoretical philosophy.  The critical discussion
+of the underlying concepts, definitions and axioms remains a human
+responsibility, but the computer can assist in building and checking
+rigorously correct logical arguments. In case of logico-philosophical
+disputes, the computer can check the disputing arguments and partially
+fulfill Leibniz' dictum: Calculemus --- Let us calculate!
 
 Future work includes an extensive study of other formalizations of
 ontological arguments with our machinery. Variations of the
