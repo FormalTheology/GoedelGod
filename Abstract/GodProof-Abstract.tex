@@ -46,20 +46,34 @@ this tradition, following particularly the footsteps of Leibniz.
 G\"{o}del defines God as a being who possesses all \emph{positive} properties.
 He does not extensively discuss what positive properties are, 
 but instead he states a few reasonable but debatable axioms that they should satisfy.
-Various slightly different versions of axioms and definitions have been considered by G\"{o}del and by several philosophers who commented on his proof (e.g. \cite{Scott,Sobel,AndersonGettings,Fitting,Adams,ContemporaryBibliography}). Our formalization employs the following axioms and definitions\footnote{
+Various slightly different versions of axioms and definitions have been considered by G\"{o}del and by several philosophers who commented on his proof (e.g. \cite{Scott,Sobel,AndersonGettings,Fitting,Adams,ContemporaryBibliography}). Our formalization employs the following axioms (A*) and definitions (D*):\footnote{
 (A1), (A2), (A5), (D1), (D3) are logically equivalent to, respectively, axioms 5, 2 and 4 and definitions 1 and 3 in G\"odel's manuscript \cite{Goedel1970}. (A3) was introduced by Scott \cite{Scott} and could be derived from G\"odel's axiom 1 and (D1) in a logic with infinitary conjunction. (A4) is a weaker form of G\"odel's axiom 3. (D2) has an extra conjunct lacking in G\"odel's definition 2; this lack is believed to have been an oversight by G\"odel \cite{Hazen}.
-}.
+}
 
 \begin{align}
-
-\emd{align}
+& \text{Any property necessarily implied by a positive property is positive:} \notag \\
+& \quad \forall P \forall Q (pos\,P \wedge (\Box \forall x (P\,x \Rightarrow Q\,x)) \Rightarrow pos\,Q) \tag{A1} \\
+& \text{A property is positive if and only if its negation is not positive:} \notag \\
+& \quad \forall P (pos\,P \Leftrightarrow \neg (pos\,\neg P)) \tag{A2} \\
+& \text{The property of being God-like is positive:} \notag \\
+& \quad pos\,god \tag{A3} \\
+& \text{Positive properties are necessarily positive:} \notag \\
+& \quad \forall P (pos\,P \Rightarrow \Box (pos\,P))\tag{A4} \\
+& \text{Necessary existence is a positive property:} \notag \\
+& \quad pos\,nec\_exists \tag{A5} \\
+& \text{x is God-like if and only if x has every positive property:} \notag \\
+& \quad god\,x := \forall P (pos\,P \Rightarrow P x) \tag{D1} \\
+& \parbox[c][2em][c]{0.8\textwidth}{A property P is an essence of x if and only if P is a property of x and every property Q that x has is necessarily implied by P:}\notag \\
+& \quad ess\,P\,x := P\,x \wedge \forall Q (Q\,x \Rightarrow \Box (\forall y (P\,y \Rightarrow Q\,y))) \tag{D2} 
+\end{align}
 
 \begin{description}
 \item[(A1)] Any property necessarily implied by a positive property is positive: \\
-       $\forall P \forall Q (positive P \wedge \Box \forall x (P x \Rightarrow Q x)) \Rightarrow positive Q)$
-\item[(A2)] A property is positive if and only if its negation is not positive\\
+       $\forall P \forall Q ((positive P \wedge (\Box \forall x (P x \Rightarrow Q x))) \Rightarrow positive Q)$
+\item[(A2)] A property is positive if and only if its negation is not positive:\\
        $\forall P ((positive P) \Leftrightarrow \neg (positive \neg P))$ 
-\item[(A3)] the property of being God-like is positive; 
+\item[(A3)] The property of being God-like is positive:
+      
 \item[(A4)] positive properties are necessarily positive; 
 \item[(A5)] necessary existence is a positive property.
 \item[(D1)] x is God-like if and only if x has every positive property, 
@@ -87,7 +101,7 @@ God-like is an essence of x.
 
 The above variant of G\"{o}del's proof has now been 
 constructed for the first-time
-with an unprecedent degree of detail and formality; cf.~\cite{FormalTheologyRepository}. The following has been done:
+with an unprecedent degree of detail and formality; cf.~\cite{FormalTheologyRepository}. The following has been done (and in this order):
 \begin{itemize}
 \item A detailed natural deduction proof; this proof has guided our work.
 %

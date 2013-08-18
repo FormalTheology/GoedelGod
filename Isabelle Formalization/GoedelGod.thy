@@ -24,13 +24,13 @@ quantification over sets of individuals.
 
 Some further notes:
 a) The Isabelle/HOL formalization closely follows the THF formalization available at: 
-   https://github.com/FormalTheology/GoedelGod/tree/master/TPTP%20THF%20Formalization
+   https://github.com/FormalTheology/GoedelGod/tree/master/TPTP\<lambda>20THF\<lambda>20Formalization
    This THF formalization has been the first successful attempt to formalize and 
    automate Goedel's ontological (July 2013). 
    Note that both LEO-II and Satallax can effectively automate the four steps in 
    the THF formalization. 
 b) The Isabelle/HOL formalization is also closely related to the Coq formalization at:  
-   https://github.com/FormalTheology/GoedelGod/blob/master/Coq%20Formalization/ExplicitModalSemanticEncoding/GoedelGod.v
+   https://github.com/FormalTheology/GoedelGod/blob/master/Coq\<lambda>20Formalization/ExplicitModalSemanticEncoding/GoedelGod.v
    This interactive Coq formalization was produced shortly after the THF formalization.
 c) In the Isabelle/HOL formalization all steps in the argument have been automated with
    sledgehammer performing remote calls to Satallax and LEO-II. These calls then 
@@ -57,35 +57,35 @@ axiomatization where
   
 (* classical negation lifted to possible worlds *)   
 definition mnot :: "(i => bool) => (i => bool)" ("\<not>m") where
-  "mnot p = (% W. \<not> p W)"
+  "mnot p = (\<lambda>W. \<not> p W)"
 
 (* classical conjunction lifted to possible worlds *)
 definition mand :: "(i => bool) => (i => bool) => (i => bool)" (infixr "\<and>m" 74) where
-  "mand p q = (% W. p W & q W) "  
+  "mand p q = (\<lambda>W. p W & q W) "  
 
 (* classical implication lifted to possible worlds *)
 definition mimplies :: "(i => bool) => (i => bool) => (i => bool)" (infixr "\<Rightarrow>m" 79) where
-  "mimplies p q = (% W. p W \<longrightarrow> q W)"
+  "mimplies p q = (\<lambda>W. p W \<longrightarrow> q W)"
 
 (* universial quantification over individuals lifted to possible worlds *)
 definition mforall_ind :: "(mu => (i => bool)) => (i => bool)" ("\<forall>i") where
-  "mforall_ind abstrP = (% W. \<forall> X.  abstrP X W)"  
+  "mforall_ind abstrP = (\<lambda>W. \<forall> X.  abstrP X W)"  
   
 (* existential quantification over individuals lifted to possible worlds *)
 definition mexists_ind :: "(mu => (i => bool)) => (i => bool)" ("\<exists>i") where
-  "mexists_ind abstrP = (% W. \<exists> X.  abstrP X W)"    
+  "mexists_ind abstrP = (\<lambda>W. \<exists> X.  abstrP X W)"    
   
 (* universial quantification over sets of individuals lifted to possible worlds *)
 definition mforall_indset :: "((mu => (i => bool)) => (i => bool)) => (i => bool)" ("\<forall>iset") where
-  "mforall_indset abstrP = (% W. \<forall> X.  abstrP X W)"
+  "mforall_indset abstrP = (\<lambda>W. \<forall> X.  abstrP X W)"
 
 (* the s5 box operator based on r *)
 definition mbox_s5 :: "(i => bool) => (i => bool)" ("\<box>") where
-  "mbox_s5 p = (% W. \<forall> V. \<not> W r V \<or> p V)"
+  "mbox_s5 p = (\<lambda>W. \<forall> V. \<not> W r V \<or> p V)"
   
 (* the s5 diamond operator based on r *)
 definition mdia_s5 :: "(i => bool) => (i => bool)" ("\<diamond>") where
-  "mdia_s5 p = (% W. \<exists> V. W r V \<and> p V)"  
+  "mdia_s5 p = (\<lambda>W. \<exists> V. W r V \<and> p V)"  
   
 (* grounding of lifted modal formulas *)
 definition valid :: "(i => bool) => bool" ("v") where
@@ -96,14 +96,14 @@ consts positive :: "(mu => (i => bool)) => (i => bool)"
   
 axiomatization where
   (* ax1: Any property strictly implied by a positive property is positive. *)
-  ax1: "v (\<forall>iset (%P. \<forall>iset (%Q. ((positive P) \<and>m \<box> (\<forall>i (%X. P X \<Rightarrow>m Q X))) \<Rightarrow>m positive Q )))" and
+  ax1: "v (\<forall>iset (\<lambda>P. \<forall>iset (\<lambda>Q. ((positive P) \<and>m \<box> (\<forall>i (\<lambda>X. P X \<Rightarrow>m Q X))) \<Rightarrow>m positive Q )))" and
   (* ax2a: If a property is positive then its negation is not positive. *)
-  ax2a: "v (\<forall>iset (%P. positive P \<Rightarrow>m \<not>m (positive (% W. \<not>m (P W)))))" and
+  ax2a: "v (\<forall>iset (\<lambda>P. positive P \<Rightarrow>m \<not>m (positive (\<lambda>W. \<not>m (P W)))))" and
   (* ax2b: A property is positive when its negation is not positive. *)
-  ax2b: "v (\<forall>iset (%P. \<not>m (positive (% W. \<not>m (P W))) \<Rightarrow>m positive P))"
+  ax2b: "v (\<forall>iset (\<lambda>P. \<not>m (positive (\<lambda>W. \<not>m (P W))) \<Rightarrow>m positive P))"
 
 (* lemma1: Positive properties are eventually exemplified. *)
-lemma lemma1: "v (\<forall>iset (%P. (positive P) \<Rightarrow>m \<diamond> (\<exists>i (%X. P X))))"
+lemma lemma1: "v (\<forall>iset (\<lambda>P. (positive P) \<Rightarrow>m \<diamond> (\<exists>i (\<lambda>X. P X))))"
   (* lemma1 can be proved from ax1 and ax2a.
      sledgehammer with leo2 and satallax does find the proof; just try:
        sledgehammer [provers = remote_leo2 remote_satallax] 
@@ -117,14 +117,14 @@ lemma lemma1: "v (\<forall>iset (%P. (positive P) \<Rightarrow>m \<diamond> (\<e
 (* Definition of God: 
    X is God if and only if X incorporates all positive properties. *)
 definition god :: "mu => (i => bool)" where
-  "god = (% X. \<forall>iset (% P. (positive P) \<Rightarrow>m (P X)))"
+  "god = (\<lambda>X. \<forall>iset (\<lambda>P. (positive P) \<Rightarrow>m (P X)))"
 
 (* ax3: The property of being God-like is positive. *)
 axiomatization where
   ax3: "v (positive god)"
 
 (* lemma2: Eventually God exists. *)
-lemma lemma2: "v (\<diamond> (\<exists>i (% X. god X)))" 
+lemma lemma2: "v (\<diamond> (\<exists>i (\<lambda>X. god X)))" 
   (* lemma2 can be proved from lemma1 and ax3.
        sledgehammer succeeds; try this: 
        sledgehammer [provers = remote_leo2 remote_satallax] 
@@ -137,15 +137,15 @@ lemma lemma2: "v (\<diamond> (\<exists>i (% X. god X)))"
    Property P is essential for X (and essence of X) if and only if P is a 
    property of X and every property Q that X has is strictly implied by P. *)
 definition essential :: "(mu => (i => bool)) => mu => (i => bool)" where
-  "essential p x = ( p x \<and>m \<forall>iset (%Q. Q x \<Rightarrow>m \<box> (\<forall>i (%Y. p Y \<Rightarrow>m (Q Y)))))"
+  "essential p x = ( p x \<and>m \<forall>iset (\<lambda>Q. Q x \<Rightarrow>m \<box> (\<forall>i (\<lambda>Y. p Y \<Rightarrow>m (Q Y)))))"
 
 (* ax4: Positive properties are necessary positive properties. *)
 axiomatization where
-  ax4: "v (\<forall>iset (%P. positive P \<Rightarrow>m (\<box> (positive P))))"
+  ax4: "v (\<forall>iset (\<lambda>P. positive P \<Rightarrow>m (\<box> (positive P))))"
 
 (* lemma3: If X is a God-like being, then the property of being God-like 
    is an essence of X. *)
-lemma lemma3: "v (\<forall>i (%X. god X \<Rightarrow>m (essential god X)))"
+lemma lemma3: "v (\<forall>i (\<lambda>X. god X \<Rightarrow>m (essential god X)))"
   using ax2a ax2b ax4 sym
   unfolding valid_def mforall_indset_def mforall_ind_def mexists_ind_def 
             mnot_def mand_def mimplies_def mdia_s5_def mbox_s5_def god_def 
@@ -156,7 +156,7 @@ lemma lemma3: "v (\<forall>i (%X. god X \<Rightarrow>m (essential god X)))"
    X necessarily exists if and only if every essence of X is necessarily 
    exemplified. *)
 definition nec_exists :: "mu => (i => bool)" where
-  "nec_exists = (%X. (\<forall>iset (%P. essential P X \<Rightarrow>m \<box> (\<exists>i (%Y. P Y)))))"
+  "nec_exists = (\<lambda>X. (\<forall>iset (\<lambda>P. essential P X \<Rightarrow>m \<box> (\<exists>i (\<lambda>Y. P Y)))))"
 
 (* ax5: Necessary existence is positive. *)
 axiomatization where
