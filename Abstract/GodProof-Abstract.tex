@@ -10,6 +10,7 @@
 \newcommand{\seq}{\vdash}
 \newcommand{\nec}{\Box} % necessarily
 \newcommand{\pos}{\Diamond} % possibly
+\newcommand{\ess}[2]{#1 \ \mathit{ess} \ #2}
 
 
 \title{ Formalization, Mechanization and Automation % of Variants
@@ -49,58 +50,63 @@ but instead he states a few reasonable but debatable axioms that they should sat
 Various slightly different versions of axioms and definitions have been considered by G\"{o}del and by several philosophers who commented on his proof (e.g. \cite{Scott,Sobel,AndersonGettings,Fitting,Adams,ContemporaryBibliography}). Our formalization employs the following axioms (A*) and definitions (D*):\footnote{
 (A1), (A2), (A5), (D1), (D3) are logically equivalent to, respectively, axioms 5, 2 and 4 and definitions 1 and 3 in G\"odel's manuscript \cite{Goedel1970}. (A3) was introduced by Scott \cite{Scott} and could be derived from G\"odel's axiom 1 and (D1) in a logic with infinitary conjunction. (A4) is a weaker form of G\"odel's axiom 3. (D2) has an extra conjunct lacking in G\"odel's definition 2; this lack is believed to have been an oversight by G\"odel \cite{Hazen}.
 }
-\marginpar{\scriptsize Chris: The reference to Scott's version is kind of confusing, we need to verify this sources.}
+\marginpar{\scriptsize Chris: The reference to Scott's version is kind of confusing, we need to verify this source.}
+\marginpar{\scriptsize Bruno: I think the numbers (A1, A2,.., D1,..D3, L1,..,L3,T) should be in the left with a description environment, as they were before. I think it looked nicer like that. If you agree, I can change back.}
 \allowdisplaybreaks[1] 
 \begin{align}
 & \text{Any property necessarily implied by a positive property is positive.} \notag \\
-& \quad \forall P \forall Q (pos\,P \wedge (\Box \forall x (P\,x \Rightarrow Q\,x)) \Rightarrow pos\,Q) \tag{A1} \\
+& \quad 
+\all \varphi. \all \psi.[(P(\varphi) \wedge \nec \all x.[\varphi(x) \imp \psi(x)]) \imp P(\psi)] \tag{A1} \\
 & \text{A property is positive if and only if its negation is not positive.} \notag \\
-& \quad \forall P (pos\,P \Leftrightarrow \neg (pos\,\neg P)) \tag{A2} \\
+& \quad 
+\all \varphi. [P(\neg \varphi) \biimp \neg P(\varphi)]
+\tag{A2} \\
 & \text{The property of being God-like is positive.} \notag \\
-& \quad pos\,god \tag{A3} \\
+& \quad 
+P(G) 
+\tag{A3} \\
 & \text{Positive properties are necessarily positive.} \notag \\
-& \quad \forall P (pos\,P \Rightarrow \Box (pos\,P))\tag{A4} \\
+& \quad 
+\all \varphi.[P(\varphi) \to \Box \; P(\varphi)]
+\tag{A4} \\
 & \text{Necessary existence is a positive property.} \notag \\
-& \quad pos\,nec\_exists \tag{A5} \\
-%\end{align}
-%\begin{align}
+& \quad 
+P(E)
+\tag{A5} \\
 & \text{x is God-like if and only if x has every positive property.} \notag \\
-& \quad god\,x := \forall P (pos\,P \Rightarrow P\,x) \tag{D1} \\ 
+& \quad 
+G(x) \biimp \forall \varphi. [P(\varphi) \to \varphi(x)]
+\tag{D1} \\ 
 & \parbox[c][2em][c]{0.8\textwidth}{A property P is an essence of x if and only if P is a property of x and every property Q that x has is necessarily implied by P.}\notag \\
-& \quad ess\,P\,x := P\,x \wedge \forall Q (Q\,x \Rightarrow \Box \forall y (P\,y \Rightarrow Q\,y)) \tag{D2} \\
+& \quad 
+\ess{\varphi}{x} \biimp \varphi(x) \wedge \all \psi. (\psi(x) \imp \nec \all x. (\varphi(x) \imp \psi(x)))
+\tag{D2} \\
 & \parbox[c][2em][c]{0.8\textwidth}{x necessarily exists if and only if every essence of x is necessarily exemplified.} \notag \\
-& \quad nec\_exists\,x := \forall P (ess\,P\,x \Rightarrow \Box \exists y (P\,y)) \tag{D3} 
+& \quad 
+E(x) \biimp \all \varphi.[\ess{\varphi}{x} \imp \nec \ex x.\varphi(x)] 
+\tag{D3} 
 \end{align}
 
 \noindent
 From these axioms and definitions we then infer:
 \begin{align}
 & \text{Positive properties are possibly exemplified.} \notag \\
-& \quad \forall P (pos\,P \Rightarrow \Diamond \exists x (P\,x)) \tag{L1} \\
+& \quad 
+\all \varphi. [P(\varphi) \imp \pos \ex x.\varphi(x)]
+\tag{L1} \\
 & \text{Possibly God exists.} \notag \\
-& \quad \Diamond \exists x (god\,x) \tag{L2} \\
+& \quad 
+\pos \ex x. G(x)
+\tag{L2} \\
 & \parbox[c][2em][c]{0.8\textwidth}{If x is God-like, then the property of being God-like is an essence of x.} \notag \\
-& \quad \forall x (god\,x \Rightarrow ess\,god\,x) \tag{L3} \\
+& \quad 
+\all y.[G(y) \imp \ess{G}{y}]
+\tag{L3} \\
 & \text{Necessarily God exists.} \notag \\
-& \quad \Box \exists x (god\,x) \tag{T}
+& \quad 
+\nec \ex x. G(x)
+\tag{T}
 \end{align}
-
-
-%
-%ToDo: Include formulas too??
-% \begin{description}
-% \item[(L1)] Positive properties are possibly exemplified.
-% \item[(L2)] Possibly God exists.
-% \item[(L3)] If x is God-like, then the property of being 
-% God-like is an essence of x.
-% \item[(T)] \ Necessarily God exists.
-% \end{description}
-
-% From these axioms, he claims (without detailed proof) that:
-% \begin{enumerate}
-% \item If it is possible that God exists, then it is necessary that God exists.
-% \item It is possible that God exists.
-% \end{enumerate}
 
 The above variant of G\"{o}del's proof has now been 
 constructed for the first-time
@@ -122,7 +128,7 @@ definitions with Nitpick \cite{Nitpick}.
 
 G\"{o}del's proof is challenging to formalize and verify because it
 requires an expressive logical language with modal operators
-(\emph{possibily} and \emph{necessarily}) and with
+(\emph{possibly} and \emph{necessarily}) and with
 quantififiers for individuals and sets of individuals (properties).  Our computer-assisted formalizations rely on an
 embedding of the modal logic S5 into classical higher-order logic with
 Henkin semantics \cite{J23,B9}. The formalization is thus essentially
