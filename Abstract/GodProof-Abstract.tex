@@ -60,13 +60,19 @@ Various slightly different versions of axioms and definitions have been consider
 & \quad pos\,god \tag{A3} \\
 & \text{Positive properties are necessarily positive.} \notag \\
 & \quad \forall P (pos\,P \Rightarrow \Box (pos\,P))\tag{A4} \\
-& \text{Necessary existence is a positive property:} \notag \\
+& \text{Necessary existence is a positive property.} \notag \\
 & \quad pos\,nec\_exists \tag{A5} \\
-& \text{x is God-like if and only if x has every positive property:} \notag \\
-& \quad god\,x := \forall P (pos\,P \Rightarrow P x) \tag{D1} \\
-& \parbox[c][2em][c]{0.8\textwidth}{A property P is an essence of x if and only if P is a property of x and every property Q that x has is necessarily implied by P:}\notag \\
-& \quad ess\,P\,x := P\,x \wedge \forall Q (Q\,x \Rightarrow \Box (\forall y (P\,y \Rightarrow Q\,y))) \tag{D2}
+%\end{align}
+%\begin{align}
+& \text{x is God-like if and only if x has every positive property.} \notag \\
+& \quad god\,x := \forall P (pos\,P \Rightarrow P\,x) \tag{D1} \\ 
+& \parbox[c][2em][c]{0.8\textwidth}{A property P is an essence of x if and only if P is a property of x and every property Q that x has is necessarily implied by P.}\notag \\
+& \quad ess\,P\,x := P\,x \wedge \forall Q (Q\,x \Rightarrow \Box \forall y (P\,y \Rightarrow Q\,y)) \tag{D2} \\
+& \parbox[c][2em][c]{0.8\textwidth}{x necessarily exists if and only if every essence of x is necessarily exemplified.} \notag \\
+& \quad nec\_exists\,x := \forall P (ess\,P\,x \Rightarrow \Box \exists y (P\,y)) \tag{D3} 
 \end{align}
+
+
 
 % \begin{description}
 % \item[(A1)] Any property necessarily implied by a positive property is positive: \\
