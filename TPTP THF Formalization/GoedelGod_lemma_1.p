@@ -6,13 +6,6 @@
 %----Authors: Christoph Benzmueller and Bruno Woltzenlogel-Paleo
 %----July, 16 2013 (update on August 10, 2013)
 
-% Informal explanation:
-% From 
-% (axiom_1)  Any property strictly implied by a positive property is positive.
-% (axiom_2a) When a property is positive then its negation is not positive.
-% we infer
-% (lemma_1) Positive properties are eventually exemplified.
-
 %------------------------------------------------------------------------------
 %----Axioms for Quantified Modal Logic KB (providing quantification over 
 %----individuals, propositions, sets of individuals, sets of sets of individual).
@@ -38,18 +31,15 @@ thf(axiom_1,axiom,
                             ( mimplies @ ( P @ X ) @ ( Q @ X ) ) ) ) )
                   @ ( positive @ Q ) ) ) ) )).
 
-%----axiom_2a: When a property is positive then its negation is not positive.
+%----axiom_2: Either the property or its negation are positive, but not both.
 %----(Remark: only the left to right is actually needed for proving lemma_1)
-thf(axiom2a,axiom,
+thf(axiom2,axiom,
     ( mvalid @
           ( mforall_indset
           @ ^ [P: mu > $i > $o] :
-              ( mimplies
-              @ ( positive @ P )                
-              @ ( mnot
-                @ ( positive 
-                  @ ^ [W: mu] :
-                    ( mnot @ ( P @ W ) ) ) ) ) ) )).
+              ( mequiv
+              @ ( positive @ ^ [X: mu] : ( mnot @ ( P @ X ) ) )               
+              @ ( mnot @ ( positive @ P ) ) ) ) )).
 
 %----lemma_1: Positive properties are eventually exemplified.
 thf(lemma1,conjecture,

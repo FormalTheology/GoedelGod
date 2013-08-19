@@ -94,10 +94,9 @@ consts pos :: "(mu => (i => bool)) => (i => bool)"
 axiomatization where
   (* a1: Any property strictly implied by a positive property is positive. *)
   a1: "v (\<forall>iset (\<lambda>P. \<forall>iset (\<lambda>Q. ((pos P) m\<and> \<box> (\<forall>i (\<lambda>X. P X m\<Rightarrow> Q X))) m\<Rightarrow> pos Q )))" and
-  (* a2a: If a property is positive then its negation is not positive. *)
-  a2a: "v (\<forall>iset (\<lambda>P. pos P m\<Rightarrow> m\<not> (pos (\<lambda>W. m\<not> (P W)))))" and
-  (* a2b: A property is positive when its negation is not positive. *)
-  a2b: "v (\<forall>iset (\<lambda>P. m\<not> (pos (\<lambda>W. m\<not> (P W))) m\<Rightarrow> pos P))"
+  (* a2: Either the property or its negation are positive, but not both. *)
+  a2a: "v (\<forall>iset (\<lambda>P. pos (\<lambda>W. m\<not> (P W)) m\<Rightarrow> m\<not> (pos P)))" and
+  a2b: "v (\<forall>iset (\<lambda>P. m\<not> (pos P) m\<Rightarrow> pos (\<lambda>W. m\<not> (P W))))"
 
 (* l1: Positive properties are eventually exemplified. *)
 lemma l1: "v (\<forall>iset (\<lambda>P. (pos P) m\<Rightarrow> \<diamond> (\<exists>i (\<lambda>X. P X))))"
@@ -131,11 +130,11 @@ lemma l2: "v (\<diamond> (\<exists>i (\<lambda>X. god X)))"
   unfolding mforall_indset_def mimplies_def valid_def
   by metis
 
-(* Definition of essential:
-   Property P is essential for X (and essence of X) if and only if P is a 
-   property of X and every property Q that X has is strictly implied by P. *)
-definition essential :: "(mu => (i => bool)) => mu => (i => bool)" where
-  "essential p x = ( p x m\<and> \<forall>iset (\<lambda>Q. Q x m\<Rightarrow> \<box> (\<forall>i (\<lambda>Y. p Y m\<Rightarrow> (Q Y)))))"
+(* Definition of essence:
+   P is the essence of X if and only if X has P and this property is 
+   necessarily minimal. *)
+definition essence :: "(mu => (i => bool)) => mu => (i => bool)" where
+  "essence p x = ( p x m\<and> \<forall>iset (\<lambda>Q. Q x m\<Rightarrow> \<box> (\<forall>i (\<lambda>Y. p Y m\<Rightarrow> (Q Y)))))"
 
 (* a4: Positive properties are necessary positive properties. *)
 axiomatization where
@@ -143,18 +142,18 @@ axiomatization where
 
 (* l3: If X is a God-like being, then the property of being God-like 
    is an essence of X. *)
-lemma l3: "v (\<forall>i (\<lambda>X. god X m\<Rightarrow> (essential god X)))"
+lemma l3: "v (\<forall>i (\<lambda>X. god X m\<Rightarrow> (essence god X)))"
   using a2a a2b a4
   unfolding valid_def mforall_indset_def mforall_ind_def mexists_ind_def 
             mnot_def mand_def mimplies_def mdia_def mbox_def god_def 
-            essential_def 
+            essence_def 
   by metis
 
 (* Definition of necessary existence:
    X necessarily exists if and only if every essence of X is necessarily 
    exemplified. *)
 definition nec_exists :: "mu => (i => bool)" where
-  "nec_exists = (\<lambda>X. (\<forall>iset (\<lambda>P. essential P X m\<Rightarrow> \<box> (\<exists>i (\<lambda>Y. P Y)))))"
+  "nec_exists = (\<lambda>X. (\<forall>iset (\<lambda>P. essence P X m\<Rightarrow> \<box> (\<exists>i (\<lambda>Y. P Y)))))"
 
 (* a5: Necessary existence is positive. *)
 axiomatization where
@@ -166,7 +165,7 @@ axiomatization where
 
   theorem thm1: "v (\<box> (\<exists>i god))"
     using l2 l3 a5 sym refl
-    unfolding valid_def mforall_indset_def mforall_ind_def mexists_ind_def mnot_def mand_def mimplies_def mdia_def mbox_def god_def essential_def nec_exists_def 
+    unfolding valid_def mforall_indset_def mforall_ind_def mexists_ind_def mnot_def mand_def mimplies_def mdia_def mbox_def god_def essence_def nec_exists_def 
     sledgehammer [timeout = 60, provers = remote_satallax] 
    
   This call is successful and suggests to use metis for reconstruction; but this metis 
@@ -183,7 +182,7 @@ lemma help2: "   v (\<diamond> p) & v (p m\<Rightarrow> \<box> p) \<Longrightarr
   by metis
   
 (* help3 is only required to prove help4 *)  
-lemma help3:  "\<forall> X. v ((god X) m\<Rightarrow>  ((essential god X) m\<Rightarrow> (\<box> (\<exists>i god))))"
+lemma help3:  "\<forall> X. v ((god X) m\<Rightarrow>  ((essence god X) m\<Rightarrow> (\<box> (\<exists>i god))))"
   using a3 a5
   unfolding god_def mforall_indset_def mimplies_def nec_exists_def valid_def
   by (metis (lifting, mono_tags)) 

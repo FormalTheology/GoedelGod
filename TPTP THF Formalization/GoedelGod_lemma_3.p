@@ -6,17 +6,6 @@
 %----Authors: Christoph Benzmueller and Bruno Woltzenlogel-Paleo
 %----July, 16 2013 (update on August 10, 2013)
 
-% Informal explanation:
-% From
-% (axiom_2) A property is positive if and only if its negation is not positive.
-% (def_1)   X is God-like if and only if X incorporates all positive properties.
-% (def_2)   Property P is an essence of X if and only if P is a property of X and
-%           every property Q that X has is strictly implied by P.
-% (axiom_4) Positive properties are necessary positive properties.
-% we infer
-% (lemma_3) If X is a God-like being, then the property of being God-like is an
-%           essence of X.
-
 %------------------------------------------------------------------------------
 %----Axioms for Quantified Modal Logic KB (providing quantification over 
 %----individuals, propositions, sets of individuals, sets of sets of individual).
@@ -34,7 +23,7 @@ thf(positive_tp,type,(
 thf(essential_tp,type,(
     essential: ( mu > $i > $o ) > mu > $i > $o )).
 
-%----axiom_2: A property is positive if and only if its negation is not positive.
+%----axiom_2: Either the property or its negation are positive, but not both.
 %----         (Remark: to prove lemma_3 both directions of axiom_2 are required;
 %----          see also the "Introductory note to *1970", p.401, to "Kurt Goedel (1995).
 %----          Ontological Proof, Collected Works: Unpublished Essays & Lectures, Volume III.
@@ -44,11 +33,9 @@ thf(axiom2,axiom,
           ( mforall_indset
           @ ^ [P: mu > $i > $o] :
               ( mequiv
-              @ ( positive @ P )                
-              @ ( mnot
-                @ ( positive 
-                  @ ^ [W: mu] :
-                    ( mnot @ ( P @ W ) ) ) ) ) ) )).
+              @ ( positive @ ^ [X: mu] : ( mnot @ ( P @ X ) ) )               
+              @ ( mnot @ ( positive @ P ) ) ) ) )).
+
 
 %----def_1: X is God-like if and only if X incorporates all positive properties.
 thf(def_1,definition,
@@ -58,8 +45,8 @@ thf(def_1,definition,
           @ ^ [P: mu > $i > $o] :
               ( mimplies @ ( positive @ P ) @ ( P @ X ) ) ) ) )).
 
-%----def_2: Property P is essential for X (and essence of X) if and only if P is 
-%----       a property of X and every property Q that X has is strictly implied by P.
+%----def_2: P is the essence of X if and only if X has P and this property is 
+%----necessarily minimal.
 thf(def_2,definition,
     ( essential
     = ( ^ [P: mu > $i > $o,X: mu] :

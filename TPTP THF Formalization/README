@@ -3,7 +3,7 @@
 %----July, 16 2013 (update on August 10, 2013)
 
 We present a formalization and (partial) automation of Goedel's
-ontological argument in quantified modal logic S5 (QML S5). QML S5 is in 
+ontological argument in quantified modal logic KB (QML KB). QML KB is in 
 turn modeled as a fragment of Church's simple type theory (HOL). Thus, the
 formalization is essentially a formalization in HOL. For our encoding
 of HOL formulas we employ the TPTP THF0 syntax. For more information
@@ -22,12 +22,11 @@ Nitpick) are employed to
 The set of axioms and definitions considered is as follows:
 
  (axiom_1)  Any property strictly implied by a positive property is positive.
- (axiom_2a) When a property is positive then its negation is not positive.
- (axiom_2b) A property is positive if its negation is not positive.
+ (axiom_2)  Either the property or its negation are positive, but not both.
  (def_1)    X is God-like if and only if X incorporates all positive properties.
  (axiom_3)  The property of being God-like is positive.
- (def_2)    Property P is essential for X (and essence of X) if and only if P is 
-            a property of X and every property Q that X has is strictly implied by P.
+ (def_2)    P is the essence of X if and only if X has P and this property is 
+            necessarily minimal.
  (axiom_4)  Positive properties are necessary positive properties.
  (def_3)    X necessarily exists if and only if every essence of X is necessarily 
             exemplified.
@@ -42,7 +41,7 @@ GoedelGod_consistentAssumptions.p
 Step 1:  
 
 We show (lemma_1): Positive properties are eventually exemplified.
-It holds: (axiom_1), (axiom_2a) |- (lemma_1)
+It holds: (axiom_1), (axiom_2) |- (lemma_1)
 This can be proved by LEO-II and Satallax much less than second; see 
 GoedelGod_lemma_1.p
 Remark: only the left to right direction of (axiom_2) is required here.
@@ -62,7 +61,7 @@ Step 3:
 
 We show (lemma_3): If X is a God-like being, then the property of being 
 God-like is an essence of X.
-It holds: (axiom_2a/b), (def_1), (def_2), (axiom_4) |- (lemma_3)
+It holds: (axiom_2), (def_1), (def_2), (axiom_4) |- (lemma_3)
 This can be proved by LEO-II and Satallax quickly; see GoedelGod_lemma_3.p. 
 LEO-II needs about 18 seconds and Satallax about 3 seconds.
 Remark: both directions of (axiom_2) are required here; otherwise Nitrox 
