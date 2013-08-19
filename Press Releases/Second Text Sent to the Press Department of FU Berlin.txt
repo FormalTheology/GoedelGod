@@ -1,0 +1,144 @@
+Computer automatisiert, verifiziert und vereinfacht Kurt Gödel's Gottesbeweis
+ 
+`Gottesbeweise' haben eine lange Tradition in der Philosphie.  Sie
+versuchen die Aussage zur notwendigen Existenz Gottes ausgehend von
+einigen wenigen Grundannahmen und Begriffsdefinition (Prämissen)
+mithilfe einer mathematisch präzisen, rationalen Argumentation zu
+führen. Vergleichbar mit einem mathematischen Theorem wird bei einem
+solchen Gottsbeweis in einem Logikfomalismus die Kernaussage `Gott
+existiert notwendigerweise' reduziert auf die Gültigkeit der Prämissen
+(die Korrektheit des Logikformalismus vorausgesetzt). Die
+Grundannahmen bei Gottesbeweisen sind typischerweise kontrovers, und
+sie wurden und werden durch Philosophen oftmals heftig
+kritisiert. Aber auch in die Beweisführung, d.h. die
+Argumentationskette, können sich natürlich leicht Fehler
+einschleichen.
+
+Auch das Logikgenie Kurt Gödel (1906-1978) hat kurz vor seinem Tod einen
+solchen Gottesbeweis präsentiert. Wie bei Gödel nicht anders erwartet,
+zeichnet sich sein Beweis durch sehr hohe Präzision aus. Zudem
+geht er von nur wenigen Prämissenen aus. Vor Gödel haben St. Anselm,
+Descartes und auch Leibniz Beweise vergelegt. 
+
+Nun ist es Christoph Benzmüller, Wissenschaftler an der FU Berlin im
+Dahlem Center for Intelligent Systems, in Kooperation mit Bruno
+Woltzenlogel-Paleo von der TU Wien gelungen, Kurt Gödel's Gottesbeweis
+in einem nachweisbar korrekten Logikformalismus auf dem Computer zu
+verifizieren, zu automatisieren und sogar zu vereinfachen. Der
+Computer hat also bewiesen: wenn Gödels Prämissen gelten, dann gibt es
+Gott.
+
+Im Computer wurde der Beweis der Kernaussage, die notwendige Existenz
+Gottes, in vier Einzelschritte zerlegt. Die Beweisführung und
+Verifikation jeder dieser Schritte wurde dann mithilfe von sogenannten
+Theorembeweisern automatisch erzeugt. Auch die Widerspruchsfreiheit
+der grundlegenden Axiome und Definitionen konnte mithilfe von
+Theorembeweisern sichergestellet werden.
+Computer automatisiert, verifiziert und vereinfacht Kurt Gödel's Gottesbeweis
+ 
+`Gottesbeweise' haben eine lange Tradition in der Philosphie.  Sie
+versuchen die Aussage zur notwendigen Existenz Gottes ausgehend von
+einigen wenigen Grundannahmen und Begriffsdefinition (Prämissen)
+mithilfe einer mathematisch präzisen, rationalen Argumentation zu
+führen. Vergleichbar mit einem mathematischen Theorem wird bei einem
+solchen Gottsbeweis in einem Logikfomalismus die Kernaussage `Gott
+existiert notwendigerweise' reduziert auf die Gültigkeit der Prämissen
+(die Korrektheit des Logikformalismus vorausgesetzt). Die
+Grundannahmen bei Gottesbeweisen sind typischerweise kontrovers, und
+sie wurden und werden durch Philosophen oftmals heftig
+kritisiert. Aber auch in die Beweisführung, d.h. die
+Argumentationskette, können sich natürlich leicht Fehler
+einschleichen.
+
+Auch das Logikgenie Kurt Gödel (1906-1978) hat kurz vor seinem Tod einen
+solchen Gottesbeweis präsentiert. Wie bei Gödel nicht anders erwartet,
+zeichnet sich sein Beweis durch sehr hohe Präzision aus. Zudem
+geht er von nur wenigen Prämissenen aus. Vor Gödel haben St. Anselm,
+Descartes und auch Leibniz Beweise vergelegt. 
+
+Nun ist es Christoph Benzmüller, Wissenschaftler an der FU Berlin im
+Dahlem Center for Intelligent Systems, in Kooperation mit Bruno
+Woltzenlogel-Paleo von der TU Wien gelungen, Kurt Gödel's Gottesbeweis
+in einem nachweisbar korrekten Logikformalismus auf dem Computer zu
+verifizieren, zu automatisieren und sogar zu vereinfachen. Der
+Computer hat also bewiesen: wenn Gödels Prämissen gelten, dann gibt es
+Gott.
+
+Im Computer wurde der Beweis der Kernaussage, die notwendige Existenz
+Gottes, in vier Einzelschritte zerlegt. Die Beweisführung und
+Verifikation jeder dieser Schritte wurde dann mithilfe von sogenannten
+Theorembeweisern automatisch erzeugt. Auch die Widerspruchsfreiheit
+der grundlegenden Axiome und Definitionen konnte mithilfe von
+Theorembeweisern sichergestellet werden.
+
+Theorembeweiser sind Computerprogramme, die ein mathematisch-präzises,
+logisches Schließen auf dem Computer ermöglichen. In ihrer Arbeit
+haben Benzmüller und Woltzenlogel gleich mehrere anerkanntner
+Theorembeweiser eingesetzt; durch diese Redundanz können sie die
+Wahrscheinlichkeit von Fehlern in ihrer Formalisierung minimieren.
+ 
+In der theoretischen Philosophie erfolgte die formal-logische
+Auseinandersetzung mit Gottesbeweisen bisher ausschließlich mit Papier
+und Bleistift. Auch Gödel arbeitete so. Der Einsatz von Computern
+scheiterte bisher, weil es den Logikformalismen der verfügbaren
+Theorembeweiser noch an Ausdrucksstärke fehlte um die abstrakten
+Begriffe in den Prämission adäquat zu erfassen.  Gödels Gottesbeweis
+verwendet beispielsweise eine komplexe höherstufige sogenannte
+Modallogik, die mit Begriffen wie "möglich" und "notwendig" arbeitet.
+ 
+Aktuelle Arbeiten von Christoph Benzmüller und Larry Paulson
+(Cambridge University, UK) zeigen jedoch, dass sich viele
+ausdrucksstarke Logiken, einschliesslich höherstufige Modallogiken, in
+die klassische höherstufige Logik einbetten lassen. Letztere kann
+also, mit einigen Einschränkungen, als eine universelle Logik
+angesehen werden. Für die klassische höherstufige Logik wurden jedoch
+in den vergangenen Jahren leistungsfähige Theorembeweiser
+entwickelt. Solche Systeme kommen nun in den Arbeiten von Benzmüller
+und Woltzenlogel-Paleo zum Einsatz. Auch Christoph Benzmüller
+entwickelt ein solches Computerprogramm.
+ 
+Die von den Wissenschaftlern gewählte Herangehensweise eröffnet damit
+neue Perspektiven für eine computer-assistierte theoretische
+Philosophie. Dabei bleibt die kritische Auseinandersetzung mit
+grundlegenden Begriffen und Axiomen dem Menschen vorbehalten. Der
+Computer kann aber helfen, Fehler in den formal-logischen Anteilen zu
+minimieren. Beispielsweise kann der Computer die Argumentationskette
+überprüfen und so Leibniz Diktum bei logischen Streiterien einsetzen:
+Calculemus --- Lasst uns rechnen!
+Theorembeweiser sind Computerprogramme, die ein mathematisch-präzises,
+logisches Schließen auf dem Computer ermöglichen. In ihrer Arbeit
+haben Benzmüller und Woltzenlogel gleich mehrere anerkanntner
+Theorembeweiser eingesetzt; durch diese Redundanz können sie die
+Wahrscheinlichkeit von Fehlern in ihrer Formalisierung minimieren.
+ 
+In der theoretischen Philosophie erfolgte die formal-logische
+Auseinandersetzung mit Gottesbeweisen bisher ausschließlich mit Papier
+und Bleistift. Auch Gödel arbeitete so. Der Einsatz von Computern
+scheiterte bisher, weil es den Logikformalismen der verfügbaren
+Theorembeweiser noch an Ausdrucksstärke fehlte um die abstrakten
+Begriffe in den Prämission adäquat zu erfassen.  Gödels Gottesbeweis
+verwendet beispielsweise eine komplexe höherstufige sogenannte
+Modallogik, die mit Begriffen wie "möglich" und "notwendig" arbeitet.
+ 
+Aktuelle Arbeiten von Christoph Benzmüller und Larry Paulson
+(Cambridge University, UK) zeigen jedoch, dass sich viele
+ausdrucksstarke Logiken, einschliesslich höherstufige Modallogiken, in
+die klassische höherstufige Logik einbetten lassen. Letztere kann
+also, mit einigen Einschränkungen, als eine universelle Logik
+angesehen werden. Für die klassische höherstufige Logik wurden jedoch
+in den vergangenen Jahren leistungsfähige Theorembeweiser
+entwickelt. Solche Systeme kommen nun in den Arbeiten von Benzmüller
+und Woltzenlogel-Paleo zum Einsatz. Auch Christoph Benzmüller
+entwickelt ein solches Computerprogramm.
+ 
+Die von den Wissenschaftlern gewählte Herangehensweise eröffnet damit
+neue Perspektiven für eine computer-assistierte theoretische
+Philosophie. Dabei bleibt die kritische Auseinandersetzung mit
+grundlegenden Begriffen und Axiomen dem Menschen vorbehalten. Der
+Computer kann aber helfen, Fehler in den formal-logischen Anteilen zu
+minimieren. Beispielsweise kann der Computer die Argumentationskette
+überprüfen und so Leibniz Diktum bei logischen Streiterien einsetzen:
+Calculemus --- Lasst uns rechnen!
+
+
+
