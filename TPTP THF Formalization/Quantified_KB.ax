@@ -1,5 +1,5 @@
 %--------------------------------------------------------------------------
-% This file contains an semantic embedding of quantified modal logic S5 into
+% This file contains an semantic embedding of quantified modal logic KB into
 % classical higher-order logic (Church's simple type theory).-
 % 
 % This embedding has been worked out by Christoph Benzmueller as an adaptation
@@ -45,11 +45,11 @@ thf(mor,definition,
           ( ( Phi @ W )
           | ( Psi @ W ) ) ) )).
 
-thf(mbox_type,type,(
-    mbox: ( $i > $i > $o ) > ( $i > $o ) > $i > $o )).
+thf(mbox_generic_type,type,(
+    mbox_generic: ( $i > $i > $o ) > ( $i > $o ) > $i > $o )).
 
-thf(mbox,definition,
-    ( mbox
+thf(mbox_generic,definition,
+    ( mbox_generic
     = ( ^ [R: $i > $i > $o,Phi: $i > $o,W: $i] :
         ! [V: $i] :
           ( ~ ( R @ W @ V )
@@ -79,20 +79,6 @@ thf(mforall_indset,definition,
           ( Phi @ X @ W ) ) )).
 
 %----Further modal operators
-thf(mtrue_type,type,(
-    mtrue: $i > $o )).
-
-thf(mtrue,definition,
-    ( mtrue
-    = ( ^ [W: $i] : $true ) )).
-
-thf(mfalse_type,type,(
-    mfalse: $i > $o )).
-
-thf(mfalse,definition,
-    ( mfalse
-    = ( mnot @ mtrue ) )).
-
 thf(mand_type,type,(
     mand: ( $i > $o ) > ( $i > $o ) > $i > $o )).
 
@@ -109,14 +95,6 @@ thf(mimplies,definition,
     = ( ^ [Phi: $i > $o,Psi: $i > $o] :
           ( mor @ ( mnot @ Phi ) @ Psi ) ) )).
 
-thf(mimplied_type,type,(
-    mimplied: ( $i > $o ) > ( $i > $o ) > $i > $o )).
-
-thf(mimplied,definition,
-    ( mimplied
-    = ( ^ [Phi: $i > $o,Psi: $i > $o] :
-          ( mor @ ( mnot @ Psi ) @ Phi ) ) )).
-
 thf(mequiv_type,type,(
     mequiv: ( $i > $o ) > ( $i > $o ) > $i > $o )).
 
@@ -125,21 +103,13 @@ thf(mequiv,definition,
     = ( ^ [Phi: $i > $o,Psi: $i > $o] :
           ( mand @ ( mimplies @ Phi @ Psi ) @ ( mimplies @ Psi @ Phi ) ) ) )).
 
-thf(mxor_type,type,(
-    mxor: ( $i > $o ) > ( $i > $o ) > $i > $o )).
+thf(mdia_generic_type,type,(
+    mdia_generic: ( $i > $i > $o ) > ( $i > $o ) > $i > $o )).
 
-thf(mxor,definition,
-    ( mxor
-    = ( ^ [Phi: $i > $o,Psi: $i > $o] :
-          ( mnot @ ( mequiv @ Phi @ Psi ) ) ) )).
-
-thf(mdia_type,type,(
-    mdia: ( $i > $i > $o ) > ( $i > $o ) > $i > $o )).
-
-thf(mdia,definition,
-    ( mdia
+thf(mdia_generic,definition,
+    ( mdia_generic
     = ( ^ [R: $i > $i > $o,Phi: $i > $o] :
-          ( mnot @ ( mbox @ R @ ( mnot @ Phi ) ) ) ) )).
+          ( mnot @ ( mbox_generic @ R @ ( mnot @ Phi ) ) ) ) )).
 
 thf(mexists_ind_type,type,(
     mexists_ind: ( mu > $i > $o ) > $i > $o )).
@@ -163,15 +133,6 @@ thf(mvalid,definition,
           ( Phi @ W ) ) )).
 
 %----Definition of properties of accessibility relations
-thf(mreflexive_type,type,(
-    mreflexive: ( $i > $i > $o ) > $o )).
-
-thf(mreflexive,definition,
-    ( mreflexive
-    = ( ^ [R: $i > $i > $o] :
-        ! [S: $i] :
-          ( R @ S @ S ) ) )).
-
 thf(msymmetric_type,type,(
     msymmetric: ( $i > $i > $o ) > $o )).
 
@@ -182,53 +143,32 @@ thf(msymmetric,definition,
           ( ( R @ S @ T )
          => ( R @ T @ S ) ) ) )).
 
-thf(mtransitive_type,type,(
-    mtransitive: ( $i > $i > $o ) > $o )).
-
-thf(mtransitive,definition,
-    ( mtransitive
-    = ( ^ [R: $i > $i > $o] :
-        ! [S: $i,T: $i,U: $i] :
-          ( ( ( R @ S @ T )
-            & ( R @ T @ U ) )
-         => ( R @ S @ U ) ) ) )).
-
 %------------------------------------------------------------------------------
-%----We work with an S5 logic
-%----We reserve an accessibility relation constant rel_s5
-thf(rel_s5_type,type,(
-    rel_s5: $i > $i > $o )).
+%----We work with logic KB and instantiate the generic box and dia operators
+%----We reserve an accessibility relation constant rel
+thf(rel_type,type,(
+    rel: $i > $i > $o )).
 
-%----We define mbox_s5 and mdia_s5 based on rel_s5
-thf(mbox_s5_type,type,(
-    mbox_s5: ( $i > $o ) > $i > $o )).
+%----We define mbox and mdia based on rel
+thf(mbox_type,type,(
+    mbox: ( $i > $o ) > $i > $o )).
 
-thf(mbox_s5,definition,
-    ( mbox_s5
-    = ( ^ [Phi: $i > $o,W: $i] :
-        ! [V: $i] :
-          ( ~ ( rel_s5 @ W @ V )
-          | ( Phi @ V ) ) ) )).
+thf(mbox,definition,
+    ( mbox
+    = ( mbox_generic @ rel ) )).
 
-thf(mdia_s5_type,type,(
-    mdia_s5: ( $i > $o ) > $i > $o )).
+thf(mdia_type,type,(
+    mdia: ( $i > $o ) > $i > $o )).
 
-thf(mdia_s5,definition,
-    ( mdia_s5
-    = ( ^ [Phi: $i > $o] :
-          ( mnot @ ( mbox_s5 @ ( mnot @ Phi ) ) ) ) )).
+thf(mdia,definition,
+    ( mdia
+    = ( mdia_generic @ rel ) )).
 
 %----We have now two options for stating the S5 conditions: 
 %----We can (i) directly formulate conditions for the accessibility relation
 %----constant or we can (ii) state corresponding axioms. We here prefer (i)
-thf(a1,axiom,
-    ( mreflexive @ rel_s5 )).
-
-thf(a2,axiom,
-    ( mtransitive @ rel_s5 )).
-
-thf(a3,axiom,
-    ( msymmetric @ rel_s5 )).
+thf(symmetry,axiom,
+    ( msymmetric @ rel )).
 
 %------------------------------------------------------------------------------
 

@@ -18,10 +18,10 @@
 %           essence of X.
 
 %------------------------------------------------------------------------------
-%----Axioms for Quantified Modal Logic S5 (providing quantification over 
+%----Axioms for Quantified Modal Logic KB (providing quantification over 
 %----individuals, propositions, sets of individuals, sets of sets of individual).
 
-include('Quantified_S5.ax').
+include('Quantified_KB.ax').
 
 %------------------------------------------------------------------------------
 
@@ -67,7 +67,7 @@ thf(def_2,definition,
           @ ( mforall_indset
             @ ^ [Q: mu > $i > $o] :
                 ( mimplies @ ( Q @ X )
-                @ ( mbox_s5
+                @ ( mbox
                   @ ( mforall_ind
                     @ ^ [Y: mu] :
                         ( mimplies @ ( P @ Y ) @ ( Q @ Y ) ) ) ) ) ) ) ) )).
@@ -77,7 +77,7 @@ thf(axiom_4,axiom,
     ( mvalid
     @ ( mforall_indset
       @ ^ [P: mu > $i > $o] :
-          ( mimplies @ ( positive @ P ) @ ( mbox_s5 @ ( positive @ P ) ) ) ) )).
+          ( mimplies @ ( positive @ P ) @ ( mbox @ ( positive @ P ) ) ) ) )).
 
 %----lemma_3: If X is a God-like being, then the property of being God-like is an essence of X.
 thf(lemma_3,conjecture,

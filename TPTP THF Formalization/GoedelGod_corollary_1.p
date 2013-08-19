@@ -13,20 +13,26 @@
 % (corollary_1) God exists.
 
 %------------------------------------------------------------------------------
-%----Axioms for Quantified Modal Logic S5 (providing quantification over 
+%----Axioms for Quantified Modal Logic KB (providing quantification over 
 %----individuals, propositions, sets of individuals, sets of sets of individual).
 
-include('Quantified_S5.ax').
+include('Quantified_KB.ax').
 
 %------------------------------------------------------------------------------
 
 thf(god_tp,type,(
     god: mu > $i > $o )).
 
+%----axiom reflexivity: we need to assume this to obtain the corollary
+%----thus, we here need logic MB
+thf(reflexivity,axiom,
+    ( ![X:$i]: ( rel @ X @ X ) )).
+
+
 %----theorem_1: Necessarily God exists.
 thf(theorem_1,axiom,
     ( mvalid
-    @ ( mbox_s5
+    @ ( mbox
       @ ( mexists_ind
         @ ^ [X: mu] :
             ( god @ X ) ) ) )).

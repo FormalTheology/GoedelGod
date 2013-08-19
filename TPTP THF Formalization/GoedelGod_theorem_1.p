@@ -17,10 +17,10 @@
 % (theorem_1) Necessarily God exists.
 
 %------------------------------------------------------------------------------
-%----Axioms for Quantified Modal Logic S5 (providing quantification over 
+%----Axioms for Quantified Modal Logic KB (providing quantification over 
 %----individuals, propositions, sets of individuals, sets of sets of individual).
 
-include('Quantified_S5.ax').
+include('Quantified_KB.ax').
 
 %------------------------------------------------------------------------------
 
@@ -47,7 +47,7 @@ thf(def_1,definition,
 %----lemma_2 (proved in file GoedelGod_lemma_2.p): Eventually God exists.
 thf(lemma_2,axiom,
     ( mvalid
-    @ ( mdia_s5
+    @ ( mdia
       @ ( mexists_ind
         @ ^ [X: mu] :
             ( god @ X ) ) ) )).
@@ -67,7 +67,7 @@ thf(def_3,definition,
           ( mforall_indset
           @ ^ [P: mu > $i > $o] :
               ( mimplies @ ( essential @ P @ X )
-              @ ( mbox_s5
+              @ ( mbox
                 @ ( mexists_ind
                   @ ^ [Y: mu] :
                       ( P @ Y ) ) ) ) ) ) )).
@@ -79,7 +79,7 @@ thf(axiom_5,axiom,
 %----theorem_1: Necessarily God exists.
 thf(theorem_1,conjecture,
     ( mvalid
-    @ ( mbox_s5
+    @ ( mbox
       @ ( mexists_ind
         @ ^ [X: mu] :
             ( god @ X ) ) ) )).

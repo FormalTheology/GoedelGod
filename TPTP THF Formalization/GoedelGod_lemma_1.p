@@ -14,10 +14,10 @@
 % (lemma_1) Positive properties are eventually exemplified.
 
 %------------------------------------------------------------------------------
-%----Axioms for Quantified Modal Logic S5 (providing quantification over 
+%----Axioms for Quantified Modal Logic KB (providing quantification over 
 %----individuals, propositions, sets of individuals, sets of sets of individual).
 
-include('Quantified_S5.ax').
+include('Quantified_KB.ax').
 %------------------------------------------------------------------------------
 
 thf(positive_tp,type,(
@@ -32,7 +32,7 @@ thf(axiom_1,axiom,
               @ ^ [Q: mu > $i > $o] :
                   ( mimplies
                   @ ( mand @ ( positive @ P )
-                    @ ( mbox_s5
+                    @ ( mbox
                       @ ( mforall_ind
                         @ ^ [X: mu] :
                             ( mimplies @ ( P @ X ) @ ( Q @ X ) ) ) ) )
@@ -57,7 +57,7 @@ thf(lemma1,conjecture,
     @ ( mforall_indset
       @ ^ [P: mu > $i > $o] :
           ( mimplies @ ( positive @ P )
-          @ ( mdia_s5
+          @ ( mdia
             @ ( mexists_ind
               @ ^ [X: mu] :
                   ( P @ X ) ) ) ) ) )).

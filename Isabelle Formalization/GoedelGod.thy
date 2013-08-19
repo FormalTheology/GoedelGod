@@ -4,11 +4,11 @@
 
 (*
 We present a formalization and (partial) automation of Goedel's
-ontological argument in quantified modal logic S5 (QML S5). QML S5 is in 
+ontological argument in quantified modal logic KB (QML KB). QML KB is in 
 turn modeled as a fragment of Church's simple type theory (HOL). Thus, the
 formalization is essentially a formalization in HOL. 
 
-The employed embedding of QML S5 in HOL is adapting the ideas as presented in 
+The employed embedding of QML KB in HOL is adapting the ideas as presented in 
 -- Quantified Multimodal Logics in Simple Type Theory (Christoph Benzmueller, 
    Lawrence Paulson), In Logica Universalis (Special Issue on Multimodal 
    Logics), volume 7, number 1, pp. 7-20, 2013. 
@@ -19,7 +19,7 @@ and in
    70th Birthday (Christoph Benzmueller, Chad Brown, Joerg Siekmann, Richard 
    Statman, eds.), College Publications, Studies in Logic, Mathematical Logic 
    and Foundations, pp. 386-406, 2008.
-Note that our QML S5 formalization employs quantification over individuals and 
+Note that our QML KB formalization employs quantification over individuals and 
 quantification over sets of individuals.
 
 Some further notes:
@@ -49,12 +49,9 @@ typedecl mu (* the type for indiviuals      *)
 (* r is an accessibility relation *)
 consts r :: "i => i => bool" (infixr "r" 70) 
 
-(* r is reflexive, symmetric and transitive *)
-axiomatization where 
-  refl: "x r x" and
-  sym: "x r y \<longrightarrow> y r x" and
-  trans: "x r y & y r z \<longrightarrow> x r z"
-  
+(* r is symmetric, thus we work in modal logic KB *)
+axiomatization where sym: "x r y \<longrightarrow> y r x" 
+
 (* classical negation lifted to possible worlds *)   
 definition mnot :: "(i => bool) => (i => bool)" ("m\<not>") where
   "mnot p = (\<lambda>W. \<not> p W)"
@@ -79,13 +76,13 @@ definition mexists_ind :: "(mu => (i => bool)) => (i => bool)" ("\<exists>i") wh
 definition mforall_indset :: "((mu => (i => bool)) => (i => bool)) => (i => bool)" ("\<forall>iset") where
   "mforall_indset abstrP = (\<lambda>W. \<forall> X.  abstrP X W)"
 
-(* the s5 box operator based on r *)
-definition mbox_s5 :: "(i => bool) => (i => bool)" ("\<box>") where
-  "mbox_s5 p = (\<lambda>W. \<forall> V. \<not> W r V \<or> p V)"
+(* the box operator based on r *)
+definition mbox :: "(i => bool) => (i => bool)" ("\<box>") where
+  "mbox p = (\<lambda>W. \<forall> V. \<not> W r V \<or> p V)"
   
-(* the s5 diamond operator based on r *)
-definition mdia_s5 :: "(i => bool) => (i => bool)" ("\<diamond>") where
-  "mdia_s5 p = (\<lambda>W. \<exists> V. W r V \<and> p V)"  
+(* the diamond operator based on r *)
+definition mdia :: "(i => bool) => (i => bool)" ("\<diamond>") where
+  "mdia p = (\<lambda>W. \<exists> V. W r V \<and> p V)"  
   
 (* grounding of lifted modal formulas *)
 definition valid :: "(i => bool) => bool" ("v") where
@@ -109,7 +106,7 @@ lemma l1: "v (\<forall>iset (\<lambda>P. (pos P) m\<Rightarrow> \<diamond> (\<ex
        sledgehammer [provers = remote_leo2 remote_satallax] 
      This call then suggests the use of metis; see below. *)
   using a1 a2a 
-  unfolding mand_def mbox_s5_def mdia_s5_def mexists_ind_def 
+  unfolding mand_def mbox_def mdia_def mexists_ind_def 
             mforall_ind_def mforall_indset_def mimplies_def 
             mnot_def valid_def
   by metis
@@ -130,7 +127,8 @@ lemma l2: "v (\<diamond> (\<exists>i (\<lambda>X. god X)))"
        sledgehammer [provers = remote_leo2 remote_satallax] 
      Note that god_def is not even needed.
    *)
-  using a3 l1 unfolding mforall_indset_def mimplies_def valid_def
+  using a3 l1 
+  unfolding mforall_indset_def mimplies_def valid_def
   by metis
 
 (* Definition of essential:
@@ -146,9 +144,9 @@ axiomatization where
 (* l3: If X is a God-like being, then the property of being God-like 
    is an essence of X. *)
 lemma l3: "v (\<forall>i (\<lambda>X. god X m\<Rightarrow> (essential god X)))"
-  using a2a a2b a4 sym
+  using a2a a2b a4
   unfolding valid_def mforall_indset_def mforall_ind_def mexists_ind_def 
-            mnot_def mand_def mimplies_def mdia_s5_def mbox_s5_def god_def 
+            mnot_def mand_def mimplies_def mdia_def mbox_def god_def 
             essential_def 
   by metis
 
@@ -168,7 +166,7 @@ axiomatization where
 
   theorem thm1: "v (\<box> (\<exists>i god))"
     using l2 l3 a5 sym refl
-    unfolding valid_def mforall_indset_def mforall_ind_def mexists_ind_def mnot_def mand_def mimplies_def mdia_s5_def mbox_s5_def god_def essential_def nec_exists_def 
+    unfolding valid_def mforall_indset_def mforall_ind_def mexists_ind_def mnot_def mand_def mimplies_def mdia_def mbox_def god_def essential_def nec_exists_def 
     sledgehammer [timeout = 60, provers = remote_satallax] 
    
   This call is successful and suggests to use metis for reconstruction; but this metis 
@@ -176,12 +174,12 @@ axiomatization where
 *)
   
 lemma help1: "v (\<diamond> (\<box> p)) \<Longrightarrow> v (\<box> p)"  
-  using sym trans
-  unfolding valid_def mdia_s5_def mbox_s5_def mimplies_def
+  using sym
+  unfolding valid_def mdia_def mbox_def mimplies_def
   by metis
 
 lemma help2: "   v (\<diamond> p) & v (p m\<Rightarrow>  \<box> p) \<Longrightarrow> v (\<diamond> (\<box> p))"  
-  unfolding valid_def mdia_s5_def mbox_s5_def mimplies_def      
+  unfolding valid_def mdia_def mbox_def mimplies_def      
   by metis
   
 (* help3 is only required to prove help4 *)  
@@ -200,9 +198,13 @@ theorem t: "v (\<box> (\<exists>i god))"
   using help1 help2 l2 help4
   by metis
 
+(* to obtain the corollary below we additionally need reflexivity; 
+   thus we move from logic KB to MB *)
+axiomatization where refl: "x r x" 
+  
 (* Corollary c: God exists. *)
 theorem c: "v (\<exists>i god)"
   (* metis can easily prove this *)
   using t refl
-  unfolding valid_def mbox_s5_def
+  unfolding valid_def mbox_def
   by metis

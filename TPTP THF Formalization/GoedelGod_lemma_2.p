@@ -16,10 +16,10 @@
 % (lemma_2) Eventually God exists.
 
 %------------------------------------------------------------------------------
-%----Axioms for Quantified Modal Logic S5 (providing quantification over 
+%----Axioms for Quantified Modal Logic KB (providing quantification over 
 %----individuals, propositions, sets of individuals, sets of sets of individual).
 
-include('Quantified_S5.ax').
+include('Quantified_KB.ax').
 
 %------------------------------------------------------------------------------
 
@@ -36,7 +36,7 @@ thf(lemma_1,axiom,
     @ ( mforall_indset
       @ ^ [P: mu > $i > $o] :
           ( mimplies @ ( positive @ P )
-          @ ( mdia_s5
+          @ ( mdia
             @ ( mexists_ind
               @ ^ [X: mu] :
                   ( P @ X ) ) ) ) ) )).
@@ -56,7 +56,7 @@ thf(axiom_3,axiom,
 %----lemma_2: Possibly God exists.
 thf(lemma_2,conjecture,
     ( mvalid
-    @ ( mdia_s5
+    @ ( mdia
       @ ( mexists_ind
         @ ^ [X: mu] :
             ( god @ X ) ) ) )).
