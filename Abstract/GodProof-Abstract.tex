@@ -1,8 +1,8 @@
 \documentclass{llncs}
 
-\usepackage{url,amsmath,amssymb}
+\usepackage{url,amsmath,amssymb,a4wide}
 
-% Logical symbols
+
 \newcommand{\imp}{\rightarrow}
 \newcommand{\biimp}{\leftrightarrow}
 \newcommand{\all}{\forall}
@@ -10,13 +10,14 @@
 \newcommand{\seq}{\vdash}
 \newcommand{\nec}{\Box} % necessarily
 \newcommand{\pos}{\Diamond} % possibly
-\newcommand{\ess}[2]{#1 \ \mathit{ess} \ #2}
+\newcommand{\ess}[2]{#1 \ \mathit{Ess.} \ #2}
+\newcommand{\NE}{\mathit{NE}}
 
 
 \title{ Formalization, Mechanization and Automation % of Variants
   of G\"{o}del's Proof of God's Existence\thanks{This work has been
     supported by the German Research Foundation under grant
-    BE2501/9-1. Bruno ????}  }
+    BE2501/9-1.}  }
 
 \author{
   Christoph Benzm\"{u}ller\inst{1} 
@@ -28,7 +29,7 @@
 
 
 \institute{
-  Dahlem Center for Intelligent Systems, Freie Universit\"{a}t Berlin, Germany\\
+  Dahlem Center for Intelligent Sstems, Freie Universit\"{a}t Berlin, Germany\\
   \email{c.benzmueller@gmail.com}
   \and 
   Theory and Logic Group, Vienna University of Technology, Austria \\
@@ -41,79 +42,126 @@
 
 Attempts to prove the existence (or non-existence) of God by means of
 abstract ontological arguments are an old tradition in philosophy and
-theology.  G\"{o}del's proof \cite{Goedel1970} is a modern culmination of
+theology.  G\"{o}del's proof \cite{Goedel1970,GoedelNotes} is a modern culmination of
 this tradition, following particularly the footsteps of Leibniz.
 %
 G\"{o}del defines God as a being who possesses all \emph{positive} properties.
 He does not extensively discuss what positive properties are, 
-but instead he states a few reasonable but debatable axioms that they should satisfy.
-Various slightly different versions of axioms and definitions have been considered by G\"{o}del and by several philosophers who commented on his proof (e.g. \cite{Scott,Sobel,AndersonGettings,Fitting,Adams,ContemporaryBibliography}). Our formalization employs the following axioms (A*) and definitions (D*):\footnote{
-(A1), (A2), (A5), (D1), (D3) are logically equivalent to, respectively, axioms 5, 2 and 4 and definitions 1 and 3 in G\"odel's manuscript \cite{Goedel1970}. (A3) was introduced by Scott \cite{Scott} and could be derived from G\"odel's axiom 1 and (D1) in a logic with infinitary conjunction. (A4) is a weaker form of G\"odel's axiom 3. (D2) has an extra conjunct lacking in G\"odel's definition 2; this lack is believed to have been an oversight by G\"odel \cite{Hazen}.
-}
-\marginpar{\scriptsize Chris: The reference to Scott's version is kind of confusing, we need to verify this source.}
-\marginpar{\scriptsize Bruno: I think the numbers (A1, A2,.., D1,..D3, L1,..,L3,T) should be in the left with a description environment, as they were before. I think it looked nicer before. Can I change it back?}
+but instead he states a few reasonable (but debatable) axioms that they should satisfy.
+Various slightly different versions of axioms and definitions have
+been considered by G\"{o}del and by several philosophers who commented
+on his proof
+(cf. \cite{sobel2004logic,AndersonGettings,Fitting,Adams,ContemporaryBibliography}). 
+
+Dana Scott's version of G\"odel's proof \cite{ScottNotes} employs the
+following axioms (\textbf{A}), definitions (\textbf{D}), corollaries
+(\textbf{C}) and theorems (\textbf{T}), and it proceeds in the
+following order:\footnote{ (A1), (A2), (A5), (D1), (D3) are logically
+  equivalent to, respectively, axioms 5, 2 and 4 and definitions 1 and
+  3 in G\"odel's notes \cite{Goedel1970,GoedellNotes}. (A3) was introduced by
+  Scott \cite{ScottNotes} and could be derived from G\"odel's axiom 1 and
+  (D1) in a logic with infinitary conjunction. (A4) is a weaker form
+  of G\"odel's axiom 3. (D2) has an extra conjunct lacking in
+  G\"odel's definition 2; this lack is believed to have been an
+  oversight by G\"odel \cite{Hazen}. }
+% \marginpar{\scriptsize Chris: The reference to Scott's version is kind of confusing, we need to verify this source.}
+% \marginpar{\scriptsize Bruno: I think the numbers (A1, A2,..,
+% D1,..D3, L1,..,L3,T) should be in the left with a description
+% environment, as they were before. I think it looked nicer
+% before. Can I change it back?}
+
 \allowdisplaybreaks[1] 
-\begin{align}
-& \text{Any property necessarily implied by a positive property is positive.} \notag \\
-& \quad 
-\all \varphi. \all \psi.[(P(\varphi) \wedge \nec \all x.[\varphi(x) \imp \psi(x)]) \imp P(\psi)] \tag{A1} \\
-& \text{A property is positive if and only if its negation is not positive.} \notag \\
-& \quad 
-\all \varphi. [P(\neg \varphi) \biimp \neg P(\varphi)]
-\tag{A2} \\
-& \text{The property of being God-like is positive.} \notag \\
-& \quad 
-P(G) 
-\tag{A3} \\
-& \text{Positive properties are necessarily positive.} \notag \\
-& \quad 
-\all \varphi.[P(\varphi) \to \Box \; P(\varphi)]
-\tag{A4} \\
-& \text{Necessary existence is a positive property.} \notag \\
-& \quad 
-P(E)
-\tag{A5} \\
-& \text{Being God-like is having every positive property.} \notag \\
-& \quad 
-G(x) \biimp \forall \varphi. [P(\varphi) \to \varphi(x)]
-\tag{D1} \\ 
-& \parbox[c][2em][c]{0.8\textwidth}{A property is an essence of an individual if and only if the individual has it and every property  that the individual has is necessarily implied by it.}\notag \\
-& \quad 
-\ess{\varphi}{x} \biimp \varphi(x) \wedge \all \psi. (\psi(x) \imp \nec \all y. (\varphi(y) \imp \psi(y)))
-\tag{D2} \\
-& \parbox[c][2em][c]{0.8\textwidth}{An individual necessarily exists if and only if all its essences are necessarily exemplified.} \notag \\
-& \quad 
-E(x) \biimp \all \varphi.[\ess{\varphi}{x} \imp \nec \ex x.\varphi(x)] 
-\tag{D3} 
-\end{align}
+\begin{description}
+\item[A1] Either the property or its negation is positive, but not
+  both:  \hfill 
+  $\all \phi. [P(\neg \phi) \biimp \neg P(\phi)]$
+\item[A2] A property is positive if it necessarily  contains a
+  positive property:  \\ \phantom{b} \hfill 
+  $\all \phi. \all \psi.[(P(\phi) \wedge \nec \all x.[\phi(x)
+  \imp \psi(x)]) \imp P(\psi)]$ 
+\item[T1] Positive properties are possibly exemplified. \hfill $\all \varphi. [P(\varphi) \imp \pos \ex x.\varphi(x)]$
+\item[D1] x is God-like if it possesses all positive properties: \hfill
+  $G(x) \biimp \forall \phi. [P(\phi) \to \phi(x)]$
+\item[A3]  The property of being God-like is positive: \hfill   $P(G)$
+\item[C\phantom{1}] Possibly, God exists: \hfill $\pos \ex x. G(x)$
+\item[A4]  Being a positive property is logical, hence,
+  necessary: \hfill 
+  $\all \phi.[P(\phi) \to \Box \; P(\phi)]$
+\item[D2] $\phi$ is the essence of $x$ iff $x$ has $\phi$ and this
+  property is necessarily minimal.:\\
+  \phantom{b} \hfill $\ess{\phi}{x} \biimp \phi(x) \wedge \all
+  \psi. (\psi(x) \imp \nec \all y. (\phi(y) \imp \psi(y)))$
+\item[T2]  The property of being God-like is an essence of any
+  God-like being: \hfill $\all y.[G(y) \imp \ess{G}{y}]$ 
+\item[D3] $\NE(x)$ means that $x$ necessarily exists if it has an
+  essential property: \\
+  \phantom{b} \hfill $\NE(x) \biimp \all \phi.[\ess{\phi}{x} \imp \nec \ex x.\phi(x)]$
+\item[A5] Necessary existence is a positive property: \hfill $P(\NE)$
+\item[T3] Necessarily, God exists: \hfill $\nec \ex x. G(x)$ 
+\end{description}
 
-\noindent
-From these axioms and definitions we then infer:
-\begin{align}
-& \text{Positive properties are possibly exemplified.} \notag \\
-& \quad 
-\all \varphi. [P(\varphi) \imp \pos \ex x.\varphi(x)]
-\tag{L1} \\
-& \text{Possibly, God exists.} \notag \\
-& \quad 
-\pos \ex x. G(x)
-\tag{L2} \\
-& \parbox[c][2em][c]{0.8\textwidth}{The property of being God-like is an essence of any God-like being.} \notag \\
-& \quad 
-\all y.[G(y) \imp \ess{G}{y}]
-\tag{L3} \\
-& \text{Necessarily, God exists.} \notag \\
-& \quad 
-\nec \ex x. G(x)
-\tag{T}
-\end{align}
-\marginpar{\scriptsize Bruno: I think it might be possible to improve the natural language statements further. After our improvements converge here, we should update the statements in all formalizations (THF, Coq, Isabelle, ND).}
 
-The above variant of G\"{o}del's proof has now been 
-constructed for the first-time
+% \begin{align}
+% & \text{Any property necessarily implied by a positive property is positive.} \notag \\
+% & \quad 
+% \all \varphi.\all \psi.[(P(\varphi) \wedge \nec \all x.[\varphi(x) \imp \psi(x)]) \imp P(\psi)] \tag{A1} \\
+% & \text{A property is positive if and only if its negation is not positive.} \notag \\
+% & \quad 
+% \all \varphi. [P(\neg \varphi) \biimp \neg P(\varphi)]
+% \tag{A2} \\
+% & \text{The property of being God-like is positive.} \notag \\
+% & \quad 
+% P(G) 
+% \tag{A3} \\
+% & \text{Positive properties are necessarily positive.} \notag \\
+% & \quad 
+% \all \varphi.[P(\varphi) \to \Box \; P(\varphi)]
+% \tag{A4} \\
+% & \text{Necessary existence is a positive property.} \notag \\
+% & \quad 
+% P(E)
+% \tag{A5} \\
+% & \text{Being God-like is having every positive property.} \notag \\
+% & \quad 
+% G(x) \biimp \forall \varphi. [P(\varphi) \to \varphi(x)]
+% \tag{D1} \\ 
+% & \parbox[c][2em][c]{0.8\textwidth}{A property is an essence of an individual if and only if the individual has it and every property  that the individual has is necessarily implied by it.}\notag \\
+% & \quad 
+% \ess{\varphi}{x} \biimp \varphi(x) \wedge \all \psi. (\psi(x) \imp \nec \all y. (\varphi(y) \imp \psi(y)))
+% \tag{D2} \\
+% & \parbox[c][2em][c]{0.8\textwidth}{An individual necessarily exists if and only if all its essences are necessarily exemplified.} \notag \\
+% & \quad 
+% E(x) \biimp \all \varphi.[\ess{\varphi}{x} \imp \nec \ex x.\varphi(x)] 
+% \tag{D3} 
+% \end{align}
+
+% \noindent
+% From these axioms and definitions we then infer:
+% \begin{align}
+% & \text{Positive properties are possibly exemplified.} \notag \\
+% & \quad 
+% \all \varphi. [P(\varphi) \imp \pos \ex x.\varphi(x)]
+% \tag{L1} \\
+% & \text{Possibly, God exists.} \notag \\
+% & \quad 
+% \pos \ex x. G(x)
+% \tag{L2} \\
+% & \parbox[c][2em][c]{0.8\textwidth}{The property of being God-like is an essence of any God-like being.} \notag \\
+% & \quad 
+% \all y.[G(y) \imp \ess{G}{y}]
+% \tag{L3} \\
+% & \text{Necessarily, God exists.} \notag \\
+% & \quad 
+% \nec \ex x. G(x)
+% \tag{T}
+% \end{align}
+% \marginpar{\scriptsize Bruno: I think it might be possible to improve the natural language statements further. After our improvements converge here, we should update the statements in all formalizations (THF, Coq, Isabelle, ND).}
+
+The above version of G\"{o}del's proof has now been 
+analysed for the first-time
 with an unprecedent degree of detail and formality; cf.~\cite{FormalTheologyRepository}. The following has been done (and in this order):
 \begin{itemize}
-\item A detailed natural deduction proof.\marginpar{\scriptsize Chris: We need to make sure that this ND proof is based on a sound calculus.}
+\item A detailed natural deduction proof.
 %
 \item A formalization of the axioms, definitions and theorems in the TPTP THF syntax \cite{J22}.
 %
@@ -130,10 +178,22 @@ definitions with Nitpick \cite{Nitpick}.
 G\"{o}del's proof is challenging to formalize and verify because it
 requires an expressive logical language with modal operators
 (\emph{possibly} and \emph{necessarily}) and with
-quantififiers for individuals and sets of individuals (properties).  Our computer-assisted formalizations rely on an
-embedding of the modal logic S5 into classical higher-order logic with
+quantifiers for individuals and properties.  Our computer-assisted formalizations rely on an
+embedding of the modal logic into classical higher-order logic with
 Henkin semantics \cite{J23,B9}. The formalization is thus essentially
-done in classical higher-order logic where quantified S5 is emulated.
+done in classical higher-order logic where  quantified modal logic is
+emulated.
+
+In our ongoing computer-assisted study of G\"odel's proof we have
+obtained the following results:
+\begin{itemize}
+\item Logic S5 is not needed for obtaining the results, logic KB is
+  sufficient.
+\item For proving theorem T1, only the left to right direction of
+  axiom A1 is needed. However, the backward direction of A1 is
+  required for showing T2.
+\item The first conjunct $\phi(x)$ in D2, introduced by Scott, seems important; without it the set of axioms and definitions becomesx inconsistent.
+\end{itemize}
 
 This work attests the maturity of contemporary interactive and
 automated deduction tools for classical higher-order logic and it
@@ -146,12 +206,14 @@ rigorously correct logical arguments. In case of logico-philosophical
 disputes, the computer can check the disputing arguments and partially
 fulfill Leibniz' dictum: Calculemus --- Let us calculate!
 
-Future work includes an extensive study of other formalizations of
-ontological arguments with our machinery. Variations of the
-distinctive features of the base logic S5 (e.g. non-rigid symbols, 
-varying domains, etc.) are enabled in these studies due
-to the flexibility of the embeddings based approach.
 
+Future work includes a substantial widening of our computer-assisted
+study of ontological arguments. Due to the flexibility of the
+embeddings based approach, variations of the distinctive features of
+the base logic (e.g. non-rigid symbols, varying domains, etc.)  will
+be enabled in these studies
+
+%\footnotesize
 \bibliographystyle{plain}
 \bibliography{Bibliography}
 
