@@ -24,13 +24,13 @@ quantification over sets of individuals.
 
 Some further notes:
 a) The Isabelle/HOL formalization closely follows the THF formalization available at: 
-   https://github.com/FormalTheology/GoedelGod/tree/master/TPTP\<lambda>20THF\<lambda>20Formalization
+   https://github.com/FormalTheology/GoedelGod/tree/master/TPTP%20THF%20Formalization
    This THF formalization has been the first successful attempt to formalize and 
    automate Goedel's ontological (July 2013). 
    Note that both LEO-II and Satallax can effectively automate the four steps in 
    the THF formalization. 
 b) The Isabelle/HOL formalization is also closely related to the Coq formalization at:  
-   https://github.com/FormalTheology/GoedelGod/blob/master/Coq\<lambda>20Formalization/ExplicitModalSemanticEncoding/GoedelGod.v
+   https://github.com/FormalTheology/GoedelGod/blob/master/Coq%20Formalization/ExplicitModalSemanticEncoding/GoedelGod.v
    This interactive Coq formalization was produced shortly after the THF formalization.
 c) In the Isabelle/HOL formalization all steps in the argument have been automated with
    sledgehammer performing remote calls to Satallax and LEO-II. These calls then 
