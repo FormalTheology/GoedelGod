@@ -1,12 +1,12 @@
 (* Formalization of Goedel's ontological argument in Isabelle/HOL *)
 (* Authors: Christoph Benzmueller and Bruno Woltzenlogel-Paleo *)
-(* Date: August 11, 2013; update on August 17, 2013 *)
+(* Date: August 11, 2013; update on August 19, 2013 *)
 
 (*
 We present a formalization and (partial) automation of Goedel's
 ontological argument in quantified modal logic KB (QML KB). QML KB is in 
 turn modeled as a fragment of Church's simple type theory (HOL). Thus, the
-formalization is essentially a formalization in HOL. 
+formalization is essentially a formalization S5in HOL. 
 
 The employed embedding of QML KB in HOL is adapting the ideas as presented in 
 -- Quantified Multimodal Logics in Simple Type Theory (Christoph Benzmueller, 
@@ -178,7 +178,7 @@ lemma help1: "v (\<diamond> (\<box> p)) \<Longrightarrow> v (\<box> p)"
   unfolding valid_def mdia_def mbox_def mimplies_def
   by metis
 
-lemma help2: "   v (\<diamond> p) & v (p m\<Rightarrow>  \<box> p) \<Longrightarrow> v (\<diamond> (\<box> p))"  
+lemma help2: "   v (\<diamond> p) & v (p m\<Rightarrow> \<box> p) \<Longrightarrow> v (\<diamond> (\<box> p))"  
   unfolding valid_def mdia_def mbox_def mimplies_def      
   by metis
   
