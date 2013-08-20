@@ -4,7 +4,7 @@ call=./RemoteSOT.pl
 # install it and change the above paths accordingly
 
 proverlist='LEO-II---1.6.0 Satallax---2.7 Nitrox---2013'
-timeout=60
+timeout=180
 
 echo
 echo Asking various HOL-ATPs in Miami remotely \(thanks to Geoff Sutcliffe\)

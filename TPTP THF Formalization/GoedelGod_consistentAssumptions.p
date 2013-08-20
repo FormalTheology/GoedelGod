@@ -42,7 +42,7 @@ thf(axiom_1,axiom,
                   @ ( positive @ Q ) ) ) ) ) ).
 
 %----axiom_2: Either the property or its negation are positive, but not both.
-thf(axiom2,axiom,
+thf(axiom_2,axiom,
     ( mvalid @
           ( mforall_indset
           @ ^ [P: mu > $i > $o] :
@@ -67,14 +67,13 @@ thf(axiom_3,axiom,
 thf(def_2,definition,
     ( essential
     = ( ^ [P: mu > $i > $o,X: mu] :
-          ( mand @ ( P @ X )
-          @ ( mforall_indset
+            ( mforall_indset
             @ ^ [Q: mu > $i > $o] :
                 ( mimplies @ ( Q @ X )
                 @ ( mbox
                   @ ( mforall_ind
                     @ ^ [Y: mu] :
-                        ( mimplies @ ( P @ Y ) @ ( Q @ Y ) ) ) ) ) ) ) ) )).
+                        ( mimplies @ ( P @ Y ) @ ( Q @ Y ) ) ) ) ) ) ) )).
 
 %----axiom_4: Positive properties are necessary positive properties.
 thf(axiom_4,axiom,

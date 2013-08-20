@@ -1,12 +1,12 @@
 (* Formalization of Goedel's ontological argument in Isabelle/HOL *)
 (* Authors: Christoph Benzmueller and Bruno Woltzenlogel-Paleo *)
-(* Date: August 11, 2013; update on August 19, 2013 *)
+(* Date: August 11, 2013; update on August 19/20, 2013 *)
 
 (*
-We present a formalization and (partial) automation of Goedel's
-ontological argument in quantified modal logic KB (QML KB). QML KB is in 
-turn modeled as a fragment of Church's simple type theory (HOL). Thus, the
-formalization is essentially a formalization S5in HOL. 
+We present a formalization and (partial) automation of Dana Scott's version
+of Goedel's ontological argument in quantified modal logic KB (QML KB). 
+QML KB is in turn modeled as a fragment of Church's simple type theory (HOL). 
+Thus, the formalization is essentially a formalization in HOL. 
 
 The employed embedding of QML KB in HOL is adapting the ideas as presented in 
 -- Quantified Multimodal Logics in Simple Type Theory (Christoph Benzmueller, 
@@ -20,7 +20,7 @@ and in
    Statman, eds.), College Publications, Studies in Logic, Mathematical Logic 
    and Foundations, pp. 386-406, 2008.
 Note that our QML KB formalization employs quantification over individuals and 
-quantification over sets of individuals.
+quantification over sets of individuals (poperties).
 
 Some further notes:
 a) The Isabelle/HOL formalization closely follows the THF formalization available at: 
@@ -35,7 +35,7 @@ b) The Isabelle/HOL formalization is also closely related to the Coq formalizati
 c) In the Isabelle/HOL formalization all steps in the argument have been automated with
    sledgehammer performing remote calls to Satallax and LEO-II. These calls then 
    suggested respective metis calls as given below. 
-d) The re-proof/reconstruction with metis still fails for thm1, but when some further
+d) The reconstruction with metis still fails for thm1, but when some further
    lemmata are introduced we get success; the respective lemmata are called help1-4.
 *)
 
@@ -48,162 +48,146 @@ typedecl mu (* the type for indiviuals      *)
 
 (* r is an accessibility relation *)
 consts r :: "i => i => bool" (infixr "r" 70) 
-
 (* r is symmetric, thus we work in modal logic KB *)
 axiomatization where sym: "x r y \<longrightarrow> y r x" 
-
 (* classical negation lifted to possible worlds *)   
 definition mnot :: "(i => bool) => (i => bool)" ("m\<not>") where
-  "mnot p = (\<lambda>W. \<not> p W)"
-
+  "mnot p = (\<lambda>w. \<not>(p(w)))"
 (* classical conjunction lifted to possible worlds *)
 definition mand :: "(i => bool) => (i => bool) => (i => bool)" (infixr "m\<and>" 74) where
-  "mand p q = (\<lambda>W. p W & q W) "  
-
+  "mand p q = (\<lambda>w. p(w) & q(w)) "  
 (* classical implication lifted to possible worlds *)
 definition mimplies :: "(i => bool) => (i => bool) => (i => bool)" (infixr "m\<Rightarrow>" 79) where
-  "mimplies p q = (\<lambda>W. p W \<longrightarrow> q W)"
-
+  "mimplies p q = (\<lambda>w. p(w) \<longrightarrow> q(w))"
 (* universial quantification over individuals lifted to possible worlds *)
 definition mforall_ind :: "(mu => (i => bool)) => (i => bool)" ("\<forall>i") where
-  "mforall_ind abstrP = (\<lambda>W. \<forall> X.  abstrP X W)"  
-  
+  "mforall_ind abstrP = (\<lambda>w.\<forall>x. (abstrP(x)(w)))"    
 (* existential quantification over individuals lifted to possible worlds *)
 definition mexists_ind :: "(mu => (i => bool)) => (i => bool)" ("\<exists>i") where
-  "mexists_ind abstrP = (\<lambda>W. \<exists> X.  abstrP X W)"    
-  
+  "mexists_ind abstrP = (\<lambda>w.\<exists>x. (abstrP(x)(w)))"    
 (* universial quantification over sets of individuals lifted to possible worlds *)
-definition mforall_indset :: "((mu => (i => bool)) => (i => bool)) => (i => bool)" ("\<forall>iset") where
-  "mforall_indset abstrP = (\<lambda>W. \<forall> X.  abstrP X W)"
-
+definition mforall_indset :: "((mu => (i => bool)) => (i => bool)) => (i => bool)" ("\<forall>p") where
+  "mforall_indset abstrP = (\<lambda>w.\<forall>x. (abstrP(x)(w)))"
 (* the box operator based on r *)
 definition mbox :: "(i => bool) => (i => bool)" ("\<box>") where
-  "mbox p = (\<lambda>W. \<forall> V. \<not> W r V \<or> p V)"
-  
+  "mbox p = (\<lambda>w. \<forall>v. \<not> w r v \<or> p(v))"
 (* the diamond operator based on r *)
 definition mdia :: "(i => bool) => (i => bool)" ("\<diamond>") where
-  "mdia p = (\<lambda>W. \<exists> V. W r V \<and> p V)"  
-  
+  "mdia p = (\<lambda>w.\<exists>v. w r v \<and> p(v))"    
 (* grounding of lifted modal formulas *)
 definition valid :: "(i => bool) => bool" ("v") where
-  "valid p == (\<forall> W. p W)"    
+  "valid p == \<forall>w. p(w)"    
   
-(* constant positive *)
-consts pos :: "(mu => (i => bool)) => (i => bool)"
+(* Goedel's positive *)
+consts P :: "(mu => (i => bool)) => (i => bool)"
   
 axiomatization where
-  (* a1: Any property strictly implied by a positive property is positive. *)
-  a1: "v (\<forall>iset (\<lambda>P. \<forall>iset (\<lambda>Q. ((pos P) m\<and> \<box> (\<forall>i (\<lambda>X. P X m\<Rightarrow> Q X))) m\<Rightarrow> pos Q )))" and
-  (* a2: Either the property or its negation are positive, but not both. *)
-  a2a: "v (\<forall>iset (\<lambda>P. pos (\<lambda>W. m\<not> (P W)) m\<Rightarrow> m\<not> (pos P)))" and
-  a2b: "v (\<forall>iset (\<lambda>P. m\<not> (pos P) m\<Rightarrow> pos (\<lambda>W. m\<not> (P W))))"
+  (* A1: Either the property or its negation are positive, but not both. *)
+  A1a: "v(\<forall>p(\<lambda>\<Phi>. P(\<lambda>x. m\<not>(\<Phi>(x))) m\<Rightarrow> m\<not>(P(\<Phi>))))" and
+  A1b: "v(\<forall>p(\<lambda>\<Phi>. m\<not>(P(\<Phi>)) m\<Rightarrow> P(\<lambda>x. m\<not>(\<Phi>(x)))))" and
+  (* A2: A property is positive if it necessarily contains a positive property. *)
+  A2: "v(\<forall>p(\<lambda>\<Phi>. \<forall>p(\<lambda>\<psi>. (P(\<Phi>) m\<and> \<box> (\<forall>i(\<lambda>X. \<Phi>(X) m\<Rightarrow> \<psi>(X))) m\<Rightarrow> P(\<psi>)))))" 
 
-(* l1: Positive properties are eventually exemplified. *)
-lemma l1: "v (\<forall>iset (\<lambda>P. (pos P) m\<Rightarrow> \<diamond> (\<exists>i (\<lambda>X. P X))))"
-  (* l1 can be proved from a1 and a2a.
+(* T1: Positive properties are possibly exemplified. *)
+lemma T1: "v(\<forall>p(\<lambda>\<Phi>. P(\<Phi>) m\<Rightarrow> \<diamond>(\<exists>i(\<lambda>x. \<Phi>(x)))))"
+  (* T1 can be proved from A2 and A1a.
      sledgehammer with leo2 and satallax does find the proof; just try:
        sledgehammer [provers = remote_leo2 remote_satallax] 
      This call then suggests the use of metis; see below. *)
-  using a1 a2a 
+  using A2 A1a 
   unfolding mand_def mbox_def mdia_def mexists_ind_def 
             mforall_ind_def mforall_indset_def mimplies_def 
             mnot_def valid_def
   by metis
 
-(* Definition of God: 
-   X is God if and only if X incorporates all positive properties. *)
-definition god :: "mu => (i => bool)" where
-  "god = (\<lambda>X. \<forall>iset (\<lambda>P. (pos P) m\<Rightarrow> (P X)))"
+(* X is God-like if it possesses all positive properties. *)
+definition G :: "mu => (i => bool)" where
+  "G = (\<lambda>x. \<forall>p(\<lambda>\<Phi>. P(\<Phi>) m\<Rightarrow> \<Phi>(x)))"
 
-(* a3: The property of being God-like is positive. *)
+(* A3: The property of being God-like is positive. *)
 axiomatization where
-  a3: "v (pos god)"
+  A3: "v(P(G))"
 
-(* l2: Eventually God exists. *)
-lemma l2: "v (\<diamond> (\<exists>i (\<lambda>X. god X)))" 
-  (* l2 can be proved from l1 and a3.
+(* C: Possibly, God exists. *)
+lemma C: "v (\<diamond>(\<exists>i(\<lambda>x. G(x))))" 
+  (* C can be proved from T1 and A3.
        sledgehammer succeeds; try this: 
        sledgehammer [provers = remote_leo2 remote_satallax] 
-     Note that god_def is not even needed.
+     Note that G_def is not even needed.
    *)
-  using a3 l1 
+  using A3 T1 
   unfolding mforall_indset_def mimplies_def valid_def
   by metis
-
-(* Definition of essence:
-   P is the essence of X if and only if X has P and this property is 
-   necessarily minimal. *)
-definition essence :: "(mu => (i => bool)) => mu => (i => bool)" where
-  "essence p x = ( p x m\<and> \<forall>iset (\<lambda>Q. Q x m\<Rightarrow> \<box> (\<forall>i (\<lambda>Y. p Y m\<Rightarrow> (Q Y)))))"
-
-(* a4: Positive properties are necessary positive properties. *)
+  
+(* A4: Being a positive property is logical, hence, necessary. *)
 axiomatization where
-  a4: "v (\<forall>iset (\<lambda>P. pos P m\<Rightarrow> (\<box> (pos P))))"
+  A4: "v(\<forall>p(\<lambda>\<Phi>. P(\<Phi>) m\<Rightarrow> (\<box>(P(\<Phi>)))))"  
 
-(* l3: If X is a God-like being, then the property of being God-like 
-   is an essence of X. *)
-lemma l3: "v (\<forall>i (\<lambda>X. god X m\<Rightarrow> (essence god X)))"
-  using a2a a2b a4
+(* \<Phi> is the essence of X iff X has \<Phi> and this property is necessarily minimal. *)
+definition Ess :: "(mu => (i => bool)) => mu => (i => bool)" (infixr "Ess" 85)where
+  "p Ess x = p(x) m\<and> \<forall>p(\<lambda>\<psi>. \<psi>(x) m\<Rightarrow> \<box>(\<forall>i (\<lambda>y. p(y) m\<Rightarrow> \<psi>(y))))"
+
+(* T2: The property of being God-like is an essence of any God-like being. *)
+lemma T2: "v(\<forall>i(\<lambda>x. G(x) m\<Rightarrow> (G Ess x)))"
+  using A1a A1b A4
   unfolding valid_def mforall_indset_def mforall_ind_def mexists_ind_def 
-            mnot_def mand_def mimplies_def mdia_def mbox_def god_def 
-            essence_def 
+            mnot_def mand_def mimplies_def mdia_def mbox_def G_def 
+            Ess_def 
   by metis
 
-(* Definition of necessary existence:
-   X necessarily exists if and only if every essence of X is necessarily 
-   exemplified. *)
-definition nec_exists :: "mu => (i => bool)" where
-  "nec_exists = (\<lambda>X. (\<forall>iset (\<lambda>P. essence P X m\<Rightarrow> \<box> (\<exists>i (\<lambda>Y. P Y)))))"
+(* NE(x) means that x necessarily exists if it has an essential property. *)
+definition NE :: "mu => (i => bool)" where
+  "NE = (\<lambda>x. (\<forall>p(\<lambda>\<Phi>. (\<Phi> Ess x) m\<Rightarrow> \<box>(\<exists>i(\<lambda>y. \<Phi>(y))))))"
 
-(* a5: Necessary existence is positive. *)
+(* A5: Necessary existence is a positive property. *)
 axiomatization where
-  a5: "v (pos nec_exists)"
+  A5: "v(P(NE))"
 
 (* We now introduce some help lemmata that are useful for proving thm1 with metis *)
 (* With Sledgehammer thm1 can be proved directly; but proof reconstruction with 
    metis still fails. To see this just try the following:
 
-  theorem thm1: "v (\<box> (\<exists>i god))"
-    using l2 l3 a5 sym refl
-    unfolding valid_def mforall_indset_def mforall_ind_def mexists_ind_def mnot_def mand_def mimplies_def mdia_def mbox_def god_def essence_def nec_exists_def 
+  theorem thm1: "v (\<box>(\<exists>i G))"
+    using C T2 A5 sym refl
+    unfolding valid_def mforall_indset_def mforall_ind_def mexists_ind_def mnot_def mand_def mimplies_def mdia_def mbox_def G_def Ess_def NE_def 
     sledgehammer [timeout = 60, provers = remote_satallax] 
    
   This call is successful and suggests to use metis for reconstruction; but this metis 
   call still fails.  
 *)
   
-lemma help1: "v (\<diamond> (\<box> p)) \<Longrightarrow> v (\<box> p)"  
+lemma help1: "v(\<diamond>(\<box>p)) \<Longrightarrow> v(\<box>p)"  
   using sym
   unfolding valid_def mdia_def mbox_def mimplies_def
   by metis
 
-lemma help2: "   v (\<diamond> p) & v (p m\<Rightarrow> \<box> p) \<Longrightarrow> v (\<diamond> (\<box> p))"  
+lemma help2: "v(\<diamond>p) & v(p m\<Rightarrow> \<box> p) \<Longrightarrow> v(\<diamond> (\<box> p))"  
   unfolding valid_def mdia_def mbox_def mimplies_def      
   by metis
   
 (* help3 is only required to prove help4 *)  
-lemma help3:  "\<forall> X. v ((god X) m\<Rightarrow>  ((essence god X) m\<Rightarrow> (\<box> (\<exists>i god))))"
-  using a3 a5
-  unfolding god_def mforall_indset_def mimplies_def nec_exists_def valid_def
+lemma help3:  "\<forall>x. v(G(x) m\<Rightarrow> ((G Ess x) m\<Rightarrow> (\<box>(\<exists>i G))))"
+  using A3 A5
+  unfolding G_def mforall_indset_def mimplies_def NE_def valid_def
   by (metis (lifting, mono_tags)) 
 
-lemma help4: "v ((\<exists>i god) m\<Rightarrow>  \<box> (\<exists>i god))"
-  using help3 l3 
+lemma help4: "v((\<exists>i G) m\<Rightarrow> \<box>(\<exists>i G))"
+  using help3 T2 
   unfolding mexists_ind_def mforall_ind_def mimplies_def valid_def
   by metis
 
-(* thm1: Necessarily God exists. *)
-theorem t: "v (\<box> (\<exists>i god))"
-  using help1 help2 l2 help4
+(* thm1: Necessarily, God exists. *)
+theorem T3: "v(\<box>(\<exists>i G))"
+  using help1 help2 C help4
   by metis
 
 (* to obtain the corollary below we additionally need reflexivity; 
    thus we move from logic KB to MB *)
 axiomatization where refl: "x r x" 
   
-(* Corollary c: God exists. *)
-theorem c: "v (\<exists>i god)"
+(* Corollary: God exists. *)
+theorem cor: "v(\<exists>i G)"
   (* metis can easily prove this *)
-  using t refl
+  using T3 refl
   unfolding valid_def mbox_def
   by metis
