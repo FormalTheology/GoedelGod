@@ -85,11 +85,11 @@ axiomatization where
   (* A1: Either the property or its negation are positive, but not both. *)
   A1a: "v(\<forall>p(\<lambda>\<Phi>. P(\<lambda>x. m\<not>(\<Phi>(x))) m\<Rightarrow> m\<not>(P(\<Phi>))))" and
   A1b: "v(\<forall>p(\<lambda>\<Phi>. m\<not>(P(\<Phi>)) m\<Rightarrow> P(\<lambda>x. m\<not>(\<Phi>(x)))))" and
-  (* A2: A property is positive if it necessarily contains a positive property. *)
+  (* A2: A property necessarily implied by a positive property is positive. *)
   A2: "v(\<forall>p(\<lambda>\<Phi>. \<forall>p(\<lambda>\<psi>. (P(\<Phi>) m\<and> \<box> (\<forall>i(\<lambda>X. \<Phi>(X) m\<Rightarrow> \<psi>(X))) m\<Rightarrow> P(\<psi>)))))" 
 
 (* T1: Positive properties are possibly exemplified. *)
-lemma T1: "v(\<forall>p(\<lambda>\<Phi>. P(\<Phi>) m\<Rightarrow> \<diamond>(\<exists>i(\<lambda>x. \<Phi>(x)))))"
+theorem T1: "v(\<forall>p(\<lambda>\<Phi>. P(\<Phi>) m\<Rightarrow> \<diamond>(\<exists>i(\<lambda>x. \<Phi>(x)))))"
   (* T1 can be proved from A2 and A1a.
      sledgehammer with leo2 and satallax does find the proof; just try:
        sledgehammer [provers = remote_leo2 remote_satallax] 
@@ -100,7 +100,7 @@ lemma T1: "v(\<forall>p(\<lambda>\<Phi>. P(\<Phi>) m\<Rightarrow> \<diamond>(\<e
             mnot_def valid_def
   by metis
 
-(* X is God-like if it possesses all positive properties. *)
+(* A God-like being possesses all positive properties. *)
 definition G :: "mu => (i => bool)" where
   "G = (\<lambda>x. \<forall>p(\<lambda>\<Phi>. P(\<Phi>) m\<Rightarrow> \<Phi>(x)))"
 
@@ -109,7 +109,7 @@ axiomatization where
   A3: "v(P(G))"
 
 (* C: Possibly, God exists. *)
-lemma C: "v (\<diamond>(\<exists>i(\<lambda>x. G(x))))" 
+corollary C: "v (\<diamond>(\<exists>i(\<lambda>x. G(x))))" 
   (* C can be proved from T1 and A3.
        sledgehammer succeeds; try this: 
        sledgehammer [provers = remote_leo2 remote_satallax] 
@@ -119,23 +119,25 @@ lemma C: "v (\<diamond>(\<exists>i(\<lambda>x. G(x))))"
   unfolding mforall_indset_def mimplies_def valid_def
   by metis
   
-(* A4: Being a positive property is logical, hence, necessary. *)
+(* A4: Positive properties are necessarily positive. *)
 axiomatization where
   A4: "v(\<forall>p(\<lambda>\<Phi>. P(\<Phi>) m\<Rightarrow> (\<box>(P(\<Phi>)))))"  
 
-(* \<Phi> is the essence of X iff X has \<Phi> and this property is necessarily minimal. *)
+(* An essence of an individual is a property possessed by it and necessarily 
+   implying any of its properties. *)
 definition Ess :: "(mu => (i => bool)) => mu => (i => bool)" (infixr "Ess" 85)where
   "p Ess x = p(x) m\<and> \<forall>p(\<lambda>\<psi>. \<psi>(x) m\<Rightarrow> \<box>(\<forall>i (\<lambda>y. p(y) m\<Rightarrow> \<psi>(y))))"
 
-(* T2: The property of being God-like is an essence of any God-like being. *)
-lemma T2: "v(\<forall>i(\<lambda>x. G(x) m\<Rightarrow> (G Ess x)))"
+(* T2: Being God-like is an essence of any God-like being. *)
+theorem T2: "v(\<forall>i(\<lambda>x. G(x) m\<Rightarrow> (G Ess x)))"
   using A1a A1b A4
   unfolding valid_def mforall_indset_def mforall_ind_def mexists_ind_def 
             mnot_def mand_def mimplies_def mdia_def mbox_def G_def 
             Ess_def 
   by metis
 
-(* NE(x) means that x necessarily exists if it has an essential property. *)
+(* Necessary existence of an individual is the necessary exemplification 
+   of all its essences. *)
 definition NE :: "mu => (i => bool)" where
   "NE = (\<lambda>x. (\<forall>p(\<lambda>\<Phi>. (\<Phi> Ess x) m\<Rightarrow> \<box>(\<exists>i(\<lambda>y. \<Phi>(y))))))"
 
