@@ -56,7 +56,7 @@ Nitpick) are employed to:
 - to automate the ontological argument in 4 single steps
 
 Moreover, these systems have been used to obtain the following results:
--The basic modal logic K is sufficient for proving T1, C and T2. 
+- The basic modal logic K is sufficient for proving T1, C and T2. 
 - Modal logic S5 is not needed for proving T3; the logic KB is sufficient. 
 - Without the first conjunct in D2 the set of axioms and definitions 
   would be inconsistent. 
