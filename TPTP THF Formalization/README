@@ -1,6 +1,6 @@
 %----Goedel's Ontological Proof of the Existence of God
 %----Authors: Christoph Benzmueller and Bruno Woltzenlogel-Paleo
-%----July, 16 2013 (update on August 10, 2013)
+%----July, 16 2013 (update on August 21, 2013)
 
 We present a formalization and (partial) automation of Goedel's
 ontological argument in quantified modal logic KB (QML KB). QML KB is in 
