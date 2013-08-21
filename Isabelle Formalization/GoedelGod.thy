@@ -45,7 +45,6 @@ imports Main HOL
 begin
 typedecl i  (* the type for possible worlds *)
 typedecl mu (* the type for indiviuals      *)
-
 (* r is an accessibility relation *)
 consts r :: "i => i => bool" (infixr "r" 70) 
 (* r is symmetric, thus we work in modal logic KB *)
@@ -125,21 +124,21 @@ axiomatization where
 
 (* An essence of an individual is a property possessed by it and necessarily 
    implying any of its properties. *)
-definition Ess :: "(mu => (i => bool)) => mu => (i => bool)" (infixr "Ess" 85)where
-  "p Ess x = p(x) m\<and> \<forall>p(\<lambda>\<psi>. \<psi>(x) m\<Rightarrow> \<box>(\<forall>i (\<lambda>y. p(y) m\<Rightarrow> \<psi>(y))))"
+definition ess :: "(mu => (i => bool)) => mu => (i => bool)" (infixr "ess" 85)where
+  "p ess x = p(x) m\<and> \<forall>p(\<lambda>\<psi>. \<psi>(x) m\<Rightarrow> \<box>(\<forall>i (\<lambda>y. p(y) m\<Rightarrow> \<psi>(y))))"
 
 (* T2: Being God-like is an essence of any God-like being. *)
-theorem T2: "v(\<forall>i(\<lambda>x. G(x) m\<Rightarrow> (G Ess x)))"
+theorem T2: "v(\<forall>i(\<lambda>x. G(x) m\<Rightarrow> (G ess x)))"
   using A1a A1b A4
   unfolding valid_def mforall_indset_def mforall_ind_def mexists_ind_def 
             mnot_def mand_def mimplies_def mdia_def mbox_def G_def 
-            Ess_def 
+            ess_def 
   by metis
 
 (* Necessary existence of an individual is the necessary exemplification 
    of all its essences. *)
 definition NE :: "mu => (i => bool)" where
-  "NE = (\<lambda>x. (\<forall>p(\<lambda>\<Phi>. (\<Phi> Ess x) m\<Rightarrow> \<box>(\<exists>i(\<lambda>y. \<Phi>(y))))))"
+  "NE = (\<lambda>x. (\<forall>p(\<lambda>\<Phi>. (\<Phi> ess x) m\<Rightarrow> \<box>(\<exists>i(\<lambda>y. \<Phi>(y))))))"
 
 (* A5: Necessary existence is a positive property. *)
 axiomatization where
@@ -151,7 +150,7 @@ axiomatization where
 
   theorem thm1: "v (\<box>(\<exists>i G))"
     using C T2 A5 sym refl
-    unfolding valid_def mforall_indset_def mforall_ind_def mexists_ind_def mnot_def mand_def mimplies_def mdia_def mbox_def G_def Ess_def NE_def 
+    unfolding valid_def mforall_indset_def mforall_ind_def mexists_ind_def mnot_def mand_def mimplies_def mdia_def mbox_def G_def ess_def NE_def 
     sledgehammer [timeout = 60, provers = remote_satallax] 
    
   This call is successful and suggests to use metis for reconstruction; but this metis 
@@ -168,7 +167,7 @@ lemma help2: "v(\<diamond>p) & v(p m\<Rightarrow> \<box> p) \<Longrightarrow> v(
   by metis
   
 (* help3 is only required to prove help4 *)  
-lemma help3:  "\<forall>x. v(G(x) m\<Rightarrow> ((G Ess x) m\<Rightarrow> (\<box>(\<exists>i G))))"
+lemma help3:  "\<forall>x. v(G(x) m\<Rightarrow> ((G ess x) m\<Rightarrow> (\<box>(\<exists>i G))))"
   using A3 A5
   unfolding G_def mforall_indset_def mimplies_def NE_def valid_def
   by (metis (lifting, mono_tags)) 

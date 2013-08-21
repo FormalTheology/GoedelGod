@@ -8,7 +8,7 @@
 
 % Informal: Scott's version of Goedel's ontological proof.  Here we
 %           want to prove statement T3 directly from the axioms and
-%           definitions
+%           definitions.
 
 %------------------------------------------------------------------------------
 %----Axioms for Quantified Modal Logic KB.

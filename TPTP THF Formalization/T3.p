@@ -7,7 +7,7 @@
 %----July, 16 2013 (update on August 21, 2013)
 
 % Informal: Scott's version of Goedel's ontological proof.
-%           Here we prove statement T2.
+%           Here we prove statement T3.
 
 %------------------------------------------------------------------------------
 %----Axioms for Quantified Modal Logic KB.

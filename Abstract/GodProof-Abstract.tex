@@ -71,27 +71,27 @@ following order:\footnote{ A1, A2, A5, D1, D3 are logically
 \begin{description}
 \item[A1] Either a property or its negation is positive, but not
   both:  \hfill 
-  $\all \phi. [P(\neg \phi) \biimp \neg P(\phi)]$
+  $\all \phi [P(\neg \phi) \biimp \neg P(\phi)]$
 \item[A2] A property necessarily implied \\ by a
   positive property is positive: \phantom{b} \hfill 
-  $\all \phi. \all \psi.[(P(\phi) \wedge \nec \all x.[\phi(x)
+  $\all \phi \all \psi [(P(\phi) \wedge \nec \all x [\phi(x)
   \imp \psi(x)]) \imp P(\psi)]$ 
-\item[T1] Positive properties are possibly exemplified: \hfill $\all \varphi. [P(\varphi) \imp \pos \ex x.\varphi(x)]$
+\item[T1] Positive properties are possibly exemplified: \hfill $\all \varphi [P(\varphi) \imp \pos \ex x \varphi(x)]$
 \item[D1] A \emph{God-like} being possesses all positive properties: \hfill
-  $G(x) \biimp \forall \phi. [P(\phi) \to \phi(x)]$
+  $G(x) \biimp \forall \phi [P(\phi) \to \phi(x)]$
 \item[A3]  The property of being God-like is positive: \hfill   $P(G)$
-\item[C\phantom{1}] Possibly, God exists: \hfill $\pos \ex x. G(x)$
+\item[C\phantom{1}] Possibly, God exists: \hfill $\pos \ex x G(x)$
 \item[A4]  Positive properties are necessarily positive: \hfill 
-  $\all \phi.[P(\phi) \to \Box \; P(\phi)]$
+  $\all \phi [P(\phi) \to \Box \; P(\phi)]$
 \item[D2] An \emph{essence} of an individual is  \\ a property possessed by it and \\ necessarily implying any of its properties:
   \phantom{b} \hfill $\ess{\phi}{x} \biimp \phi(x) \wedge \all
-  \psi. (\psi(x) \imp \nec \all y. (\phi(y) \imp \psi(y)))$
+  \psi (\psi(x) \imp \nec \all y (\phi(y) \imp \psi(y)))$
 \item[T2]  Being God-like is an essence of any
-  God-like being: \hfill $\all x.[G(x) \imp \ess{G}{x}]$ 
+  God-like being: \hfill $\all x [G(x) \imp \ess{G}{x}]$ 
 \item[D3] \emph{Necessary existence} of an individual is \\ the necessary exemplification of all its essences: 
-  \phantom{b} \hfill $\NE(x) \biimp \all \phi.[\ess{\phi}{x} \imp \nec \ex y.\phi(y)]$
+  \phantom{b} \hfill $\NE(x) \biimp \all \phi [\ess{\phi}{x} \imp \nec \ex y \phi(y)]$
 \item[A5] Necessary existence is a positive property: \hfill $P(\NE)$
-\item[T3] Necessarily, God exists: \hfill $\nec \ex x. G(x)$ 
+\item[T3] Necessarily, God exists: \hfill $\nec \ex x G(x)$ 
 \end{description}
 
 \noindent
@@ -148,12 +148,12 @@ rigorously correct logical arguments. In case of logico-philosophical
 disputes, the computer can check the disputing arguments and partially
 fulfill Leibniz' dictum: Calculemus --- Let us calculate!
 
-\marginpar{\scriptsize{Bruno: I find this last paragraph a bit vague and not as self-contained as the rest of the abstract. We could try to improve it, but I think simply removing it would also be satisfactory. The sentence about Leibniz' dictum already provides a very nice ``climax'' for the end of the paper. Anything that we say after it feels like an ``anticlimax''...}}
-Future work shall widen our computer-assisted approach to the
-study of other ontological arguments. Variations of the distinctive features of
-the base logic (e.g. non-rigid symbols, varying domains, etc.), made easier by the flexibility of the
-embeddings-based approach, will
-be considered.
+% \marginpar{\scriptsize{Bruno: I find this last paragraph a bit vague and not as self-contained as the rest of the abstract. We could try to improve it, but I think simply removing it would also be satisfactory. The sentence about Leibniz' dictum already provides a very nice ``climax'' for the end of the paper. Anything that we say after it feels like an ``anticlimax''...}}
+% Future work shall widen our computer-assisted approach to the
+% study of other ontological arguments. Variations of the distinctive features of
+% the base logic (e.g. non-rigid symbols, varying domains, etc.), made easier by the flexibility of the
+% embeddings-based approach, will
+% be considered.
 
 %\footnotesize
 \bibliographystyle{plain}
