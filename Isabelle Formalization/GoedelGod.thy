@@ -89,10 +89,8 @@ axiomatization where
 
 (* T1: Positive properties are possibly exemplified. *)
 theorem T1: "v(\<forall>p(\<lambda>\<Phi>. P(\<Phi>) m\<Rightarrow> \<diamond>(\<exists>i(\<lambda>x. \<Phi>(x)))))"
-  (* T1 can be proved from A2 and A1a.
-     sledgehammer with leo2 and satallax does find the proof; just try:
-       sledgehammer [provers = remote_leo2 remote_satallax] 
-     This call then suggests the use of metis; see below. *)
+  (* immeadiate success with sledgehammer *)
+  (* sledgehammer [provers = remote_leo2 remote_satallax] *)  
   using A2 A1a 
   unfolding mand_def mbox_def mdia_def mexists_ind_def 
             mforall_ind_def mforall_indset_def mimplies_def 
@@ -109,11 +107,8 @@ axiomatization where
 
 (* C: Possibly, God exists. *)
 corollary C: "v (\<diamond>(\<exists>i(\<lambda>x. G(x))))" 
-  (* C can be proved from T1 and A3.
-       sledgehammer succeeds; try this: 
-       sledgehammer [provers = remote_leo2 remote_satallax] 
-     Note that G_def is not even needed.
-   *)
+  (* immeadiate success with sledgehammer *)
+  (* sledgehammer [provers = remote_leo2 remote_satallax] *)  
   using A3 T1 
   unfolding mforall_indset_def mimplies_def valid_def
   by metis
@@ -129,6 +124,8 @@ definition ess :: "(mu => (i => bool)) => mu => (i => bool)" (infixr "ess" 85)wh
 
 (* T2: Being God-like is an essence of any God-like being. *)
 theorem T2: "v(\<forall>i(\<lambda>x. G(x) m\<Rightarrow> (G ess x)))"
+  (* immeadiate success with sledgehammer *)
+  (* sledgehammer [provers = remote_leo2 remote_satallax] *)  
   using A1a A1b A4
   unfolding valid_def mforall_indset_def mforall_ind_def mexists_ind_def 
             mnot_def mand_def mimplies_def mdia_def mbox_def G_def 
@@ -151,44 +148,55 @@ axiomatization where
   theorem thm1: "v (\<box>(\<exists>i G))"
     using C T2 A5 sym refl
     unfolding valid_def mforall_indset_def mforall_ind_def mexists_ind_def mnot_def mand_def mimplies_def mdia_def mbox_def G_def ess_def NE_def 
-    sledgehammer [timeout = 60, provers = remote_satallax] 
+    sledgehammer [timeout = 60, provers = remote_leo2 remote_satallax] 
    
   This call is successful and suggests to use metis for reconstruction; but this metis 
   call still fails.  
 *)
   
-lemma help1: "v(\<diamond>(\<box>p)) \<Longrightarrow> v(\<box>p)"  
+lemma help1: "v(\<diamond>(\<box>p)) \<Longrightarrow> v(\<box>p)" 
+  (* immeadiate success with sledgehammer *)
+  (* sledgehammer [provers = remote_leo2 remote_satallax] *)  
   using sym
   unfolding valid_def mdia_def mbox_def mimplies_def
   by metis
 
-lemma help2: "v(\<diamond>p) & v(p m\<Rightarrow> \<box> p) \<Longrightarrow> v(\<diamond> (\<box> p))"  
+lemma help2: "v(\<diamond>p) & v(p m\<Rightarrow> \<box> p) \<Longrightarrow> v(\<diamond> (\<box> p))" 
+  (* immeadiate success with sledgehammer *)
+  (* sledgehammer [provers = remote_leo2 remote_satallax] *)  
   unfolding valid_def mdia_def mbox_def mimplies_def      
   by metis
   
 (* help3 is only required to prove help4 *)  
 lemma help3:  "\<forall>x. v(G(x) m\<Rightarrow> ((G ess x) m\<Rightarrow> (\<box>(\<exists>i G))))"
+  (* immeadiate success with sledgehammer *)
+  (* sledgehammer [timeout = 120, provers = remote_leo2 remote_satallax] *)
   using A3 A5
   unfolding G_def mforall_indset_def mimplies_def NE_def valid_def
   by (metis (lifting, mono_tags)) 
 
 lemma help4: "v((\<exists>i G) m\<Rightarrow> \<box>(\<exists>i G))"
+  (* immeadiate success with sledgehammer *)
+  (* sledgehammer [provers = remote_leo2 remote_satallax] *)
   using help3 T2 
   unfolding mexists_ind_def mforall_ind_def mimplies_def valid_def
   by metis
 
 (* thm1: Necessarily, God exists. *)
 theorem T3: "v(\<box>(\<exists>i G))"
+  (* immeadiate success with sledgehammer *)
+  (* sledgehammer [provers = remote_leo2 remote_satallax] *)
   using help1 help2 C help4
   by metis
-
+  
 (* to obtain the corollary below we additionally need reflexivity; 
    thus we move from logic KB to MB *)
 axiomatization where refl: "x r x" 
   
 (* Corollary: God exists. *)
 theorem cor: "v(\<exists>i G)"
-  (* metis can easily prove this *)
+  (* immeadiate success with sledgehammer *)
+  (* sledgehammer [provers = remote_leo2 remote_satallax] *)
   using T3 refl
   unfolding valid_def mbox_def
   by metis
