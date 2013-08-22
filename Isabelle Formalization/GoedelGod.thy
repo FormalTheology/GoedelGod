@@ -47,9 +47,10 @@ typedecl i  (* the type for possible worlds *)
 typedecl mu (* the type for indiviuals      *)
 (* r is an accessibility relation *)
 consts r :: "i => i => bool" (infixr "r" 70) 
-(* r is symmetric, thus we work in modal logic KB *)
-axiomatization where sym: "x r y \<longrightarrow> y r x" 
-(* classical negation lifted to possible worlds *)   
+(* We don't restrict r at this point; in the first part (up to T2) 
+   of the proof we thus work with modal logic K; later we will 
+   require symmetry of r; but this only needed for T3 *)
+
 definition mnot :: "(i => bool) => (i => bool)" ("m\<not>") where
   "mnot p = (\<lambda>w. \<not>(p(w)))"
 (* classical conjunction lifted to possible worlds *)
@@ -141,19 +142,27 @@ definition NE :: "mu => (i => bool)" where
 axiomatization where
   A5: "v(P(NE))"
 
+  
+(* Additionally, r is now required symmetric, thus we work from now on in 
+   modal logic KB instead of K *)
+axiomatization where sym: "x r y \<longrightarrow> y r x" 
+(* classical negation lifted to possible worlds *)    
+  
 (* We now introduce some help lemmata that are useful for proving thm1 with metis *)
-(* With Sledgehammer thm1 can be proved directly; but proof reconstruction with 
+(* With sledgehammer thm1 can be proved directly; but proof reconstruction with 
    metis still fails. To see this just try the following:
 
   theorem thm1: "v (\<box>(\<exists>i G))"
-    using C T2 A5 sym refl
-    unfolding valid_def mforall_indset_def mforall_ind_def mexists_ind_def mnot_def mand_def mimplies_def mdia_def mbox_def G_def ess_def NE_def 
+    using C T2 A5 sym
+    unfolding valid_def mforall_indset_def mforall_ind_def mexists_ind_def mnot_def 
+              mand_def mimplies_def mdia_def mbox_def G_def ess_def NE_def 
     sledgehammer [timeout = 60, provers = remote_leo2 remote_satallax] 
-   
+      
   This call is successful and suggests to use metis for reconstruction; but this metis 
   call still fails.  
 *)
-  
+ 
+
 lemma help1: "v(\<diamond>(\<box>p)) \<Longrightarrow> v(\<box>p)" 
   (* immeadiate success with sledgehammer *)
   (* sledgehammer [provers = remote_leo2 remote_satallax] *)  
