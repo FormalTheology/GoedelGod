@@ -179,7 +179,7 @@ cut ((G ess g) w).
 Qed.
 
 
-
+(* ToDo: According to experiments with LEO-II, modal logic KB should suffice for showing T3. There is no need to import S5 *)
 Require Import ModalS5.
 
 (* Theorem T3: necessarily, God exists *)
