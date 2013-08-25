@@ -12,17 +12,18 @@ Require Import Modal.
 (* Constant predicate that distinguishes positive properties *)
 Parameter Positive: (u -> o) -> o.
 
-(* Axiom 1: properties necessarily entailed by positive properties are also positive *)
-Axiom axiom1: V (mforall p, mforall q, Positive p m/\ (box (A (fun x: u => (p x) m-> (q x)))) m-> Positive q).
+
+(* Axiom A1: either a property or its negation is positive, but not both *)
+Axiom axiom1a : V (mforall p, (Positive (fun x: u => m~(p x))) m-> (m~ (Positive p))).
+Axiom axiom1b : V (mforall p, (m~ (Positive p)) m-> (Positive (fun x: u => m~ (p x))) ).
 
 
-(* Axiom 2: the negation of a property is positive iff the property is not positive *)
-Axiom axiom2a : V (mforall p, (Positive (fun x: u => m~(p x))) m-> (m~ (Positive p))).
-Axiom axiom2b : V (mforall p, (m~ (Positive p)) m-> (Positive (fun x: u => m~ (p x))) ).
+(* Axiom A2: a property necessarily implied by a positive property is positive *)
+Axiom axiom2: V (mforall p, mforall q, Positive p m/\ (box (mforall x, (p x) m-> (q x) )) m-> Positive q).
 
 
-(* Theorem 1: positive properties possibly have a witness *)
-Theorem lemma1: V (mforall p, (Positive p) m-> dia (mexists x, p x) ).
+(* Theorem T1: positive properties are possibly exemplified *)
+Theorem theorem1: V (mforall p, (Positive p) m-> dia (mexists x, p x) ).
 Proof.
 intro w.
 intro p.
@@ -53,8 +54,8 @@ cut ((Positive p w) /\ ((box (mforall x, (m~ (p x)))) w) -> (m~ (Positive p)) w)
 
   intro H4. 
   destruct H4 as [H41 H42].
-  apply axiom2a.
-  apply (axiom1 w p).
+  apply axiom1a.
+  apply (axiom2 w p).
   split.
     exact H41.
 
@@ -70,33 +71,35 @@ cut ((Positive p w) /\ ((box (mforall x, (m~ (p x)))) w) -> (m~ (Positive p)) w)
       exact R1.
 Qed.  
 
-(* Definition 1: God *)
+(* Definition D1: God: a God-like being possesses all positive properties *)
 Definition G(x: u) := mforall p, (Positive p) m-> (p x).
 
-(* Axiom 3: Being God is a positive property *)
+(* Axiom A3: the property of being God-like is positive *)
 Axiom axiom3: V (Positive G).
 
-(* Theorem 2: it is possible that God exists *)
-Theorem lemma2: V (dia (mexists x, G x)). 
+(* Corollary C1: possibly, God exists *)
+Theorem corollary1: V (dia (mexists x, G x)). 
 Proof.
 intro w. 
-apply lemma1.
+apply theorem1.
 apply axiom3.
 Qed.
 
-(* Definition 2: essence *)
-Definition Essential(p: u -> o)(x: u) := (p x) m/\ mforall q, ((q x) m-> box (mforall y, (p y) m-> (q y))).
 
-(* Axiom 4: positive properties are necessarily positive *)
+(* Axiom A4: positive properties are necessarily positive *)
 Axiom axiom4: V (mforall p, (Positive p) m-> box (Positive p)).
 
-(* Theorem 3: if an individual is a God, then being God is an essential property for that individual *)
-Theorem lemma3: V (mforall y, (G y) m-> (Essential G y)).
+(* Definition D2: essence: an essence of an individual is a property possessed by it and necessarily implying any of its properties *)
+Definition Essence(p: u -> o)(x: u) := (p x) m/\ mforall q, ((q x) m-> box (mforall y, (p y) m-> (q y))).
+Notation "p 'ess' x" := (Essence p x) (at level 69).
+
+(* Theorem T2: being God-like is an essence of any God-like being *)
+Theorem theorem2: V (mforall x, (G x) m-> (G ess x)).
 Proof.
 intro.
 intro y.
 intro H1.
-unfold Essential.
+unfold Essence.
 split.
   exact H1.
 
@@ -133,7 +136,7 @@ split.
             apply H1.
 
             cut ((m~ (Positive q)) w).
-              apply axiom2b.
+              apply axiom1b.
 
               exact H8.
 
@@ -145,11 +148,11 @@ split.
 Qed.
 
 
-(* Definition 3: necessary existence *)
-Definition NecExists(x: u) := mforall p, (Essential p x) m-> box (mexists y, (p y)).
+(* Definition D3: necessary existence: necessary existence of an individual is the necessary exemplification of all its essences *)
+Definition NE(x: u) := mforall p, (p ess x) m-> box (mexists y, (p y)).
 
-(* Axiom 5: necessary existence is a positive property *)
-Axiom axiom5: V (Positive NecExists).
+(* Axiom A5: necessary existence is a positive property *)
+Axiom axiom5: V (Positive NE).
 
 
 Lemma lemma: V ((mexists z, (G z)) m-> box (mexists x, (G x))).
@@ -157,20 +160,20 @@ Proof.
 intro w.
 intro H1.
 destruct H1 as [g H2].
-cut (Essential G g w).
-  cut (NecExists g w).
+cut ((G ess g) w).
+  cut (NE g w).
     intro H3.
-    unfold NecExists in H3.
+    unfold NE in H3.
     apply H3.
 
-    cut (Positive NecExists w).
+    cut (Positive NE w).
       unfold G in H2.
       apply H2.
 
       apply axiom5.
 
   cut (G g w).
-    apply lemma3.
+    apply theorem2.
 
     exact H2.
 Qed.
@@ -179,8 +182,8 @@ Qed.
 
 Require Import ModalS5.
 
-(* Theorem: the existence of a God is necessary *)
-Theorem theorem: V (box (mexists x, (G x))).
+(* Theorem T3: necessarily, God exists *)
+Theorem theorem3: V (box (mexists x, (G x))).
 Proof.
 intro.
 cut (dia (box (mexists x, G x)) w).
@@ -194,14 +197,14 @@ cut (dia (box (mexists x, G x)) w).
     intro. intro R1.
     apply lemma.
 
-  apply lemma2.
+  apply corollary1.
 Qed.
 
 
-(* Corollary: There exists a god *)
-Theorem God_exists: V (mexists x, (G x)).
+(* Corollary C2: There exists a god *)
+Theorem corollary2: V (mexists x, (G x)).
 Proof.
 intro.
-apply (theorem w).
+apply (theorem3 w).
 apply reflexivity.
 Qed.
