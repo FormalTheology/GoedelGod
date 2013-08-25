@@ -118,7 +118,7 @@ split.
 
         exact H4.
      
-      apply H3.
+      apply H3. (* Box elimination *)
       exact R1.
 
   cut (q y w).
