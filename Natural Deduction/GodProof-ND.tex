@@ -82,14 +82,14 @@ $$
 \begin{prooftree}
         \AXC{Axiom \ref{A2}} \dashedLine
         \UIC{$ \all \varphi. \all \psi.[(P(\varphi) \wedge \nec \all x.[\varphi(x) \imp \psi(x)]) \imp P(\psi)]$} \RightLabel{$\all_E$}
-        \UIC{$ \all \psi.[(P(\varphi') \wedge \nec \all x.[\varphi'(x) \imp \psi(x)]) \imp P(\psi)]$} \RightLabel{$\all_E$}
-        \UIC{$(P(\varphi') \wedge \nec \all x.[\varphi'(x) \imp \neg \varphi'(x)]) \imp P(\neg \varphi')$} \doubleLine
-        \UIC{$(P(\varphi') \wedge \nec \all x.[\neg \varphi'(x)]) \imp P(\neg \varphi')$}
+        \UIC{$ \all \psi.[(P(\rho) \wedge \nec \all x.[\rho(x) \imp \psi(x)]) \imp P(\psi)]$} \RightLabel{$\all_E$}
+        \UIC{$(P(\rho) \wedge \nec \all x.[\rho(x) \imp \neg \rho(x)]) \imp P(\neg \rho)$} \doubleLine
+        \UIC{$(P(\rho) \wedge \nec \all x.[\neg \rho(x)]) \imp P(\neg \rho)$}
                         \AXC{Axiom \ref{A1}} \dashedLine
                         \UIC{$\all \varphi.[ P(\neg \varphi) \biimp \neg P(\varphi) ]$} \RightLabel{$\all_E$}
-                        \UIC{$ P(\neg \varphi') \biimp \neg P(\varphi') $} \doubleLine
-                 \BIC{$ (P(\varphi') \wedge \nec \all x.[\neg \varphi'(x)]) \imp \neg P(\varphi') $} \doubleLine
-                 \UIC{$ P(\varphi') \imp \pos \ex x.\varphi'(x) $} \RightLabel{$\all_I$}
+                        \UIC{$ P(\neg \rho) \biimp \neg P(\rho) $} \doubleLine
+                 \BIC{$ (P(\rho) \wedge \nec \all x.[\neg \rho(x)]) \imp \neg P(\rho) $} \doubleLine
+                 \UIC{$ P(\rho) \imp \pos \ex x.\rho(x) $} \RightLabel{$\all_I$}
                  \UIC{$\all \varphi.[ P(\varphi) \imp \pos \ex x.\varphi(x) ] $}
 \end{prooftree}
 \end{proof}
@@ -183,7 +183,7 @@ Let the following derivation with the open assumption $G(x)$ be $\Pi_2[G(x)]$:
 		\UIC{$\psi(x)\imp P(\psi)$}\RightLabel{$\imp_E$}
        		\BIC{$P(\psi)$} 
 		              \AXC{Axiom \ref{A4}} \dashedLine
-       	          \UIC{$\forall \psi .(P(\psi)\imp \Box P(\psi))$}\RightLabel{$\all_E$}  
+       	          \UIC{$\all \varphi .(P(\varphi)\imp \Box P(\varphi))$}\RightLabel{$\all_E$}  
 		              \UIC{$P(\psi)\imp \Box P(\psi)$}\RightLabel{$\imp_E$}  
            \BIC{$\Box P(\psi)$}\RightLabel{$\imp_I^3$} 
            \UIC{$\psi(x)\imp\Box P(\psi)$} 
@@ -217,7 +217,7 @@ Let the following derivation with the open assumption $G(x)$ be $\Pi_4[G(x)]$:
        			\BIC{$\all x .(G(x)\imp \psi(x))$}\RightLabel{Necessitation}
 			\UIC{$\Box \all x .(G(x)\imp \psi(x))$}  \RightLabel{$\imp_I^7$} 
 			\UIC{$\Box P(\psi)\imp \Box \all x .(G(x)\imp \psi(x))$} \RightLabel{$\imp_E$} 
-         	 \BIC{$\Box \all x .(G(x)\imp \psi(x)$}\RightLabel{$\imp_I^6$}
+         	 \BIC{$\Box \all x .(G(x)\imp \psi(x))$}\RightLabel{$\imp_I^6$}
            \UIC{$\psi(x)\imp\Box \all x .(G(x)\imp \psi(x))$}  
 \end{prooftree}
 
@@ -231,7 +231,7 @@ The use of the necessitation rule above is correct, because the only open assump
 		\UIC{$\all \psi .(\psi(x)\imp\Box \all x .(G(x)\imp \psi(x)))$}\RightLabel{$\wedge_I$}
 		\BIC{$G(x)\wedge \forall \psi .(\psi(x)\imp\Box \all x .(G(x)\imp \psi(x)))$}\dottedLine\RightLabel{D\ref{D2}} 
        			\UIC{$\ess{G}{x}$} \RightLabel{$\imp_I^8$}
-			\UIC{$G(x)\imp \ess{G}{x}$}
+			\UIC{$G(x)\imp \ess{G}{x}$} \RightLabel{$\all_I$}
 			  \UIC{$\all y.[G(y) \imp \ess{G}{y}]$}
 \end{prooftree}
 \end{proof}
@@ -242,7 +242,7 @@ The use of the necessitation rule above is correct, because the only open assump
 \label{D3}
 \emph{Necessary existence} of an individual is the necessary exemplification of all its essences:
 $$
-E(x) \biimp \all \varphi.[\ess{\varphi}{x} \imp \nec \ex x.\varphi(x)]
+E(x) \biimp \all \varphi.[\ess{\varphi}{x} \imp \nec \ex y.\varphi(y)]
 $$
 \end{definition}
 
