@@ -1,122 +1,144 @@
-(* Author: Bruno Woltzenlogel Paleo (bruno@logic.at) *)
-
 (* Formalization of Goedel's Ontological Proof of God's Existence *)
+
+(* Authors: Bruno Woltzenlogel Paleo (bruno@logic.at) and Christoph Benzmueller *)
+
 
 Require Import Coq.Logic.Classical.
 Require Import Coq.Logic.Classical_Pred_Type.
 
+Require Import Modal.
 
-(* Type for individuals and objects in the world *)
-Parameter i: Type.
 
 (* Constant predicate that distinguishes positive properties *)
-Parameter Positive: (i -> Prop) -> Prop.
+Parameter Positive: (u -> o) -> o.
 
-(* Constant for the modal operator for 'necessarily' *)
-Parameter box: Prop -> Prop.
 
-(* Constant for the modal operator for 'possibly' *)
-Definition diamond (p: Prop) := ~ (box (~ p)).
+(* Axiom A1: either a property or its negation is positive, but not both *)
+Axiom axiom1a : V (mforall p, (Positive (fun x: u => m~(p x))) m-> (m~ (Positive p))).
+Axiom axiom1b : V (mforall p, (m~ (Positive p)) m-> (Positive (fun x: u => m~ (p x))) ).
 
-(* Modal logic axioms *)
-(* ToDo: Necessitation cannot be naively encoded as an axiom *)
-Axiom Necessitation: forall p: Prop, p -> (box p).
-Axiom T: forall p: Prop, (box p) -> p.
 
-(* Axiom 1: properties necessarily entailed by positive properties are also positive *)
-Axiom axiom1: forall p q: i -> Prop, Positive p /\ (box (forall x,(p x) -> (q x))) -> Positive q.
+(* Axiom A2: a property necessarily implied by a positive property is positive *)
+Axiom axiom2: V (mforall p, mforall q, Positive p m/\ (box (mforall x, (p x) m-> (q x) )) m-> Positive q).
 
-(* Axiom 2: the negation of a property is positive iff the property is not positive *)
-Axiom axiom2 : forall p: i -> Prop, Positive (fun x => ~ (p x)) <-> ~ (Positive p).
 
-(* Theorem 1: positive properties possibly have a witness *)
-Theorem theorem1: forall p: i -> Prop, (Positive p) -> diamond (exists x, p x ).
+(* Theorem T1: positive properties are possibly exemplified *)
+Theorem theorem1: V (mforall p, (Positive p) m-> dia (mexists x, p x) ).
 Proof.
-intro.
-intro H1.
-unfold diamond.
-intro H2.
-absurd (Positive p).
-  apply axiom2.
-  apply axiom1 with (p := p).
+intro w.
+intro p.
+cut ((Positive p w) /\ ((box (mforall x, (m~ (p x)))) w) -> (m~ (Positive p)) w).
+  intro H.
+  intro H2.
+  apply imply_to_or in H.
+  destruct H.
+    apply not_and_or in H.
+    destruct H.
+      contradiction.
+    
+      apply not_all_ex_not in H.
+      destruct H as [w1  H3].
+      exists w1.
+      apply imply_to_and in H3.
+      destruct H3 as [H31 H32].
+      split.
+        exact H31.
+
+        apply not_all_ex_not in H32.
+        destruct H32 as [x H32].
+        exists x.
+        apply NNPP in H32.
+        exact H32.
+
+    contradiction.
+
+  intro H4. 
+  destruct H4 as [H41 H42].
+  apply axiom1a.
+  apply (axiom2 w p).
   split.
-    exact H1.
-  
-    apply Necessitation.
-    intro.
-    intro H3.
-    apply T in H2.
-    apply not_ex_all_not with (n := x) in H2.
-    exact H2.
-  exact H1.
-Qed.
+    exact H41.
 
+    intros w1 R1.
+    intro x.
+    intro W5.
+    intro H5.
+    absurd ((m~ (p x)) w1).
+      intro H6. 
+      contradiction.
 
-(* Definition of God *)
-Definition G(x: i) := forall p, (Positive p) -> (p x).
+      apply H42.
+      exact R1.
+Qed.  
 
-(* Axiom 3: Being God is a positive property *)
-Axiom axiom3: (Positive G).
+(* Definition D1: God: a God-like being possesses all positive properties *)
+Definition G(x: u) := mforall p, (Positive p) m-> (p x).
 
-(* Theorem 2: it is possible that God exists *)
-Theorem theorem2: diamond (exists x, G x). 
+(* Axiom A3: the property of being God-like is positive *)
+Axiom axiom3: V (Positive G).
+
+(* Corollary C1: possibly, God exists *)
+Theorem corollary1: V (dia (mexists x, G x)). 
 Proof.
+intro w. 
 apply theorem1.
 apply axiom3.
 Qed.
 
 
-(* Definition of essentiality *)
-Definition Essential(p: i-> Prop)(x: i) := (p x) /\ forall q: (i -> Prop),((q x) -> box (forall y, (p y) -> (q y))).
+(* Axiom A4: positive properties are necessarily positive *)
+Axiom axiom4: V (mforall p, (Positive p) m-> box (Positive p)).
 
-(* Axiom 4: positive properties are necessarily positive *)
-Axiom axiom4: forall p, (Positive p) -> box (Positive p).
+(* Definition D2: essence: an essence of an individual is a property possessed by it and necessarily implying any of its properties *)
+Definition Essence(p: u -> o)(x: u) := (p x) m/\ mforall q, ((q x) m-> box (mforall y, (p y) m-> (q y))).
+Notation "p 'ess' x" := (Essence p x) (at level 69).
 
-(* Theorem 3: if an individual is a God, then being God is an essential property for that individual *)
-Theorem theorem3: forall y, (G y) -> (Essential G y).
+(* Theorem T2: being God-like is an essence of any God-like being *)
+Theorem theorem2: V (mforall x, (G x) m-> (G ess x)).
 Proof.
 intro.
+intro y.
 intro H1.
-unfold Essential.
+unfold Essence.
 split.
   exact H1.
 
-  intro.
+  intro q.
   intro H2.
-  cut (box (Positive q)).
+  cut (box (Positive q) w).
     intro H3.
-    apply Necessitation.
-    cut (Positive q).
+    intros w1 R1.
+    intro y0.
+    cut (Positive q w1).
       intro H4.
-      intro.
       intro H5.
-      cut (Positive q).
+      cut (Positive q w1).
         unfold G in H5.
         apply H5.
 
         exact H4.
      
-      apply T.
-      exact H3.
+      apply H3.
+      exact R1.
 
-  cut (q y).
+  cut (q y w).
     intro H6.
-    cut (Positive q).
+    cut (Positive q w).
       apply axiom4.
 
-      cut (q y).
+      cut (q y w).
         intro H7.
         apply NNPP.
-        intro not_Pos_q.
-        absurd (q y).
-          cut (Positive (fun x => ~ (q x))).
+        intro H8.
+        absurd (q y w).
+          cut (Positive (fun x => m~ (q x)) w).
             unfold G in H1.
             apply H1.
 
-            cut (~ (Positive q)).
-              apply axiom2.
+            cut ((m~ (Positive q)) w).
+              apply axiom1b.
 
-              exact not_Pos_q.
+              exact H8.
 
           exact H7.
 
@@ -126,97 +148,63 @@ split.
 Qed.
 
 
-(* Definition of necessary existence *)
-Definition NecExists(x: i) := forall p, (Essential p x) -> box (exists y, (p y)).
+(* Definition D3: necessary existence: necessary existence of an individual is the necessary exemplification of all its essences *)
+Definition NE(x: u) := mforall p, (p ess x) m-> box (mexists y, (p y)).
 
-(* Axiom 5: necessary existence is a positive property *)
-Axiom axiom5: (Positive NecExists).
+(* Axiom A5: necessary existence is a positive property *)
+Axiom axiom5: V (Positive NE).
 
 
-(* The following lemma could be proved trivially (with intro and apply Necessitation). *)
-(* The more complex proof below shows, however, that axiom Necessitation is not necessary if we use the definition of God *)
-Lemma lemma: (exists z, (G z)) -> box (exists x, (G x)).
+Lemma lemma: V ((mexists z, (G z)) m-> box (mexists x, (G x))).
 Proof.
+intro w.
 intro H1.
 destruct H1 as [g H2].
-cut (Essential G g).
-  cut (NecExists g).
+cut ((G ess g) w).
+  cut (NE g w).
     intro H3.
-    unfold NecExists in H3.
+    unfold NE in H3.
     apply H3.
 
-    cut (Positive NecExists).
+    cut (Positive NE w).
       unfold G in H2.
       apply H2.
 
       apply axiom5.
 
-  cut (G g).
-    apply theorem3.
+  cut (G g w).
+    apply theorem2.
 
     exact H2.
 Qed.
 
 
-(* This lemma is not true. It should be (diamond p) -> (box (p -> q)) -> (diamond q) *)
-Lemma modus_ponens_inside_diamond: forall p q: Prop, (diamond p) -> (p -> q) -> (diamond q).
-(* ToDo: it might be possible to simplify the following proof *)
+(* ToDo: According to experiments with LEO-II, modal logic KB should suffice for showing T3. There is no need to import S5 *)
+Require Import ModalS5.
+
+(* Theorem T3: necessarily, God exists *)
+Theorem theorem3: V (box (mexists x, (G x))).
 Proof.
-intro. intro.
-intro H1.
-intro H2.
-unfold diamond.
-intro H3.
-absurd q.
-  apply T.
-  exact H3.
-
-  apply H2.
-  apply imply_to_or in H2.
-  destruct H2 as [H4|H5].
-    unfold diamond in H1.
-    apply Necessitation in H4.
-
-    absurd (box (~ p)).
-      exact H1.
-      exact H4.
-
-      apply T in H3.
-      exfalso.
-      contradiction.
-Qed.
-
-
-
-(* More modal logic axioms *)
-Axiom Five: forall p, (diamond p) -> box (diamond p).
-
-(* In modal logic S5, iterations of modal operators can be collapsed *)
-Theorem modal_iteration_S5: forall p, (diamond (box p)) <-> (box p).
-Proof.
-Admitted. (* ToDo *)
-
-
-(* Theorem 4: the existence of a God is necessary *)
-Theorem theorem4: box (exists x, G x).
-Proof.
-cut (diamond (box (exists x, G x))).
-  apply modal_iteration_S5.
-  cut (diamond (exists x, G x)).
+intro.
+cut (dia (box (mexists x, G x)) w).
+  apply modal_iteration.
+  cut (dia (mexists x, G x) w).
     intro H1.
-    apply modus_ponens_inside_diamond with (p := exists z, G z).
+    apply (modus_ponens_inside_dia w (mexists z, G z)).
     exact H1.
      
+    
+    intro. intro R1.
     apply lemma.
 
-  apply theorem2.
+  apply corollary1.
 Qed.
 
 
-(* Theorem 5: There exists a god *)
-Theorem God_exists: exists x, (G x).
+(* Corollary C2: There exists a god *)
+Theorem corollary2: V (mexists x, (G x)).
 Proof.
-apply T.
-apply theorem4.
+intro.
+apply (theorem3 w).
+apply reflexivity.
 Qed.
-
