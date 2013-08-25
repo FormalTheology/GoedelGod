@@ -23,37 +23,40 @@
 \maketitle
 
 \newcommand{\ess}[2]{#1 \ \mathit{ess} \ #2}
+\newcommand{\NE}[1]{\mathit{NE}(#1)}
 
 
 \noindent
 ``There is a scientific (exact) philosophy and theology,
 which deals with concepts of the highest abstractness; and this is also most highly fruitful for science. [\ldots] Religions are, for the most part, bad; but religion is not.'' - Kurt G\"{o}del
 
+\section{Introduction}
 
-\section{Possible witnessing of positive properties}
+\section{Natural Deduction}
 
-\textbf{Axioms:}
-\begin{itemize}
-\item \textbf{(A1)} Properties necessarily entailed by \emph{positive} properties are also positive:
-$$
-\all \varphi. \all \psi.[(P(\varphi) \wedge \nec \all x.[\varphi(x) \imp \psi(x)]) \imp P(\psi)]
-$$
-%
-\item \textbf{(A2)} A property's negation is positive iff the property is not positive:
+
+\section{Possibly, God Exists}
+
+\begin{description}
+\item[A1] Either a property or its negation is positive, but not both:
 $$
 \all \varphi. [P(\neg \varphi) \biimp \neg P(\varphi)]
 $$
-\end{itemize}
+%
+\item[A2] A property necessarily implied by a positive property is positive:
+$$
+\all \varphi. \all \psi.[(P(\varphi) \wedge \nec \all x.[\varphi(x) \imp \psi(x)]) \imp P(\psi)]
+$$
+\end{description}
 
-\noindent
-\textbf{Lemma 1:} Positive properties possibly have a witness:
+
+\begin{description}
+\item[T1] Positive properties are possibly exemplified:
 $$
 \all \varphi. [P(\varphi) \imp \pos \ex x.\varphi(x)]
 $$
+\end{description}
 
-
-\noindent
-\textbf{Formal proof:}
 
 \begin{prooftree}
         \AXC{$ \all \varphi. \all \psi.[(P(\varphi) \wedge \nec \all x.[\varphi(x) \imp \psi(x)]) \imp P(\psi)]$}
@@ -68,25 +71,23 @@ $$
 \end{prooftree}
 
 
-
-\section{Possible existence of a God}
-
-\textbf{Axioms:}
-\begin{itemize}
-\item \textbf{(A3)} Being God is a positive property:
+\begin{description}
+\item[D1] A \emph{God-like} being possesses all positive properties:
+$$
+G(x) \biimp \forall \varphi. [P(\varphi) \to \varphi(x)]
+$$
+\item[A3] The property of being God-like is positive:
 $$
 P(G)
 $$
-\end{itemize}
+\end{description}
 
-\noindent
-\textbf{Lemma 2:} It is possible that a God exists:
+\begin{description}
+\item[C1] Possibly, God exists:
 $$
 \pos \ex x. G(x)
 $$
-
-\noindent
-\textbf{Formal proof:}
+\end{description}
 
 \begin{prooftree}
 \AXC{$P(G)$}
@@ -99,32 +100,24 @@ $$
 
 \section{Essentiality of being God}
 
-\textbf{Definitions:}
-\begin{itemize}
-\item \textbf{(D1)} An individual is a \emph{God} if and only if he possesses all positive properties:
-$$
-G(x) \biimp \forall \varphi. [P(\varphi) \to \varphi(x)]
-$$
-\item \textbf{(D2)} A property is \emph{essential} for an individual if and only if it holds for that individual and necessarily entails every other property that holds for that individual: $\ess{\varphi}{x} \biimp \varphi(x) \wedge \all \psi. (\psi(x) \imp \nec \all x. (\varphi(x) \imp \psi(x)))$
-\end{itemize}
 
-\noindent
-\textbf{Axioms:}
-\begin{itemize}
-\item \textbf{(A4)} Positive properties are necessarily positive:
+\begin{description}
+\item[A4] Positive properties are necessarily positive:
 $$
 \all \varphi.[P(\varphi) \to \Box \; P(\varphi)]
 $$
-\end{itemize}
+%
+\item[D2] An \emph{essence} of an individual is a property possessed by it and necessarily implying any of its properties: $\ess{\varphi}{x} \biimp \varphi(x) \wedge \all \psi. (\psi(x) \imp \nec \all x. (\varphi(x) \imp \psi(x)))$
+\end{description}
 
-\noindent
-\textbf{Lemma 3}: If an individual is a God, then being God is an essential property for that individual:
+
+\begin{description}
+\item[T2]: Being God-like is an essence of any
+  God-like being:
 $$
 \all y.[G(y) \imp \ess{G}{y}]
 $$
-
-\noindent
-\textbf{Formal proof:}
+\end{description}
 
 Let the following derivation with the open assumption $G(x)$ be $\Pi_1$: 
 
@@ -152,7 +145,7 @@ Let the following derivation with the open assumption $G(x)$ be $\Pi_2$:
              	\AXC{$\Pi_1 $}  \dashedLine
 		\UIC{$\psi(x)\imp P(\psi)$}\RightLabel{$\imp$E}
        		\BIC{$P(\psi)$}\RightLabel{$\imp$E}  
-		\AXC{$$} \RightLabel{Ax. 4}
+		\AXC{$ $} \RightLabel{Ax. 4}
        		\UIC{$\forall \psi .(P(\psi)\imp \Box P(\psi))$}\RightLabel{$\forall$E}  
 		\UIC{$P(\psi)\imp \Box P(\psi)$}\RightLabel{$\imp$E}  
           \BIC{$\Box P(\psi)$}\RightLabel{$\imp$I, 1} 
@@ -210,32 +203,24 @@ We construct a derivation of theorem 3 with a subderivation $\Pi_4[G(x)^1]$, whi
 
 \section{Necessity of God's existence}
 
-\textbf{Definitions:}
-\begin{itemize}
-\item \textbf{(D3)} An individual \emph{necessarily exists} if and only if all its essential properties are necessarily witnessed:
+\begin{description}
+\item[D3] \emph{Necessary existence} of an individual is the necessary exemplification of all its essences:
 $$
 E(x) \biimp \all \varphi.[\ess{\varphi}{x} \imp \nec \ex x.\varphi(x)]
 $$
-\end{itemize}
-
-\noindent
-\textbf{Axioms:}
-\begin{itemize}
-\item \textbf{(A5)} Necessary existence is a positive property:
+%
+\item[A5] Necessary existence is a positive property:
 $$
 P(E)
 $$
-\end{itemize}
+\end{description}
 
-\noindent
-\textbf{Auxiliary Lemma:} If there is a God, then there necessarily exists a God:
+\begin{description}
+\item[L1] If there is a God, then there necessarily exists a God:
 $$
 \ex z. G(z) \imp \nec \ex x. G(x)
 $$
-
-
-\noindent
-\textbf{Formal proof:}
+\end{description}
 
 \begin{prooftree}
 \AXC{$ $} \RightLabel{1}
@@ -263,20 +248,17 @@ $$
 \end{prooftree}
 
 
-\section{Necessary existence of a God}
+\section{Necessarily, God exists}
 
 ToDo: This section still needs more details. See Coq formalization for more details.
 
 
-\noindent
-\textbf{Theorem:} The existence of a God is necessary:
+\begin{description}
+\item[T3] The existence of a God is necessary:
 $$
 \nec \ex x. G(x)
 $$
-
-
-\noindent
-\textbf{Formal proof:}
+\end{description}
 
 \begin{small}
 \begin{prooftree}
@@ -293,27 +275,21 @@ $$
 \end{small}
 
 
-\section{God's existence}
+\section{God exists}
 
-
-\noindent
-\textbf{Axioms:}
-\begin{itemize}
-\item \textbf{(M)} What is necessary is the case:
+\begin{description}
+\item[M\phantom{0}] What is necessary is the case:
 $$
 \all \varphi. [\nec \varphi \imp \varphi]
 $$
-\end{itemize}
+\end{description}
 
-\noindent
-\textbf{Corollary:} There exists a God:
+\begin{description}
+\item[C2] There exists a God:
 $$
 \ex x. G(x)
 $$
-
-\noindent
-\textbf{Formal proof:}
-
+\end{description}
 
 \begin{prooftree}
 \AXC{$ $} \dashedLine \RightLabel{Th. 4}
