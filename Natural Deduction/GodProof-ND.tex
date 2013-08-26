@@ -164,12 +164,12 @@ Let the following derivation with the open assumption $G(x)$ be $\Pi_1[G(x)]$:
 \begin{prooftree}
 \AXC{$ \neg P(\psi)^1$} 
        \AXC{Axiom \ref{A1}} \dashedLine
-       \UIC{$\forall \varphi.(\neg P(\varphi)\imp P(\neg\varphi))$}\RightLabel{$\forall_E$}  
+       \UIC{$\forall \varphi.(\neg P(\varphi)\imp P(\neg\varphi))$}\RightLabel{$\all_E$}  
        \UIC{$\neg P(\psi)\imp P(\neg\psi)$}\RightLabel{$\imp_E$}   
  \BIC{$P(\neg\psi)$}\RightLabel{} 
            	\AXC{$G(x)$} \dottedLine\RightLabel{D\ref{D1}}
 		 \UIC{$\forall \varphi .(P(\varphi)\imp \varphi(x))$}\RightLabel{$\forall_E$}
-              	\UIC{$P(\varphi)\imp \varphi(x)$}\RightLabel{$\imp_E$}
+              	\UIC{$P(\neg \psi)\imp \neg \psi(x)$}\RightLabel{$\imp_E$}
            \BIC{$ \neg \psi(x)$}\RightLabel{$\imp_E$}  
             \AXC{$ \psi(x)^2$} \RightLabel{$\imp_E$}  
              \BIC{$\bot $}\RightLabel{$\mathit{RAA}^1$}  
