@@ -1,6 +1,6 @@
 (* Formalization of Goedel's ontological argument in Isabelle/HOL *)
 (* Authors: Christoph Benzmueller and Bruno Woltzenlogel-Paleo *)
-(* Date: August 11, 2013; update on August 19/20, 2013 *)
+(* Date: August 11, 2013; update on August 19/20 and 26, 2013 *)
 
 (*
 We present a formalization and (partial) automation of Dana Scott's version
@@ -210,3 +210,6 @@ theorem cor: "v(\<exists>i G)"
   using T3 refl
   unfolding valid_def mbox_def
   by metis
+
+
+
