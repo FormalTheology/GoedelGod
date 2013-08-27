@@ -86,7 +86,7 @@ axiomatization where
   A1a: "v(\<forall>p(\<lambda>\<Phi>. P(\<lambda>x. m\<not>(\<Phi>(x))) m\<Rightarrow> m\<not>(P(\<Phi>))))" and
   A1b: "v(\<forall>p(\<lambda>\<Phi>. m\<not>(P(\<Phi>)) m\<Rightarrow> P(\<lambda>x. m\<not>(\<Phi>(x)))))" and
   (* A2: A property necessarily implied by a positive property is positive. *)
-  A2: "v(\<forall>p(\<lambda>\<Phi>. \<forall>p(\<lambda>\<psi>. (P(\<Phi>) m\<and> \<box> (\<forall>i(\<lambda>X. \<Phi>(X) m\<Rightarrow> \<psi>(X))) m\<Rightarrow> P(\<psi>)))))" 
+  A2: "v(\<forall>p(\<lambda>\<Phi>. \<forall>p(\<lambda>\<psi>. ((P(\<Phi>) m\<and> \<box> (\<forall>i(\<lambda>X. \<Phi>(X) m\<Rightarrow> \<psi>(X)))) m\<Rightarrow> P(\<psi>)))))" 
 
 (* T1: Positive properties are possibly exemplified. *)
 theorem T1: "v(\<forall>p(\<lambda>\<Phi>. P(\<Phi>) m\<Rightarrow> \<diamond>(\<exists>i(\<lambda>x. \<Phi>(x)))))"
