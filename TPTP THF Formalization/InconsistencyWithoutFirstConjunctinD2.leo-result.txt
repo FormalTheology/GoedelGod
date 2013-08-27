@@ -1,0 +1,152 @@
+********************************
+*   All subproblems solved!    *
+********************************
+% SZS status Unsatisfiable for ConsistencyWithoutFirstConjunctinD2.p : (rf:0,axioms:6,ps:3,u:6,ude:false,rLeibEQ:true,rAndEQ:true,use_choice:true,use_extuni:true,use_extcnf_combined:true,expand_extuni:false,foatp:e,atp_timeout:25,atp_calls_frequency:10,ordering:none,proof_output:1,clause_count:113,loop_count:0,foatp_calls:2,translation:fof_full)
+
+%**** Beginning of derivation protocol ****
+% SZS output start CNFRefutation
+ thf(tp_mu,type,(mu: $tType)).
+ thf(tp_ess,type,(ess: ((mu>($i>$o))>(mu>($i>$o))))).
+ thf(tp_g,type,(g: (mu>($i>$o)))).
+ thf(tp_mand,type,(mand: (($i>$o)>(($i>$o)>($i>$o))))).
+ thf(tp_mbox,type,(mbox: (($i>$o)>($i>$o)))).
+ thf(tp_mbox_generic,type,(mbox_generic: (($i>($i>$o))>(($i>$o)>($i>$o))))).
+ thf(tp_mdia,type,(mdia: (($i>$o)>($i>$o)))).
+ thf(tp_mdia_generic,type,(mdia_generic: (($i>($i>$o))>(($i>$o)>($i>$o))))).
+ thf(tp_mequiv,type,(mequiv: (($i>$o)>(($i>$o)>($i>$o))))).
+ thf(tp_mexists_ind,type,(mexists_ind: ((mu>($i>$o))>($i>$o)))).
+ thf(tp_mexists_indset,type,(mexists_indset: (((mu>($i>$o))>($i>$o))>($i>$o)))).
+ thf(tp_mforall_ind,type,(mforall_ind: ((mu>($i>$o))>($i>$o)))).
+ thf(tp_mforall_indset,type,(mforall_indset: (((mu>($i>$o))>($i>$o))>($i>$o)))).
+ thf(tp_mimplies,type,(mimplies: (($i>$o)>(($i>$o)>($i>$o))))).
+ thf(tp_mnot,type,(mnot: (($i>$o)>($i>$o)))).
+ thf(tp_mor,type,(mor: (($i>$o)>(($i>$o)>($i>$o))))).
+ thf(tp_msymmetric,type,(msymmetric: (($i>($i>$o))>$o))).
+ thf(tp_ne,type,(ne: (mu>($i>$o)))).
+ thf(tp_p,type,(p: ((mu>($i>$o))>($i>$o)))).
+ thf(tp_rel,type,(rel: ($i>($i>$o)))).
+ thf(tp_sK1_SY31,type,(sK1_SY31: ((mu>($i>$o))>((mu>($i>$o))>($i>$i))))).
+ thf(tp_sK2_SY33,type,(sK2_SY33: ($i>((mu>($i>$o))>((mu>($i>$o))>mu))))).
+ thf(tp_v,type,(v: (($i>$o)>$o))).
+ thf(ess,definition,(ess = (^[Phi:(mu>($i>$o)),X:mu]: (mforall_indset@(^[Psi:(mu>($i>$o))]: ((mimplies@(Psi@X))@(mbox@(mforall_ind@(^[Y:mu]: ((mimplies@(Phi@Y))@(Psi@Y)))))))))),file('ConsistencyWithoutFirstConjunctinD2.p',ess)).
+ thf(g,definition,(g = (^[X:mu]: (mforall_indset@(^[Phi:(mu>($i>$o))]: ((mimplies@(p@Phi))@(Phi@X)))))),file('ConsistencyWithoutFirstConjunctinD2.p',g)).
+ thf(mand,definition,(mand = (^[Phi:($i>$o),Psi:($i>$o)]: (mnot@((mor@(mnot@Phi))@(mnot@Psi))))),file('ConsistencyWithoutFirstConjunctinD2.p',mand)).
+ thf(mbox,definition,(mbox = (mbox_generic@rel)),file('ConsistencyWithoutFirstConjunctinD2.p',mbox)).
+ thf(mbox_generic,definition,(mbox_generic = (^[R:($i>($i>$o)),Phi:($i>$o),W:$i]: (![V:$i]: ((~ ((R@W)@V)) | (Phi@V))))),file('ConsistencyWithoutFirstConjunctinD2.p',mbox_generic)).
+ thf(mdia,definition,(mdia = (mdia_generic@rel)),file('ConsistencyWithoutFirstConjunctinD2.p',mdia)).
+ thf(mdia_generic,definition,(mdia_generic = (^[R:($i>($i>$o)),Phi:($i>$o)]: (mnot@((mbox_generic@R)@(mnot@Phi))))),file('ConsistencyWithoutFirstConjunctinD2.p',mdia_generic)).
+ thf(mequiv,definition,(mequiv = (^[Phi:($i>$o),Psi:($i>$o)]: ((mand@((mimplies@Phi)@Psi))@((mimplies@Psi)@Phi)))),file('ConsistencyWithoutFirstConjunctinD2.p',mequiv)).
+ thf(mexists_ind,definition,(mexists_ind = (^[Phi:(mu>($i>$o))]: (mnot@(mforall_ind@(^[X:mu]: (mnot@(Phi@X))))))),file('ConsistencyWithoutFirstConjunctinD2.p',mexists_ind)).
+ thf(mexists_indset,definition,(mexists_indset = (^[Phi:((mu>($i>$o))>($i>$o))]: (mnot@(mforall_indset@(^[X:(mu>($i>$o))]: (mnot@(Phi@X))))))),file('ConsistencyWithoutFirstConjunctinD2.p',mexists_indset)).
+ thf(mforall_ind,definition,(mforall_ind = (^[Phi:(mu>($i>$o)),W:$i]: (![X:mu]: ((Phi@X)@W)))),file('ConsistencyWithoutFirstConjunctinD2.p',mforall_ind)).
+ thf(mforall_indset,definition,(mforall_indset = (^[Phi:((mu>($i>$o))>($i>$o)),W:$i]: (![X:(mu>($i>$o))]: ((Phi@X)@W)))),file('ConsistencyWithoutFirstConjunctinD2.p',mforall_indset)).
+ thf(mimplies,definition,(mimplies = (^[Phi:($i>$o),Psi:($i>$o)]: ((mor@(mnot@Phi))@Psi))),file('ConsistencyWithoutFirstConjunctinD2.p',mimplies)).
+ thf(mnot,definition,(mnot = (^[Phi:($i>$o),W:$i]: (~ (Phi@W)))),file('ConsistencyWithoutFirstConjunctinD2.p',mnot)).
+ thf(mor,definition,(mor = (^[Phi:($i>$o),Psi:($i>$o),W:$i]: ((Phi@W) | (Psi@W)))),file('ConsistencyWithoutFirstConjunctinD2.p',mor)).
+ thf(msymmetric,definition,(msymmetric = (^[R:($i>($i>$o))]: (![S:$i,T:$i]: (((R@S)@T) => ((R@T)@S))))),file('ConsistencyWithoutFirstConjunctinD2.p',msymmetric)).
+ thf(ne,definition,(ne = (^[X:mu]: (mforall_indset@(^[Phi:(mu>($i>$o))]: ((mimplies@((ess@Phi)@X))@(mbox@(mexists_ind@(^[Y:mu]: (Phi@Y))))))))),file('ConsistencyWithoutFirstConjunctinD2.p',ne)).
+ thf(v,definition,(v = (^[Phi:($i>$o)]: (![W:$i]: (Phi@W)))),file('ConsistencyWithoutFirstConjunctinD2.p',v)).
+ thf(1,axiom,(v@(p@ne)),file('ConsistencyWithoutFirstConjunctinD2.p',axA5)).
+ thf(2,axiom,(v@(mforall_indset@(^[Phi:(mu>($i>$o))]: ((mimplies@(p@Phi))@(mbox@(p@Phi)))))),file('ConsistencyWithoutFirstConjunctinD2.p',axA4)).
+ thf(3,axiom,(v@(p@g)),file('ConsistencyWithoutFirstConjunctinD2.p',axA3)).
+ thf(4,axiom,(v@(mforall_indset@(^[Phi:(mu>($i>$o))]: (mforall_indset@(^[Psi:(mu>($i>$o))]: ((mimplies@((mand@(p@Phi))@(mbox@(mforall_ind@(^[X:mu]: ((mimplies@(Phi@X))@(Psi@X)))))))@(p@Psi))))))),file('ConsistencyWithoutFirstConjunctinD2.p',axA2)).
+ thf(5,axiom,(v@(mforall_indset@(^[Phi:(mu>($i>$o))]: ((mequiv@(p@(^[X:mu]: (mnot@(Phi@X)))))@(mnot@(p@Phi)))))),file('ConsistencyWithoutFirstConjunctinD2.p',axA1)).
+ thf(6,axiom,(msymmetric@rel),file('ConsistencyWithoutFirstConjunctinD2.p',sym)).
+ thf(10,plain,(((msymmetric@rel)=$true)),inference(copy,[status(thm)],[6])).
+ thf(11,plain,(((v@(mforall_indset@(^[Phi:(mu>($i>$o))]: ((mequiv@(p@(^[X:mu]: (mnot@(Phi@X)))))@(mnot@(p@Phi))))))=$true)),inference(copy,[status(thm)],[5])).
+ thf(12,plain,(((v@(mforall_indset@(^[Phi:(mu>($i>$o))]: (mforall_indset@(^[Psi:(mu>($i>$o))]: ((mimplies@((mand@(p@Phi))@(mbox@(mforall_ind@(^[X:mu]: ((mimplies@(Phi@X))@(Psi@X)))))))@(p@Psi)))))))=$true)),inference(copy,[status(thm)],[4])).
+ thf(13,plain,(((v@(p@g))=$true)),inference(copy,[status(thm)],[3])).
+ thf(14,plain,(((v@(mforall_indset@(^[Phi:(mu>($i>$o))]: ((mimplies@(p@Phi))@(mbox@(p@Phi))))))=$true)),inference(copy,[status(thm)],[2])).
+ thf(15,plain,(((v@(p@ne))=$true)),inference(copy,[status(thm)],[1])).
+ thf(17,plain,(((![SX0:$i,SX1:(mu>($i>$o))]: ((~ ((p@SX1)@SX0)) | (![SX2:$i]: ((~ ((rel@SX0)@SX2)) | ((p@SX1)@SX2)))))=$true)),inference(unfold_def,[status(thm)],[14,ess,g,mand,mbox,mbox_generic,mdia,mdia_generic,mequiv,mexists_ind,mexists_indset,mforall_ind,mforall_indset,mimplies,mnot,mor,msymmetric,ne,v])).
+ thf(18,plain,(((![SX0:$i]: ((p@(^[SX1:mu,SX2:$i]: (![SX3:(mu>($i>$o))]: ((~ ((p@SX3)@SX2)) | ((SX3@SX1)@SX2)))))@SX0))=$true)),inference(unfold_def,[status(thm)],[13,ess,g,mand,mbox,mbox_generic,mdia,mdia_generic,mequiv,mexists_ind,mexists_indset,mforall_ind,mforall_indset,mimplies,mnot,mor,msymmetric,ne,v])).
+ thf(19,plain,(((![SX0:$i,SX1:(mu>($i>$o)),SX2:(mu>($i>$o))]: ((~ (~ ((~ ((p@SX1)@SX0)) | (~ (![SX3:$i]: ((~ ((rel@SX0)@SX3)) | (![SX4:mu]: ((~ ((SX1@SX4)@SX3)) | ((SX2@SX4)@SX3))))))))) | ((p@SX2)@SX0)))=$true)),inference(unfold_def,[status(thm)],[12,ess,g,mand,mbox,mbox_generic,mdia,mdia_generic,mequiv,mexists_ind,mexists_indset,mforall_ind,mforall_indset,mimplies,mnot,mor,msymmetric,ne,v])).
+ thf(20,plain,(((![SX0:$i,SX1:(mu>($i>$o))]: (~ ((~ ((~ ((p@(^[SX2:mu,SX3:$i]: (~ ((SX1@SX2)@SX3))))@SX0)) | (~ ((p@SX1)@SX0)))) | (~ ((~ (~ ((p@SX1)@SX0))) | ((p@(^[SX2:mu,SX3:$i]: (~ ((SX1@SX2)@SX3))))@SX0))))))=$true)),inference(unfold_def,[status(thm)],[11,ess,g,mand,mbox,mbox_generic,mdia,mdia_generic,mequiv,mexists_ind,mexists_indset,mforall_ind,mforall_indset,mimplies,mnot,mor,msymmetric,ne,v])).
+ thf(21,plain,(((![SX0:$i,SX1:$i]: ((~ ((rel@SX0)@SX1)) | ((rel@SX1)@SX0)))=$true)),inference(unfold_def,[status(thm)],[10,ess,g,mand,mbox,mbox_generic,mdia,mdia_generic,mequiv,mexists_ind,mexists_indset,mforall_ind,mforall_indset,mimplies,mnot,mor,msymmetric,ne,v])).
+ thf(22,plain,(((![SX0:$i]: ((p@(^[SX1:mu,SX2:$i]: (![SX3:(mu>($i>$o))]: ((~ (![SX4:(mu>($i>$o))]: ((~ ((SX4@SX1)@SX2)) | (![SX5:$i]: ((~ ((rel@SX2)@SX5)) | (![SX6:mu]: ((~ ((SX3@SX6)@SX5)) | ((SX4@SX6)@SX5)))))))) | (![SX4:$i]: ((~ ((rel@SX2)@SX4)) | (~ (![SX5:mu]: (~ ((SX3@SX5)@SX4))))))))))@SX0))=$true)),inference(unfold_def,[status(thm)],[15,ess,g,mand,mbox,mbox_generic,mdia,mdia_generic,mequiv,mexists_ind,mexists_indset,mforall_ind,mforall_indset,mimplies,mnot,mor,msymmetric,ne,v])).
+ thf(24,plain,(![SV1:$i]: (((![SY0:(mu>($i>$o))]: ((~ ((p@SY0)@SV1)) | (![SY1:$i]: ((~ ((rel@SV1)@SY1)) | ((p@SY0)@SY1)))))=$true))),inference(extcnf_forall_pos,[status(thm)],[17])).
+ thf(25,plain,(![SV2:$i]: ((((p@(^[SX1:mu,SX2:$i]: (![SX3:(mu>($i>$o))]: ((~ ((p@SX3)@SX2)) | ((SX3@SX1)@SX2)))))@SV2)=$true))),inference(extcnf_forall_pos,[status(thm)],[18])).
+ thf(26,plain,(![SV3:$i]: (((![SY5:(mu>($i>$o)),SY6:(mu>($i>$o))]: ((~ (~ ((~ ((p@SY5)@SV3)) | (~ (![SY7:$i]: ((~ ((rel@SV3)@SY7)) | (![SX4:mu]: ((~ ((SY5@SX4)@SY7)) | ((SY6@SX4)@SY7))))))))) | ((p@SY6)@SV3)))=$true))),inference(extcnf_forall_pos,[status(thm)],[19])).
+ thf(27,plain,(![SV4:$i]: (((![SY9:(mu>($i>$o))]: (~ ((~ ((~ ((p@(^[SX2:mu,SX3:$i]: (~ ((SY9@SX2)@SX3))))@SV4)) | (~ ((p@SY9)@SV4)))) | (~ ((~ (~ ((p@SY9)@SV4))) | ((p@(^[SX2:mu,SX3:$i]: (~ ((SY9@SX2)@SX3))))@SV4))))))=$true))),inference(extcnf_forall_pos,[status(thm)],[20])).
+ thf(28,plain,(![SV5:$i]: (((![SY14:$i]: ((~ ((rel@SV5)@SY14)) | ((rel@SY14)@SV5)))=$true))),inference(extcnf_forall_pos,[status(thm)],[21])).
+ thf(29,plain,(![SV6:$i]: ((((p@(^[SX1:mu,SX2:$i]: (![SX3:(mu>($i>$o))]: ((~ (![SX4:(mu>($i>$o))]: ((~ ((SX4@SX1)@SX2)) | (![SX5:$i]: ((~ ((rel@SX2)@SX5)) | (![SX6:mu]: ((~ ((SX3@SX6)@SX5)) | ((SX4@SX6)@SX5)))))))) | (![SX4:$i]: ((~ ((rel@SX2)@SX4)) | (~ (![SX5:mu]: (~ ((SX3@SX5)@SX4))))))))))@SV6)=$true))),inference(extcnf_forall_pos,[status(thm)],[22])).
+ thf(30,plain,(![SV1:$i,SV7:(mu>($i>$o))]: ((((~ ((p@SV7)@SV1)) | (![SY23:$i]: ((~ ((rel@SV1)@SY23)) | ((p@SV7)@SY23))))=$true))),inference(extcnf_forall_pos,[status(thm)],[24])).
+ thf(31,plain,(![SV3:$i,SV8:(mu>($i>$o))]: (((![SY24:(mu>($i>$o))]: ((~ (~ ((~ ((p@SV8)@SV3)) | (~ (![SY25:$i]: ((~ ((rel@SV3)@SY25)) | (![SY26:mu]: ((~ ((SV8@SY26)@SY25)) | ((SY24@SY26)@SY25))))))))) | ((p@SY24)@SV3)))=$true))),inference(extcnf_forall_pos,[status(thm)],[26])).
+ thf(32,plain,(![SV4:$i,SV9:(mu>($i>$o))]: (((~ ((~ ((~ ((p@(^[SY27:mu,SY28:$i]: (~ ((SV9@SY27)@SY28))))@SV4)) | (~ ((p@SV9)@SV4)))) | (~ ((~ (~ ((p@SV9)@SV4))) | ((p@(^[SY29:mu,SY30:$i]: (~ ((SV9@SY29)@SY30))))@SV4)))))=$true))),inference(extcnf_forall_pos,[status(thm)],[27])).
+ thf(33,plain,(![SV10:$i,SV5:$i]: ((((~ ((rel@SV5)@SV10)) | ((rel@SV10)@SV5))=$true))),inference(extcnf_forall_pos,[status(thm)],[28])).
+ thf(34,plain,(![SV1:$i,SV7:(mu>($i>$o))]: (((~ ((p@SV7)@SV1))=$true) | ((![SY23:$i]: ((~ ((rel@SV1)@SY23)) | ((p@SV7)@SY23)))=$true))),inference(extcnf_or_pos,[status(thm)],[30])).
+ thf(35,plain,(![SV11:(mu>($i>$o)),SV3:$i,SV8:(mu>($i>$o))]: ((((~ (~ ((~ ((p@SV8)@SV3)) | (~ (![SY31:$i]: ((~ ((rel@SV3)@SY31)) | (![SY32:mu]: ((~ ((SV8@SY32)@SY31)) | ((SV11@SY32)@SY31))))))))) | ((p@SV11)@SV3))=$true))),inference(extcnf_forall_pos,[status(thm)],[31])).
+ thf(36,plain,(![SV4:$i,SV9:(mu>($i>$o))]: ((((~ ((~ ((p@(^[SY27:mu,SY28:$i]: (~ ((SV9@SY27)@SY28))))@SV4)) | (~ ((p@SV9)@SV4)))) | (~ ((~ (~ ((p@SV9)@SV4))) | ((p@(^[SY29:mu,SY30:$i]: (~ ((SV9@SY29)@SY30))))@SV4))))=$false))),inference(extcnf_not_pos,[status(thm)],[32])).
+ thf(37,plain,(![SV10:$i,SV5:$i]: (((~ ((rel@SV5)@SV10))=$true) | (((rel@SV10)@SV5)=$true))),inference(extcnf_or_pos,[status(thm)],[33])).
+ thf(38,plain,(![SV1:$i,SV7:(mu>($i>$o))]: ((((p@SV7)@SV1)=$false) | ((![SY23:$i]: ((~ ((rel@SV1)@SY23)) | ((p@SV7)@SY23)))=$true))),inference(extcnf_not_pos,[status(thm)],[34])).
+ thf(39,plain,(![SV11:(mu>($i>$o)),SV3:$i,SV8:(mu>($i>$o))]: (((~ (~ ((~ ((p@SV8)@SV3)) | (~ (![SY31:$i]: ((~ ((rel@SV3)@SY31)) | (![SY32:mu]: ((~ ((SV8@SY32)@SY31)) | ((SV11@SY32)@SY31)))))))))=$true) | (((p@SV11)@SV3)=$true))),inference(extcnf_or_pos,[status(thm)],[35])).
+ thf(40,plain,(![SV4:$i,SV9:(mu>($i>$o))]: (((~ ((~ ((p@(^[SY27:mu,SY28:$i]: (~ ((SV9@SY27)@SY28))))@SV4)) | (~ ((p@SV9)@SV4))))=$false))),inference(extcnf_or_neg,[status(thm)],[36])).
+ thf(41,plain,(![SV4:$i,SV9:(mu>($i>$o))]: (((~ ((~ (~ ((p@SV9)@SV4))) | ((p@(^[SY29:mu,SY30:$i]: (~ ((SV9@SY29)@SY30))))@SV4)))=$false))),inference(extcnf_or_neg,[status(thm)],[36])).
+ thf(42,plain,(![SV10:$i,SV5:$i]: ((((rel@SV5)@SV10)=$false) | (((rel@SV10)@SV5)=$true))),inference(extcnf_not_pos,[status(thm)],[37])).
+ thf(43,plain,(![SV7:(mu>($i>$o)),SV12:$i,SV1:$i]: ((((~ ((rel@SV1)@SV12)) | ((p@SV7)@SV12))=$true) | (((p@SV7)@SV1)=$false))),inference(extcnf_forall_pos,[status(thm)],[38])).
+ thf(44,plain,(![SV11:(mu>($i>$o)),SV3:$i,SV8:(mu>($i>$o))]: (((~ ((~ ((p@SV8)@SV3)) | (~ (![SY31:$i]: ((~ ((rel@SV3)@SY31)) | (![SY32:mu]: ((~ ((SV8@SY32)@SY31)) | ((SV11@SY32)@SY31))))))))=$false) | (((p@SV11)@SV3)=$true))),inference(extcnf_not_pos,[status(thm)],[39])).
+ thf(45,plain,(![SV4:$i,SV9:(mu>($i>$o))]: ((((~ ((p@(^[SY27:mu,SY28:$i]: (~ ((SV9@SY27)@SY28))))@SV4)) | (~ ((p@SV9)@SV4)))=$true))),inference(extcnf_not_neg,[status(thm)],[40])).
+ thf(46,plain,(![SV4:$i,SV9:(mu>($i>$o))]: ((((~ (~ ((p@SV9)@SV4))) | ((p@(^[SY29:mu,SY30:$i]: (~ ((SV9@SY29)@SY30))))@SV4))=$true))),inference(extcnf_not_neg,[status(thm)],[41])).
+ thf(47,plain,(![SV7:(mu>($i>$o)),SV12:$i,SV1:$i]: (((~ ((rel@SV1)@SV12))=$true) | (((p@SV7)@SV12)=$true) | (((p@SV7)@SV1)=$false))),inference(extcnf_or_pos,[status(thm)],[43])).
+ thf(48,plain,(![SV11:(mu>($i>$o)),SV3:$i,SV8:(mu>($i>$o))]: ((((~ ((p@SV8)@SV3)) | (~ (![SY31:$i]: ((~ ((rel@SV3)@SY31)) | (![SY32:mu]: ((~ ((SV8@SY32)@SY31)) | ((SV11@SY32)@SY31)))))))=$true) | (((p@SV11)@SV3)=$true))),inference(extcnf_not_neg,[status(thm)],[44])).
+ thf(49,plain,(![SV4:$i,SV9:(mu>($i>$o))]: (((~ ((p@(^[SY27:mu,SY28:$i]: (~ ((SV9@SY27)@SY28))))@SV4))=$true) | ((~ ((p@SV9)@SV4))=$true))),inference(extcnf_or_pos,[status(thm)],[45])).
+ thf(50,plain,(![SV4:$i,SV9:(mu>($i>$o))]: (((~ (~ ((p@SV9)@SV4)))=$true) | (((p@(^[SY29:mu,SY30:$i]: (~ ((SV9@SY29)@SY30))))@SV4)=$true))),inference(extcnf_or_pos,[status(thm)],[46])).
+ thf(51,plain,(![SV7:(mu>($i>$o)),SV12:$i,SV1:$i]: ((((rel@SV1)@SV12)=$false) | (((p@SV7)@SV12)=$true) | (((p@SV7)@SV1)=$false))),inference(extcnf_not_pos,[status(thm)],[47])).
+ thf(52,plain,(![SV11:(mu>($i>$o)),SV3:$i,SV8:(mu>($i>$o))]: (((~ ((p@SV8)@SV3))=$true) | ((~ (![SY31:$i]: ((~ ((rel@SV3)@SY31)) | (![SY32:mu]: ((~ ((SV8@SY32)@SY31)) | ((SV11@SY32)@SY31))))))=$true) | (((p@SV11)@SV3)=$true))),inference(extcnf_or_pos,[status(thm)],[48])).
+ thf(53,plain,(![SV4:$i,SV9:(mu>($i>$o))]: ((((p@(^[SY27:mu,SY28:$i]: (~ ((SV9@SY27)@SY28))))@SV4)=$false) | ((~ ((p@SV9)@SV4))=$true))),inference(extcnf_not_pos,[status(thm)],[49])).
+ thf(54,plain,(![SV4:$i,SV9:(mu>($i>$o))]: (((~ ((p@SV9)@SV4))=$false) | (((p@(^[SY29:mu,SY30:$i]: (~ ((SV9@SY29)@SY30))))@SV4)=$true))),inference(extcnf_not_pos,[status(thm)],[50])).
+ thf(55,plain,(![SV11:(mu>($i>$o)),SV3:$i,SV8:(mu>($i>$o))]: ((((p@SV8)@SV3)=$false) | ((~ (![SY31:$i]: ((~ ((rel@SV3)@SY31)) | (![SY32:mu]: ((~ ((SV8@SY32)@SY31)) | ((SV11@SY32)@SY31))))))=$true) | (((p@SV11)@SV3)=$true))),inference(extcnf_not_pos,[status(thm)],[52])).
+ thf(56,plain,(![SV4:$i,SV9:(mu>($i>$o))]: ((((p@SV9)@SV4)=$false) | (((p@(^[SY27:mu,SY28:$i]: (~ ((SV9@SY27)@SY28))))@SV4)=$false))),inference(extcnf_not_pos,[status(thm)],[53])).
+ thf(57,plain,(![SV4:$i,SV9:(mu>($i>$o))]: ((((p@SV9)@SV4)=$true) | (((p@(^[SY29:mu,SY30:$i]: (~ ((SV9@SY29)@SY30))))@SV4)=$true))),inference(extcnf_not_neg,[status(thm)],[54])).
+ thf(58,plain,(![SV11:(mu>($i>$o)),SV8:(mu>($i>$o)),SV3:$i]: (((![SY31:$i]: ((~ ((rel@SV3)@SY31)) | (![SY32:mu]: ((~ ((SV8@SY32)@SY31)) | ((SV11@SY32)@SY31)))))=$false) | (((p@SV8)@SV3)=$false) | (((p@SV11)@SV3)=$true))),inference(extcnf_not_pos,[status(thm)],[55])).
+ thf(59,plain,(![SV8:(mu>($i>$o)),SV11:(mu>($i>$o)),SV3:$i]: ((((~ ((rel@SV3)@(((sK1_SY31@SV11)@SV8)@SV3))) | (![SY33:mu]: ((~ ((SV8@SY33)@(((sK1_SY31@SV11)@SV8)@SV3))) | ((SV11@SY33)@(((sK1_SY31@SV11)@SV8)@SV3)))))=$false) | (((p@SV8)@SV3)=$false) | (((p@SV11)@SV3)=$true))),inference(extcnf_forall_neg,[status(esa)],[58])).
+ thf(60,plain,(![SV8:(mu>($i>$o)),SV11:(mu>($i>$o)),SV3:$i]: (((~ ((rel@SV3)@(((sK1_SY31@SV11)@SV8)@SV3)))=$false) | (((p@SV8)@SV3)=$false) | (((p@SV11)@SV3)=$true))),inference(extcnf_or_neg,[status(thm)],[59])).
+ thf(61,plain,(![SV3:$i,SV11:(mu>($i>$o)),SV8:(mu>($i>$o))]: (((![SY33:mu]: ((~ ((SV8@SY33)@(((sK1_SY31@SV11)@SV8)@SV3))) | ((SV11@SY33)@(((sK1_SY31@SV11)@SV8)@SV3))))=$false) | (((p@SV8)@SV3)=$false) | (((p@SV11)@SV3)=$true))),inference(extcnf_or_neg,[status(thm)],[59])).
+ thf(62,plain,(![SV8:(mu>($i>$o)),SV11:(mu>($i>$o)),SV3:$i]: ((((rel@SV3)@(((sK1_SY31@SV11)@SV8)@SV3))=$true) | (((p@SV8)@SV3)=$false) | (((p@SV11)@SV3)=$true))),inference(extcnf_not_neg,[status(thm)],[60])).
+ thf(63,plain,(![SV11:(mu>($i>$o)),SV3:$i,SV8:(mu>($i>$o))]: ((((~ ((SV8@(((sK2_SY33@SV3)@SV11)@SV8))@(((sK1_SY31@SV11)@SV8)@SV3))) | ((SV11@(((sK2_SY33@SV3)@SV11)@SV8))@(((sK1_SY31@SV11)@SV8)@SV3)))=$false) | (((p@SV8)@SV3)=$false) | (((p@SV11)@SV3)=$true))),inference(extcnf_forall_neg,[status(esa)],[61])).
+ thf(64,plain,(![SV11:(mu>($i>$o)),SV3:$i,SV8:(mu>($i>$o))]: (((~ ((SV8@(((sK2_SY33@SV3)@SV11)@SV8))@(((sK1_SY31@SV11)@SV8)@SV3)))=$false) | (((p@SV8)@SV3)=$false) | (((p@SV11)@SV3)=$true))),inference(extcnf_or_neg,[status(thm)],[63])).
+ thf(65,plain,(![SV8:(mu>($i>$o)),SV3:$i,SV11:(mu>($i>$o))]: ((((SV11@(((sK2_SY33@SV3)@SV11)@SV8))@(((sK1_SY31@SV11)@SV8)@SV3))=$false) | (((p@SV8)@SV3)=$false) | (((p@SV11)@SV3)=$true))),inference(extcnf_or_neg,[status(thm)],[63])).
+ thf(66,plain,(![SV11:(mu>($i>$o)),SV3:$i,SV8:(mu>($i>$o))]: ((((SV8@(((sK2_SY33@SV3)@SV11)@SV8))@(((sK1_SY31@SV11)@SV8)@SV3))=$true) | (((p@SV8)@SV3)=$false) | (((p@SV11)@SV3)=$true))),inference(extcnf_not_neg,[status(thm)],[64])).
+ thf(67,plain,(![SV11:(mu>($i>$o)),SV3:$i]: ((((rel@SV3)@(((sK1_SY31@SV11)@(^[SX0:mu,SX1:$i]: $true))@SV3))=$true) | (((p@(^[SX0:mu,SX1:$i]: $true))@SV3)=$false) | (((p@SV11)@SV3)=$true))),inference(prim_subst,[status(thm)],[62:[bind(SV8,$thf(^[SV18:mu,SV19:$i]: $true))]])).
+ thf(68,plain,(![SV11:(mu>($i>$o)),SV3:$i]: ((((rel@SV3)@(((sK1_SY31@SV11)@(^[SX0:mu,SX1:$i]: $false))@SV3))=$true) | (((p@(^[SX0:mu,SX1:$i]: $false))@SV3)=$false) | (((p@SV11)@SV3)=$true))),inference(prim_subst,[status(thm)],[62:[bind(SV8,$thf(^[SV16:mu,SV17:$i]: $false))]])).
+ thf(69,plain,(![SV15:(mu>($i>$o)),SV11:(mu>($i>$o)),SV3:$i]: ((((rel@SV3)@(((sK1_SY31@SV11)@(^[SX0:mu,SX1:$i]: (~ ((SV15@SX0)@SX1))))@SV3))=$true) | (((p@(^[SX0:mu,SX1:$i]: (~ ((SV15@SX0)@SX1))))@SV3)=$false) | (((p@SV11)@SV3)=$true))),inference(prim_subst,[status(thm)],[62:[bind(SV8,$thf(^[SV13:mu,SV14:$i]: (~ ((SV15@SV13)@SV14))))]])).
+ thf(70,plain,(![SV8:(mu>($i>$o)),SV3:$i]: ((((rel@SV3)@(((sK1_SY31@(^[SX0:mu,SX1:$i]: $true))@SV8)@SV3))=$true) | (((p@SV8)@SV3)=$false) | (((p@(^[SX0:mu,SX1:$i]: $true))@SV3)=$true))),inference(prim_subst,[status(thm)],[62:[bind(SV11,$thf(^[SV25:mu,SV26:$i]: $true))]])).
+ thf(71,plain,(![SV8:(mu>($i>$o)),SV3:$i]: ((((rel@SV3)@(((sK1_SY31@(^[SX0:mu,SX1:$i]: $false))@SV8)@SV3))=$true) | (((p@SV8)@SV3)=$false) | (((p@(^[SX0:mu,SX1:$i]: $false))@SV3)=$true))),inference(prim_subst,[status(thm)],[62:[bind(SV11,$thf(^[SV23:mu,SV24:$i]: $false))]])).
+ thf(72,plain,(![SV8:(mu>($i>$o)),SV22:(mu>($i>$o)),SV3:$i]: ((((rel@SV3)@(((sK1_SY31@(^[SX0:mu,SX1:$i]: (~ ((SV22@SX0)@SX1))))@SV8)@SV3))=$true) | (((p@SV8)@SV3)=$false) | (((p@(^[SX0:mu,SX1:$i]: (~ ((SV22@SX0)@SX1))))@SV3)=$true))),inference(prim_subst,[status(thm)],[62:[bind(SV11,$thf(^[SV20:mu,SV21:$i]: (~ ((SV22@SV20)@SV21))))]])).
+ thf(73,plain,(![SV3:$i,SV11:(mu>($i>$o))]: ((((SV11@(((sK2_SY33@SV3)@SV11)@(^[SX0:mu,SX1:$i]: $true)))@(((sK1_SY31@SV11)@(^[SX0:mu,SX1:$i]: $true))@SV3))=$false) | (((p@(^[SX0:mu,SX1:$i]: $true))@SV3)=$false) | (((p@SV11)@SV3)=$true))),inference(prim_subst,[status(thm)],[65:[bind(SV8,$thf(^[SV18:mu,SV19:$i]: $true))]])).
+ thf(74,plain,(![SV3:$i,SV11:(mu>($i>$o))]: ((((SV11@(((sK2_SY33@SV3)@SV11)@(^[SX0:mu,SX1:$i]: $false)))@(((sK1_SY31@SV11)@(^[SX0:mu,SX1:$i]: $false))@SV3))=$false) | (((p@(^[SX0:mu,SX1:$i]: $false))@SV3)=$false) | (((p@SV11)@SV3)=$true))),inference(prim_subst,[status(thm)],[65:[bind(SV8,$thf(^[SV16:mu,SV17:$i]: $false))]])).
+ thf(75,plain,(![SV15:(mu>($i>$o)),SV3:$i,SV11:(mu>($i>$o))]: ((((SV11@(((sK2_SY33@SV3)@SV11)@(^[SX0:mu,SX1:$i]: (~ ((SV15@SX0)@SX1)))))@(((sK1_SY31@SV11)@(^[SX0:mu,SX1:$i]: (~ ((SV15@SX0)@SX1))))@SV3))=$false) | (((p@(^[SX0:mu,SX1:$i]: (~ ((SV15@SX0)@SX1))))@SV3)=$false) | (((p@SV11)@SV3)=$true))),inference(prim_subst,[status(thm)],[65:[bind(SV8,$thf(^[SV13:mu,SV14:$i]: (~ ((SV15@SV13)@SV14))))]])).
+ thf(76,plain,(![SV3:$i,SV8:(mu>($i>$o))]: ((($true)=$false) | (((p@SV8)@SV3)=$false) | (((p@(^[SX0:mu,SX1:$i]: $true))@SV3)=$true))),inference(prim_subst,[status(thm)],[65:[bind(SV11,$thf(^[SV25:mu,SV26:$i]: $true))]])).
+ thf(78,plain,(![SV8:(mu>($i>$o)),SV3:$i,SV22:(mu>($i>$o))]: (((~ ((SV22@(((sK2_SY33@SV3)@(^[SX0:mu,SX1:$i]: (~ ((SV22@SX0)@SX1))))@SV8))@(((sK1_SY31@(^[SX0:mu,SX1:$i]: (~ ((SV22@SX0)@SX1))))@SV8)@SV3)))=$false) | (((p@SV8)@SV3)=$false) | (((p@(^[SX0:mu,SX1:$i]: (~ ((SV22@SX0)@SX1))))@SV3)=$true))),inference(prim_subst,[status(thm)],[65:[bind(SV11,$thf(^[SV20:mu,SV21:$i]: (~ ((SV22@SV20)@SV21))))]])).
+ thf(80,plain,(![SV11:(mu>($i>$o)),SV3:$i]: ((($false)=$true) | (((p@(^[SX0:mu,SX1:$i]: $false))@SV3)=$false) | (((p@SV11)@SV3)=$true))),inference(prim_subst,[status(thm)],[66:[bind(SV8,$thf(^[SV16:mu,SV17:$i]: $false))]])).
+ thf(81,plain,(![SV11:(mu>($i>$o)),SV3:$i,SV15:(mu>($i>$o))]: (((~ ((SV15@(((sK2_SY33@SV3)@SV11)@(^[SX0:mu,SX1:$i]: (~ ((SV15@SX0)@SX1)))))@(((sK1_SY31@SV11)@(^[SX0:mu,SX1:$i]: (~ ((SV15@SX0)@SX1))))@SV3)))=$true) | (((p@(^[SX0:mu,SX1:$i]: (~ ((SV15@SX0)@SX1))))@SV3)=$false) | (((p@SV11)@SV3)=$true))),inference(prim_subst,[status(thm)],[66:[bind(SV8,$thf(^[SV13:mu,SV14:$i]: (~ ((SV15@SV13)@SV14))))]])).
+ thf(82,plain,(![SV3:$i,SV8:(mu>($i>$o))]: ((((SV8@(((sK2_SY33@SV3)@(^[SX0:mu,SX1:$i]: $true))@SV8))@(((sK1_SY31@(^[SX0:mu,SX1:$i]: $true))@SV8)@SV3))=$true) | (((p@SV8)@SV3)=$false) | (((p@(^[SX0:mu,SX1:$i]: $true))@SV3)=$true))),inference(prim_subst,[status(thm)],[66:[bind(SV11,$thf(^[SV25:mu,SV26:$i]: $true))]])).
+ thf(83,plain,(![SV3:$i,SV8:(mu>($i>$o))]: ((((SV8@(((sK2_SY33@SV3)@(^[SX0:mu,SX1:$i]: $false))@SV8))@(((sK1_SY31@(^[SX0:mu,SX1:$i]: $false))@SV8)@SV3))=$true) | (((p@SV8)@SV3)=$false) | (((p@(^[SX0:mu,SX1:$i]: $false))@SV3)=$true))),inference(prim_subst,[status(thm)],[66:[bind(SV11,$thf(^[SV23:mu,SV24:$i]: $false))]])).
+ thf(84,plain,(![SV22:(mu>($i>$o)),SV3:$i,SV8:(mu>($i>$o))]: ((((SV8@(((sK2_SY33@SV3)@(^[SX0:mu,SX1:$i]: (~ ((SV22@SX0)@SX1))))@SV8))@(((sK1_SY31@(^[SX0:mu,SX1:$i]: (~ ((SV22@SX0)@SX1))))@SV8)@SV3))=$true) | (((p@SV8)@SV3)=$false) | (((p@(^[SX0:mu,SX1:$i]: (~ ((SV22@SX0)@SX1))))@SV3)=$true))),inference(prim_subst,[status(thm)],[66:[bind(SV11,$thf(^[SV20:mu,SV21:$i]: (~ ((SV22@SV20)@SV21))))]])).
+ thf(85,plain,(![SV4:$i,SV9:(mu>($i>$o))]: ((((p@(^[SY27:mu,SY28:$i]: (~ ((SV9@SY27)@SY28))))@SV4)=$false) | ((((p@SV9)@SV4) = ((p@(^[SY27:mu,SY28:$i]: (~ ((SV9@SY27)@SY28))))@SV4))=$false))),inference(fac_restr,[status(thm)],[56])).
+ thf(86,plain,(![SV4:$i,SV9:(mu>($i>$o))]: ((((p@(^[SY29:mu,SY30:$i]: (~ ((SV9@SY29)@SY30))))@SV4)=$true) | ((((p@SV9)@SV4) = ((p@(^[SY29:mu,SY30:$i]: (~ ((SV9@SY29)@SY30))))@SV4))=$false))),inference(fac_restr,[status(thm)],[57])).
+ thf(87,plain,(![SV4:$i,SV9:(mu>($i>$o))]: ((((~ (((p@SV9)@SV4) | ((p@(^[SY27:mu,SY28:$i]: (~ ((SV9@SY27)@SY28))))@SV4))) | (~ ((~ ((p@SV9)@SV4)) | (~ ((p@(^[SY27:mu,SY28:$i]: (~ ((SV9@SY27)@SY28))))@SV4)))))=$false) | (((p@(^[SY27:mu,SY28:$i]: (~ ((SV9@SY27)@SY28))))@SV4)=$false))),inference(extcnf_equal_neg,[status(thm)],[85])).
+ thf(89,plain,(![SV4:$i,SV9:(mu>($i>$o))]: ((((~ (((p@SV9)@SV4) | ((p@(^[SY29:mu,SY30:$i]: (~ ((SV9@SY29)@SY30))))@SV4))) | (~ ((~ ((p@SV9)@SV4)) | (~ ((p@(^[SY29:mu,SY30:$i]: (~ ((SV9@SY29)@SY30))))@SV4)))))=$false) | (((p@(^[SY29:mu,SY30:$i]: (~ ((SV9@SY29)@SY30))))@SV4)=$true))),inference(extcnf_equal_neg,[status(thm)],[86])).
+ thf(92,plain,(![SV4:$i,SV9:(mu>($i>$o))]: (((~ ((~ ((p@SV9)@SV4)) | (~ ((p@(^[SY27:mu,SY28:$i]: (~ ((SV9@SY27)@SY28))))@SV4))))=$false) | (((p@(^[SY27:mu,SY28:$i]: (~ ((SV9@SY27)@SY28))))@SV4)=$false))),inference(extcnf_or_neg,[status(thm)],[87])).
+ thf(93,plain,(![SV4:$i,SV9:(mu>($i>$o))]: (((~ (((p@SV9)@SV4) | ((p@(^[SY29:mu,SY30:$i]: (~ ((SV9@SY29)@SY30))))@SV4)))=$false) | (((p@(^[SY29:mu,SY30:$i]: (~ ((SV9@SY29)@SY30))))@SV4)=$true))),inference(extcnf_or_neg,[status(thm)],[89])).
+ thf(96,plain,(![SV4:$i,SV9:(mu>($i>$o))]: ((((~ ((p@SV9)@SV4)) | (~ ((p@(^[SY27:mu,SY28:$i]: (~ ((SV9@SY27)@SY28))))@SV4)))=$true) | (((p@(^[SY27:mu,SY28:$i]: (~ ((SV9@SY27)@SY28))))@SV4)=$false))),inference(extcnf_not_neg,[status(thm)],[92])).
+ thf(97,plain,(![SV4:$i,SV9:(mu>($i>$o))]: (((((p@SV9)@SV4) | ((p@(^[SY29:mu,SY30:$i]: (~ ((SV9@SY29)@SY30))))@SV4))=$true) | (((p@(^[SY29:mu,SY30:$i]: (~ ((SV9@SY29)@SY30))))@SV4)=$true))),inference(extcnf_not_neg,[status(thm)],[93])).
+ thf(100,plain,(![SV4:$i,SV9:(mu>($i>$o))]: (((~ ((p@SV9)@SV4))=$true) | ((~ ((p@(^[SY27:mu,SY28:$i]: (~ ((SV9@SY27)@SY28))))@SV4))=$true) | (((p@(^[SY27:mu,SY28:$i]: (~ ((SV9@SY27)@SY28))))@SV4)=$false))),inference(extcnf_or_pos,[status(thm)],[96])).
+ thf(101,plain,(![SV4:$i,SV9:(mu>($i>$o))]: ((((p@SV9)@SV4)=$true) | (((p@(^[SY29:mu,SY30:$i]: (~ ((SV9@SY29)@SY30))))@SV4)=$true) | (((p@(^[SY29:mu,SY30:$i]: (~ ((SV9@SY29)@SY30))))@SV4)=$true))),inference(extcnf_or_pos,[status(thm)],[97])).
+ thf(103,plain,(![SV4:$i,SV9:(mu>($i>$o))]: ((((p@SV9)@SV4)=$false) | ((~ ((p@(^[SY27:mu,SY28:$i]: (~ ((SV9@SY27)@SY28))))@SV4))=$true) | (((p@(^[SY27:mu,SY28:$i]: (~ ((SV9@SY27)@SY28))))@SV4)=$false))),inference(extcnf_not_pos,[status(thm)],[100])).
+ thf(105,plain,(![SV4:$i,SV9:(mu>($i>$o))]: ((((p@(^[SY27:mu,SY28:$i]: (~ ((SV9@SY27)@SY28))))@SV4)=$false) | (((p@SV9)@SV4)=$false) | (((p@(^[SY27:mu,SY28:$i]: (~ ((SV9@SY27)@SY28))))@SV4)=$false))),inference(extcnf_not_pos,[status(thm)],[103])).
+ thf(107,plain,(![SV8:(mu>($i>$o)),SV3:$i,SV22:(mu>($i>$o))]: ((((SV22@(((sK2_SY33@SV3)@(^[SX0:mu,SX1:$i]: (~ ((SV22@SX0)@SX1))))@SV8))@(((sK1_SY31@(^[SX0:mu,SX1:$i]: (~ ((SV22@SX0)@SX1))))@SV8)@SV3))=$true) | (((p@SV8)@SV3)=$false) | (((p@(^[SX0:mu,SX1:$i]: (~ ((SV22@SX0)@SX1))))@SV3)=$true))),inference(extcnf_not_neg,[status(thm)],[78])).
+ thf(108,plain,(![SV11:(mu>($i>$o)),SV3:$i,SV15:(mu>($i>$o))]: ((((SV15@(((sK2_SY33@SV3)@SV11)@(^[SX0:mu,SX1:$i]: (~ ((SV15@SX0)@SX1)))))@(((sK1_SY31@SV11)@(^[SX0:mu,SX1:$i]: (~ ((SV15@SX0)@SX1))))@SV3))=$false) | (((p@(^[SX0:mu,SX1:$i]: (~ ((SV15@SX0)@SX1))))@SV3)=$false) | (((p@SV11)@SV3)=$true))),inference(extcnf_not_pos,[status(thm)],[81])).
+ thf(109,plain,(![SV4:$i,SV9:(mu>($i>$o))]: ((((p@(^[SY27:mu,SY28:$i]: (~ ((SV9@SY27)@SY28))))@SV4)=$false) | (((p@SV9)@SV4)=$false))),inference(sim,[status(thm)],[105])).
+ thf(110,plain,(![SV4:$i,SV9:(mu>($i>$o))]: ((((p@SV9)@SV4)=$true) | (((p@(^[SY29:mu,SY30:$i]: (~ ((SV9@SY29)@SY30))))@SV4)=$true))),inference(sim,[status(thm)],[101])).
+ thf(111,plain,(![SV3:$i,SV8:(mu>($i>$o))]: ((((p@SV8)@SV3)=$false) | (((p@(^[SX0:mu,SX1:$i]: $true))@SV3)=$true))),inference(sim,[status(thm)],[76])).
+ thf(112,plain,(![SV11:(mu>($i>$o)),SV3:$i]: ((((p@(^[SX0:mu,SX1:$i]: $false))@SV3)=$false) | (((p@SV11)@SV3)=$true))),inference(sim,[status(thm)],[80])).
+ thf(113,plain,((($false)=$true)),inference(fo_atp_e,[status(thm)],[25,112,111,110,109,108,107,84,83,82,75,74,73,72,71,70,69,68,67,66,65,62,57,56,51,42,29])).
+ thf(114,plain,($false),inference(solved_all_splits,[solved_all_splits(join,[])],[113])).
+% SZS output end CNFRefutation
+
+%**** End of derivation protocol ****
+%**** no. of clauses in derivation: 97 ****
+%**** clause counter: 113 ****
+
+% SZS status Unsatisfiable for ConsistencyWithoutFirstConjunctinD2.p : (rf:0,axioms:6,ps:3,u:6,ude:false,rLeibEQ:true,rAndEQ:true,use_choice:true,use_extuni:true,use_extcnf_combined:true,expand_extuni:false,foatp:e,atp_timeout:25,atp_calls_frequency:10,ordering:none,proof_output:1,clause_count:113,loop_count:0,foatp_calls:2,translation:fof_full)

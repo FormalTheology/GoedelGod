@@ -122,6 +122,17 @@ thf(mexists_ind,definition,
             @ ^ [X: mu] :
                 ( mnot @ ( Phi @ X ) ) ) ) ) )).
 
+thf(mexists_indset_type,type,(
+    mexists_indset: ( ( mu > $i > $o ) > $i > $o ) > $i > $o )).
+
+thf(mexists_indset,definition,
+    ( mexists_indset
+    = ( ^ [Phi: ( mu > $i > $o ) > $i > $o] :
+          ( mnot	  
+          @ ( mforall_indset
+            @ ^ [X: mu > $i > $o ] :
+                ( mnot @ ( Phi @ X ) ) ) ) ) )).
+
 %----Definition of validity
 thf(v_type,type,(
     v: ( $i > $o ) > $o )).

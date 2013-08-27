@@ -202,6 +202,7 @@ theorem T3: "v(\<box>(\<exists>i G))"
    thus we move from logic KB to MB *)
 axiomatization where refl: "x r x" 
   
+
 (* Corollary: God exists. *)
 theorem cor: "v(\<exists>i G)"
   (* immeadiate success with sledgehammer *)
