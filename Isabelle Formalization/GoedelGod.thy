@@ -37,6 +37,12 @@ c) In the Isabelle/HOL formalization all steps in the argument have been automat
    suggested respective metis calls as given below. 
 d) The reconstruction with metis still fails for thm1, but when some further
    lemmata are introduced we get success; the respective lemmata are called help1-4.
+
+Acknowledments: Nik Sultana, Jasmin Blanchette and Larry Paulson provided very important 
+help wrt consistency checking in Isabelle (in an intermediate version of the Isabelle 
+formalization axiom A2 got messed up; this was then detected by sledgehammer and 
+nitpick and has subsequently been corrected again. As a result of this experience several
+consistency checks with Nitpick have now been added to this file.
 *)
 
 theory GoedelGod
