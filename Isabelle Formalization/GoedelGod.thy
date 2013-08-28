@@ -57,33 +57,34 @@ consts r :: "i => i => bool" (infixr "r" 70)
    of the proof we thus work with modal logic K; later we will 
    require symmetry of r; but this only needed for T3 *)
 
+(* classical negation lifted to possible worlds *)
 definition mnot :: "(i => bool) => (i => bool)" ("m\<not>") where
-  "mnot p = (\<lambda>w. \<not>(p(w)))"
+  "m\<not> p = (\<lambda>w. \<not> p w)"
 (* classical conjunction lifted to possible worlds *)
 definition mand :: "(i => bool) => (i => bool) => (i => bool)" (infixr "m\<and>" 74) where
-  "mand p q = (\<lambda>w. p(w) & q(w)) "  
+  "p m\<and> q = (\<lambda>w. p w \<and> q w)"
 (* classical implication lifted to possible worlds *)
 definition mimplies :: "(i => bool) => (i => bool) => (i => bool)" (infixr "m\<Rightarrow>" 79) where
-  "mimplies p q = (\<lambda>w. p(w) \<longrightarrow> q(w))"
+  "p m\<Rightarrow> q = (\<lambda>w. p w \<longrightarrow> q w)"
 (* universial quantification over individuals lifted to possible worlds *)
 definition mforall_ind :: "(mu => (i => bool)) => (i => bool)" ("\<forall>i") where
-  "mforall_ind abstrP = (\<lambda>w.\<forall>x. (abstrP(x)(w)))"    
+  "\<forall>i P = (\<lambda>w. \<forall>x. P x w)"
 (* existential quantification over individuals lifted to possible worlds *)
 definition mexists_ind :: "(mu => (i => bool)) => (i => bool)" ("\<exists>i") where
-  "mexists_ind abstrP = (\<lambda>w.\<exists>x. (abstrP(x)(w)))"    
+  "\<exists>i P = (\<lambda>w. \<exists>x. P x w)"
 (* universial quantification over sets of individuals lifted to possible worlds *)
 definition mforall_indset :: "((mu => (i => bool)) => (i => bool)) => (i => bool)" ("\<forall>p") where
-  "mforall_indset abstrP = (\<lambda>w.\<forall>x. (abstrP(x)(w)))"
+  "\<forall>p P = (\<lambda>w. \<forall>x. P x w)"
 (* the box operator based on r *)
 definition mbox :: "(i => bool) => (i => bool)" ("\<box>") where
-  "mbox p = (\<lambda>w. \<forall>v. \<not> w r v \<or> p(v))"
+  "\<box> p = (\<lambda>w. \<forall>v. \<not> w r v \<or> p v)"
 (* the diamond operator based on r *)
 definition mdia :: "(i => bool) => (i => bool)" ("\<diamond>") where
-  "mdia p = (\<lambda>w.\<exists>v. w r v \<and> p(v))"    
+  "\<diamond> p = (\<lambda>w. \<exists>v. w r v \<and> p v)" 
 (* grounding of lifted modal formulas *)
 definition valid :: "(i => bool) => bool" ("v") where
-  "valid p == \<forall>w. p(w)"    
-
+  "v p \<equiv> \<forall>w. p w"
+ 
 (* Checking the consistency of the embedding with Nitpick *)
 lemma True
    nitpick [satisfy, user_axioms, expect = genuine] 
@@ -94,10 +95,10 @@ consts P :: "(mu => (i => bool)) => (i => bool)"
   
 axiomatization where
   (* A1: Either the property or its negation are positive, but not both. *)
-  A1a: "v(\<forall>p(\<lambda>\<Phi>. P(\<lambda>x. m\<not>(\<Phi>(x))) m\<Rightarrow> m\<not>(P(\<Phi>))))" and
-  A1b: "v(\<forall>p(\<lambda>\<Phi>. m\<not>(P(\<Phi>)) m\<Rightarrow> P(\<lambda>x. m\<not>(\<Phi>(x)))))" and
+  A1a: "v (\<forall>p (\<lambda>\<Phi>. P (\<lambda>x. m\<not> (\<Phi> x)) m\<Rightarrow> m\<not> (P \<Phi>)))" and
+  A1b: "v (\<forall>p (\<lambda>\<Phi>. m\<not> (P \<Phi>) m\<Rightarrow> P (\<lambda>x. m\<not> (\<Phi> x))))" and
   (* A2: A property necessarily implied by a positive property is positive. *)
-  A2: "v(\<forall>p(\<lambda>\<Phi>. \<forall>p(\<lambda>\<psi>. ((P(\<Phi>) m\<and> \<box> (\<forall>i(\<lambda>X. \<Phi>(X) m\<Rightarrow> \<psi>(X)))) m\<Rightarrow> P(\<psi>)))))" 
+  A2: "v (\<forall>p (\<lambda>\<Phi>. \<forall>p (\<lambda>\<psi>. (P \<Phi> m\<and> \<box> (\<forall>i (\<lambda>X. \<Phi> X m\<Rightarrow> \<psi> X))) m\<Rightarrow> P \<psi>)))"
 
 (* Checking the consistency of assumptions up to here with Nitpick *)
 lemma True
@@ -105,7 +106,7 @@ lemma True
    oops (* needed to continue *) 
 
 (* T1: Positive properties are possibly exemplified. *)
-theorem T1: "v(\<forall>p(\<lambda>\<Phi>. P(\<Phi>) m\<Rightarrow> \<diamond>(\<exists>i(\<lambda>x. \<Phi>(x)))))"
+theorem T1: "v (\<forall>p (\<lambda>\<Phi>. P \<Phi> m\<Rightarrow> \<diamond> (\<exists>i \<Phi>)))"
   (* immeadiate success with sledgehammer *)
   (* sledgehammer [provers = remote_leo2 remote_satallax] *)  
   using A2 A1a 
@@ -116,11 +117,11 @@ theorem T1: "v(\<forall>p(\<lambda>\<Phi>. P(\<Phi>) m\<Rightarrow> \<diamond>(\
 
 (* A God-like being possesses all positive properties. *)
 definition G :: "mu => (i => bool)" where
-  "G = (\<lambda>x. \<forall>p(\<lambda>\<Phi>. P(\<Phi>) m\<Rightarrow> \<Phi>(x)))"
+  "G = (\<lambda>x. \<forall>p (\<lambda>\<Phi>. P \<Phi> m\<Rightarrow> \<Phi> x))"
 
 (* A3: The property of being God-like is positive. *)
 axiomatization where
-  A3: "v(P(G))"
+  A3: "v (P G)"
 
 (* Checking the consistency of assumptions up to here with Nitpick *)
 lemma True
@@ -128,21 +129,21 @@ lemma True
    oops (* needed to continue *) 
 
 (* C: Possibly, God exists. *)
-corollary C: "v (\<diamond>(\<exists>i(\<lambda>x. G(x))))" 
+corollary C: "v (\<diamond> (\<exists>i G))" 
   (* immeadiate success with sledgehammer *)
   (* sledgehammer [provers = remote_leo2 remote_satallax] *)  
   using A3 T1 
   unfolding mforall_indset_def mimplies_def valid_def
   by metis
-  
+
 (* A4: Positive properties are necessarily positive. *)
 axiomatization where
-  A4: "v(\<forall>p(\<lambda>\<Phi>. P(\<Phi>) m\<Rightarrow> (\<box>(P(\<Phi>)))))"  
+  A4: "v (\<forall>p (\<lambda>\<Phi>. P \<Phi> m\<Rightarrow> \<box> (P \<Phi>)))"
 
 (* An essence of an individual is a property possessed by it and necessarily 
    implying any of its properties. *)
 definition ess :: "(mu => (i => bool)) => mu => (i => bool)" (infixr "ess" 85)where
-  "p ess x = p(x) m\<and> \<forall>p(\<lambda>\<psi>. \<psi>(x) m\<Rightarrow> \<box>(\<forall>i (\<lambda>y. p(y) m\<Rightarrow> \<psi>(y))))"
+  "p ess x = p x m\<and> \<forall>p (\<lambda>\<psi>. \<psi> x m\<Rightarrow> \<box> (\<forall>i (\<lambda>y. p y m\<Rightarrow> \<psi> y)))"
 
 (* Checking the consistency of assumptions up to here with Nitpick *)
 lemma True
@@ -150,7 +151,7 @@ lemma True
    oops (* needed to continue *) 
 
 (* T2: Being God-like is an essence of any God-like being. *)
-theorem T2: "v(\<forall>i(\<lambda>x. G(x) m\<Rightarrow> (G ess x)))"
+theorem T2: "v (\<forall>i (\<lambda>x. G x m\<Rightarrow> G ess x))"
   (* immeadiate success with sledgehammer *)
   (* sledgehammer [provers = remote_leo2 remote_satallax] *)  
   using A1a A1b A4
@@ -162,11 +163,11 @@ theorem T2: "v(\<forall>i(\<lambda>x. G(x) m\<Rightarrow> (G ess x)))"
 (* Necessary existence of an individual is the necessary exemplification 
    of all its essences. *)
 definition NE :: "mu => (i => bool)" where
-  "NE = (\<lambda>x. (\<forall>p(\<lambda>\<Phi>. (\<Phi> ess x) m\<Rightarrow> \<box>(\<exists>i(\<lambda>y. \<Phi>(y))))))"
+  "NE = (\<lambda>x. \<forall>p (\<lambda>\<Phi>. \<Phi> ess x m\<Rightarrow> \<box> (\<exists>i \<Phi>)))"
 
 (* A5: Necessary existence is a positive property. *)
 axiomatization where
-  A5: "v(P(NE))"
+  A5: "v (P NE)"
   
 (* Additionally, r is now required symmetric, thus we work from now on in 
    modal logic KB instead of K *)
@@ -192,28 +193,28 @@ lemma True
   call still fails.  
 *)
  
-lemma help1: "v(\<diamond>(\<box>p)) \<Longrightarrow> v(\<box>p)" 
+lemma help1: "v (\<diamond> (\<box> p)) \<Longrightarrow> v (\<box> p)"
   (* immeadiate success with sledgehammer *)
   (* sledgehammer [provers = remote_leo2 remote_satallax] *)  
   using sym
   unfolding valid_def mdia_def mbox_def mimplies_def
   by metis
 
-lemma help2: "v(\<diamond>p) & v(p m\<Rightarrow> \<box> p) \<Longrightarrow> v(\<diamond> (\<box> p))" 
+lemma help2: "v (\<diamond> p) \<and> v (p m\<Rightarrow> \<box> p) \<Longrightarrow> v (\<diamond> (\<box> p))"
   (* immeadiate success with sledgehammer *)
   (* sledgehammer [provers = remote_leo2 remote_satallax] *)  
   unfolding valid_def mdia_def mbox_def mimplies_def      
   by metis
   
 (* help3 is only required to prove help4 *)  
-lemma help3:  "\<forall>x. v(G(x) m\<Rightarrow> ((G ess x) m\<Rightarrow> (\<box>(\<exists>i G))))"
+lemma help3: "\<forall>x. v (G x m\<Rightarrow> G ess x m\<Rightarrow> \<box> (\<exists>i G))"
   (* immeadiate success with sledgehammer *)
   (* sledgehammer [timeout = 120, provers = remote_leo2 remote_satallax] *)
   using A3 A5
   unfolding G_def mforall_indset_def mimplies_def NE_def valid_def
   by (metis (lifting, mono_tags)) 
 
-lemma help4: "v((\<exists>i G) m\<Rightarrow> \<box>(\<exists>i G))"
+lemma help4: "v (\<exists>i G m\<Rightarrow> \<box> (\<exists>i G))"
   (* immeadiate success with sledgehammer *)
   (* sledgehammer [provers = remote_leo2 remote_satallax] *)
   using help3 T2 
@@ -226,7 +227,7 @@ lemma True
    oops (* needed to continue *) 
 
 (* thm1: Necessarily, God exists. *)
-theorem T3: "v(\<box>(\<exists>i G))"
+theorem T3: "v (\<box> (\<exists>i G))"
   (* immeadiate success with sledgehammer *)
   (* sledgehammer [provers = remote_leo2 remote_satallax] *)
   using help1 help2 C help4
@@ -242,7 +243,7 @@ lemma True
    oops (* needed to continue *) 
 
 (* Corollary: God exists. *)
-theorem cor: "v(\<exists>i G)"
+theorem cor: "v (\<exists>i G)"
   (* immeadiate success with sledgehammer *)
   (* sledgehammer [provers = remote_leo2 remote_satallax] *)
   using T3 refl
