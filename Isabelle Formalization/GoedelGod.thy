@@ -86,7 +86,7 @@ definition valid :: "(i => bool) => bool" ("v") where
 
 (* Checking the consistency of the embedding with Nitpick *)
 lemma True
-   nitpick [satisfy, user_axioms] 
+   nitpick [satisfy, user_axioms, expect = genuine] 
    oops (* needed to continue *) 
   
 (* Constant symbol for Goedel's positive *)
@@ -101,7 +101,7 @@ axiomatization where
 
 (* Checking the consistency of assumptions up to here with Nitpick *)
 lemma True
-   nitpick [satisfy, user_axioms] 
+   nitpick [satisfy, user_axioms, expect = genuine] 
    oops (* needed to continue *) 
 
 (* T1: Positive properties are possibly exemplified. *)
@@ -124,7 +124,7 @@ axiomatization where
 
 (* Checking the consistency of assumptions up to here with Nitpick *)
 lemma True
-   nitpick [satisfy, user_axioms] 
+   nitpick [satisfy, user_axioms, expect = genuine] 
    oops (* needed to continue *) 
 
 (* C: Possibly, God exists. *)
@@ -146,7 +146,7 @@ definition ess :: "(mu => (i => bool)) => mu => (i => bool)" (infixr "ess" 85)wh
 
 (* Checking the consistency of assumptions up to here with Nitpick *)
 lemma True
-   nitpick [satisfy, user_axioms] 
+   nitpick [satisfy, user_axioms, expect = genuine] 
    oops (* needed to continue *) 
 
 (* T2: Being God-like is an essence of any God-like being. *)
@@ -175,7 +175,7 @@ axiomatization where sym: "x r y \<longrightarrow> y r x"
   
 (* Checking the consistency of assumptions up to here with Nitpick *)
 lemma True
-   nitpick [satisfy, user_axioms] 
+   nitpick [satisfy, user_axioms, expect = genuine] 
    oops (* needed to continue *) 
 
 (* We now introduce some help lemmata that are useful for proving thm1 with metis *)
@@ -222,7 +222,7 @@ lemma help4: "v((\<exists>i G) m\<Rightarrow> \<box>(\<exists>i G))"
 
 (* Checking the consistency of assumptions up to here with Nitpick *)
 lemma True
-   nitpick [satisfy, user_axioms] 
+   nitpick [satisfy, user_axioms, expect = genuine] 
    oops (* needed to continue *) 
 
 (* thm1: Necessarily, God exists. *)
@@ -238,7 +238,7 @@ axiomatization where refl: "x r x"
   
 (* Checking the consistency of assumptions up to here with Nitpick *)
 lemma True
-   nitpick [satisfy, user_axioms] 
+   nitpick [satisfy, user_axioms, expect = genuine] 
    oops (* needed to continue *) 
 
 (* Corollary: God exists. *)
@@ -248,6 +248,5 @@ theorem cor: "v(\<exists>i G)"
   using T3 refl
   unfolding valid_def mbox_def
   by metis
-
 
 
