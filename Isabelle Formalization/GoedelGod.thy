@@ -77,8 +77,13 @@ definition mdia :: "(i => bool) => (i => bool)" ("\<diamond>") where
 (* grounding of lifted modal formulas *)
 definition valid :: "(i => bool) => bool" ("v") where
   "valid p == \<forall>w. p(w)"    
+
+(* Checking the consistency of the embedding with Nitpick *)
+lemma True
+   nitpick [satisfy, user_axioms] 
+   oops (* needed to continue *) 
   
-(* Goedel's positive *)
+(* Constant symbol for Goedel's positive *)
 consts P :: "(mu => (i => bool)) => (i => bool)"
   
 axiomatization where
@@ -87,6 +92,11 @@ axiomatization where
   A1b: "v(\<forall>p(\<lambda>\<Phi>. m\<not>(P(\<Phi>)) m\<Rightarrow> P(\<lambda>x. m\<not>(\<Phi>(x)))))" and
   (* A2: A property necessarily implied by a positive property is positive. *)
   A2: "v(\<forall>p(\<lambda>\<Phi>. \<forall>p(\<lambda>\<psi>. ((P(\<Phi>) m\<and> \<box> (\<forall>i(\<lambda>X. \<Phi>(X) m\<Rightarrow> \<psi>(X)))) m\<Rightarrow> P(\<psi>)))))" 
+
+(* Checking the consistency of assumptions up to here with Nitpick *)
+lemma True
+   nitpick [satisfy, user_axioms] 
+   oops (* needed to continue *) 
 
 (* T1: Positive properties are possibly exemplified. *)
 theorem T1: "v(\<forall>p(\<lambda>\<Phi>. P(\<Phi>) m\<Rightarrow> \<diamond>(\<exists>i(\<lambda>x. \<Phi>(x)))))"
@@ -106,6 +116,11 @@ definition G :: "mu => (i => bool)" where
 axiomatization where
   A3: "v(P(G))"
 
+(* Checking the consistency of assumptions up to here with Nitpick *)
+lemma True
+   nitpick [satisfy, user_axioms] 
+   oops (* needed to continue *) 
+
 (* C: Possibly, God exists. *)
 corollary C: "v (\<diamond>(\<exists>i(\<lambda>x. G(x))))" 
   (* immeadiate success with sledgehammer *)
@@ -122,6 +137,11 @@ axiomatization where
    implying any of its properties. *)
 definition ess :: "(mu => (i => bool)) => mu => (i => bool)" (infixr "ess" 85)where
   "p ess x = p(x) m\<and> \<forall>p(\<lambda>\<psi>. \<psi>(x) m\<Rightarrow> \<box>(\<forall>i (\<lambda>y. p(y) m\<Rightarrow> \<psi>(y))))"
+
+(* Checking the consistency of assumptions up to here with Nitpick *)
+lemma True
+   nitpick [satisfy, user_axioms] 
+   oops (* needed to continue *) 
 
 (* T2: Being God-like is an essence of any God-like being. *)
 theorem T2: "v(\<forall>i(\<lambda>x. G(x) m\<Rightarrow> (G ess x)))"
@@ -141,13 +161,17 @@ definition NE :: "mu => (i => bool)" where
 (* A5: Necessary existence is a positive property. *)
 axiomatization where
   A5: "v(P(NE))"
-
   
 (* Additionally, r is now required symmetric, thus we work from now on in 
    modal logic KB instead of K *)
 axiomatization where sym: "x r y \<longrightarrow> y r x" 
 (* classical negation lifted to possible worlds *)    
   
+(* Checking the consistency of assumptions up to here with Nitpick *)
+lemma True
+   nitpick [satisfy, user_axioms] 
+   oops (* needed to continue *) 
+
 (* We now introduce some help lemmata that are useful for proving thm1 with metis *)
 (* With sledgehammer thm1 can be proved directly; but proof reconstruction with 
    metis still fails. To see this just try the following:
@@ -162,7 +186,6 @@ axiomatization where sym: "x r y \<longrightarrow> y r x"
   call still fails.  
 *)
  
-
 lemma help1: "v(\<diamond>(\<box>p)) \<Longrightarrow> v(\<box>p)" 
   (* immeadiate success with sledgehammer *)
   (* sledgehammer [provers = remote_leo2 remote_satallax] *)  
@@ -191,6 +214,11 @@ lemma help4: "v((\<exists>i G) m\<Rightarrow> \<box>(\<exists>i G))"
   unfolding mexists_ind_def mforall_ind_def mimplies_def valid_def
   by metis
 
+(* Checking the consistency of assumptions up to here with Nitpick *)
+lemma True
+   nitpick [satisfy, user_axioms] 
+   oops (* needed to continue *) 
+
 (* thm1: Necessarily, God exists. *)
 theorem T3: "v(\<box>(\<exists>i G))"
   (* immeadiate success with sledgehammer *)
@@ -202,6 +230,10 @@ theorem T3: "v(\<box>(\<exists>i G))"
    thus we move from logic KB to MB *)
 axiomatization where refl: "x r x" 
   
+(* Checking the consistency of assumptions up to here with Nitpick *)
+lemma True
+   nitpick [satisfy, user_axioms] 
+   oops (* needed to continue *) 
 
 (* Corollary: God exists. *)
 theorem cor: "v(\<exists>i G)"
