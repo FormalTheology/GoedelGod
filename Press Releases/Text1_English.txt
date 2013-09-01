@@ -1,0 +1,46 @@
+Computer proves the Existence of God
+
+The genius of logic Kurt Gödel (1906-1978) proposed an argumentation
+formalism to prove the existence of God.
+Now it was possible for Christoph Benzmüller, researcher at the FU
+Berlin in the Dahlem Center for Intelligent Systems, in cooperation with
+Bruno Woltzenlogel Paleo at the TU Wien, to formalize Kurt Gödel's
+argument for God's existence on a computer and to verify it automatically. 
+From Gödel's premises, the computer then proved: there exists God. 
+"Automated theorem proving" is the mathematical discipline where 
+such automated systems are developed.
+
+Attempts to prove the existence (or non-existence) of God by means of 
+abstract, ontological arguments are an old tradition in Philosophy. 
+Before Gödel, already St. Anselm,
+Descartes und Leibniz have presented similar arguments. What motivated Gödel as a logician
+was the question, whether it is possible to deduce the existence of God from a small number of (debatable)
+foundational axioms and definitions, with a mathematically precise and logically formal argumentation chain.
+
+The core proposition, the necessary existence of God, 
+was divided in four argumentation steps, as proposed by Gödel, and each
+step was proved and verified with an automated theorem prover. Also the 
+consistency of the axioms and definitions was analyzed and established 
+automatically with the help of a computer.
+
+In theoretical philosophy, formal logical confrontations with such 
+proofs of God's existence had been so far limited to paper and pen. 
+Up to now, the use of computers was prevented, because the "logics"
+of the available theorem proving systems were not expressive enough 
+to formalize the abstract concepts adequately. Gödel's proof
+uses, for example, a complex higher-order modal logic to handle
+concepts such as "possible" and "necessary".
+
+Current works of Christoph Benzmüller and Larry Paulson
+(Cambridge University, UK) show that many expressive logics, 
+including higher-order modal logics, can be embedded into the classical
+higher-order logic, which can be seen as a universal logic. For this universal logic,
+efficient automated theorem provers have been developed in recent years,
+and these systems were now employed in the work of Benzmüller and Woltzenlogel-Paleo.
+
+Their chosen approach opens new perspectives for a 
+computer-assisted theoretical philosophy. The critical discussion of the underlying 
+concepts, definitions and axioms remains a human responsibility. But the computer can 
+help to avoid mistakes of a logical nature: the computer can check the aurgumentation chain
+and partially fulfill Leibniz' dictum in case of logical disputes:
+Calculemus --- Let us calculate!
