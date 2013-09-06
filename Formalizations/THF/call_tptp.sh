@@ -3,8 +3,8 @@ call=./RemoteSOT.pl
 # if the above programs don't work for you download the SystemOnTPTP package,
 # install it and change the above paths accordingly
 
-proverlist='LEO-II---1.6.0 Satallax---2.7 Nitrox---2013'
-timeout=180
+proverlist='LEO-II---1.6.0 Satallax---2.7 Isabelle-2013 Nitrox---2013'
+timeout=90
 
 echo
 echo Asking various HOL-ATPs in Miami remotely \(thanks to Geoff Sutcliffe\)
