@@ -1,5 +1,5 @@
-News about our work
-===================
+Links to News
+=============
 
 [Telepolis](http://www.heise.de/tp/artikel/39/39766/1.html)
 
