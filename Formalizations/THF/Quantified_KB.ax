@@ -175,7 +175,7 @@ thf(mdia,definition,
     ( mdia
     = ( mdia_generic @ rel ) )).
 
-%----We have now two options for stating the S5 conditions: 
+%----We have now two options for stating the KB conditions: 
 %----We can (i) directly formulate conditions for the accessibility relation
 %----constant or we can (ii) state corresponding axioms. We here prefer (i)
 thf(sym,axiom,
