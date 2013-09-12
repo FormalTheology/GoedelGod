@@ -17,8 +17,8 @@
 %           derived trivially from C2 by a single application of
 %           necessitation.
 %           Note that C2 is stated neither by Gödel nor by Scott.
-%           This result was first achieved by Annika Siders while
-%           she improved our natural deduction formalization.
+%           This result was first achieved by Annika Siders on 10/09/2013 while
+%           she improved the derivation of T3 in our natural deduction formalization.
 
 
 %------------------------------------------------------------------------------
