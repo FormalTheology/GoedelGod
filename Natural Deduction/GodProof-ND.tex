@@ -302,28 +302,105 @@ ToDo: this is proven in a way that is slightly different from G\"odel's 1970.
 \begin{theorem}
 \label{T3}
 Necessarily, God exists:
+
+\noindent
+\textbf{Theorem:} The existence of a God is necessary:
 $$
 \nec \ex x. G(x)
 $$
 \end{theorem}
-\begin{proof}\hfill
+
+
+\noindent
+\textbf{Formal proof:}
+Let the following derivation be $ \Pi$: 
+ 
 \begin{small}
 \begin{prooftree}
-\AXC{\textbf{S5}} \dashedLine
-\UIC{$ \all \varphi. [\pos \ldots \pos \nec \varphi \biimp \nec \varphi] $}
-\UIC{$ \pos \nec \ex x. G(x) \biimp \nec \ex x. G(x) $}
-        \AXC{Corollary \ref{C1}} \dashedLine
-        \UIC{$\pos \ex x. G(x)$}
-                \AXC{Lemma \ref{L1}} \dashedLine
-                \UIC{$\ex z. G(z) \imp \nec \ex x. G(x)$} \doubleLine
-            \BIC{$\pos \nec \ex x. G(x)$}
-    \BIC{$\nec \ex x. G(x)$}
+\AXC{$ $} \RightLabel{1}
+\UIC{$\nec \ex x. G(x)$} \RightLabel{$\nec$ I}
+\UIC{$\nec\nec \ex x. G(x)$}\RightLabel{$\imp$ I, 1}
+\UIC{$\nec \ex x. G(x)\imp\nec\nec \ex x. G(x)$} \RightLabel{propositional logic}
+\UIC{$\neg\nec\nec \ex x. G(x)\imp\neg  \nec \ex x. G(x)$}\RightLabel{$\nec$ I}
+\UIC{$\nec(\neg\nec\nec \ex x. G(x)\imp\neg  \nec \ex x. G(x))$}
+\AXC{Axiom K} \dashedLine 
+\BIC{$\nec\neg\nec\nec \ex x. G(x)\imp\nec\neg  \nec \ex x. G(x)$} \RightLabel{definition of $\pos$}
+ \UIC{$\nec\pos\neg\nec \ex x. G(x) \imp\nec\neg\nec \ex x. G(x) $}
+
 \end{prooftree}
 \end{small}
-\end{proof}
+
+\begin{small}
+\begin{prooftree}
+\AXC{$ $} \RightLabel{1}
+\UIC{$\nec\pos\neg\nec \ex x. G(x)$}
+\AXC{$ \Pi$} \dashedLine 
+\UIC{$\nec\pos\neg\nec \ex x. G(x) \imp\nec\neg\nec \ex x. G(x) $}
+ \BIC{$\nec\neg\nec \ex x. G(x)$}\RightLabel{$\nec$ E, axiom T}
+\UIC{$\neg\nec \ex x. G(x)$} 
+\AXC{$ $} \dashedLine  \RightLabel{Lemma \ref{L1}}
+\UIC{$\neg\nec \ex x. G(x) \imp \neg\ex x. G(x)$}\RightLabel{$\imp$ E}
+ \BIC{$ \neg\ex x. G(x)$} \RightLabel{$\nec$ I}
+\UIC{$\nec \neg\ex x. G(x)$}  \RightLabel{definition of $\pos$}
+\UIC{$\neg \pos\ex x. G(x)$} 
+
+\end{prooftree}
+\end{small}
+
+\begin{small}
+\begin{prooftree}
+\AXC{$ $}\dashedLine
+\UIC{$\neg \pos\ex x. G(x)$} 
+\AXC{ Corollary \ref{C1}} \dashedLine 
+\UIC{$ \pos\ex x. G(x)$} \RightLabel{$\imp$ E}
+ \BIC{$ \bot$} \RightLabel{$\imp$ I, 1}
+ \UIC{$\neg\nec\pos\neg\nec \ex x. G(x)$}
+\AXC{ Axiom B} \dashedLine 
+\UIC{$ \neg\nec \ex x. G(x)\imp \nec\pos\neg\nec \ex x. G(x)$} \RightLabel{propositional logic}
+\UIC{$ \neg \nec\pos\neg\nec \ex x. G(x)\imp  \nec \ex x. G(x)$} \RightLabel{$\imp$ E}
+ \BIC{$ \nec \ex x. G(x)$}
+\end{prooftree}
+\end{small}
+
+\textbf{Better proof, that directly proves $\ex x. G(x)$:}
+\begin{small}
+\begin{prooftree}
+\AXC{$ $} \RightLabel{1}
+
+ \UIC{$\nec\neg\nec \ex x. G(x)$}\RightLabel{$\nec$ E, axiom T}
+\UIC{$\neg\nec \ex x. G(x)$} 
+\AXC{$ $} \dashedLine  \RightLabel{Lemma \ref{L1}}
+\UIC{$\neg\nec \ex x. G(x) \imp \neg\ex x. G(x)$}\RightLabel{$\imp$ E}
+ \BIC{$ \neg\ex x. G(x)$} \RightLabel{$\nec$ I}
+\UIC{$\nec \neg\ex x. G(x)$}  \RightLabel{definition of $\pos$}
+\UIC{$\neg \pos\ex x. G(x)$} 
+\end{prooftree}
+\end{small}
+
+\begin{small}
+\begin{prooftree}
+\AXC{$ $}\dashedLine
+\UIC{$\neg \pos\ex x. G(x)$} 
+\AXC{ Corollary \ref{C1}} \dashedLine 
+\UIC{$ \pos\ex x. G(x)$} \RightLabel{$\imp$ E}
+ \BIC{$ \bot$} \RightLabel{$\imp$ I, 1}
+ \UIC{$\neg\nec\neg\nec \ex x. G(x)$} \RightLabel{definition of $\pos$}
+ \UIC{$\neg\nec\pos \neg \ex x. G(x)$}
+\AXC{ Axiom B} \dashedLine 
+\UIC{$ \neg \ex x. G(x)\imp\nec\pos \neg \ex x. G(x)$} \RightLabel{propositional logic}
+\UIC{$ \neg\nec\pos \neg \ex x. G(x)\imp  \neg  \neg \ex x. G(x)$} \RightLabel{$\imp$ E}
+ \BIC{$ \neg  \neg \ex x. G(x)$}\RightLabel{$ \neg  \neg$ E}
+ \UIC{$  \ex x. G(x)$}
+\end{prooftree}
+\end{small}
+
+Note that the last step is classical and we do not prove the existential statement by providing an object for which the statement holds. 
+This proof makes section \ref{GodsE} superflous and the use of axiom "M" unnecessary. 
+
+The system used contains the $\nec$E-rule with the restriction that we have a $\nec$I below it. This is equivalent to modal sytem K that contains axiom K and necessitation rule N.  We aslo use axiom B ($ A\imp\nec\pos A$). No other modal axioms are needed. 
 
 
-\section{God exists}
+\section{God exists}\label{GodsE}
 
 \begin{axiom}[M]
 \label{M} What is necessary is the case:
@@ -349,5 +426,67 @@ $$
 \end{prooftree}
 \end{proof}
 
+\section{Proof system equivalent to system K}
+
+We show that the proof system with boxed parts of derivations is equivalent to the system K. The modal system K consists of the axiom K and the necessitation rule N. 
+
+\begin{axiom}
+\label{AK}
+The transitivity axiom K. 
+$$
+\nec(A\imp B)\imp  (\nec A\imp \nec B)
+$$
+\end{axiom}
+
+\begin{axiom}
+\label{N}
+The necessitation rule N. 
+
+If $A$ is a theorem, then $\nec A$ is a theorem. 
+\end{axiom}
+
+
+\begin{lemma}
+\label{systemK}
+The axiom K is derivable in the system. 
+\end{lemma}
+
+\begin{small}
+\begin{prooftree}
+\AXC{$\nec(A\imp B)^2 $}\RightLabel{$\nec$ E}
+\UIC{$A\imp B$} 
+\AXC{$\nec A ^1 $}\RightLabel{$\nec$ E}
+\UIC{$A$} \RightLabel{$\imp$ E}
+ \BIC{$ B$} \RightLabel{$\nec$I}
+\UIC{$ \nec B$} \RightLabel{$\imp$ I, 1}
+ \UIC{$\nec A\imp \nec B$}  \RightLabel{$\imp$ I, 2}
+ \UIC{$\nec(A\imp B)\imp  (\nec A\imp \nec B)$}
+\end{prooftree}
+\end{small}
+
+\begin{lemma}
+\label{systemK}
+Assuming the axiom K and the necessitation rule N, the open formula $\nec A $ and the existence of a derivation of $ B$ from the open assumption $ A$, then we can derive $\nec B$ without the rules for boxed parts of derivations.
+\end{lemma}
+
+\begin{small}
+\begin{prooftree}
+\AXC{$A^1 $}\dashedLine
+\UIC{$ B$} \RightLabel{$\imp$ I, 1}
+\UIC{$A\imp B$} \RightLabel{rule N}
+\UIC{$\nec(A\imp B)$} 
+\AXC{Axiom K}\dashedLine
+\UIC{$\nec(A\imp B)\imp  (\nec A\imp \nec B)$} \RightLabel{$\imp$ E}
+\BIC{$\nec A\imp \nec B$} 
+\AXC{$\nec A ^1 $}\RightLabel{$\imp$ E}
+\BIC{$\nec B$}
+\end{prooftree}
+\end{small}
+
 
 \end{document}
+
+
+
+
+
