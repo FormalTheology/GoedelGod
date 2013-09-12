@@ -1,18 +1,14 @@
 \documentclass{article}
 
 \usepackage{latexsym}
+\usepackage{proof}
 \usepackage{bussproofs}
 \EnableBpAbbreviations
 \newcommand{\rl}[1]{\RightLabel{#1}}
 
-\newtheorem{axiom}{Axiom}
-\newtheorem{definition}{Definition}
-\newtheorem{theorem}{Theorem}
-\newtheorem{lemma}{Lemma}
-\newtheorem{corollary}{Corollary}
 
-\newenvironment{proof}[1][Proof]{\begin{trivlist}
-\item[\hskip \labelsep {\bfseries #1}]}{\end{trivlist}}
+\usepackage{calculi}
+\usepackage{theorems}
 
 
 % Logical symbols
@@ -47,13 +43,61 @@ ToDo: Do also Scott's and Gödel's proofs.
 
 \section{Natural Deduction}
 
-ToDo: Show and explain here the rules of the calculus we are using.
+\newcommand{\s}{\qquad}
 
-ToDo: We should use a calculus for the basic modal logic K. Everything else should be stated as axioms.
+\begin{calculus}
+{The natural deduction calculus \ND}
+{fig:ND}
 
-ToDo: Investigate the relationship between the $\nec_E$ rule and the $M$ axiom (reflexivity). We don't want $M$ to be provable in our calculus. 
+\vspace{1em}
 
-ToDo: cite a paper that proves soundness and completeness for this calculus.
+\s\s\s
+\infer[\imp_I^n]{A \imp B}{ \infer*{B}{A^n} }
+\s\s\s
+\infer[\imp_E]{B}{A & A \imp B}
+
+\vspace{2em}
+
+\s\s
+\infer[\wedge_I]{A \wedge B}{A & B}
+\s\s
+\infer[\wedge_{E_1}]{A}{A \wedge B}
+\s\s
+\infer[\wedge_{E_2}]{B}{A \wedge B}
+
+\vspace{2em}
+
+\s
+\infer[\all_I]{\all x. A[x]}{ A[\alpha] }
+\s
+\infer[\all_E]{A[t]}{ \all x. A[x] }
+\s\s
+\infer[\ex_I]{\ex x. A[x]}{ A[t] }
+\s
+\infer[\ex_E]{A[\alpha]}{ \ex x. A[x] }
+
+\vspace{1em}
+
+
+ToDo: State eigen-variable conditions
+\end{calculus}
+
+
+\begin{calculus}
+{\NDK: Rules for Modal Operators}
+{fig:NDK}
+\s\s\s
+\infer[\nec_I]{\nec A}{A}
+\s\s
+\infer[\nec_E]{A}{\nec A}
+
+\vspace{1em}
+
+ToDo: state conditions
+\end{calculus}
+
+
+
 
 \section{Possibly, God Exists}
 
