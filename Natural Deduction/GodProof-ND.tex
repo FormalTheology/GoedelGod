@@ -1,5 +1,6 @@
 \documentclass{article}
 
+\usepackage{fancybox}
 \usepackage{latexsym}
 \usepackage{proof}
 \usepackage{bussproofs}
@@ -46,14 +47,16 @@ ToDo: Do also Scott's and Gödel's proofs.
 \newcommand{\s}{\qquad}
 
 \begin{calculus}
-{The natural deduction calculus \ND}
+{The intuitionistic natural deduction calculus \ND}
 {fig:ND}
 
 \vspace{1em}
 
-\s\s\s
-\infer[\imp_I^n]{A \imp B}{ \infer*{B}{A^n} }
-\s\s\s
+\s\s
+\infer[\imp_I]{A \imp B}{ B }
+\s\s
+\infer[\imp_I^n]{A \imp B}{ \infer*{B}{\infer[n]{A}{}} }
+\s\s
 \infer[\imp_E]{B}{A & A \imp B}
 
 \vspace{2em}
@@ -67,6 +70,15 @@ ToDo: Do also Scott's and Gödel's proofs.
 
 \vspace{2em}
 
+\s\s
+\infer[\vee_E]{C}{A \vee B & \infer*{C}{\infer{A}{}} & \infer*{C}{\infer{B}{}}}
+\s\s
+\infer[\vee_{I_1}]{A \vee B}{A}
+\s\s
+\infer[\vee_{I_2}]{A \vee B}{B}
+
+\vspace{2em}
+
 \s
 \infer[\all_I]{\all x. A[x]}{ A[\alpha] }
 \s
@@ -74,28 +86,54 @@ ToDo: Do also Scott's and Gödel's proofs.
 \s\s
 \infer[\ex_I]{\ex x. A[x]}{ A[t] }
 \s
-\infer[\ex_E]{A[\alpha]}{ \ex x. A[x] }
+\infer[\ex_E]{A[\beta]}{ \ex x. A[x] }
 
 \vspace{1em}
 
-
-ToDo: State eigen-variable conditions
+ToDo: add intuitionistic rule for negation/bottom
 \end{calculus}
+
+\begin{calculus}
+{Classical Rules/Axioms}
+{fig:Classical}
+
+ToDo: add classical rules/axioms that we need
+\end{calculus}
+
+
 
 
 \begin{calculus}
-{\NDK: Rules for Modal Operators}
+{Rules for Modal Operators}
 {fig:NDK}
-\s\s\s
-\infer[\nec_I]{\nec A}{A}
-\s\s
-\infer[\nec_E]{A}{\nec A}
 
 \vspace{1em}
 
-ToDo: state conditions
+\s\s\s\s
+\infer[\nec_I]{\nec A}{\fbox{\infer*{A}{} }}
+\s\s\s
+\infer[\nec_E]{\fbox{ \infer*{}{A} }  }{\nec A}
+
+\vspace{1em}
 \end{calculus}
 
+\noindent
+A \emph{derivation} is a directed acyclich graph whose nodes are formulas and whose edges correspond to applications of the inference rules shown in Figures \ref{fig:ND} and \ref{fig:NDK}. Parts of a derivation may be surrounded by boxes. A \emph{proof} is a derivation that additionally satisfies the following conditions:
+
+\begin{itemize}
+\item \textbf{eigen-variable conditions:}
+if $\rho$ is a $\all_I$ inference eliminating a variable $\alpha$, then any occurrence of $\alpha$ in the proof should be an ancestor of the occurrence of $\alpha$ eliminated by $\rho$;
+if $\rho$ is a $\ex_E$ inference introducing a variable $\beta$, then any occurrence of $\beta$ in the proof should be a descendant of the occurrence of $\beta$ introduced by $\rho$.
+%
+\item \textbf{boxed assumption condition:} any assumption should be discharged within the box where it is made.
+%
+\item \textbf{unboxed root condition:} the proof's root should not be inside any box.
+\end{itemize}
+
+\noindent
+Double lines are used to abbreviate tedious propositional reasoning steps in the derivations. Dashed lines are used to refer to a proof shown elsewhere. Dotted lines are used to indicate folding and unfolding of definitions.
+
+ 
 
 
 
@@ -338,17 +376,12 @@ $$
 
 \section{Necessarily, God exists}
 
-ToDo: This section still needs more details. See Coq formalization for more details.
-
 ToDo: this is proven in a way that is slightly different from G\"odel's 1970.
 
 
 \begin{theorem}
 \label{T3}
 Necessarily, God exists:
-
-\noindent
-\textbf{Theorem:} The existence of a God is necessary:
 $$
 \nec \ex x. G(x)
 $$
@@ -362,13 +395,13 @@ Let the following derivation be $ \Pi$:
 \begin{small}
 \begin{prooftree}
 \AXC{$ $} \RightLabel{1}
-\UIC{$\nec \ex x. G(x)$} \RightLabel{$\nec$ I}
-\UIC{$\nec\nec \ex x. G(x)$}\RightLabel{$\imp$ I, 1}
+\UIC{$\nec \ex x. G(x)$} \RightLabel{$\nec_I$}
+\UIC{$\nec\nec \ex x. G(x)$}\RightLabel{$\imp_I^1$}
 \UIC{$\nec \ex x. G(x)\imp\nec\nec \ex x. G(x)$} \RightLabel{propositional logic}
-\UIC{$\neg\nec\nec \ex x. G(x)\imp\neg  \nec \ex x. G(x)$}\RightLabel{$\nec$ I}
+\UIC{$\neg\nec\nec \ex x. G(x)\imp\neg  \nec \ex x. G(x)$}\RightLabel{$\nec_I$}
 \UIC{$\nec(\neg\nec\nec \ex x. G(x)\imp\neg  \nec \ex x. G(x))$}
 \AXC{Axiom K} \dashedLine 
-\BIC{$\nec\neg\nec\nec \ex x. G(x)\imp\nec\neg  \nec \ex x. G(x)$} \RightLabel{definition of $\pos$}
+\BIC{$\nec\neg\nec\nec \ex x. G(x)\imp\nec\neg  \nec \ex x. G(x)$} \dottedLine \RightLabel{$\pos$}
  \UIC{$\nec\pos\neg\nec \ex x. G(x) \imp\nec\neg\nec \ex x. G(x) $}
 
 \end{prooftree}
@@ -380,12 +413,12 @@ Let the following derivation be $ \Pi$:
 \UIC{$\nec\pos\neg\nec \ex x. G(x)$}
 \AXC{$ \Pi$} \dashedLine 
 \UIC{$\nec\pos\neg\nec \ex x. G(x) \imp\nec\neg\nec \ex x. G(x) $}
- \BIC{$\nec\neg\nec \ex x. G(x)$}\RightLabel{$\nec$ E, axiom T}
+ \BIC{$\nec\neg\nec \ex x. G(x)$}\RightLabel{$\nec_E$, axiom T}
 \UIC{$\neg\nec \ex x. G(x)$} 
 \AXC{$ $} \dashedLine  \RightLabel{Lemma \ref{L1}}
-\UIC{$\neg\nec \ex x. G(x) \imp \neg\ex x. G(x)$}\RightLabel{$\imp$ E}
- \BIC{$ \neg\ex x. G(x)$} \RightLabel{$\nec$ I}
-\UIC{$\nec \neg\ex x. G(x)$}  \RightLabel{definition of $\pos$}
+\UIC{$\neg\nec \ex x. G(x) \imp \neg\ex x. G(x)$}\RightLabel{$\imp_E$}
+ \BIC{$ \neg\ex x. G(x)$} \RightLabel{$\nec_I$}
+\UIC{$\nec \neg\ex x. G(x)$}  \dottedLine
 \UIC{$\neg \pos\ex x. G(x)$} 
 
 \end{prooftree}
@@ -396,12 +429,12 @@ Let the following derivation be $ \Pi$:
 \AXC{$ $}\dashedLine
 \UIC{$\neg \pos\ex x. G(x)$} 
 \AXC{ Corollary \ref{C1}} \dashedLine 
-\UIC{$ \pos\ex x. G(x)$} \RightLabel{$\imp$ E}
- \BIC{$ \bot$} \RightLabel{$\imp$ I, 1}
+\UIC{$ \pos\ex x. G(x)$} \RightLabel{$\imp_E$}
+ \BIC{$ \bot$} \RightLabel{$\imp_I^1$}
  \UIC{$\neg\nec\pos\neg\nec \ex x. G(x)$}
 \AXC{ Axiom B} \dashedLine 
-\UIC{$ \neg\nec \ex x. G(x)\imp \nec\pos\neg\nec \ex x. G(x)$} \RightLabel{propositional logic}
-\UIC{$ \neg \nec\pos\neg\nec \ex x. G(x)\imp  \nec \ex x. G(x)$} \RightLabel{$\imp$ E}
+\UIC{$ \neg\nec \ex x. G(x)\imp \nec\pos\neg\nec \ex x. G(x)$} \doubleLine
+\UIC{$ \neg \nec\pos\neg\nec \ex x. G(x)\imp  \nec \ex x. G(x)$} \RightLabel{$\imp_E$}
  \BIC{$ \nec \ex x. G(x)$}
 \end{prooftree}
 \end{small}
@@ -410,13 +443,12 @@ Let the following derivation be $ \Pi$:
 \begin{small}
 \begin{prooftree}
 \AXC{$ $} \RightLabel{1}
-
- \UIC{$\nec\neg\nec \ex x. G(x)$}\RightLabel{$\nec$ E, axiom T}
+\UIC{$\nec\neg\nec \ex x. G(x)$}\RightLabel{$\nec_E$, axiom T}
 \UIC{$\neg\nec \ex x. G(x)$} 
-\AXC{$ $} \dashedLine  \RightLabel{Lemma \ref{L1}}
-\UIC{$\neg\nec \ex x. G(x) \imp \neg\ex x. G(x)$}\RightLabel{$\imp$ E}
- \BIC{$ \neg\ex x. G(x)$} \RightLabel{$\nec$ I}
-\UIC{$\nec \neg\ex x. G(x)$}  \RightLabel{definition of $\pos$}
+\AXC{ Lemma \ref{L1} } \dashedLine
+\UIC{$\neg\nec \ex x. G(x) \imp \neg\ex x. G(x)$}\RightLabel{$\imp_E$}
+ \BIC{$ \neg\ex x. G(x)$} \RightLabel{$\nec_I$}
+\UIC{$\nec \neg\ex x. G(x)$}  \dottedLine
 \UIC{$\neg \pos\ex x. G(x)$} 
 \end{prooftree}
 \end{small}
@@ -426,13 +458,13 @@ Let the following derivation be $ \Pi$:
 \AXC{$ $}\dashedLine
 \UIC{$\neg \pos\ex x. G(x)$} 
 \AXC{ Corollary \ref{C1}} \dashedLine 
-\UIC{$ \pos\ex x. G(x)$} \RightLabel{$\imp$ E}
- \BIC{$ \bot$} \RightLabel{$\imp$ I, 1}
- \UIC{$\neg\nec\neg\nec \ex x. G(x)$} \RightLabel{definition of $\pos$}
+\UIC{$ \pos\ex x. G(x)$} \RightLabel{$\imp_E$}
+ \BIC{$ \bot$} \RightLabel{$\imp_I^1$}
+ \UIC{$\neg\nec\neg\nec \ex x. G(x)$} \dottedLine
  \UIC{$\neg\nec\pos \neg \ex x. G(x)$}
 \AXC{ Axiom B} \dashedLine 
-\UIC{$ \neg \ex x. G(x)\imp\nec\pos \neg \ex x. G(x)$} \RightLabel{propositional logic}
-\UIC{$ \neg\nec\pos \neg \ex x. G(x)\imp  \neg  \neg \ex x. G(x)$} \RightLabel{$\imp$ E}
+\UIC{$ \neg \ex x. G(x)\imp\nec\pos \neg \ex x. G(x)$} \doubleLine
+\UIC{$ \neg\nec\pos \neg \ex x. G(x)\imp  \neg  \neg \ex x. G(x)$} \RightLabel{$\imp_E$}
  \BIC{$ \neg  \neg \ex x. G(x)$}\RightLabel{$ \neg  \neg$ E}
  \UIC{$  \ex x. G(x)$}
 \end{prooftree}
@@ -441,7 +473,7 @@ Let the following derivation be $ \Pi$:
 Note that the last step is classical and we do not prove the existential statement by providing an object for which the statement holds. 
 This proof makes section \ref{GodsE} superflous and the use of axiom "M" unnecessary. 
 
-The system used contains the $\nec$E-rule with the restriction that we have a $\nec$I below it. This is equivalent to modal sytem K that contains axiom K and necessitation rule N.  We aslo use axiom B ($ A\imp\nec\pos A$). No other modal axioms are needed. 
+The system used contains the $\nec_E$-rule with the restriction that we have a $\nec_I$ below it. This is equivalent to modal sytem K that contains axiom K and necessitation rule N.  We aslo use axiom B ($ A\imp\nec\pos A$). No other modal axioms are needed. 
 
 
 \section{God exists}\label{GodsE}
@@ -474,18 +506,15 @@ $$
 
 We show that the proof system with boxed parts of derivations is equivalent to the system K. The modal system K consists of the axiom K and the necessitation rule N. 
 
-\begin{axiom}
-\label{AK}
-The transitivity axiom K. 
+\begin{axiom}[The transitivity axiom K]
+\label{K}
 $$
 \nec(A\imp B)\imp  (\nec A\imp \nec B)
 $$
 \end{axiom}
 
-\begin{axiom}
-\label{N}
-The necessitation rule N. 
-
+\begin{axiom}[The necessitation rule]
+\label{Necessitation}
 If $A$ is a theorem, then $\nec A$ is a theorem. 
 \end{axiom}
 
@@ -497,14 +526,14 @@ The axiom K is derivable in the system.
 
 \begin{small}
 \begin{prooftree}
-\AXC{$\nec(A\imp B)^2 $}\RightLabel{$\nec$ E}
+\AXC{$\nec(A\imp B)^2 $}\RightLabel{$\nec_E$}
 \UIC{$A\imp B$} 
-\AXC{$\nec A ^1 $}\RightLabel{$\nec$ E}
-\UIC{$A$} \RightLabel{$\imp$ E}
- \BIC{$ B$} \RightLabel{$\nec$I}
-\UIC{$ \nec B$} \RightLabel{$\imp$ I, 1}
- \UIC{$\nec A\imp \nec B$}  \RightLabel{$\imp$ I, 2}
- \UIC{$\nec(A\imp B)\imp  (\nec A\imp \nec B)$}
+      \AXC{$\nec A ^1 $}\RightLabel{$\nec_E$}
+      \UIC{$A$} \RightLabel{$\imp_E$}
+   \BIC{$ B$} \RightLabel{$\nec_I$}
+   \UIC{$ \nec B$} \RightLabel{$\imp_I^1$}
+   \UIC{$\nec A\imp \nec B$}  \RightLabel{$\imp_I^2$}
+   \UIC{$\nec(A\imp B)\imp  (\nec A\imp \nec B)$}
 \end{prooftree}
 \end{small}
 
@@ -515,15 +544,16 @@ Assuming the axiom K and the necessitation rule N, the open formula $\nec A $ an
 
 \begin{small}
 \begin{prooftree}
-\AXC{$A^1 $}\dashedLine
-\UIC{$ B$} \RightLabel{$\imp$ I, 1}
-\UIC{$A\imp B$} \RightLabel{rule N}
+\AXC{$A^1 $}\noLine
+\UIC{$\vdots$}\noLine
+\UIC{$ B$} \RightLabel{$\imp_I^1$}
+\UIC{$A\imp B$} \RightLabel{Necessitation}
 \UIC{$\nec(A\imp B)$} 
-\AXC{Axiom K}\dashedLine
-\UIC{$\nec(A\imp B)\imp  (\nec A\imp \nec B)$} \RightLabel{$\imp$ E}
-\BIC{$\nec A\imp \nec B$} 
-\AXC{$\nec A ^1 $}\RightLabel{$\imp$ E}
-\BIC{$\nec B$}
+      \AXC{Axiom K}\dashedLine
+      \UIC{$\nec(A\imp B)\imp  (\nec A\imp \nec B)$} \RightLabel{$\imp_E$}
+  \BIC{$\nec A\imp \nec B$} 
+        \AXC{$\nec A ^1 $}\RightLabel{$\imp_E$}
+    \BIC{$\nec B$}
 \end{prooftree}
 \end{small}
 
