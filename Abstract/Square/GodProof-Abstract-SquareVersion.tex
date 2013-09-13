@@ -14,8 +14,8 @@
 \newcommand{\NE}{\mathit{NE}}
 
 
-\title{ Formalization, Mechanization and Automation % of Variants
-  of \\ G\"{o}del's Proof of God's Existence\thanks{This work has been
+\title{ Formalization and Automated Verification of % Variants of
+    \\ G\"{o}del's Proof of God's Existence\thanks{This work has been
     supported by the German Research Foundation under grant
     BE2501/9-1.}  }
 
@@ -51,52 +51,7 @@ but instead he states a few reasonable (but debatable) axioms that they should s
 Various slightly different versions of axioms and definitions have
 been considered by G\"{o}del and by several philosophers who commented
 on his proof
-(cf. \cite{sobel2004logic,AndersonGettings,Fitting,Adams,ContemporaryBibliography}). 
-
-Dana Scott's version of G\"odel's proof \cite{ScottNotes} employs the
-following axioms (\textbf{A}), definitions (\textbf{D}), corollaries
-(\textbf{C}) and theorems (\textbf{T}), and it proceeds in the
-following order:\footnote{ A1, A2, A5, D1, D3 are logically
-  equivalent to, respectively, axioms 2, 5 and 4 and definitions 1 and
-  3 in G\"odel's notes \cite{Goedel1970,GoedelNotes}. 
-  A3 was introduced by Scott \cite{ScottNotes} and 
-  could be derived from G\"odel's axiom 1 and
-  D1 in a logic with infinitary conjunction. 
-  A4 is a weaker form of G\"odel's axiom 3. 
-  D2 has an extra conjunct $\phi(x)$ lacking in G\"odel's definition 2; 
-  this is believed to have been 
-  an oversight by G\"odel \cite{Hazen}.}
-
-\allowdisplaybreaks[1] 
-\begin{description}
-\item[A1] Either a property or its negation is positive, but not
-  both:  \hfill 
-  $\all \phi [P(\neg \phi) \biimp \neg P(\phi)]$
-\item[A2] A property necessarily implied \\ by a
-  positive property is positive: \phantom{b} \hfill 
-  $\all \phi \all \psi [(P(\phi) \wedge \nec \all x [\phi(x)
-  \imp \psi(x)]) \imp P(\psi)]$ 
-\item[T1] Positive properties are possibly exemplified: \hfill $\all \varphi [P(\varphi) \imp \pos \ex x \varphi(x)]$
-\item[D1] A \emph{God-like} being possesses all positive properties: \hfill
-  $G(x) \biimp \forall \phi [P(\phi) \to \phi(x)]$
-\item[A3]  The property of being God-like is positive: \hfill   $P(G)$
-\item[C\phantom{1}] Possibly, God exists: \hfill $\pos \ex x G(x)$
-\item[A4]  Positive properties are necessarily positive: \hfill 
-  $\all \phi [P(\phi) \to \Box \; P(\phi)]$
-\item[D2] An \emph{essence} of an individual is  \\ a property possessed by it and \\ necessarily implying any of its properties:
-  \phantom{b} \hfill $\ess{\phi}{x} \biimp \phi(x) \wedge \all
-  \psi (\psi(x) \imp \nec \all y (\phi(y) \imp \psi(y)))$
-\item[T2]  Being God-like is an essence of any
-  God-like being: \hfill $\all x [G(x) \imp \ess{G}{x}]$ 
-\item[D3] \emph{Necessary existence} of an individual is \\ the necessary exemplification of all its essences: 
-  \phantom{b} \hfill $\NE(x) \biimp \all \phi [\ess{\phi}{x} \imp \nec \ex y \phi(y)]$
-\item[A5] Necessary existence is a positive property: \hfill $P(\NE)$
-\item[T3] Necessarily, God exists: \hfill $\nec \ex x G(x)$ 
-\end{description}
-
-\noindent
-Scott's version of G\"{o}del's proof has now been 
-analysed for the first-time
+(cf. \cite{sobel2004logic,AndersonGettings,Fitting,Adams,ContemporaryBibliography}). We have analyzed Scott's version of G\"{o}del's proof for the first-time
 with an unprecedent degree of detail 
 and formality with the help of theorem provers; cf.~\cite{FormalTheologyRepository}. 
 The following has been done (and in this order):
@@ -149,6 +104,8 @@ building and checking rigorously correct logical arguments. In case of
 logico-philosophical disputes, the computer can check the disputing
 arguments and partially fulfill Leibniz' dictum: Calculemus --- Let us
 calculate!
+
+\clearpage
 
 %\footnotesize
 \bibliographystyle{plain}
