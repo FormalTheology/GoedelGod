@@ -142,7 +142,7 @@ axiomatization where
 
 (* An essence of an individual is a property possessed by it and necessarily 
    implying any of its properties. *)
-definition ess :: "(mu => (i => bool)) => mu => (i => bool)" (infixr "ess" 85)where
+definition ess :: "(mu => (i => bool)) => mu => (i => bool)" (infixr "ess" 85) where
   "p ess x = p x m\<and> \<forall>p (\<lambda>\<psi>. \<psi> x m\<Rightarrow> \<box> (\<forall>i (\<lambda>y. p y m\<Rightarrow> \<psi> y)))"
 
 (* Checking the consistency of assumptions up to here with Nitpick *)
@@ -171,8 +171,7 @@ axiomatization where
   
 (* Additionally, r is now required symmetric, thus we work from now on in 
    modal logic KB instead of K *)
-axiomatization where sym: "x r y \<longrightarrow> y r x" 
-(* classical negation lifted to possible worlds *)    
+axiomatization where sym: "x r y \<longrightarrow> y r x"    
   
 (* Checking the consistency of assumptions up to here with Nitpick *)
 lemma True
