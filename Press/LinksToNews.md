@@ -16,3 +16,7 @@ Links to News
 [Detektor.fm](http://detektor.fm/kultur/mathematischer-gottesbeweis-von-forschern-bestaetigt/)
 
 [ORF](http://science.orf.at/stories/1724627/)
+
+[Jewish News Service](http://israswiss.wordpress.com/2013/09/12/existenz-gottes-wissenschaftlich-bewiesen/)
+  
+[Wiener Zeitung](http://www.wienerzeitung.at/themen_channel/wissen/geschichte/574012_Gottesbeweis-eines-Logikgenies.html)
