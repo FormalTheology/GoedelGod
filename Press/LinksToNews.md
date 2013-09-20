@@ -5,6 +5,8 @@ Links to News
 
 [Heise](http://www.heise.de/newsticker/meldung/Computerprogramm-bestaetigt-Goedels-Gottesbeweis-1942504.html)
 
+[Vienna University of Technology](http://www.tuwien.ac.at/aktuelles/news_detail/article/8388/)
+
 [Facebook Page of TU-Wien](https://www.facebook.com/tuwien/posts/10151642893144353)
 
 [Spiegel Online](http://Spiegel.de/wissenschaft/mensch/formel-von-kurt-goedel-mathematiker-bestaetigen-gottesbeweis-a-920455.html)
