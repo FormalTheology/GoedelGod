@@ -22,3 +22,5 @@ Links to News
 [Jewish News Service](http://israswiss.wordpress.com/2013/09/12/existenz-gottes-wissenschaftlich-bewiesen/)
   
 [Wiener Zeitung](http://www.wienerzeitung.at/themen_channel/wissen/geschichte/574012_Gottesbeweis-eines-Logikgenies.html)
+
+[Vienna University of Technology - Faculty of Informatics](http://www.informatik.tuwien.ac.at/aktuelles/792)
