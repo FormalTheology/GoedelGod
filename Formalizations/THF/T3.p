@@ -30,6 +30,10 @@ thf(g_tp,type,(
 thf(ess_tp,type,(
     ess: ( mu > $i > $o ) > mu > $i > $o )).
 
+%----constant symbol for necessary existence: ne
+thf(ne_tp,type,(
+    ne: mu > $i > $o )).
+
 %----D1: A God-like being possesses all positive properties.
 thf(defD1,definition,
     ( g
