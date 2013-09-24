@@ -196,7 +196,7 @@ lemma help1: "v (\<diamond> (\<box> p)) \<Longrightarrow> v (\<box> p)"
   (* immeadiate success with sledgehammer *)
   (* sledgehammer [provers = remote_leo2 remote_satallax] *)  
   using sym
-  unfolding valid_def mdia_def mbox_def mimplies_def
+  unfolding valid_def mdia_def mbox_def
   by metis
 
 lemma help2: "v (\<diamond> p) \<and> v (p m\<Rightarrow> \<box> p) \<Longrightarrow> v (\<diamond> (\<box> p))"
