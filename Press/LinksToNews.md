@@ -15,7 +15,7 @@ Links to News
 
 [Frankfurter Allgemeine Zeitung](http://www.faz.net/aktuell/feuilleton/intelligenzforschung-gott-lebt-12557007.html)
 
-[Detektor.fm](http://detektor.fm/kultur/mathematischer-gottesbeweis-von-forschern-bestaetigt/)
+[Detektor.fm (Radio Interview)](http://detektor.fm/kultur/mathematischer-gottesbeweis-von-forschern-bestaetigt/)
 
 [ORF](http://science.orf.at/stories/1724627/)
 
@@ -24,3 +24,5 @@ Links to News
 [Wiener Zeitung](http://www.wienerzeitung.at/themen_channel/wissen/geschichte/574012_Gottesbeweis-eines-Logikgenies.html)
 
 [Vienna University of Technology - Faculty of Informatics](http://www.informatik.tuwien.ac.at/aktuelles/792)
+
+[Motherboard.tv] (http://motherboard.vice.com/de/blog/der-computer-als-philosoph)
