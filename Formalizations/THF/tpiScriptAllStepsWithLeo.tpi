@@ -68,11 +68,13 @@ tpi(thmT1_10,assert,$getenv('SZS_STATUS') = 'Theorem').
 
 tpi(corC_1,write,'5. Analysing theorem corC.').
 tpi(corC_2,deactivate_group,goedelAssumptions).
+tpi(corC_3,deactivate,axA1).
+tpi(corC_3,deactivate,axA2).
 tpi(corC_3,write,'   Activating exactly definition defD1, axiom axA1 and theorem/lemma thmT1.').
 tpi(corC_3,activate,p_tp).
 tpi(corC_4,activate,g_tp).
 tpi(corC_5,activate,defD1).
-tpi(corC_6,activate,axA3).
+tpi(corC_6,activate,axA1).
 tpi(corC_7,set_role,thmT1_con = lemma).
   thf(corC_con,conjecture,( v @ ( mdia @ ( mexists_ind @ ^ [X: mu] : ( g @ X ) ) ) )).
 tpi(corC_8,write,'   Checking whether corC is a theorem (using LEO-II).').
@@ -99,7 +101,7 @@ tpi(thmT2_14,execute,'SZS_STATUS' = 'LEO-II---1.6.0 90 $getgroups(tpi)').
 tpi(thmT2_15,write,'   SZS_STATUS for thmT2 is ' & '$getenv(SZS_STATUS)').
 tpi(thmT2_16,assert,$getenv('SZS_STATUS') = 'Theorem').
 
-tpi(thmT3_1,write,'6. Analysing theorem thmT3.').
+tpi(thmT3_1,write,'7. Analysing theorem thmT3.').
 %tpi(thmT3_2,deactivate_group,goedelAssumptions).
 %tpi(thmT3_3,deactivate,thmT1_con).
 %tpi(thmT3_4,deactivate,corC_con).
@@ -112,7 +114,7 @@ tpi(thmT3_10,activate,ne_tp).
 tpi(thmT3_11,activate,defD1).
 tpi(thmT3_12,activate,corC_con).
 tpi(thmT3_13,set_role,corC_con = lemma).
-%tpi(thmT3_14,activate,thmT2_con).
+tpi(thmT3_14,activate,thmT2_con).
 tpi(thmT3_15,set_role,thmT2_con = lemma).
 tpi(thmT3_16,activate,defD3).
 tpi(thmT3_17,activate,axA5).
@@ -121,9 +123,12 @@ tpi(thmT3_18,write,'   Adding axiom B (symmetry).').
   thf(msymmetric,definition,( msymmetric = ( ^ [R: $i > $i > $o] : ! [S: $i,T: $i] : ( ( R @ S @ T ) => ( R @ T @ S ) ) ) )).
   thf(sym,axiom, ( msymmetric @ rel )).
   thf(thmT3_con,conjecture,( v @ ( mbox @ ( mexists_ind @ ^ [X: mu] : ( g @ X ) ) ) )).
-tpi(thmT3_18,write,'   Checking whether thmT3 is a theorem (using LEO-II).').
-tpi(thmT3_19,execute,'SZS_STATUS' = 'LEO-II---1.6.0 90 $getgroups(tpi)').
-tpi(thmT3_20,write,'   SZS_STATUS for thmT3 is ' & '$getenv(SZS_STATUS)').
-tpi(thmT3_21,assert,$getenv('SZS_STATUS') = 'Theorem').
+tpi(test1,output,stdout).
+tpi(thmT3_19,write,'   Checking whether thmT3 is a theorem (using LEO-II).').
+%tpi(test1,execute,'BLA' = 'echo  $getgroups(tpi)').
+%tpi(test2,write,'   Output: ' & '$getenv(BLA)').
+tpi(thmT3_20,execute,'SZS_STATUS' = 'LEO-II---1.6.0 120 $getgroups(tpi)').
+tpi(thmT3_21,write,'   SZS_STATUS for thmT3 is ' & '$getenv(SZS_STATUS)').
+tpi(thmT3_22,assert,$getenv('SZS_STATUS') = 'Theorem').
 
 tpi(end,exit,exit).
