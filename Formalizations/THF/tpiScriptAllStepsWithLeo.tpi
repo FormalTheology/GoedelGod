@@ -1,4 +1,6 @@
-tpi(kb_1,write,'1. Defining the embedding of Quantified Modal Logic KB in HOL (THF0)').
+tpi(com,write,'').
+tpi(com,write,'%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%').
+tpi(com,write,'%%% 1. Defining the embedding of Quantified Modal Logic KB in HOL (THF0)').
   thf(mu_type,type,(mu: $tType )).
   thf(mnot_type,type,(mnot: ( $i > $o ) > $i > $o )).
   thf(mnot,definition,( mnot = ( ^ [Phi: $i > $o,W: $i] : ~ ( Phi @ W ) ) )).
@@ -27,13 +29,18 @@ tpi(kb_1,write,'1. Defining the embedding of Quantified Modal Logic KB in HOL (T
   thf(mbox,definition,( mbox = ( mbox_generic @ rel ) )).
   thf(mdia_type,type,( mdia: ( $i > $o ) > $i > $o )).
   thf(mdia,definition,( mdia = ( mdia_generic @ rel ) )).
-tpi(kb_2,write,'   Checking Satisfiability of quantified_KB.').
-tpi(kb_3,execute,'SZS_STATUS' = 'Nitrox---2013 60 $getgroups(tpi)').
-tpi(kb_4,write,'   SZS_STATUS for quantified_KB is ' & '$getenv(SZS_STATUS)').
-tpi(kb_5,assert,$getenv('SZS_STATUS') = 'Satisfiable').
+tpi(com,write,'').
+tpi(com,output,stdout).
+tpi(com,write,'%%%    Checking Satisfiability of this embedding.').
+tpi(com,execute,'SZS_STATUS' = 'Nitrox---2013 20 $getgroups(tpi)').
+tpi(com,write,'%%%    SZS_STATUS for the embedding is ' & '$getenv(SZS_STATUS)').
+tpi(com,assert,$getenv('SZS_STATUS') = 'Satisfiable').
+tpi(com,write,'%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%').
+tpi(com,write,'').
 
-tpi(goedelAssumptions_1,write,'2. Adding all Axioms and Definitions of the proof of Goedel.').
-tpi(goedelAssumptions_2,start_group,quantified_KB).
+tpi(com,write,'%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%').
+tpi(com,write,'%%% 2. Adding all Axioms and Definitions of the proof of Goedel.').
+tpi(com,start_group,goedelAssumptions).
   thf(p_tp,type,(p: ( mu > $i > $o ) > $i > $o )).
   thf(g_tp,type,(g: mu > $i > $o )).
   thf(ess_tp,type,(ess: ( mu > $i > $o ) > mu > $i > $o )).
@@ -46,89 +53,109 @@ tpi(goedelAssumptions_2,start_group,quantified_KB).
   thf(defD2,definition,( ess = ( ^ [Phi: mu > $i > $o,X: mu] : ( mand @ ( Phi @ X ) @ ( mforall_indset @ ^ [Psi: mu > $i > $o] : ( mimplies @ ( Psi @ X ) @ ( mbox @ ( mforall_ind @ ^ [Y: mu] : ( mimplies @ ( Phi @ Y ) @ ( Psi @ Y ) ) ) ) ) ) ) ) )).
   thf(defD3,definition,( ne = ( ^ [X: mu] : ( mforall_indset @ ^ [Phi: mu > $i > $o] : ( mimplies @ ( ess @ Phi @ X ) @ ( mbox @ ( mexists_ind @ ^ [Y: mu] : ( Phi @ Y ) ) ) ) ) ) )).
   thf(axA5,axiom,( v @ ( p @ ne ) )).
-tpi(goedelAssumptions_3,end_group,quantified_KB).
-tpi(goedelAssumptions_4,write,'   Group of Axioms defined; this group is called: goedelAssumptions').
-tpi(goedelAssumptions_4,write,'   Checking Satisfiability of goedelAssumptions.').
-tpi(goedelAssumptions_5,execute,'SZS_STATUS' = 'Nitrox---2013 60 $getgroups(tpi)').
-tpi(goedelAssumptions_6,write,'   SZS_STATUS for goedelAssumptions is ' & '$getenv(SZS_STATUS)').
-tpi(goedelAssumptions_7,assert,$getenv('SZS_STATUS') = 'Satisfiable').
-tpi(goedelAssumptions_8,write,'   Deactivating group goedelAssumptions again.').
+tpi(com,end_group,goedelAssumptions).
+tpi(com,write,'%%%    Group of Axioms defined; this group is called: goedelAssumptions').
+tpi(com,write,'').
+tpi(com,output,stdout).
+tpi(com,write,'%%%    Checking Satisfiability of goedelAssumptions.').
+tpi(com,execute,'SZS_STATUS' = 'Nitrox---2013 60 $getgroups(tpi)').
+tpi(com,write,'%%%    SZS_STATUS for goedelAssumptions is ' & '$getenv(SZS_STATUS)').
+tpi(com,assert,$getenv('SZS_STATUS') = 'Satisfiable').
+tpi(com,write,'%%%    Deactivating group goedelAssumptions again.').
+tpi(com,write,'%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%').
+tpi(com,write,'').
 
-tpi(thmT1_1,write,'4. Analysing theorem thmT1.').
-tpi(thmT1_2,deactivate_group,goedelAssumptions).
-tpi(thmT1_3,write,'   Activating exactly axioms axA1 and axA2.').
-tpi(thmT1_4,activate,p_tp).
-tpi(thmT1_5,activate,axA1).
-tpi(thmT1_6,activate,axA2).
+tpi(com,write,'%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%').
+tpi(com,write,'%%% 3. Analysing theorem thmT1.').
+tpi(com,deactivate_group,goedelAssumptions).
+tpi(com,write,'%%%    Activating exactly axioms axA1 and axA2.').
+tpi(com,activate,p_tp).
+tpi(com,activate,axA1).
+tpi(com,activate,axA2).
   thf(thmT1_con,conjecture,( v @ ( mforall_indset @ ^ [Phi: mu > $i > $o] : ( mimplies @ ( p @ Phi ) @ ( mdia @ ( mexists_ind @ ^ [X: mu] : ( Phi @ X ) ) ) ) ) )).
-tpi(thmT1_7,write,'   Checking whether thmT1 is a theorem (using LEO-II).').
-tpi(thmT1_8,execute,'SZS_STATUS' = 'LEO-II---1.6.0 90 $getgroups(tpi)').
-tpi(thmT1_9,write,'   SZS_STATUS for thmT1 is ' & '$getenv(SZS_STATUS)').
-tpi(thmT1_10,assert,$getenv('SZS_STATUS') = 'Theorem').
+tpi(com,write,'').
+tpi(com,output,stdout).
+tpi(com,write,'%%%    Checking whether thmT1 is a theorem (using LEO-II).').
+tpi(com,execute,'SZS_STATUS' = 'LEO-II---1.6.0 20 $getgroups(tpi)').
+tpi(com,write,'%%%    SZS_STATUS for thmT1 is ' & '$getenv(SZS_STATUS)').
+tpi(com,assert,$getenv('SZS_STATUS') = 'Theorem').
+tpi(com,write,'%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%').
+tpi(com,write,'').
 
-tpi(corC_1,write,'5. Analysing theorem corC.').
-tpi(corC_2,deactivate_group,goedelAssumptions).
-tpi(corC_3,deactivate,axA1).
-tpi(corC_3,deactivate,axA2).
-tpi(corC_3,write,'   Activating exactly definition defD1, axiom axA1 and theorem/lemma thmT1.').
-tpi(corC_3,activate,p_tp).
-tpi(corC_4,activate,g_tp).
-tpi(corC_5,activate,defD1).
-tpi(corC_6,activate,axA1).
-tpi(corC_7,set_role,thmT1_con = lemma).
+tpi(com,write,'%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%').
+tpi(com,write,'%%% 4. Analysing theorem corC.').
+tpi(com,deactivate_group,goedelAssumptions).
+tpi(com,deactivate,axA1).
+tpi(com,deactivate,axA2).
+tpi(com,write,'%%%    Activating exactly definition defD1, axA3 and theorem/lemma thmT1.').
+tpi(com,activate,p_tp).
+tpi(com,activate,g_tp).
+tpi(com,activate,defD1).
+tpi(com,activate,axA3).
+tpi(com,set_role,thmT1_con = lemma).
   thf(corC_con,conjecture,( v @ ( mdia @ ( mexists_ind @ ^ [X: mu] : ( g @ X ) ) ) )).
-tpi(corC_8,write,'   Checking whether corC is a theorem (using LEO-II).').
-tpi(corC_9,execute,'SZS_STATUS' = 'LEO-II---1.6.0 90 $getgroups(tpi)').
-tpi(corC_10,write,'   SZS_STATUS for corC is ' & '$getenv(SZS_STATUS)').
-tpi(corC_11,assert,$getenv('SZS_STATUS') = 'Theorem').
+tpi(com,write,'').
+tpi(com,output,stdout).
+tpi(com,write,'%%%    Checking whether corC is a theorem (using LEO-II).').
+tpi(com,execute,'SZS_STATUS' = 'LEO-II---1.6.0 20 $getgroups(tpi)').
+tpi(com,write,'%%%    SZS_STATUS for corC is ' & '$getenv(SZS_STATUS)').
+tpi(com,assert,$getenv('SZS_STATUS') = 'Theorem').
+tpi(com,write,'%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%').
+tpi(com,write,'').
 
-tpi(thmT2_1,write,'6. Analysing theorem thmT2.').
-tpi(thmT2_2,deactivate_group,goedelAssumptions).
-tpi(thmT2_3,deactivate,thmT1_con).
-tpi(thmT2_4,deactivate,corC_con).
-tpi(thmT2_5,write,'   Activating exactly axA1, defD1, axA4 and defD2.').
-tpi(thmT2_6,activate,p_tp).
-tpi(thmT2_7,activate,g_tp).
-tpi(thmT2_8,activate,ess_tp).
-%tpi(thmT2_8,activate,ne_tp).
-tpi(thmT2_9,activate,axA1).
-tpi(thmT2_10,activate,defD1).
-tpi(thmT2_11,activate,axA4).
-tpi(thmT2_12,activate,defD2).
+tpi(com,write,'%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%').
+tpi(com,write,'%%% 5. Analysing theorem thmT2.').
+tpi(com,deactivate_group,goedelAssumptions).
+tpi(com,deactivate,thmT1_con).
+tpi(com,deactivate,corC_con).
+tpi(com,write,'%%%    Activating exactly axA1, defD1, axA4 and defD2.').
+tpi(com,activate,p_tp).
+tpi(com,activate,g_tp).
+tpi(com,activate,ess_tp).
+tpi(com,activate,axA1).
+tpi(com,activate,defD1).
+tpi(com,activate,axA4).
+tpi(com,activate,defD2).
   thf(thmT2_con,conjecture,( v @ ( mforall_ind @ ^ [X: mu] : ( mimplies @ ( g @ X ) @ ( ess @ g @ X ) ) ) )).
-tpi(thmT2_13,write,'   Checking whether thmT2 is a theorem (using LEO-II).').
-tpi(thmT2_14,execute,'SZS_STATUS' = 'LEO-II---1.6.0 90 $getgroups(tpi)').
-tpi(thmT2_15,write,'   SZS_STATUS for thmT2 is ' & '$getenv(SZS_STATUS)').
-tpi(thmT2_16,assert,$getenv('SZS_STATUS') = 'Theorem').
+tpi(com,write,'').
+tpi(com,output,stdout).
+tpi(com,write,'%%%    Checking whether thmT2 is a theorem (using LEO-II).').
+tpi(com,execute,'SZS_STATUS' = 'LEO-II---1.6.0 20 $getgroups(tpi)').
+tpi(com,write,'%%%    SZS_STATUS for thmT2 is ' & '$getenv(SZS_STATUS)').
+tpi(com,assert,$getenv('SZS_STATUS') = 'Theorem').
+tpi(com,write,'%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%').
+tpi(com,write,'').
 
-tpi(thmT3_1,write,'7. Analysing theorem thmT3.').
-%tpi(thmT3_2,deactivate_group,goedelAssumptions).
-%tpi(thmT3_3,deactivate,thmT1_con).
-%tpi(thmT3_4,deactivate,corC_con).
-%tpi(thmT3_5,deactivate,thmT2_con).
-tpi(thmT3_6,write,'   Activating exactly defD1, corC, thmT2, defD3, axA5').
-tpi(thmT3_7,activate,p_tp).
-tpi(thmT3_8,activate,g_tp).
-tpi(thmT3_9,activate,ess_tp).
-tpi(thmT3_10,activate,ne_tp).
-tpi(thmT3_11,activate,defD1).
-tpi(thmT3_12,activate,corC_con).
-tpi(thmT3_13,set_role,corC_con = lemma).
-tpi(thmT3_14,activate,thmT2_con).
-tpi(thmT3_15,set_role,thmT2_con = lemma).
-tpi(thmT3_16,activate,defD3).
-tpi(thmT3_17,activate,axA5).
-tpi(thmT3_18,write,'   Adding axiom B (symmetry).').
+tpi(com,write,'%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%').
+tpi(com,write,'%%% 6. Analysing theorem thmT3.').
+tpi(com,deactivate_group,goedelAssumptions).
+tpi(com,deactivate,thmT1_con).
+tpi(com,deactivate,corC_con).
+tpi(com,deactivate,thmT2_con).
+tpi(com,write,'   Activating exactly defD1, corC, thmT2, defD3, axA5').
+tpi(com,activate,p_tp).
+tpi(com,activate,g_tp).
+tpi(com,activate,ess_tp).
+tpi(com,activate,ne_tp).
+tpi(com,activate,defD1).
+tpi(com,activate,corC_con).
+tpi(com,set_role,corC_con = lemma).
+tpi(com,activate,thmT2_con).
+tpi(com,set_role,thmT2_con = lemma).
+tpi(com,activate,defD3).
+tpi(com,activate,axA5).
+tpi(com,write,'   Adding axiom B (symmetry).').
   thf(msymmetric_type,type,( msymmetric: ( $i > $i > $o ) > $o )).
   thf(msymmetric,definition,( msymmetric = ( ^ [R: $i > $i > $o] : ! [S: $i,T: $i] : ( ( R @ S @ T ) => ( R @ T @ S ) ) ) )).
   thf(sym,axiom, ( msymmetric @ rel )).
   thf(thmT3_con,conjecture,( v @ ( mbox @ ( mexists_ind @ ^ [X: mu] : ( g @ X ) ) ) )).
-tpi(test1,output,stdout).
-tpi(thmT3_19,write,'   Checking whether thmT3 is a theorem (using LEO-II).').
-%tpi(test1,execute,'BLA' = 'echo  $getgroups(tpi)').
-%tpi(test2,write,'   Output: ' & '$getenv(BLA)').
-tpi(thmT3_20,execute,'SZS_STATUS' = 'LEO-II---1.6.0 120 $getgroups(tpi)').
-tpi(thmT3_21,write,'   SZS_STATUS for thmT3 is ' & '$getenv(SZS_STATUS)').
-tpi(thmT3_22,assert,$getenv('SZS_STATUS') = 'Theorem').
+tpi(com,write,'').
+tpi(com,output,stdout).
+tpi(com,write,'   Checking whether thmT3 is a theorem (using LEO-II).').
+tpi(com,execute,'SZS_STATUS' = 'LEO-II---1.6.0 20 $getgroups(tpi)').
+tpi(com,write,'   SZS_STATUS for thmT3 is ' & '$getenv(SZS_STATUS)').
+tpi(com,assert,$getenv('SZS_STATUS') = 'Theorem').
+tpi(com,write,'%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%').
+tpi(com,write,'').
 
 tpi(end,exit,exit).
