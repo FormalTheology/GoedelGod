@@ -26,3 +26,5 @@ Links to News
 [Vienna University of Technology - Faculty of Informatics](http://www.informatik.tuwien.ac.at/aktuelles/792)
 
 [Motherboard.tv] (http://motherboard.vice.com/de/blog/der-computer-als-philosoph)
+
+[myscience.at] (http://www.myscience.at/news/2013/deus_ex_machina-2013-tuwien)
