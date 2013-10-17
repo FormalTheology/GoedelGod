@@ -28,3 +28,8 @@ Links to News
 [Motherboard.tv] (http://motherboard.vice.com/de/blog/der-computer-als-philosoph)
 
 [myscience.at] (http://www.myscience.at/news/2013/deus_ex_machina-2013-tuwien)
+
+[Tagespost] (http://www.die-tagespost.de/feuilleton/Ein-Mathematiker-wollte-Gott-beweisen;art310,146262)
+
+[Freie Universitaet Berlin](http://www.fu-berlin.de/presse/informationen/fup/2013/fup_13_308/index.html)
+
