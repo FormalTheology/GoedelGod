@@ -37,5 +37,7 @@ Links to News
 
 [Berliner Morgenpost](http://www.morgenpost.de/printarchiv/titelseite/article121004483/Goettliche-Mathematik.html)
 
+[Die Tagespost](http://www.die-tagespost.de/feuilleton/Ein-Mathematiker-wollte-Gott-beweisen;art310,146262)
+
 [Kölner Stadtanzeiger](http://www.ksta.de/kultur/forschung-an-der-fu-berlin-computer-bestaetigt-existenz-gottes,15189520,24667106.html)
 
