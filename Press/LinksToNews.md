@@ -34,3 +34,9 @@ Links to News
 [Freie Universitaet Berlin](http://www.fu-berlin.de/presse/informationen/fup/2013/fup_13_308/index.html)
 
 [Die Welt](http://www.welt.de/wissenschaft/article120995923/Forscher-beweisen-Existenz-Gottes-am-Computer.html)
+
+[Berliner Morgenpost](http://www.morgenpost.de/printarchiv/titelseite/article121004483/Goettliche-Mathematik.html)
+
+[Die Tagspost](http://www.morgenpost.de/printarchiv/titelseite/article121004483/Goettliche-Mathematik.html)
+
+[Kölner Stadtanzeiger](http://www.ksta.de/kultur/forschung-an-der-fu-berlin-computer-bestaetigt-existenz-gottes,15189520,24667106.html)
