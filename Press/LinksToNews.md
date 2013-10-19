@@ -40,3 +40,5 @@ Links to News
 [Die Tagspost](http://www.morgenpost.de/printarchiv/titelseite/article121004483/Goettliche-Mathematik.html)
 
 [Kölner Stadtanzeiger](http://www.ksta.de/kultur/forschung-an-der-fu-berlin-computer-bestaetigt-existenz-gottes,15189520,24667106.html)
+
+[Politically Incorrect](http://www.pi-news.net/2013/09/einstein-godels-gottesbeweis-und-700-idioten-bei-telepolis/)
