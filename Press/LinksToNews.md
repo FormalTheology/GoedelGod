@@ -41,3 +41,5 @@ Links to News
 
 [Kölner Stadtanzeiger](http://www.ksta.de/kultur/forschung-an-der-fu-berlin-computer-bestaetigt-existenz-gottes,15189520,24667106.html)
 
+[Hamburger Abendpost](http://www.abendblatt.de/ratgeber/wissen/article120995923/Forscher-beweisen-Existenz-Gottes-am-Computer.html)
+
