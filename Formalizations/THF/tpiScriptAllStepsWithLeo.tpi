@@ -29,6 +29,7 @@ tpi(com,write,'%%% 1. Defining the embedding of Quantified Modal Logic KB in HOL
   thf(mbox,definition,( mbox = ( mbox_generic @ rel ) )).
   thf(mdia_type,type,( mdia: ( $i > $o ) > $i > $o )).
   thf(mdia,definition,( mdia = ( mdia_generic @ rel ) )).
+  thf(ax,axiom,( $false )).
 tpi(com,write,'').
 tpi(com,output,stdout).
 tpi(com,write,'%%%    Checking Satisfiability of this embedding.').
