@@ -36,3 +36,15 @@ Links to News
 [Freie Universitaet Berlin](http://www.fu-berlin.de/presse/informationen/fup/2013/fup_13_308/index.html)
 
 [Die Welt](http://www.welt.de/wissenschaft/article120995923/Forscher-beweisen-Existenz-Gottes-am-Computer.html)
+
+[Berliner Morgenpost](http://www.morgenpost.de/printarchiv/titelseite/article121004483/Goettliche-Mathematik.html)
+
+[Die Tagespost](http://www.die-tagespost.de/feuilleton/Ein-Mathematiker-wollte-Gott-beweisen;art310,146262)
+
+[Kölner Stadtanzeiger](http://www.ksta.de/kultur/forschung-an-der-fu-berlin-computer-bestaetigt-existenz-gottes,15189520,24667106.html)
+
+[Hamburger Abendpost](http://www.abendblatt.de/ratgeber/wissen/article120995923/Forscher-beweisen-Existenz-Gottes-am-Computer.html)
+
+[Spiegel International] (http://www.spiegel.de/international/germany/scientists-use-computer-to-mathematically-prove-goedel-god-theorem-a-928668.html)
+
+[UPI] (http://www.upi.com/Science_News/2013/10/23/Researchers-say-they-used-MacBook-to-prove-Goedels-God-theorem/UPI-85301382573640/?spt=sh&or=5)
