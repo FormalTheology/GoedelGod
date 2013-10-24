@@ -43,3 +43,6 @@ Links to News
 
 [Hamburger Abendpost](http://www.abendblatt.de/ratgeber/wissen/article120995923/Forscher-beweisen-Existenz-Gottes-am-Computer.html)
 
+[Spiegel International] (http://www.spiegel.de/international/germany/scientists-use-computer-to-mathematically-prove-goedel-god-theorem-a-928668.html)
+
+[UPI] (http://www.upi.com/Science_News/2013/10/23/Researchers-say-they-used-MacBook-to-prove-Goedels-God-theorem/UPI-85301382573640/?spt=sh&or=5)
