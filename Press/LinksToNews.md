@@ -11,8 +11,6 @@ Links to News
 
 [Spiegel Online](http://Spiegel.de/wissenschaft/mensch/formel-von-kurt-goedel-mathematiker-bestaetigen-gottesbeweis-a-920455.html)
 
-[Spiegel Online - International](http://www.spiegel.de/international/germany/scientists-use-computer-to-mathematically-prove-goedel-god-theorem-a-928668-druck.html)
-
 [Die Presse](http://diepresse.com/home/science/1450597/Mathematiker-prueften-Goedels-Gottesbeweis?_vl_backlink=/home/science/index.do)
 
 [Frankfurter Allgemeine Zeitung](http://www.faz.net/aktuell/feuilleton/intelligenzforschung-gott-lebt-12557007.html)
@@ -45,6 +43,6 @@ Links to News
 
 [Hamburger Abendpost](http://www.abendblatt.de/ratgeber/wissen/article120995923/Forscher-beweisen-Existenz-Gottes-am-Computer.html)
 
-[Spiegel International] (http://www.spiegel.de/international/germany/scientists-use-computer-to-mathematically-prove-goedel-god-theorem-a-928668.html)
+[Spiegel International](http://www.spiegel.de/international/germany/scientists-use-computer-to-mathematically-prove-goedel-god-theorem-a-928668.html)
 
-[UPI] (http://www.upi.com/Science_News/2013/10/23/Researchers-say-they-used-MacBook-to-prove-Goedels-God-theorem/UPI-85301382573640/?spt=sh&or=5)
+[UPI](http://www.upi.com/Science_News/2013/10/23/Researchers-say-they-used-MacBook-to-prove-Goedels-God-theorem/UPI-85301382573640/?spt=sh&or=5)
