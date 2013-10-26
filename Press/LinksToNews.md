@@ -28,7 +28,7 @@ Germany
 
 [Die Tagespost](http://www.die-tagespost.de/feuilleton/Ein-Mathematiker-wollte-Gott-beweisen;art310,146262)
 
-[K�lner Stadtanzeiger](http://www.ksta.de/kultur/forschung-an-der-fu-berlin-computer-bestaetigt-existenz-gottes,15189520,24667106.html)
+[Kölner Stadtanzeiger](http://www.ksta.de/kultur/forschung-an-der-fu-berlin-computer-bestaetigt-existenz-gottes,15189520,24667106.html)
 
 [Hamburger Abendpost](http://www.abendblatt.de/ratgeber/wissen/article120995923/Forscher-beweisen-Existenz-Gottes-am-Computer.html)
 
@@ -64,9 +64,39 @@ Italy
 [AGI](http://www.agi.it/research-e-sviluppo/notizie/201310241345-eco-rt10187-scienza_dimostrato_teorema_matematico_di_godel_su_esistenza_dio)
 
 
+Russia
+------
+
+[Неужели?](http://neuzhely.ru/?p=3862)
+
+
+
+
+India
+-----
+
+[DNA India](http://www.dnaindia.com/scitech/report-researchers-claim-to-have-proven-that-god-exists-1909038)
+
+[Zee News India](http://zeenews.india.com/news/world/researchers-use-apple-macbook-to-prove-god-exists_886051.html)
+
+
+
 International
 -------------
 
 [Spiegel International](http://www.spiegel.de/international/germany/scientists-use-computer-to-mathematically-prove-goedel-god-theorem-a-928668.html)
 
 [Jewish News Service](http://israswiss.wordpress.com/2013/09/12/existenz-gottes-wissenschaftlich-bewiesen/)
+
+[Yahoo Finance](http://ca.finance.yahoo.com/news/researchers-apple-macbook-prove-god-exists-054546739.html)
+
+[CNET](http://news.cnet.com/8301-17852_3-57609422-71/god-exists-say-apple-fanboy-scientists/)
+
+[Space Daily](http://www.spacedaily.com/reports/Researchers_say_they_used_MacBook_to_prove_Goedels_God_theorem_999.html)
+
+[United Press International](http://www.upi.com/Science_News/2013/10/23/Researchers-say-they-used-MacBook-to-prove-Goedels-God-theorem/UPI-85301382573640/)
+
+[Breaking Christian News](http://www.breakingchristiannews.com/articles/display_art.html?ID=12667)
+
+[Free Republic](http://209.157.64.200/focus/f-religion/3083291/posts)
+
