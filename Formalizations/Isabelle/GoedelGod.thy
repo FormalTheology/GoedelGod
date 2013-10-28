@@ -229,6 +229,7 @@ lemma True
 theorem T3: "v (\<box> (\<exists>i G))"
   (* immeadiate success with sledgehammer *)
   (* sledgehammer [provers = remote_leo2 remote_satallax] *)
+  (* sledgehammer [overlord, no_lams, provers = remote_leo2 remote_satallax] *)
   using help1 help2 C help4
   by metis
   
