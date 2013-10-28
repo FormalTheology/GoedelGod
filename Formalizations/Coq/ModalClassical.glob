@@ -1,0 +1,17 @@
+FModalClassical
+R15 Coq.Logic.Classical <> <> lib
+R51 Coq.Logic.Classical_Pred_Type <> <> lib
+R98 Modal <> <> lib
+prf 115 <> not_dia_box_not
+R132 Modal <> V def
+R135:142 Modal <> :type_scope:'mforall'_x_','_x not
+R144:146 Modal <> :type_scope:'mforall'_x_','_x not
+R176:177 Modal <> :type_scope:'mforall'_x_','_x not
+R147:147 Modal <> ::x_'m->'_x not
+R158:164 Modal <> ::x_'m->'_x not
+R175:175 Modal <> ::x_'m->'_x not
+R148:151 Modal <> ::'m~'_x not
+R157:157 Modal <> ::'m~'_x not
+R152 Modal <> dia def
+R165 Modal <> box def
+R170:172 Modal <> ::'m~'_x not

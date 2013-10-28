@@ -1,70 +1,123 @@
 FModal
-ax 187 <> i
-ax 234 <> u
-def 289 <> o
-R294 Modal <> i defax
-ax 355 <> r
-R363 Modal <> i defax
-R358 Modal <> i defax
-def 411 <> mnot
-R420 Modal <> o def
-R426 Modal <> i defax
-R432:434 Coq.Init.Logic <> :type_scope:'~'_x not
-R438:438 Coq.Init.Logic <> :type_scope:'~'_x not
-R462 Modal <> mnot def
-not 450 <> ::'m~'_x
-def 518 <> mand
-R528 Modal <> o def
-R534 Modal <> i defax
-R540:540 Coq.Init.Logic <> :type_scope:x_'/\'_x not
-R544:549 Coq.Init.Logic <> :type_scope:x_'/\'_x not
-R553:553 Coq.Init.Logic <> :type_scope:x_'/\'_x not
-R579 Modal <> mand def
-not 565 <> ::x_'m/\'_x
-def 637 <> mimplies
-R651 Modal <> o def
-R656 Modal <> i defax
-R701 Modal <> mimplies def
-not 687 <> ::x_'m->'_x
-def 787 <> A
-R807 Modal <> o def
-R871 Modal <> A def
-not 848 <> :type_scope:'mforall'_x_','_x
-R983 Modal <> A def
-not 957 <> :type_scope:'mforall'_x_':'_x_','_x
-def 1133 <> E
-R1153 Modal <> o def
-R1168:1174 Coq.Init.Logic <> :type_scope:'exists'_x_','_x not
-R1176:1177 Coq.Init.Logic <> :type_scope:'exists'_x_','_x not
-R1216 Modal <> E def
-not 1194 <> :type_scope:'mexists'_x_','_x
-R1328 Modal <> E def
-not 1302 <> :type_scope:'mexists'_x_':'_x_','_x
-def 1518 <> box
-R1526 Modal <> o def
-R1553 Modal <> r defax
-def 1620 <> dia
-R1628 Modal <> o def
-R1643:1649 Coq.Init.Logic <> :type_scope:'exists'_x_','_x not
-R1652:1653 Coq.Init.Logic <> :type_scope:'exists'_x_','_x not
-R1654:1654 Coq.Init.Logic <> :type_scope:x_'/\'_x not
-R1661:1666 Coq.Init.Logic <> :type_scope:x_'/\'_x not
-R1671:1671 Coq.Init.Logic <> :type_scope:x_'/\'_x not
-R1655 Modal <> r defax
-def 1730 <> V
-R1736 Modal <> o def
-prf 1765 <> modus_ponens_inside_dia
-R1790 Modal <> V def
-R1793:1800 Modal <> :type_scope:'mforall'_x_','_x not
-R1802:1803 Modal <> :type_scope:'mforall'_x_','_x not
-R1804:1811 Modal <> :type_scope:'mforall'_x_','_x not
-R1813:1814 Modal <> :type_scope:'mforall'_x_','_x not
-R1815:1815 Modal <> ::x_'m->'_x not
-R1821:1826 Modal <> ::x_'m->'_x not
-R1816 Modal <> dia def
-R1827:1827 Modal <> ::x_'m->'_x not
-R1841:1847 Modal <> ::x_'m->'_x not
-R1853:1853 Modal <> ::x_'m->'_x not
-R1828 Modal <> box def
-R1834:1838 Modal <> ::x_'m->'_x not
-R1848 Modal <> dia def
+ax 156 <> i
+ax 203 <> u
+def 258 <> o
+R263 Modal <> i defax
+ax 324 <> r
+R332 Modal <> i defax
+R327 Modal <> i defax
+def 381 <> mequal
+R422:424 Coq.Init.Logic <> :type_scope:x_'='_x not
+R416 Modal <> i defax
+R450 Modal <> mequal def
+not 437 <> ::x_'m='_x
+def 510 <> mnot
+R519 Modal <> o def
+R525 Modal <> i defax
+R531:533 Coq.Init.Logic <> :type_scope:'~'_x not
+R537:537 Coq.Init.Logic <> :type_scope:'~'_x not
+R561 Modal <> mnot def
+not 549 <> ::'m~'_x
+def 617 <> mand
+R627 Modal <> o def
+R633 Modal <> i defax
+R639:639 Coq.Init.Logic <> :type_scope:x_'/\'_x not
+R643:648 Coq.Init.Logic <> :type_scope:x_'/\'_x not
+R652:652 Coq.Init.Logic <> :type_scope:x_'/\'_x not
+R678 Modal <> mand def
+not 664 <> ::x_'m/\'_x
+def 736 <> mimplies
+R750 Modal <> o def
+R755 Modal <> i defax
+R800 Modal <> mimplies def
+not 786 <> ::x_'m->'_x
+def 886 <> A
+R906 Modal <> o def
+R970 Modal <> A def
+not 947 <> :type_scope:'mforall'_x_','_x
+R1082 Modal <> A def
+not 1056 <> :type_scope:'mforall'_x_':'_x_','_x
+def 1232 <> E
+R1252 Modal <> o def
+R1267:1273 Coq.Init.Logic <> :type_scope:'exists'_x_','_x not
+R1275:1276 Coq.Init.Logic <> :type_scope:'exists'_x_','_x not
+R1315 Modal <> E def
+not 1293 <> :type_scope:'mexists'_x_','_x
+R1427 Modal <> E def
+not 1401 <> :type_scope:'mexists'_x_':'_x_','_x
+def 1617 <> box
+R1625 Modal <> o def
+R1652 Modal <> r defax
+def 1719 <> dia
+R1727 Modal <> o def
+R1742:1748 Coq.Init.Logic <> :type_scope:'exists'_x_','_x not
+R1751:1752 Coq.Init.Logic <> :type_scope:'exists'_x_','_x not
+R1753:1753 Coq.Init.Logic <> :type_scope:x_'/\'_x not
+R1760:1765 Coq.Init.Logic <> :type_scope:x_'/\'_x not
+R1770:1770 Coq.Init.Logic <> :type_scope:x_'/\'_x not
+R1754 Modal <> r defax
+def 1829 <> V
+R1835 Modal <> o def
+prf 1864 <> modus_ponens_inside_dia
+R1889 Modal <> V def
+R1892:1899 Modal <> :type_scope:'mforall'_x_','_x not
+R1901:1902 Modal <> :type_scope:'mforall'_x_','_x not
+R1903:1910 Modal <> :type_scope:'mforall'_x_','_x not
+R1912:1913 Modal <> :type_scope:'mforall'_x_','_x not
+R1914:1914 Modal <> ::x_'m->'_x not
+R1920:1925 Modal <> ::x_'m->'_x not
+R1915 Modal <> dia def
+R1926:1926 Modal <> ::x_'m->'_x not
+R1940:1946 Modal <> ::x_'m->'_x not
+R1952:1952 Modal <> ::x_'m->'_x not
+R1927 Modal <> box def
+R1933:1937 Modal <> ::x_'m->'_x not
+R1947 Modal <> dia def
+ax 2158 <> reflexivity
+R2181 Modal <> r defax
+ax 2195 <> transitivity
+R2253 Modal <> r defax
+R2240 Modal <> r defax
+R2227 Modal <> r defax
+ax 2270 <> symmetry
+R2308 Modal <> r defax
+R2295 Modal <> r defax
+prf 2422 <> K
+R2426 Modal <> V def
+R2429:2436 Modal <> :type_scope:'mforall'_x_','_x not
+R2438:2439 Modal <> :type_scope:'mforall'_x_','_x not
+R2440:2447 Modal <> :type_scope:'mforall'_x_','_x not
+R2449:2450 Modal <> :type_scope:'mforall'_x_','_x not
+R2451:2451 Modal <> ::x_'m->'_x not
+R2465:2472 Modal <> ::x_'m->'_x not
+R2492:2493 Modal <> ::x_'m->'_x not
+R2452 Modal <> box def
+R2458:2462 Modal <> ::x_'m->'_x not
+R2473:2473 Modal <> ::x_'m->'_x not
+R2479:2485 Modal <> ::x_'m->'_x not
+R2491:2491 Modal <> ::x_'m->'_x not
+R2474 Modal <> box def
+R2486 Modal <> box def
+prf 2610 <> T
+R2614 Modal <> V def
+R2617:2624 Modal <> :type_scope:'mforall'_x_','_x not
+R2626:2627 Modal <> :type_scope:'mforall'_x_','_x not
+R2628:2628 Modal <> ::x_'m->'_x not
+R2634:2639 Modal <> ::x_'m->'_x not
+R2629 Modal <> box def
+R2688 Modal <> reflexivity prfax
+R2688 Modal <> reflexivity prfax
+prf 2809 <> dia_box_to_box
+R2825 Modal <> V def
+R2828:2835 Modal <> :type_scope:'mforall'_x_','_x not
+R2837:2838 Modal <> :type_scope:'mforall'_x_','_x not
+R2839:2839 Modal <> ::x_'m->'_x not
+R2851:2857 Modal <> ::x_'m->'_x not
+R2863:2863 Modal <> ::x_'m->'_x not
+R2840 Modal <> dia def
+R2845 Modal <> box def
+R2858 Modal <> box def
+R2962 Modal <> transitivity prfax
+R2962 Modal <> transitivity prfax
+R2999 Modal <> symmetry prfax
+R2999 Modal <> symmetry prfax
