@@ -49,6 +49,7 @@ Austria
 
 [ORF](http://science.orf.at/stories/1724627/)
 
+[John Lennox's Talk at TU-Wien](http://www.youtube.com/watch?v=E_2_4KyR-6k&feature=share&t=25m15s)
 
 Italy
 -----
