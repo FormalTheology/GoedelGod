@@ -177,6 +177,3 @@ thf(axA2,axiom,
               @ ( p @ Psi ) ) ) ) )).
 
    
-   
-%----Conjecture False
-thf(con,conjecture, $false ).   
