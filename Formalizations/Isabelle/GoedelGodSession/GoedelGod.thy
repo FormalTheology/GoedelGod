@@ -68,9 +68,9 @@ overly complex proof tasks in a purely interactive session. *}
   abbreviation mnot :: "\<sigma> \<Rightarrow> \<sigma>" ("m\<not>") where "m\<not> \<phi> \<equiv> (\<lambda>w. \<not> \<phi> w)"    
   abbreviation mand :: "\<sigma> \<Rightarrow> \<sigma> \<Rightarrow> \<sigma>" (infixr "m\<and>" 79) where "\<phi> m\<and> \<psi> \<equiv> (\<lambda>w. \<phi> w \<and> \<psi> w)"   
   abbreviation mimplies :: "\<sigma> \<Rightarrow> \<sigma> \<Rightarrow> \<sigma>" (infixr "m\<Rightarrow>" 74) where "\<phi> m\<Rightarrow> \<psi> \<equiv> (\<lambda>w. \<phi> w \<longrightarrow> \<psi> w)"  
-  abbreviation mforall_ind :: "(mu \<Rightarrow> \<sigma>) \<Rightarrow> \<sigma>" ("\<forall>i") where "\<forall>i \<Phi> \<equiv> (\<lambda>w. \<forall>x. \<Phi> x w)"   
-  abbreviation mexists_ind :: "(mu \<Rightarrow> \<sigma>) \<Rightarrow> \<sigma>" ("\<exists>i") where "\<exists>i \<Phi> \<equiv> (\<lambda>w. \<exists>x. \<Phi> x w)"
-  abbreviation mforall_indset :: "((mu \<Rightarrow> \<sigma>) \<Rightarrow> \<sigma>) \<Rightarrow> \<sigma>" ("\<forall>p") where "\<forall>p P \<equiv> (\<lambda>w. \<forall>x. P x w)"
+  abbreviation mforall_ind :: "(mu \<Rightarrow> \<sigma>) \<Rightarrow> \<sigma>" ("\<forall>") where "\<forall> \<Phi> \<equiv> (\<lambda>w. \<forall>x. \<Phi> x w)"   
+  abbreviation mexists_ind :: "(mu \<Rightarrow> \<sigma>) \<Rightarrow> \<sigma>" ("\<exists>") where "\<exists> \<Phi> \<equiv> (\<lambda>w. \<exists>x. \<Phi> x w)"
+  abbreviation mforall_indset :: "((mu \<Rightarrow> \<sigma>) \<Rightarrow> \<sigma>) \<Rightarrow> \<sigma>" ("\<Or>") where "\<Or> P \<equiv> (\<lambda>w. \<forall>x. P x w)"
   abbreviation mbox :: "\<sigma> \<Rightarrow> \<sigma>" ("\<box>") where "\<box> \<phi> \<equiv> (\<lambda>w. \<forall>v. \<not> w r v \<or> \<phi> v)"
   abbreviation mdia :: "\<sigma> \<Rightarrow> \<sigma>" ("\<diamond>") where "\<diamond> \<phi> \<equiv> (\<lambda>w. \<exists>v. w r v \<and> \<phi> v)" 
 
@@ -94,9 +94,9 @@ and @{text "A2"}: $\all \phi \all \psi [(P(\phi) \wedge \nec \all x [\phi(x) \im
 \imp P(\psi)]$ (A property necessarily implied by a positive property is positive.). *}
 
   axiomatization where
-    A1a: "[\<forall>p (\<lambda>\<Phi>. P (\<lambda>x. m\<not> (\<Phi> x)) m\<Rightarrow> m\<not> (P \<Phi>))]" and
-    A1b: "[\<forall>p (\<lambda>\<Phi>. m\<not> (P \<Phi>) m\<Rightarrow> P (\<lambda>x. m\<not> (\<Phi> x)))]" and
-    A2:  "[\<forall>p (\<lambda>\<Phi>. \<forall>p (\<lambda>\<psi>. (P \<Phi> m\<and> \<box> (\<forall>i (\<lambda>X. \<Phi> X m\<Rightarrow> \<psi> X))) m\<Rightarrow> P \<psi>))]"
+    A1a: "[\<Or> (\<lambda>\<Phi>. P (\<lambda>x. m\<not> (\<Phi> x)) m\<Rightarrow> m\<not> (P \<Phi>))]" and
+    A1b: "[\<Or> (\<lambda>\<Phi>. m\<not> (P \<Phi>) m\<Rightarrow> P (\<lambda>x. m\<not> (\<Phi> x)))]" and
+    A2:  "[\<Or> (\<lambda>\<Phi>. \<Or> (\<lambda>\<psi>. (P \<Phi> m\<and> \<box> (\<forall> (\<lambda>x. \<Phi> x m\<Rightarrow> \<psi> x))) m\<Rightarrow> P \<psi>))]"
 
 text {* We prove theorem T1: $\all \varphi [P(\varphi) \imp \pos \ex x \varphi(x)]$ (Positive 
 properties are possibly exemplified). T1 is proved directly by Sledghammer with command @{text 
@@ -104,7 +104,7 @@ properties are possibly exemplified). T1 is proved directly by Sledghammer with 
 instead try the Metis call in the line below. This Metis call generates a proof object that is 
 verified in Isabelle/HOL's kernel. *}
  
-  theorem T1: "[\<forall>p (\<lambda>\<Phi>. P \<Phi> m\<Rightarrow> \<diamond> (\<exists>i \<Phi>))]"  
+  theorem T1: "[\<Or> (\<lambda>\<Phi>. P \<Phi> m\<Rightarrow> \<diamond> (\<exists> \<Phi>))]"  
   sledgehammer [provers = remote_leo2]
   using A2 A1a by metis
 
@@ -112,7 +112,7 @@ text {* Next, the symbol @{text "G"}, for "God-like", is introduced and defined
 as $G(x) \biimp \forall \phi [P(\phi) \to \phi(x)]$ (A God-like being possesses 
 all positive properties:). *} 
 
-  definition G :: "mu \<Rightarrow> \<sigma>" where "G = (\<lambda>x. \<forall>p (\<lambda>\<Phi>. P \<Phi> m\<Rightarrow> \<Phi> x))"   
+  definition G :: "mu \<Rightarrow> \<sigma>" where "G = (\<lambda>x. \<Or> (\<lambda>\<Phi>. P \<Phi> m\<Rightarrow> \<Phi> x))"   
 
 text {* Axiom @{text "A3"} is added: $P(G)$ (The property of being God-like is positive.).
 Sledgehammer and Metis then prove corollary @{text "C"}: $\pos \ex x G(x)$ 
@@ -120,14 +120,14 @@ Sledgehammer and Metis then prove corollary @{text "C"}: $\pos \ex x G(x)$
  
   axiomatization where A3:  "[P G]" 
 
-  corollary C: "[\<diamond> (\<exists>i G)]" 
+  corollary C: "[\<diamond> (\<exists> G)]" 
   sledgehammer [provers = remote_leo2]
   using A3 T1 by metis
 
 text {* We add axiom @{text "A4"}: $\all \phi [P(\phi) \to \Box \; P(\phi)]$ 
 (Positive properties are necessarily positive). *}
 
-  axiomatization where A4:  "[\<forall>p (\<lambda>\<Phi>. P \<Phi> m\<Rightarrow> \<box> (P \<Phi>))]" 
+  axiomatization where A4:  "[\<Or> (\<lambda>\<Phi>. P \<Phi> m\<Rightarrow> \<box> (P \<Phi>))]" 
 
 text {* Symbol @{text "ess"}, for "Essence", is introduced and defined as 
 $\ess{\phi}{x} \biimp \phi(x) \wedge \all \psi (\psi(x) \imp \nec \all y (\phi(y) 
@@ -135,12 +135,12 @@ $\ess{\phi}{x} \biimp \phi(x) \wedge \all \psi (\psi(x) \imp \nec \all y (\phi(y
 and necessarily implying any of its properties.). *}
 
   definition ess :: "(mu \<Rightarrow> \<sigma>) \<Rightarrow> mu \<Rightarrow> \<sigma>" (infixr "ess" 85) where
-    "\<Phi> ess x = \<Phi> x m\<and> \<forall>p (\<lambda>\<psi>. \<psi> x m\<Rightarrow> \<box> (\<forall>i (\<lambda>y. \<Phi> y m\<Rightarrow> \<psi> y)))"
+    "\<Phi> ess x = \<Phi> x m\<and> \<Or> (\<lambda>\<psi>. \<psi> x m\<Rightarrow> \<box> (\<forall> (\<lambda>y. \<Phi> y m\<Rightarrow> \<psi> y)))"
 
 text {* Next, Sledgehammer and Metis prove theorem @{text "T2"}: $\all x [G(x) \imp \ess{G}{x}]$ 
 (Being God-like is an essence of any God-like being). *}
 
-  theorem T2: "[\<forall>i (\<lambda>x. G x m\<Rightarrow> G ess x)]"
+  theorem T2: "[\<forall> (\<lambda>x. G x m\<Rightarrow> G ess x)]"
   sledgehammer [provers = remote_leo2]
   by (metis (lifting) A1b A4 G_def ess_def)
 
@@ -148,7 +148,7 @@ text {* Symbol @{text "NE"}, for "Necessary Existence", is introduced and
 defined as $\NE(x) \biimp \all \phi [\ess{\phi}{x} \imp \nec \ex y \phi(y)]$ (Necessary 
 existence of an individual is the necessary exemplification of all its essences.). *}
 
-  definition NE :: "mu \<Rightarrow> \<sigma>" where "NE = (\<lambda>x. \<forall>p (\<lambda>\<Phi>. \<Phi> ess x m\<Rightarrow> \<box> (\<exists>i \<Phi>)))"
+  definition NE :: "mu \<Rightarrow> \<sigma>" where "NE = (\<lambda>x. \<Or> (\<lambda>\<Phi>. \<Phi> ess x m\<Rightarrow> \<box> (\<exists> \<Phi>)))"
 
 text {* Moreover, axiom @{text "A5"} is added: $P(\NE)$ (Necessary existence is a positive 
 property.). *}
@@ -158,11 +158,11 @@ property.). *}
 text {* Finally, Sledgehammer and Metis prove the main theorem @{text "T3"}: $\nec \ex x G(x)$ 
 (Necessarily, God exists). *}
 
-  theorem T3: "[\<box> (\<exists>i G)]" 
+  theorem T3: "[\<box> (\<exists> G)]" 
   sledgehammer [provers = remote_leo2]
   using A5 C T2 sym G_def NE_def by metis
 
-  corollary T4: "[\<exists>i G]" 
+  corollary T4: "[\<exists> G]" 
   sledgehammer [provers = remote_leo2]
   using T1 T3 sym G_def by metis
 
