@@ -250,4 +250,4 @@ theorem cor: "v (\<exists>i G)"
   unfolding valid_def mbox_def
   by metis
 
-
+end

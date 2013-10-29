@@ -1,0 +1,378 @@
+%
+\begin{isabellebody}%
+\def\isabellecontext{GoedelGod}%
+%
+\isadelimtheory
+%
+\endisadelimtheory
+%
+\isatagtheory
+%
+\endisatagtheory
+{\isafoldtheory}%
+%
+\isadelimtheory
+%
+\endisadelimtheory
+%
+\isamarkupsection{Introduction%
+}
+\isamarkuptrue%
+%
+\begin{isamarkuptext}%
+A formalization and (partial) automation of Dana Scott's version \cite{ScottNotes}
+ of Goedel's ontological argument \cite{GoedelNotes} in quantified modal logic KB (QML KB) is presented. 
+ QML KB is in turn modeled as a fragment of classical higher-order logic (HOL). 
+ Thus, the formalization is essentially a formalization in HOL. The employed embedding 
+ of QML KB in HOL is adapting the work of Benzm\"uller and Paulson \cite{J23,B9}.
+ Note that the QML KB formalization employs quantification over individuals and 
+ quantification over sets of individuals (poperties).
+
+ The formalization presented here has been carried and formally verified in the Isabelle/HOL 
+ proof assistant; for more information on this system see the textbook by Nipkow, 
+ Paulson, and Wenzel \cite{Isabelle}. More recent tutorials on Isabelle can be found 
+ at the Isabelle homepage: \url{http://isabelle.in.tum.de}.
+ 
+
+ Some further notes: \sloppy
+ \begin{enumerate}
+ \item This LaTeX text document has been produced automatically from the Isabelle source
+ code document at 
+ \url{https://github.com/FormalTheology/GoedelGod/tree/master/Formalizations/Isabelle/GoedelGodSession} 
+ with the Isabelle build tool.
+ \item The formalization presented here is related to the THF \cite{J22} and 
+    Coq \cite{Coq} formalizations available at
+    \url{https://github.com/FormalTheology/GoedelGod/tree/master/Formalizations/}.
+ \item All reasoning gaps in Scott's proof script have been automated 
+    with Sledgehammer \cite{Sledgehammer} performing remote calls to the higher-order automated
+    theorem prover LEO-II \cite{LEO-II}. These calls then suggested respective 
+    Metis \cite{Metis} calls as given below. The Metis proofs are then verified in Isabelle/HOL.
+ \item For consistency checking, the Nitpick model finder \cite{Nitpick} has been employed.
+ \end{enumerate}%
+\end{isamarkuptext}%
+\isamarkuptrue%
+%
+\isamarkupsection{An Embedding of QML KB in HOL%
+}
+\isamarkuptrue%
+%
+\begin{isamarkuptext}%
+The types \isa{i} for possible worlds (or states) and \isa{mu} for individuals 
+are introduced.%
+\end{isamarkuptext}%
+\isamarkuptrue%
+\ \ \isacommand{typedecl}\isamarkupfalse%
+\ i\ \ \ \ \ %
+\isamarkupcmt{the type for possible worlds%
+}
+\ \isanewline
+\ \ \isacommand{typedecl}\isamarkupfalse%
+\ mu\ \ \ \ %
+\isamarkupcmt{the type for indiviuals%
+}
+%
+\begin{isamarkuptext}%
+Possible worlds are connected by an accessibility relation .%
+\end{isamarkuptext}%
+\isamarkuptrue%
+\ \ \isacommand{consts}\isamarkupfalse%
+\ r\ {\isacharcolon}{\isacharcolon}\ {\isachardoublequoteopen}i\ {\isasymRightarrow}\ i\ {\isasymRightarrow}\ bool{\isachardoublequoteclose}\ {\isacharparenleft}\isakeyword{infixr}\ {\isachardoublequoteopen}r{\isachardoublequoteclose}\ {\isadigit{7}}{\isadigit{0}}{\isacharparenright}\ \ \ \ %
+\isamarkupcmt{accessibility relation r%
+}
+%
+\begin{isamarkuptext}%
+The \isa{B} axiom (symmetry) for relation r is stated. \isa{B} is needed only 
+for proving theorem T3.%
+\end{isamarkuptext}%
+\isamarkuptrue%
+\ \ \isacommand{axiomatization}\isamarkupfalse%
+\ \isakeyword{where}\ sym{\isacharcolon}\ {\isachardoublequoteopen}x\ r\ y\ {\isasymlongrightarrow}\ y\ r\ x{\isachardoublequoteclose}%
+\begin{isamarkuptext}%
+QML formulas are identified with certain HOL terms of type \isa{i\ {\isasymRightarrow}\ bool}. 
+This type will be abbreviated in the remainder as \isa{{\isasymsigma}}%
+\end{isamarkuptext}%
+\isamarkuptrue%
+\ \ \isacommand{type{\isacharunderscore}synonym}\isamarkupfalse%
+\ {\isasymsigma}\ {\isacharequal}\ {\isachardoublequoteopen}{\isacharparenleft}i\ {\isasymRightarrow}\ bool{\isacharparenright}{\isachardoublequoteclose}%
+\begin{isamarkuptext}%
+The classical connectives $\neg, \wedge, \Rightarrow$, and $\forall$
+(for individuals and over sets of individuals) and $\exists$ (over individuals) are
+lifted to type $\sigma$. Further connectives could be introduced analogously. \isa{definition} 
+could be used instead of \isa{abbreviation}; the latter are always fully expanded/rewritten,
+which is fine here, where the focus has been on proof automation, but which would lead to 
+overly complex proof tasks in a purely interactive session.%
+\end{isamarkuptext}%
+\isamarkuptrue%
+\ \ \isacommand{abbreviation}\isamarkupfalse%
+\ mnot\ {\isacharcolon}{\isacharcolon}\ {\isachardoublequoteopen}{\isasymsigma}\ {\isasymRightarrow}\ {\isasymsigma}{\isachardoublequoteclose}\ {\isacharparenleft}{\isachardoublequoteopen}m{\isasymnot}{\isachardoublequoteclose}{\isacharparenright}\ \isakeyword{where}\ {\isachardoublequoteopen}m{\isasymnot}\ {\isasymphi}\ {\isasymequiv}\ {\isacharparenleft}{\isasymlambda}w{\isachardot}\ {\isasymnot}\ {\isasymphi}\ w{\isacharparenright}{\isachardoublequoteclose}\ \ \ \ \isanewline
+\ \ \isacommand{abbreviation}\isamarkupfalse%
+\ mand\ {\isacharcolon}{\isacharcolon}\ {\isachardoublequoteopen}{\isasymsigma}\ {\isasymRightarrow}\ {\isasymsigma}\ {\isasymRightarrow}\ {\isasymsigma}{\isachardoublequoteclose}\ {\isacharparenleft}\isakeyword{infixr}\ {\isachardoublequoteopen}m{\isasymand}{\isachardoublequoteclose}\ {\isadigit{7}}{\isadigit{9}}{\isacharparenright}\ \isakeyword{where}\ {\isachardoublequoteopen}{\isasymphi}\ m{\isasymand}\ {\isasympsi}\ {\isasymequiv}\ {\isacharparenleft}{\isasymlambda}w{\isachardot}\ {\isasymphi}\ w\ {\isasymand}\ {\isasympsi}\ w{\isacharparenright}{\isachardoublequoteclose}\ \ \ \isanewline
+\ \ \isacommand{abbreviation}\isamarkupfalse%
+\ mimplies\ {\isacharcolon}{\isacharcolon}\ {\isachardoublequoteopen}{\isasymsigma}\ {\isasymRightarrow}\ {\isasymsigma}\ {\isasymRightarrow}\ {\isasymsigma}{\isachardoublequoteclose}\ {\isacharparenleft}\isakeyword{infixr}\ {\isachardoublequoteopen}m{\isasymRightarrow}{\isachardoublequoteclose}\ {\isadigit{7}}{\isadigit{4}}{\isacharparenright}\ \isakeyword{where}\ {\isachardoublequoteopen}{\isasymphi}\ m{\isasymRightarrow}\ {\isasympsi}\ {\isasymequiv}\ {\isacharparenleft}{\isasymlambda}w{\isachardot}\ {\isasymphi}\ w\ {\isasymlongrightarrow}\ {\isasympsi}\ w{\isacharparenright}{\isachardoublequoteclose}\ \ \isanewline
+\ \ \isacommand{abbreviation}\isamarkupfalse%
+\ mforall{\isacharunderscore}ind\ {\isacharcolon}{\isacharcolon}\ {\isachardoublequoteopen}{\isacharparenleft}mu\ {\isasymRightarrow}\ {\isasymsigma}{\isacharparenright}\ {\isasymRightarrow}\ {\isasymsigma}{\isachardoublequoteclose}\ {\isacharparenleft}{\isachardoublequoteopen}{\isasymforall}{\isachardoublequoteclose}{\isacharparenright}\ \isakeyword{where}\ {\isachardoublequoteopen}{\isasymforall}\ {\isasymPhi}\ {\isasymequiv}\ {\isacharparenleft}{\isasymlambda}w{\isachardot}\ {\isasymforall}x{\isachardot}\ {\isasymPhi}\ x\ w{\isacharparenright}{\isachardoublequoteclose}\ \ \ \isanewline
+\ \ \isacommand{abbreviation}\isamarkupfalse%
+\ mexists{\isacharunderscore}ind\ {\isacharcolon}{\isacharcolon}\ {\isachardoublequoteopen}{\isacharparenleft}mu\ {\isasymRightarrow}\ {\isasymsigma}{\isacharparenright}\ {\isasymRightarrow}\ {\isasymsigma}{\isachardoublequoteclose}\ {\isacharparenleft}{\isachardoublequoteopen}{\isasymexists}{\isachardoublequoteclose}{\isacharparenright}\ \isakeyword{where}\ {\isachardoublequoteopen}{\isasymexists}\ {\isasymPhi}\ {\isasymequiv}\ {\isacharparenleft}{\isasymlambda}w{\isachardot}\ {\isasymexists}x{\isachardot}\ {\isasymPhi}\ x\ w{\isacharparenright}{\isachardoublequoteclose}\isanewline
+\ \ \isacommand{abbreviation}\isamarkupfalse%
+\ mforall{\isacharunderscore}indset\ {\isacharcolon}{\isacharcolon}\ {\isachardoublequoteopen}{\isacharparenleft}{\isacharparenleft}mu\ {\isasymRightarrow}\ {\isasymsigma}{\isacharparenright}\ {\isasymRightarrow}\ {\isasymsigma}{\isacharparenright}\ {\isasymRightarrow}\ {\isasymsigma}{\isachardoublequoteclose}\ {\isacharparenleft}{\isachardoublequoteopen}{\isasymPi}{\isachardoublequoteclose}{\isacharparenright}\ \isakeyword{where}\ {\isachardoublequoteopen}{\isasymPi}\ P\ {\isasymequiv}\ {\isacharparenleft}{\isasymlambda}w{\isachardot}\ {\isasymforall}x{\isachardot}\ P\ x\ w{\isacharparenright}{\isachardoublequoteclose}\isanewline
+\ \ \isacommand{abbreviation}\isamarkupfalse%
+\ mbox\ {\isacharcolon}{\isacharcolon}\ {\isachardoublequoteopen}{\isasymsigma}\ {\isasymRightarrow}\ {\isasymsigma}{\isachardoublequoteclose}\ {\isacharparenleft}{\isachardoublequoteopen}{\isasymbox}{\isachardoublequoteclose}{\isacharparenright}\ \isakeyword{where}\ {\isachardoublequoteopen}{\isasymbox}\ {\isasymphi}\ {\isasymequiv}\ {\isacharparenleft}{\isasymlambda}w{\isachardot}\ {\isasymforall}v{\isachardot}\ {\isasymnot}\ w\ r\ v\ {\isasymor}\ {\isasymphi}\ v{\isacharparenright}{\isachardoublequoteclose}\isanewline
+\ \ \isacommand{abbreviation}\isamarkupfalse%
+\ mdia\ {\isacharcolon}{\isacharcolon}\ {\isachardoublequoteopen}{\isasymsigma}\ {\isasymRightarrow}\ {\isasymsigma}{\isachardoublequoteclose}\ {\isacharparenleft}{\isachardoublequoteopen}{\isasymdiamond}{\isachardoublequoteclose}{\isacharparenright}\ \isakeyword{where}\ {\isachardoublequoteopen}{\isasymdiamond}\ {\isasymphi}\ {\isasymequiv}\ {\isacharparenleft}{\isasymlambda}w{\isachardot}\ {\isasymexists}v{\isachardot}\ w\ r\ v\ {\isasymand}\ {\isasymphi}\ v{\isacharparenright}{\isachardoublequoteclose}%
+\begin{isamarkuptext}%
+For the grounding of lifted formulas the meta-predicate \isa{valid} is introduced.%
+\end{isamarkuptext}%
+\isamarkuptrue%
+\ \ \isacommand{abbreviation}\isamarkupfalse%
+\ valid\ {\isacharcolon}{\isacharcolon}\ {\isachardoublequoteopen}{\isasymsigma}\ {\isasymRightarrow}\ bool{\isachardoublequoteclose}\ {\isacharparenleft}{\isachardoublequoteopen}{\isacharbrackleft}{\isacharunderscore}{\isacharbrackright}{\isachardoublequoteclose}{\isacharparenright}\ \isakeyword{where}\ {\isachardoublequoteopen}{\isacharbrackleft}p{\isacharbrackright}\ {\isasymequiv}\ {\isasymforall}w{\isachardot}\ p\ w{\isachardoublequoteclose}%
+\begin{isamarkuptext}%
+The model finder Nitpick confirms that the axioms and definitions above are consistent. 
+Unfortunately, the respective command syntax for Nitpick is not very intuitive.%
+\end{isamarkuptext}%
+\isamarkuptrue%
+\ \ \isacommand{lemma}\isamarkupfalse%
+\ True\ \isacommand{nitpick}\isamarkupfalse%
+\ {\isacharbrackleft}satisfy{\isacharcomma}\ user{\isacharunderscore}axioms{\isacharcomma}\ expect\ {\isacharequal}\ genuine{\isacharbrackright}%
+\isadelimproof
+\ %
+\endisadelimproof
+%
+\isatagproof
+\isacommand{oops}\isamarkupfalse%
+%
+\endisatagproof
+{\isafoldproof}%
+%
+\isadelimproof
+%
+\endisadelimproof
+%
+\begin{isamarkuptext}%
+Constant symbol \isa{P} (G\"odel's "Positive") is introduced.%
+\end{isamarkuptext}%
+\isamarkuptrue%
+\ \ \isacommand{consts}\isamarkupfalse%
+\ P\ {\isacharcolon}{\isacharcolon}\ {\isachardoublequoteopen}{\isacharparenleft}mu\ {\isasymRightarrow}\ {\isasymsigma}{\isacharparenright}\ {\isasymRightarrow}\ {\isasymsigma}{\isachardoublequoteclose}%
+\begin{isamarkuptext}%
+The meaning of \isa{P} is restricted by axioms \isa{A{\isadigit{1}}{\isacharparenleft}a{\isacharslash}b{\isacharparenright}}: $\all \phi 
+[P(\neg \phi) \biimp \neg P(\phi)]$ (Either a property or its negation is positive, but not both.) 
+and \isa{A{\isadigit{2}}}: $\all \phi \all \psi [(P(\phi) \wedge \nec \all x [\phi(x) \imp \psi(x)]) 
+\imp P(\psi)]$ (A property necessarily implied by a positive property is positive.).%
+\end{isamarkuptext}%
+\isamarkuptrue%
+\ \ \isacommand{axiomatization}\isamarkupfalse%
+\ \isakeyword{where}\isanewline
+\ \ \ \ A{\isadigit{1}}a{\isacharcolon}\ {\isachardoublequoteopen}{\isacharbrackleft}{\isasymPi}\ {\isacharparenleft}{\isasymlambda}{\isasymPhi}{\isachardot}\ P\ {\isacharparenleft}{\isasymlambda}x{\isachardot}\ m{\isasymnot}\ {\isacharparenleft}{\isasymPhi}\ x{\isacharparenright}{\isacharparenright}\ m{\isasymRightarrow}\ m{\isasymnot}\ {\isacharparenleft}P\ {\isasymPhi}{\isacharparenright}{\isacharparenright}{\isacharbrackright}{\isachardoublequoteclose}\ \isakeyword{and}\isanewline
+\ \ \ \ A{\isadigit{1}}b{\isacharcolon}\ {\isachardoublequoteopen}{\isacharbrackleft}{\isasymPi}\ {\isacharparenleft}{\isasymlambda}{\isasymPhi}{\isachardot}\ m{\isasymnot}\ {\isacharparenleft}P\ {\isasymPhi}{\isacharparenright}\ m{\isasymRightarrow}\ P\ {\isacharparenleft}{\isasymlambda}x{\isachardot}\ m{\isasymnot}\ {\isacharparenleft}{\isasymPhi}\ x{\isacharparenright}{\isacharparenright}{\isacharparenright}{\isacharbrackright}{\isachardoublequoteclose}\ \isakeyword{and}\isanewline
+\ \ \ \ A{\isadigit{2}}{\isacharcolon}\ \ {\isachardoublequoteopen}{\isacharbrackleft}{\isasymPi}\ {\isacharparenleft}{\isasymlambda}{\isasymPhi}{\isachardot}\ {\isasymPi}\ {\isacharparenleft}{\isasymlambda}{\isasympsi}{\isachardot}\ {\isacharparenleft}P\ {\isasymPhi}\ m{\isasymand}\ {\isasymbox}\ {\isacharparenleft}{\isasymforall}\ {\isacharparenleft}{\isasymlambda}x{\isachardot}\ {\isasymPhi}\ x\ m{\isasymRightarrow}\ {\isasympsi}\ x{\isacharparenright}{\isacharparenright}{\isacharparenright}\ m{\isasymRightarrow}\ P\ {\isasympsi}{\isacharparenright}{\isacharparenright}{\isacharbrackright}{\isachardoublequoteclose}%
+\begin{isamarkuptext}%
+We prove theorem T1: $\all \varphi [P(\varphi) \imp \pos \ex x \varphi(x)]$ (Positive 
+properties are possibly exemplified). T1 is proved directly by Sledghammer with command \isa{sledgehammer\ {\isacharbrackleft}provers\ {\isacharequal}\ remote{\isacharunderscore}leo{\isadigit{2}}\ remote{\isacharunderscore}satallax{\isacharbrackright}}. This successful attempt then suggest to 
+instead try the Metis call in the line below. This Metis call generates a proof object that is 
+verified in Isabelle/HOL's kernel.%
+\end{isamarkuptext}%
+\isamarkuptrue%
+\ \ \isacommand{theorem}\isamarkupfalse%
+\ T{\isadigit{1}}{\isacharcolon}\ {\isachardoublequoteopen}{\isacharbrackleft}{\isasymPi}\ {\isacharparenleft}{\isasymlambda}{\isasymPhi}{\isachardot}\ P\ {\isasymPhi}\ m{\isasymRightarrow}\ {\isasymdiamond}\ {\isacharparenleft}{\isasymexists}\ {\isasymPhi}{\isacharparenright}{\isacharparenright}{\isacharbrackright}{\isachardoublequoteclose}\ \ \isanewline
+\ \ \isacommand{sledgehammer}\isamarkupfalse%
+\ {\isacharbrackleft}provers\ {\isacharequal}\ remote{\isacharunderscore}leo{\isadigit{2}}{\isacharbrackright}\isanewline
+%
+\isadelimproof
+\ \ %
+\endisadelimproof
+%
+\isatagproof
+\isacommand{using}\isamarkupfalse%
+\ A{\isadigit{2}}\ A{\isadigit{1}}a\ \isacommand{by}\isamarkupfalse%
+\ metis%
+\endisatagproof
+{\isafoldproof}%
+%
+\isadelimproof
+%
+\endisadelimproof
+%
+\begin{isamarkuptext}%
+Next, the symbol \isa{G}, for "God-like", is introduced and defined 
+as $G(x) \biimp \forall \phi [P(\phi) \to \phi(x)]$ (A God-like being possesses 
+all positive properties:).%
+\end{isamarkuptext}%
+\isamarkuptrue%
+\ \ \isacommand{definition}\isamarkupfalse%
+\ G\ {\isacharcolon}{\isacharcolon}\ {\isachardoublequoteopen}mu\ {\isasymRightarrow}\ {\isasymsigma}{\isachardoublequoteclose}\ \isakeyword{where}\ {\isachardoublequoteopen}G\ {\isacharequal}\ {\isacharparenleft}{\isasymlambda}x{\isachardot}\ {\isasymPi}\ {\isacharparenleft}{\isasymlambda}{\isasymPhi}{\isachardot}\ P\ {\isasymPhi}\ m{\isasymRightarrow}\ {\isasymPhi}\ x{\isacharparenright}{\isacharparenright}{\isachardoublequoteclose}%
+\begin{isamarkuptext}%
+Axiom \isa{A{\isadigit{3}}} is added: $P(G)$ (The property of being God-like is positive.).
+Sledgehammer and Metis then prove corollary \isa{C}: $\pos \ex x G(x)$ 
+(Possibly, God exists.).%
+\end{isamarkuptext}%
+\isamarkuptrue%
+\ \ \isacommand{axiomatization}\isamarkupfalse%
+\ \isakeyword{where}\ A{\isadigit{3}}{\isacharcolon}\ \ {\isachardoublequoteopen}{\isacharbrackleft}P\ G{\isacharbrackright}{\isachardoublequoteclose}\ \isanewline
+\isanewline
+\ \ \isacommand{corollary}\isamarkupfalse%
+\ C{\isacharcolon}\ {\isachardoublequoteopen}{\isacharbrackleft}{\isasymdiamond}\ {\isacharparenleft}{\isasymexists}\ G{\isacharparenright}{\isacharbrackright}{\isachardoublequoteclose}\ \isanewline
+\ \ \isacommand{sledgehammer}\isamarkupfalse%
+\ {\isacharbrackleft}provers\ {\isacharequal}\ remote{\isacharunderscore}leo{\isadigit{2}}{\isacharbrackright}\isanewline
+%
+\isadelimproof
+\ \ %
+\endisadelimproof
+%
+\isatagproof
+\isacommand{using}\isamarkupfalse%
+\ A{\isadigit{3}}\ T{\isadigit{1}}\ \isacommand{by}\isamarkupfalse%
+\ metis%
+\endisatagproof
+{\isafoldproof}%
+%
+\isadelimproof
+%
+\endisadelimproof
+%
+\begin{isamarkuptext}%
+We add axiom \isa{A{\isadigit{4}}}: $\all \phi [P(\phi) \to \Box \; P(\phi)]$ 
+(Positive properties are necessarily positive).%
+\end{isamarkuptext}%
+\isamarkuptrue%
+\ \ \isacommand{axiomatization}\isamarkupfalse%
+\ \isakeyword{where}\ A{\isadigit{4}}{\isacharcolon}\ \ {\isachardoublequoteopen}{\isacharbrackleft}{\isasymPi}\ {\isacharparenleft}{\isasymlambda}{\isasymPhi}{\isachardot}\ P\ {\isasymPhi}\ m{\isasymRightarrow}\ {\isasymbox}\ {\isacharparenleft}P\ {\isasymPhi}{\isacharparenright}{\isacharparenright}{\isacharbrackright}{\isachardoublequoteclose}%
+\begin{isamarkuptext}%
+Symbol \isa{ess}, for "Essence", is introduced and defined as 
+$\ess{\phi}{x} \biimp \phi(x) \wedge \all \psi (\psi(x) \imp \nec \all y (\phi(y) 
+\imp \psi(y)))$ (An \emph{essence} of an individual is a property possessed by it 
+and necessarily implying any of its properties.).%
+\end{isamarkuptext}%
+\isamarkuptrue%
+\ \ \isacommand{definition}\isamarkupfalse%
+\ ess\ {\isacharcolon}{\isacharcolon}\ {\isachardoublequoteopen}{\isacharparenleft}mu\ {\isasymRightarrow}\ {\isasymsigma}{\isacharparenright}\ {\isasymRightarrow}\ mu\ {\isasymRightarrow}\ {\isasymsigma}{\isachardoublequoteclose}\ {\isacharparenleft}\isakeyword{infixr}\ {\isachardoublequoteopen}ess{\isachardoublequoteclose}\ {\isadigit{8}}{\isadigit{5}}{\isacharparenright}\ \isakeyword{where}\isanewline
+\ \ \ \ {\isachardoublequoteopen}{\isasymPhi}\ ess\ x\ {\isacharequal}\ {\isasymPhi}\ x\ m{\isasymand}\ {\isasymPi}\ {\isacharparenleft}{\isasymlambda}{\isasympsi}{\isachardot}\ {\isasympsi}\ x\ m{\isasymRightarrow}\ {\isasymbox}\ {\isacharparenleft}{\isasymforall}\ {\isacharparenleft}{\isasymlambda}y{\isachardot}\ {\isasymPhi}\ y\ m{\isasymRightarrow}\ {\isasympsi}\ y{\isacharparenright}{\isacharparenright}{\isacharparenright}{\isachardoublequoteclose}%
+\begin{isamarkuptext}%
+Next, Sledgehammer and Metis prove theorem \isa{T{\isadigit{2}}}: $\all x [G(x) \imp \ess{G}{x}]$ 
+(Being God-like is an essence of any God-like being).%
+\end{isamarkuptext}%
+\isamarkuptrue%
+\ \ \isacommand{theorem}\isamarkupfalse%
+\ T{\isadigit{2}}{\isacharcolon}\ {\isachardoublequoteopen}{\isacharbrackleft}{\isasymforall}\ {\isacharparenleft}{\isasymlambda}x{\isachardot}\ G\ x\ m{\isasymRightarrow}\ G\ ess\ x{\isacharparenright}{\isacharbrackright}{\isachardoublequoteclose}\isanewline
+\ \ \isacommand{sledgehammer}\isamarkupfalse%
+\ {\isacharbrackleft}provers\ {\isacharequal}\ remote{\isacharunderscore}leo{\isadigit{2}}{\isacharbrackright}\isanewline
+%
+\isadelimproof
+\ \ %
+\endisadelimproof
+%
+\isatagproof
+\isacommand{by}\isamarkupfalse%
+\ {\isacharparenleft}metis\ {\isacharparenleft}lifting{\isacharparenright}\ A{\isadigit{1}}b\ A{\isadigit{4}}\ G{\isacharunderscore}def\ ess{\isacharunderscore}def{\isacharparenright}%
+\endisatagproof
+{\isafoldproof}%
+%
+\isadelimproof
+%
+\endisadelimproof
+%
+\begin{isamarkuptext}%
+Symbol \isa{NE}, for "Necessary Existence", is introduced and
+defined as $\NE(x) \biimp \all \phi [\ess{\phi}{x} \imp \nec \ex y \phi(y)]$ (Necessary 
+existence of an individual is the necessary exemplification of all its essences.).%
+\end{isamarkuptext}%
+\isamarkuptrue%
+\ \ \isacommand{definition}\isamarkupfalse%
+\ NE\ {\isacharcolon}{\isacharcolon}\ {\isachardoublequoteopen}mu\ {\isasymRightarrow}\ {\isasymsigma}{\isachardoublequoteclose}\ \isakeyword{where}\ {\isachardoublequoteopen}NE\ {\isacharequal}\ {\isacharparenleft}{\isasymlambda}x{\isachardot}\ {\isasymPi}\ {\isacharparenleft}{\isasymlambda}{\isasymPhi}{\isachardot}\ {\isasymPhi}\ ess\ x\ m{\isasymRightarrow}\ {\isasymbox}\ {\isacharparenleft}{\isasymexists}\ {\isasymPhi}{\isacharparenright}{\isacharparenright}{\isacharparenright}{\isachardoublequoteclose}%
+\begin{isamarkuptext}%
+Moreover, axiom \isa{A{\isadigit{5}}} is added: $P(\NE)$ (Necessary existence is a positive 
+property.).%
+\end{isamarkuptext}%
+\isamarkuptrue%
+\ \ \isacommand{axiomatization}\isamarkupfalse%
+\ \isakeyword{where}\ A{\isadigit{5}}{\isacharcolon}\ \ {\isachardoublequoteopen}{\isacharbrackleft}P\ NE{\isacharbrackright}{\isachardoublequoteclose}%
+\begin{isamarkuptext}%
+Finally, Sledgehammer and Metis prove the main theorem \isa{T{\isadigit{3}}}: $\nec \ex x G(x)$ 
+(Necessarily, God exists).%
+\end{isamarkuptext}%
+\isamarkuptrue%
+\ \ \isacommand{theorem}\isamarkupfalse%
+\ T{\isadigit{3}}{\isacharcolon}\ {\isachardoublequoteopen}{\isacharbrackleft}{\isasymbox}\ {\isacharparenleft}{\isasymexists}\ G{\isacharparenright}{\isacharbrackright}{\isachardoublequoteclose}\ \isanewline
+\ \ \isacommand{sledgehammer}\isamarkupfalse%
+\ {\isacharbrackleft}provers\ {\isacharequal}\ remote{\isacharunderscore}leo{\isadigit{2}}{\isacharbrackright}\isanewline
+%
+\isadelimproof
+\ \ %
+\endisadelimproof
+%
+\isatagproof
+\isacommand{using}\isamarkupfalse%
+\ A{\isadigit{5}}\ C\ T{\isadigit{2}}\ sym\ G{\isacharunderscore}def\ NE{\isacharunderscore}def\ \isacommand{by}\isamarkupfalse%
+\ metis%
+\endisatagproof
+{\isafoldproof}%
+%
+\isadelimproof
+\isanewline
+%
+\endisadelimproof
+\isanewline
+\ \ \isacommand{corollary}\isamarkupfalse%
+\ T{\isadigit{4}}{\isacharcolon}\ {\isachardoublequoteopen}{\isacharbrackleft}{\isasymexists}\ G{\isacharbrackright}{\isachardoublequoteclose}\ \isanewline
+\ \ \isacommand{sledgehammer}\isamarkupfalse%
+\ {\isacharbrackleft}provers\ {\isacharequal}\ remote{\isacharunderscore}leo{\isadigit{2}}{\isacharbrackright}\isanewline
+%
+\isadelimproof
+\ \ %
+\endisadelimproof
+%
+\isatagproof
+\isacommand{using}\isamarkupfalse%
+\ T{\isadigit{1}}\ T{\isadigit{3}}\ sym\ G{\isacharunderscore}def\ \isacommand{by}\isamarkupfalse%
+\ metis%
+\endisatagproof
+{\isafoldproof}%
+%
+\isadelimproof
+%
+\endisadelimproof
+%
+\begin{isamarkuptext}%
+Finally, the consistency of the entire theory is checked with Nitpick.%
+\end{isamarkuptext}%
+\isamarkuptrue%
+\ \ \isacommand{lemma}\isamarkupfalse%
+\ True\ \isacommand{nitpick}\isamarkupfalse%
+\ {\isacharbrackleft}satisfy{\isacharcomma}\ user{\isacharunderscore}axioms{\isacharcomma}\ expect\ {\isacharequal}\ genuine{\isacharbrackright}%
+\isadelimproof
+\ %
+\endisadelimproof
+%
+\isatagproof
+\isacommand{oops}\isamarkupfalse%
+%
+\endisatagproof
+{\isafoldproof}%
+%
+\isadelimproof
+%
+\endisadelimproof
+%
+\begin{isamarkuptext}%
+\paragraph{Acknowledgments:} Nik Sultana, Jasmin Blanchette and Larry Paulson provided 
+very important help wrt consistency checking in Isabelle. Jasmin Blanchette instructed us on how to 
+produce latex documents from Isabelle sources, and he pointed to many useful tricks in Isabelle.%
+\end{isamarkuptext}%
+\isamarkuptrue%
+%
+\isadelimtheory
+%
+\endisadelimtheory
+%
+\isatagtheory
+%
+\endisatagtheory
+{\isafoldtheory}%
+%
+\isadelimtheory
+%
+\endisadelimtheory
+\ \end{isabellebody}%
+%%% Local Variables:
+%%% mode: latex
+%%% TeX-master: "root"
+%%% End:

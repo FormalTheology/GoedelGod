@@ -1,0 +1,152 @@
+\documentclass[11pt,a4paper]{article}
+\usepackage{isabelle,isabellesym,amsmath,amssymb,a4wide}
+
+
+\newcommand{\imp}{\rightarrow}
+\newcommand{\biimp}{\leftrightarrow}
+\newcommand{\all}{\forall}
+\newcommand{\ex}{\exists}
+\newcommand{\seq}{\vdash}
+\newcommand{\nec}{\Box} % necessarily
+\newcommand{\pos}{\Diamond} % possibly
+\newcommand{\ess}[2]{#1 \ \mathit{ess.} \ #2}
+\newcommand{\NE}{\mathit{NE}}
+
+
+% further packages required for unusual symbols (see also
+% isabellesym.sty), use only when needed
+
+%\usepackage{amssymb}
+  %for \<leadsto>, \<box>, \<diamond>, \<sqsupset>, \<mho>, \<Join>,
+  %\<lhd>, \<lesssim>, \<greatersim>, \<lessapprox>, \<greaterapprox>,
+  %\<triangleq>, \<yen>, \<lozenge>
+
+%\usepackage{eurosym}
+  %for \<euro>
+
+%\usepackage[only,bigsqcap]{stmaryrd}
+  %for \<Sqinter>
+
+%\usepackage{eufrak}
+  %for \<AA> ... \<ZZ>, \<aa> ... \<zz> (also included in amssymb)
+
+%\usepackage{textcomp}
+  %for \<onequarter>, \<onehalf>, \<threequarters>, \<degree>, \<cent>,
+  %\<currency>
+
+% this should be the last package used
+\usepackage{pdfsetup}
+
+% urls in roman style, theory text in math-similar italics
+\urlstyle{rm}
+\isabellestyle{it}
+
+% for uniform font size
+%\renewcommand{\isastyle}{\isastyleminor}
+
+
+\begin{document}
+
+\title{G\"odel's God in Isabelle/HOL}
+\author{Christoph Benzm\"uller and Bruno Woltzenlogel Paleo}
+\maketitle
+
+%\tableofcontents
+
+% sane default for proof documents
+\parindent 0pt\parskip 0.5ex
+
+% generated text of all theories
+\input{session}
+
+% optional bibliography
+%\bibliographystyle{abbrv}
+%\bibliography{root}
+
+\small
+\begin{thebibliography}{10}
+
+\bibitem{B9}
+C.~Benzm{\"u}ller and L.C. Paulson.
+\newblock Exploring properties of normal multimodal logics in simple type
+  theory with {LEO-II}.
+\newblock In {\em {Festschrift in Honor of {Peter B. Andrews} on His 70th
+  Birthday}}, pp. 386--406. College Publications.
+
+\bibitem{J23}
+C.~Benzm{\"u}ller and L.C. Paulson.
+\newblock Quantified multimodal logics in simple type theory.
+\newblock {\em Logica Universalis (Special Issue on Multimodal Logics)},
+  7(1):7--20, 2013.
+
+\bibitem{LEO-II}
+C.~Benzm{\"u}ller, F.~Theiss, L.~Paulson, and A.~Fietzke.
+\newblock {LEO-II} - a cooperative automatic theorem prover for higher-order
+  logic.
+\newblock In {\em Proc. of IJCAR 2008}, volume 5195 of {\em LNAI}, pp.
+  162--170. Springer, 2008.
+
+\bibitem{Coq}
+Y.~Bertot and P.~Casteran.
+\newblock {\em {Interactive Theorem Proving and Program Development}}.
+\newblock Springer, 2004.
+
+\bibitem{Sledgehammer}
+J.C. Blanchette, S.~B\"ohme, and L.C. Paulson.
+\newblock Extending {Sledgehammer} with {SMT} solvers.
+\newblock {\em Journal of Automated Reasoning}, 51(1):109--128, 2013.
+
+\bibitem{Nitpick}
+J.C. Blanchette and T.~Nipkow.
+\newblock Nitpick: A counterexample generator for higher-order logic based on a
+  relational model finder.
+\newblock In {\em Proc. of ITP 2010}, number 6172 in LNCS, pp. 131--146.
+  Springer, 2010.
+
+%\bibitem{Satallax}
+%C.E. Brown.
+%\newblock Satallax: An automated higher-order prover.
+%\newblock In {\em Proc. of IJCAR 2012}, number 7364 in LNAI, pp. 111 -- 117.
+ % Springer, 2012.
+
+\bibitem{GoedelNotes}
+K.~G\"odel.
+\newblock {\em Appendix A. Notes in Kurt G\"odel's Hand}, pp. 144--145.
+\newblock In  \cite{sobel2004logic}, 2004.
+
+
+\bibitem{Metis}
+J.~Hurd.
+\newblock First-order proof tactics in higher-order logic theorem provers.
+\newblock In {\em Design and Application of Strategies/Tactics in Higher Order
+  Logics, NASA Tech. Rep. NASA/CP-2003-212448}, 2003.
+
+\bibitem{Isabelle}
+T.~Nipkow, L.C. Paulson, and M.~Wenzel.
+\newblock {\em {Isabelle/HOL: A Proof Assistant for Higher-Order Logic}}.
+\newblock Number 2283 in LNCS. Springer, 2002.
+
+\bibitem{ScottNotes}
+D.~Scott.
+\newblock {\em Appendix B. Notes in Dana Scott's Hand}, pp. 145--146.
+\newblock In  \cite{sobel2004logic}, 2004.
+
+\bibitem{sobel2004logic}
+J.H. Sobel.
+\newblock {\em Logic and Theism: Arguments for and Against Beliefs in God}.
+\newblock Cambridge U. Press, 2004.
+
+\bibitem{J22}
+G.~Sutcliffe and C.~Benzm{\"u}ller.
+\newblock Automated reasoning in higher-order logic using the {TPTP THF}
+  infrastructure.
+\newblock {\em Journal of Formalized Reasoning}, 3(1):1--27, 2010.
+
+\end{thebibliography}
+
+\end{document}
+
+%%% Local Variables:
+%%% mode: latex
+%%% TeX-master: t
+%%% End:
