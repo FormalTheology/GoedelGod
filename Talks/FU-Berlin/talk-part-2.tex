@@ -167,19 +167,5 @@ $\neg A \equiv A \imp \bot$
 
 
 \begin{frame}{Detailed Natural Derivation of part of T2} \small
-\begin{prooftree}
-       \AXC{$\psi(x)^6 $} \RightLabel{}
-             	\AXC{$\Pi_2$}  \dashedLine
-		\UIC{$\psi(x)\imp\Box P(\psi)$}\RightLabel{$\imp_E$}
-		\BIC{$\Box P(\psi)$}
-		  	\AXC{$\Box P(\psi)^7 $}\RightLabel{$\Box_E$}  
-       			\UIC{$P(\psi)$}
-				\AXC{$\Pi_3$}  \dashedLine\RightLabel{}
-       				\UIC{$P(\psi)\imp \all x .(G(x)\imp \psi(x))$}\RightLabel{$\imp_E$}  
-       			\BIC{$\all x .(G(x)\imp \psi(x))$}\RightLabel{$\Box_I$}
-			\UIC{$\Box \all x .(G(x)\imp \psi(x))$}  \RightLabel{$\imp_I^7$} 
-			\UIC{$\Box P(\psi)\imp \Box \all x .(G(x)\imp \psi(x))$} \RightLabel{$\imp_E$} 
-         	 \BIC{$\Box \all x .(G(x)\imp \psi(x))$}\RightLabel{$\imp_I^6$}
-           \UIC{$\psi(x)\imp\Box \all x .(G(x)\imp \psi(x))$}
-\end{prooftree}
+\includegraphics[scale=0.22]{ProofOfT2Boxed.pdf}
 \end{frame}
