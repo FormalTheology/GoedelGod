@@ -1,4 +1,185 @@
 
-\begin{frame}{ND Bruno} \small
-todo
+\begin{frame}{G\"odel's Manuscript} \small
+ToDo: Show Goedel's Manuscript
+\end{frame}
+
+\begin{frame}{Proof Overview} \small
+
+$$
+\textbf{D1: } G(x) \equiv \forall \varphi. [P(\varphi) \to \varphi(x)]
+$$
+
+$$
+\textbf{D2: } \ess{\varphi}{x} \equiv \varphi(x) \wedge \all \psi. (\psi(x) \imp \nec \all x. (\varphi(x) \imp \psi(x)))
+$$
+
+$$
+\textbf{D3: } E(x) \equiv \all \varphi.[\ess{\varphi}{x} \imp \nec \ex y.\varphi(y)]
+$$
+
+\begin{prooftree}
+\AXC{$\textbf{A3}$} \dashedLine
+\UIC{$P(G)$}
+		\AXC{$\textbf{A2}$} \dashedLine
+		\UIC{$\all \varphi. \all \psi.[(P(\varphi) \wedge \nec \all x.[\varphi(x) \imp \psi(x)]) \imp P(\psi)]$}
+					\AXC{$\textbf{A1a}$} \dashedLine
+					\UIC{$\all \varphi. [P(\neg \varphi) \imp \neg P(\varphi)]$} \doubleLine
+				\BIC{$\textbf{T1: } \all \varphi. [P(\varphi) \imp \pos \ex x.\varphi(x)]$} \doubleLine
+	\BIC{$\textbf{C1: } \pos \ex x. G(x)$}
+\end{prooftree}
+
+
+
+\begin{prooftree}
+						\AXC{$\textbf{A1b}$} \dashedLine
+						\UIC{$\all \varphi. [\neg P(\varphi) \imp P(\neg \varphi)]$}
+								\AXC{$\textbf{A4}$} \dashedLine
+								\UIC{$ \all \varphi.[P(\varphi) \to \Box \; P(\varphi)] $} \doubleLine
+							\BIC{$\textbf{T2: } \all y.[G(y) \imp \ess{G}{y}]$}
+									\AXC{$\textbf{A5}$} \dashedLine
+									\UIC{$ P(E) $} \doubleLine
+								\BIC{$\textbf{L1: } \ex z. G(z) \imp \nec \ex x. G(x)$} \doubleLine
+								\UIC{$\pos \ex z. G(z) \imp \pos \nec \ex x. G(x)$}
+										\AXC{$\textbf{S5}$} \dashedLine
+ 										\UIC{$ \all \xi.[\pos \nec \xi \imp \nec \xi]$} \doubleLine	
+									\BIC{$\textbf{L2: } \pos \ex z. G(z) \imp \nec \ex x. G(x)$}
+\end{prooftree}
+
+\begin{prooftree}
+\AXC{$\textbf{C1: } \pos \ex x. G(x)$}
+		\AXC{$\textbf{L2: } \pos \ex z. G(z) \imp \nec \ex x. G(x)$} \doubleLine
+	\BIC{$\textbf{T3: } \phantom{\nec \ex x. G(x)} $}
+\end{prooftree}
+
+\end{frame}
+
+\begin{frame}{Natural Deduction Calculus} \small
+
+\begin{unnamedCalculus}
+
+\vspace{1em}
+
+\s\s
+\infer[\vee_E]{C}{A \vee B & \infer*{C}{\infer{A}{}} & \infer*{C}{\infer{B}{}}}
+\s\s
+\infer[\wedge_I]{A \wedge B}{A & B}
+\s\s
+\infer[\imp_I^n]{A \imp B}{ \infer*{B}{\infer[n]{A}{}} }
+
+\vspace{2em}
+
+\s\s
+\infer[\vee_{I_1}]{A \vee B}{A}
+\s\s
+\infer[\wedge_{E_1}]{A}{A \wedge B}
+\s\s
+\infer[\imp_I]{A \imp B}{ B }
+
+\vspace{2em}
+
+\s\s
+\infer[\vee_{I_2}]{A \vee B}{B}
+\s\s
+\infer[\wedge_{E_2}]{B}{A \wedge B}
+\s\s
+\infer[\imp_E]{B}{A & A \imp B}
+
+\vspace{2em}
+
+\s
+\infer[\all_I]{\all x. A[x]}{ A[\alpha] }
+\s
+\infer[\all_E]{A[t]}{ \all x. A[x] }
+\s\s
+\infer[\ex_I]{\ex x. A[x]}{ A[t] }
+\s
+\infer[\ex_E]{A[\beta]}{ \ex x. A[x] }
+
+\vspace{1em}
+
+\s\s\s\s
+$\neg A \equiv A \imp \bot$ 
+\s\s\s 
+\alert{\infer[\neg\neg_E]{A}{\neg\neg A}}
+
+\vspace{1em}
+
+\end{unnamedCalculus}
+
+\end{frame}
+
+
+\begin{frame}{Detailed Natural Deduction Proof of T1 and C1}
+\begin{prooftree}
+        \AXC{\textbf{A2}} \dashedLine
+        \UIC{$ \all \varphi. \all \psi.[(P(\varphi) \wedge \nec \all x.[\varphi(x) \imp \psi(x)]) \imp P(\psi)]$} \RightLabel{$\all_E$}
+        \UIC{$ \all \psi.[(P(\rho) \wedge \nec \all x.[\rho(x) \imp \psi(x)]) \imp P(\psi)]$} \RightLabel{$\all_E$}
+        \UIC{$(P(\rho) \wedge \nec \all x.[\rho(x) \imp \neg \rho(x)]) \imp P(\neg \rho)$} \doubleLine
+        \UIC{$(P(\rho) \wedge \nec \all x.[\neg \rho(x)]) \imp P(\neg \rho)$}
+                        \AXC{\textbf{A1}} \dashedLine
+                        \UIC{$\all \varphi.[ P(\neg \varphi) \biimp \neg P(\varphi) ]$} \RightLabel{$\all_E$}
+                        \UIC{$ P(\neg \rho) \biimp \neg P(\rho) $} \doubleLine
+                 \BIC{$ (P(\rho) \wedge \nec \all x.[\neg \rho(x)]) \imp \neg P(\rho) $} \doubleLine
+                 \UIC{$ P(\rho) \imp \pos \ex x.\rho(x) $} \RightLabel{$\all_I$}
+                 \UIC{$\all \varphi.[ P(\varphi) \imp \pos \ex x.\varphi(x) ] $}
+\end{prooftree}
+
+\begin{prooftree}
+\AXC{\textbf{A3}} \dashedLine
+\UIC{$P(G)$}
+                 \AXC{\textbf{T1}} \dashedLine
+                 \UIC{$\all \varphi.[ P(\varphi) \imp \pos \ex x.\varphi(x) ]$} \RightLabel{$\all_E $}
+                 \UIC{$ P(G) \imp \pos \ex x.G(x) $} \RightLabel{$\imp_E$}
+    \BIC{$\pos \ex x. G(x)$}
+\end{prooftree}
+\end{frame}
+
+
+\begin{frame}{Natural Deduction Calculus}{Rules for Modalities} \small
+
+\begin{unnamedCalculus}
+
+\vspace{1em}
+
+\s\s\s\s
+\infer[\nec_I]{\nec A}{\alpha: \fbox{\infer*{A}{}} }
+\s\s\s\s\s
+\infer[\nec_E]{t: \fbox{ \infer*{}{A} }  }{\nec A}
+
+\vspace{2em}
+
+\s\s\s\s
+\infer[\pos_I]{\pos A}{t: \fbox{\infer*{A}{}} }
+\s\s\s\s\s
+\infer[\pos_E]{\beta: \fbox{ \infer*{}{A} }  }{\pos A}
+
+\vspace{2em}
+
+\alert{$$\pos A \equiv \neg \box \neg A$$}
+
+
+
+\vspace{1em}
+
+\end{unnamedCalculus}
+
+\end{frame}
+
+
+\begin{frame}{Detailed Natural Derivation of part of T2} \small
+\begin{prooftree}
+       \AXC{$\psi(x)^6 $} \RightLabel{}
+             	\AXC{$\Pi_2$}  \dashedLine
+		\UIC{$\psi(x)\imp\Box P(\psi)$}\RightLabel{$\imp_E$}
+		\BIC{$\Box P(\psi)$}
+		  	\AXC{$\Box P(\psi)^7 $}\RightLabel{$\Box_E$}  
+       			\UIC{$P(\psi)$}
+				\AXC{$\Pi_3$}  \dashedLine\RightLabel{}
+       				\UIC{$P(\psi)\imp \all x .(G(x)\imp \psi(x))$}\RightLabel{$\imp_E$}  
+       			\BIC{$\all x .(G(x)\imp \psi(x))$}\RightLabel{$\Box_I$}
+			\UIC{$\Box \all x .(G(x)\imp \psi(x))$}  \RightLabel{$\imp_I^7$} 
+			\UIC{$\Box P(\psi)\imp \Box \all x .(G(x)\imp \psi(x))$} \RightLabel{$\imp_E$} 
+         	 \BIC{$\Box \all x .(G(x)\imp \psi(x))$}\RightLabel{$\imp_I^6$}
+           \UIC{$\psi(x)\imp\Box \all x .(G(x)\imp \psi(x))$}
+\end{prooftree}
 \end{frame}
