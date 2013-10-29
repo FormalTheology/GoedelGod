@@ -43,51 +43,51 @@ Axiom axiom2: V (mforall p, mforall q, Positive p m/\ (box (mforall x, (p x) m->
 (* Theorem T1: positive properties are possibly exemplified *)
 Theorem theorem1: V (mforall p, (Positive p) m-> dia (mexists x, p x) ).
 Proof.
-intro w.
+intro.
 intro p.
 intro H1.
 proof_by_contradiction H2.
 apply not_dia_box_not in H2.
-assert ((box (mforall x, m~ (p x))) w). (* Lemma from Scott's notes *)
+assert (H3: ((box (mforall x, m~ (p x))) w)). (* Lemma from Scott's notes *)
   intro w1; intro R1.
   unfold box in H2.
   intro x.
-  assert ((m~ (mexists x : u, p x)) w1).
+  assert (H4: ((m~ (mexists x : u, p x)) w1)).
     apply (H2 w1 R1).
 
     clear H2 R1 H1 w.
-    intro H3.
-    apply H.
+    intro H5.
+    apply H4.
     exists x.
-    exact H3.
+    exact H5.
 
-  assert ((box (mforall x, (p x) m-> m~ (x m= x))) w). (* Lemma from Scott's notes *)    
+  assert (H6: ((box (mforall x, (p x) m-> m~ (x m= x))) w)). (* Lemma from Scott's notes *)    
     intro w1; intro R1.
     intro x.
-    intro H3.
-    intro H4.
-    apply (H w1 R1 x).
-    exact H3.
+    intro H7.
+    intro H8.
+    apply (H3 w1 R1 x).
+    exact H7.
 
-    assert ((Positive (fun x => m~ (x m= x))) w). (* Lemma from Scott's notes *)
+    assert (H9: ((Positive (fun x => m~ (x m= x))) w)). (* Lemma from Scott's notes *)
     apply (axiom2 w p (fun x => m~ (x m= x))).
     split.
       exact H1.
 
-      exact H0.
-    assert ((box (mforall x, (p x) m-> (x m= x))) w). (* Lemma from Scott's notes *)
-      intros w1 R1 x H4.     
+      exact H6.
+    assert (H10: ((box (mforall x, (p x) m-> (x m= x))) w)). (* Lemma from Scott's notes *)
+      intros w1 R1 x H11.     
       reflexivity.
 
-      assert (H5 : ((Positive (fun x => (x m= x))) w)). (* Lemma from Scott's notes *)
+      assert (H11 : ((Positive (fun x => (x m= x))) w)). (* Lemma from Scott's notes *)
         apply (axiom2 w p (fun x => x m= x )).
         split.
           exact H1.
 
-          exact H4.
+          exact H10.
 
-        clear H1 H2 H H0 H4 p.
-        apply axiom1a in H3.
+        clear H1 H2 H3 H6 H10 p.
+        apply axiom1a in H9.
         contradiction.
 Qed.
 
@@ -103,7 +103,7 @@ Axiom axiom3: V (Positive G).
 (* Corollary C1: possibly, God exists *)
 Theorem corollary1: V (dia (mexists x, G x)). 
 Proof.
-intro w. 
+intro. 
 apply theorem1.
 apply axiom3.
 Qed.
@@ -130,25 +130,29 @@ split.
 
   intro q.
   intro H2.
-  cut (box (Positive q) w). (* Lemma from Scott's notes *)
-    apply K.
-    intros w1 R1.
-    intro H3.
-    intro y.
-    intro H4.
-    unfold G in H4.
-    apply (H4 q).
-    exact H3.
+  assert (H3: ((Positive q) w)).
+    proof_by_contradiction H4.
+    unfold G in H1.
+    apply axiom1b in H4.
+    apply H1 in H4.
+    contradiction. 
 
-    apply axiom4.
-    unfold G in H1.             (* ToDo: This proof by contradiction could be moved to the beginning with an assert *)
-    proof_by_contradiction H5.  (* Scott's proof of (Positive q) by contradiction *) 
-    apply axiom1b in H5.
-    apply H1 in H5.
-    contradiction.
+    cut (box (Positive q) w). (* Lemma from Scott's notes *)
+      apply K.
+      intros w1 R1.
+      intro H5.
+      intro y.
+      intro H6.
+      unfold G in H6.
+      apply (H6 q).
+      exact H5.
+
+      apply axiom4.
+      exact H3.
 Qed.
 
-(* ToDo: in Scotts notes there are two notes that do not seem important for the proof, but would be interesting to formalize anyway *)
+(* At this point in Scott's notes there are two notes that are not necessary for the proof, *)
+(* but it would be interesting to formalize them anyway *)
 
 (* Definition D3: necessary existence: necessary existence of an individual is the necessary exemplification of all its essences *)
 Definition NE(x: u) := mforall p, (p ess x) m-> box (mexists y, (p y)).
@@ -160,31 +164,26 @@ Axiom axiom5: V (Positive NE).
 
 Lemma lemma1: V ((mexists z, (G z)) m-> box (mexists x, (G x))).
 Proof.
-intro w.
+intro.
 intro H1.
 destruct H1 as [g H2].
 cut ((G ess g) w).      (* Lemma from Scott's notes *)
-  cut (NE g w).       (* Lemma from Scott's notes *)
-    intro H3.
+  assert (H3: (NE g w)).       (* Lemma from Scott's notes *)
+    unfold G in H2.
+    apply (H2 NE).
+    apply axiom5.
+
     unfold NE in H3.
     apply H3.
 
-    cut (Positive NE w).
-      unfold G in H2.
-      apply H2.
-
-      apply axiom5.
-
-  cut (G g w).
-    apply theorem2.
-
-    exact H2.
+  apply theorem2.
+  exact H2.
 Qed.
 
 
 Lemma lemma2: V (dia (mexists z, (G z)) m-> box (mexists x, (G x))).
 Proof.
-intro w.
+intro.
 intro H.
 cut (dia (box (mexists x, G x)) w).  (* Lemma from Scott's notes *)
   apply dia_box_to_box.
@@ -200,7 +199,7 @@ Qed.
 (* Theorem T3: necessarily, a God exists *)
 Theorem theorem3: V (box (mexists x, (G x))).
 Proof.
-intro w.
+intro.
 apply lemma2.
 apply corollary1.
 Qed.

@@ -31,6 +31,7 @@ Definition mimplies (p q:o)(w:i) := (p w) -> (q w).
 Notation "p m-> q" := (mimplies p q) (at level 99, right associativity).
 
 (* Modal quantifiers *)
+
 Definition A {t: Type}(p: t -> o) := fun w => forall x, p x w.
 Notation "'mforall'  x , p" := (A (fun x => p))
   (at level 200, x ident, right associativity) : type_scope.
