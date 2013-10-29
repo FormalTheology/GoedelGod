@@ -1,0 +1,4 @@
+session "GoedelGodSession" = "HOL" +
+  options [document = pdf, document_output = "output"]
+  theories GoedelGod
+  files "document/root.tex"
