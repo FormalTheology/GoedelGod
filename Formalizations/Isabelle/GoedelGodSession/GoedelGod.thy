@@ -63,7 +63,7 @@ text {* The classical connectives $\neg, \wedge, \Rightarrow$, and $\forall$
 lifted to type $\sigma$. Further connectives could be introduced analogously. @{text "definition"} 
 could be used instead of @{text "abbreviation"}; the latter are always fully expanded/rewritten,
 which is fine here, where the focus has been on proof automation, but which would lead to 
-unnessarily complex proof tasks in a purely interactive session. *}
+overly complex proof tasks in a purely interactive session. *}
 
   abbreviation mnot :: "\<sigma> \<Rightarrow> \<sigma>" ("m\<not>") where "m\<not> \<Phi> \<equiv> (\<lambda>w. \<not> \<Phi> w)"    
   abbreviation mand :: "\<sigma> \<Rightarrow> \<sigma> \<Rightarrow> \<sigma>" (infixr "m\<and>" 74) where "\<Phi> m\<and> q \<equiv> (\<lambda>w. \<Phi> w \<and> q w)"   
