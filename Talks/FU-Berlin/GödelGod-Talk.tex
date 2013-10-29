@@ -19,12 +19,15 @@
 \usepackage{amsthm}
 \usepackage{graphicx}
 
+
+
 \usepackage{bussproofs}
 \usepackage{proof}
 
 \usepackage{fancybox}
 \usepackage{fancyvrb}
 
+%\usepackage{rotating}
 
 % Sequent Calculus Proof Settings
 \EnableBpAbbreviations
@@ -34,31 +37,37 @@
 \newcommand{\mypause}{\pause}
 %\newcommand{\mypause}{}
 
-\title[Formalizations of G\"{o}del's Proof of God's Existence]{Formalizations of G\"{o}del's Proof of God's Existence}
+\title[On G\"{o}del's Proof of God's
+Existence]{Formalization, Mechanization and Automation of \\ G\"{o}del's
+  Proof of God's Existence}
 
-\author{Christoph Benzm\"{u}ller and Bruno Woltzenlogel Paleo}
+\author{\textbf{Christoph Benzm\"{u}ller} and \textbf{Bruno Woltzenlogel Paleo}}
 
-\institute[] {
-  \inst{}%
-}
+% \institute[]{
+%   \inst{}%
+% }
 
-\date[29.10.13]
-{2013 October ??}
+\date[1.11.2013]{November 1, 2013}
 
 \begin{document}
 
 \begin{frame}
   \titlepage
+\includegraphics[height=2.5cm]{buch7.jpg} 
+\hfill
+\includegraphics[height=2.5cm]{nd.jpg}
 \end{frame}
 
-\begin{frame}{Introduction}
-\emph{\huge Wohl eine jede Philosophie kreist um den ontologischen
-  Gottesbeweis} \\[2em]
+\input{talk-part-1.tex}
 
-(Adorno, Th. W.: Negative Dialektik. Frankfurt a. M. 1966, S.378)
-\end{frame}
+\input{talk-part-2.tex}
 
+\input{talk-part-3.tex}
 
+\input{talk-part-4.tex}
 
+\input{talk-part-5.tex}
+
+\input{talk-part-6.tex}
 
 \end{document}

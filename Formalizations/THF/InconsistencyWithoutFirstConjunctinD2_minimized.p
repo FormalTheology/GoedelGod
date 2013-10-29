@@ -3,8 +3,8 @@
 thf(rel_type,type,(
     rel: $i > $i > $o )).
 %----   
-thf(sym,axiom,
-    ( ! [V: $i, Z: $i]: ( ( rel @ V @ Z ) => ( rel @ Z @ V ) ) )).
+%thf(sym,axiom,
+%    ( ! [V: $i, Z: $i]: ( ( rel @ V @ Z ) => ( rel @ Z @ V ) ) )).
 
 %----type $i stands for possible worlds
 %----type mu stands for individuals
@@ -130,21 +130,6 @@ thf(axA1a,axiom,
                 ( mnot @ ( Phi @ X ) ) )
           @ ( mnot @ ( p @ Phi ) ) ) ) )).
 
-%----A2: A property necessarily implied by a positive property is positive.
-thf(axA2,axiom,
-    ( v
-    @ ( mforall_indset
-      @ ^ [Phi: mu > $i > $o] :
-          ( mforall_indset
-          @ ^ [Psi: mu > $i > $o] :
-              ( mimplies
-              @ ( mand @ ( p @ Phi )
-                @ ( mbox
-                  @ ( mforall_ind
-                    @ ^ [X: mu] :
-                        ( mimplies @ ( Phi @ X ) @ ( Psi @ X ) ) ) ) )
-              @ ( p @ Psi ) ) ) ) )).
-
 %----D2: An essence of an individual is a property possessed by it and
 %----necessarily implying any of its properties
 thf(defD2,definition,
@@ -176,5 +161,19 @@ thf(axA5,axiom,
     ( v @ ( p @ ne ) )).
 
 
-%----Conjecture False
-thf(con,conjecture, $false ).   
+%----A2: A property necessarily implied by a positive property is positive.
+thf(axA2,axiom,
+    ( v
+    @ ( mforall_indset
+      @ ^ [Phi: mu > $i > $o] :
+          ( mforall_indset
+          @ ^ [Psi: mu > $i > $o] :
+              ( mimplies
+              @ ( mand @ ( p @ Phi )
+                @ ( mbox
+                  @ ( mforall_ind
+                    @ ^ [X: mu] :
+                        ( mimplies @ ( Phi @ X ) @ ( Psi @ X ) ) ) ) )
+              @ ( p @ Psi ) ) ) ) )).
+
+   
