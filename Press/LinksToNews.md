@@ -97,6 +97,8 @@ India
 Netherlands
 -----------
 
+[POPW](http://www.popw.nl/popwet/godels-godsbewijs-klopt-ergo-god-bestaat/)
+
 [Spinoza Blogs](http://spinoza.blogse.nl/log/computer-bevestigt-dat-godels-godsbewijs-logisch-klopt.html)
 
 
@@ -105,6 +107,11 @@ US
 
 [One News Page](http://www.onenewspage.us/n/Science/74w2r4pgz/Researchers-say-they-used-MacBook-to-prove-Goedel.htm)
 
+
+Australia
+---------
+
+[International Business Times](http://au.ibtimes.com/articles/517705/20131029/apple-macbook-pro.htm#.Um-5fhbG-b8)
 
 Romania
 -------
