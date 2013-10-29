@@ -166,7 +166,7 @@ text {* Finally, Sledgehammer and Metis prove the main theorem @{text "T3"}: $\n
   sledgehammer [provers = remote_leo2]
   using T1 T3 sym G_def by metis
 
-text {* Finally, the consistency of our entire theory with Nitpick. *}
+text {* Finally, the consistency of the entire theory is checked with Nitpick. *}
 
   lemma True nitpick [satisfy, user_axioms, expect = genuine] oops 
 
