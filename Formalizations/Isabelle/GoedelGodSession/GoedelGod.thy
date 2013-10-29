@@ -65,14 +65,14 @@ could be used instead of @{text "abbreviation"}; the latter are always fully exp
 which is fine here, where the focus has been on proof automation, but which would lead to 
 overly complex proof tasks in a purely interactive session. *}
 
-  abbreviation mnot :: "\<sigma> \<Rightarrow> \<sigma>" ("m\<not>") where "m\<not> \<Phi> \<equiv> (\<lambda>w. \<not> \<Phi> w)"    
-  abbreviation mand :: "\<sigma> \<Rightarrow> \<sigma> \<Rightarrow> \<sigma>" (infixr "m\<and>" 74) where "\<Phi> m\<and> q \<equiv> (\<lambda>w. \<Phi> w \<and> q w)"   
-  abbreviation mimplies :: "\<sigma> \<Rightarrow> \<sigma> \<Rightarrow> \<sigma>" (infixr "m\<Rightarrow>" 79) where "p m\<Rightarrow> q \<equiv> (\<lambda>w. p w \<longrightarrow> q w)"  
-  abbreviation mforall_ind :: "(mu \<Rightarrow> \<sigma>) \<Rightarrow> \<sigma>" ("\<forall>i") where "\<forall>i P \<equiv> (\<lambda>w. \<forall>x. P x w)"   
-  abbreviation mexists_ind :: "(mu \<Rightarrow> \<sigma>) \<Rightarrow> \<sigma>" ("\<exists>i") where "\<exists>i P \<equiv> (\<lambda>w. \<exists>x. P x w)"
+  abbreviation mnot :: "\<sigma> \<Rightarrow> \<sigma>" ("m\<not>") where "m\<not> \<phi> \<equiv> (\<lambda>w. \<not> \<phi> w)"    
+  abbreviation mand :: "\<sigma> \<Rightarrow> \<sigma> \<Rightarrow> \<sigma>" (infixr "m\<and>" 79) where "\<phi> m\<and> \<psi> \<equiv> (\<lambda>w. \<phi> w \<and> \<psi> w)"   
+  abbreviation mimplies :: "\<sigma> \<Rightarrow> \<sigma> \<Rightarrow> \<sigma>" (infixr "m\<Rightarrow>" 74) where "\<phi> m\<Rightarrow> \<psi> \<equiv> (\<lambda>w. \<phi> w \<longrightarrow> \<psi> w)"  
+  abbreviation mforall_ind :: "(mu \<Rightarrow> \<sigma>) \<Rightarrow> \<sigma>" ("\<forall>i") where "\<forall>i \<Phi> \<equiv> (\<lambda>w. \<forall>x. \<Phi> x w)"   
+  abbreviation mexists_ind :: "(mu \<Rightarrow> \<sigma>) \<Rightarrow> \<sigma>" ("\<exists>i") where "\<exists>i \<Phi> \<equiv> (\<lambda>w. \<exists>x. \<Phi> x w)"
   abbreviation mforall_indset :: "((mu \<Rightarrow> \<sigma>) \<Rightarrow> \<sigma>) \<Rightarrow> \<sigma>" ("\<forall>p") where "\<forall>p P \<equiv> (\<lambda>w. \<forall>x. P x w)"
-  abbreviation mbox :: "\<sigma> \<Rightarrow> \<sigma>" ("\<box>") where "\<box> p \<equiv> (\<lambda>w. \<forall>v. \<not> w r v \<or> p v)"
-  abbreviation mdia :: "\<sigma> \<Rightarrow> \<sigma>" ("\<diamond>") where "\<diamond> p \<equiv> (\<lambda>w. \<exists>v. w r v \<and> p v)" 
+  abbreviation mbox :: "\<sigma> \<Rightarrow> \<sigma>" ("\<box>") where "\<box> \<phi> \<equiv> (\<lambda>w. \<forall>v. \<not> w r v \<or> \<phi> v)"
+  abbreviation mdia :: "\<sigma> \<Rightarrow> \<sigma>" ("\<diamond>") where "\<diamond> \<phi> \<equiv> (\<lambda>w. \<exists>v. w r v \<and> \<phi> v)" 
 
 text {* For the grounding of lifted formulas the meta-predicate @{text "valid"} is introduced. *}
 
