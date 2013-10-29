@@ -109,16 +109,16 @@ $\neg A \equiv A \imp \bot$
 \end{frame}
 
 
-\begin{frame}{Detailed Natural Deduction Proof of T1 and C1}
+\begin{frame}{Natural Deduction Proofs}{T1 and C1}
 \begin{prooftree}
         \AXC{\textbf{A2}} \dashedLine
         \UIC{$ \all \varphi. \all \psi.[(P(\varphi) \wedge \nec \all x.[\varphi(x) \imp \psi(x)]) \imp P(\psi)]$} \RightLabel{$\all_E$}
         \UIC{$ \all \psi.[(P(\rho) \wedge \nec \all x.[\rho(x) \imp \psi(x)]) \imp P(\psi)]$} \RightLabel{$\all_E$}
         \UIC{$(P(\rho) \wedge \nec \all x.[\rho(x) \imp \neg \rho(x)]) \imp P(\neg \rho)$} \doubleLine
         \UIC{$(P(\rho) \wedge \nec \all x.[\neg \rho(x)]) \imp P(\neg \rho)$}
-                        \AXC{\textbf{A1}} \dashedLine
-                        \UIC{$\all \varphi.[ P(\neg \varphi) \biimp \neg P(\varphi) ]$} \RightLabel{$\all_E$}
-                        \UIC{$ P(\neg \rho) \biimp \neg P(\rho) $} \doubleLine
+                        \AXC{\textbf{A1a}} \dashedLine
+                        \UIC{$\all \varphi.[ P(\neg \varphi) \imp \neg P(\varphi) ]$} \RightLabel{$\all_E$}
+                        \UIC{$ P(\neg \rho) \imp \neg P(\rho) $} \doubleLine
                  \BIC{$ (P(\rho) \wedge \nec \all x.[\neg \rho(x)]) \imp \neg P(\rho) $} \doubleLine
                  \UIC{$ P(\rho) \imp \pos \ex x.\rho(x) $} \RightLabel{$\all_I$}
                  \UIC{$\all \varphi.[ P(\varphi) \imp \pos \ex x.\varphi(x) ] $}
@@ -166,6 +166,6 @@ $\neg A \equiv A \imp \bot$
 \end{frame}
 
 
-\begin{frame}{Detailed Natural Derivation of part of T2} \small
+\begin{frame}{Natural Deduction Proofs}{Part of T2} \small
 \includegraphics[scale=0.22]{ProofOfT2Boxed.pdf}
 \end{frame}
