@@ -63,6 +63,11 @@ Italy
 [AGI](http://www.agi.it/research-e-sviluppo/notizie/201310241345-eco-rt10187-scienza_dimostrato_teorema_matematico_di_godel_su_esistenza_dio)
 
 
+Spain
+-----
+
+[La Vanguardia](http://www.lavanguardia.com/vida/20131028/54392787484/cientificos-demostrar-informaticamente-existencia-ser-supremo.html)
+
 Russia
 ------
 
