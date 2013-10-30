@@ -138,6 +138,37 @@ $\neg A \equiv A \imp \bot$
 \end{frame}
 
 
+
+\begin{frame}[shrink]{Natural Deduction Calculus}{Rules for Modalities}
+
+\begin{unnamedCalculus}
+
+\vspace{1em}
+
+\s\s\s\s
+\infer[\nec_I]{\nec A}{\alpha: \fbox{\infer*{A}{}} }
+\s\s\s\s\s
+\infer[\nec_E]{t: \fbox{ \infer*{}{A} }  }{\nec A}
+
+\vspace{2em}
+
+\s\s\s\s
+\infer[\pos_I]{\pos A}{t: \fbox{\infer*{A}{}} }
+\s\s\s\s\s
+\infer[\pos_E]{\beta: \fbox{ \infer*{}{A} }  }{\pos A}
+
+\vspace{2em}
+
+\alert{$$\pos A \equiv \neg \box \neg A$$}
+
+\vspace{1em}
+
+\end{unnamedCalculus}
+
+\end{frame}
+
+
+
 \begin{frame}{Natural Deduction Proofs}{T1 and C1}
 \begin{prooftree}
         \AXC{\textbf{A2}} \dashedLine
@@ -163,36 +194,6 @@ $\neg A \equiv A \imp \bot$
 \end{prooftree}
 \end{frame}
 
-
-\begin{frame}[shrink]{Natural Deduction Calculus}{Rules for Modalities}
-
-\begin{unnamedCalculus}
-
-\vspace{1em}
-
-\s\s\s\s
-\infer[\nec_I]{\nec A}{\alpha: \fbox{\infer*{A}{}} }
-\s\s\s\s\s
-\infer[\nec_E]{t: \fbox{ \infer*{}{A} }  }{\nec A}
-
-\vspace{2em}
-
-\s\s\s\s
-\infer[\pos_I]{\pos A}{t: \fbox{\infer*{A}{}} }
-\s\s\s\s\s
-\infer[\pos_E]{\beta: \fbox{ \infer*{}{A} }  }{\pos A}
-
-\vspace{2em}
-
-\alert{$$\pos A \equiv \neg \box \neg A$$}
-
-
-
-\vspace{1em}
-
-\end{unnamedCalculus}
-
-\end{frame}
 
 
 \begin{frame}{Natural Deduction Proofs}{T2 (Partial)}
