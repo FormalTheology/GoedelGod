@@ -1,9 +1,38 @@
 
-\begin{frame}{G\"odel's Manuscript} \small
+\begin{frame}{G\"odel's Manuscript}
 ToDo: Show Goedel's Manuscript
 \end{frame}
 
-\begin{frame}{Proof Overview} \small
+\begin{frame}[shrink]{Versions}
+    \begin{description}
+		\item[A1] Either a property is positive or its negation is (never both):  \hfill 
+		  $\all \phi [P(\neg \phi) \biimp \neg P(\phi)]$
+		\item[A2] A property necessarily implied by a
+		  positive property is positive: \phantom{b} \hfill 
+		  $\all \phi \all \psi [(P(\phi) \wedge \nec \all x [\phi(x)
+		  \imp \psi(x)]) \imp P(\psi)]$ 
+		\item[T1] Positive properties are possibly exemplified: \hfill $\all \varphi [P(\varphi) \imp \pos \ex x \varphi(x)]$
+		\item[D1] A \emph{God-like} being possesses all positive properties: \hfill
+		  $G(x) \biimp \forall \phi [P(\phi) \to \phi(x)]$
+		\item[A3]  The property of being God-like is positive: \hfill   $P(G)$
+		\item[C\phantom{1}] Possibly, God exists: \hfill $\pos \ex x G(x)$
+		\item[A4]  Positive properties are necessarily positive: \hfill 
+		  $\all \phi [P(\phi) \to \Box \; P(\phi)]$
+		\item[D2] An \emph{essence} of an individual is a property possessed by it and necessarily implying any of its properties:
+		  \phantom{b} \hfill $\ess{\phi}{x} \biimp \phi(x) \wedge \all
+		  \psi (\psi(x) \imp \nec \all y (\phi(y) \imp \psi(y)))$
+		\item[T2]  Being God-like is an essence of any
+		  God-like being: \hfill $\all x [G(x) \imp \ess{G}{x}]$ 
+		\item[D3] \emph{Necessary existence} of an individual is \\ the necessary exemplification of all its essences: 
+		  \phantom{b} \hfill $\NE(x) \biimp \all \phi [\ess{\phi}{x} \imp \nec \ex y \phi(y)]$
+		\item[A5] Necessary existence is a positive property: \hfill $P(\NE)$
+		\item[T3] Necessarily, God exists: \hfill $\nec \ex x G(x)$ 
+		\end{description}
+
+\end{frame}
+
+
+\begin{frame}[shrink]{Proof Overview}
 
 $$
 \textbf{D1: } G(x) \equiv \forall \varphi. [P(\varphi) \to \varphi(x)]
@@ -53,7 +82,7 @@ $$
 
 \end{frame}
 
-\begin{frame}{Natural Deduction Calculus} \small
+\begin{frame}[shrink]{Natural Deduction Calculus}
 
 \begin{unnamedCalculus}
 
@@ -135,7 +164,7 @@ $\neg A \equiv A \imp \bot$
 \end{frame}
 
 
-\begin{frame}{Natural Deduction Calculus}{Rules for Modalities} \small
+\begin{frame}[shrink]{Natural Deduction Calculus}{Rules for Modalities}
 
 \begin{unnamedCalculus}
 
@@ -166,6 +195,6 @@ $\neg A \equiv A \imp \bot$
 \end{frame}
 
 
-\begin{frame}{Natural Deduction Proofs}{Part of T2} \small
+\begin{frame}{Natural Deduction Proofs}{T2 (Partial)}
 \includegraphics[scale=0.22]{ProofOfT2Boxed.pdf}
 \end{frame}
