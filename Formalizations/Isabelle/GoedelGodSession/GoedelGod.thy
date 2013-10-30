@@ -100,8 +100,8 @@ instead try the Metis call in the line below. This Metis call generates a proof 
 that is verified in Isabelle/HOL's kernel. *}
  
   theorem T1: "[\<Pi> (\<lambda>\<Phi>. P \<Phi> m\<Rightarrow> \<diamond> (\<exists> \<Phi>))]"  
-  sledgehammer [provers = remote_leo2]
-  using A2 A1a by metis
+  (* sledgehammer [provers = remote_leo2] *)
+  by (metis A1a A2)
 
 text {* Next, the symbol @{text "G"} for "God-like" is introduced and defined 
 as $G(x) \biimp \forall \phi [P(\phi) \to \phi(x)]$ (A God-like being possesses 
@@ -116,7 +116,7 @@ Sledgehammer and Metis then prove corollary @{text "C"}: $\pos \ex x G(x)$
   axiomatization where A3:  "[P G]" 
 
   corollary C: "[\<diamond> (\<exists> G)]" 
-  sledgehammer [provers = remote_leo2]
+  (* sledgehammer [provers = remote_leo2] *)
   using A3 T1 by metis
 
 text {* Axiom @{text "A4"} is added: $\all \phi [P(\phi) \to \Box \; P(\phi)]$ 
@@ -136,7 +136,7 @@ text {* Next, Sledgehammer and Metis prove theorem @{text "T2"}: $\all x [G(x) \
 (Being God-like is an essence of any God-like being). *}
 
   theorem T2: "[\<forall> (\<lambda>x. G x m\<Rightarrow> G ess x)]"
-  sledgehammer [provers = remote_leo2]
+  (* sledgehammer [provers = remote_leo2] *)
   by (metis (lifting) A1b A4 G_def ess_def)
 
 text {* Symbol @{text "NE"}, for "Necessary Existence", is introduced and
@@ -154,16 +154,16 @@ text {* Finally, Sledgehammer and Metis prove the main theorem @{text "T3"}: $\n
 (Necessarily, God exists). *}
 
   theorem T3: "[\<box> (\<exists> G)]" 
-  sledgehammer [provers = remote_leo2]
+  (* sledgehammer [provers = remote_leo2] *)
   using A5 C T2 sym G_def NE_def by metis
 
   corollary T4: "[\<exists> G]" 
-  sledgehammer [provers = remote_leo2] 
+  (* sledgehammer [provers = remote_leo2] *)
   using T1 T3 sym G_def by metis
 
 text {* The consistency of the entire theory is checked with Nitpick. *}
 
-  lemma True nitpick [satisfy, user_axioms, expect = genuine] oops 
+  (* lemma True nitpick [satisfy, user_axioms, expect = genuine] oops *)
 
 text {* \paragraph{Acknowledgments:} Nik Sultana, Jasmin Blanchette and Larry Paulson provided 
 very important help wrt consistency checking in Isabelle. Jasmin Blanchette instructed us on how to 
