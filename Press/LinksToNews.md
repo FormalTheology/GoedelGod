@@ -10,8 +10,6 @@ Germany
 
 [Spiegel Online](http://Spiegel.de/wissenschaft/mensch/formel-von-kurt-goedel-mathematiker-bestaetigen-gottesbeweis-a-920455.html)
 
-[Die Presse](http://diepresse.com/home/science/1450597/Mathematiker-prueften-Goedels-Gottesbeweis?_vl_backlink=/home/science/index.do)
-
 [Frankfurter Allgemeine Zeitung](http://www.faz.net/aktuell/feuilleton/intelligenzforschung-gott-lebt-12557007.html)
 
 [Detektor.fm (Radio Interview)](http://detektor.fm/kultur/mathematischer-gottesbeweis-von-forschern-bestaetigt/)
@@ -36,6 +34,8 @@ Germany
 
 Austria
 -------
+
+[Die Presse](http://diepresse.com/home/science/1450597/Mathematiker-prueften-Goedels-Gottesbeweis?_vl_backlink=/home/science/index.do)
 
 [myscience.at](http://www.myscience.at/news/2013/deus_ex_machina-2013-tuwien)
 
