@@ -128,9 +128,16 @@ ToDo: add classical rules/axioms that we need
 \vspace{1em}
 
 \s\s\s\s
-\infer[\nec_I]{\nec A}{\fbox{\infer*{A}{} }}
-\s\s\s
-\infer[\nec_E]{\fbox{ \infer*{}{A} }  }{\nec A}
+\infer[\nec_I]{\nec A}{\eta: \fbox{\infer*{A}{}} }
+\s\s\s\s\s
+\infer[\nec_E]{n: \fbox{ \infer*{}{A} }  }{\nec A}
+
+\vspace{2em}
+
+\s\s\s\s
+\infer[\pos_I]{\pos A}{n: \fbox{\infer*{A}{}} }
+\s\s\s\s\s
+\infer[\pos_E]{\eta: \fbox{ \infer*{}{A} }  }{\pos A}
 
 \vspace{1em}
 \end{calculus}
@@ -142,6 +149,8 @@ A \emph{derivation} is a directed acyclich graph whose nodes are formulas and wh
 \item \textbf{eigen-variable conditions:}
 if $\rho$ is a $\all_I$ inference eliminating a variable $\alpha$, then any occurrence of $\alpha$ in the proof should be an ancestor of the occurrence of $\alpha$ eliminated by $\rho$;
 if $\rho$ is a $\ex_E$ inference introducing a variable $\beta$, then any occurrence of $\beta$ in the proof should be a descendant of the occurrence of $\beta$ introduced by $\rho$.
+%
+\item \textbf{eigen-box conditions:} $\eta$ must be a fresh name for a box.
 %
 \item \textbf{boxed assumption condition:} any assumption should be discharged within the box where it is made.
 %
