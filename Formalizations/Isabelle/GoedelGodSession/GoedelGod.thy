@@ -163,8 +163,13 @@ text {* Finally, Sledgehammer and Metis prove the main theorem @{text "T3"}: $\n
 
 text {* The consistency of the entire theory is checked with Nitpick. *}
 
-  (* lemma True nitpick [satisfy, user_axioms, expect = genuine] oops *)
-
+  lemma True nitpick [satisfy, user_axioms, expect = genuine] oops 
+  
+text {* We check for the modal collapse. Satallax can prove this. *} 
+  
+  lemma MC: "[p m\<Rightarrow> (\<box> p)]"
+  using T2 T3 ess_def sledgehammer [provers = remote_satallax] oops
+  
 text {* \paragraph{Acknowledgments:} Nik Sultana, Jasmin Blanchette and Larry Paulson provided 
 very important help wrt consistency checking in Isabelle. Jasmin Blanchette instructed us on how to 
 produce latex documents from Isabelle sources, and he showed us useful tricks in Isabelle. *}
