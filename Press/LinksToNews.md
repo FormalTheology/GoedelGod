@@ -107,6 +107,10 @@ US
 
 [One News Page](http://www.onenewspage.us/n/Science/74w2r4pgz/Researchers-say-they-used-MacBook-to-prove-Goedel.htm)
 
+[ABC News](http://abcnews.go.com/Technology/computer-scientists-prove-god-exists/story?id=20678984)
+
+[Examiner](http://www.examiner.com/article/scientists-prove-god-exists-scientific-theory-states-higher-being-must-exist)
+
 
 Australia
 ---------
