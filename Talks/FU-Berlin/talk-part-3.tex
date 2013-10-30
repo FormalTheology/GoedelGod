@@ -1,4 +1,141 @@
+\begin{frame}{Theorem Provers for Higher-order Modal Logic?} \large
 
-\begin{frame}{Embedding, Application of THF Provers} \small
-todo
+Main challenge: \hfill No provers for \emph{Higher-order Modal
+  Logic} (\textcolor{red}{HML}) \\[1em]
+
+Our idea: \hfill Embedding in \emph{Higher-order Classical
+  Logic} (\textcolor{blue}{HOL}) \\
+\, \hfill Then use existing \textcolor{blue}{HOL} theorem provers for reasoning in \textcolor{red}{HML} \\
+\,\hfill {\small [Benzm\"ullerPaulson, Logica Universalis, 2013]}
+\\[2em]
+
+Previous empiricial findings:  \\[.5em]
+\,\hfill Embedding of  \emph{First-order Modal Logic} in HOL works well 
+
+\,\hfill {\small [Benzm\"ullerOttenRaths, ECAI, 2012]} \\
+\,\hfill {\small [Benzm\"uller, LPAR, 2013]}
+\end{frame}
+
+
+
+\begin{frame}{Theorem Provers for Higher-order Modal Logic?} \large
+
+\hskip-1em\textcolor{red}{HML} \hfill
+$\begin{array}{lll}\textcolor{red}{\varphi,\psi} & ::= &
+  \textcolor{red}{\ldots}  \mid \textcolor{red}{\neg
+    \varphi} \mid \textcolor{red}{\varphi \wedge \psi} \mid
+  \textcolor{red}{\varphi \imp \psi}  \mid \textcolor{red}{\Box
+    \varphi} \mid \textcolor{red}{\Diamond \varphi}  \mid
+  \textcolor{red}{\forall {x}\, \varphi} \mid
+  \textcolor{red}{\exists {x}\, \varphi} 
+\mid \textcolor{red}{\forall {P}\, \varphi} \end{array}$ \\[1em]
+
+
+\begin{itemize}
+\item Kripke style semantics (possible world semantics)\\[2em]
+\end{itemize}
+
+
+
+\hskip-1em\textcolor{blue}{HOL}\hfill 
+$\begin{array}{lll}
+\textcolor{blue}{s,t} & ::= & \textcolor{blue}{C}  \mid
+\textcolor{blue}{x \mid \lambda{x} s} \mid \textcolor{blue}{s\, t}
+\mid \textcolor{blue}{\neg s} \mid \textcolor{blue}{s \vee t} \mid
+\textcolor{blue}{\forall {x}\, t} 
+\end{array}$ \\[1em]
+
+\begin{itemize}
+\item meanwhile very well understood
+\item Henkin semantics vs. standard semantics
+\item various theorem provers do exists \\[.5em]
+  \quad interactive: \hfill Isabelle/HOL, HOL4, Hol Light, Coq/HOL, PVS,
+  \ldots \\[.5em]
+  \quad automated: \hfill TPS, LEO-II, Satallax, Nitpick, Isabelle/HOL, \ldots \\
+\end{itemize}
+
+
+\end{frame}
+
+
+\begin{frame}{Theorem Provers for Higher-order Modal Logic?}\large
+
+\hskip-1em\textcolor{red}{HML} \hfill
+$\begin{array}{lll}\textcolor{red}{\varphi,\psi} & ::= &
+  \textcolor{red}{\ldots}  \mid \textcolor{red}{\neg
+    \varphi} \mid \textcolor{red}{\varphi \wedge \psi} \mid
+  \textcolor{red}{\varphi \imp \psi}  \mid \textcolor{red}{\Box
+    \varphi} \mid \textcolor{red}{\Diamond \varphi}  \mid
+  \textcolor{red}{\forall {x}\, \varphi} \mid
+  \textcolor{red}{\exists {x}\, \varphi} 
+\mid \textcolor{red}{\forall {P}\, \varphi} \end{array}$ \\[2em]
+
+\hskip-1em\textcolor{blue}{HOL}\hfill 
+$\begin{array}{lll}
+\textcolor{blue}{s,t} & ::= & \textcolor{blue}{C}  \mid
+\textcolor{blue}{x \mid \lambda{x} s} \mid \textcolor{blue}{s\, t}
+\mid \textcolor{blue}{\neg s} \mid \textcolor{blue}{s \vee t} \mid
+\textcolor{blue}{\forall {x}\, t} 
+\end{array}$ \\[2em]
+
+
+\hskip-1em\textcolor{red}{HML} in \textcolor{blue}{HOL}: \quad \textcolor{red}{HML}
+formulas $\textcolor{red}{\varphi}$ are mapped to
+\textcolor{blue}{HOL} predicates $\textcolor{red}{\varphi_{\worldtype\typearrow o}}$
+
+\begin{center}
+\fcolorbox{blue}{white}{
+$\begin{array}{lcl} 
+    \textcolor{red}{\mnot} & = & \textcolor{blue}{
+      \lambda{\varphi_{\worldtype\typearrow o}}\lambda{s_\worldtype}\neg \varphi s} \\ 
+    \textcolor{red}{\mand} & = & \textcolor{blue}{ 
+      \lambda{\varphi_{\worldtype\typearrow o}}
+      \lambda{\psi_{\worldtype\typearrow o}} \lambda{s_\worldtype}
+      (\varphi s \wedge \psi s)} \\ 
+    \textcolor{red}{\imp} & = & \textcolor{blue}{ 
+      \lambda{\varphi_{\worldtype\typearrow o}}
+      \lambda{\psi_{\worldtype\typearrow o}} \lambda{s_\worldtype}
+      (\neg \varphi s \vee \psi s)} \\ 
+    \textcolor{red}{\Box} & = & \textcolor{blue}{ 
+      \lambda{\varphi_{\worldtype\typearrow o}} \lambda{s_\worldtype}
+      \forall {u_\worldtype}\, (\neg r s u \vee
+      \varphi u)} \\ 
+    \textcolor{red}{\forall} & = & \textcolor{blue}{ 
+      \lambda{h_{\mu\typearrow(\worldtype \typearrow o)}}
+      \lambda{s_\worldtype} \forall {d_\indtype} \, h d s} \\
+    \textcolor{red}{\exists} & = & \textcolor{blue}{ 
+      \lambda{h_{\mu\typearrow(\worldtype \typearrow o)}}
+      \lambda{s_\worldtype} \forall {d_\indtype} \, h d s} \\
+    \textcolor{red}{\forall} & = & \textcolor{blue}{ 
+      \lambda{H_{(\mu\typearrow(\worldtype \typearrow o))\typearrow(\worldtype \typearrow o)}}
+      \lambda{s_\worldtype} \forall {d_\indtype} \, H d s} \\
+    \\
+      \text{\textcolor{brown}{valid}} & = & \textcolor{blue}{
+        \lambda{\varphi_{\worldtype\typearrow o}} \all{s_\worldtype}
+        \varphi s}
+\end{array}$
+}  \quad \textcolor{blue}{Ax} 
+\vskip1em
+\quad The equations in \textcolor{blue}{Ax} are given as axioms to the \textcolor{blue}{HOL} provers!
+\end{center}
+
+\end{frame}
+
+
+
+\begin{frame}{Theorem Provers for Higher-order Modal Logic?} \large
+Example
+
+\textcolor{red}{HML} formula  \hfill \textcolor{red}{$\Diamond \exists x G(x)$}
+
+\textcolor{blue}{HOL} formula \hfill $\text{\textcolor{brown}{valid}} \textcolor{red}{(\Diamond \exists x G(x))_{\worldtype\typearrow o}}$
+
+expansion, $\beta\eta$-conversion \hfill $\textcolor{blue}{\forall S_\worldtype\textcolor{red}{(\Diamond \exists x G(x))_{\worldtype\typearrow o}}}$
+
+
+
+In order to prove that $\textcolor{red}{\varphi}$ is valid in $\textcolor{red}{HML}$ \\
+we instead prove $\text{\textcolor{blue}{Ax}} \vdash
+\text{\textcolor{brown}{valid}}\,
+\textcolor{blue}{\varphi_{\worldtype\typearrow o}}$ in \textcolor{blue}{HOL} 
 \end{frame}

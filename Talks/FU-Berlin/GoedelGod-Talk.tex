@@ -68,7 +68,7 @@
 \usepackage{pxfonts}
 \usepackage{amsthm}
 \usepackage{graphicx}
-
+\usepackage{stmaryrd}
 
 
 \usepackage{bussproofs}
@@ -99,6 +99,27 @@
 \newcommand{\NE}{E}
 
 \newcommand{\s}{\qquad}
+
+\def\modal#1{\boldsymbol{#1}}
+\def\mfalse{\modal\bot}
+\def\mtrue{\modal\top}
+\def\mnot{\modal\neg\,}
+\def\mor{\,\modal\vee\,}
+\def\mand{\,\modal\wedge\,}
+\def\mimpl{\,\modal\supset\,}
+\def\miff{\,\modal\Leftrightarrow\,}
+\def\mball#1{\modal\Box_{#1}\,}
+\def\mdexi#1{\modal\Diamond_{#1}\,}
+\def\mall#1{\modal{\forall}{#1}\lambdot\,}
+\def\mallprop#1{\modal{\forall^{p}}{#1}\lambdot\,}
+\def\mallind#1{\modal{\forall^{\mu}}{#1}\lambdot\,}
+\def\mexi#1{\modal{\exists}{#1}\lambdot\,}
+\def\mpi{\modal{\Pi}\,}
+\def\mvalid{\modal{\texttt{valid}}} 
+
+\def\typearrow{\shortrightarrow}
+\def\worldtype{\iota}
+\def\indtype{\mu}
 
 
 \title[On G\"{o}del's Proof of God's
