@@ -3,7 +3,7 @@
 \vfill
 \textbf{Part B:} \\
 \quad formalization: in classical higher-order logic (\textcolor{black}{HOL}) \\
-\quad proof automation: theorem provers \textsc{Leo-II} and \textsc{Satallax} \\ 
+\quad automation: theorem provers \textsc{Leo-II} and \textsc{Satallax} \\ 
 \quad consistency checking: model finder \textsc{Nitpick (Nitrox)} \\
 \end{frame}
 
@@ -158,11 +158,9 @@ expansion, $\beta\eta$-conversion \hfill $\textcolor{blue}{\forall
 
 expansion, $\beta\eta$-conversion \hfill $\textcolor{blue}{\forall
   w_\worldtype \exists {u_\worldtype} (r w u \wedge
-      \exists x G x u)}$ 
-\\[2em]
-
+      \exists x G x u)}$ \\[1em]
 \pause
-
+\vfill
 \begin{block}{What are we doing?}
 \vskip.5em
 In order to prove that $\textcolor{red}{\varphi}$ is valid in \textcolor{red}{HML}, \\
@@ -173,12 +171,15 @@ from \textcolor{blue}{Ax} in \textcolor{blue}{HOL}. \\[1em]
 
 This can be done with interactive or automated \textcolor{blue}{HOL} theorem provers.
 \end{block}
+\pause
+\vfill
+\hskip-1em Expansion: \hfill user or prover may flexibly choose expansion depth \\[.5em]
 
 \end{frame}
 
 
 
-\begin{frame}{Proof automation and consistencey checking: Demo!} \large
+\begin{frame}{Proof Automation and Consistencey Checking: Demo!} \large
 \colorbox{gray}{\includegraphics[width=\textwidth]{DemoGrap}} 
 \vfill 
 Provers are called remotely in Miami --- no local installation needed!
