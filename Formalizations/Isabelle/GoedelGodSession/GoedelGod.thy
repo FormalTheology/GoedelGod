@@ -100,7 +100,7 @@ instead try the Metis call in the line below. This Metis call generates a proof 
 that is verified in Isabelle/HOL's kernel. *}
  
   theorem T1: "[\<Pi> (\<lambda>\<Phi>. P \<Phi> m\<Rightarrow> \<diamond> (\<exists> \<Phi>))]"  
-  (* sledgehammer [provers = remote_leo2] *)
+  sledgehammer [provers = remote_leo2] 
   by (metis A1a A2)
 
 text {* Next, the symbol @{text "G"} for "God-like" is introduced and defined 
@@ -136,8 +136,8 @@ text {* Next, Sledgehammer and Metis prove theorem @{text "T2"}: $\all x [G(x) \
 (Being God-like is an essence of any God-like being). *}
 
   theorem T2: "[\<forall> (\<lambda>x. G x m\<Rightarrow> G ess x)]"
-  (* sledgehammer [provers = remote_leo2] *)
-  by (metis (lifting) A1b A4 G_def ess_def)
+  sledgehammer [provers = remote_leo2]
+  by (metis A1b A4 G_def ess_def)
 
 text {* Symbol @{text "NE"}, for "Necessary Existence", is introduced and
 defined as $\NE(x) \biimp \all \phi [\ess{\phi}{x} \imp \nec \ex y \phi(y)]$ (Necessary 
@@ -154,12 +154,12 @@ text {* Finally, Sledgehammer and Metis prove the main theorem @{text "T3"}: $\n
 (Necessarily, God exists). *}
 
   theorem T3: "[\<box> (\<exists> G)]" 
-  (* sledgehammer [provers = remote_leo2] *)
-  using A5 C T2 sym G_def NE_def by metis
+  sledgehammer [provers = remote_leo2]
+  by (metis A5 C T2 sym G_def NE_def)
 
   corollary T4: "[\<exists> G]" 
-  (* sledgehammer [provers = remote_leo2] *)
-  using T1 T3 sym G_def by metis
+  sledgehammer [provers = remote_leo2]
+  by (metis T1 T3 G_def sym)
 
 text {* The consistency of the entire theory is checked with Nitpick. *}
 
