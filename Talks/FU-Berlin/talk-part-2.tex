@@ -1,6 +1,13 @@
+\begin{transitionframe}
+\textbf{Part A:}
 
-\begin{frame}{G\"odel's Manuscript}
-ToDo: Show Goedel's Manuscript
+Informal Proof and Natural Deduction Proof
+\end{transitionframe}
+
+
+\begin{frame}{G\"odel's Manuscript (1970)}
+ToDo: Improve Resolution
+\includegraphics[scale=0.25]{Manuscript.png}
 \end{frame}
 
 \begin{frame}[shrink]{Versions}
@@ -77,7 +84,7 @@ $$
 \begin{prooftree}
 \AXC{$\textbf{C1: } \pos \ex x. G(x)$}
 		\AXC{$\textbf{L2: } \pos \ex z. G(z) \imp \nec \ex x. G(x)$} \doubleLine
-	\BIC{$\textbf{T3: } \phantom{\nec \ex x. G(x)} $}
+	\BIC{$\textbf{T3: } \nec \ex x. G(x) $}
 \end{prooftree}
 
 \end{frame}
@@ -138,6 +145,37 @@ $\neg A \equiv A \imp \bot$
 \end{frame}
 
 
+
+\begin{frame}[shrink]{Natural Deduction Calculus}{Rules for Modalities}
+
+\begin{unnamedCalculus}
+
+\vspace{1em}
+
+\s\s\s\s
+\infer[\nec_I]{\nec A}{\alpha: \fbox{\infer*{A}{}} }
+\s\s\s\s\s
+\infer[\nec_E]{t: \fbox{ \infer*{}{A} }  }{\nec A}
+
+\vspace{2em}
+
+\s\s\s\s
+\infer[\pos_I]{\pos A}{t: \fbox{\infer*{A}{}} }
+\s\s\s\s\s
+\infer[\pos_E]{\beta: \fbox{ \infer*{}{A} }  }{\pos A}
+
+\vspace{2em}
+
+\alert{$$\pos A \equiv \neg \nec \neg A$$}
+
+\vspace{1em}
+
+\end{unnamedCalculus}
+
+\end{frame}
+
+
+
 \begin{frame}{Natural Deduction Proofs}{T1 and C1}
 \begin{prooftree}
         \AXC{\textbf{A2}} \dashedLine
@@ -163,36 +201,6 @@ $\neg A \equiv A \imp \bot$
 \end{prooftree}
 \end{frame}
 
-
-\begin{frame}[shrink]{Natural Deduction Calculus}{Rules for Modalities}
-
-\begin{unnamedCalculus}
-
-\vspace{1em}
-
-\s\s\s\s
-\infer[\nec_I]{\nec A}{\alpha: \fbox{\infer*{A}{}} }
-\s\s\s\s\s
-\infer[\nec_E]{t: \fbox{ \infer*{}{A} }  }{\nec A}
-
-\vspace{2em}
-
-\s\s\s\s
-\infer[\pos_I]{\pos A}{t: \fbox{\infer*{A}{}} }
-\s\s\s\s\s
-\infer[\pos_E]{\beta: \fbox{ \infer*{}{A} }  }{\pos A}
-
-\vspace{2em}
-
-\alert{$$\pos A \equiv \neg \box \neg A$$}
-
-
-
-\vspace{1em}
-
-\end{unnamedCalculus}
-
-\end{frame}
 
 
 \begin{frame}{Natural Deduction Proofs}{T2 (Partial)}
