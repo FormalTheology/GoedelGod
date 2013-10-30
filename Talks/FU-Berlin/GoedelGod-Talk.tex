@@ -1,11 +1,60 @@
-\documentclass[9pt]{beamer}
-% \documentclass[9pt,handout]{beamer}
+%\documentclass[9pt,mathserif]{beamer}
+\documentclass[9pt,mathserif,handout]{beamer}
 \mode<presentation>
 {
   \usetheme{Warsaw}
   \usecolortheme{crane}
   \setbeamercovered{transparent}
+	\useoutertheme{split} 
+	 
+	\defbeamertemplate*{slidenumber}{framenumber} 
+	     {\insertframenumber} 
+	 \defbeamertemplate{slidenumber}{totalframenumber} 
+	     {\insertframenumber\,/\,\inserttotalframenumber} 
+	 \defbeamertemplate{slidenumber}{pagenumber} 
+	     {\insertpagenumber} 
+	 \defbeamertemplate{slidenumber}{totalpagenumber} 
+	     {\insertpagenumber\,/\,\insertpresentationendpage} 
+	 
+	\defbeamertemplate*{footline}{split slidenumber right} 
+	 {% 
+	   \leavevmode% 
+	   \hbox{\begin{beamercolorbox}
+	[wd=.5\paperwidth,ht=2.5ex,dp=1.125ex,leftskip=.3cm plus1fill,rightskip=.3cm]
+	{author in head/foot}% 
+	     \usebeamerfont{author in head/foot}\insertshortauthor 
+	   \end{beamercolorbox}% 
+	   \begin{beamercolorbox}
+	[wd=.5\paperwidth,ht=2.5ex,dp=1.125ex,leftskip=.3cm,rightskip=.3cm plus1fil]
+	{title in head/foot}% 
+	     \usebeamerfont{title in head/foot}\insertshorttitle% 
+	     \hskip2ex plus1fill% 
+	     \usebeamertemplate{slidenumber}% 
+	   \end{beamercolorbox}}% 
+	   \vskip0pt% 
+	 
+	} 
+	 
+	\defbeamertemplate{footline}{split slidenumber left} 
+	 {% 
+	   \leavevmode% 
+	   \hbox{\begin{beamercolorbox}
+	[wd=.5\paperwidth,ht=2.5ex,dp=1.125ex,leftskip=.3cm plus1fil,rightskip=.3cm]
+	{author in head/foot}% 
+	     \usebeamerfont{author in head/foot}% 
+	     \usebeamertemplate{slidenumber}% 
+	     \hskip2ex plus1fill% 
+	     \insertshortauthor 
+	   \end{beamercolorbox}% 
+	   \begin{beamercolorbox}
+	[wd=.5\paperwidth,ht=2.5ex,dp=1.125ex,leftskip=.3cm,rightskip=.3cm plus1fil]
+	{title in head/foot}% 
+	     \usebeamerfont{title in head/foot}\insertshorttitle% 
+	   \end{beamercolorbox}}% 
+	   \vskip0pt% 
+	} 
 }
+%\setbeamertemplate{footline}[page number]
 
 \usepackage[english]{babel}
 \usepackage[latin1]{inputenc}
