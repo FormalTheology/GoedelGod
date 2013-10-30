@@ -8,7 +8,6 @@ timeout=90
 
 echo
 echo Asking various HOL-ATPs in Miami remotely \(thanks to Geoff Sutcliffe\)
-echo
 
 for file in "$@"
 do

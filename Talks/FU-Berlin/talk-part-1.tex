@@ -1,7 +1,8 @@
 
-\begin{frame}{Introduction} \small
+\begin{frame}{} \small
+\vskip1em
 \begin{minipage}{.56\textwidth} 
-\includegraphics[width=\textwidth]{spiegel1} 
+\colorbox{gray}{\includegraphics[width=\textwidth]{spiegel1}} 
 \vskip1em
 Germany \\
 - Telepolis \& Heise \\
@@ -22,13 +23,11 @@ Austria \\
 
 Italy \\
 - Repubblica \\
-- Today.it \\
 - Ilsussidario \\
 - \ldots \\
 
 % Russia \\
 % - \ldots \\
-
 
 India \\
 - DNA India \\
@@ -36,15 +35,28 @@ India \\
 - India Today \\
 - \ldots \\
 
+US \\
+- ABC News \\
+- \ldots \\
+
 International \\
 - Spiegel International \\
 - Yahoo Finance \\
-- CNET \\
+% - CNET \\
 - United Press Intl. \\
-- \ldots
+- \ldots \\
 \end{minipage}
 \end{frame}
 
+\begin{frame}{Introduction --- Quick answers to your most pressing questions!} \large
+\colorbox{gray}{\includegraphics[width=\textwidth]{MacBookGrab}} 
+\pause
+\vfill
+Are we in contact with Steve Jobs? \hfill No \\[2em]
+Do you really need a MacBook to obtain the results? \hfill No \\[2em]
+Is Apple sending us money? \hfill No \\
+\, \hfill (but maybe they should)
+\end{frame}
 
 \begin{frame}{Introduction}\large
 %Ontological argument: Conclude that God exists from premises by pure, a priori reasoning.
@@ -156,9 +168,9 @@ Different Interests in Ontological Arguments: \\[1em]
 \end{frame}
 
 \begin{frame}{Introduction} \large
-Main challenge: \hfill No provers for \emph{Higher-order Modal Logic} \textcolor{red}{HML} \\[1em]
+Main challenge: \hfill No provers for \emph{Higher-order Modal Logic\/} (\textcolor{red}{HML}) \\[1em]
 
-Our idea: \hfill Embedding in \emph{Higher-order Classical Logic} \textcolor{blue}{HOL} \\
+Our solution: \hfill Embedding in \emph{Higher-order Classical Logic\/} (\textcolor{blue}{HOL}) \\
 \,\hfill {\small [Benzm\"ullerPaulson, Logica Universalis, 2013]} \\[2em]
 
 What we did \textcolor{blue}{(rough outline for remaining
@@ -166,9 +178,9 @@ What we did \textcolor{blue}{(rough outline for remaining
 
 \begin{itemize}
 \item[A:] pen and paper: detailed natural deduction proof 
-\item[B:] formalization: axioms, defs, thms  in \textcolor{blue}{HOL}
-\item[] proof automation: theorems provers \textsc{Leo-II} and \textsc{Satallax} 
-\item[] consistency: automatic verification with \textsc{Nitpick} 
+\item[B:] formalization: in classical higher-order logic (\textcolor{blue}{HOL})
+\item[] proof automation: theorem provers \textsc{Leo-II} and \textsc{Satallax} 
+\item[] consistency: model finder \textsc{Nitpick (Nitrox)} 
 \item[C:] step-by-step verification: proof assistant \textsc{Coq} 
 \item[D:] automation \& verification: proof assistant 
   \textsc{Isabelle} \\[2em]

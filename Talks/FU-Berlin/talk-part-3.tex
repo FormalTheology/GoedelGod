@@ -1,10 +1,19 @@
-\begin{frame}{Theorem Provers for Higher-order Modal Logic?} \large
+\begin{frame}{} \Large \centering
+\includegraphics[width=.7\textwidth]{TUWien-GodComputerC} 
+\vfill
+\textbf{Part B:} \\
+\quad formalization: in classical higher-order logic (\textcolor{black}{HOL}) \\
+\quad proof automation: theorem provers \textsc{Leo-II} and \textsc{Satallax} \\ 
+\quad consistency checking: model finder \textsc{Nitpick (Nitrox)} \\
+\end{frame}
+
+\begin{frame}{Formalization in HOL} \large
 
 Main challenge: \hfill No provers for \emph{Higher-order Modal
-  Logic} (\textcolor{red}{HML}) \\[1em]
+  Logic\/} (\textcolor{red}{HML}) \\[1em]
 
-Our idea: \hfill Embedding in \emph{Higher-order Classical
-  Logic} (\textcolor{blue}{HOL}) \\
+Our solution: \hfill Embedding in \emph{Higher-order Classical
+  Logic\/} (\textcolor{blue}{HOL}) \\
 \, \hfill Then use existing \textcolor{blue}{HOL} theorem provers for reasoning in \textcolor{red}{HML} \\
 \,\hfill {\small [Benzm\"ullerPaulson, Logica Universalis, 2013]}
 \\[2em]
@@ -18,7 +27,7 @@ Previous empiricial findings:  \\[.5em]
 
 
 
-\begin{frame}{Theorem Provers for Higher-order Modal Logic?} \large
+\begin{frame}{Formalization in HOL} \large
 
 \hskip-1em\textcolor{red}{HML} \hfill
 $\begin{array}{lll}\textcolor{red}{\varphi,\psi} & ::= &
@@ -58,7 +67,7 @@ $\begin{array}{lll}
 \end{frame}
 
 
-\begin{frame}{Theorem Provers for Higher-order Modal Logic?}\large
+\begin{frame}{Formalization in HOL}\large
 
 \hskip-1em\textcolor{red}{HML} \hfill
 $\begin{array}{lll}\textcolor{red}{\varphi,\psi} & ::= &
@@ -100,19 +109,23 @@ $\begin{array}{lcl}
       \lambda{\varphi_{\worldtype\typearrow o}} \lambda{s_\worldtype}
       \forall {u_\worldtype}\, (\neg r s u \vee
       \varphi u)} \\ 
+    \textcolor{red}{\Diamond} & = & \textcolor{blue}{ 
+      \lambda{\varphi_{\worldtype\typearrow o}} \lambda{s_\worldtype}
+      \exists {u_\worldtype}\, (r s u \wedge
+      \varphi u)} \\ 
     \textcolor{red}{\forall} & = & \textcolor{blue}{ 
       \lambda{h_{\mu\typearrow(\worldtype \typearrow o)}}
       \lambda{s_\worldtype} \forall {d_\indtype} \, h d s} \\
     \textcolor{red}{\exists} & = & \textcolor{blue}{ 
       \lambda{h_{\mu\typearrow(\worldtype \typearrow o)}}
-      \lambda{s_\worldtype} \forall {d_\indtype} \, h d s} \\
+      \lambda{s_\worldtype} \exists {d_\indtype} \, h d s} \\
     \textcolor{red}{\forall} & = & \textcolor{blue}{ 
       \lambda{H_{(\mu\typearrow(\worldtype \typearrow o))\typearrow(\worldtype \typearrow o)}}
       \lambda{s_\worldtype} \forall {d_\indtype} \, H d s} \\
     \\
       \text{\textcolor{brown}{valid}} & = & \textcolor{blue}{
-        \lambda{\varphi_{\worldtype\typearrow o}} \all{s_\worldtype}
-        \varphi s}
+        \lambda{\varphi_{\worldtype\typearrow o}} \all{w_\worldtype}
+        \varphi w}
 \end{array}$
 }  \quad \textcolor{blue}{Ax} 
 \vskip1em
@@ -123,19 +136,50 @@ $\begin{array}{lcl}
 
 
 
-\begin{frame}{Theorem Provers for Higher-order Modal Logic?} \large
-Example
+\begin{frame}{Formalization in HOL} \large
 
-\textcolor{red}{HML} formula  \hfill \textcolor{red}{$\Diamond \exists x G(x)$}
+\hskip-1em Example \\[.5em]
 
-\textcolor{blue}{HOL} formula \hfill $\text{\textcolor{brown}{valid}} \textcolor{red}{(\Diamond \exists x G(x))_{\worldtype\typearrow o}}$
+ \textcolor{red}{HML} formula  \hfill \textcolor{red}{$\Diamond \exists x G(x)$}
 
-expansion, $\beta\eta$-conversion \hfill $\textcolor{blue}{\forall S_\worldtype\textcolor{red}{(\Diamond \exists x G(x))_{\worldtype\typearrow o}}}$
+ \textcolor{red}{HML} formula in \textcolor{blue}{HOL}  \hfill $\text{\textcolor{brown}{valid}}\, \textcolor{red}{(\Diamond \exists x G(x))_{\worldtype\typearrow o}}$
+
+expansion, $\beta\eta$-conversion \hfill $\textcolor{blue}{\forall
+  w_\worldtype\textcolor{red}{(\Diamond \exists x
+    G(x))_{\worldtype\typearrow o}}\, w}$ 
+
+expansion, $\beta\eta$-conversion \hfill $\textcolor{blue}{\forall
+  w_\worldtype \exists {u_\worldtype} (r w u \wedge
+      \textcolor{red}{(\exists x G(x))_{\worldtype\typearrow o}} u)}$ 
+
+% expansion, $\beta\eta$-conversion \hfill $\textcolor{blue}{\forall
+%   w_\worldtype \exists {u_\worldtype} (r w u \wedge
+%       \exists x \textcolor{red}{G(x)_{\worldtype\typearrow o}} u)}$ 
+
+expansion, $\beta\eta$-conversion \hfill $\textcolor{blue}{\forall
+  w_\worldtype \exists {u_\worldtype} (r w u \wedge
+      \exists x G x u)}$ 
+\\[2em]
+
+\pause
+
+\begin{block}{What are we doing?}
+\vskip.5em
+In order to prove that $\textcolor{red}{\varphi}$ is valid in \textcolor{red}{HML}, \\
+--> we instead prove that 
+$\text{\textcolor{brown}{valid}}\,
+\textcolor{red}{\varphi_{\worldtype\typearrow o}}$ can be derived
+from \textcolor{blue}{Ax} in \textcolor{blue}{HOL}. \\[1em]
+
+This can be done with interactive or automated \textcolor{blue}{HOL} theorem provers.
+\end{block}
+
+\end{frame}
 
 
 
-In order to prove that $\textcolor{red}{\varphi}$ is valid in $\textcolor{red}{HML}$ \\
-we instead prove $\text{\textcolor{blue}{Ax}} \vdash
-\text{\textcolor{brown}{valid}}\,
-\textcolor{blue}{\varphi_{\worldtype\typearrow o}}$ in \textcolor{blue}{HOL} 
+\begin{frame}{Proof automation and consistencey checking: Demo!} \large
+\colorbox{gray}{\includegraphics[width=\textwidth]{DemoGrap}} 
+\vfill 
+Provers are called remotely in Miami --- no local installation needed!
 \end{frame}
