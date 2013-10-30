@@ -73,8 +73,9 @@ Russia
 
 [Неужели?](http://neuzhely.ru/?p=3862)
 
+[MacDigger.ru](http://www.macdigger.ru/macall/uchenye-dokazali-sushhestvovanie-boga-s-pomoshhyu-macbook.html)
 
-
+[Onliner]([http://tech.onliner.by/2013/10/28/gode)
 
 India
 -----
