@@ -49,11 +49,11 @@ intro H1.
 proof_by_contradiction H2.
 apply not_dia_box_not in H2.
 assert (H3: ((box (mforall x, m~ (p x))) w)). (* Lemma from Scott's notes *)
-  intro w1; intro R1.
-  unfold box in H2.
+  box_intro w1 R1.
   intro x.
   assert (H4: ((m~ (mexists x : u, p x)) w1)).
-    apply (H2 w1 R1).
+    box_elim H2 w1 R1 G2. 
+    exact G2.
 
     clear H2 R1 H1 w.
     intro H5.
@@ -62,11 +62,12 @@ assert (H3: ((box (mforall x, m~ (p x))) w)). (* Lemma from Scott's notes *)
     exact H5.
 
   assert (H6: ((box (mforall x, (p x) m-> m~ (x m= x))) w)). (* Lemma from Scott's notes *)    
-    intro w1; intro R1.
+    box_intro w1 R1.
     intro x.
     intro H7.
     intro H8.
-    apply (H3 w1 R1 x).
+    box_elim H3 w1 R1 G3.
+    apply G3 with (x := x).
     exact H7.
 
     assert (H9: ((Positive (fun x => m~ (x m= x))) w)). (* Lemma from Scott's notes *)
@@ -76,7 +77,8 @@ assert (H3: ((box (mforall x, m~ (p x))) w)). (* Lemma from Scott's notes *)
 
       exact H6.
     assert (H10: ((box (mforall x, (p x) m-> (x m= x))) w)). (* Lemma from Scott's notes *)
-      intros w1 R1 x H11.     
+      box_intro w1 R1.
+      intros x H11.     
       reflexivity.
 
       assert (H11 : ((Positive (fun x => (x m= x))) w)). (* Lemma from Scott's notes *)
@@ -139,7 +141,7 @@ split.
 
     cut (box (Positive q) w). (* Lemma from Scott's notes *)
       apply K.
-      intros w1 R1.
+      box_intro w1 R1.
       intro H5.
       intro y.
       intro H6.
@@ -191,7 +193,7 @@ cut (dia (box (mexists x, G x)) w).  (* Lemma from Scott's notes *)
   apply (modus_ponens_inside_dia w (mexists z, G z)).
     exact H.
        
-    intros w1 R1.
+    box_intro w1 R1.
     apply lemma1.
 Qed.
 

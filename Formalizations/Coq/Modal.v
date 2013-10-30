@@ -59,6 +59,23 @@ Definition dia (p: o) := fun w => exists w1, (r w w1) /\ (p w1).
 Definition V (p: o) := forall w, p w.
 
 
+(* Convenient tactics for modal operators *)
+
+Ltac box_intro w H := intros w H.
+
+Ltac box_elim H w1 R1 Hn := 
+  let P := match type of H with
+             (* forall w0:i, r ?w w0 -> ?p w0 => p *)
+             ((box ?p) _) => p
+           end
+  in cut (P w1); [intros Hn | apply (H w1 R1)].
+
+Ltac dia_elim H w R newH := destruct H as [w [R newH]].
+
+Ltac dia_intro w := (exists w; split; [assumption | idtac]).
+
+
+
 Lemma modus_ponens_inside_dia: V (mforall p, mforall q, (dia p) m-> (box (p m-> q)) m-> (dia q)).
 Proof.
 intro.
