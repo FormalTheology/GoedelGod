@@ -11,14 +11,20 @@
 
 
 \begin{frame}{Automation \& Verification in Proof Assistant \textsc{Isabelle/HOL}} \Large
-Isabelle
+Isabelle/HOL   (Cambridge University/TU Munich)
 \begin{itemize}
-\item bla
+\item HOL instance of the generic \textsc{Isabelle} proof assistant
+\item User interaction and proof automation 
+\item Automation is supported by \textsc{Sledgehammer} tool
+\item Verification of the proofs in \textsc{Isabelle/HOL}'s small proof kernel
 \end{itemize}
 \vfill
-What have we done
+What have we done?
 \begin{itemize}
-\item bla 
+\item Proof automation of G\"odel's proof script (Scott version)
+\item \textsc{Sledghammer} makes calls to remote THF provers in Miami
+\item These calls the suggest respective calls to the \textsc{Metis} prover
+\item \textsc{Metis} proofs are verified in \textsc{Isabelle/HOL}'s proof kernel
 \end{itemize}
 \vfill
 See the handout (generated from the Isabelle source file).
