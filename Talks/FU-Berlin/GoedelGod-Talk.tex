@@ -1,5 +1,5 @@
-%\documentclass[9pt,mathserif]{beamer}
-\documentclass[9pt,mathserif,handout]{beamer}
+\documentclass[9pt,mathserif]{beamer}
+%\documentclass[9pt,mathserif,handout]{beamer}
 \mode<presentation>
 {
   \usetheme{Warsaw}
@@ -54,7 +54,6 @@
 	   \vskip0pt% 
 	} 
 }
-%\setbeamertemplate{footline}[page number]
 
 \usepackage[english]{babel}
 \usepackage[latin1]{inputenc}
@@ -133,6 +132,19 @@
 
 \end{frame}
 }
+
+\newenvironment{changemargin}[2]{% 
+  \begin{list}{}{% 
+    \setlength{\topsep}{0pt}% 
+    \setlength{\leftmargin}{#1}% 
+    \setlength{\rightmargin}{#2}% 
+    \setlength{\listparindent}{\parindent}% 
+    \setlength{\itemindent}{\parindent}% 
+    \setlength{\parsep}{\parskip}% 
+  }% 
+\item[]
+}{\end{list}} 
+
 
 \title[On G\"{o}del's Proof of God's
 Existence]{Formalization, Mechanization and Automation of \\ G\"{o}del's
