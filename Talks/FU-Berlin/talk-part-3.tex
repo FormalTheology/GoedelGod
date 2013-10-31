@@ -17,7 +17,7 @@
 \,\hfill {\small [Benzm\"ullerPaulson, Logica Universalis, 2013]}
 \\[2em]
 
-Previous empiricial findings:  \\[.5em]
+\hskip-1em Previous empiricial findings:  \\[.5em]
 \,\hfill Embedding of  \emph{First-order Modal Logic} in HOL works well 
 
 \,\hfill {\small [Benzm\"ullerOttenRaths, ECAI, 2012]} \\
@@ -55,7 +55,7 @@ $\begin{array}{lll}
 
 \begin{itemize}
 \item meanwhile very well understood
-\item Henkin semantics vs. standard semantics
+\item \textbf{Henkin semantics} vs. standard semantics
 \item various theorem provers do exists \\[.5em]
   \quad interactive: \hfill Isabelle/HOL, HOL4, Hol Light, Coq/HOL, PVS,
   \ldots \\[.5em]
@@ -76,7 +76,7 @@ $\begin{array}{lll}\textcolor{red}{\varphi,\psi} & ::= &
     \varphi} \mid \textcolor{red}{\Diamond \varphi}  \mid
   \textcolor{red}{\forall {x}\, \varphi} \mid
   \textcolor{red}{\exists {x}\, \varphi} 
-\mid \textcolor{red}{\forall {P}\, \varphi} \end{array}$ \\[1.5em]
+\mid \textcolor{red}{\forall {P}\, \varphi} \end{array}$ \\[1em]
 
 \hskip-1em\textcolor{blue}{HOL}\hfill 
 $\begin{array}{lll}
@@ -84,8 +84,9 @@ $\begin{array}{lll}
 \textcolor{blue}{x \mid \lambda{x} s} \mid \textcolor{blue}{s\, t}
 \mid \textcolor{blue}{\neg s} \mid \textcolor{blue}{s \vee t} \mid
 \textcolor{blue}{\forall {x}\, t} 
-\end{array}$ \\[1.5em]
+\end{array}$ \\[1em]
 
+\pause
 
 \hskip-1em\textcolor{red}{QML} in \textcolor{blue}{HOL}: \quad \textcolor{red}{QML}
 formulas $\textcolor{red}{\varphi}$ are mapped to
@@ -129,8 +130,11 @@ $\begin{array}{lcl}
 }  \quad \textcolor{blue}{Ax} 
 \vskip1em
 \end{center}
+
+\pause
+
 \quad The equations in \textcolor{blue}{Ax} are given as axioms to the \textcolor{blue}{HOL} provers! \\
-\quad \textcolor{gray}{\small (Remark: We are here dealing with constant domain quantification.)}
+\quad \textcolor{gray}{\small (Remark: Note that we are here dealing with constant domain quantification)}
 
 \end{frame}
 
@@ -142,11 +146,17 @@ $\begin{array}{lcl}
 
  \textcolor{red}{QML} formula  \hfill \textcolor{red}{$\Diamond \exists x G(x)$}
 
+\pause 
+
  \textcolor{red}{QML} formula in \textcolor{blue}{HOL}  \hfill $\text{\textcolor{brown}{valid}}\, \textcolor{red}{(\Diamond \exists x G(x))_{\worldtype\typearrow o}}$
+
+\pause
 
 expansion, $\beta\eta$-conversion \hfill $\textcolor{blue}{\forall
   w_\worldtype\textcolor{red}{(\Diamond \exists x
     G(x))_{\worldtype\typearrow o}}\, w}$ 
+
+\pause
 
 expansion, $\beta\eta$-conversion \hfill $\textcolor{blue}{\forall
   w_\worldtype \exists {u_\worldtype} (r w u \wedge
@@ -156,10 +166,14 @@ expansion, $\beta\eta$-conversion \hfill $\textcolor{blue}{\forall
 %   w_\worldtype \exists {u_\worldtype} (r w u \wedge
 %       \exists x \textcolor{red}{G(x)_{\worldtype\typearrow o}} u)}$ 
 
+\pause
+
 expansion, $\beta\eta$-conversion \hfill $\textcolor{blue}{\forall
   w_\worldtype \exists {u_\worldtype} (r w u \wedge
       \exists x G x u)}$ \\[1em]
+
 \pause
+
 \vfill
 \begin{block}{What are we doing?}
 \vskip.5em
