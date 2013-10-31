@@ -1,5 +1,5 @@
 \begin{transitionframe}{}
-\textbf{Part B:} \\
+\textbf{Part B:} \\[.5em]
 \quad Formalization: \hfill in classical higher-order logic (\textcolor{black}{HOL}) \\
 \quad Automation: \hfill theorem provers \textsc{Leo-II} and \textsc{Satallax} \\ 
 \quad Consistency: \hfill model finder \textsc{Nitpick (Nitrox)} \\
@@ -7,12 +7,13 @@
 
 \begin{frame}{Formalization in HOL} \large
 
-Main challenge: \hfill No provers for \emph{Higher-order Modal
-  Logic\/} (\textcolor{red}{HML}) \\[1em]
+\hskip-1em Challenge: \hfill No provers for \emph{Higher-order
+  Quantified Modal
+  Logic\/} (\textcolor{red}{QML}) \\[1em]
 
-Our solution: \hfill Embedding in \emph{Higher-order Classical
+\hskip-1em Our solution: \hfill Embedding in \emph{Higher-order Classical
   Logic\/} (\textcolor{blue}{HOL}) \\
-\, \hfill Then use existing \textcolor{blue}{HOL} theorem provers for reasoning in \textcolor{red}{HML} \\
+\, \hfill Then use existing \textcolor{blue}{HOL} theorem provers for reasoning in \textcolor{red}{QML} \\
 \,\hfill {\small [Benzm\"ullerPaulson, Logica Universalis, 2013]}
 \\[2em]
 
@@ -27,7 +28,7 @@ Previous empiricial findings:  \\[.5em]
 
 \begin{frame}{Formalization in HOL} \large
 
-\hskip-1em\textcolor{red}{HML} \hfill
+\hskip-1em\textcolor{red}{QML} \hfill
 $\begin{array}{lll}\textcolor{red}{\varphi,\psi} & ::= &
   \textcolor{red}{\ldots}  \mid \textcolor{red}{\neg
     \varphi} \mid \textcolor{red}{\varphi \wedge \psi} \mid
@@ -67,7 +68,7 @@ $\begin{array}{lll}
 
 \begin{frame}{Formalization in HOL}\large
 
-\hskip-1em\textcolor{red}{HML} \hfill
+\hskip-1em\textcolor{red}{QML} \hfill
 $\begin{array}{lll}\textcolor{red}{\varphi,\psi} & ::= &
   \textcolor{red}{\ldots}  \mid \textcolor{red}{\neg
     \varphi} \mid \textcolor{red}{\varphi \wedge \psi} \mid
@@ -86,7 +87,7 @@ $\begin{array}{lll}
 \end{array}$ \\[1.5em]
 
 
-\hskip-1em\textcolor{red}{HML} in \textcolor{blue}{HOL}: \quad \textcolor{red}{HML}
+\hskip-1em\textcolor{red}{QML} in \textcolor{blue}{HOL}: \quad \textcolor{red}{QML}
 formulas $\textcolor{red}{\varphi}$ are mapped to
 \textcolor{blue}{HOL} predicates $\textcolor{red}{\varphi_{\worldtype\typearrow o}}$
 
@@ -139,9 +140,9 @@ $\begin{array}{lcl}
 
 \hskip-1em Example \\[.5em]
 
- \textcolor{red}{HML} formula  \hfill \textcolor{red}{$\Diamond \exists x G(x)$}
+ \textcolor{red}{QML} formula  \hfill \textcolor{red}{$\Diamond \exists x G(x)$}
 
- \textcolor{red}{HML} formula in \textcolor{blue}{HOL}  \hfill $\text{\textcolor{brown}{valid}}\, \textcolor{red}{(\Diamond \exists x G(x))_{\worldtype\typearrow o}}$
+ \textcolor{red}{QML} formula in \textcolor{blue}{HOL}  \hfill $\text{\textcolor{brown}{valid}}\, \textcolor{red}{(\Diamond \exists x G(x))_{\worldtype\typearrow o}}$
 
 expansion, $\beta\eta$-conversion \hfill $\textcolor{blue}{\forall
   w_\worldtype\textcolor{red}{(\Diamond \exists x
@@ -162,7 +163,7 @@ expansion, $\beta\eta$-conversion \hfill $\textcolor{blue}{\forall
 \vfill
 \begin{block}{What are we doing?}
 \vskip.5em
-In order to prove that $\textcolor{red}{\varphi}$ is valid in \textcolor{red}{HML}, \\
+In order to prove that $\textcolor{red}{\varphi}$ is valid in \textcolor{red}{QML}, \\
 --> we instead prove that 
 $\text{\textcolor{brown}{valid}}\,
 \textcolor{red}{\varphi_{\worldtype\typearrow o}}$ can be derived
@@ -182,7 +183,7 @@ This can be done with interactive or automated \textcolor{blue}{HOL} theorem pro
 \end{frame}
 
 
-\begin{frame}{Proof Automation and Consistencey Checking: Demo!} \large
+\begin{frame}{Proof Automation and Consistency Checking: Demo!} \large
 \colorbox{gray}{\includegraphics[width=\textwidth]{DemoGrap}} 
 \vfill 
 Provers are called remotely in Miami --- no local installation needed!

@@ -49,10 +49,43 @@
 
 \title{G\"odel's God in Isabelle/HOL}
 \author{Christoph Benzm\"uller and Bruno Woltzenlogel Paleo}
+\date{November 1, 2013}
 \maketitle
 
-\noindent\colorbox{gray}{\includegraphics[width=\textwidth]{$HOME/GoedelGod/Talks/FU-Berlin/ScottsScriptGrab}} %$
+%\noindent\colorbox{gray}{\includegraphics[width=.99\textwidth]{$HOME/GoedelGod/Talks/FU-Berlin/ScottsScriptGrab}} %$
 
+\noindent\fcolorbox{gray}{white}{
+\begin{minipage}{.96\textwidth}\small
+\begin{itemize}
+\item[A1] Either a property or its negation is positive, but not
+  both:  \hfill 
+  $\all \phi [P(\neg \phi) \biimp \neg P(\phi)]$ \\[-1.5em]
+\item[A2] A property necessarily implied \\ by a
+  positive property is positive: \phantom{b} \hfill 
+  $\all \phi \all \psi [(P(\phi) \wedge \nec \all x [\phi(x)
+  \imp \psi(x)]) \imp P(\psi)]$ \\[-1.5em]
+\item[T1] Positive properties are possibly exemplified: \hfill $\all
+  \varphi [P(\varphi) \imp \pos \ex x \varphi(x)]$ \\[-1.5em]
+\item[D1] A \emph{God-like} being possesses all positive properties: \hfill
+  $G(x) \biimp \forall \phi [P(\phi) \to \phi(x)]$ \\[-1.5em]
+\item[A3]  The property of being God-like is positive: \hfill   $P(G)$ \\[-1.5em]
+\item[C\phantom{1}] Possibly, God exists: \hfill $\pos \ex x G(x)$ \\[-1.5em]
+\item[A4]  Positive properties are necessarily positive: \hfill 
+  $\all \phi [P(\phi) \to \Box \; P(\phi)]$ \\[-1.5em]
+\item[D2] An \emph{essence} of an individual is a property possessed by it \\ and necessarily implying any of its properties:
+  \phantom{b} \hfill $\ess{\phi}{x} \biimp \phi(x) \wedge \all
+  \psi (\psi(x) \imp \nec \all y (\phi(y) \imp \psi(y)))$ \\[-1.5em]
+\item[T2]  Being God-like is an essence of any
+  God-like being: \hfill $\all x [G(x) \imp \ess{G}{x}]$ \\[-1.5em]
+\item[D3] \emph{Necessary existence} of an individual is \\ the necessary exemplification of all its essences: 
+  \phantom{b} \hfill $\NE(x) \biimp \all \phi [\ess{\phi}{x} \imp \nec
+  \ex y \phi(y)]$ \\[-1.5em]
+\item[A5] Necessary existence is a positive property: \hfill $P(\NE)$ \\[-1.5em]
+\item[T3] Necessarily, God exists: \hfill $\nec \ex x G(x)$ 
+\end{itemize}
+\end{minipage}
+}
+\vskip1em
 
 %\tableofcontents
 
@@ -106,11 +139,11 @@ J.C. Blanchette and T.~Nipkow.
 \newblock In {\em Proc. of ITP 2010}, LNCS 6172, pp. 131--146.
   Springer, 2010.
 
-%\bibitem{Satallax}
-%C.E. Brown.
-%\newblock Satallax: An automated higher-order prover.
-%\newblock In {\em Proc. of IJCAR 2012}, number 7364 in LNAI, pp. 111 -- 117.
- % Springer, 2012.
+\bibitem{Satallax}
+C.E. Brown.
+\newblock Satallax: An automated higher-order prover.
+\newblock In {\em Proc. of IJCAR 2012}, LNAI 7364, pp. 111 -- 117.
+  Springer, 2012.
 
 \bibitem{GoedelNotes}
 K.~G\"odel.
