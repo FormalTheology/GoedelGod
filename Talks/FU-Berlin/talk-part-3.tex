@@ -1,8 +1,8 @@
 \begin{transitionframe}{}
 \textbf{Part B:} \\
-\quad formalization: in classical higher-order logic (\textcolor{black}{HOL}) \\
-\quad automation: theorem provers \textsc{Leo-II} and \textsc{Satallax} \\ 
-\quad consistency checking: model finder \textsc{Nitpick (Nitrox)} \\
+\quad Formalization: \hfill in classical higher-order logic (\textcolor{black}{HOL}) \\
+\quad Automation: \hfill theorem provers \textsc{Leo-II} and \textsc{Satallax} \\ 
+\quad Consistency: \hfill model finder \textsc{Nitpick (Nitrox)} \\
 \end{transitionframe}
 
 \begin{frame}{Formalization in HOL} \large
@@ -75,7 +75,7 @@ $\begin{array}{lll}\textcolor{red}{\varphi,\psi} & ::= &
     \varphi} \mid \textcolor{red}{\Diamond \varphi}  \mid
   \textcolor{red}{\forall {x}\, \varphi} \mid
   \textcolor{red}{\exists {x}\, \varphi} 
-\mid \textcolor{red}{\forall {P}\, \varphi} \end{array}$ \\[2em]
+\mid \textcolor{red}{\forall {P}\, \varphi} \end{array}$ \\[1.5em]
 
 \hskip-1em\textcolor{blue}{HOL}\hfill 
 $\begin{array}{lll}
@@ -83,7 +83,7 @@ $\begin{array}{lll}
 \textcolor{blue}{x \mid \lambda{x} s} \mid \textcolor{blue}{s\, t}
 \mid \textcolor{blue}{\neg s} \mid \textcolor{blue}{s \vee t} \mid
 \textcolor{blue}{\forall {x}\, t} 
-\end{array}$ \\[2em]
+\end{array}$ \\[1.5em]
 
 
 \hskip-1em\textcolor{red}{HML} in \textcolor{blue}{HOL}: \quad \textcolor{red}{HML}
@@ -127,8 +127,9 @@ $\begin{array}{lcl}
 \end{array}$
 }  \quad \textcolor{blue}{Ax} 
 \vskip1em
-\quad The equations in \textcolor{blue}{Ax} are given as axioms to the \textcolor{blue}{HOL} provers!
 \end{center}
+\quad The equations in \textcolor{blue}{Ax} are given as axioms to the \textcolor{blue}{HOL} provers! \\
+\quad \textcolor{gray}{\small (Remark: We are here dealing with constant domain quantification.)}
 
 \end{frame}
 
@@ -175,6 +176,10 @@ This can be done with interactive or automated \textcolor{blue}{HOL} theorem pro
 
 \end{frame}
 
+
+\begin{frame}{Automated Theorem Provers and Model Finders for HOL}
+\includegraphics[width=1.05\textwidth]{HOLProversGrab}
+\end{frame}
 
 
 \begin{frame}{Proof Automation and Consistencey Checking: Demo!} \large
