@@ -127,11 +127,11 @@
 \def\indtype{\mu}
 
 
-\newenvironment{transitionframe}[1]
+\newenvironment{transitionframe}[2]
 {
 \begin{frame}{} \Large
 \centering
-\colorbox{black}{\colorbox{white}{\includegraphics[height=.7\textheight]{#1}}} 
+\colorbox{#2}{\includegraphics[height=.7\textheight]{#1}}
 \vfill
 }
 {
