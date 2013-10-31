@@ -7,14 +7,14 @@ begin
 
 section {* Introduction *}
  text {* A formalization and (partial) automation of Dana Scott's version \cite{ScottNotes}
- of Goedel's ontological argument \cite{GoedelNotes} in quantified modal logic KB (QML KB) is presented. 
- QML KB is in turn modeled as a fragment of classical higher-order logic (HOL). 
+ of Goedel's ontological argument \cite{GoedelNotes} in quantified modal logic KB (QML KB) is
+ presented. QML KB is in turn modeled as a fragment of classical higher-order logic (HOL). 
  Thus, the formalization is essentially a formalization in HOL. The employed embedding 
  of QML KB in HOL is adapting the work of Benzm\"uller and Paulson \cite{J23,B9}.
  Note that the QML KB formalization employs quantification over individuals and 
  quantification over sets of individuals (poperties).
 
- The formalization presented here has been carried and formally verified in the Isabelle/HOL 
+ The formalization presented here has been carried out and verified in the Isabelle/HOL 
  proof assistant; for more information on this system see the textbook by Nipkow, 
  Paulson, and Wenzel \cite{Isabelle}. More recent tutorials on Isabelle can be found 
  at: \url{http://isabelle.in.tum.de}.
@@ -33,7 +33,7 @@ section {* Introduction *}
     with Sledgehammer \cite{Sledgehammer}, performing remote calls to the higher-order automated
     theorem prover LEO-II \cite{LEO-II}. These calls suggest the 
     Metis \cite{Metis} calls as given below. The Metis proofs are verified in Isabelle/HOL.
- \item For consistency checking, the model finder \cite{Nitpick} has been employed.
+ \item For consistency checking, the model finder Nitpick \cite{Nitpick} has been employed.
  \end{enumerate} *}
 
 section {* An Embedding of QML KB in HOL *}
@@ -60,15 +60,16 @@ This type will be abbreviated in the remainder as @{text "\<sigma>"}. *}
  
 text {* The classical connectives $\neg, \wedge, \rightarrow$, and $\forall$
 (over individuals and over sets of individuals) and $\exists$ (over individuals) are
-lifted to type $\sigma$. Further connectives could be introduced analogously. Definitions 
-could be used instead of abbreviations. *}
+lifted to type $\sigma$. The lifted connectives are @{text "m\<not>"}, @{text "m\<and>"}, @{text "m\<Rightarrow>"},
+@{text "\<forall>"}, @{text "\<Pi>"}, and @{text "\<exists>"}. Further connectives could be introduced analogously. 
+Definitions could be used instead of abbreviations. *}
 
   abbreviation mnot :: "\<sigma> \<Rightarrow> \<sigma>" ("m\<not>") where "m\<not> \<phi> \<equiv> (\<lambda>w. \<not> \<phi> w)"    
   abbreviation mand :: "\<sigma> \<Rightarrow> \<sigma> \<Rightarrow> \<sigma>" (infixr "m\<and>" 79) where "\<phi> m\<and> \<psi> \<equiv> (\<lambda>w. \<phi> w \<and> \<psi> w)"   
   abbreviation mimplies :: "\<sigma> \<Rightarrow> \<sigma> \<Rightarrow> \<sigma>" (infixr "m\<Rightarrow>" 74) where "\<phi> m\<Rightarrow> \<psi> \<equiv> (\<lambda>w. \<phi> w \<longrightarrow> \<psi> w)"  
   abbreviation mforall_ind :: "(\<mu> \<Rightarrow> \<sigma>) \<Rightarrow> \<sigma>" ("\<forall>") where "\<forall> \<Phi> \<equiv> (\<lambda>w. \<forall>x. \<Phi> x w)"   
-  abbreviation mexists_ind :: "(\<mu> \<Rightarrow> \<sigma>) \<Rightarrow> \<sigma>" ("\<exists>") where "\<exists> \<Phi> \<equiv> (\<lambda>w. \<exists>x. \<Phi> x w)"
   abbreviation mforall_indset :: "((\<mu> \<Rightarrow> \<sigma>) \<Rightarrow> \<sigma>) \<Rightarrow> \<sigma>" ("\<Pi>") where "\<Pi> P \<equiv> (\<lambda>w. \<forall>x. P x w)"
+  abbreviation mexists_ind :: "(\<mu> \<Rightarrow> \<sigma>) \<Rightarrow> \<sigma>" ("\<exists>") where "\<exists> \<Phi> \<equiv> (\<lambda>w. \<exists>x. \<Phi> x w)"
   abbreviation mbox :: "\<sigma> \<Rightarrow> \<sigma>" ("\<box>") where "\<box> \<phi> \<equiv> (\<lambda>w. \<forall>v. \<not> w r v \<or> \<phi> v)"
   abbreviation mdia :: "\<sigma> \<Rightarrow> \<sigma>" ("\<diamond>") where "\<diamond> \<phi> \<equiv> (\<lambda>w. \<exists>v. w r v \<and> \<phi> v)" 
 
@@ -79,7 +80,7 @@ text {* For grounding lifted formulas, the meta-predicate @{text "valid"} is int
   
 section {* G\"odel's Ontological Argument *}  
   
-text {* Constant symbol @{text "P"} (G\"odel's "Positive") is introduced. *}
+text {* Constant symbol @{text "P"} (G\"odel's `Positive') is declared. *}
 
   consts P :: "(\<mu> \<Rightarrow> \<sigma>) \<Rightarrow> \<sigma>"  
 
@@ -103,9 +104,9 @@ that is verified in Isabelle/HOL's kernel. *}
   sledgehammer [provers = remote_leo2] 
   by (metis A1a A2)
 
-text {* Next, the symbol @{text "G"} for "God-like" is introduced and defined 
+text {* Next, the symbol @{text "G"} for `God-like'  is introduced and defined 
 as $G(x) \biimp \forall \phi [P(\phi) \to \phi(x)]$ (A God-like being possesses 
-all positive properties:). *} 
+all positive properties). *} 
 
   definition G :: "\<mu> \<Rightarrow> \<sigma>" where "G = (\<lambda>x. \<Pi> (\<lambda>\<Phi>. P \<Phi> m\<Rightarrow> \<Phi> x))"   
 
@@ -116,18 +117,17 @@ Sledgehammer and Metis then prove corollary @{text "C"}: $\pos \ex x G(x)$
   axiomatization where A3:  "[P G]" 
 
   corollary C: "[\<diamond> (\<exists> G)]" 
-  (* sledgehammer [provers = remote_leo2] *)
-  using A3 T1 by metis
+  sledgehammer [provers = remote_leo2] by (metis A3 T1)
 
 text {* Axiom @{text "A4"} is added: $\all \phi [P(\phi) \to \Box \; P(\phi)]$ 
 (Positive properties are necessarily positive). *}
 
   axiomatization where A4:  "[\<Pi> (\<lambda>\<Phi>. P \<Phi> m\<Rightarrow> \<box> (P \<Phi>))]" 
 
-text {* Symbol @{text "ess"} for "Essence" is introduced and defined as 
+text {* Symbol @{text "ess"} for `Essence' is introduced and defined as 
 $\ess{\phi}{x} \biimp \phi(x) \wedge \all \psi (\psi(x) \imp \nec \all y (\phi(y) 
 \imp \psi(y)))$ (An \emph{essence} of an individual is a property possessed by it 
-and necessarily implying any of its properties.). *}
+and necessarily implying any of its properties). *}
 
   definition ess :: "(\<mu> \<Rightarrow> \<sigma>) \<Rightarrow> \<mu> \<Rightarrow> \<sigma>" (infixr "ess" 85) where
     "\<Phi> ess x = \<Phi> x m\<and> \<Pi> (\<lambda>\<psi>. \<psi> x m\<Rightarrow> \<box> (\<forall> (\<lambda>y. \<Phi> y m\<Rightarrow> \<psi> y)))"
@@ -136,12 +136,11 @@ text {* Next, Sledgehammer and Metis prove theorem @{text "T2"}: $\all x [G(x) \
 (Being God-like is an essence of any God-like being). *}
 
   theorem T2: "[\<forall> (\<lambda>x. G x m\<Rightarrow> G ess x)]"
-  sledgehammer [provers = remote_leo2]
-  by (metis A1b A4 G_def ess_def)
+  sledgehammer [provers = remote_leo2] by (metis A1b A4 G_def ess_def)
 
-text {* Symbol @{text "NE"}, for "Necessary Existence", is introduced and
+text {* Symbol @{text "NE"}, for `Necessary Existence', is introduced and
 defined as $\NE(x) \biimp \all \phi [\ess{\phi}{x} \imp \nec \ex y \phi(y)]$ (Necessary 
-existence of an individual is the necessary exemplification of all its essences.). *}
+existence of an individual is the necessary exemplification of all its essences). *}
 
   definition NE :: "\<mu> \<Rightarrow> \<sigma>" where "NE = (\<lambda>x. \<Pi> (\<lambda>\<Phi>. \<Phi> ess x m\<Rightarrow> \<box> (\<exists> \<Phi>)))"
 
@@ -154,21 +153,21 @@ text {* Finally, Sledgehammer and Metis prove the main theorem @{text "T3"}: $\n
 (Necessarily, God exists). *}
 
   theorem T3: "[\<box> (\<exists> G)]" 
-  sledgehammer [provers = remote_leo2]
-  by (metis A5 C T2 sym G_def NE_def)
+  sledgehammer [provers = remote_leo2] by (metis A5 C T2 sym G_def NE_def)
 
-  corollary T4: "[\<exists> G]" 
-  sledgehammer [provers = remote_leo2]
-  by (metis T1 T3 G_def sym)
+  corollary C2: "[\<exists> G]" 
+  sledgehammer [provers = remote_leo2] by (metis T1 T3 G_def sym)
 
 text {* The consistency of the entire theory is checked with Nitpick. *}
 
   lemma True nitpick [satisfy, user_axioms, expect = genuine] oops 
   
-text {* We check for the modal collapse. Satallax can prove this. *} 
+text {* It has been critisized that G\"odel's ontological argument implies what is called the 
+modal collapse. The prover Satallax \cite{Satallax} can indeed show this, but verification with 
+Metis still fails. *} 
   
   lemma MC: "[p m\<Rightarrow> (\<box> p)]"
-  using T2 T3 ess_def sledgehammer [provers = remote_satallax] oops
+  using T2 T3 ess_def sym sledgehammer [provers = remote_satallax] oops
   
 text {* \paragraph{Acknowledgments:} Nik Sultana, Jasmin Blanchette and Larry Paulson provided 
 very important help wrt consistency checking in Isabelle. Jasmin Blanchette instructed us on how to 
