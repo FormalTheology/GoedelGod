@@ -55,6 +55,7 @@
 	} 
 }
 
+
 \usepackage[english]{babel}
 \usepackage[latin1]{inputenc}
 \usepackage{times}
@@ -126,11 +127,11 @@
 \def\indtype{\mu}
 
 
-\newenvironment{transitionframe}
+\newenvironment{transitionframe}[1]
 {
 \begin{frame}{} \Large
 \centering
-\colorbox{black}{\includegraphics[width=.7\textwidth]{TUWien-GodComputerC}} 
+\colorbox{black}{\colorbox{white}{\includegraphics[height=.7\textheight]{#1}}} 
 \vfill
 }
 {
@@ -167,9 +168,9 @@ Existence]{Formalization, Mechanization and Automation of \\ G\"{o}del's
 
 \begin{frame}
   \titlepage
-\colorbox{gray}{\includegraphics[height=2.5cm]{buch7.jpg} }
+\colorbox{gray}{\includegraphics[height=2.5cm]{Images/Books/buch7.jpg} }
 \hfill
-\colorbox{gray}{\includegraphics[height=2.5cm]{nd.png}}
+\colorbox{gray}{\includegraphics[height=2.5cm]{Images/ND.png}}
 
 \hfill \begin{footnotesize}A gift to \textbf{Priest Edvaldo} and his church in Piracicaba, Brazil\end{footnotesize}
 \end{frame}
