@@ -51,7 +51,7 @@ $$
 
 \newcommand{\DTwo}{
 $$
-\textbf{D2: } \ess{\varphi}{x} \equiv \varphi(x) \wedge \all \psi. (\psi(x) \imp \nec \all x. (\varphi(x) \imp \psi(x)))
+\textbf{D2: } \ess{\varphi}{x} \equiv \textcolor{blue}{\varphi(x)} \wedge \all \psi. (\psi(x) \imp \nec \all x. (\varphi(x) \imp \psi(x)))
 $$
 }
 
@@ -301,7 +301,7 @@ $$
 \phantomDTwo
 
 \qquad
-\alert{$\textbf{D3: } E(x) \equiv \nec \ex y. G(y)$} \pause (cheating!)
+\alert{$\textbf{D3*: } E(x) \equiv \nec \ex y. G(y)$} \only<2>{(cheating!)}
 
 \phantomCOne
 
@@ -332,7 +332,7 @@ $$
 \phantomDTwo
 
 \qquad
-\alert{$\textbf{D3: } E(x) \equiv \nec \ex y. G(y)$}
+\alert{$\textbf{D3*: } E(x) \equiv \nec \ex y. G(y)$}
 \qquad\qquad
 $\textbf{D3: } E(x) \equiv \all \varphi.[\ess{\varphi}{x} \imp \nec \ex y.\varphi(y)]$
 \phantomCOne
@@ -364,7 +364,7 @@ $\textbf{D3: } E(x) \equiv \all \varphi.[\ess{\varphi}{x} \imp \nec \ex y.\varph
 \phantomDTwo
 
 \qquad
-\alert{$\textbf{D3: } E(x) \equiv \nec \ex y. G(y)$}
+\alert{$\textbf{D3*: } E(x) \equiv \nec \ex y. G(y)$}
 \qquad\qquad
 $\textbf{D3: } E(x) \equiv \all \varphi.[\ess{\varphi}{x} \imp \nec \ex y.\varphi(y)]$
 \phantomCOne
@@ -375,7 +375,7 @@ $\textbf{D3: } E(x) \equiv \all \varphi.[\ess{\varphi}{x} \imp \nec \ex y.\varph
 								\AXC{$\phantom{\textbf{A4}}$} \noLine
 								\UIC{$\phantom{ \all \varphi.[P(\varphi) \to \Box \; P(\varphi)]} $} \noLine
 							\BIC{$\textbf{T2: } \all y.[G(y) \imp \ess{G}{y}]$}
-									\AXC{$\phantom{\textbf{A5}}$} \noLine
+									\AXC{$\textbf{A5}$} \dashedLine
 									\UIC{$ P(E) $}
 								\BIC{$\textbf{L1: } \ex z. G(z) \imp \nec \ex x. G(x)$} 
 								\UIC{$\pos \ex z. G(z) \imp \pos \nec \ex x. G(x)$}
@@ -392,17 +392,202 @@ $\textbf{D3: } E(x) \equiv \all \varphi.[\ess{\varphi}{x} \imp \nec \ex y.\varph
 
 \begin{frame}[shrink]{Proof Overview}
 
-$$
-\textbf{D1: } G(x) \equiv \forall \varphi. [P(\varphi) \to \varphi(x)]
-$$
+\DOne
 
-$$
-\textbf{D2: } \ess{\varphi}{x} \equiv \varphi(x) \wedge \all \psi. (\psi(x) \imp \nec \all x. (\varphi(x) \imp \psi(x)))
-$$
+\phantomDTwo
 
-$$
-\textbf{D3: } E(x) \equiv \all \varphi.[\ess{\varphi}{x} \imp \nec \ex y.\varphi(y)]
-$$
+\qquad
+\alert{$\textbf{D3*: } E(x) \equiv \nec \ex y. G(y)$}
+\qquad\qquad
+$\textbf{D3: } E(x) \equiv \all \varphi.[\ess{\varphi}{x} \imp \nec \ex y.\varphi(y)]$
+\phantomCOne
+
+\begin{prooftree}
+						\AXC{$\phantom{\textbf{A1b}}$} \noLine
+						\UIC{$\phantom{\all \varphi. [\neg P(\varphi) \imp P(\neg \varphi)]}$}
+								\AXC{$\phantom{\textbf{A4}}$} \noLine
+								\UIC{$\phantom{ \all \varphi.[P(\varphi) \to \Box \; P(\varphi)]} $} \noLine
+							\BIC{$\textbf{T2: } \all y.[G(y) \imp \ess{G}{y}]$}
+									\AXC{$\textbf{A5}$} \dashedLine
+									\UIC{$ P(E) $}
+								\BIC{$\textbf{L1: } \ex z. G(z) \imp \nec \ex x. G(x)$} 
+								\UIC{$\pos \ex z. G(z) \imp \pos \nec \ex x. G(x)$}
+										\AXC{$\textbf{S5}$} \dashedLine
+ 										\UIC{$\all \xi.[\pos \nec \xi \imp \nec \xi]$} 	
+									\BIC{$\textbf{L2: } \pos \ex z. G(z) \imp \nec \ex x. G(x)$}
+\end{prooftree}
+
+\TThree
+
+\end{frame}
+
+
+\newcommand{\LTwo}{
+\begin{prooftree}
+						\AXC{$\textbf{A1b}$} \dashedLine
+						\UIC{$\all \varphi. [\neg P(\varphi) \imp P(\neg \varphi)]$}
+								\AXC{$\textbf{A4}$} \dashedLine
+								\UIC{$ \all \varphi.[P(\varphi) \to \Box \; P(\varphi)] $} 
+							\BIC{$\textbf{T2: } \all y.[G(y) \imp \ess{G}{y}]$}
+									\AXC{$\textbf{A5}$} \dashedLine
+									\UIC{$ P(E) $}
+								\BIC{$\textbf{L1: } \ex z. G(z) \imp \nec \ex x. G(x)$} 
+								\UIC{$\pos \ex z. G(z) \imp \pos \nec \ex x. G(x)$}
+										\AXC{$\textbf{S5}$} \dashedLine
+ 										\UIC{$\all \xi.[\pos \nec \xi \imp \nec \xi]$} 	
+									\BIC{$\textbf{L2: } \pos \ex z. G(z) \imp \nec \ex x. G(x)$}
+\end{prooftree}
+}
+
+
+\begin{frame}[shrink]{Proof Overview}
+
+\DOne
+
+\DTwo
+
+\qquad
+\alert{$\textbf{D3*: } E(x) \equiv \nec \ex y. G(y)$}
+\qquad\qquad
+$\textbf{D3: } E(x) \equiv \all \varphi.[\ess{\varphi}{x} \imp \nec \ex y.\varphi(y)]$
+
+\phantomCOne
+
+\LTwo
+
+\TThree
+
+\end{frame}
+
+
+\begin{frame}[shrink]{Proof Overview}
+
+\DOne
+
+\DTwo
+
+\qquad
+\alert{$\textbf{D3*: } E(x) \equiv \nec \ex y. G(y)$}
+\qquad\qquad
+$\textbf{D3: } E(x) \equiv \all \varphi.[\ess{\varphi}{x} \imp \nec \ex y.\varphi(y)]$
+
+\begin{prooftree}
+\AXC{$\phantom{\textbf{A3}}$} \noLine
+\UIC{$\phantom{P(G)}$}
+		\AXC{$\phantom{\textbf{A2}}$} \noLine
+		\UIC{$\phantom{\all \varphi. \all \psi.[(P(\varphi) \wedge \nec \all x.[\varphi(x) \imp \psi(x)]) \imp P(\psi)]}$}
+					\AXC{$\phantom{\textbf{A1a}}$} \noLine
+					\UIC{$\phantom{\all \varphi. [P(\neg \varphi) \imp \neg P(\varphi)]}$} \noLine
+				\BIC{$\phantom{\textbf{T1: } \all \varphi. [P(\varphi) \imp \pos \ex x.\varphi(x)]}$} \noLine
+	\BIC{$\textbf{C1: } \pos \ex z. G(z)$}
+\end{prooftree}
+
+\LTwo
+
+\TThree
+
+\end{frame}
+
+
+\begin{frame}[shrink]{Proof Overview}
+
+\DOne
+
+\DTwo
+
+\qquad
+\alert{$\textbf{D3*: } E(x) \equiv \nec \ex y. G(y)$}
+\qquad\qquad
+$\textbf{D3: } E(x) \equiv \all \varphi.[\ess{\varphi}{x} \imp \nec \ex y.\varphi(y)]$
+
+\begin{prooftree}
+\AXC{$\phantom{\textbf{A3}}$} \noLine
+\UIC{$P(G)$}
+		\AXC{$\phantom{\textbf{A2}}$} \noLine
+		\UIC{$\phantom{\all \varphi. \all \psi.[(P(\varphi) \wedge \nec \all x.[\varphi(x) \imp \psi(x)]) \imp P(\psi)]}$}
+					\AXC{$\phantom{\textbf{A1a}}$} \noLine
+					\UIC{$\phantom{\all \varphi. [P(\neg \varphi) \imp \neg P(\varphi)]}$} \noLine
+				\BIC{$\phantom{\textbf{T1: } \all \varphi. [P(\varphi) \imp \pos \ex x.\varphi(x)]}$} 
+	\BIC{$\textbf{C1: } \pos \ex z. G(z)$}
+\end{prooftree}
+
+\LTwo
+
+\TThree
+
+\end{frame}
+
+
+\begin{frame}[shrink]{Proof Overview}
+
+\DOne
+
+\DTwo
+
+\qquad
+\alert{$\textbf{D3*: } E(x) \equiv \nec \ex y. G(y)$}
+\qquad\qquad
+$\textbf{D3: } E(x) \equiv \all \varphi.[\ess{\varphi}{x} \imp \nec \ex y.\varphi(y)]$
+
+\begin{prooftree}
+\AXC{$\textbf{A3}$} \dashedLine
+\UIC{$P(G)$}
+		\AXC{$\phantom{\textbf{A2}}$} \noLine
+		\UIC{$\phantom{\all \varphi. \all \psi.[(P(\varphi) \wedge \nec \all x.[\varphi(x) \imp \psi(x)]) \imp P(\psi)]}$}
+					\AXC{$\phantom{\textbf{A1a}}$} \noLine
+					\UIC{$\phantom{\all \varphi. [P(\neg \varphi) \imp \neg P(\varphi)]}$} \noLine
+				\BIC{$\phantom{\textbf{T1: } \all \varphi. [P(\varphi) \imp \pos \ex x.\varphi(x)]}$} 
+	\BIC{$\textbf{C1: } \pos \ex z. G(z)$}
+\end{prooftree}
+
+\LTwo
+
+\TThree
+
+\end{frame}
+
+
+
+\begin{frame}[shrink]{Proof Overview}
+
+\DOne
+
+\DTwo
+
+\qquad
+\alert{$\textbf{D3*: } E(x) \equiv \nec \ex y. G(y)$}
+\qquad\qquad
+$\textbf{D3: } E(x) \equiv \all \varphi.[\ess{\varphi}{x} \imp \nec \ex y.\varphi(y)]$
+
+\begin{prooftree}
+\AXC{$\textbf{A3}$} \dashedLine
+\UIC{$P(G)$}
+		\AXC{$\phantom{\textbf{A2}}$} \noLine
+		\UIC{$\phantom{\all \varphi. \all \psi.[(P(\varphi) \wedge \nec \all x.[\varphi(x) \imp \psi(x)]) \imp P(\psi)]}$}
+					\AXC{$\phantom{\textbf{A1a}}$} \noLine
+					\UIC{$\phantom{\all \varphi. [P(\neg \varphi) \imp \neg P(\varphi)]}$} \noLine
+				\BIC{$\textbf{T1: } \all \varphi. [P(\varphi) \imp \pos \ex x.\varphi(x)]$} 
+	\BIC{$\textbf{C1: } \pos \ex z. G(z)$}
+\end{prooftree}
+
+\LTwo
+
+\TThree
+
+\end{frame}
+
+
+
+\begin{frame}[shrink]{Proof Overview}
+
+\DOne
+
+\DTwo
+
+\qquad
+\alert{$\textbf{D3*: } E(x) \equiv \nec \ex y. G(y)$}
+\qquad\qquad
+$\textbf{D3: } E(x) \equiv \all \varphi.[\ess{\varphi}{x} \imp \nec \ex y.\varphi(y)]$
 
 \begin{prooftree}
 \AXC{$\textbf{A3}$} \dashedLine
@@ -410,35 +595,13 @@ $$
 		\AXC{$\textbf{A2}$} \dashedLine
 		\UIC{$\all \varphi. \all \psi.[(P(\varphi) \wedge \nec \all x.[\varphi(x) \imp \psi(x)]) \imp P(\psi)]$}
 					\AXC{$\textbf{A1a}$} \dashedLine
-					\UIC{$\all \varphi. [P(\neg \varphi) \imp \neg P(\varphi)]$} \doubleLine
-				\BIC{$\textbf{T1: } \all \varphi. [P(\varphi) \imp \pos \ex x.\varphi(x)]$} \doubleLine
+					\UIC{$\all \varphi. [P(\neg \varphi) \imp \neg P(\varphi)]$}
+				\BIC{$\textbf{T1: } \all \varphi. [P(\varphi) \imp \pos \ex x.\varphi(x)]$} 
 	\BIC{$\textbf{C1: } \pos \ex z. G(z)$}
 \end{prooftree}
 
+\LTwo
 
-
-
-
-\begin{prooftree}
-						\AXC{$\textbf{A1b}$} \dashedLine
-						\UIC{$\all \varphi. [\neg P(\varphi) \imp P(\neg \varphi)]$}
-								\AXC{$\textbf{A4}$} \dashedLine
-								\UIC{$ \all \varphi.[P(\varphi) \to \Box \; P(\varphi)] $} \doubleLine
-							\BIC{$\textbf{T2: } \all y.[G(y) \imp \ess{G}{y}]$}
-									\AXC{$\textbf{A5}$} \dashedLine
-									\UIC{$ P(E) $} \doubleLine
-								\BIC{$\textbf{L1: } \ex z. G(z) \imp \nec \ex x. G(x)$} \doubleLine
-								\UIC{$\pos \ex z. G(z) \imp \pos \nec \ex x. G(x)$}
-										\AXC{$\textbf{S5}$} \dashedLine
- 										\UIC{$ \all \xi.[\pos \nec \xi \imp \nec \xi]$} \doubleLine	
-									\BIC{$\textbf{L2: } \pos \ex z. G(z) \imp \nec \ex x. G(x)$}
-\end{prooftree}
-
-\begin{prooftree}
-\AXC{$\textbf{C1: } \pos \ex z. G(z)$}
-		\AXC{$\textbf{L2: } \pos \ex z. G(z) \imp \nec \ex x. G(x)$} \doubleLine
-	\BIC{$\textbf{T3: } \nec \ex x. G(x) $}
-\end{prooftree}
+\TThree
 
 \end{frame}
-

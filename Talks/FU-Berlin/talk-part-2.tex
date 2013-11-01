@@ -7,7 +7,7 @@ Informal Proof and Natural Deduction Proof
 
 
 
-\begin{frame}{G\"odel's Manuscript (1970)}
+\begin{frame}{G\"odel's Manuscript: 1930's, 1941, 1946-1955, 1970}
 \bigskip
 
 \begin{changemargin}{-1.2cm}{-1.2cm}
@@ -22,6 +22,61 @@ Informal Proof and Natural Deduction Proof
 \end{frame}
 
 \input{talk-part2-proof-overview}
+
+
+\begin{frame}[shrink]{Proof Overview}
+
+$$
+\textbf{D1: } G(x) \equiv \forall \varphi. [P(\varphi) \to \varphi(x)]
+$$
+
+$$
+\textbf{D2: } \ess{\varphi}{x} \equiv \varphi(x) \wedge \all \psi. (\psi(x) \imp \nec \all x. (\varphi(x) \imp \psi(x)))
+$$
+
+$$
+\textbf{D3: } E(x) \equiv \all \varphi.[\ess{\varphi}{x} \imp \nec \ex y.\varphi(y)]
+$$
+
+\begin{prooftree}
+\AXC{$\textbf{A3}$} \dashedLine
+\UIC{$P(G)$}
+		\AXC{$\textbf{A2}$} \dashedLine
+		\UIC{$\all \varphi. \all \psi.[(P(\varphi) \wedge \nec \all x.[\varphi(x) \imp \psi(x)]) \imp P(\psi)]$}
+					\AXC{$\textbf{A1a}$} \dashedLine
+					\UIC{$\all \varphi. [P(\neg \varphi) \imp \neg P(\varphi)]$} \doubleLine
+				\BIC{$\textbf{T1: } \all \varphi. [P(\varphi) \imp \pos \ex x.\varphi(x)]$} \doubleLine
+	\BIC{$\textbf{C1: } \pos \ex z. G(z)$}
+\end{prooftree}
+
+
+
+
+
+\begin{prooftree}
+						\AXC{$\textbf{A1b}$} \dashedLine
+						\UIC{$\all \varphi. [\neg P(\varphi) \imp P(\neg \varphi)]$}
+								\AXC{$\textbf{A4}$} \dashedLine
+								\UIC{$ \all \varphi.[P(\varphi) \to \Box \; P(\varphi)] $} \doubleLine
+							\BIC{$\textbf{T2: } \all y.[G(y) \imp \ess{G}{y}]$}
+									\AXC{$\textbf{A5}$} \dashedLine
+									\UIC{$ P(E) $} \doubleLine
+								\BIC{$\textbf{L1: } \ex z. G(z) \imp \nec \ex x. G(x)$} \doubleLine
+								\UIC{$\pos \ex z. G(z) \imp \pos \nec \ex x. G(x)$}
+										\AXC{$\textbf{S5}$} \dashedLine
+ 										\UIC{$ \all \xi.[\pos \nec \xi \imp \nec \xi]$} \doubleLine	
+									\BIC{$\textbf{L2: } \pos \ex z. G(z) \imp \nec \ex x. G(x)$}
+\end{prooftree}
+
+\begin{prooftree}
+\AXC{$\textbf{C1: } \pos \ex z. G(z)$}
+		\AXC{$\textbf{L2: } \pos \ex z. G(z) \imp \nec \ex x. G(x)$} \doubleLine
+	\BIC{$\textbf{T3: } \nec \ex x. G(x) $}
+\end{prooftree}
+
+\end{frame}
+
+
 
 
 \begin{frame}[shrink]{Natural Deduction Calculus}
@@ -109,6 +164,20 @@ $\neg A \equiv A \imp \bot$
 
 \end{frame}
 
+
+% \begin{frame}[shrink]{Natural Deduction Calculus}{Three tiny examples}
+
+% \vspace{1em}
+
+% \infer[\imp_I]{A \imp A}{\infer[n]{A}{}}
+
+
+% \infer[\imp_I]{A \imp A}{\infer[n]{A}{}}
+
+
+% \vspace{1em}
+
+% \end{frame}
 
 
 \begin{frame}{Natural Deduction Proofs}{T1 and C1}
