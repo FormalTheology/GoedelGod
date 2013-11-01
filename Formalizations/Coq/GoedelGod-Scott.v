@@ -36,10 +36,6 @@ Axiom axiom1b : V (mforall p, (m~ (Positive p)) m-> (Positive (fun x: u => m~ (p
 Axiom axiom2: V (mforall p, mforall q, Positive p m/\ (box (mforall x, (p x) m-> (q x) )) m-> Positive q).
 
 
-(* ToDo: Add explicit names to assertions *)
-
-(* ToDo: Use only asserts for real cuts *)
-
 (* Theorem T1: positive properties are possibly exemplified *)
 Theorem theorem1: V (mforall p, (Positive p) m-> dia (mexists x, p x) ).
 Proof.
