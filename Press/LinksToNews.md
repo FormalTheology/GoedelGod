@@ -68,6 +68,9 @@ Spain
 
 [La Vanguardia](http://www.lavanguardia.com/vida/20131028/54392787484/cientificos-demostrar-informaticamente-existencia-ser-supremo.html)
 
+[La Voz de Galicia](http://www.lavozdegalicia.es/noticia/sociedad/2013/10/28/logran-probar-teorema-godel-sostiene-existe-superior/00031382958446357261349.htm)
+
+
 Russia
 ------
 
@@ -76,6 +79,8 @@ Russia
 [MacDigger.ru](http://www.macdigger.ru/macall/uchenye-dokazali-sushhestvovanie-boga-s-pomoshhyu-macbook.html)
 
 [Onliner]([http://tech.onliner.by/2013/10/28/gode)
+
+[News2](http://news2.ru/story/393276/)
 
 India
 -----
@@ -122,6 +127,28 @@ Romania
 -------
 
 [Adevarul](http://adevarul.ro/tech/stiinta/o-teorema-demonstreaza-existenta-dumnezeu-provoaca-conflict-randul-matematicienilor-1_5268f1b4c7b855ff56749b8c/index.html)
+
+
+France
+------
+
+[Big Bang Blog](http://www.bigbangblog.net/deux-scientifiques-par-le-calcul-prouvent-le-th%C3%A9or%C3%A8me-de-g%C3%B6del-il-y-a-un-plus-haut-en/)
+
+
+Brazil
+------
+
+[Noticias Gospelmais](http://noticias.gospelmais.com.br/cientistas-resolvem-teorema-matematico-prova-existencia-deus-61861.html)
+
+[GPS Gospel](http://www.gpsgospel.com.br/cientistas-concluem-teorema-que-prova-existencia-de-deus)
+
+[Voz Caiçara](http://www.vozcaicara.com.br/2013/10/cientistas-da-computacao-provam-existencia-deus.html)
+
+[Unisinos](http://www.ihu.unisinos.br/noticias/525076-cientistas-da-computacao-qprovamq-existencia-de-deus)
+
+[Hosana News](http://hosanaproducoes.blogspot.co.at/2013/10/cientistas-anunciam-terem-resolvido.html)
+
+
 
 International
 -------------
