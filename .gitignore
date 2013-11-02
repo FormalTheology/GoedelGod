@@ -34,5 +34,6 @@
 *.fls
 *.make
 *.temp
+Letters/*
 LiteratureCopyrighted/*
 PressCopyrighted/*
