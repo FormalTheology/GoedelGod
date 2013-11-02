@@ -1,4 +1,4 @@
-(* Embedding of Modal Logic in Coq *)
+(* Modal Logic *)
 
 (* Authors: Bruno Woltzenlogel Paleo (bruno@logic.at) and Christoph Benzmueller *)
 
@@ -27,8 +27,15 @@ Notation "m~  p" := (mnot p) (at level 74, right associativity).
 Definition mand (p q:o)(w: i) := (p w) /\ (q w).
 Notation "p m/\ q" := (mand p q) (at level 79, right associativity).
 
+Definition mor (p q:o)(w: i) := (p w) \/ (q w).
+Notation "p m\/ q" := (mor p q) (at level 79, right associativity).
+
 Definition mimplies (p q:o)(w:i) := (p w) -> (q w).
 Notation "p m-> q" := (mimplies p q) (at level 99, right associativity).
+
+Definition mequiv (p q:o)(w:i) := (p w) <-> (q w).
+Notation "p m<-> q" := (mequiv p q) (at level 99, right associativity).
+
 
 (* Modal quantifiers *)
 

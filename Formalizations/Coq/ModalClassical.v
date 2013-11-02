@@ -1,3 +1,8 @@
+(* Theorems of Classical Modal Logic *)
+
+(* Authors: Bruno Woltzenlogel Paleo and Christoph Benzmueller *)
+
+
 Require Import Coq.Logic.Classical.
 Require Import Coq.Logic.Classical_Pred_Type.
 

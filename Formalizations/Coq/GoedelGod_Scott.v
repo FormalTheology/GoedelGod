@@ -1,6 +1,6 @@
 (* Formalization of Goedel's Ontological Proof of God's Existence *)
 
-(* Authors: Bruno Woltzenlogel Paleo (bruno@logic.at) and Christoph Benzmueller *)
+(* Authors: Bruno Woltzenlogel Paleo and Christoph Benzmueller *)
 
 (* This formalization aims at *)
 (* being as similar as possible to Dana Scott's version of the proof *)
