@@ -11,13 +11,13 @@ section {* Further results on G\"odel's God. *}
 
 text {* G\"odel's God is flawless, that is, he has no negative properties. *}
 
-  lemma Flawless: "[\<Pi> (\<lambda>\<phi>. \<forall> (\<lambda>x. (G x m\<Rightarrow> (m\<not> (P \<phi>) m\<Rightarrow> m\<not> (\<phi> x)))))]"
+  theorem Flawless: "[\<Pi> (\<lambda>\<phi>. \<forall> (\<lambda>x. (G x m\<Rightarrow> (m\<not> (P \<phi>) m\<Rightarrow> m\<not> (\<phi> x)))))]"
   sledgehammer [provers = remote_leo2] by (metis A1b G_def) 
   
 text {* Moreover, it can be shown that any two God-like beings are (Leibniz-)equal, that is there is 
 there only one God-like being. *}   
   
-  lemma Monotheism: "[\<forall> (\<lambda>x. \<forall> (\<lambda>y. (G(x) m\<Rightarrow> (G(y) m\<Rightarrow> (x m= y)))))]"
+  theorem Monotheism: "[\<forall> (\<lambda>x. \<forall> (\<lambda>y. (G(x) m\<Rightarrow> (G(y) m\<Rightarrow> (x m= y)))))]"
   sledgehammer [provers = remote_leo2] by (metis C sym T2 ess_def) 
   
 text {* Add-on: We briefly show that Leibniz equality denotes equality. *}  
