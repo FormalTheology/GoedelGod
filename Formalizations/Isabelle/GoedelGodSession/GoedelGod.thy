@@ -1,6 +1,6 @@
 (*<*) 
 theory GoedelGod
-imports Main
+imports Main 
 
 begin
 (*>*)
@@ -72,7 +72,7 @@ Definitions could be used instead of abbreviations. *}
   abbreviation mexists_ind :: "(\<mu> \<Rightarrow> \<sigma>) \<Rightarrow> \<sigma>" ("\<exists>") where "\<exists> \<Phi> \<equiv> (\<lambda>w. \<exists>x. \<Phi> x w)"
   abbreviation mbox :: "\<sigma> \<Rightarrow> \<sigma>" ("\<box>") where "\<box> \<phi> \<equiv> (\<lambda>w. \<forall>v. \<not> w r v \<or> \<phi> v)"
   abbreviation mdia :: "\<sigma> \<Rightarrow> \<sigma>" ("\<diamond>") where "\<diamond> \<phi> \<equiv> (\<lambda>w. \<exists>v. w r v \<and> \<phi> v)" 
-
+  
 text {* For grounding lifted formulas, the meta-predicate @{text "valid"} is introduced. *}
 
   (*<*) no_syntax "_list" :: "args \<Rightarrow> 'a list" ("[(_)]") (*>*) 
@@ -161,14 +161,14 @@ text {* Finally, Sledgehammer and Metis prove the main theorem @{text "T3"}: $\n
 text {* The consistency of the entire theory is checked with Nitpick. *}
 
   lemma True nitpick [satisfy, user_axioms, expect = genuine] oops 
-  
+    
 text {* It has been critisized that G\"odel's ontological argument implies what is called the 
 modal collapse. The prover Satallax \cite{Satallax} can indeed show this, but verification with 
 Metis still fails. *} 
   
   lemma MC: "[p m\<Rightarrow> (\<box> p)]"
   using T2 T3 ess_def sym sledgehammer [provers = remote_satallax] oops
-  
+
 text {* \paragraph{Acknowledgments:} Nik Sultana, Jasmin Blanchette and Larry Paulson provided 
 very important help wrt consistency checking in Isabelle. Jasmin Blanchette instructed us on how to 
 produce latex documents from Isabelle sources, and he showed us useful tricks in Isabelle. *}
