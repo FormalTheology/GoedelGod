@@ -72,7 +72,9 @@ Definitions could be used instead of abbreviations. *}
   abbreviation mexists_ind :: "(\<mu> \<Rightarrow> \<sigma>) \<Rightarrow> \<sigma>" ("\<exists>") where "\<exists> \<Phi> \<equiv> (\<lambda>w. \<exists>x. \<Phi> x w)"
   abbreviation mbox :: "\<sigma> \<Rightarrow> \<sigma>" ("\<box>") where "\<box> \<phi> \<equiv> (\<lambda>w. \<forall>v. \<not> w r v \<or> \<phi> v)"
   abbreviation mdia :: "\<sigma> \<Rightarrow> \<sigma>" ("\<diamond>") where "\<diamond> \<phi> \<equiv> (\<lambda>w. \<exists>v. w r v \<and> \<phi> v)" 
+  abbreviation mequals :: "\<mu> \<Rightarrow> \<mu> \<Rightarrow> \<sigma>" (infixr "m=" 90) where "x m= y \<equiv> \<Pi> (\<lambda> \<phi>.(\<phi> x m\<Rightarrow> \<phi> y))" 
 
+  
 text {* For grounding lifted formulas, the meta-predicate @{text "valid"} is introduced. *}
 
   (*<*) no_syntax "_list" :: "args \<Rightarrow> 'a list" ("[(_)]") (*>*) 
@@ -162,12 +164,35 @@ text {* The consistency of the entire theory is checked with Nitpick. *}
 
   lemma True nitpick [satisfy, user_axioms, expect = genuine] oops 
   
+section {* Further results *}  
+  
 text {* It has been critisized that G\"odel's ontological argument implies what is called the 
 modal collapse. The prover Satallax \cite{Satallax} can indeed show this, but verification with 
 Metis still fails. *} 
   
   lemma MC: "[p m\<Rightarrow> (\<box> p)]"
   using T2 T3 ess_def sym sledgehammer [provers = remote_satallax] oops
+  
+text {* G\"odel's God is flawless, that is, he has no negative properties. *}
+
+  lemma Flawless: "[\<Pi> (\<lambda>\<phi>. \<forall> (\<lambda>x. (G x m\<Rightarrow> (m\<not> (P \<phi>) m\<Rightarrow> m\<not> (\<phi> x)))))]"
+  sledgehammer [provers = remote_leo2] by (metis A1b G_def) 
+  
+text {* Moreover, it can be shown that any two God-like beings are (Leibniz-)equal, that is there is 
+there only one God-like being. *}   
+  
+  lemma Monotheism: "[\<forall> (\<lambda>x. \<forall> (\<lambda>y. (G(x) m\<Rightarrow> (G(y) m\<Rightarrow> (x m= y)))))]"
+  sledgehammer [provers = remote_leo2] by (metis C sym T2 ess_def) 
+  
+text {* Add-on: We briefly show that Leibniz equality denotes equality. *}  
+
+  lemma test2: "x = y \<Longrightarrow> [x m= y]"
+  sledgehammer [provers = remote_leo2] 
+  by metis 
+    
+  lemma test1: "[x m= y] \<Longrightarrow> x = y"
+  sledgehammer [provers = remote_satallax] oops
+
   
 text {* \paragraph{Acknowledgments:} Nik Sultana, Jasmin Blanchette and Larry Paulson provided 
 very important help wrt consistency checking in Isabelle. Jasmin Blanchette instructed us on how to 
