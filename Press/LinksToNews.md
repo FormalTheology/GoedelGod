@@ -66,6 +66,10 @@ Italy
 Spain
 -----
 
+[Agencia SINC](http://www.agenciasinc.es/Noticias/Falsa-polemica-por-la-demostracion-informatica-de-la-existencia-de-Dios-con-un-teorema-de-Goedel)
+
+[Tendencias 21](http://www.tendencias21.net/Verificacion-informatica-de-la-existencia-de-Dios-y-filosofia-asistida-por-ordenadores_a26482.html)
+
 [La Vanguardia](http://www.lavanguardia.com/vida/20131028/54392787484/cientificos-demostrar-informaticamente-existencia-ser-supremo.html)
 
 [La Voz de Galicia](http://www.lavozdegalicia.es/noticia/sociedad/2013/10/28/logran-probar-teorema-godel-sostiene-existe-superior/00031382958446357261349.htm)
@@ -148,6 +152,7 @@ Brazil
 
 [Hosana News](http://hosanaproducoes.blogspot.co.at/2013/10/cientistas-anunciam-terem-resolvido.html)
 
+[The History Channel - Latin America](http://noticias.seuhistory.com/cientistas-comprovam-existencia-de-deus-com-matematica-e-um-simples-notebook)
 
 
 International
