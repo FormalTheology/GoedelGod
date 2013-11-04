@@ -7,6 +7,8 @@ begin
 
 section {* Further results on G\"odel's God. *}  
 
+text {* Lifted Leibniz equality is introduced. *}
+
   abbreviation mequals :: "\<mu> \<Rightarrow> \<mu> \<Rightarrow> \<sigma>" (infixr "m=" 90) where "x m= y \<equiv> \<Pi> (\<lambda> \<phi>.(\<phi> x m\<Rightarrow> \<phi> y))" 
 
 text {* G\"odel's God is flawless, that is, he has no negative properties. *}
@@ -18,7 +20,7 @@ text {* Moreover, it can be shown that any two God-like beings are (Leibniz-)equ
 there only one God-like being. *}   
   
   theorem Monotheism: "[\<forall> (\<lambda>x. \<forall> (\<lambda>y. (G(x) m\<Rightarrow> (G(y) m\<Rightarrow> (x m= y)))))]"
-  sledgehammer [provers = remote_leo2] by (metis C sym T2 ess_def) 
+  sledgehammer [provers = remote_leo2] by (metis Flawless G_def) 
   
 text {* Add-on: We briefly show that Leibniz equality denotes equality. *}  
 
