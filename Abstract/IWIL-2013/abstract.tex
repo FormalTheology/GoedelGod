@@ -24,7 +24,7 @@
   Bruno Woltzenlogel Paleo\inst{2}
 }
 
-\authorrunning{C.\~Benzm\"{u}ller \and B.\~Woltzenlogel Paleo}
+\authorrunning{C. Benzm\"{u}ller and B. Woltzenlogel Paleo}
 \titlerunning{G\"{o}del's God on the Computer}
 
 \institute{
@@ -80,14 +80,14 @@ requires an expressive logical language with modal operators
 (\emph{possibly} and \emph{necessarily}) and with
 quantifiers for individuals and properties.  Our computer-assisted formalizations rely on an
 embedding of the modal logic into classical higher-order logic with
-Henkin semantics. The formalization is thus essentially
+Henkin semantics  \cite{J23,B9}. The formalization is thus essentially
 done in classical higher-order logic where  quantified modal logic is
 emulated.
 
 
 In our ongoing computer-assisted study of G\"odel's proof, the
 automated reasoning tools have made some interesting observations,
-some of which were unknown so far. This attests the maturity of
+some of which were unknown so far. Our work attests the maturity of
 contemporary interactive and automated deduction tools for classical
 higher-order logic and demonstrates the elegance and practical
 relevance of the embeddings-based approach.  Most importantly, our
@@ -116,14 +116,15 @@ R.M. Adams.
 A.C. Anderson and M.~Gettings.
 \newblock G\"odel ontological proof revisited.
 \newblock In {\em {G\"odel'96: Logical Foundations of Mathematics, Computer
-  Science, and Physics: Lecture Notes in Logic 6}}. {Springer}, 1996.
+  Science, and Physics: Lecture Notes in Logic 6}}, pages 167--172. {Springer},
+  1996.
 
 \bibitem{B9}
 C.~Benzm{\"u}ller and L.C. Paulson.
 \newblock Exploring properties of normal multimodal logics in simple type
   theory with {LEO-II}.
 \newblock In {\em {Festschrift in Honor of {Peter B. Andrews} on His 70th
-  Birthday}}, pages 386--406. College Publications.
+  Birthday}}, pages 386--406. College Publications, 2008.
 
 \bibitem{J23}
 C.~Benzm{\"u}ller and L.C. Paulson.
@@ -132,11 +133,13 @@ C.~Benzm{\"u}ller and L.C. Paulson.
   7(1):7--20, 2013.
 
 \bibitem{LEO}
-C.~Benzm{\"u}ller, F.~Theiss, L.~Paulson, and A.~Fietzke.
+C.~Benzm{\"u}ller, F.~Theiss, L.C. Paulson, and A.~Fietzke.
 \newblock {LEO-II} - a cooperative automatic theorem prover for higher-order
   logic.
-\newblock In {\em Proc. of IJCAR 2008}, volume 5195 of {\em LNAI}, pages
-  162--170. Springer, 2008.
+\newblock In A.~Armando, P.~Baumgartner, and G.~Dowek, editors, {\em Automated
+  Reasoning, 4th International Joint Conference, IJCAR 2008, Sydney, Australia,
+  August 12-15, 2008, Proceedings}, volume 5195 of {\em LNCS}, pages 162--170.
+  Springer, 2008.
 
 \bibitem{Coq}
 Y.~Bertot and P.~Casteran.
@@ -157,8 +160,10 @@ J.C. Blanchette and T.~Nipkow.
 
 \bibitem{Satallax}
 C.E. Brown.
-\newblock Satallax: An automated higher-order prover.
-\newblock In {\em Proc. of IJCAR 2012}, number 7364 in LNAI, pages 111 -- 117.
+\newblock Satallax: An automatic higher-order prover.
+\newblock In B.~Gramlich, D.~Miller, and U.~Sattler, editors, {\em Automated
+  Reasoning, 6th International Joint Conference, IJCAR 2012, Manchester, UK,
+  June 26-29, 2012. Proceedings}, volume 7364 of {\em LNCS}, pages 111--117.
   Springer, 2012.
 
 \bibitem{ContemporaryBibliography}
@@ -182,26 +187,16 @@ K.~G\"odel.
 \newblock {\em Appendix A. Notes in Kurt G\"odel's Hand}, pages 144--145.
 \newblock In  \cite{sobel2004logic}, 2004.
 
-% \bibitem{Hazen}
-% A.P. Hazen.
-% \newblock On g\"odel's ontological proof.
-% \newblock {\em Australasian Journal of Philosophy}, 76:361--377, 1998.
-
 \bibitem{Metis}
 J.~Hurd.
 \newblock First-order proof tactics in higher-order logic theorem provers.
 \newblock In {\em Design and Application of Strategies/Tactics in Higher Order
-  Logics, NASA Tech. Rep. NASA/CP-2003-212448}, 2003.
+  Logics, NASA Tech. Rep. NASA/CP-2003-212448}, pages 56--68, 2003.
 
 \bibitem{Isabelle}
 T.~Nipkow, L.C. Paulson, and M.~Wenzel.
 \newblock {\em {Isabelle/HOL: A Proof Assistant for Higher-Order Logic}}.
 \newblock Number 2283 in LNCS. Springer, 2002.
-
-% \bibitem{FormalTheologyRepository}
-% B.~Woltzenlogel Paleo and C.~Benzm\"uller.
-% \newblock Formal theology repository
-%   (\url{https://github.com/FormalTheology/GoedelGod}).
 
 \bibitem{ScottNotes}
 D.~Scott.
@@ -213,16 +208,19 @@ J.H. Sobel.
 \newblock {\em Logic and Theism: Arguments for and Against Beliefs in God}.
 \newblock Cambridge U. Press, 2004.
 
+\bibitem{TPI}
+G.~Sutcliffe.
+\newblock {The TPTP Process Instruction Language}.
+\newblock In S.~Schulz, G.~Sutcliffe, and B.~Konev, editors, {\em {Proceedings
+  of the 10th International Workshop on the Implementation of Logics}},
+  EasyChair Proceedings in Computing, 2013.
+\newblock To appear.
+
 \bibitem{THF}
 G.~Sutcliffe and C.~Benzm{\"u}ller.
 \newblock Automated reasoning in higher-order logic using the {TPTP THF}
   infrastructure.
 \newblock {\em Journal of Formalized Reasoning}, 3(1):1--27, 2010.
-
-\bibitem{TPI}
-G.~Sutcliffe.
-\newblock The TPTP TPI Scripting Language (check!).
-\newblock {\em Proc. of IWIL-10}, 2013.
 
 \end{thebibliography}
 

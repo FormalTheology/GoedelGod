@@ -156,7 +156,7 @@ text {* Finally, Sledgehammer and Metis prove the main theorem @{text "T3"}: $\n
   sledgehammer [provers = remote_leo2] by (metis A5 C T2 sym G_def NE_def)
 
   corollary C2: "[\<exists> G]" 
-  sledgehammer [provers = remote_leo2] by (metis T1 T3 G_def sym)
+  sledgehammer [provers = remote_leo2](T1 T3 G_def sym) by (metis T1 T3 G_def sym)
 
 text {* The consistency of the entire theory is checked with Nitpick. *}
 
@@ -168,10 +168,6 @@ Metis still fails. *}
   
   lemma MC: "[p m\<Rightarrow> (\<box> p)]"
   using T2 T3 ess_def sym sledgehammer [provers = remote_satallax] oops
-
-text {* \paragraph{Acknowledgments:} Nik Sultana, Jasmin Blanchette and Larry Paulson provided 
-very important help wrt consistency checking in Isabelle. Jasmin Blanchette instructed us on how to 
-produce latex documents from Isabelle sources, and he showed us useful tricks in Isabelle. *}
 
 (*<*) 
 end

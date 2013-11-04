@@ -289,7 +289,7 @@ Finally, Sledgehammer and Metis prove the main theorem \isa{T{\isadigit{3}}}: $\
 \ \ \isacommand{corollary}\isamarkupfalse%
 \ C{\isadigit{2}}{\isacharcolon}\ {\isachardoublequoteopen}{\isacharbrackleft}{\isasymexists}\ G{\isacharbrackright}{\isachardoublequoteclose}\ \isanewline
 \ \ \isacommand{sledgehammer}\isamarkupfalse%
-\ {\isacharbrackleft}provers\ {\isacharequal}\ remote{\isacharunderscore}leo{\isadigit{2}}{\isacharbrackright}%
+\ {\isacharbrackleft}provers\ {\isacharequal}\ remote{\isacharunderscore}leo{\isadigit{2}}{\isacharbrackright}{\isacharparenleft}T{\isadigit{1}}\ T{\isadigit{3}}\ G{\isacharunderscore}def\ sym{\isacharparenright}%
 \isadelimproof
 \ %
 \endisadelimproof
@@ -355,6 +355,7 @@ Metis still fails.%
 %
 \isatagproof
 \isacommand{oops}\isamarkupfalse%
+\isanewline
 %
 \endisatagproof
 {\isafoldproof}%
@@ -362,13 +363,6 @@ Metis still fails.%
 \isadelimproof
 %
 \endisadelimproof
-%
-\begin{isamarkuptext}%
-\paragraph{Acknowledgments:} Nik Sultana, Jasmin Blanchette and Larry Paulson provided 
-very important help wrt consistency checking in Isabelle. Jasmin Blanchette instructed us on how to 
-produce latex documents from Isabelle sources, and he showed us useful tricks in Isabelle.%
-\end{isamarkuptext}%
-\isamarkuptrue%
 %
 \isadelimtheory
 %
