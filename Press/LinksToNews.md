@@ -180,3 +180,4 @@ International
 
 [Latin Times](http://abcnews.go.com/Technology/computer-scientists-prove-god-exists/story?id=20678984)
 
+[Decoded Science](http://www.decodedscience.com/modal-logic-proved-godel-right-god-exists/38801)
