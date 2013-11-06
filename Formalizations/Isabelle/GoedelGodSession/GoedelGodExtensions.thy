@@ -11,7 +11,7 @@ text {* Lifted Leibniz equality is introduced. *}
 
   abbreviation mequals :: "\<mu> \<Rightarrow> \<mu> \<Rightarrow> \<sigma>" (infixr "m=" 90) where "x m= y \<equiv> \<Pi> (\<lambda> \<phi>.(\<phi> x m\<Rightarrow> \<phi> y))" 
 
-text {* G\"odel's God is flawless, that is, he has no negative properties. *}
+text {* G\"odel's God is flawless, that is, he has only positive properties. *}
 
   theorem Flawless: "[\<Pi> (\<lambda>\<phi>. \<forall> (\<lambda>x. (G x m\<Rightarrow> (m\<not> (P \<phi>) m\<Rightarrow> m\<not> (\<phi> x)))))]"
   sledgehammer [provers = remote_leo2] by (metis A1b G_def) 
