@@ -1,0 +1,193 @@
+\documentclass[9pt,mathserif]{beamer}
+%\documentclass[9pt,mathserif,handout]{beamer}
+\mode<presentation>
+{
+  \usetheme{Warsaw}
+  \usecolortheme{crane}
+  \setbeamercovered{transparent}
+	\useoutertheme{split} 
+	 
+	\defbeamertemplate*{slidenumber}{framenumber} 
+	     {\insertframenumber} 
+	 \defbeamertemplate{slidenumber}{totalframenumber} 
+	     {\insertframenumber\,/\,\inserttotalframenumber} 
+	 \defbeamertemplate{slidenumber}{pagenumber} 
+	     {\insertpagenumber} 
+	 \defbeamertemplate{slidenumber}{totalpagenumber} 
+	     {\insertpagenumber\,/\,\insertpresentationendpage} 
+	 
+	\defbeamertemplate*{footline}{split slidenumber right} 
+	 {% 
+	   \leavevmode% 
+	   \hbox{\begin{beamercolorbox}
+	[wd=.5\paperwidth,ht=2.5ex,dp=1.125ex,leftskip=.3cm plus1fill,rightskip=.3cm]
+	{author in head/foot}% 
+	     \usebeamerfont{author in head/foot}\insertshortauthor 
+	   \end{beamercolorbox}% 
+	   \begin{beamercolorbox}
+	[wd=.5\paperwidth,ht=2.5ex,dp=1.125ex,leftskip=.3cm,rightskip=.3cm plus1fil]
+	{title in head/foot}% 
+	     \usebeamerfont{title in head/foot}\insertshorttitle% 
+	     \hskip2ex plus1fill% 
+	     \usebeamertemplate{slidenumber}% 
+	   \end{beamercolorbox}}% 
+	   \vskip0pt% 
+	 
+	} 
+	 
+	\defbeamertemplate{footline}{split slidenumber left} 
+	 {% 
+	   \leavevmode% 
+	   \hbox{\begin{beamercolorbox}
+	[wd=.5\paperwidth,ht=2.5ex,dp=1.125ex,leftskip=.3cm plus1fil,rightskip=.3cm]
+	{author in head/foot}% 
+	     \usebeamerfont{author in head/foot}% 
+	     \usebeamertemplate{slidenumber}% 
+	     \hskip2ex plus1fill% 
+	     \insertshortauthor 
+	   \end{beamercolorbox}% 
+	   \begin{beamercolorbox}
+	[wd=.5\paperwidth,ht=2.5ex,dp=1.125ex,leftskip=.3cm,rightskip=.3cm plus1fil]
+	{title in head/foot}% 
+	     \usebeamerfont{title in head/foot}\insertshorttitle% 
+	   \end{beamercolorbox}}% 
+	   \vskip0pt% 
+	} 
+}
+
+
+\usepackage[english]{babel}
+\usepackage[latin1]{inputenc}
+\usepackage{times}
+\usepackage[T1]{fontenc}
+\usepackage{verbatim}
+
+\usepackage{amsmath}
+\usepackage{amssymb}
+\usepackage{amsfonts}
+\usepackage{pxfonts}
+\usepackage{amsthm}
+\usepackage{graphicx}
+\usepackage{stmaryrd}
+
+
+\usepackage{bussproofs}
+\usepackage{proof}
+
+\usepackage{fancybox}
+\usepackage{fancyvrb}
+
+% \usepackage{tikz}
+% \usepackage{pgfgantt}
+% \usepackage{chronology}
+
+
+%\usepackage{rotating}
+
+% Sequent Calculus Proof Settings
+\EnableBpAbbreviations
+\def\fCenter{\mbox{\ $\vdash$\ }}
+
+\usepackage{calculi}
+
+% Logical symbols
+\newcommand{\imp}{\rightarrow}
+\newcommand{\biimp}{\leftrightarrow}
+\newcommand{\all}{\forall}
+\newcommand{\ex}{\exists}
+\newcommand{\seq}{\vdash}
+\newcommand{\nec}{\Box} % necessarily
+\newcommand{\pos}{\Diamond} % possibly
+
+
+\newcommand{\ess}[2]{#1 \ \mathit{ess} \ #2}
+\newcommand{\NE}{E}
+
+\newcommand{\s}{\qquad}
+
+\def\modal#1{\boldsymbol{#1}}
+\def\mfalse{\modal\bot}
+\def\mtrue{\modal\top}
+\def\mnot{\modal\neg\,}
+\def\mor{\,\modal\vee\,}
+\def\mand{\,\modal\wedge\,}
+\def\mimpl{\,\modal\supset\,}
+\def\miff{\,\modal\Leftrightarrow\,}
+\def\mball#1{\modal\Box_{#1}\,}
+\def\mdexi#1{\modal\Diamond_{#1}\,}
+\def\mall#1{\modal{\forall}{#1}\lambdot\,}
+\def\mallprop#1{\modal{\forall^{p}}{#1}\lambdot\,}
+\def\mallind#1{\modal{\forall^{\mu}}{#1}\lambdot\,}
+\def\mexi#1{\modal{\exists}{#1}\lambdot\,}
+\def\mpi{\modal{\Pi}\,}
+\def\mvalid{\modal{\texttt{valid}}} 
+
+\def\typearrow{\shortrightarrow}
+\def\worldtype{\iota}
+\def\indtype{\mu}
+
+
+\newenvironment{transitionframe}[2]
+{
+\begin{frame}{} \Large
+\centering
+\colorbox{#2}{\includegraphics[height=.6\textheight]{#1}}
+\vfill
+}
+{
+
+\end{frame}
+}
+
+\newenvironment{changemargin}[2]{% 
+  \begin{list}{}{% 
+    \setlength{\topsep}{0pt}% 
+    \setlength{\leftmargin}{#1}% 
+    \setlength{\rightmargin}{#2}% 
+    \setlength{\listparindent}{\parindent}% 
+    \setlength{\itemindent}{\parindent}% 
+    \setlength{\parsep}{\parskip}% 
+  }% 
+\item[]
+}{\end{list}} 
+
+
+\title[On G\"{o}del's Proof of God's
+Existence]{\textbf{Deus Ex Machina} \\ 
+Computer-Assisted Formalization of \\
+G\"{o}del's Proof of God's Existence}
+
+\author{\textbf{Christoph Benzm\"{u}ller} and \textbf{Bruno Woltzenlogel Paleo}}
+
+% \institute[]{
+%   \inst{}%
+% }
+
+\date[6.11.2013]{6th of November 2013}
+
+\begin{document}
+
+\begin{frame}
+  \titlepage
+%\colorbox{gray}{\includegraphics[height=2.5cm]{Images/Books/buch7.jpg} }
+\hfill
+\colorbox{gray}{\includegraphics[height=2.5cm]{Images/ND.png}}
+
+\hfill \begin{footnotesize}A gift to \textbf{Priest Edvaldo} and his church in Piracicaba, Brazil\end{footnotesize}
+\end{frame}
+
+\input{talk-part-1.tex}
+
+\input{talk-part-2.tex}
+
+\input{talk-part-3.tex}
+
+\input{talk-part-4.tex}
+
+\input{talk-part-5.tex}
+
+\input{talk-part-6.tex}
+
+\input{talk-part-7.tex}
+
+\end{document}
