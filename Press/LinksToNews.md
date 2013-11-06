@@ -121,6 +121,8 @@ US
 
 [Examiner](http://www.examiner.com/article/scientists-prove-god-exists-scientific-theory-states-higher-being-must-exist)
 
+[HNGN](http://www.hngn.com/articles/16125/20131029/scientists-prove-gods-existence-with-a-macbook.htm)
+
 
 Australia
 ---------
@@ -176,3 +178,6 @@ International
 
 [Free Republic](http://209.157.64.200/focus/f-religion/3083291/posts)
 
+[Latin Times](http://abcnews.go.com/Technology/computer-scientists-prove-god-exists/story?id=20678984)
+
+[Decoded Science](http://www.decodedscience.com/modal-logic-proved-godel-right-god-exists/38801)
