@@ -1,9 +1,7 @@
 Goedel's Ontological Proof in TPTP THF
 ======================================
 
-%----Authors: Christoph Benzmueller and Bruno Woltzenlogel-Paleo
-
-%----July, 16 2013 (update on November 7, 2013)
+Authors: Christoph Benzmueller and Bruno Woltzenlogel-Paleo (July, 16 2013; update on November 7, 2013)
 
 We present a formalization and (partial) automation of Goedel's
 ontological argument in quantified modal logic KB (QML KB). QML KB is in 
@@ -78,9 +76,9 @@ results obtained on standard PCs):
 
 The consistency of the set of axioms can be shown by Nitrox (Nitpick).
 
-Consistency.p ++++++ Nitrox---2013 says Satisfiable - CPU = 7.23 WC = 7.18
-Consistency.p ++++++ LEO-II---1.6.0 says Timeout - CPU = 90.06 WC = 90.11
-Consistency.p ++++++ Satallax---2.7 says Timeout - CPU = 90.07 WC = 90.51
+- Consistency.p ++++++ Nitrox---2013 says Satisfiable - CPU = 7.23 WC = 7.18
+- Consistency.p ++++++ LEO-II---1.6.0 says Timeout - CPU = 90.06 WC = 90.11
+- Consistency.p ++++++ Satallax---2.7 says Timeout - CPU = 90.07 WC = 90.51
 
 
 *** File T1.p (A1, A2 |- T1) ***
@@ -89,9 +87,9 @@ This can be proved by LEO-II and Satallax; just apply the provers to
 T1.p Remark: Only the left to right direction of A1 is required. Logic
 K is sufficient.
   
-T1.p ++++++ Satallax---2.7 says Theorem - CPU = 0.00 WC = 0.03
-T1.p ++++++ LEO-II---1.6.0 says Theorem - CPU = 0.05 WC = 0.08
-T1.p ++++++ Nitrox---2013 says Timeout - CPU = 90.10 WC = 75.88
+- T1.p ++++++ Satallax---2.7 says Theorem - CPU = 0.00 WC = 0.03
+- T1.p ++++++ LEO-II---1.6.0 says Theorem - CPU = 0.05 WC = 0.08
+- T1.p ++++++ Nitrox---2013 says Timeout - CPU = 90.10 WC = 75.88
 
 
 *** File C.p: (T1, D1, A3 |- C) ***
@@ -100,9 +98,9 @@ This can be proved by LEO-II and Satallax; D1 seems not required to
 obtain C; in a previous version A2 was also assumed; A2 is not
 needed. Logic K is sufficient.
 
-C.p ++++++ LEO-II---1.6.0 says Theorem - CPU = 0.02 WC = 0.05
-C.p ++++++ Satallax---2.7 says Theorem - CPU = 0.00 WC = 0.11
-C.p ++++++ Nitrox---2013 says Timeout - CPU = 90.07 WC = 65.78
+- C.p ++++++ LEO-II---1.6.0 says Theorem - CPU = 0.02 WC = 0.05
+- C.p ++++++ Satallax---2.7 says Theorem - CPU = 0.00 WC = 0.11
+- C.p ++++++ Nitrox---2013 says Timeout - CPU = 90.07 WC = 65.78
 
 
 *** File T2.p (A1, D1, D2, A4 |- T2) ***
@@ -111,9 +109,9 @@ This can be proved by LEO-II and Satallax; both directions of A1 are
 required, otherwise Nitrox (Nitpick) finds a counterexample. Logic K
 is sufficient.
 
-T2.p ++++++ Satallax---2.7 says Theorem - CPU = 0.00 WC = 0.12
-T2.p ++++++ LEO-II---1.6.0 says Theorem - CPU = 24.22 WC = 24.45
-T2.p ++++++ Nitrox---2013 says Timeout - CPU = 90.04 WC = 60.28
+- T2.p ++++++ Satallax---2.7 says Theorem - CPU = 0.00 WC = 0.12
+- T2.p ++++++ LEO-II---1.6.0 says Theorem - CPU = 24.22 WC = 24.45
+- T2.p ++++++ Nitrox---2013 says Timeout - CPU = 90.04 WC = 60.28
 
 
 *** File T3.p (D1, C, T2, D3, A5 |- T3) ***
@@ -121,9 +119,9 @@ T2.p ++++++ Nitrox---2013 says Timeout - CPU = 90.04 WC = 60.28
 This can be proved by LEO-II and Satallax. Logic KB is sufficient. In
 Logic K Nitrox finds a counterexample.
 
-T3.p ++++++ LEO-II---1.6.0 says Theorem - CPU = 0.04 WC = 0.07
-T3.p ++++++ Satallax---2.7 says Theorem - CPU = 0.00 WC = 0.16
-T3.p ++++++  Nitrox---2013 says Unknown - CPU = 3.14 WC = 3.39
+- T3.p ++++++ LEO-II---1.6.0 says Theorem - CPU = 0.04 WC = 0.07
+- T3.p ++++++ Satallax---2.7 says Theorem - CPU = 0.00 WC = 0.16
+- T3.p ++++++  Nitrox---2013 says Unknown - CPU = 3.14 WC = 3.39
 
 
 In the experiments above the provers were run with a 90 seconds
@@ -142,7 +140,7 @@ experiments confirm is that all theorems remain valid.
 
 
 Some further results:
-=====================
+---------------------
 
 Modal Collapse: Modal collapse (p => []p) is a major critic on Goedel's 
 proof. Our experiments confirm that the modal collapse holds. The problem 
