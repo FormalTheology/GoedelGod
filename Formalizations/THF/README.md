@@ -1,5 +1,5 @@
-Goedel's Ontological Proof of the Existence of God
-==================================================
+Goedel's Ontological Proof in TPTP THF
+======================================
 
 %----Authors: Christoph Benzmueller and Bruno Woltzenlogel-Paleo
 %----July, 16 2013 (update on November 7, 2013)
