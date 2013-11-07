@@ -1,6 +1,6 @@
 %----Goedel's Ontological Proof of the Existence of God
 %----Authors: Christoph Benzmueller and Bruno Woltzenlogel-Paleo
-%----July, 16 2013 (update on August 21, 2013)
+%----July, 16 2013 (update on November 7, 2013)
 
 We present a formalization and (partial) automation of Goedel's
 ontological argument in quantified modal logic KB (QML KB). QML KB is in 
@@ -59,7 +59,7 @@ Moreover, these systems have been used to obtain the following results:
 - The basic modal logic K is sufficient for proving T1, C and T2. 
 - Modal logic S5 is not needed for proving T3; the logic KB is sufficient. 
 - Without the first conjunct in D2 the set of axioms and definitions 
-  would be inconsistent. 
+  would be inconsistent (see also below). 
 - For proving theorem T1, only the left to right direction of axiom A1 is 
   needed. However, the backward direction of A1 is required for proving T2.
 
@@ -119,14 +119,37 @@ T3.p ++++++ Satallax---2.7 says Theorem - CPU = 0.00 WC = 0.16
 T3.p ++++++  Nitrox---2013 says Unknown - CPU = 3.14 WC = 3.39
 
 
-In the experiments above the provers were run with a 90 seconds timeout via 
-Geoff Sutcliffe's SystemOnTPTP interface on standard PCs; big thanks to Geoff!
+In the experiments above the provers were run with a 90 seconds
+timeout via Geoff Sutcliffe's SystemOnTPTP interface on standard PCs;
+big thanks to Geoff!
 
 We are currently testing whether T3 can eventually be proved directly
 from the axioms and definitions in one step; see file T3oneStep.p
 
-We are also investigating critics raised on Goedel's proof, including
-modal collapse. So far the provers did not confirm modal collapse.
+Moreover, we have checked the above theorems wrt to varying domain
+semantics for quantification over individuals. The respective problem
+formulations ar give in files: T1_varying.p C_varying.p T2_varying.p
+T3_varying.p; these in turn include the modified files
+Quantified_KB_varying.ax resp. Quantified_K_varying.ax. The
+experiments confirm is that all theorems remain valid.
+
+
+Some further results:
+=====================
+
+Modal Collapse: Modal collapse (p => []p) is a major critic on Goedel's 
+proof. Our experiments confirm that the modal collapse holds. The problem 
+encoding is given in file ModalCollapse.p
+
+Inconsistency of Goedel's original axioms: In Goedel's original
+definition of essence the first conjunct (Phi(X)) is missing. Without
+this first conjunct the theory becomes inconsistent. The relevant
+axioms and definitions are A1a, A2, A5, D2, and D3. The problem is
+encoded in files InconsistencyWithoutFirstConjunctinD2.p and
+InconsistencyWithoutFirstConjunctinD2_minimized.p. The output of the
+provers can be found in the files
+InconsistencyWithoutFirstConjunctinD2_minimized.*.txt
+
 
 Best regards,
    Christoph Benzmueller and Bruno Woltzenlogel-Paleo
