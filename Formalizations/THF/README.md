@@ -2,6 +2,7 @@ Goedel's Ontological Proof in TPTP THF
 ======================================
 
 %----Authors: Christoph Benzmueller and Bruno Woltzenlogel-Paleo
+
 %----July, 16 2013 (update on November 7, 2013)
 
 We present a formalization and (partial) automation of Goedel's
@@ -11,17 +12,21 @@ formalization is essentially a formalization in HOL. For our encoding
 of HOL formulas we employ the TPTP THF0 syntax. 
 
 For more information on this syntax we refer to:
--- Automated Reasoning in Higher-Order Logic using the TPTP THF 
+
+- Automated Reasoning in Higher-Order Logic using the TPTP THF 
    Infrastructure (Geoff Sutcliffe, Christoph Benzmüller), In Journal 
    of Formalized Reasoning, volume 3, number 1, pp. 1-27, 2010.
    http://jfr.unibo.it/article/view/1710/1179
 
 The employed embedding of QML in HOL is adapting the ideas as presented in: 
--- Quantified Multimodal Logics in Simple Type Theory (Christoph Benzmueller, 
+
+- Quantified Multimodal Logics in Simple Type Theory (Christoph Benzmueller, 
    Lawrence Paulson), In Logica Universalis (Special Issue on Multimodal 
    Logics), volume 7, number 1, pp. 7-20, 2013. 
+
 and in 
--- Exploring Properties of Normal Multimodal Logics in Simple Type Theory 
+
+- Exploring Properties of Normal Multimodal Logics in Simple Type Theory 
    with LEO-II (Christoph Benzmueller, Lawrence Paulson), Chapter in Reasoning 
    in Simple Type Theory --- Festschrift in Honor of Peter B. Andrews on His 
    70th Birthday (Christoph Benzmueller, Chad Brown, Joerg Siekmann, Richard 
@@ -36,20 +41,20 @@ Dana Scott's version of Goedel's proof employs the following axioms (A),
 definitions (D), corollaries (C) and theorems (T), and it proceeds in the 
 following order:
 
-A1 Either a property or its negation is positive, but not both
-A2 A property necessarily implied by a positive property is positive
-T1 Positive properties are possibly exemplified: 
-D1 A God-like being possesses all positive properties
-A3 The property of being God-like is positive
-C  Possibly, God exists
-A4 Positive properties are necessarily positive
-D2 An essence of an individual is a property possessed by it and 
+- A1 Either a property or its negation is positive, but not both
+- A2 A property necessarily implied by a positive property is positive
+- T1 Positive properties are possibly exemplified: 
+- D1 A God-like being possesses all positive properties
+- A3 The property of being God-like is positive
+- C  Possibly, God exists
+- A4 Positive properties are necessarily positive
+- D2 An essence of an individual is a property possessed by it and 
    necessarily implying any of its properties
-T2 Being God-like is an essence of any God-like being
-D3 Necessary existence of an individual is the necessary exemplification 
+- T2 Being God-like is an essence of any God-like being
+- D3 Necessary existence of an individual is the necessary exemplification 
    of all its essences 
-A5 Necessary existence is a positive property. 
-T3 Necessarily, God exists.
+- A5 Necessary existence is a positive property. 
+- T3 Necessarily, God exists.
 
 
 Automated theorem provers and model finders for HOL (LEO-II, Satallax and 
