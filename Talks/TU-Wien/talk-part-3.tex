@@ -91,34 +91,32 @@ formulas $\textcolor{red}{\varphi}$ are mapped to
 \fcolorbox{blue}{white}{
 $\begin{array}{lcl} 
     \textcolor{red}{\mnot} & = & \textcolor{blue}{
-      \lambda{\varphi_{\worldtype\typearrow o}}\lambda{w_\worldtype}\neg \varphi s} \\ 
+      \lambda{\varphi_{\worldtype\typearrow o}}\lambda{w_\worldtype}\neg \varphi w} \\ 
     \textcolor{red}{\mand} & = & \textcolor{blue}{ 
       \lambda{\varphi_{\worldtype\typearrow o}}
       \lambda{\psi_{\worldtype\typearrow o}} \lambda{w_\worldtype}
-      (\varphi s \wedge \psi s)} \\ 
+      (\varphi w \wedge \psi w)} \\ 
     \textcolor{red}{\imp} & = & \textcolor{blue}{ 
       \lambda{\varphi_{\worldtype\typearrow o}}
       \lambda{\psi_{\worldtype\typearrow o}} \lambda{w_\worldtype}
-      (\neg \varphi s \vee \psi s)} \\ 
+      (\neg \varphi w \vee \psi w)} \\ 
+    \textcolor{red}{\forall} & = & \textcolor{blue}{ 
+      \lambda{h_{\gamma\typearrow(\worldtype \typearrow o)}}
+      \lambda{w_\worldtype} \forall {d_\gamma} \, h d w} \\
+    \textcolor{red}{\exists} & = & \textcolor{blue}{ 
+      \lambda{h_{\gamma\typearrow(\worldtype \typearrow o)}}
+      \lambda{w_\worldtype} \exists {d_\gamma} \, h d w} \\
+    \\
     \textcolor{red}{\Box} & = & \textcolor{blue}{ 
       \lambda{\varphi_{\worldtype\typearrow o}} \lambda{w_\worldtype}
-      \forall {u_\worldtype}\, (\neg r s u \vee
+      \forall {u_\worldtype}\, (\neg r w u \vee
       \varphi u)} \\ 
     \textcolor{red}{\Diamond} & = & \textcolor{blue}{ 
       \lambda{\varphi_{\worldtype\typearrow o}} \lambda{w_\worldtype}
-      \exists {u_\worldtype}\, (r s u \wedge
+      \exists {u_\worldtype}\, (r w u \wedge
       \varphi u)} \\ 
-    \textcolor{red}{\forall} & = & \textcolor{blue}{ 
-      \lambda{h_{\mu\typearrow(\worldtype \typearrow o)}}
-      \lambda{w_\worldtype} \forall {d_\indtype} \, h d s} \\
-    \textcolor{red}{\exists} & = & \textcolor{blue}{ 
-      \lambda{h_{\mu\typearrow(\worldtype \typearrow o)}}
-      \lambda{w_\worldtype} \exists {d_\indtype} \, h d s} \\
-    \textcolor{red}{\forall} & = & \textcolor{blue}{ 
-      \lambda{H_{(\mu\typearrow(\worldtype \typearrow o))\typearrow(\worldtype \typearrow o)}}
-      \lambda{w_\worldtype} \forall {d_\indtype} \, H d s} \\
     \\
-      \text{\textcolor{brown}{valid}} & = & \textcolor{blue}{
+    \text{\textcolor{brown}{valid}} & = & \textcolor{blue}{
         \lambda{\varphi_{\worldtype\typearrow o}} \all{w_\worldtype}
         \varphi w}
 \end{array}$
