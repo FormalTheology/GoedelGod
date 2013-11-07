@@ -51,6 +51,7 @@ Austria
 
 [John Lennox's Talk at TU-Wien](http://www.youtube.com/watch?v=E_2_4KyR-6k&feature=share&t=25m15s)
 
+
 Italy
 -----
 
@@ -85,6 +86,7 @@ Russia
 [Onliner]([http://tech.onliner.by/2013/10/28/gode)
 
 [News2](http://news2.ru/story/393276/)
+
 
 India
 -----
@@ -129,6 +131,7 @@ Australia
 
 [International Business Times](http://au.ibtimes.com/articles/517705/20131029/apple-macbook-pro.htm#.Um-5fhbG-b8)
 
+
 Romania
 -------
 
@@ -155,6 +158,12 @@ Brazil
 [Hosana News](http://hosanaproducoes.blogspot.co.at/2013/10/cientistas-anunciam-terem-resolvido.html)
 
 [The History Channel - Latin America](http://noticias.seuhistory.com/cientistas-comprovam-existencia-de-deus-com-matematica-e-um-simples-notebook)
+
+
+Bulgaria
+--------
+
+[Эпохални Времена](http://www.epochtimes-bg.com/2013-04/2013-10-30_15.html)
 
 
 International
