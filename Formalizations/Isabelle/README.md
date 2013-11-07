@@ -19,7 +19,7 @@ The two files presented here are:
 The files GoedelGod.thy and GoedelGodVarying.thy are meanwhile
 outdated and there are new Isabelle/HOL versions of the proof
 available in the subdirectory GoedelGodSession. These new versions
-avoid the additional lemmata and it also study some additional aspects
+avoid the additional lemmata and they also study some additional aspects
 such as the modal collapse, monotheism, flawlessness, and postive and
 negative properties.
 
