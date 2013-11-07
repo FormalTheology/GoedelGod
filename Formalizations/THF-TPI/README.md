@@ -5,7 +5,7 @@ Authors: Christoph Benzmueller and Bruno Woltzenlogel-Paleo (November 7, 2013)
 
 This directory contains a development of Goedel's ontological argument
 (and some further result) in TPTP THF. The development is related to
-the work presented in
+the work presented at
 https://github.com/FormalTheology/GoedelGod/tree/master/Formalizations/THF.
 However, the work presented here uses the new TPTP TPI proof scripting
 language.  For more information on this scripting language see
