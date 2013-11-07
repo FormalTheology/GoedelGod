@@ -1,5 +1,5 @@
-Goedel's Ontological Proof in Isabelle
-======================================
+Goedel's Ontological Proof in Isabelle/HOL
+==========================================
 
 Authors: Christoph Benzmueller and Bruno Woltzenlogel-Paleo
 
