@@ -180,14 +180,14 @@ Qed.
 
 
 (* ToDo: According to experiments with LEO-II, modal logic KB should suffice for showing T3. There is no need to import S5 *)
-Require Import ModalS5.
+Require Import Modal.
 
 (* Theorem T3: necessarily, God exists *)
 Theorem theorem3: V (box (mexists x, (G x))).
 Proof.
 intro.
 cut (dia (box (mexists x, G x)) w).
-  apply modal_iteration.
+  apply dia_box_to_box.
   cut (dia (mexists x, G x) w).
     intro H1.
     apply (modus_ponens_inside_dia w (mexists z, G z)).
