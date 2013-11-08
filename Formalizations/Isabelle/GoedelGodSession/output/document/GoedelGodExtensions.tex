@@ -1,0 +1,132 @@
+%
+\begin{isabellebody}%
+\def\isabellecontext{GoedelGodExtensions}%
+%
+\isadelimtheory
+%
+\endisadelimtheory
+%
+\isatagtheory
+%
+\endisatagtheory
+{\isafoldtheory}%
+%
+\isadelimtheory
+%
+\endisadelimtheory
+%
+\isamarkupsection{Further results on G\"odel's God.%
+}
+\isamarkuptrue%
+%
+\begin{isamarkuptext}%
+Lifted Leibniz equality is introduced.%
+\end{isamarkuptext}%
+\isamarkuptrue%
+\ \ \isacommand{abbreviation}\isamarkupfalse%
+\ mequals\ {\isacharcolon}{\isacharcolon}\ {\isachardoublequoteopen}{\isasymmu}\ {\isasymRightarrow}\ {\isasymmu}\ {\isasymRightarrow}\ {\isasymsigma}{\isachardoublequoteclose}\ {\isacharparenleft}\isakeyword{infixr}\ {\isachardoublequoteopen}m{\isacharequal}{\isachardoublequoteclose}\ {\isadigit{9}}{\isadigit{0}}{\isacharparenright}\ \isakeyword{where}\ {\isachardoublequoteopen}x\ m{\isacharequal}\ y\ {\isasymequiv}\ {\isasymPi}\ {\isacharparenleft}{\isasymlambda}\ {\isasymphi}{\isachardot}{\isacharparenleft}{\isasymphi}\ x\ m{\isasymRightarrow}\ {\isasymphi}\ y{\isacharparenright}{\isacharparenright}{\isachardoublequoteclose}%
+\begin{isamarkuptext}%
+G\"odel's God is flawless, that is, he has only positive properties.%
+\end{isamarkuptext}%
+\isamarkuptrue%
+\ \ \isacommand{theorem}\isamarkupfalse%
+\ Flawless{\isacharcolon}\ {\isachardoublequoteopen}{\isacharbrackleft}{\isasymPi}\ {\isacharparenleft}{\isasymlambda}{\isasymphi}{\isachardot}\ {\isasymforall}\ {\isacharparenleft}{\isasymlambda}x{\isachardot}\ {\isacharparenleft}G\ x\ m{\isasymRightarrow}\ {\isacharparenleft}m{\isasymnot}\ {\isacharparenleft}P\ {\isasymphi}{\isacharparenright}\ m{\isasymRightarrow}\ m{\isasymnot}\ {\isacharparenleft}{\isasymphi}\ x{\isacharparenright}{\isacharparenright}{\isacharparenright}{\isacharparenright}{\isacharparenright}{\isacharbrackright}{\isachardoublequoteclose}\isanewline
+\ \ \isacommand{sledgehammer}\isamarkupfalse%
+\ {\isacharbrackleft}provers\ {\isacharequal}\ remote{\isacharunderscore}leo{\isadigit{2}}{\isacharbrackright}%
+\isadelimproof
+\ %
+\endisadelimproof
+%
+\isatagproof
+\isacommand{by}\isamarkupfalse%
+\ {\isacharparenleft}metis\ A{\isadigit{1}}b\ G{\isacharunderscore}def{\isacharparenright}%
+\endisatagproof
+{\isafoldproof}%
+%
+\isadelimproof
+%
+\endisadelimproof
+%
+\begin{isamarkuptext}%
+Moreover, it can be shown that any two God-like beings are equal, that is, 
+there is only one God-like being.%
+\end{isamarkuptext}%
+\isamarkuptrue%
+\ \ \isacommand{theorem}\isamarkupfalse%
+\ Monotheism{\isacharcolon}\ {\isachardoublequoteopen}{\isacharbrackleft}{\isasymforall}\ {\isacharparenleft}{\isasymlambda}x{\isachardot}\ {\isasymforall}\ {\isacharparenleft}{\isasymlambda}y{\isachardot}\ {\isacharparenleft}G{\isacharparenleft}x{\isacharparenright}\ m{\isasymRightarrow}\ {\isacharparenleft}G{\isacharparenleft}y{\isacharparenright}\ m{\isasymRightarrow}\ {\isacharparenleft}x\ m{\isacharequal}\ y{\isacharparenright}{\isacharparenright}{\isacharparenright}{\isacharparenright}{\isacharparenright}{\isacharbrackright}{\isachardoublequoteclose}\isanewline
+\ \ \isacommand{sledgehammer}\isamarkupfalse%
+\ {\isacharbrackleft}provers\ {\isacharequal}\ remote{\isacharunderscore}leo{\isadigit{2}}{\isacharbrackright}%
+\isadelimproof
+\ %
+\endisadelimproof
+%
+\isatagproof
+\isacommand{by}\isamarkupfalse%
+\ {\isacharparenleft}metis\ Flawless\ G{\isacharunderscore}def{\isacharparenright}%
+\endisatagproof
+{\isafoldproof}%
+%
+\isadelimproof
+%
+\endisadelimproof
+%
+\begin{isamarkuptext}%
+Add-on: We briefly show that lifted Leibniz equality indeed denotes equality.%
+\end{isamarkuptext}%
+\isamarkuptrue%
+\ \ \isacommand{lemma}\isamarkupfalse%
+\ eqtest{\isadigit{1}}{\isacharcolon}\ {\isachardoublequoteopen}x\ {\isacharequal}\ y\ {\isasymLongrightarrow}\ {\isacharbrackleft}x\ m{\isacharequal}\ y{\isacharbrackright}{\isachardoublequoteclose}\isanewline
+\ \ \isacommand{sledgehammer}\isamarkupfalse%
+\ {\isacharbrackleft}provers\ {\isacharequal}\ remote{\isacharunderscore}leo{\isadigit{2}}{\isacharbrackright}%
+\isadelimproof
+\ %
+\endisadelimproof
+%
+\isatagproof
+\isacommand{by}\isamarkupfalse%
+\ metis%
+\endisatagproof
+{\isafoldproof}%
+%
+\isadelimproof
+%
+\endisadelimproof
+\ \isanewline
+\ \ \ \ \isanewline
+\ \ \isacommand{lemma}\isamarkupfalse%
+\ eqtest{\isadigit{2}}{\isacharcolon}\ {\isachardoublequoteopen}{\isacharbrackleft}x\ m{\isacharequal}\ y{\isacharbrackright}\ {\isasymLongrightarrow}\ x\ {\isacharequal}\ y{\isachardoublequoteclose}\isanewline
+\ \ \isacommand{sledgehammer}\isamarkupfalse%
+\ {\isacharbrackleft}provers\ {\isacharequal}\ remote{\isacharunderscore}satallax{\isacharbrackright}%
+\isadelimproof
+\ %
+\endisadelimproof
+%
+\isatagproof
+\isacommand{oops}\isamarkupfalse%
+\isanewline
+\isanewline
+%
+\endisatagproof
+{\isafoldproof}%
+%
+\isadelimproof
+%
+\endisadelimproof
+%
+\isadelimtheory
+%
+\endisadelimtheory
+%
+\isatagtheory
+%
+\endisatagtheory
+{\isafoldtheory}%
+%
+\isadelimtheory
+%
+\endisadelimtheory
+\ \end{isabellebody}%
+%%% Local Variables:
+%%% mode: latex
+%%% TeX-master: "root"
+%%% End:
