@@ -160,13 +160,6 @@ text {* Finally, Sledgehammer and Metis prove the main theorem @{text "T3"}: $\n
 text {* The consistency of the entire theory is checked with Nitpick. *}
 
   lemma True nitpick [satisfy, user_axioms, expect = genuine] oops 
-    
-text {* It has been critisized that G\"odel's ontological argument implies what is called the 
-modal collapse. The prover Satallax \cite{Satallax} can indeed show this, but verification with 
-Metis still fails. *} 
-  
-  lemma MC: "[p m\<Rightarrow> (\<box> p)]"
-  using T2 T3 ess_def sym sledgehammer [provers = remote_satallax] oops
 
 (*<*) 
 end
