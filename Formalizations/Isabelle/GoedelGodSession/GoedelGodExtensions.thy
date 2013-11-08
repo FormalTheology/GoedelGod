@@ -14,7 +14,7 @@ text {* Lifted Leibniz equality is introduced. *}
 text {* G\"odel's God is flawless, that is, he has only positive properties. *}
 
   theorem Flawless: "[\<Pi> (\<lambda>\<phi>. \<forall> (\<lambda>x. (G x m\<Rightarrow> (m\<not> (P \<phi>) m\<Rightarrow> m\<not> (\<phi> x)))))]"
-  sledgehammer [provers = remote_leo2] by (metis A1b G_def) 
+  sledgehammer [provers = remote_leo2 remote_satallax] by (metis A1b G_def) 
   
 text {* Moreover, it can be shown that any two God-like beings are equal, that is, 
 there is only one God-like being. *}   
