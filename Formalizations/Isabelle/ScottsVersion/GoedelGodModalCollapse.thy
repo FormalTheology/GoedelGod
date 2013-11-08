@@ -7,7 +7,7 @@ begin
 
 section {* Modal Collapse *}  
 
-text {* It has been criticized that G\"odel's axioms entail the so-called 
+text {* G\"odel's axioms have been criticized for entailing the so-called 
 modal collapse. The prover Satallax \cite{Satallax} can show this. 
 Sledgehammer does not seem to be able to determine which axioms have been used by Satallax;
 hence it suggests to call Metis with all axioms, definitions and theorems, which fails.
