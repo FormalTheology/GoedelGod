@@ -15,7 +15,7 @@ hence it suggests to call Metis using everything, but this (unsurprisingly) fail
 Attempting to use ``Sledegehammer min'' to minimize Sledgehammer's suggestion does not work.
 Nevertheless, calling Metis with T2, T3 and ess_def does work. *} 
 
-  lemma MC: "[\<forall> (\<lambda>\<Phi>.( \<Phi> m\<Rightarrow> (\<box> \<Phi>)))]"
+  lemma MC: "[\<forall>(\<lambda>\<phi>.( \<phi> m\<rightarrow> (\<box> \<phi>)))]"
   using T2 T3 ess_def sym sledgehammer [provers = remote_satallax]
   by (metis T2 T3 ess_def) 
 
