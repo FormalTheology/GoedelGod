@@ -95,9 +95,10 @@ This type is abbreviated as \isa{{\isasymsigma}}.%
 \begin{isamarkuptext}%
 The classical connectives $\neg, \wedge, \rightarrow$, and $\forall$
 (over individuals and over sets of individuals) and $\exists$ (over individuals) are
-lifted to type $\sigma$. The lifted connectives are \isa{m{\isasymnot}}, \isa{m{\isasymand}}, \isa{m{\isasymRightarrow}},
-\isa{{\isasymforall}}, \isa{{\isasymPi}}, and \isa{{\isasymexists}}. Other connectives could be introduced analogously. 
-Definitions could be used instead of abbreviations.%
+lifted to type $\sigma$. The lifted connectives are \isa{m{\isasymnot}}, \isa{m{\isasymand}}, \isa{m{\isasymrightarrow}},
+\isa{{\isasymforall}}, and \isa{{\isasymexists}} (the latter two are modeled as constant symbols). 
+Other connectives could be introduced analogously. Definitions could be used instead of 
+abbreviations.%
 \end{isamarkuptext}%
 \isamarkuptrue%
 \ \ \isacommand{abbreviation}\isamarkupfalse%
@@ -105,13 +106,11 @@ Definitions could be used instead of abbreviations.%
 \ \ \isacommand{abbreviation}\isamarkupfalse%
 \ mand\ {\isacharcolon}{\isacharcolon}\ {\isachardoublequoteopen}{\isasymsigma}\ {\isasymRightarrow}\ {\isasymsigma}\ {\isasymRightarrow}\ {\isasymsigma}{\isachardoublequoteclose}\ {\isacharparenleft}\isakeyword{infixr}\ {\isachardoublequoteopen}m{\isasymand}{\isachardoublequoteclose}\ {\isadigit{7}}{\isadigit{9}}{\isacharparenright}\ \isakeyword{where}\ {\isachardoublequoteopen}{\isasymphi}\ m{\isasymand}\ {\isasympsi}\ {\isasymequiv}\ {\isacharparenleft}{\isasymlambda}w{\isachardot}\ {\isasymphi}\ w\ {\isasymand}\ {\isasympsi}\ w{\isacharparenright}{\isachardoublequoteclose}\ \ \ \isanewline
 \ \ \isacommand{abbreviation}\isamarkupfalse%
-\ mimplies\ {\isacharcolon}{\isacharcolon}\ {\isachardoublequoteopen}{\isasymsigma}\ {\isasymRightarrow}\ {\isasymsigma}\ {\isasymRightarrow}\ {\isasymsigma}{\isachardoublequoteclose}\ {\isacharparenleft}\isakeyword{infixr}\ {\isachardoublequoteopen}m{\isasymRightarrow}{\isachardoublequoteclose}\ {\isadigit{7}}{\isadigit{4}}{\isacharparenright}\ \isakeyword{where}\ {\isachardoublequoteopen}{\isasymphi}\ m{\isasymRightarrow}\ {\isasympsi}\ {\isasymequiv}\ {\isacharparenleft}{\isasymlambda}w{\isachardot}\ {\isasymphi}\ w\ {\isasymlongrightarrow}\ {\isasympsi}\ w{\isacharparenright}{\isachardoublequoteclose}\ \ \isanewline
+\ mimplies\ {\isacharcolon}{\isacharcolon}\ {\isachardoublequoteopen}{\isasymsigma}\ {\isasymRightarrow}\ {\isasymsigma}\ {\isasymRightarrow}\ {\isasymsigma}{\isachardoublequoteclose}\ {\isacharparenleft}\isakeyword{infixr}\ {\isachardoublequoteopen}m{\isasymrightarrow}{\isachardoublequoteclose}\ {\isadigit{7}}{\isadigit{4}}{\isacharparenright}\ \isakeyword{where}\ {\isachardoublequoteopen}{\isasymphi}\ m{\isasymrightarrow}\ {\isasympsi}\ {\isasymequiv}\ {\isacharparenleft}{\isasymlambda}w{\isachardot}\ {\isasymphi}\ w\ {\isasymlongrightarrow}\ {\isasympsi}\ w{\isacharparenright}{\isachardoublequoteclose}\ \ \isanewline
 \ \ \isacommand{abbreviation}\isamarkupfalse%
-\ mforall{\isacharunderscore}ind\ {\isacharcolon}{\isacharcolon}\ {\isachardoublequoteopen}{\isacharparenleft}{\isasymmu}\ {\isasymRightarrow}\ {\isasymsigma}{\isacharparenright}\ {\isasymRightarrow}\ {\isasymsigma}{\isachardoublequoteclose}\ {\isacharparenleft}{\isachardoublequoteopen}{\isasymforall}{\isachardoublequoteclose}{\isacharparenright}\ \isakeyword{where}\ {\isachardoublequoteopen}{\isasymforall}\ {\isasymPhi}\ {\isasymequiv}\ {\isacharparenleft}{\isasymlambda}w{\isachardot}\ {\isasymforall}x{\isachardot}\ {\isasymPhi}\ x\ w{\isacharparenright}{\isachardoublequoteclose}\ \ \ \isanewline
+\ mforall\ {\isacharcolon}{\isacharcolon}\ {\isachardoublequoteopen}{\isacharparenleft}{\isacharprime}a\ {\isasymRightarrow}\ {\isasymsigma}{\isacharparenright}\ {\isasymRightarrow}\ {\isasymsigma}{\isachardoublequoteclose}\ {\isacharparenleft}{\isachardoublequoteopen}{\isasymforall}{\isachardoublequoteclose}{\isacharparenright}\ \isakeyword{where}\ {\isachardoublequoteopen}{\isasymforall}\ {\isasymPhi}\ {\isasymequiv}\ {\isacharparenleft}{\isasymlambda}w{\isachardot}\ {\isasymforall}x{\isachardot}\ {\isasymPhi}\ x\ w{\isacharparenright}{\isachardoublequoteclose}\ \ \ \isanewline
 \ \ \isacommand{abbreviation}\isamarkupfalse%
-\ mforall{\isacharunderscore}indset\ {\isacharcolon}{\isacharcolon}\ {\isachardoublequoteopen}{\isacharparenleft}{\isacharparenleft}{\isasymmu}\ {\isasymRightarrow}\ {\isasymsigma}{\isacharparenright}\ {\isasymRightarrow}\ {\isasymsigma}{\isacharparenright}\ {\isasymRightarrow}\ {\isasymsigma}{\isachardoublequoteclose}\ {\isacharparenleft}{\isachardoublequoteopen}{\isasymPi}{\isachardoublequoteclose}{\isacharparenright}\ \isakeyword{where}\ {\isachardoublequoteopen}{\isasymPi}\ {\isasymPhi}\ {\isasymequiv}\ {\isacharparenleft}{\isasymlambda}w{\isachardot}\ {\isasymforall}x{\isachardot}\ {\isasymPhi}\ x\ w{\isacharparenright}{\isachardoublequoteclose}\isanewline
-\ \ \isacommand{abbreviation}\isamarkupfalse%
-\ mexists{\isacharunderscore}ind\ {\isacharcolon}{\isacharcolon}\ {\isachardoublequoteopen}{\isacharparenleft}{\isasymmu}\ {\isasymRightarrow}\ {\isasymsigma}{\isacharparenright}\ {\isasymRightarrow}\ {\isasymsigma}{\isachardoublequoteclose}\ {\isacharparenleft}{\isachardoublequoteopen}{\isasymexists}{\isachardoublequoteclose}{\isacharparenright}\ \isakeyword{where}\ {\isachardoublequoteopen}{\isasymexists}\ {\isasymPhi}\ {\isasymequiv}\ {\isacharparenleft}{\isasymlambda}w{\isachardot}\ {\isasymexists}x{\isachardot}\ {\isasymPhi}\ x\ w{\isacharparenright}{\isachardoublequoteclose}\isanewline
+\ mexists\ {\isacharcolon}{\isacharcolon}\ {\isachardoublequoteopen}{\isacharparenleft}{\isacharprime}a\ {\isasymRightarrow}\ {\isasymsigma}{\isacharparenright}\ {\isasymRightarrow}\ {\isasymsigma}{\isachardoublequoteclose}\ {\isacharparenleft}{\isachardoublequoteopen}{\isasymexists}{\isachardoublequoteclose}{\isacharparenright}\ \isakeyword{where}\ {\isachardoublequoteopen}{\isasymexists}\ {\isasymPhi}\ {\isasymequiv}\ {\isacharparenleft}{\isasymlambda}w{\isachardot}\ {\isasymexists}x{\isachardot}\ {\isasymPhi}\ x\ w{\isacharparenright}{\isachardoublequoteclose}\isanewline
 \ \ \isacommand{abbreviation}\isamarkupfalse%
 \ mbox\ {\isacharcolon}{\isacharcolon}\ {\isachardoublequoteopen}{\isasymsigma}\ {\isasymRightarrow}\ {\isasymsigma}{\isachardoublequoteclose}\ {\isacharparenleft}{\isachardoublequoteopen}{\isasymbox}{\isachardoublequoteclose}{\isacharparenright}\ \isakeyword{where}\ {\isachardoublequoteopen}{\isasymbox}\ {\isasymphi}\ {\isasymequiv}\ {\isacharparenleft}{\isasymlambda}w{\isachardot}\ {\isasymforall}v{\isachardot}\ \ w\ r\ v\ {\isasymlongrightarrow}\ {\isasymphi}\ v{\isacharparenright}{\isachardoublequoteclose}\isanewline
 \ \ \isacommand{abbreviation}\isamarkupfalse%
@@ -141,9 +140,9 @@ and \isa{A{\isadigit{2}}}: $\all \varphi \all \psi [(P(\varphi) \wedge \nec \all
 \isamarkuptrue%
 \ \ \isacommand{axiomatization}\isamarkupfalse%
 \ \isakeyword{where}\isanewline
-\ \ \ \ A{\isadigit{1}}a{\isacharcolon}\ {\isachardoublequoteopen}{\isacharbrackleft}{\isasymPi}\ {\isacharparenleft}{\isasymlambda}{\isasymphi}{\isachardot}\ P\ {\isacharparenleft}{\isasymlambda}x{\isachardot}\ m{\isasymnot}\ {\isacharparenleft}{\isasymphi}\ x{\isacharparenright}{\isacharparenright}\ m{\isasymRightarrow}\ m{\isasymnot}\ {\isacharparenleft}P\ {\isasymphi}{\isacharparenright}{\isacharparenright}{\isacharbrackright}{\isachardoublequoteclose}\ \isakeyword{and}\isanewline
-\ \ \ \ A{\isadigit{1}}b{\isacharcolon}\ {\isachardoublequoteopen}{\isacharbrackleft}{\isasymPi}\ {\isacharparenleft}{\isasymlambda}{\isasymphi}{\isachardot}\ m{\isasymnot}\ {\isacharparenleft}P\ {\isasymphi}{\isacharparenright}\ m{\isasymRightarrow}\ P\ {\isacharparenleft}{\isasymlambda}x{\isachardot}\ m{\isasymnot}\ {\isacharparenleft}{\isasymphi}\ x{\isacharparenright}{\isacharparenright}{\isacharparenright}{\isacharbrackright}{\isachardoublequoteclose}\ \isakeyword{and}\isanewline
-\ \ \ \ A{\isadigit{2}}{\isacharcolon}\ \ {\isachardoublequoteopen}{\isacharbrackleft}{\isasymPi}\ {\isacharparenleft}{\isasymlambda}{\isasymphi}{\isachardot}\ {\isasymPi}\ {\isacharparenleft}{\isasymlambda}{\isasympsi}{\isachardot}\ {\isacharparenleft}P\ {\isasymphi}\ m{\isasymand}\ {\isasymbox}\ {\isacharparenleft}{\isasymforall}\ {\isacharparenleft}{\isasymlambda}x{\isachardot}\ {\isasymphi}\ x\ m{\isasymRightarrow}\ {\isasympsi}\ x{\isacharparenright}{\isacharparenright}{\isacharparenright}\ m{\isasymRightarrow}\ P\ {\isasympsi}{\isacharparenright}{\isacharparenright}{\isacharbrackright}{\isachardoublequoteclose}%
+\ \ \ \ A{\isadigit{1}}a{\isacharcolon}\ {\isachardoublequoteopen}{\isacharbrackleft}{\isasymforall}{\isacharparenleft}{\isasymlambda}{\isasymphi}{\isachardot}\ P\ {\isacharparenleft}{\isasymlambda}x{\isachardot}\ m{\isasymnot}\ {\isacharparenleft}{\isasymphi}\ x{\isacharparenright}{\isacharparenright}\ m{\isasymrightarrow}\ m{\isasymnot}\ {\isacharparenleft}P\ {\isasymphi}{\isacharparenright}{\isacharparenright}{\isacharbrackright}{\isachardoublequoteclose}\ \isakeyword{and}\isanewline
+\ \ \ \ A{\isadigit{1}}b{\isacharcolon}\ {\isachardoublequoteopen}{\isacharbrackleft}{\isasymforall}{\isacharparenleft}{\isasymlambda}{\isasymphi}{\isachardot}\ m{\isasymnot}\ {\isacharparenleft}P\ {\isasymphi}{\isacharparenright}\ m{\isasymrightarrow}\ P\ {\isacharparenleft}{\isasymlambda}x{\isachardot}\ m{\isasymnot}\ {\isacharparenleft}{\isasymphi}\ x{\isacharparenright}{\isacharparenright}{\isacharparenright}{\isacharbrackright}{\isachardoublequoteclose}\ \isakeyword{and}\isanewline
+\ \ \ \ A{\isadigit{2}}{\isacharcolon}\ \ {\isachardoublequoteopen}{\isacharbrackleft}{\isasymforall}{\isacharparenleft}{\isasymlambda}{\isasymphi}{\isachardot}\ {\isasymforall}{\isacharparenleft}{\isasymlambda}{\isasympsi}{\isachardot}\ {\isacharparenleft}P\ {\isasymphi}\ m{\isasymand}\ {\isasymbox}\ {\isacharparenleft}{\isasymforall}{\isacharparenleft}{\isasymlambda}x{\isachardot}\ {\isasymphi}\ x\ m{\isasymrightarrow}\ {\isasympsi}\ x{\isacharparenright}{\isacharparenright}{\isacharparenright}\ m{\isasymrightarrow}\ P\ {\isasympsi}{\isacharparenright}{\isacharparenright}{\isacharbrackright}{\isachardoublequoteclose}%
 \begin{isamarkuptext}%
 We prove theorem T1: $\all \varphi [P(\varphi) \imp \pos \ex x \varphi(x)]$ (Positive 
 properties are possibly exemplified). T1 is proved directly by Sledgehammer with command \isa{sledgehammer\ {\isacharbrackleft}provers\ {\isacharequal}\ remote{\isacharunderscore}leo{\isadigit{2}}{\isacharbrackright}}. 
@@ -153,7 +152,7 @@ that is verified in Isabelle/HOL's kernel.%
 \end{isamarkuptext}%
 \isamarkuptrue%
 \ \ \isacommand{theorem}\isamarkupfalse%
-\ T{\isadigit{1}}{\isacharcolon}\ {\isachardoublequoteopen}{\isacharbrackleft}{\isasymPi}\ {\isacharparenleft}{\isasymlambda}{\isasymphi}{\isachardot}\ P\ {\isasymphi}\ m{\isasymRightarrow}\ {\isasymdiamond}\ {\isacharparenleft}{\isasymexists}\ {\isasymphi}{\isacharparenright}{\isacharparenright}{\isacharbrackright}{\isachardoublequoteclose}\ \ \isanewline
+\ T{\isadigit{1}}{\isacharcolon}\ {\isachardoublequoteopen}{\isacharbrackleft}{\isasymforall}{\isacharparenleft}{\isasymlambda}{\isasymphi}{\isachardot}\ P\ {\isasymphi}\ m{\isasymrightarrow}\ {\isasymdiamond}\ {\isacharparenleft}{\isasymexists}\ {\isasymphi}{\isacharparenright}{\isacharparenright}{\isacharbrackright}{\isachardoublequoteclose}\ \ \isanewline
 \ \ \isacommand{sledgehammer}\isamarkupfalse%
 \ {\isacharbrackleft}provers\ {\isacharequal}\ remote{\isacharunderscore}leo{\isadigit{2}}{\isacharbrackright}\ \isanewline
 %
@@ -178,7 +177,7 @@ all positive properties).%
 \end{isamarkuptext}%
 \isamarkuptrue%
 \ \ \isacommand{definition}\isamarkupfalse%
-\ G\ {\isacharcolon}{\isacharcolon}\ {\isachardoublequoteopen}{\isasymmu}\ {\isasymRightarrow}\ {\isasymsigma}{\isachardoublequoteclose}\ \isakeyword{where}\ {\isachardoublequoteopen}G\ {\isacharequal}\ {\isacharparenleft}{\isasymlambda}x{\isachardot}\ {\isasymPi}\ {\isacharparenleft}{\isasymlambda}{\isasymphi}{\isachardot}\ P\ {\isasymphi}\ m{\isasymRightarrow}\ {\isasymphi}\ x{\isacharparenright}{\isacharparenright}{\isachardoublequoteclose}%
+\ G\ {\isacharcolon}{\isacharcolon}\ {\isachardoublequoteopen}{\isasymmu}\ {\isasymRightarrow}\ {\isasymsigma}{\isachardoublequoteclose}\ \isakeyword{where}\ {\isachardoublequoteopen}G\ {\isacharequal}\ {\isacharparenleft}{\isasymlambda}x{\isachardot}\ {\isasymforall}{\isacharparenleft}{\isasymlambda}{\isasymphi}{\isachardot}\ P\ {\isasymphi}\ m{\isasymrightarrow}\ {\isasymphi}\ x{\isacharparenright}{\isacharparenright}{\isachardoublequoteclose}%
 \begin{isamarkuptext}%
 Axiom \isa{A{\isadigit{3}}} is added: $P(G)$ (The property of being God-like is positive).
 Sledgehammer and Metis then prove corollary \isa{C}: $\pos \ex x G(x)$ 
@@ -212,7 +211,7 @@ Axiom \isa{A{\isadigit{4}}} is added: $\all \phi [P(\phi) \to \Box \; P(\phi)]$
 \end{isamarkuptext}%
 \isamarkuptrue%
 \ \ \isacommand{axiomatization}\isamarkupfalse%
-\ \isakeyword{where}\ A{\isadigit{4}}{\isacharcolon}\ \ {\isachardoublequoteopen}{\isacharbrackleft}{\isasymPi}\ {\isacharparenleft}{\isasymlambda}{\isasymphi}{\isachardot}\ P\ {\isasymphi}\ m{\isasymRightarrow}\ {\isasymbox}\ {\isacharparenleft}P\ {\isasymphi}{\isacharparenright}{\isacharparenright}{\isacharbrackright}{\isachardoublequoteclose}%
+\ \isakeyword{where}\ A{\isadigit{4}}{\isacharcolon}\ \ {\isachardoublequoteopen}{\isacharbrackleft}{\isasymforall}{\isacharparenleft}{\isasymlambda}{\isasymphi}{\isachardot}\ P\ {\isasymphi}\ m{\isasymrightarrow}\ {\isasymbox}\ {\isacharparenleft}P\ {\isasymphi}{\isacharparenright}{\isacharparenright}{\isacharbrackright}{\isachardoublequoteclose}%
 \begin{isamarkuptext}%
 Symbol \isa{ess} for `Essence' is introduced and defined as 
 $\ess{\varphi}{x} \biimp \varphi(x) \wedge \all \psi (\psi(x) \imp \nec \all y (\varphi(y) 
@@ -222,14 +221,14 @@ and necessarily implying any of its properties).%
 \isamarkuptrue%
 \ \ \isacommand{definition}\isamarkupfalse%
 \ ess\ {\isacharcolon}{\isacharcolon}\ {\isachardoublequoteopen}{\isacharparenleft}{\isasymmu}\ {\isasymRightarrow}\ {\isasymsigma}{\isacharparenright}\ {\isasymRightarrow}\ {\isasymmu}\ {\isasymRightarrow}\ {\isasymsigma}{\isachardoublequoteclose}\ {\isacharparenleft}\isakeyword{infixr}\ {\isachardoublequoteopen}ess{\isachardoublequoteclose}\ {\isadigit{8}}{\isadigit{5}}{\isacharparenright}\ \isakeyword{where}\isanewline
-\ \ \ \ {\isachardoublequoteopen}{\isasymphi}\ ess\ x\ {\isacharequal}\ {\isasymphi}\ x\ m{\isasymand}\ {\isasymPi}\ {\isacharparenleft}{\isasymlambda}{\isasympsi}{\isachardot}\ {\isasympsi}\ x\ m{\isasymRightarrow}\ {\isasymbox}\ {\isacharparenleft}{\isasymforall}\ {\isacharparenleft}{\isasymlambda}y{\isachardot}\ {\isasymphi}\ y\ m{\isasymRightarrow}\ {\isasympsi}\ y{\isacharparenright}{\isacharparenright}{\isacharparenright}{\isachardoublequoteclose}%
+\ \ \ \ {\isachardoublequoteopen}{\isasymphi}\ ess\ x\ {\isacharequal}\ {\isasymphi}\ x\ m{\isasymand}\ {\isasymforall}{\isacharparenleft}{\isasymlambda}{\isasympsi}{\isachardot}\ {\isasympsi}\ x\ m{\isasymrightarrow}\ {\isasymbox}\ {\isacharparenleft}{\isasymforall}{\isacharparenleft}{\isasymlambda}y{\isachardot}\ {\isasymphi}\ y\ m{\isasymrightarrow}\ {\isasympsi}\ y{\isacharparenright}{\isacharparenright}{\isacharparenright}{\isachardoublequoteclose}%
 \begin{isamarkuptext}%
 Next, Sledgehammer and Metis prove theorem \isa{T{\isadigit{2}}}: $\all x [G(x) \imp \ess{G}{x}]$ 
 (Being God-like is an essence of any God-like being).%
 \end{isamarkuptext}%
 \isamarkuptrue%
 \ \ \isacommand{theorem}\isamarkupfalse%
-\ T{\isadigit{2}}{\isacharcolon}\ {\isachardoublequoteopen}{\isacharbrackleft}{\isasymforall}\ {\isacharparenleft}{\isasymlambda}x{\isachardot}\ G\ x\ m{\isasymRightarrow}\ G\ ess\ x{\isacharparenright}{\isacharbrackright}{\isachardoublequoteclose}\isanewline
+\ T{\isadigit{2}}{\isacharcolon}\ {\isachardoublequoteopen}{\isacharbrackleft}{\isasymforall}{\isacharparenleft}{\isasymlambda}x{\isachardot}\ G\ x\ m{\isasymrightarrow}\ G\ ess\ x{\isacharparenright}{\isacharbrackright}{\isachardoublequoteclose}\isanewline
 \ \ \isacommand{sledgehammer}\isamarkupfalse%
 \ {\isacharbrackleft}provers\ {\isacharequal}\ remote{\isacharunderscore}leo{\isadigit{2}}{\isacharbrackright}%
 \isadelimproof
@@ -253,7 +252,7 @@ existence of an individual is the necessary exemplification of all its essences)
 \end{isamarkuptext}%
 \isamarkuptrue%
 \ \ \isacommand{definition}\isamarkupfalse%
-\ NE\ {\isacharcolon}{\isacharcolon}\ {\isachardoublequoteopen}{\isasymmu}\ {\isasymRightarrow}\ {\isasymsigma}{\isachardoublequoteclose}\ \isakeyword{where}\ {\isachardoublequoteopen}NE\ {\isacharequal}\ {\isacharparenleft}{\isasymlambda}x{\isachardot}\ {\isasymPi}\ {\isacharparenleft}{\isasymlambda}{\isasymphi}{\isachardot}\ {\isasymphi}\ ess\ x\ m{\isasymRightarrow}\ {\isasymbox}\ {\isacharparenleft}{\isasymexists}\ {\isasymphi}{\isacharparenright}{\isacharparenright}{\isacharparenright}{\isachardoublequoteclose}%
+\ NE\ {\isacharcolon}{\isacharcolon}\ {\isachardoublequoteopen}{\isasymmu}\ {\isasymRightarrow}\ {\isasymsigma}{\isachardoublequoteclose}\ \isakeyword{where}\ {\isachardoublequoteopen}NE\ {\isacharequal}\ {\isacharparenleft}{\isasymlambda}x{\isachardot}\ {\isasymforall}{\isacharparenleft}{\isasymlambda}{\isasymphi}{\isachardot}\ {\isasymphi}\ ess\ x\ m{\isasymrightarrow}\ {\isasymbox}\ {\isacharparenleft}{\isasymexists}\ {\isasymphi}{\isacharparenright}{\isacharparenright}{\isacharparenright}{\isachardoublequoteclose}%
 \begin{isamarkuptext}%
 Moreover, axiom \isa{A{\isadigit{5}}} is added: $P(\NE)$ (Necessary existence is a positive 
 property).%
@@ -316,45 +315,7 @@ The consistency of the entire theory is checked with Nitpick.%
 %
 \isatagproof
 \isacommand{oops}\isamarkupfalse%
-%
-\endisatagproof
-{\isafoldproof}%
-%
-\isadelimproof
-%
-\endisadelimproof
-%
-\begin{isamarkuptext}%
-It has been critisized that G\"odel's ontological argument implies what is called the 
-modal collapse. The prover Satallax \cite{Satallax} can indeed show this, but verification with 
-Metis still fails.%
-\end{isamarkuptext}%
-\isamarkuptrue%
-\ \ \isacommand{lemma}\isamarkupfalse%
-\ MC{\isacharcolon}\ {\isachardoublequoteopen}{\isacharbrackleft}p\ m{\isasymRightarrow}\ {\isacharparenleft}{\isasymbox}\ p{\isacharparenright}{\isacharbrackright}{\isachardoublequoteclose}\isanewline
-%
-\isadelimproof
-\ \ %
-\endisadelimproof
-%
-\isatagproof
-\isacommand{using}\isamarkupfalse%
-\ T{\isadigit{2}}\ T{\isadigit{3}}\ ess{\isacharunderscore}def\ sym%
-\endisatagproof
-{\isafoldproof}%
-%
-\isadelimproof
-%
-\endisadelimproof
-\ \isacommand{sledgehammer}\isamarkupfalse%
-\ {\isacharbrackleft}provers\ {\isacharequal}\ remote{\isacharunderscore}satallax{\isacharbrackright}%
-\isadelimproof
-\ %
-\endisadelimproof
-%
-\isatagproof
-\isacommand{oops}\isamarkupfalse%
-\isanewline
+\ \isanewline
 %
 \endisatagproof
 {\isafoldproof}%

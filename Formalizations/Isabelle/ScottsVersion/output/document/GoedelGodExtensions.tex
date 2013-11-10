@@ -24,15 +24,15 @@ Lifted Leibniz equality is introduced.%
 \end{isamarkuptext}%
 \isamarkuptrue%
 \ \ \isacommand{abbreviation}\isamarkupfalse%
-\ mequals\ {\isacharcolon}{\isacharcolon}\ {\isachardoublequoteopen}{\isasymmu}\ {\isasymRightarrow}\ {\isasymmu}\ {\isasymRightarrow}\ {\isasymsigma}{\isachardoublequoteclose}\ {\isacharparenleft}\isakeyword{infixr}\ {\isachardoublequoteopen}m{\isacharequal}{\isachardoublequoteclose}\ {\isadigit{9}}{\isadigit{0}}{\isacharparenright}\ \isakeyword{where}\ {\isachardoublequoteopen}x\ m{\isacharequal}\ y\ {\isasymequiv}\ {\isasymPi}\ {\isacharparenleft}{\isasymlambda}\ {\isasymphi}{\isachardot}{\isacharparenleft}{\isasymphi}\ x\ m{\isasymRightarrow}\ {\isasymphi}\ y{\isacharparenright}{\isacharparenright}{\isachardoublequoteclose}%
+\ mequals\ {\isacharcolon}{\isacharcolon}\ {\isachardoublequoteopen}{\isasymmu}\ {\isasymRightarrow}\ {\isasymmu}\ {\isasymRightarrow}\ {\isasymsigma}{\isachardoublequoteclose}\ {\isacharparenleft}\isakeyword{infixr}\ {\isachardoublequoteopen}m{\isacharequal}{\isachardoublequoteclose}\ {\isadigit{9}}{\isadigit{0}}{\isacharparenright}\ \isakeyword{where}\ {\isachardoublequoteopen}x\ m{\isacharequal}\ y\ {\isasymequiv}\ {\isasymforall}{\isacharparenleft}{\isasymlambda}\ {\isasymphi}{\isachardot}{\isacharparenleft}{\isasymphi}\ x\ m{\isasymrightarrow}\ {\isasymphi}\ y{\isacharparenright}{\isacharparenright}{\isachardoublequoteclose}%
 \begin{isamarkuptext}%
 G\"odel's God is flawless, that is, he has only positive properties.%
 \end{isamarkuptext}%
 \isamarkuptrue%
 \ \ \isacommand{theorem}\isamarkupfalse%
-\ Flawless{\isacharcolon}\ {\isachardoublequoteopen}{\isacharbrackleft}{\isasymPi}\ {\isacharparenleft}{\isasymlambda}{\isasymphi}{\isachardot}\ {\isasymforall}\ {\isacharparenleft}{\isasymlambda}x{\isachardot}\ {\isacharparenleft}G\ x\ m{\isasymRightarrow}\ {\isacharparenleft}m{\isasymnot}\ {\isacharparenleft}P\ {\isasymphi}{\isacharparenright}\ m{\isasymRightarrow}\ m{\isasymnot}\ {\isacharparenleft}{\isasymphi}\ x{\isacharparenright}{\isacharparenright}{\isacharparenright}{\isacharparenright}{\isacharparenright}{\isacharbrackright}{\isachardoublequoteclose}\isanewline
+\ Flawless{\isacharcolon}\ {\isachardoublequoteopen}{\isacharbrackleft}{\isasymforall}{\isacharparenleft}{\isasymlambda}{\isasymphi}{\isachardot}\ {\isasymforall}{\isacharparenleft}{\isasymlambda}x{\isachardot}\ {\isacharparenleft}G\ x\ m{\isasymrightarrow}\ {\isacharparenleft}m{\isasymnot}\ {\isacharparenleft}P\ {\isasymphi}{\isacharparenright}\ m{\isasymrightarrow}\ m{\isasymnot}\ {\isacharparenleft}{\isasymphi}\ x{\isacharparenright}{\isacharparenright}{\isacharparenright}{\isacharparenright}{\isacharparenright}{\isacharbrackright}{\isachardoublequoteclose}\isanewline
 \ \ \isacommand{sledgehammer}\isamarkupfalse%
-\ {\isacharbrackleft}provers\ {\isacharequal}\ remote{\isacharunderscore}leo{\isadigit{2}}{\isacharbrackright}%
+\ {\isacharbrackleft}provers\ {\isacharequal}\ remote{\isacharunderscore}leo{\isadigit{2}}\ remote{\isacharunderscore}satallax{\isacharbrackright}%
 \isadelimproof
 \ %
 \endisadelimproof
@@ -53,7 +53,7 @@ there is only one God-like being.%
 \end{isamarkuptext}%
 \isamarkuptrue%
 \ \ \isacommand{theorem}\isamarkupfalse%
-\ Monotheism{\isacharcolon}\ {\isachardoublequoteopen}{\isacharbrackleft}{\isasymforall}\ {\isacharparenleft}{\isasymlambda}x{\isachardot}\ {\isasymforall}\ {\isacharparenleft}{\isasymlambda}y{\isachardot}\ {\isacharparenleft}G{\isacharparenleft}x{\isacharparenright}\ m{\isasymRightarrow}\ {\isacharparenleft}G{\isacharparenleft}y{\isacharparenright}\ m{\isasymRightarrow}\ {\isacharparenleft}x\ m{\isacharequal}\ y{\isacharparenright}{\isacharparenright}{\isacharparenright}{\isacharparenright}{\isacharparenright}{\isacharbrackright}{\isachardoublequoteclose}\isanewline
+\ Monotheism{\isacharcolon}\ {\isachardoublequoteopen}{\isacharbrackleft}{\isasymforall}{\isacharparenleft}{\isasymlambda}x{\isachardot}\ {\isasymforall}{\isacharparenleft}{\isasymlambda}y{\isachardot}\ {\isacharparenleft}G{\isacharparenleft}x{\isacharparenright}\ m{\isasymrightarrow}\ {\isacharparenleft}G{\isacharparenleft}y{\isacharparenright}\ m{\isasymrightarrow}\ {\isacharparenleft}x\ m{\isacharequal}\ y{\isacharparenright}{\isacharparenright}{\isacharparenright}{\isacharparenright}{\isacharparenright}{\isacharbrackright}{\isachardoublequoteclose}\isanewline
 \ \ \isacommand{sledgehammer}\isamarkupfalse%
 \ {\isacharbrackleft}provers\ {\isacharequal}\ remote{\isacharunderscore}leo{\isadigit{2}}{\isacharbrackright}%
 \isadelimproof
