@@ -31,7 +31,7 @@ section {* Introduction *}
  Coq \cite{Coq} formalizations at 
  \url{https://github.com/FormalTheology/GoedelGod/tree/master/Formalizations/}.
  
- A medieval ontological argument by Anselm was formalized in PVS by John Rushby \cite{ToDo}.
+ An older ontological argument by Anselm was formalized in PVS by John Rushby \cite{rushby}.
  \end{enumerate} *}
 
 section {* An Embedding of QML KB in HOL *}
@@ -44,12 +44,7 @@ are introduced. *}
 
 text {* Possible worlds are connected by an accessibility relation @{text "r"}.*} 
 
-  consts r :: "i \<Rightarrow> i \<Rightarrow> bool" (infixr "r" 70)    -- "accessibility relation r"
-
-text {* The @{text "B"} axiom (symmetry) for relation r is stated. @{text "B"} is needed only 
-for proving theorem T3. *}
-
-  axiomatization where sym: "x r y \<longrightarrow> y r x"    
+  consts r :: "i \<Rightarrow> i \<Rightarrow> bool" (infixr "r" 70)    -- "accessibility relation r"   
 
 text {* QML formulas are translated as HOL terms of type @{typ "i \<Rightarrow> bool"}. 
 This type is abbreviated as @{text "\<sigma>"}. *}
@@ -129,14 +124,13 @@ text {* Axiom @{text "A4"} is added: $\all \phi [P(\phi) \to \Box \; P(\phi)]$
   axiomatization where A4:  "[\<forall>(\<lambda>\<phi>. P \<phi> m\<rightarrow> \<box> (P \<phi>))]" 
 
 text {* Symbol @{text "ess"} for `Essence' is introduced and defined as 
-$\ess{\varphi}{x} \biimp \varphi(x) \wedge \all \psi (\psi(x) \imp \nec \all y (\varphi(y) 
-\imp \psi(y)))$ (An \emph{essence} of an individual is a property possessed by it 
-and necessarily implying any of its properties). *}
+$$\ess{\varphi}{x} \biimp \varphi(x) \wedge \all \psi (\psi(x) \imp \nec \all y (\varphi(y) 
+\imp \psi(y)))$$ (An \emph{essence} of an individual is a property possessed by it and necessarily implying any of its properties). *}
 
   definition ess :: "(\<mu> \<Rightarrow> \<sigma>) \<Rightarrow> \<mu> \<Rightarrow> \<sigma>" (infixr "ess" 85) where
     "\<phi> ess x = \<phi> x m\<and> \<forall>(\<lambda>\<psi>. \<psi> x m\<rightarrow> \<box> (\<forall>(\<lambda>y. \<phi> y m\<rightarrow> \<psi> y)))"
 
-text {* Next, Sledgehammer and Metis prove theorem @{text "T2"}: $\all x [G(x) \imp \ess{G}{x}]$ 
+text {* Next, Sledgehammer and Metis prove theorem @{text "T2"}: $\all x [G(x) \imp \ess{G}{x}]$ \\
 (Being God-like is an essence of any God-like being). *}
 
   theorem T2: "[\<forall>(\<lambda>x. G x m\<rightarrow> G ess x)]"
@@ -144,7 +138,7 @@ text {* Next, Sledgehammer and Metis prove theorem @{text "T2"}: $\all x [G(x) \
   by (metis A1b A4 G_def ess_def)
 
 text {* Symbol @{text "NE"}, for `Necessary Existence', is introduced and
-defined as $\NE(x) \biimp \all \varphi [\ess{\varphi}{x} \imp \nec \ex y \varphi(y)]$ (Necessary 
+defined as $$\NE(x) \biimp \all \varphi [\ess{\varphi}{x} \imp \nec \ex y \varphi(y)]$$ (Necessary 
 existence of an individual is the necessary exemplification of all its essences). *}
 
   definition NE :: "\<mu> \<Rightarrow> \<sigma>" where "NE = (\<lambda>x. \<forall>(\<lambda>\<phi>. \<phi> ess x m\<rightarrow> \<box> (\<exists> \<phi>)))"
@@ -154,12 +148,19 @@ property). *}
 
   axiomatization where A5:  "[P NE]"
 
-text {* Finally, Sledgehammer and Metis prove the main theorem @{text "T3"}: $\nec \ex x G(x)$ 
+text {* The @{text "B"} axiom (symmetry) for relation r is stated. @{text "B"} is needed only 
+for proving theorem T3. *}
+
+  axiomatization where sym: "x r y \<longrightarrow> y r x" 
+
+text {* Finally, Sledgehammer and Metis prove the main theorem @{text "T3"}: $\nec \ex x G(x)$ \\
 (Necessarily, God exists). *}
 
   theorem T3: "[\<box> (\<exists> G)]" 
   sledgehammer [provers = remote_leo2] 
   by (metis A5 C T2 sym G_def NE_def)
+
+text {* Surprisingly, the following corollary can be derived even without the @{text "T"} axiom (reflexivity). *}
 
   corollary C2: "[\<exists> G]" 
   sledgehammer [provers = remote_leo2](T1 T3 G_def sym) 

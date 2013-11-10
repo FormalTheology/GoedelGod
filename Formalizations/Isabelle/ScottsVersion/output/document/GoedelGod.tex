@@ -45,7 +45,7 @@ Dana Scott's version \cite{ScottNotes}
  Coq \cite{Coq} formalizations at 
  \url{https://github.com/FormalTheology/GoedelGod/tree/master/Formalizations/}.
  
- A medieval ontological argument by Anselm was formalized in PVS by John Rushby \cite{ToDo}.
+ An older ontological argument by Anselm was formalized in PVS by John Rushby \cite{rushby}.
  \end{enumerate}%
 \end{isamarkuptext}%
 \isamarkuptrue%
@@ -79,13 +79,6 @@ Possible worlds are connected by an accessibility relation \isa{r}.%
 }
 %
 \begin{isamarkuptext}%
-The \isa{B} axiom (symmetry) for relation r is stated. \isa{B} is needed only 
-for proving theorem T3.%
-\end{isamarkuptext}%
-\isamarkuptrue%
-\ \ \isacommand{axiomatization}\isamarkupfalse%
-\ \isakeyword{where}\ sym{\isacharcolon}\ {\isachardoublequoteopen}x\ r\ y\ {\isasymlongrightarrow}\ y\ r\ x{\isachardoublequoteclose}%
-\begin{isamarkuptext}%
 QML formulas are translated as HOL terms of type \isa{i\ {\isasymRightarrow}\ bool}. 
 This type is abbreviated as \isa{{\isasymsigma}}.%
 \end{isamarkuptext}%
@@ -97,16 +90,23 @@ The classical connectives $\neg, \wedge, \rightarrow$, and $\forall$
 (over individuals and over sets of individuals) and $\exists$ (over individuals) are
 lifted to type $\sigma$. The lifted connectives are \isa{m{\isasymnot}}, \isa{m{\isasymand}}, \isa{m{\isasymrightarrow}},
 \isa{{\isasymforall}}, and \isa{{\isasymexists}} (the latter two are modeled as constant symbols). 
-Other connectives could be introduced analogously. Definitions could be used instead of 
-abbreviations.%
+Other connectives can be introduced analogously. We exemplarily do this for $\vee$, 
+$\leftrightarrow$, and $=$. Moreover, the modal operators $\Box$ and $\diamond$ are introduced.
+Definitions could be used instead of abbreviations.%
 \end{isamarkuptext}%
 \isamarkuptrue%
 \ \ \isacommand{abbreviation}\isamarkupfalse%
 \ mnot\ {\isacharcolon}{\isacharcolon}\ {\isachardoublequoteopen}{\isasymsigma}\ {\isasymRightarrow}\ {\isasymsigma}{\isachardoublequoteclose}\ {\isacharparenleft}{\isachardoublequoteopen}m{\isasymnot}{\isachardoublequoteclose}{\isacharparenright}\ \isakeyword{where}\ {\isachardoublequoteopen}m{\isasymnot}\ {\isasymphi}\ {\isasymequiv}\ {\isacharparenleft}{\isasymlambda}w{\isachardot}\ {\isasymnot}\ {\isasymphi}\ w{\isacharparenright}{\isachardoublequoteclose}\ \ \ \ \isanewline
 \ \ \isacommand{abbreviation}\isamarkupfalse%
-\ mand\ {\isacharcolon}{\isacharcolon}\ {\isachardoublequoteopen}{\isasymsigma}\ {\isasymRightarrow}\ {\isasymsigma}\ {\isasymRightarrow}\ {\isasymsigma}{\isachardoublequoteclose}\ {\isacharparenleft}\isakeyword{infixr}\ {\isachardoublequoteopen}m{\isasymand}{\isachardoublequoteclose}\ {\isadigit{7}}{\isadigit{9}}{\isacharparenright}\ \isakeyword{where}\ {\isachardoublequoteopen}{\isasymphi}\ m{\isasymand}\ {\isasympsi}\ {\isasymequiv}\ {\isacharparenleft}{\isasymlambda}w{\isachardot}\ {\isasymphi}\ w\ {\isasymand}\ {\isasympsi}\ w{\isacharparenright}{\isachardoublequoteclose}\ \ \ \isanewline
+\ mand\ {\isacharcolon}{\isacharcolon}\ {\isachardoublequoteopen}{\isasymsigma}\ {\isasymRightarrow}\ {\isasymsigma}\ {\isasymRightarrow}\ {\isasymsigma}{\isachardoublequoteclose}\ {\isacharparenleft}\isakeyword{infixr}\ {\isachardoublequoteopen}m{\isasymand}{\isachardoublequoteclose}\ {\isadigit{6}}{\isadigit{5}}{\isacharparenright}\ \isakeyword{where}\ {\isachardoublequoteopen}{\isasymphi}\ m{\isasymand}\ {\isasympsi}\ {\isasymequiv}\ {\isacharparenleft}{\isasymlambda}w{\isachardot}\ {\isasymphi}\ w\ {\isasymand}\ {\isasympsi}\ w{\isacharparenright}{\isachardoublequoteclose}\ \ \ \isanewline
+\ \ \isacommand{abbreviation}\isamarkupfalse%
+\ mor\ {\isacharcolon}{\isacharcolon}\ {\isachardoublequoteopen}{\isasymsigma}\ {\isasymRightarrow}\ {\isasymsigma}\ {\isasymRightarrow}\ {\isasymsigma}{\isachardoublequoteclose}\ {\isacharparenleft}\isakeyword{infixr}\ {\isachardoublequoteopen}m{\isasymor}{\isachardoublequoteclose}\ {\isadigit{7}}{\isadigit{0}}{\isacharparenright}\ \isakeyword{where}\ {\isachardoublequoteopen}{\isasymphi}\ m{\isasymor}\ {\isasympsi}\ {\isasymequiv}\ {\isacharparenleft}{\isasymlambda}w{\isachardot}\ {\isasymphi}\ w\ {\isasymor}\ {\isasympsi}\ w{\isacharparenright}{\isachardoublequoteclose}\ \ \ \isanewline
 \ \ \isacommand{abbreviation}\isamarkupfalse%
 \ mimplies\ {\isacharcolon}{\isacharcolon}\ {\isachardoublequoteopen}{\isasymsigma}\ {\isasymRightarrow}\ {\isasymsigma}\ {\isasymRightarrow}\ {\isasymsigma}{\isachardoublequoteclose}\ {\isacharparenleft}\isakeyword{infixr}\ {\isachardoublequoteopen}m{\isasymrightarrow}{\isachardoublequoteclose}\ {\isadigit{7}}{\isadigit{4}}{\isacharparenright}\ \isakeyword{where}\ {\isachardoublequoteopen}{\isasymphi}\ m{\isasymrightarrow}\ {\isasympsi}\ {\isasymequiv}\ {\isacharparenleft}{\isasymlambda}w{\isachardot}\ {\isasymphi}\ w\ {\isasymlongrightarrow}\ {\isasympsi}\ w{\isacharparenright}{\isachardoublequoteclose}\ \ \isanewline
+\ \ \isacommand{abbreviation}\isamarkupfalse%
+\ mequiv{\isacharcolon}{\isacharcolon}\ {\isachardoublequoteopen}{\isasymsigma}\ {\isasymRightarrow}\ {\isasymsigma}\ {\isasymRightarrow}\ {\isasymsigma}{\isachardoublequoteclose}\ {\isacharparenleft}\isakeyword{infixr}\ {\isachardoublequoteopen}m{\isasymequiv}{\isachardoublequoteclose}\ {\isadigit{7}}{\isadigit{6}}{\isacharparenright}\ \isakeyword{where}\ {\isachardoublequoteopen}{\isasymphi}\ m{\isasymequiv}\ {\isasympsi}\ {\isasymequiv}\ {\isacharparenleft}{\isasymlambda}w{\isachardot}\ {\isacharparenleft}{\isasymphi}\ w\ {\isasymlongleftrightarrow}\ {\isasympsi}\ w{\isacharparenright}{\isacharparenright}{\isachardoublequoteclose}\ \ \isanewline
+\ \ \isacommand{abbreviation}\isamarkupfalse%
+\ meq\ {\isacharcolon}{\isacharcolon}\ {\isachardoublequoteopen}{\isacharprime}a\ {\isasymRightarrow}\ {\isacharprime}a\ {\isasymRightarrow}\ {\isasymsigma}{\isachardoublequoteclose}\ {\isacharparenleft}\isakeyword{infixr}\ {\isachardoublequoteopen}m{\isacharequal}{\isachardoublequoteclose}\ {\isadigit{5}}{\isadigit{0}}{\isacharparenright}\ \isakeyword{where}\ {\isachardoublequoteopen}x\ m{\isacharequal}\ y\ {\isasymequiv}\ {\isacharparenleft}{\isasymlambda}w{\isachardot}\ x\ {\isacharequal}\ y{\isacharparenright}{\isachardoublequoteclose}\isanewline
 \ \ \isacommand{abbreviation}\isamarkupfalse%
 \ mforall\ {\isacharcolon}{\isacharcolon}\ {\isachardoublequoteopen}{\isacharparenleft}{\isacharprime}a\ {\isasymRightarrow}\ {\isasymsigma}{\isacharparenright}\ {\isasymRightarrow}\ {\isasymsigma}{\isachardoublequoteclose}\ {\isacharparenleft}{\isachardoublequoteopen}{\isasymforall}{\isachardoublequoteclose}{\isacharparenright}\ \isakeyword{where}\ {\isachardoublequoteopen}{\isasymforall}\ {\isasymPhi}\ {\isasymequiv}\ {\isacharparenleft}{\isasymlambda}w{\isachardot}\ {\isasymforall}x{\isachardot}\ {\isasymPhi}\ x\ w{\isacharparenright}{\isachardoublequoteclose}\ \ \ \isanewline
 \ \ \isacommand{abbreviation}\isamarkupfalse%
@@ -190,9 +190,10 @@ Sledgehammer and Metis then prove corollary \isa{C}: $\pos \ex x G(x)$
 \ \ \isacommand{corollary}\isamarkupfalse%
 \ C{\isacharcolon}\ {\isachardoublequoteopen}{\isacharbrackleft}{\isasymdiamond}\ {\isacharparenleft}{\isasymexists}\ G{\isacharparenright}{\isacharbrackright}{\isachardoublequoteclose}\ \isanewline
 \ \ \isacommand{sledgehammer}\isamarkupfalse%
-\ {\isacharbrackleft}provers\ {\isacharequal}\ remote{\isacharunderscore}leo{\isadigit{2}}{\isacharbrackright}%
+\ {\isacharbrackleft}provers\ {\isacharequal}\ remote{\isacharunderscore}leo{\isadigit{2}}{\isacharbrackright}\ \isanewline
+%
 \isadelimproof
-\ %
+\ \ %
 \endisadelimproof
 %
 \isatagproof
@@ -214,25 +215,25 @@ Axiom \isa{A{\isadigit{4}}} is added: $\all \phi [P(\phi) \to \Box \; P(\phi)]$
 \ \isakeyword{where}\ A{\isadigit{4}}{\isacharcolon}\ \ {\isachardoublequoteopen}{\isacharbrackleft}{\isasymforall}{\isacharparenleft}{\isasymlambda}{\isasymphi}{\isachardot}\ P\ {\isasymphi}\ m{\isasymrightarrow}\ {\isasymbox}\ {\isacharparenleft}P\ {\isasymphi}{\isacharparenright}{\isacharparenright}{\isacharbrackright}{\isachardoublequoteclose}%
 \begin{isamarkuptext}%
 Symbol \isa{ess} for `Essence' is introduced and defined as 
-$\ess{\varphi}{x} \biimp \varphi(x) \wedge \all \psi (\psi(x) \imp \nec \all y (\varphi(y) 
-\imp \psi(y)))$ (An \emph{essence} of an individual is a property possessed by it 
-and necessarily implying any of its properties).%
+$$\ess{\varphi}{x} \biimp \varphi(x) \wedge \all \psi (\psi(x) \imp \nec \all y (\varphi(y) 
+\imp \psi(y)))$$ (An \emph{essence} of an individual is a property possessed by it and necessarily implying any of its properties).%
 \end{isamarkuptext}%
 \isamarkuptrue%
 \ \ \isacommand{definition}\isamarkupfalse%
 \ ess\ {\isacharcolon}{\isacharcolon}\ {\isachardoublequoteopen}{\isacharparenleft}{\isasymmu}\ {\isasymRightarrow}\ {\isasymsigma}{\isacharparenright}\ {\isasymRightarrow}\ {\isasymmu}\ {\isasymRightarrow}\ {\isasymsigma}{\isachardoublequoteclose}\ {\isacharparenleft}\isakeyword{infixr}\ {\isachardoublequoteopen}ess{\isachardoublequoteclose}\ {\isadigit{8}}{\isadigit{5}}{\isacharparenright}\ \isakeyword{where}\isanewline
 \ \ \ \ {\isachardoublequoteopen}{\isasymphi}\ ess\ x\ {\isacharequal}\ {\isasymphi}\ x\ m{\isasymand}\ {\isasymforall}{\isacharparenleft}{\isasymlambda}{\isasympsi}{\isachardot}\ {\isasympsi}\ x\ m{\isasymrightarrow}\ {\isasymbox}\ {\isacharparenleft}{\isasymforall}{\isacharparenleft}{\isasymlambda}y{\isachardot}\ {\isasymphi}\ y\ m{\isasymrightarrow}\ {\isasympsi}\ y{\isacharparenright}{\isacharparenright}{\isacharparenright}{\isachardoublequoteclose}%
 \begin{isamarkuptext}%
-Next, Sledgehammer and Metis prove theorem \isa{T{\isadigit{2}}}: $\all x [G(x) \imp \ess{G}{x}]$ 
+Next, Sledgehammer and Metis prove theorem \isa{T{\isadigit{2}}}: $\all x [G(x) \imp \ess{G}{x}]$ \\
 (Being God-like is an essence of any God-like being).%
 \end{isamarkuptext}%
 \isamarkuptrue%
 \ \ \isacommand{theorem}\isamarkupfalse%
 \ T{\isadigit{2}}{\isacharcolon}\ {\isachardoublequoteopen}{\isacharbrackleft}{\isasymforall}{\isacharparenleft}{\isasymlambda}x{\isachardot}\ G\ x\ m{\isasymrightarrow}\ G\ ess\ x{\isacharparenright}{\isacharbrackright}{\isachardoublequoteclose}\isanewline
 \ \ \isacommand{sledgehammer}\isamarkupfalse%
-\ {\isacharbrackleft}provers\ {\isacharequal}\ remote{\isacharunderscore}leo{\isadigit{2}}{\isacharbrackright}%
+\ {\isacharbrackleft}provers\ {\isacharequal}\ remote{\isacharunderscore}leo{\isadigit{2}}{\isacharbrackright}\ \isanewline
+%
 \isadelimproof
-\ %
+\ \ %
 \endisadelimproof
 %
 \isatagproof
@@ -247,7 +248,7 @@ Next, Sledgehammer and Metis prove theorem \isa{T{\isadigit{2}}}: $\all x [G(x) 
 %
 \begin{isamarkuptext}%
 Symbol \isa{NE}, for `Necessary Existence', is introduced and
-defined as $\NE(x) \biimp \all \varphi [\ess{\varphi}{x} \imp \nec \ex y \varphi(y)]$ (Necessary 
+defined as $$\NE(x) \biimp \all \varphi [\ess{\varphi}{x} \imp \nec \ex y \varphi(y)]$$ (Necessary 
 existence of an individual is the necessary exemplification of all its essences).%
 \end{isamarkuptext}%
 \isamarkuptrue%
@@ -261,16 +262,24 @@ property).%
 \ \ \isacommand{axiomatization}\isamarkupfalse%
 \ \isakeyword{where}\ A{\isadigit{5}}{\isacharcolon}\ \ {\isachardoublequoteopen}{\isacharbrackleft}P\ NE{\isacharbrackright}{\isachardoublequoteclose}%
 \begin{isamarkuptext}%
-Finally, Sledgehammer and Metis prove the main theorem \isa{T{\isadigit{3}}}: $\nec \ex x G(x)$ 
+The \isa{B} axiom (symmetry) for relation r is stated. \isa{B} is needed only 
+for proving theorem T3.%
+\end{isamarkuptext}%
+\isamarkuptrue%
+\ \ \isacommand{axiomatization}\isamarkupfalse%
+\ \isakeyword{where}\ sym{\isacharcolon}\ {\isachardoublequoteopen}x\ r\ y\ {\isasymlongrightarrow}\ y\ r\ x{\isachardoublequoteclose}%
+\begin{isamarkuptext}%
+Finally, Sledgehammer and Metis prove the main theorem \isa{T{\isadigit{3}}}: $\nec \ex x G(x)$ \\
 (Necessarily, God exists).%
 \end{isamarkuptext}%
 \isamarkuptrue%
 \ \ \isacommand{theorem}\isamarkupfalse%
 \ T{\isadigit{3}}{\isacharcolon}\ {\isachardoublequoteopen}{\isacharbrackleft}{\isasymbox}\ {\isacharparenleft}{\isasymexists}\ G{\isacharparenright}{\isacharbrackright}{\isachardoublequoteclose}\ \isanewline
 \ \ \isacommand{sledgehammer}\isamarkupfalse%
-\ {\isacharbrackleft}provers\ {\isacharequal}\ remote{\isacharunderscore}leo{\isadigit{2}}{\isacharbrackright}%
+\ {\isacharbrackleft}provers\ {\isacharequal}\ remote{\isacharunderscore}leo{\isadigit{2}}{\isacharbrackright}\ \isanewline
+%
 \isadelimproof
-\ %
+\ \ %
 \endisadelimproof
 %
 \isatagproof
@@ -282,14 +291,18 @@ Finally, Sledgehammer and Metis prove the main theorem \isa{T{\isadigit{3}}}: $\
 \isadelimproof
 %
 \endisadelimproof
-\isanewline
-\isanewline
+%
+\begin{isamarkuptext}%
+Surprisingly, the following corollary can be derived even without the \isa{T} axiom (reflexivity).%
+\end{isamarkuptext}%
+\isamarkuptrue%
 \ \ \isacommand{corollary}\isamarkupfalse%
 \ C{\isadigit{2}}{\isacharcolon}\ {\isachardoublequoteopen}{\isacharbrackleft}{\isasymexists}\ G{\isacharbrackright}{\isachardoublequoteclose}\ \isanewline
 \ \ \isacommand{sledgehammer}\isamarkupfalse%
-\ {\isacharbrackleft}provers\ {\isacharequal}\ remote{\isacharunderscore}leo{\isadigit{2}}{\isacharbrackright}{\isacharparenleft}T{\isadigit{1}}\ T{\isadigit{3}}\ G{\isacharunderscore}def\ sym{\isacharparenright}%
+\ {\isacharbrackleft}provers\ {\isacharequal}\ remote{\isacharunderscore}leo{\isadigit{2}}{\isacharbrackright}{\isacharparenleft}T{\isadigit{1}}\ T{\isadigit{3}}\ G{\isacharunderscore}def\ sym{\isacharparenright}\ \isanewline
+%
 \isadelimproof
-\ %
+\ \ %
 \endisadelimproof
 %
 \isatagproof
