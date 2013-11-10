@@ -60,12 +60,16 @@ text {* The classical connectives $\neg, \wedge, \rightarrow$, and $\forall$
 (over individuals and over sets of individuals) and $\exists$ (over individuals) are
 lifted to type $\sigma$. The lifted connectives are @{text "m\<not>"}, @{text "m\<and>"}, @{text "m\<rightarrow>"},
 @{text "\<forall>"}, and @{text "\<exists>"} (the latter two are modeled as constant symbols). 
-Other connectives could be introduced analogously. Definitions could be used instead of 
-abbreviations. *}
+Other connectives can be introduced analogously. We exemplarily do this for $\vee$, 
+$\leftrightarrow$, and $=$. Moreover, the modal operators $\Box$ and $\diamond$ are introduced.
+Definitions could be used instead of abbreviations. *}
 
   abbreviation mnot :: "\<sigma> \<Rightarrow> \<sigma>" ("m\<not>") where "m\<not> \<phi> \<equiv> (\<lambda>w. \<not> \<phi> w)"    
-  abbreviation mand :: "\<sigma> \<Rightarrow> \<sigma> \<Rightarrow> \<sigma>" (infixr "m\<and>" 79) where "\<phi> m\<and> \<psi> \<equiv> (\<lambda>w. \<phi> w \<and> \<psi> w)"   
+  abbreviation mand :: "\<sigma> \<Rightarrow> \<sigma> \<Rightarrow> \<sigma>" (infixr "m\<and>" 65) where "\<phi> m\<and> \<psi> \<equiv> (\<lambda>w. \<phi> w \<and> \<psi> w)"   
+  abbreviation mor :: "\<sigma> \<Rightarrow> \<sigma> \<Rightarrow> \<sigma>" (infixr "m\<or>" 70) where "\<phi> m\<or> \<psi> \<equiv> (\<lambda>w. \<phi> w \<or> \<psi> w)"   
   abbreviation mimplies :: "\<sigma> \<Rightarrow> \<sigma> \<Rightarrow> \<sigma>" (infixr "m\<rightarrow>" 74) where "\<phi> m\<rightarrow> \<psi> \<equiv> (\<lambda>w. \<phi> w \<longrightarrow> \<psi> w)"  
+  abbreviation mequiv:: "\<sigma> \<Rightarrow> \<sigma> \<Rightarrow> \<sigma>" (infixr "m\<equiv>" 76) where "\<phi> m\<equiv> \<psi> \<equiv> (\<lambda>w. (\<phi> w \<longrightarrow>  \<psi> w) \<and> (\<psi> w \<longrightarrow> \<phi> w))"  
+  abbreviation meq :: "'a \<Rightarrow> 'a \<Rightarrow> \<sigma>" (infixr "m=" 50) where "x m= y \<equiv> (\<lambda>w. x = y)"
   abbreviation mforall :: "('a \<Rightarrow> \<sigma>) \<Rightarrow> \<sigma>" ("\<forall>") where "\<forall> \<Phi> \<equiv> (\<lambda>w. \<forall>x. \<Phi> x w)"   
   abbreviation mexists :: "('a \<Rightarrow> \<sigma>) \<Rightarrow> \<sigma>" ("\<exists>") where "\<exists> \<Phi> \<equiv> (\<lambda>w. \<exists>x. \<Phi> x w)"
   abbreviation mbox :: "\<sigma> \<Rightarrow> \<sigma>" ("\<box>") where "\<box> \<phi> \<equiv> (\<lambda>w. \<forall>v.  w r v \<longrightarrow> \<phi> v)"
@@ -116,7 +120,8 @@ Sledgehammer and Metis then prove corollary @{text "C"}: $\pos \ex x G(x)$
   axiomatization where A3:  "[P G]" 
 
   corollary C: "[\<diamond> (\<exists> G)]" 
-  sledgehammer [provers = remote_leo2] by (metis A3 T1)
+  sledgehammer [provers = remote_leo2] 
+  by (metis A3 T1)
 
 text {* Axiom @{text "A4"} is added: $\all \phi [P(\phi) \to \Box \; P(\phi)]$ 
 (Positive properties are necessarily positive). *}
@@ -135,7 +140,8 @@ text {* Next, Sledgehammer and Metis prove theorem @{text "T2"}: $\all x [G(x) \
 (Being God-like is an essence of any God-like being). *}
 
   theorem T2: "[\<forall>(\<lambda>x. G x m\<rightarrow> G ess x)]"
-  sledgehammer [provers = remote_leo2] by (metis A1b A4 G_def ess_def)
+  sledgehammer [provers = remote_leo2] 
+  by (metis A1b A4 G_def ess_def)
 
 text {* Symbol @{text "NE"}, for `Necessary Existence', is introduced and
 defined as $\NE(x) \biimp \all \varphi [\ess{\varphi}{x} \imp \nec \ex y \varphi(y)]$ (Necessary 
@@ -152,10 +158,12 @@ text {* Finally, Sledgehammer and Metis prove the main theorem @{text "T3"}: $\n
 (Necessarily, God exists). *}
 
   theorem T3: "[\<box> (\<exists> G)]" 
-  sledgehammer [provers = remote_leo2] by (metis A5 C T2 sym G_def NE_def)
+  sledgehammer [provers = remote_leo2] 
+  by (metis A5 C T2 sym G_def NE_def)
 
   corollary C2: "[\<exists> G]" 
-  sledgehammer [provers = remote_leo2](T1 T3 G_def sym) by (metis T1 T3 G_def sym)
+  sledgehammer [provers = remote_leo2](T1 T3 G_def sym) 
+  by (metis T1 T3 G_def sym)
 
 text {* The consistency of the entire theory is checked with Nitpick. *}
 
