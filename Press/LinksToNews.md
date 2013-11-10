@@ -57,12 +57,25 @@ Italy
 
 [Repubblica](http://www.repubblica.it/scienze/2013/10/24/news/dimostrato_teorema_godel-69340116/)
 
+[Repubblica Ricerca](http://ricerca.repubblica.it/repubblica/archivio/repubblica/2013/11/03/se-un-computer-pensa-di-voler-dimostrare.html)
+
+[La Stampa](http://rassegnastampa.unipi.it/rassegna/archivio/2013/10/30SIJ3117.PDF)
+
 [Today.it](http://www.today.it/tech/godel-teorema-dio-esiste.html)
 
 [Ilsussidario](http://www.ilsussidiario.net/News/Scienze/2013/10/24/ESISTENZA-DI-DIO-Due-scienziati-tedeschi-formalizzano-il-teorema-di-Kurt-G-del/438302/)
 
 [AGI](http://www.agi.it/research-e-sviluppo/notizie/201310241345-eco-rt10187-scienza_dimostrato_teorema_matematico_di_godel_su_esistenza_dio)
 
+[Science and Religion in Media](http://www.srmedia.info/joomla/index.php?option=com_content&view=article&id=1485:dimostrata-la-prova-ontologica-di-godel-dellesistenza-di-dio-&catid=229:news-ottobre-2013&Itemid=100)
+
+[Leo Hi-Tech](http://hi-tech.leonardo.it/dio-esiste-calcolata-lesistenza-di-dio-al-computer/)
+
+[Epoch Times Italia](http://epochtimes.it/news/ricercatori-tedeschi-dimostrano-teorema-di-godel-sull-esistenza-di-dio---124499)
+
+[Net1News](http://www.net1news.org/scienze/matematici-dimostrano-teorema-di-godel-sullesistenza-di-dio.html)
+
+[Il Post](http://www.ilpost.it/mauriziocodogno/2013/10/26/godel-dio-e-repubblica/)
 
 Spain
 -----
