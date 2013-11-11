@@ -17,11 +17,22 @@ text {* Lifted Leibniz equality indeed denotes equality. *}
   sledgehammer [provers = remote_leo2] by metis 
     
   lemma eqtest2 : "[x mL= y] \<Longrightarrow> x = y"
-  sledgehammer [provers = remote_satallax] oops
+  sledgehammer [provers = remote_satallax remote_leo2] oops
   
-  lemma eqtest3 : "(x = y) \<Longrightarrow> (x \<equiv> y)"
-  sledgehammer [provers = remote_satallax] oops
+  lemma eqtest2 : "[x m= y] \<Longrightarrow> x = y"
+  sledgehammer [provers = remote_satallax remote_leo2] by metis
+  
+  lemma eqtest3 : "[(x m= y) m\<rightarrow> (\<lambda>w. x = y)]"
+  sledgehammer [provers = remote_satallax remote_leo2] by metis
+  
+  lemma eqtest4 : "(x = y) \<Longrightarrow> (x \<equiv> y)"
+  sledgehammer [provers = remote_satallax remote_leo2] oops
 
+  lemma eqtest5 : "[x m= y] \<Longrightarrow> [x mL= y]"
+  sledgehammer [provers = remote_satallax remote_leo2] by metis
+  
+  lemma eqtest6 : "[x mL= y] \<Longrightarrow> [x m= y]"
+  sledgehammer [provers = remote_satallax remote_leo2] oops
   
 text {* Lifted Leibniz Equality is a fully extensional congruence relation. *}    
   
@@ -52,8 +63,17 @@ text {* Lifted Leibniz Equality is a fully extensional congruence relation. *}
 text {* Interestingly, the nontrivial direction of Boolean extensionality for lifted Leibniz 
 equality fails --- this is something to look at. *}    
   
-  lemma eqttest_boolExt : "[\<forall>(\<lambda>p.\<forall>(\<lambda>q. (p m\<equiv> q) m\<rightarrow> (p mL= q)))]"
-  sledgehammer [overlord, remote_leo2 remote_satallax] oops
+  lemma eqttest_boolExt1 : "[\<forall>(\<lambda>p.\<forall>(\<lambda>q. (p m\<equiv> q) m\<rightarrow> (p mL= q)))]"
+  sledgehammer [remote_leo2 remote_satallax] oops
+  
+  lemma eqttest_boolExt2 : "[\<forall>(\<lambda>p.\<forall>(\<lambda>q. (p m= q) m\<rightarrow> (p mL= q)))]"
+  sledgehammer [remote_leo2 remote_satallax] by metis
+  
+  lemma eqttest_boolExt3 : "[\<forall>(\<lambda>p.\<forall>(\<lambda>q. (p mL= q) m\<rightarrow> (p m= q)))]"
+  sledgehammer [remote_leo2 remote_satallax] oops
+  
+  lemma eqttest_boolExt4 : "[\<forall>(\<lambda>p.\<forall>(\<lambda>q. (p m\<equiv> q) m\<rightarrow> (p m= q)))]"
+  sledgehammer [remote_leo2 remote_satallax] oops
   
 (*<*) 
 end

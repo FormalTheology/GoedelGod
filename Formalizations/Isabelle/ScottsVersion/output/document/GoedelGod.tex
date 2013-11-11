@@ -21,7 +21,7 @@
 %
 \begin{isamarkuptext}%
 Dana Scott's version \cite{ScottNotes}
- of Goedel's ontological argument \cite{GoedelNotes} for God's existence is here
+ of Goedel's ontological argument \cite{GoedelNotes} is 
  formalized in quantified modal logic KB (QML KB) within the proof assistant Isabelle/HOL. 
  QML KB is  modeled as a fragment of classical higher-order logic (HOL); 
  thus, the formalization is essentially a formalization in HOL. The employed embedding 
@@ -34,6 +34,8 @@ Dana Scott's version \cite{ScottNotes}
  theorem prover LEO-II \cite{LEO-II}. Sledgehammer then suggests the 
  Metis \cite{Metis} calls. The Metis proofs are verified by Isabelle/HOL.
  For consistency checking, the model finder Nitpick \cite{Nitpick} has been employed.
+ The successfull calls to Sledgehammer (normally, they automatically eliminated by Isabelle/HOL)
+ are deliberately kept in the file for demonstration purposes.
  
  Isabelle is described in the textbook by Nipkow, 
  Paulson, and Wenzel \cite{Isabelle} and in tutorials available 
@@ -45,8 +47,7 @@ Dana Scott's version \cite{ScottNotes}
  Coq \cite{Coq} formalizations at 
  \url{https://github.com/FormalTheology/GoedelGod/tree/master/Formalizations/}.
  
- An older ontological argument by Anselm was formalized in PVS by John Rushby \cite{rushby}.
- \end{enumerate}%
+ An older ontological argument by Anselm was formalized in PVS by John Rushby \cite{rushby}.%
 \end{isamarkuptext}%
 \isamarkuptrue%
 %
@@ -263,7 +264,7 @@ property).%
 \ \isakeyword{where}\ A{\isadigit{5}}{\isacharcolon}\ \ {\isachardoublequoteopen}{\isacharbrackleft}P\ NE{\isacharbrackright}{\isachardoublequoteclose}%
 \begin{isamarkuptext}%
 The \isa{B} axiom (symmetry) for relation r is stated. \isa{B} is needed only 
-for proving theorem T3.%
+for proving theorem T3 and for corollary C2.%
 \end{isamarkuptext}%
 \isamarkuptrue%
 \ \ \isacommand{axiomatization}\isamarkupfalse%
@@ -293,7 +294,8 @@ Finally, Sledgehammer and Metis prove the main theorem \isa{T{\isadigit{3}}}: $\
 \endisadelimproof
 %
 \begin{isamarkuptext}%
-Surprisingly, the following corollary can be derived even without the \isa{T} axiom (reflexivity).%
+Surprisingly, the following corollary can be derived even without the \isa{T} axiom 
+(reflexivity).%
 \end{isamarkuptext}%
 \isamarkuptrue%
 \ \ \isacommand{corollary}\isamarkupfalse%

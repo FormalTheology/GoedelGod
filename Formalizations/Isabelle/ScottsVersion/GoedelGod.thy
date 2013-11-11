@@ -6,8 +6,9 @@ begin
 (*>*)
 
 section {* Introduction *}
+
  text {* Dana Scott's version \cite{ScottNotes}
- of Goedel's ontological argument \cite{GoedelNotes} for God's existence is here
+ of Goedel's ontological argument \cite{GoedelNotes} is 
  formalized in quantified modal logic KB (QML KB) within the proof assistant Isabelle/HOL. 
  QML KB is  modeled as a fragment of classical higher-order logic (HOL); 
  thus, the formalization is essentially a formalization in HOL. The employed embedding 
@@ -20,6 +21,8 @@ section {* Introduction *}
  theorem prover LEO-II \cite{LEO-II}. Sledgehammer then suggests the 
  Metis \cite{Metis} calls. The Metis proofs are verified by Isabelle/HOL.
  For consistency checking, the model finder Nitpick \cite{Nitpick} has been employed.
+ The successfull calls to Sledgehammer (normally, they automatically eliminated by Isabelle/HOL)
+ are deliberately kept in the file for demonstration purposes.
  
  Isabelle is described in the textbook by Nipkow, 
  Paulson, and Wenzel \cite{Isabelle} and in tutorials available 
@@ -32,7 +35,7 @@ section {* Introduction *}
  \url{https://github.com/FormalTheology/GoedelGod/tree/master/Formalizations/}.
  
  An older ontological argument by Anselm was formalized in PVS by John Rushby \cite{rushby}.
- \end{enumerate} *}
+*}
 
 section {* An Embedding of QML KB in HOL *}
 
@@ -149,7 +152,7 @@ property). *}
   axiomatization where A5:  "[P NE]"
 
 text {* The @{text "B"} axiom (symmetry) for relation r is stated. @{text "B"} is needed only 
-for proving theorem T3. *}
+for proving theorem T3 and for corollary C2. *}
 
   axiomatization where sym: "x r y \<longrightarrow> y r x" 
 
@@ -160,7 +163,8 @@ text {* Finally, Sledgehammer and Metis prove the main theorem @{text "T3"}: $\n
   sledgehammer [provers = remote_leo2] 
   by (metis A5 C T2 sym G_def NE_def)
 
-text {* Surprisingly, the following corollary can be derived even without the @{text "T"} axiom (reflexivity). *}
+text {* Surprisingly, the following corollary can be derived even without the @{text "T"} axiom 
+(reflexivity). *}
 
   corollary C2: "[\<exists> G]" 
   sledgehammer [provers = remote_leo2](T1 T3 G_def sym) 
