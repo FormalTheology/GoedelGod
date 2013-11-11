@@ -16,7 +16,9 @@ text {* G\"odel's God is flawless: (s)he does not have a non-positive property. 
 text {* There is only one God: any two God-like beings are equal. *}   
   
   theorem Monotheism: "[\<forall>(\<lambda>x.\<forall>(\<lambda>y. (G x m\<rightarrow> (G y m\<rightarrow> (x m= y)))))]"
-  sledgehammer [provers = remote_satallax remote_leo2] oops
+  sledgehammer [provers = remote_satallax]
+  sledgehammer [provers = remote_satallax](Flawlessness G_def) oops
+  (* by (metis C sym T2 ess_def) *)
   (* by (metis Flawlessness G_def) *)
 
 text {* Unfortunately, Metis is to weak to reconstruct the proof, i.e. @{text "(metis Flawlessness G_def)"} fails. *}
