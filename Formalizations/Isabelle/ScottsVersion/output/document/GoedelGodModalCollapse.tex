@@ -22,11 +22,11 @@
 \begin{isamarkuptext}%
 G\"odel's axioms have been criticized for entailing the so-called 
 modal collapse. The prover Satallax \cite{Satallax} confirms this. 
-However, sledgehammer does not seem to be able to determine which axioms, 
+However, sledgehammer is not able to determine which axioms, 
 definitions and previous theorems are used by Satallax;
-hence it suggests to call Metis using everything, but this (unsurprisingly) fails.
+hence it suggests to call Metis using everything, but this (unsurprinsingly) fails.
 Attempting to use `Sledegehammer min' to minimize Sledgehammer's suggestion does not work.
-Nevertheless, calling Metis with \isa{T{\isadigit{2}}}, \isa{T{\isadigit{3}}} and \isa{ess{\isacharunderscore}def} does work.%
+Calling Metis with \isa{T{\isadigit{2}}}, \isa{T{\isadigit{3}}} and \isa{ess{\isacharunderscore}def} also does not work.%
 \end{isamarkuptext}%
 \isamarkuptrue%
 \ \ \isacommand{lemma}\isamarkupfalse%
@@ -39,6 +39,9 @@ Nevertheless, calling Metis with \isa{T{\isadigit{2}}}, \isa{T{\isadigit{3}}} an
 %
 \isatagproof
 \isacommand{oops}\isamarkupfalse%
+\isanewline
+\ \ \isanewline
+\isanewline
 %
 \endisatagproof
 {\isafoldproof}%
@@ -46,11 +49,6 @@ Nevertheless, calling Metis with \isa{T{\isadigit{2}}}, \isa{T{\isadigit{3}}} an
 \isadelimproof
 %
 \endisadelimproof
-%
-\begin{isamarkuptext}%
-Chris: \isa{{\isacharparenleft}metis\ T{\isadigit{2}}\ T{\isadigit{3}}\ ess{\isacharunderscore}def{\isacharparenright}} still fails on my iMac, will try on my new MacBook tomorrow and then submit.%
-\end{isamarkuptext}%
-\isamarkuptrue%
 %
 \isadelimtheory
 %
