@@ -1,0 +1,71 @@
+%
+\begin{isabellebody}%
+\def\isabellecontext{GoedelGodModalCollapse}%
+%
+\isadelimtheory
+%
+\endisadelimtheory
+%
+\isatagtheory
+%
+\endisatagtheory
+{\isafoldtheory}%
+%
+\isadelimtheory
+%
+\endisadelimtheory
+%
+\isamarkupsection{Modal Collapse%
+}
+\isamarkuptrue%
+%
+\begin{isamarkuptext}%
+G\"odel's axioms have been criticized for entailing the so-called 
+modal collapse. The prover Satallax \cite{Satallax} confirms this. 
+However, sledgehammer does not seem to be able to determine which axioms, 
+definitions and previous theorems are used by Satallax;
+hence it suggests to call Metis using everything, but this (unsurprisingly) fails.
+Attempting to use `Sledegehammer min' to minimize Sledgehammer's suggestion does not work.
+Nevertheless, calling Metis with \isa{T{\isadigit{2}}}, \isa{T{\isadigit{3}}} and \isa{ess{\isacharunderscore}def} does work.%
+\end{isamarkuptext}%
+\isamarkuptrue%
+\ \ \isacommand{lemma}\isamarkupfalse%
+\ MC{\isacharcolon}\ {\isachardoublequoteopen}{\isacharbrackleft}{\isasymforall}{\isacharparenleft}{\isasymlambda}{\isasymPhi}{\isachardot}{\isacharparenleft}{\isasymPhi}\ m{\isasymrightarrow}\ {\isacharparenleft}{\isasymbox}\ {\isasymPhi}{\isacharparenright}{\isacharparenright}{\isacharparenright}{\isacharbrackright}{\isachardoublequoteclose}\isanewline
+\ \ \isacommand{sledgehammer}\isamarkupfalse%
+\ {\isacharbrackleft}provers\ {\isacharequal}\ remote{\isacharunderscore}satallax{\isacharbrackright}%
+\isadelimproof
+\ %
+\endisadelimproof
+%
+\isatagproof
+\isacommand{oops}\isamarkupfalse%
+%
+\endisatagproof
+{\isafoldproof}%
+%
+\isadelimproof
+%
+\endisadelimproof
+%
+\begin{isamarkuptext}%
+Chris: \isa{{\isacharparenleft}metis\ T{\isadigit{2}}\ T{\isadigit{3}}\ ess{\isacharunderscore}def{\isacharparenright}} still fails on my iMac, will try on my new MacBook tomorrow and then submit.%
+\end{isamarkuptext}%
+\isamarkuptrue%
+%
+\isadelimtheory
+%
+\endisadelimtheory
+%
+\isatagtheory
+%
+\endisatagtheory
+{\isafoldtheory}%
+%
+\isadelimtheory
+%
+\endisadelimtheory
+\end{isabellebody}%
+%%% Local Variables:
+%%% mode: latex
+%%% TeX-master: "root"
+%%% End:

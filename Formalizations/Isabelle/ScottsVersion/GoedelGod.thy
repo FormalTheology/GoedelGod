@@ -8,7 +8,7 @@ begin
 section {* Introduction *}
 
  text {* Dana Scott's version \cite{ScottNotes} (cf.~Fig.~1)
- of Goedel's ontological argument \cite{GoedelNotes} is 
+ of Goedel's ontological argument for God's Existence \cite{GoedelNotes} is 
  formalized in quantified modal logic KB (QML KB) within the proof assistant Isabelle/HOL. 
  QML KB is  modeled as a fragment of classical higher-order logic (HOL); 
  thus, the formalization is essentially a formalization in HOL. The employed embedding 
@@ -18,11 +18,12 @@ section {* Introduction *}
 
  The gaps in Scott's proof have been automated 
  with Sledgehammer \cite{Sledgehammer}, performing remote calls to the higher-order automated
- theorem prover LEO-II \cite{LEO-II}. Sledgehammer then suggests the 
- Metis \cite{Metis} calls. The Metis proofs are verified by Isabelle/HOL.
+ theorem prover LEO-II \cite{LEO-II}. Sledgehammer suggests the 
+ Metis \cite{Metis} calls, which result in proofs that are verified by Isabelle/HOL.
  For consistency checking, the model finder Nitpick \cite{Nitpick} has been employed.
- The successfull calls to Sledgehammer (normally, they automatically eliminated by Isabelle/HOL)
- are deliberately kept in the file for demonstration purposes.
+ The successfull calls to Sledgehammer
+ are deliberately kept in the file for demonstration purposes
+ (normally, they are automatically eliminated by Isabelle/HOL).
  
  Isabelle is described in the textbook by Nipkow, 
  Paulson, and Wenzel \cite{Isabelle} and in tutorials available 
