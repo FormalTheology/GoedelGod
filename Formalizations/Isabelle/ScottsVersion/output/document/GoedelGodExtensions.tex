@@ -24,7 +24,7 @@ G\"odel's God is flawless: (s)he does not have a non-positive property.%
 \end{isamarkuptext}%
 \isamarkuptrue%
 \ \ \isacommand{theorem}\isamarkupfalse%
-\ Flawlessness{\isacharcolon}\ {\isachardoublequoteopen}{\isacharbrackleft}{\isasymforall}{\isacharparenleft}{\isasymlambda}{\isasymphi}{\isachardot}\ {\isasymforall}{\isacharparenleft}{\isasymlambda}x{\isachardot}\ {\isacharparenleft}G\ x\ m{\isasymrightarrow}\ {\isacharparenleft}m{\isasymnot}\ {\isacharparenleft}P\ {\isasymphi}{\isacharparenright}\ m{\isasymrightarrow}\ m{\isasymnot}\ {\isacharparenleft}{\isasymphi}\ x{\isacharparenright}{\isacharparenright}{\isacharparenright}{\isacharparenright}{\isacharparenright}{\isacharbrackright}{\isachardoublequoteclose}\isanewline
+\ Flawlessness{\isacharcolon}\ {\isachardoublequoteopen}{\isacharbrackleft}{\isasymforall}{\isacharparenleft}{\isasymlambda}{\isasymPhi}{\isachardot}\ {\isasymforall}{\isacharparenleft}{\isasymlambda}x{\isachardot}\ {\isacharparenleft}G\ x\ m{\isasymrightarrow}\ {\isacharparenleft}m{\isasymnot}\ {\isacharparenleft}P\ {\isasymPhi}{\isacharparenright}\ m{\isasymrightarrow}\ m{\isasymnot}\ {\isacharparenleft}{\isasymPhi}\ x{\isacharparenright}{\isacharparenright}{\isacharparenright}{\isacharparenright}{\isacharparenright}{\isacharbrackright}{\isachardoublequoteclose}\isanewline
 \ \ \isacommand{sledgehammer}\isamarkupfalse%
 \ {\isacharbrackleft}provers\ {\isacharequal}\ remote{\isacharunderscore}leo{\isadigit{2}}{\isacharbrackright}\ \isanewline
 %
@@ -49,16 +49,13 @@ There is only one God: any two God-like beings are equal.%
 \ \ \isacommand{theorem}\isamarkupfalse%
 \ Monotheism{\isacharcolon}\ {\isachardoublequoteopen}{\isacharbrackleft}{\isasymforall}{\isacharparenleft}{\isasymlambda}x{\isachardot}{\isasymforall}{\isacharparenleft}{\isasymlambda}y{\isachardot}\ {\isacharparenleft}G\ x\ m{\isasymrightarrow}\ {\isacharparenleft}G\ y\ m{\isasymrightarrow}\ {\isacharparenleft}x\ m{\isacharequal}\ y{\isacharparenright}{\isacharparenright}{\isacharparenright}{\isacharparenright}{\isacharparenright}{\isacharbrackright}{\isachardoublequoteclose}\isanewline
 \ \ \isacommand{sledgehammer}\isamarkupfalse%
-\ {\isacharbrackleft}provers\ {\isacharequal}\ remote{\isacharunderscore}satallax\ remote{\isacharunderscore}leo{\isadigit{2}}{\isacharbrackright}\ \isanewline
-%
+\ {\isacharbrackleft}provers\ {\isacharequal}\ remote{\isacharunderscore}satallax\ remote{\isacharunderscore}leo{\isadigit{2}}{\isacharbrackright}%
 \isadelimproof
-\ \ %
+\ %
 \endisadelimproof
 %
 \isatagproof
 \isacommand{oops}\isamarkupfalse%
-\isanewline
-\ \ \isanewline
 %
 \endisatagproof
 {\isafoldproof}%
@@ -66,6 +63,11 @@ There is only one God: any two God-like beings are equal.%
 \isadelimproof
 %
 \endisadelimproof
+%
+\begin{isamarkuptext}%
+Unfortunately, Metis is to weak to reconstruct the proof, i.e. \isa{{\isacharparenleft}metis\ Flawlessness\ G{\isacharunderscore}def{\isacharparenright}} fails.%
+\end{isamarkuptext}%
+\isamarkuptrue%
 %
 \isadelimtheory
 %

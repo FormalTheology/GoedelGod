@@ -1,17 +1,34 @@
 (*<*) 
-theory GoedelGodLeibnizEquality
-imports Main GoedelGod GoedelGodExtensions
+theory StudyOfLiftedEquality
+imports Main
 
 begin
 (*>*)
 
-section {* Lifted Leibniz Equality *}
+  typedecl i    -- "the type for possible worlds" 
+  typedecl \<mu>    -- "the type for indiviuals"      
+  
+  consts r :: "i \<Rightarrow> i \<Rightarrow> bool" (infixr "r" 70)    -- "accessibility relation r"   
 
-text {* Lifted Leibniz equality is introduced. *}
+  type_synonym \<sigma> = "(i \<Rightarrow> bool)"
 
+  abbreviation mnot :: "\<sigma> \<Rightarrow> \<sigma>" ("m\<not>") where "m\<not> \<phi> \<equiv> (\<lambda>w. \<not> \<phi> w)"    
+  abbreviation mand :: "\<sigma> \<Rightarrow> \<sigma> \<Rightarrow> \<sigma>" (infixr "m\<and>" 65) where "\<phi> m\<and> \<psi> \<equiv> (\<lambda>w. \<phi> w \<and> \<psi> w)"   
+  abbreviation mor :: "\<sigma> \<Rightarrow> \<sigma> \<Rightarrow> \<sigma>" (infixr "m\<or>" 70) where "\<phi> m\<or> \<psi> \<equiv> (\<lambda>w. \<phi> w \<or> \<psi> w)"   
+  abbreviation mimplies :: "\<sigma> \<Rightarrow> \<sigma> \<Rightarrow> \<sigma>" (infixr "m\<rightarrow>" 74) where "\<phi> m\<rightarrow> \<psi> \<equiv> (\<lambda>w. \<phi> w \<longrightarrow> \<psi> w)"  
+  abbreviation mequiv:: "\<sigma> \<Rightarrow> \<sigma> \<Rightarrow> \<sigma>" (infixr "m\<equiv>" 76) where "\<phi> m\<equiv> \<psi> \<equiv> (\<lambda>w. (\<phi> w \<longleftrightarrow> \<psi> w))"  
+  abbreviation meq :: "'a \<Rightarrow> 'a \<Rightarrow> \<sigma>" (infixr "m=" 50) where "x m= y \<equiv> (\<lambda>w. x = y)"
+  abbreviation mforall :: "('a \<Rightarrow> \<sigma>) \<Rightarrow> \<sigma>" ("\<forall>") where "\<forall> \<Phi> \<equiv> (\<lambda>w. \<forall>x. \<Phi> x w)"   
+  abbreviation mexists :: "('a \<Rightarrow> \<sigma>) \<Rightarrow> \<sigma>" ("\<exists>") where "\<exists> \<Phi> \<equiv> (\<lambda>w. \<exists>x. \<Phi> x w)"
+  abbreviation mbox :: "\<sigma> \<Rightarrow> \<sigma>" ("\<box>") where "\<box> \<phi> \<equiv> (\<lambda>w. \<forall>v.  w r v \<longrightarrow> \<phi> v)"
+  abbreviation mdia :: "\<sigma> \<Rightarrow> \<sigma>" ("\<diamond>") where "\<diamond> \<phi> \<equiv> (\<lambda>w. \<exists>v. w r v \<and> \<phi> v)" 
+  
   abbreviation mLeibeq :: "'a \<Rightarrow> 'a \<Rightarrow> \<sigma>" (infixr "mL=" 90) where "x mL= y \<equiv> \<forall>(\<lambda>\<phi>.((\<phi> x) m\<rightarrow> (\<phi> y)))" 
 
-text {* Lifted Leibniz equality indeed denotes equality. *}  
+  
+  no_syntax "_list" :: "args \<Rightarrow> 'a list" ("[(_)]") 
+  abbreviation valid :: "\<sigma> \<Rightarrow> bool" ("[_]") where "[p] \<equiv> \<forall>w. p w"
+  
 
   lemma eqtest1 : "x = y \<Longrightarrow> [x mL= y]"
   sledgehammer [provers = remote_leo2] by metis 
@@ -34,7 +51,7 @@ text {* Lifted Leibniz equality indeed denotes equality. *}
   lemma eqtest6 : "[x mL= y] \<Longrightarrow> [x m= y]"
   sledgehammer [provers = remote_satallax remote_leo2] oops
   
-text {* Lifted Leibniz Equality is a fully extensional congruence relation. *}    
+(* Lifted Leibniz Equality is a fully extensional congruence relation. *)    
   
   lemma eqttest_refl : "[\<forall>(\<lambda>x. x mL= x)]"
   sledgehammer [provers = remote_leo2] by metis
@@ -60,8 +77,8 @@ text {* Lifted Leibniz Equality is a fully extensional congruence relation. *}
   lemma eqttest_funcExt : "[\<forall>(\<lambda>f.\<forall>(\<lambda>g. (\<forall>(\<lambda>x. (f x) mL= (g x))) m\<rightarrow> (f mL= g)))]"
   sledgehammer [provers = remote_satallax] oops  
  
-text {* Interestingly, the nontrivial direction of Boolean extensionality for lifted Leibniz 
-equality fails --- this is something to look at. *}    
+(* Interestingly, the nontrivial direction of Boolean extensionality for lifted Leibniz 
+equality fails --- this is something to look at. *)    
   
   lemma eqttest_boolExt1 : "[\<forall>(\<lambda>p.\<forall>(\<lambda>q. (p m\<equiv> q) m\<rightarrow> (p mL= q)))]"
   sledgehammer [remote_leo2 remote_satallax] oops

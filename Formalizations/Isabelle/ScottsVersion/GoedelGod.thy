@@ -7,7 +7,7 @@ begin
 
 section {* Introduction *}
 
- text {* Dana Scott's version \cite{ScottNotes}
+ text {* Dana Scott's version \cite{ScottNotes} (cf.~Fig.~1)
  of Goedel's ontological argument \cite{GoedelNotes} is 
  formalized in quantified modal logic KB (QML KB) within the proof assistant Isabelle/HOL. 
  QML KB is  modeled as a fragment of classical higher-order logic (HOL); 
@@ -84,32 +84,32 @@ text {* Constant symbol @{text "P"} (G\"odel's `Positive') is declared. *}
 
   consts P :: "(\<mu> \<Rightarrow> \<sigma>) \<Rightarrow> \<sigma>"  
 
-text {* The meaning of @{text "P"} is restricted by axioms @{text "A1(a/b)"}: $\all \varphi 
-[P(\neg \varphi) \biimp \neg P(\varphi)]$ (Either a property or its negation is positive, but not both.) 
-and @{text "A2"}: $\all \varphi \all \psi [(P(\varphi) \wedge \nec \all x [\varphi(x) \imp \psi(x)]) 
+text {* The meaning of @{text "P"} is restricted by axioms @{text "A1(a/b)"}: $\all \phi 
+[P(\neg \phi) \biimp \neg P(\phi)]$ (Either a property or its negation is positive, but not both.) 
+and @{text "A2"}: $\all \phi \all \psi [(P(\phi) \wedge \nec \all x [\phi(x) \imp \psi(x)]) 
 \imp P(\psi)]$ (A property necessarily implied by a positive property is positive). *}
 
   axiomatization where
-    A1a: "[\<forall>(\<lambda>\<phi>. P (\<lambda>x. m\<not> (\<phi> x)) m\<rightarrow> m\<not> (P \<phi>))]" and
-    A1b: "[\<forall>(\<lambda>\<phi>. m\<not> (P \<phi>) m\<rightarrow> P (\<lambda>x. m\<not> (\<phi> x)))]" and
-    A2:  "[\<forall>(\<lambda>\<phi>. \<forall>(\<lambda>\<psi>. (P \<phi> m\<and> \<box> (\<forall>(\<lambda>x. \<phi> x m\<rightarrow> \<psi> x))) m\<rightarrow> P \<psi>))]"
+    A1a: "[\<forall>(\<lambda>\<Phi>. P (\<lambda>x. m\<not> (\<Phi> x)) m\<rightarrow> m\<not> (P \<Phi>))]" and
+    A1b: "[\<forall>(\<lambda>\<Phi>. m\<not> (P \<Phi>) m\<rightarrow> P (\<lambda>x. m\<not> (\<Phi> x)))]" and
+    A2:  "[\<forall>(\<lambda>\<Phi>. \<forall>(\<lambda>\<Psi>. (P \<Phi> m\<and> \<box> (\<forall>(\<lambda>x. \<Phi> x m\<rightarrow> \<Psi> x))) m\<rightarrow> P \<Psi>))]"
 
-text {* We prove theorem T1: $\all \varphi [P(\varphi) \imp \pos \ex x \varphi(x)]$ (Positive 
+text {* We prove theorem T1: $\all \phi [P(\phi) \imp \pos \ex x \phi(x)]$ (Positive 
 properties are possibly exemplified). T1 is proved directly by Sledgehammer with command @{text 
 "sledgehammer [provers = remote_leo2]"}. 
 Sledgehammer suggests to call Metis with axioms A1a and A2. 
 Metis sucesfully generates a proof object 
 that is verified in Isabelle/HOL's kernel. *}
  
-  theorem T1: "[\<forall>(\<lambda>\<phi>. P \<phi> m\<rightarrow> \<diamond> (\<exists> \<phi>))]"  
+  theorem T1: "[\<forall>(\<lambda>\<Phi>. P \<Phi> m\<rightarrow> \<diamond> (\<exists> \<Phi>))]"  
   sledgehammer [provers = remote_leo2] 
   by (metis A1a A2)
 
 text {* Next, the symbol @{text "G"} for `God-like'  is introduced and defined 
-as $G(x) \biimp \forall \varphi [P(\phi) \to \varphi(x)]$ \\ (A God-like being possesses 
+as $G(x) \biimp \forall \phi [P(\phi) \to \phi(x)]$ \\ (A God-like being possesses 
 all positive properties). *} 
 
-  definition G :: "\<mu> \<Rightarrow> \<sigma>" where "G = (\<lambda>x. \<forall>(\<lambda>\<phi>. P \<phi> m\<rightarrow> \<phi> x))"   
+  definition G :: "\<mu> \<Rightarrow> \<sigma>" where "G = (\<lambda>x. \<forall>(\<lambda>\<Phi>. P \<Phi> m\<rightarrow> \<Phi> x))"   
 
 text {* Axiom @{text "A3"} is added: $P(G)$ (The property of being God-like is positive).
 Sledgehammer and Metis then prove corollary @{text "C"}: $\pos \ex x G(x)$ 
@@ -124,14 +124,14 @@ Sledgehammer and Metis then prove corollary @{text "C"}: $\pos \ex x G(x)$
 text {* Axiom @{text "A4"} is added: $\all \phi [P(\phi) \to \Box \; P(\phi)]$ 
 (Positive properties are necessarily positive). *}
 
-  axiomatization where A4:  "[\<forall>(\<lambda>\<phi>. P \<phi> m\<rightarrow> \<box> (P \<phi>))]" 
+  axiomatization where A4:  "[\<forall>(\<lambda>\<Phi>. P \<Phi> m\<rightarrow> \<box> (P \<Phi>))]" 
 
 text {* Symbol @{text "ess"} for `Essence' is introduced and defined as 
-$$\ess{\varphi}{x} \biimp \varphi(x) \wedge \all \psi (\psi(x) \imp \nec \all y (\varphi(y) 
+$$\ess{\phi}{x} \biimp \phi(x) \wedge \all \psi (\psi(x) \imp \nec \all y (\phi(y) 
 \imp \psi(y)))$$ (An \emph{essence} of an individual is a property possessed by it and necessarily implying any of its properties). *}
 
   definition ess :: "(\<mu> \<Rightarrow> \<sigma>) \<Rightarrow> \<mu> \<Rightarrow> \<sigma>" (infixr "ess" 85) where
-    "\<phi> ess x = \<phi> x m\<and> \<forall>(\<lambda>\<psi>. \<psi> x m\<rightarrow> \<box> (\<forall>(\<lambda>y. \<phi> y m\<rightarrow> \<psi> y)))"
+    "\<Phi> ess x = \<Phi> x m\<and> \<forall>(\<lambda>\<Psi>. \<Psi> x m\<rightarrow> \<box> (\<forall>(\<lambda>y. \<Phi> y m\<rightarrow> \<Psi> y)))"
 
 text {* Next, Sledgehammer and Metis prove theorem @{text "T2"}: $\all x [G(x) \imp \ess{G}{x}]$ \\
 (Being God-like is an essence of any God-like being). *}
@@ -141,10 +141,10 @@ text {* Next, Sledgehammer and Metis prove theorem @{text "T2"}: $\all x [G(x) \
   by (metis A1b A4 G_def ess_def)
 
 text {* Symbol @{text "NE"}, for `Necessary Existence', is introduced and
-defined as $$\NE(x) \biimp \all \varphi [\ess{\varphi}{x} \imp \nec \ex y \varphi(y)]$$ (Necessary 
+defined as $$\NE(x) \biimp \all \phi [\ess{\phi}{x} \imp \nec \ex y \phi(y)]$$ (Necessary 
 existence of an individual is the necessary exemplification of all its essences). *}
 
-  definition NE :: "\<mu> \<Rightarrow> \<sigma>" where "NE = (\<lambda>x. \<forall>(\<lambda>\<phi>. \<phi> ess x m\<rightarrow> \<box> (\<exists> \<phi>)))"
+  definition NE :: "\<mu> \<Rightarrow> \<sigma>" where "NE = (\<lambda>x. \<forall>(\<lambda>\<Phi>. \<Phi> ess x m\<rightarrow> \<box> (\<exists> \<Phi>)))"
 
 text {* Moreover, axiom @{text "A5"} is added: $P(\NE)$ (Necessary existence is a positive 
 property). *}
