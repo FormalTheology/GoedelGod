@@ -22,7 +22,7 @@ section {* Introduction *}
  Metis \cite{Metis} calls, which result in proofs that are verified by Isabelle/HOL.
  For consistency checking, the model finder Nitpick \cite{Nitpick} has been employed.
  The successfull calls to Sledgehammer
- are deliberately kept in the file for demonstration purposes
+ are deliberately kept as comments in the file for demonstration purposes
  (normally, they are automatically eliminated by Isabelle/HOL).
  
  Isabelle is described in the textbook by Nipkow, 
@@ -104,7 +104,7 @@ Metis sucesfully generates a proof object
 that is verified in Isabelle/HOL's kernel. *}
  
   theorem T1: "[\<forall>(\<lambda>\<Phi>. P \<Phi> m\<rightarrow> \<diamond> (\<exists> \<Phi>))]"  
-  sledgehammer [provers = remote_leo2] 
+  -- {* sledgehammer [provers = remote\_leo2] *}
   by (metis A1a A2)
 
 text {* Next, the symbol @{text "G"} for `God-like'  is introduced and defined 
@@ -120,7 +120,7 @@ Sledgehammer and Metis then prove corollary @{text "C"}: $\pos \ex x G(x)$
   axiomatization where A3:  "[P G]" 
 
   corollary C: "[\<diamond> (\<exists> G)]" 
-  sledgehammer [provers = remote_leo2] 
+  -- {* sledgehammer [provers = remote\_leo2] *}
   by (metis A3 T1)
 
 text {* Axiom @{text "A4"} is added: $\all \phi [P(\phi) \to \Box \; P(\phi)]$ 
@@ -139,7 +139,7 @@ text {* Next, Sledgehammer and Metis prove theorem @{text "T2"}: $\all x [G(x) \
 (Being God-like is an essence of any God-like being). *}
 
   theorem T2: "[\<forall>(\<lambda>x. G x m\<rightarrow> G ess x)]"
-  sledgehammer [provers = remote_leo2] 
+  -- {* sledgehammer [provers = remote\_leo2] *}
   by (metis A1b A4 G_def ess_def)
 
 text {* Symbol @{text "NE"}, for `Necessary Existence', is introduced and
@@ -162,19 +162,49 @@ text {* Finally, Sledgehammer and Metis prove the main theorem @{text "T3"}: $\n
 (Necessarily, God exists). *}
 
   theorem T3: "[\<box> (\<exists> G)]" 
-  sledgehammer [provers = remote_leo2] 
+  -- {* sledgehammer [provers = remote\_leo2] *}
   by (metis A5 C T2 sym G_def NE_def)
 
 text {* Surprisingly, the following corollary can be derived even without the @{text "T"} axiom 
 (reflexivity). *}
 
   corollary C2: "[\<exists> G]" 
-  sledgehammer [provers = remote_leo2]
+  -- {* sledgehammer [provers = remote\_leo2] *}
   by (metis T1 T3 G_def sym)
 
-text {* The consistency of the entire theory is checked with Nitpick. *}
+text {* The consistency of the entire theory is confirmed by Nitpick. *}
 
-  lemma True nitpick [satisfy, user_axioms, expect = genuine] oops 
+  -- {* lemma True nitpick [satisfy, user\_axioms, expect = genuine] oops *}
+
+
+section {* Additional Results on G\"odel's God. *}  
+
+text {* G\"odel's God is flawless: (s)he does not have non-positive properties. *}
+
+  theorem Flawlessness: "[\<forall>(\<lambda>\<Phi>. \<forall>(\<lambda>x. (G x m\<rightarrow> (m\<not> (P \<Phi>) m\<rightarrow> m\<not> (\<Phi> x)))))]"
+  -- {* sledgehammer [provers = remote\_leo2] *}
+  by (metis A1b G_def) 
+  
+text {* There is only one God: any two God-like beings are equal. *}   
+  
+  theorem Monotheism: "[\<forall>(\<lambda>x.\<forall>(\<lambda>y. (G x m\<rightarrow> (G y m\<rightarrow> (x mL= y)))))]"
+  -- {* sledgehammer [provers = remote\_leo2] *}
+  by (metis Flawlessness G_def) 
+
+section {* Modal Collapse *}  
+
+text {* G\"odel's axioms have been criticized for entailing the so-called 
+modal collapse. The prover Satallax \cite{Satallax} confirms this. 
+However, sledgehammer is not able to determine which axioms, 
+definitions and previous theorems are used by Satallax;
+hence it suggests to call Metis using everything, but this (unsurprinsingly) fails.
+Attempting to use `Sledegehammer min' to minimize Sledgehammer's suggestion does not work.
+Calling Metis with @{text "T2"}, @{text "T3"} and @{text "ess_def"} also does not work. *} 
+
+  lemma MC: "[\<forall>(\<lambda>\<Phi>.(\<Phi> m\<rightarrow> (\<box> \<Phi>)))]"  
+  -- {* sledgehammer [provers = remote\_satallax] *}
+  -- {* by (metis T2 T3 ess\_def) *}
+  oops
 (*<*) 
 end
 (*>*) 

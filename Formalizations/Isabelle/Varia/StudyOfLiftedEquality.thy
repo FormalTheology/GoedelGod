@@ -57,8 +57,8 @@ text {* We extend the above lifting idea to arbitrary types. *}
 text {* Hence, @{text "m=2"} is also a congruence relation as expected and intended, and it also 
 coincides with primitive equality. But how about functional and Boolean extensionality?
 It turns out that (lifted) functional extensionality and the trivial direction of Boolean extensionality 
-are valid (though Matis cannot reconstruct the proof for FE2b). Note: Just put the mouse pointer after the
-call to sledgehammer to get relevant information in the README window of jedit. *}
+are valid (though Matis cannot reconstruct the proof for FE2b). Note: Whenever you an 'oops' 
+just put the mouse pointer before the oops to get relevant information in the README window of jedit. *}
 
   lemma FE2a : "[\<forall>(\<lambda>f.\<forall>(\<lambda>g. f m=2 g m\<rightarrow> \<forall>(\<lambda>x. (f x) m=2 (g x))))]" sledgehammer [remote_leo2] by metis
   lemma FE2b : "[\<forall>(\<lambda>f.\<forall>(\<lambda>g. (\<forall>(\<lambda>x. (f x) m=2 (g x))) m\<rightarrow> (f m=2 g)))]" sledgehammer [remote_satallax] oops
