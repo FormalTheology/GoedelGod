@@ -153,7 +153,7 @@ section {* Preliminary Conclusion *}
 
 Lifted equality (be it primitive or Leibniz) are fine for type \<mu> (extensionality is not an issue).
 
-However, when we consider lifted equalities for predicate or functional types (be it primitive or 
+However, when considering lifted equalities also for predicate or functional types (be it primitive or 
 Leibniz) then we should be careful. The above versions either miss the non-trivial 
 direction of Boolean extensionality or they miss congruence. But missing the non-trivial direction of
 Boolean extensionality is probably even what we want (needs to be discussed)? 
