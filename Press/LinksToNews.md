@@ -30,7 +30,7 @@ Germany
 
 [UPI](http://www.upi.com/Science_News/2013/10/23/Researchers-say-they-used-MacBook-to-prove-Goedels-God-theorem/UPI-85301382573640/?spt=sh&or=5)
 
-
+[Beetlebum Blog](http://blog.beetlebum.de/2013/11/11/philosophie-vss-kampfroboter/)
 
 Austria
 -------
