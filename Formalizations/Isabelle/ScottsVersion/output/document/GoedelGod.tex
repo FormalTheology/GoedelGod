@@ -21,7 +21,7 @@
 %
 \begin{isamarkuptext}%
 Dana Scott's version \cite{ScottNotes} (cf.~Fig.~1)
- of Goedel's ontological argument for God's Existence \cite{GoedelNotes} is 
+ of G\"odel's proof of God's existence \cite{GoedelNotes} is 
  formalized in quantified modal logic KB (QML KB) within the proof assistant Isabelle/HOL. 
  QML KB is  modeled as a fragment of classical higher-order logic (HOL); 
  thus, the formalization is essentially a formalization in HOL. The employed embedding 
@@ -92,9 +92,10 @@ The classical connectives $\neg, \wedge, \rightarrow$, and $\forall$
 (over individuals and over sets of individuals) and $\exists$ (over individuals) are
 lifted to type $\sigma$. The lifted connectives are \isa{m{\isasymnot}}, \isa{m{\isasymand}}, \isa{m{\isasymrightarrow}},
 \isa{{\isasymforall}}, and \isa{{\isasymexists}} (the latter two are modeled as constant symbols). 
-Other connectives can be introduced analogously. We exemplarily do this for $\vee$, 
-$\leftrightarrow$, and $=$. Moreover, the modal operators $\Box$ and $\diamond$ are introduced.
-Definitions could be used instead of abbreviations.%
+Other connectives can be introduced analogously. We exemplarily do this for \isa{m{\isasymor}} , 
+\isa{m{\isasymequiv}}, and \isa{mL{\isacharequal}} (Leibniz equality on individuals). Moreover, the modal 
+operators \isa{{\isasymbox}} and \isa{{\isasymdiamond}}  are introduced. Definitions could be used instead of 
+abbreviations.%
 \end{isamarkuptext}%
 \isamarkuptrue%
 \ \ \isacommand{abbreviation}\isamarkupfalse%
@@ -106,13 +107,13 @@ Definitions could be used instead of abbreviations.%
 \ \ \isacommand{abbreviation}\isamarkupfalse%
 \ mimplies\ {\isacharcolon}{\isacharcolon}\ {\isachardoublequoteopen}{\isasymsigma}\ {\isasymRightarrow}\ {\isasymsigma}\ {\isasymRightarrow}\ {\isasymsigma}{\isachardoublequoteclose}\ {\isacharparenleft}\isakeyword{infixr}\ {\isachardoublequoteopen}m{\isasymrightarrow}{\isachardoublequoteclose}\ {\isadigit{7}}{\isadigit{4}}{\isacharparenright}\ \isakeyword{where}\ {\isachardoublequoteopen}{\isasymphi}\ m{\isasymrightarrow}\ {\isasympsi}\ {\isasymequiv}\ {\isacharparenleft}{\isasymlambda}w{\isachardot}\ {\isasymphi}\ w\ {\isasymlongrightarrow}\ {\isasympsi}\ w{\isacharparenright}{\isachardoublequoteclose}\ \ \isanewline
 \ \ \isacommand{abbreviation}\isamarkupfalse%
-\ mequiv{\isacharcolon}{\isacharcolon}\ {\isachardoublequoteopen}{\isasymsigma}\ {\isasymRightarrow}\ {\isasymsigma}\ {\isasymRightarrow}\ {\isasymsigma}{\isachardoublequoteclose}\ {\isacharparenleft}\isakeyword{infixr}\ {\isachardoublequoteopen}m{\isasymequiv}{\isachardoublequoteclose}\ {\isadigit{7}}{\isadigit{6}}{\isacharparenright}\ \isakeyword{where}\ {\isachardoublequoteopen}{\isasymphi}\ m{\isasymequiv}\ {\isasympsi}\ {\isasymequiv}\ {\isacharparenleft}{\isasymlambda}w{\isachardot}\ {\isacharparenleft}{\isasymphi}\ w\ {\isasymlongleftrightarrow}\ {\isasympsi}\ w{\isacharparenright}{\isacharparenright}{\isachardoublequoteclose}\ \ \isanewline
-\ \ \isacommand{abbreviation}\isamarkupfalse%
-\ meq\ {\isacharcolon}{\isacharcolon}\ {\isachardoublequoteopen}{\isacharprime}a\ {\isasymRightarrow}\ {\isacharprime}a\ {\isasymRightarrow}\ {\isasymsigma}{\isachardoublequoteclose}\ {\isacharparenleft}\isakeyword{infixr}\ {\isachardoublequoteopen}m{\isacharequal}{\isachardoublequoteclose}\ {\isadigit{5}}{\isadigit{0}}{\isacharparenright}\ \isakeyword{where}\ {\isachardoublequoteopen}x\ m{\isacharequal}\ y\ {\isasymequiv}\ {\isacharparenleft}{\isasymlambda}w{\isachardot}\ x\ {\isacharequal}\ y{\isacharparenright}{\isachardoublequoteclose}\isanewline
+\ mequiv{\isacharcolon}{\isacharcolon}\ {\isachardoublequoteopen}{\isasymsigma}\ {\isasymRightarrow}\ {\isasymsigma}\ {\isasymRightarrow}\ {\isasymsigma}{\isachardoublequoteclose}\ {\isacharparenleft}\isakeyword{infixr}\ {\isachardoublequoteopen}m{\isasymequiv}{\isachardoublequoteclose}\ {\isadigit{7}}{\isadigit{6}}{\isacharparenright}\ \isakeyword{where}\ {\isachardoublequoteopen}{\isasymphi}\ m{\isasymequiv}\ {\isasympsi}\ {\isasymequiv}\ {\isacharparenleft}{\isasymlambda}w{\isachardot}\ {\isasymphi}\ w\ {\isasymlongleftrightarrow}\ {\isasympsi}\ w{\isacharparenright}{\isachardoublequoteclose}\ \ \isanewline
 \ \ \isacommand{abbreviation}\isamarkupfalse%
 \ mforall\ {\isacharcolon}{\isacharcolon}\ {\isachardoublequoteopen}{\isacharparenleft}{\isacharprime}a\ {\isasymRightarrow}\ {\isasymsigma}{\isacharparenright}\ {\isasymRightarrow}\ {\isasymsigma}{\isachardoublequoteclose}\ {\isacharparenleft}{\isachardoublequoteopen}{\isasymforall}{\isachardoublequoteclose}{\isacharparenright}\ \isakeyword{where}\ {\isachardoublequoteopen}{\isasymforall}\ {\isasymPhi}\ {\isasymequiv}\ {\isacharparenleft}{\isasymlambda}w{\isachardot}\ {\isasymforall}x{\isachardot}\ {\isasymPhi}\ x\ w{\isacharparenright}{\isachardoublequoteclose}\ \ \ \isanewline
 \ \ \isacommand{abbreviation}\isamarkupfalse%
 \ mexists\ {\isacharcolon}{\isacharcolon}\ {\isachardoublequoteopen}{\isacharparenleft}{\isacharprime}a\ {\isasymRightarrow}\ {\isasymsigma}{\isacharparenright}\ {\isasymRightarrow}\ {\isasymsigma}{\isachardoublequoteclose}\ {\isacharparenleft}{\isachardoublequoteopen}{\isasymexists}{\isachardoublequoteclose}{\isacharparenright}\ \isakeyword{where}\ {\isachardoublequoteopen}{\isasymexists}\ {\isasymPhi}\ {\isasymequiv}\ {\isacharparenleft}{\isasymlambda}w{\isachardot}\ {\isasymexists}x{\isachardot}\ {\isasymPhi}\ x\ w{\isacharparenright}{\isachardoublequoteclose}\isanewline
+\ \ \isacommand{abbreviation}\isamarkupfalse%
+\ mLeibeq\ {\isacharcolon}{\isacharcolon}\ {\isachardoublequoteopen}{\isasymmu}\ {\isasymRightarrow}\ {\isasymmu}\ {\isasymRightarrow}\ {\isasymsigma}{\isachardoublequoteclose}\ {\isacharparenleft}\isakeyword{infixr}\ {\isachardoublequoteopen}mL{\isacharequal}{\isachardoublequoteclose}\ {\isadigit{9}}{\isadigit{0}}{\isacharparenright}\ \isakeyword{where}\ {\isachardoublequoteopen}x\ mL{\isacharequal}\ y\ {\isasymequiv}\ {\isasymforall}{\isacharparenleft}{\isasymlambda}{\isasymphi}{\isachardot}\ {\isacharparenleft}{\isasymphi}\ x\ m{\isasymrightarrow}\ {\isasymphi}\ y{\isacharparenright}{\isacharparenright}{\isachardoublequoteclose}\isanewline
 \ \ \isacommand{abbreviation}\isamarkupfalse%
 \ mbox\ {\isacharcolon}{\isacharcolon}\ {\isachardoublequoteopen}{\isasymsigma}\ {\isasymRightarrow}\ {\isasymsigma}{\isachardoublequoteclose}\ {\isacharparenleft}{\isachardoublequoteopen}{\isasymbox}{\isachardoublequoteclose}{\isacharparenright}\ \isakeyword{where}\ {\isachardoublequoteopen}{\isasymbox}\ {\isasymphi}\ {\isasymequiv}\ {\isacharparenleft}{\isasymlambda}w{\isachardot}\ {\isasymforall}v{\isachardot}\ \ w\ r\ v\ {\isasymlongrightarrow}\ {\isasymphi}\ v{\isacharparenright}{\isachardoublequoteclose}\isanewline
 \ \ \isacommand{abbreviation}\isamarkupfalse%
@@ -302,7 +303,7 @@ Surprisingly, the following corollary can be derived even without the \isa{T} ax
 \ \ \isacommand{corollary}\isamarkupfalse%
 \ C{\isadigit{2}}{\isacharcolon}\ {\isachardoublequoteopen}{\isacharbrackleft}{\isasymexists}\ G{\isacharbrackright}{\isachardoublequoteclose}\ \isanewline
 \ \ \isacommand{sledgehammer}\isamarkupfalse%
-\ {\isacharbrackleft}provers\ {\isacharequal}\ remote{\isacharunderscore}leo{\isadigit{2}}{\isacharbrackright}{\isacharparenleft}T{\isadigit{1}}\ T{\isadigit{3}}\ G{\isacharunderscore}def\ sym{\isacharparenright}\ \isanewline
+\ {\isacharbrackleft}provers\ {\isacharequal}\ remote{\isacharunderscore}leo{\isadigit{2}}{\isacharbrackright}\isanewline
 %
 \isadelimproof
 \ \ %
@@ -331,7 +332,6 @@ The consistency of the entire theory is checked with Nitpick.%
 %
 \isatagproof
 \isacommand{oops}\isamarkupfalse%
-\ \isanewline
 %
 \endisatagproof
 {\isafoldproof}%

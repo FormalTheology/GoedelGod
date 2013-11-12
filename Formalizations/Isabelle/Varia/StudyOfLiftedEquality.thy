@@ -5,6 +5,8 @@ imports Main
 begin
 (*>*)
 
+section {* Embedding of QML in HOL *}
+
   typedecl i    -- "the type for possible worlds" 
   typedecl \<mu>    -- "the type for indiviuals"      
   
@@ -23,13 +25,56 @@ begin
   abbreviation mbox :: "\<sigma> \<Rightarrow> \<sigma>" ("\<box>") where "\<box> \<phi> \<equiv> (\<lambda>w. \<forall>v.  w r v \<longrightarrow> \<phi> v)"
   abbreviation mdia :: "\<sigma> \<Rightarrow> \<sigma>" ("\<diamond>") where "\<diamond> \<phi> \<equiv> (\<lambda>w. \<exists>v. w r v \<and> \<phi> v)" 
 
-  abbreviation meq :: "\<mu> \<Rightarrow> \<mu> \<Rightarrow> \<sigma>" (infixr "m=" 50) where "x m= y \<equiv> (\<lambda>w. x = y)"  
-  abbreviation mLeibeq :: "\<mu> \<Rightarrow> \<mu> \<Rightarrow> \<sigma>" (infixr "mL=" 90) where "x mL= y \<equiv> \<forall>(\<lambda>\<phi>.((\<phi> x) m\<rightarrow> (\<phi> y)))" 
-
-  
   no_syntax "_list" :: "args \<Rightarrow> 'a list" ("[(_)]") 
   abbreviation valid :: "\<sigma> \<Rightarrow> bool" ("[_]") where "[p] \<equiv> \<forall>w. p w"
   
+
+section {* Lifted Leibniz equality @{text "m=1"} *}
+
+text {* First we only concentrate on the type @{text "\<mu>"} and on a straightforward lifting *}
+
+  abbreviation meq1 :: "\<mu> \<Rightarrow> \<mu> \<Rightarrow> \<sigma>" (infixr "m=1" 100) where "x m=1 y \<equiv> (\<lambda>w. x = y)"  
+
+  lemma Ref1 : "[\<forall>(\<lambda>x. x m=1 x)]" sledgehammer [remote_leo2] by metis
+  lemma Sym1 : "[\<forall>(\<lambda>x.\<forall>(\<lambda>y. x m=1 y m\<rightarrow> y m=1 x))]" sledgehammer [remote_leo2] by metis 
+  lemma Tra1 : "[\<forall>(\<lambda>x.\<forall>(\<lambda>y.\<forall>(\<lambda>z. (x m=1 y m\<and> y m=1 z) m\<rightarrow> x m=1 z)))]" sledgehammer [remote_leo2] by metis
+  lemma Con1 : "[\<forall>(\<lambda>x.\<forall>(\<lambda>y.\<forall>(\<lambda>f. x m=1 y m\<rightarrow> (f x) m=1 (f y))))]"  sledgehammer [remote_leo2] by metis
+
+text {* Hence, @{text "m=1"} is a lifted congruence relation as expected and intended. Moreover, we have that lifted equality
+coincides with primitive equality. *}
+  
+   lemma pri1 : "[x m=1 y] \<Longrightarrow> x = y" sledgehammer [remote_leo2] by metis
+
+section {* Lifted Leibniz equality @{text "m=2"} *}
+
+text {* We extend the above lifting idea to arbitrary types. *} 
+
+  abbreviation meq2 :: "'a \<Rightarrow> 'a \<Rightarrow> \<sigma>" (infixr "m=2" 100) where "x m=2 y \<equiv> (\<lambda>w. x = y)"  
+
+  lemma Ref2 : "[\<forall>(\<lambda>x. x m=2 x)]" sledgehammer [remote_leo2] by metis
+  lemma Sym2 : "[\<forall>(\<lambda>x.\<forall>(\<lambda>y. x m=2 y m\<rightarrow> y m=2 x))]" sledgehammer [remote_leo2] by metis 
+  lemma Tra2 : "[\<forall>(\<lambda>x.\<forall>(\<lambda>y.\<forall>(\<lambda>z. (x m=2 y m\<and> y m=2 z) m\<rightarrow> x m=2 z)))]" sledgehammer [remote_leo2] by metis
+  lemma Con2 : "[\<forall>(\<lambda>x.\<forall>(\<lambda>y.\<forall>(\<lambda>f. x m=2 y m\<rightarrow> (f x) m=2 (f y))))]"  sledgehammer [remote_leo2] by metis
+  lemma Pri2 : "[x m=2 y] \<Longrightarrow> x = y" sledgehammer [remote_leo2] by metis
+
+text {* Hence, @{text "m=2"} is also a congruence relation as expected and intended, and it also 
+coincides with primitive equality. But how about functional and Boolean extensionality. 
+It turns out that functional extensionality and the trivial direction of Boolean extensionality 
+are valid (though Matis cannot reconstruct the proof for FE2b). *}
+
+  lemma FE2a : "[\<forall>(\<lambda>f.\<forall>(\<lambda>g. f m=2 g m\<rightarrow> \<forall>(\<lambda>x. (f x) m=2 (g x))))]" sledgehammer [remote_leo2] by metis
+  lemma FE2b : "[\<forall>(\<lambda>f.\<forall>(\<lambda>g. (\<forall>(\<lambda>x. (f x) m=2 (g x))) m\<rightarrow> (f m=2 g)))]" sledgehammer [remote_satallax] oops
+  lemma BE2a : "[\<forall>(\<lambda>p.\<forall>(\<lambda>q. p m=2 q m\<rightarrow> (p m\<longleftrightarrow> q)))]" sledgehammer [remote_leo2] by metis
+
+  lemma BE2b : "\<not> [\<forall>(\<lambda>p.\<forall>(\<lambda>q. (p m\<equiv> q) m\<rightarrow> (p m=2 q)))]" sledgehammer [remote_satallax] oops
+  
+  lemma eqttest_boolExt1 : "[\<forall>(\<lambda>p.\<forall>(\<lambda>q. (p m\<equiv> q) m\<rightarrow> (p mL= q)))]"
+  sledgehammer [overlord,  remote_satallax] oops
+
+  abbreviation mLeibeq :: "\<mu> \<Rightarrow> \<mu> \<Rightarrow> \<sigma>" (infixr "mL=" 90) where "x mL= y \<equiv> \<forall>(\<lambda>\<phi>.((\<phi> x) m\<rightarrow> (\<phi> y)))" 
+
+  
+
   lemma eqtest0 : "(x m= y) = (x mL= y)"
   sledgehammer [provers = remote_satallax] oops
   

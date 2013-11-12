@@ -8,7 +8,7 @@ begin
 section {* Introduction *}
 
  text {* Dana Scott's version \cite{ScottNotes} (cf.~Fig.~1)
- of Goedel's ontological argument for God's Existence \cite{GoedelNotes} is 
+ of G\"odel's proof of God's existence \cite{GoedelNotes} is 
  formalized in quantified modal logic KB (QML KB) within the proof assistant Isabelle/HOL. 
  QML KB is  modeled as a fragment of classical higher-order logic (HOL); 
  thus, the formalization is essentially a formalization in HOL. The employed embedding 
@@ -59,18 +59,19 @@ text {* The classical connectives $\neg, \wedge, \rightarrow$, and $\forall$
 (over individuals and over sets of individuals) and $\exists$ (over individuals) are
 lifted to type $\sigma$. The lifted connectives are @{text "m\<not>"}, @{text "m\<and>"}, @{text "m\<rightarrow>"},
 @{text "\<forall>"}, and @{text "\<exists>"} (the latter two are modeled as constant symbols). 
-Other connectives can be introduced analogously. We exemplarily do this for $\vee$, 
-$\leftrightarrow$, and $=$. Moreover, the modal operators $\Box$ and $\diamond$ are introduced.
-Definitions could be used instead of abbreviations. *}
+Other connectives can be introduced analogously. We exemplarily do this for @{text "m\<or>"} , 
+@{text "m\<equiv>"}, and @{text "mL="} (Leibniz equality on individuals). Moreover, the modal 
+operators @{text "\<box>"} and @{text "\<diamond>"}  are introduced. Definitions could be used instead of 
+abbreviations. *}
 
   abbreviation mnot :: "\<sigma> \<Rightarrow> \<sigma>" ("m\<not>") where "m\<not> \<phi> \<equiv> (\<lambda>w. \<not> \<phi> w)"    
   abbreviation mand :: "\<sigma> \<Rightarrow> \<sigma> \<Rightarrow> \<sigma>" (infixr "m\<and>" 65) where "\<phi> m\<and> \<psi> \<equiv> (\<lambda>w. \<phi> w \<and> \<psi> w)"   
   abbreviation mor :: "\<sigma> \<Rightarrow> \<sigma> \<Rightarrow> \<sigma>" (infixr "m\<or>" 70) where "\<phi> m\<or> \<psi> \<equiv> (\<lambda>w. \<phi> w \<or> \<psi> w)"   
   abbreviation mimplies :: "\<sigma> \<Rightarrow> \<sigma> \<Rightarrow> \<sigma>" (infixr "m\<rightarrow>" 74) where "\<phi> m\<rightarrow> \<psi> \<equiv> (\<lambda>w. \<phi> w \<longrightarrow> \<psi> w)"  
-  abbreviation mequiv:: "\<sigma> \<Rightarrow> \<sigma> \<Rightarrow> \<sigma>" (infixr "m\<equiv>" 76) where "\<phi> m\<equiv> \<psi> \<equiv> (\<lambda>w. (\<phi> w \<longleftrightarrow> \<psi> w))"  
-  abbreviation meq :: "'a \<Rightarrow> 'a \<Rightarrow> \<sigma>" (infixr "m=" 50) where "x m= y \<equiv> (\<lambda>w. x = y)"
+  abbreviation mequiv:: "\<sigma> \<Rightarrow> \<sigma> \<Rightarrow> \<sigma>" (infixr "m\<equiv>" 76) where "\<phi> m\<equiv> \<psi> \<equiv> (\<lambda>w. \<phi> w \<longleftrightarrow> \<psi> w)"  
   abbreviation mforall :: "('a \<Rightarrow> \<sigma>) \<Rightarrow> \<sigma>" ("\<forall>") where "\<forall> \<Phi> \<equiv> (\<lambda>w. \<forall>x. \<Phi> x w)"   
   abbreviation mexists :: "('a \<Rightarrow> \<sigma>) \<Rightarrow> \<sigma>" ("\<exists>") where "\<exists> \<Phi> \<equiv> (\<lambda>w. \<exists>x. \<Phi> x w)"
+  abbreviation mLeibeq :: "\<mu> \<Rightarrow> \<mu> \<Rightarrow> \<sigma>" (infixr "mL=" 90) where "x mL= y \<equiv> \<forall>(\<lambda>\<phi>. (\<phi> x m\<rightarrow> \<phi> y))"
   abbreviation mbox :: "\<sigma> \<Rightarrow> \<sigma>" ("\<box>") where "\<box> \<phi> \<equiv> (\<lambda>w. \<forall>v.  w r v \<longrightarrow> \<phi> v)"
   abbreviation mdia :: "\<sigma> \<Rightarrow> \<sigma>" ("\<diamond>") where "\<diamond> \<phi> \<equiv> (\<lambda>w. \<exists>v. w r v \<and> \<phi> v)" 
   
@@ -168,13 +169,12 @@ text {* Surprisingly, the following corollary can be derived even without the @{
 (reflexivity). *}
 
   corollary C2: "[\<exists> G]" 
-  sledgehammer [provers = remote_leo2](T1 T3 G_def sym) 
+  sledgehammer [provers = remote_leo2]
   by (metis T1 T3 G_def sym)
 
 text {* The consistency of the entire theory is checked with Nitpick. *}
 
   lemma True nitpick [satisfy, user_axioms, expect = genuine] oops 
-
 (*<*) 
 end
 (*>*) 
