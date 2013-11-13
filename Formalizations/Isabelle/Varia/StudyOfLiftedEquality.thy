@@ -37,8 +37,10 @@ text {* First we only concentrate on the type @{text "\<mu>"} and on a straightf
   lemma Ref1 : "[\<forall>(\<lambda>x. x m=1 x)]" sledgehammer [remote_leo2] by metis
   lemma Sym1 : "[\<forall>(\<lambda>x.\<forall>(\<lambda>y. x m=1 y m\<rightarrow> y m=1 x))]" sledgehammer [remote_leo2] by metis 
   lemma Tra1 : "[\<forall>(\<lambda>x.\<forall>(\<lambda>y.\<forall>(\<lambda>z. (x m=1 y m\<and> y m=1 z) m\<rightarrow> x m=1 z)))]" sledgehammer [remote_leo2] by metis
-  lemma Con1 : "[\<forall>(\<lambda>x.\<forall>(\<lambda>y.\<forall>(\<lambda>f. x m=1 y m\<rightarrow> (f x) m=1 (f y))))]"  sledgehammer [remote_leo2] by metis
+  lemma Con1a : "[\<forall>(\<lambda>x.\<forall>(\<lambda>y.\<forall>(\<lambda>f. x m=1 y m\<rightarrow> (f x) m=1 (f y))))]"  sledgehammer [remote_leo2] by metis
+  lemma Con1b : "[\<forall>(\<lambda>x.\<forall>(\<lambda>y.\<forall>(\<lambda>p. x m=1 y m\<rightarrow> (p x) m\<longleftrightarrow> (p y))))]"  sledgehammer [remote_leo2] by metis
 
+  
 text {* Hence, @{text "m=1"} is a lifted congruence relation as expected and intended. Moreover, we have that lifted equality
 coincides with primitive equality. *}
   
@@ -51,7 +53,8 @@ text {* We extend the above lifting idea to arbitrary types. *}
   lemma Ref2 : "[\<forall>(\<lambda>x. x m=2 x)]" sledgehammer [remote_leo2] by metis
   lemma Sym2 : "[\<forall>(\<lambda>x.\<forall>(\<lambda>y. x m=2 y m\<rightarrow> y m=2 x))]" sledgehammer [remote_leo2] by metis 
   lemma Tra2 : "[\<forall>(\<lambda>x.\<forall>(\<lambda>y.\<forall>(\<lambda>z. (x m=2 y m\<and> y m=2 z) m\<rightarrow> x m=2 z)))]" sledgehammer [remote_leo2] by metis
-  lemma Con2 : "[\<forall>(\<lambda>x.\<forall>(\<lambda>y.\<forall>(\<lambda>f. x m=2 y m\<rightarrow> (f x) m=2 (f y))))]"  sledgehammer [remote_leo2] by metis
+  lemma Con2a : "[\<forall>(\<lambda>x.\<forall>(\<lambda>y.\<forall>(\<lambda>f. x m=2 y m\<rightarrow> (f x) m=2 (f y))))]"  sledgehammer [remote_leo2] by metis
+  lemma Con2b : "[\<forall>(\<lambda>x.\<forall>(\<lambda>y.\<forall>(\<lambda>p. x m=2 y m\<rightarrow> (p x) m\<longleftrightarrow> (p y))))]"  sledgehammer [remote_leo2] by metis
   lemma Pri2 : "\<forall> x y. [x m=2 y] = (x = y)" sledgehammer [remote_leo2] by metis
 
 text {* Hence, @{text "m=2"} is also a congruence relation as expected and intended, and it also 
@@ -89,7 +92,9 @@ from this problem. *}
 
 text {* Unfortuntely, this @{text "m=4"} invalidates the lifted congruance property. *}  
 
-  lemma Con4 : "[\<forall>(\<lambda>x.\<forall>(\<lambda>y.\<forall>(\<lambda>f. (x m=4 y) m\<rightarrow> (f x) m=4 (f y))))]" nitpick oops 
+  lemma Con4a : "[\<forall>(\<lambda>x.\<forall>(\<lambda>y.\<forall>(\<lambda>f. (x m=4 y) m\<rightarrow> (f x) m=4 (f y))))]" nitpick oops  
+  lemma Con4b : "[\<forall>(\<lambda>x.\<forall>(\<lambda>y.\<forall>(\<lambda>p. x m=4 y m\<rightarrow> (p x) m\<longleftrightarrow> (p y))))]" nitpick oops  
+
 
 text {* Unfortuntely, this @{text "m=4"} invalidates the lifted congruence property. *}  
 
@@ -100,7 +105,8 @@ section {* Lifted Leibniz equality *}
   lemma RefL1 : "[\<forall>(\<lambda>x. x mL=1 x)]" sledgehammer [remote_leo2] by metis
   lemma SymL1 : "[\<forall>(\<lambda>x.\<forall>(\<lambda>y. x mL=1 y m\<rightarrow> y mL=1 x))]" sledgehammer [remote_leo2] oops
   lemma TraL1 : "[\<forall>(\<lambda>x.\<forall>(\<lambda>y.\<forall>(\<lambda>z. (x mL=1 y m\<and> y mL=1 z) m\<rightarrow> x mL=1 z)))]" sledgehammer [remote_leo2] by metis
-  lemma ConL1 : "[\<forall>(\<lambda>x.\<forall>(\<lambda>y.\<forall>(\<lambda>f. x mL=1 y m\<rightarrow> (f x) mL=1 (f y))))]"  sledgehammer [remote_leo2] oops
+  lemma ConL1a : "[\<forall>(\<lambda>x.\<forall>(\<lambda>y.\<forall>(\<lambda>f. x mL=1 y m\<rightarrow> (f x) mL=1 (f y))))]"  sledgehammer [remote_leo2] oops
+  lemma ConL1b : "[\<forall>(\<lambda>x.\<forall>(\<lambda>y.\<forall>(\<lambda>p. x mL=1 y m\<rightarrow> (p x) m\<longleftrightarrow> (p y))))]"  sledgehammer [remote_leo2] oops
   lemma PriL1 : "\<forall> x y. [x mL=1 y] = (x = y)" sledgehammer [remote_satallax] oops
 
 text {* Ok, fine @{text "mL=1"} validates all these properties. How about extensionality then? *}  
@@ -110,7 +116,8 @@ text {* Ok, fine @{text "mL=1"} validates all these properties. How about extens
   lemma RefL2 : "[\<forall>(\<lambda>x. x mL=2 x)]" sledgehammer [remote_leo2] by metis
   lemma SymL2 : "[\<forall>(\<lambda>x.\<forall>(\<lambda>y. x mL=2 y m\<rightarrow> y mL=2 x))]" sledgehammer [remote_leo2] oops
   lemma TraL2 : "[\<forall>(\<lambda>x.\<forall>(\<lambda>y.\<forall>(\<lambda>z. (x mL=2 y m\<and> y mL=2 z) m\<rightarrow> x mL=2 z)))]" sledgehammer [remote_leo2] by metis
-  lemma ConL2 : "[\<forall>(\<lambda>x.\<forall>(\<lambda>y.\<forall>(\<lambda>f. x mL=2 y m\<rightarrow> (f x) mL=2 (f y))))]"  sledgehammer [remote_leo2] oops
+  lemma ConL2a : "[\<forall>(\<lambda>x.\<forall>(\<lambda>y.\<forall>(\<lambda>f. x mL=2 y m\<rightarrow> (f x) mL=2 (f y))))]"  sledgehammer [remote_leo2] oops
+  lemma ConL2b : "[\<forall>(\<lambda>x.\<forall>(\<lambda>y.\<forall>(\<lambda>p. x mL=2 y m\<rightarrow> (p x) m\<longleftrightarrow> (p y))))]"  sledgehammer [remote_leo2] oops
   lemma PriL2 : "\<forall> x y. [x mL=2 y] = (x = y)" sledgehammer [remote_satallax] oops
 
   lemma FEL2a : "[\<forall>(\<lambda>f.\<forall>(\<lambda>g. f mL=2 g m\<rightarrow> \<forall>(\<lambda>x. (f x) mL=2 (g x))))]" sledgehammer [remote_leo2] oops
@@ -140,7 +147,9 @@ text {* Let's try to modify the Leibniz definition. Again we cosinder only the c
 
 text {* So far that is fine. But now again the congruence property fails. *}
 
-  lemma ConL4 : "[\<forall>(\<lambda>x.\<forall>(\<lambda>y.\<forall>(\<lambda>f. x mL=4 y m\<rightarrow> (f x) mL=4 (f y))))]" nitpick oops 
+  lemma ConL4a : "[\<forall>(\<lambda>x.\<forall>(\<lambda>y.\<forall>(\<lambda>f. x mL=4 y m\<rightarrow> (f x) mL=4 (f y))))]" nitpick oops
+  lemma ConL4b : "[\<forall>(\<lambda>x.\<forall>(\<lambda>y.\<forall>(\<lambda>p. x mL=4 y m\<rightarrow> (p x) m\<longleftrightarrow> (p y))))]" nitpick oops  
+
 
 section {* Correspondences *}
 
@@ -151,12 +160,11 @@ section {* Correspondences *}
 
 section {* Preliminary Conclusion *}
 
-Lifted equality (be it primitive or Leibniz) are fine for type \<mu> (extensionality is not an issue).
-
+text {* Lifted equality (be it primitive or Leibniz) are fine for type \<mu> (extensionality is not an issue).
 However, when considering lifted equalities also for predicate or functional types (be it primitive or 
 Leibniz) then we should be careful. The above versions either miss the non-trivial 
 direction of Boolean extensionality or they miss congruence. But missing the non-trivial direction of
-Boolean extensionality is probably even what we want (needs to be discussed)? 
+Boolean extensionality is probably even what we want (needs to be discussed)? *}
 (*<*) 
 end
 (*>*) 
