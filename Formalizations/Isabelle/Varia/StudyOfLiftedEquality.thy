@@ -182,7 +182,8 @@ on base type \<mu>, then @{text "x m= y \<equiv> (\<lambda>w. x = y)"} or @{text
 reasonable options (and we have @{text "(x m= y) = (x mL= y)"}. Congruence, which holds, does not seem 
 problematic in this case.
 
-If we are interested in lifted equality on higher types, then we have to be very careful. Choosing
+If we are interested in lifted equality on higher types, let's say on type \<sigma> (modal propositions), 
+then we have to be very careful. Choosing
 @{text "x m= y \<equiv> (\<lambda>w. x = y)"} or @{text "x mL= y \<equiv>  \<forall>(\<lambda>\<phi>.((\<phi> x) m\<rightarrow> (\<phi> y)))"} implies
 than we can prove congruence, and hence also @{text "[\<forall>(\<lambda>\<phi>. \<phi> m=/mL= mT m\<rightarrow> (\<box> \<phi>) m\<longleftrightarrow> (\<box> mT))]"}, 
 which looks like a form of modal collapse. Moreover, we have that the non-trivial direction of 
@@ -192,9 +193,9 @@ As an alternative we may thus use
 @{text "x m= y \<equiv> (\<lambda>w. ((x w) = (y w)))"} or 
 @{text "x mL= y \<equiv>  (\<lambda>w. (\<forall>(\<lambda>\<phi>.((\<phi> (x w) m\<rightarrow> (\<phi> (y w)))))) w)"}; we again have 
 that @{text "(x m= y) = (x mL= y)"}.
-For these forms of lifted equalities it holds that congruence fails (and we also don't
+For these forms of lifted equalities it holds that congruence fails (which is good and we also don't
 get @{text "[\<forall>(\<lambda>\<phi>. \<phi> m=/mL= mT m\<rightarrow> (\<box> \<phi>) m\<longleftrightarrow> (\<box> mT))]"} as a theorem). Moreover, now Boolean 
-extensionality holds again. Thus, these options seem appropriate.
+extensionality holds again. Thus, these two choices of lifted equality seem appropriate.
 
 Further discussion is needed! *}
 (*<*) 
