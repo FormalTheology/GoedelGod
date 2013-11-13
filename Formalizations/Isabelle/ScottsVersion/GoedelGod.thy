@@ -40,8 +40,7 @@ section {* Introduction *}
 
 section {* An Embedding of QML KB in HOL *}
 
-text {* The types @{text "i"} for possible worlds and $\mu$ for individuals 
-are introduced. *}
+text {* The types @{text "i"} for possible worlds and $\mu$ for individuals are introduced. *}
 
   typedecl i    -- "the type for possible worlds" 
   typedecl \<mu>    -- "the type for indiviuals"      
@@ -174,7 +173,7 @@ text {* Surprisingly, the following corollary can be derived even without the @{
 
 text {* The consistency of the entire theory is confirmed by Nitpick. *}
 
-  -- {* lemma True nitpick [satisfy, user\_axioms, expect = genuine] oops *}
+  lemma True nitpick [satisfy, user_axioms, expect = genuine] oops
 
 
 section {* Additional Results on G\"odel's God. *}  
