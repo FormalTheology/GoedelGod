@@ -14,6 +14,8 @@ section {* Embedding of QML in HOL *}
 
   type_synonym \<sigma> = "(i \<Rightarrow> bool)"
 
+  abbreviation mtrue :: "\<sigma>" ("mT") where "mT \<equiv> (\<lambda>w. True)"    
+  abbreviation mfalse :: "\<sigma>" ("mF") where "mF \<equiv> (\<lambda>w. False)"    
   abbreviation mnot :: "\<sigma> \<Rightarrow> \<sigma>" ("m\<not>") where "m\<not> \<phi> \<equiv> (\<lambda>w. \<not> \<phi> w)"    
   abbreviation mand :: "\<sigma> \<Rightarrow> \<sigma> \<Rightarrow> \<sigma>" (infixr "m\<and>" 65) where "\<phi> m\<and> \<psi> \<equiv> (\<lambda>w. \<phi> w \<and> \<psi> w)"   
   abbreviation mor :: "\<sigma> \<Rightarrow> \<sigma> \<Rightarrow> \<sigma>" (infixr "m\<or>" 70) where "\<phi> m\<or> \<psi> \<equiv> (\<lambda>w. \<phi> w \<or> \<psi> w)"   
@@ -53,12 +55,20 @@ text {* We extend the above lifting idea to arbitrary types. *}
   lemma Ref2 : "[\<forall>(\<lambda>x. x m=2 x)]" sledgehammer [remote_leo2] by metis
   lemma Sym2 : "[\<forall>(\<lambda>x.\<forall>(\<lambda>y. x m=2 y m\<rightarrow> y m=2 x))]" sledgehammer [remote_leo2] by metis 
   lemma Tra2 : "[\<forall>(\<lambda>x.\<forall>(\<lambda>y.\<forall>(\<lambda>z. (x m=2 y m\<and> y m=2 z) m\<rightarrow> x m=2 z)))]" sledgehammer [remote_leo2] by metis
-  lemma Con2a : "[\<forall>(\<lambda>x.\<forall>(\<lambda>y.\<forall>(\<lambda>f. x m=2 y m\<rightarrow> (f x) m=2 (f y))))]"  sledgehammer [remote_leo2] by metis
-  lemma Con2b : "[\<forall>(\<lambda>x.\<forall>(\<lambda>y.\<forall>(\<lambda>p. x m=2 y m\<rightarrow> (p x) m\<longleftrightarrow> (p y))))]"  sledgehammer [remote_leo2] by metis
   lemma Pri2 : "\<forall> x y. [x m=2 y] = (x = y)" sledgehammer [remote_leo2] by metis
 
-text {* Hence, @{text "m=2"} is also a congruence relation as expected and intended, and it also 
-coincides with primitive equality. But how about functional and Boolean extensionality?
+text {* We again check for congruence. Both congruence properties are still valid. *}
+
+  lemma Con2a : "[\<forall>(\<lambda>x.\<forall>(\<lambda>y.\<forall>(\<lambda>f. x m=2 y m\<rightarrow> (f x) m=2 (f y))))]"  sledgehammer [remote_leo2] by metis
+  lemma Con2b : "[\<forall>(\<lambda>x.\<forall>(\<lambda>y.\<forall>(\<lambda>p. x m=2 y m\<rightarrow> (p x) m\<longleftrightarrow> (p y))))]"  sledgehammer [remote_leo2] by metis
+
+text {* However, this is not what we would like. To see this see the following property; this is 
+certainly not what we want! *}
+
+  lemma Con2c : "[\<forall>(\<lambda>\<phi>. (\<phi> m=2 mT) m\<rightarrow> ((\<box> \<phi>) m\<longleftrightarrow> (\<box> mT)))]"  sledgehammer [remote_leo2] by metis
+
+text {* Hence, @{text "m=2"} is also a congruence relation, but this time this not intended.
+@{text "m=2"} also still coincides primitive equality. But how about functional and Boolean extensionality?
 It turns out that (lifted) functional extensionality and the trivial direction of Boolean extensionality 
 are valid (though Matis cannot reconstruct the proof for FE2b). Note: Whenever you an 'oops' 
 just put the mouse pointer before the oops to get relevant information in the README window of jedit. *}
@@ -76,10 +86,11 @@ text {* Let's focus on lifted equality for type \<sigma> only. The problem remai
 
   abbreviation meq3 :: " \<sigma> \<Rightarrow> \<sigma> \<Rightarrow> \<sigma>" (infixr "m=3" 100) where "x m=3 y \<equiv> (\<lambda>w. x = y)"  
 
+  lemma Con3c : "[\<forall>(\<lambda>\<phi>. \<phi> m=3 mT m\<rightarrow> (\<box> \<phi>) m\<longleftrightarrow> (\<box> mT))]"  sledgehammer [remote_leo2] by metis
   lemma BE3b : "[\<forall>(\<lambda>p.\<forall>(\<lambda>q. (p m\<longleftrightarrow> q) m\<rightarrow> (p m=3 q)))]" nitpick oops
   
 text {* Here is an alternative definition of lifted primitive equality for type \<sigma> which does suffer 
-from this problem. *}  
+from the above problems. *}  
 
   abbreviation meq4 :: "\<sigma> \<Rightarrow> \<sigma> \<Rightarrow> \<sigma>" (infixr "m=4" 100) where "x m=4 y \<equiv> (\<lambda>w. ((x w) = (y w)))"  
  
@@ -90,13 +101,12 @@ from this problem. *}
   lemma BE4a : "[\<forall>(\<lambda>p.\<forall>(\<lambda>q. (p m=4 q) m\<rightarrow> (p m\<longleftrightarrow> q)))]" sledgehammer [remote_leo2] by metis
   lemma BE4b : "[\<forall>(\<lambda>p.\<forall>(\<lambda>q. (p m\<longleftrightarrow> q) m\<rightarrow> (p m=4 q)))]" sledgehammer [remote_leo2] by metis
 
-text {* Unfortuntely, this @{text "m=4"} invalidates the lifted congruance property. *}  
+text {* @{text "m=4"} invalidates the lifted congruance property. This is what what actually want.*}  
 
   lemma Con4a : "[\<forall>(\<lambda>x.\<forall>(\<lambda>y.\<forall>(\<lambda>f. (x m=4 y) m\<rightarrow> (f x) m=4 (f y))))]" nitpick oops  
   lemma Con4b : "[\<forall>(\<lambda>x.\<forall>(\<lambda>y.\<forall>(\<lambda>p. x m=4 y m\<rightarrow> (p x) m\<longleftrightarrow> (p y))))]" nitpick oops  
-
-
-text {* Unfortuntely, this @{text "m=4"} invalidates the lifted congruence property. *}  
+  lemma Con4c : "[\<forall>(\<lambda>\<phi>. \<phi> m=4 mT m\<rightarrow> (\<box> \<phi>) m\<longleftrightarrow> (\<box> mT))]"  nitpick oops 
+ 
 
 section {* Lifted Leibniz equality *}
 
@@ -109,15 +119,14 @@ section {* Lifted Leibniz equality *}
   lemma ConL1b : "[\<forall>(\<lambda>x.\<forall>(\<lambda>y.\<forall>(\<lambda>p. x mL=1 y m\<rightarrow> (p x) m\<longleftrightarrow> (p y))))]"  sledgehammer [remote_leo2] oops
   lemma PriL1 : "\<forall> x y. [x mL=1 y] = (x = y)" sledgehammer [remote_satallax] oops
 
-text {* Ok, fine @{text "mL=1"} validates all these properties. How about extensionality then? *}  
+text {* Ok, fine @{text "mL=1"} validates all these properties. And this is as intended for type \<mu>. 
+How about extending it to arbitrary types? *}  
 
   abbreviation meqL2 :: "'a \<Rightarrow> 'a \<Rightarrow> \<sigma>" (infixr "mL=2" 100) where "x mL=2 y \<equiv>  \<forall>(\<lambda>\<phi>.((\<phi> x) m\<rightarrow> (\<phi> y)))"  
 
   lemma RefL2 : "[\<forall>(\<lambda>x. x mL=2 x)]" sledgehammer [remote_leo2] by metis
   lemma SymL2 : "[\<forall>(\<lambda>x.\<forall>(\<lambda>y. x mL=2 y m\<rightarrow> y mL=2 x))]" sledgehammer [remote_leo2] oops
   lemma TraL2 : "[\<forall>(\<lambda>x.\<forall>(\<lambda>y.\<forall>(\<lambda>z. (x mL=2 y m\<and> y mL=2 z) m\<rightarrow> x mL=2 z)))]" sledgehammer [remote_leo2] by metis
-  lemma ConL2a : "[\<forall>(\<lambda>x.\<forall>(\<lambda>y.\<forall>(\<lambda>f. x mL=2 y m\<rightarrow> (f x) mL=2 (f y))))]"  sledgehammer [remote_leo2] oops
-  lemma ConL2b : "[\<forall>(\<lambda>x.\<forall>(\<lambda>y.\<forall>(\<lambda>p. x mL=2 y m\<rightarrow> (p x) m\<longleftrightarrow> (p y))))]"  sledgehammer [remote_leo2] oops
   lemma PriL2 : "\<forall> x y. [x mL=2 y] = (x = y)" sledgehammer [remote_satallax] oops
 
   lemma FEL2a : "[\<forall>(\<lambda>f.\<forall>(\<lambda>g. f mL=2 g m\<rightarrow> \<forall>(\<lambda>x. (f x) mL=2 (g x))))]" sledgehammer [remote_leo2] oops
@@ -128,11 +137,17 @@ text {* So far that is fine. But again, the non-trivial direction of Boolean ext
 
   lemma BEL2b : "[\<forall>(\<lambda>p.\<forall>(\<lambda>q. (p m\<longleftrightarrow> q) m\<rightarrow> (p mL=2 q)))]" nitpick oops
 
+text {* And unfortunately, we have congruence which we don't want in the general case. *}
+  lemma ConL2a : "[\<forall>(\<lambda>x.\<forall>(\<lambda>y.\<forall>(\<lambda>f. x mL=2 y m\<rightarrow> (f x) mL=2 (f y))))]"  sledgehammer [remote_leo2] oops
+  lemma ConL2b : "[\<forall>(\<lambda>x.\<forall>(\<lambda>y.\<forall>(\<lambda>p. x mL=2 y m\<rightarrow> (p x) m\<longleftrightarrow> (p y))))]"  sledgehammer [remote_leo2] oops
+  lemma ConL2c : "[\<forall>(\<lambda>\<phi>. \<phi> mL=2 mT m\<rightarrow> (\<box> \<phi>) m\<longleftrightarrow> (\<box> mT))]"  sledgehammer [remote_leo2] oops
+
 text {* Let's focus on lifted equality for type \<sigma> only. The problem remains the same. *} 
 
   abbreviation meqL3 :: "\<sigma> \<Rightarrow> \<sigma> \<Rightarrow> \<sigma>" (infixr "mL=3" 100) where "x mL=3 y \<equiv>  \<forall>(\<lambda>\<phi>.((\<phi> x) m\<rightarrow> (\<phi> y)))"  
 
   lemma BEL3b : "[\<forall>(\<lambda>p.\<forall>(\<lambda>q. (p m\<longleftrightarrow> q) m\<rightarrow> (p mL=3 q)))]" nitpick oops
+  lemma ConL3c : "[\<forall>(\<lambda>\<phi>. \<phi> mL=3 mT m\<rightarrow> (\<box> \<phi>) m\<longleftrightarrow> (\<box> mT))]"  sledgehammer [remote_leo2] oops
 
 text {* Let's try to modify the Leibniz definition. Again we cosinder only the case for \<sigma>. *}
 
@@ -145,10 +160,11 @@ text {* Let's try to modify the Leibniz definition. Again we cosinder only the c
   lemma BEL4a : "[\<forall>(\<lambda>p.\<forall>(\<lambda>q. p mL=4 q m\<rightarrow> (p m\<longleftrightarrow> q)))]" sledgehammer [remote_leo2] oops
   lemma BEL4b : "[\<forall>(\<lambda>p.\<forall>(\<lambda>q. (p m\<longleftrightarrow> q) m\<rightarrow> (p mL=4 q)))]" sledgehammer [remote_leo2] oops
 
-text {* So far that is fine. But now again the congruence property fails. *}
+text {* So far that is fine. Moreover, it turns out that congruence fails as intended. *}
 
   lemma ConL4a : "[\<forall>(\<lambda>x.\<forall>(\<lambda>y.\<forall>(\<lambda>f. x mL=4 y m\<rightarrow> (f x) mL=4 (f y))))]" nitpick oops
   lemma ConL4b : "[\<forall>(\<lambda>x.\<forall>(\<lambda>y.\<forall>(\<lambda>p. x mL=4 y m\<rightarrow> (p x) m\<longleftrightarrow> (p y))))]" nitpick oops  
+  lemma ConL34 : "[\<forall>(\<lambda>\<phi>. \<phi> mL=4 mT m\<rightarrow> (\<box> \<phi>) m\<longleftrightarrow> (\<box> mT))]" nitpick oops   
 
 
 section {* Correspondences *}
@@ -160,11 +176,27 @@ section {* Correspondences *}
 
 section {* Preliminary Conclusion *}
 
-text {* Lifted equality (be it primitive or Leibniz) are fine for type \<mu> (extensionality is not an issue).
-However, when considering lifted equalities also for predicate or functional types (be it primitive or 
-Leibniz) then we should be careful. The above versions either miss the non-trivial 
-direction of Boolean extensionality or they miss congruence. But missing the non-trivial direction of
-Boolean extensionality is probably even what we want (needs to be discussed)? *}
+text {*
+The reasonable options for lifted equalities are as follows. If we are just interested in lifted equality 
+on base type \<mu>, then @{text "x m= y \<equiv> (\<lambda>w. x = y)"} or @{text "x mL= y \<equiv>  \<forall>(\<lambda>\<phi>.((\<phi> x) m\<rightarrow> (\<phi> y)))"} are 
+reasonable options (and we have @{text "(x m= y) = (x mL= y)"}. Congruence, which holds, does not seem 
+problematic in this case.
+
+If we are interested in lifted equality on higher types, then we have to be very careful. Choosing
+@{text "x m= y \<equiv> (\<lambda>w. x = y)"} or @{text "x mL= y \<equiv>  \<forall>(\<lambda>\<phi>.((\<phi> x) m\<rightarrow> (\<phi> y)))"} implies
+than we can prove congruence, and hence also @{text "[\<forall>(\<lambda>\<phi>. \<phi> m=/mL= mT m\<rightarrow> (\<box> \<phi>) m\<longleftrightarrow> (\<box> mT))]"}, 
+which looks like a form of modal collapse. Moreover, we have that the non-trivial direction of 
+Boolean extensionality fails for both @{text "m=/mL="}.
+
+As an alternative we may thus use
+@{text "x m= y \<equiv> (\<lambda>w. ((x w) = (y w)))"} or 
+@{text "x mL= y \<equiv>  (\<lambda>w. (\<forall>(\<lambda>\<phi>.((\<phi> (x w) m\<rightarrow> (\<phi> (y w)))))) w)"}; we again have 
+that @{text "(x m= y) = (x mL= y)"}.
+For these forms of lifted equalities it holds that congruence fails (and we also don't
+get @{text "[\<forall>(\<lambda>\<phi>. \<phi> m=/mL= mT m\<rightarrow> (\<box> \<phi>) m\<longleftrightarrow> (\<box> mT))]"} as a theorem). Moreover, now Boolean 
+extensionality holds again. Thus, these options seem appropriate.
+
+Further discussion is needed! *}
 (*<*) 
 end
 (*>*) 
