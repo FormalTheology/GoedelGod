@@ -63,6 +63,9 @@ section {* Lifted Leibniz equality is the same as lifted primitive equality in H
   
   theorem LLeibniz3 : "\<forall>x y. [\<lambda>w. x = y] = [\<forall>(\<lambda>p. (p(x) m\<rightarrow> p(y)))]"  
   by (metis LL1)
+  
+  theorem LLeibniz4 : "\<forall>x y. (\<lambda>w. x = y) = \<forall>(\<lambda>p. (p(x) m\<rightarrow> p(y)))"  
+  by (metis LL1)
 
 section {* Lifted primitive equality *}
 
