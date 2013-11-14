@@ -5,6 +5,23 @@ imports Main
 begin
 (*>*)
 
+section {* Leibniz equality is the same as primitive equality in HOL (with Henkin or standard semantics) *}
+
+  lemma L1 : "\<forall>x y. ((\<forall>p. (p(x) \<longrightarrow> p(y))) \<longrightarrow> (x = y))"
+  apply (rule allI)+
+  apply (rule impI)
+  apply (erule_tac x = "\<lambda>u. x = u" in allE)
+  by simp
+
+  theorem Leibniz1 : "\<forall>x y. ((x = y) \<longleftrightarrow> (\<forall>p. (p(x) \<longrightarrow> p(y))))"  
+  by (metis L1)
+
+  theorem Leibniz2 : "\<forall>x y. ((x = y) = (\<forall>p. (p(x) \<longrightarrow> p(y))))"  
+  by (metis L1)
+  
+  theorem Leibniz3 : "(\<lambda> x y. (x = y)) = (\<lambda> x y. (\<forall>p. (p(x) \<longrightarrow> p(y))))"  
+  by (metis L1)
+  
 section {* Embedding of QML in HOL *}
 
   typedecl i    -- "the type for possible worlds" 
@@ -29,6 +46,23 @@ section {* Embedding of QML in HOL *}
   no_syntax "_list" :: "args \<Rightarrow> 'a list" ("[(_)]") 
   abbreviation valid :: "\<sigma> \<Rightarrow> bool" ("[_]") where "[p] \<equiv> \<forall>w. p w"
   
+  
+section {* Lifted Leibniz equality is the same as lifted primitive equality in HOL *}  
+  
+  lemma LL1 : "[\<forall>(\<lambda>x. \<forall>(\<lambda>y. ((\<forall>(\<lambda>p. (p(x) m\<rightarrow> p(y)))) m\<rightarrow> (\<lambda>w. x = y))))]"
+  apply (rule allI)+
+  apply (rule impI)
+  apply (erule_tac x = "\<lambda>u. (\<lambda>w. x = u)" in allE)
+  by simp
+
+  theorem LLeibniz1 : "[\<forall>(\<lambda>x. \<forall>(\<lambda>y. ((\<lambda>w. x = y) m\<longleftrightarrow> (\<forall>(\<lambda>p. (p(x) m\<rightarrow> p(y)))))))]"  
+  by (metis LL1)
+  
+  theorem LLeibniz2 : "\<forall>x y. [\<lambda>w. x = y] \<longleftrightarrow> [\<forall>(\<lambda>p. (p(x) m\<rightarrow> p(y)))]"  
+  by (metis LL1)
+  
+  theorem LLeibniz3 : "\<forall>x y. [\<lambda>w. x = y] = [\<forall>(\<lambda>p. (p(x) m\<rightarrow> p(y)))]"  
+  by (metis LL1)
 
 section {* Lifted primitive equality *}
 
