@@ -18,7 +18,10 @@ Parameter r: i -> i -> Prop.
 
 (* Modal connectives *)
 
-Definition mequal {A: Type}(x y: A) := fun w: i => x = y.
+(*Definition mequal {A: Type}(x y: A) := fun w: i => x = y.
+Notation "x m= y" := (mequal x y) (at level 99, right associativity). *)
+
+Definition mequal (x y: u) := fun w: i => x = y.
 Notation "x m= y" := (mequal x y) (at level 99, right associativity).
 
 Definition mnot (p: o)(w: i) := ~ (p w).

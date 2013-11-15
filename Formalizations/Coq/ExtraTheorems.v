@@ -9,7 +9,7 @@ Require Import Coq.Logic.Classical.
 Require Import GoedelGod_Scott.
 
 
-(* Leibniz's Law of the identity of the indiscernibles *)
+(* Leibniz's Law of the identity of the indiscernibles
 Theorem leibniz_law: forall A: Type, (V (mforall x: A, (mforall y: A, (mforall p, (p x) m<-> (p y)) m-> x m= y ))).
 Proof.
 intro A.
@@ -19,7 +19,19 @@ unfold mequal.
 red in H. red in H.
 apply H with (x0 := fun z w => z = y).
 reflexivity.
+Qed. *)
+
+(* Leibniz's Law of the identity of the indiscernibles *)
+Theorem leibniz_law: (V (mforall x: u, (mforall y: u, (mforall p, (p x) m<-> (p y)) m-> x m= y ))).
+Proof.
+intro.
+intros x y H.
+unfold mequal.
+red in H. red in H.
+apply H with (x0 := fun z w => z = y).
+reflexivity.
 Qed.
+
 
 
 (* God is flawless: God has no negative property. *)
