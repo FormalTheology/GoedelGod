@@ -20,7 +20,9 @@ Germany
 
 [Freie Universitaet Berlin](http://www.fu-berlin.de/presse/informationen/fup/2013/fup_13_308/index.html)
 
-[Die Welt](http://www.welt.de/wissenschaft/article120995923/Forscher-beweisen-Existenz-Gottes-am-Computer.html)
+[Die Welt (online)](http://www.welt.de/wissenschaft/article120995923/Forscher-beweisen-Existenz-Gottes-am-Computer.html)
+
+[Die Welt (print, front cover)](./WeltCover.pdf)
 
 [Berliner Morgenpost](http://www.morgenpost.de/printarchiv/titelseite/article121004483/Goettliche-Mathematik.html)
 
@@ -203,3 +205,5 @@ International
 [Latin Times](http://abcnews.go.com/Technology/computer-scientists-prove-god-exists/story?id=20678984)
 
 [Decoded Science](http://www.decodedscience.com/modal-logic-proved-godel-right-god-exists/38801)
+
+[MSN](http://now.msn.com/christoph-benzmüller-and-bruno-woltzenlogel-paleo-scientists-say-theyve-proved-god-exists)
