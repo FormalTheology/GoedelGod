@@ -10,10 +10,16 @@ Require Import GoedelGod_Scott.
 
 
 (* Leibniz's Law of the identity of the indiscernibles *)
-(* Despite its intuitive appeal, this law is controversial. *)
-(* The main objection against this law is *) 
-(* Max Black's symmetric universe counter-model. *)
-Axiom leibniz_law: forall A: Type, (V (mforall x: A, (mforall y: A, (mforall p, (p x) m<-> (p y)) m-> x m= y ))).
+Theorem leibniz_law: forall A: Type, (V (mforall x: A, (mforall y: A, (mforall p, (p x) m<-> (p y)) m-> x m= y ))).
+Proof.
+intro A.
+intro.
+intros x y H.
+unfold mequal.
+red in H. red in H.
+apply H with (x0 := fun z w => z = y).
+reflexivity.
+Qed.
 
 
 (* God is flawless: God has no negative property. *)
