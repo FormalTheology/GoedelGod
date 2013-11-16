@@ -1,3 +1,4 @@
+Add LoadPath "./".
 Require Import stttab.
 Section SatallaxProblem.
 Variable mu:SType.
@@ -44,56 +45,6 @@ Hypothesis axA1a : v (mforall_indset (fun (Phi:mu --> i --> o) => mimplies (p (f
 Hypothesis axA2 : v (mforall_indset (fun (Phi:mu --> i --> o) => mforall_indset (fun (Psi:mu --> i --> o) => mimplies (mand (p Phi) (mbox (mforall_ind (fun (X:mu) => mimplies (Phi X) (Psi X))))) (p Psi)))).
 Hypothesis axA5 : v (p ne).
 Theorem claim : False.
-Add LoadPath "/Users/cbenzmueller/satallax-2.7/coq".
-Require Import stttab.
-Section SatallaxProblem.
-Variable mu:SType.
-Variable i:SType.
-Variable rel : i --> i --> o.
-Variable p : (mu --> i --> o) --> i --> o.
-Variable g : mu --> i --> o.
-Definition mnot : (i --> o) --> i --> o
- := fun (Phi:i --> o) (W:i) => ~ Phi W.
-Definition mor : (i --> o) --> (i --> o) --> i --> o
- := fun (Phi:i --> o) (Psi:i --> o) (W:i) => Phi W \/ Psi W.
-Definition mbox_generic : (i --> i --> o) --> (i --> o) --> i --> o
- := fun (R:i --> i --> o) (Phi:i --> o) (W:i) => forall (V:i), ~ R W V \/ Phi V.
-Definition mforall_ind : (mu --> i --> o) --> i --> o
- := fun (Phi:mu --> i --> o) (W:i) => forall (X:mu), Phi X W.
-Definition mforall_indset : ((mu --> i --> o) --> i --> o) --> i --> o
- := fun (Phi:(mu --> i --> o) --> i --> o) (W:i) => forall (X:mu --> i --> o), Phi X W.
-Definition mand : (i --> o) --> (i --> o) --> i --> o
- := fun (Phi:i --> o) (Psi:i --> o) => mnot (mor (mnot Phi) (mnot Psi)).
-Definition mimplies : (i --> o) --> (i --> o) --> i --> o
- := fun (Phi:i --> o) (Psi:i --> o) => mor (mnot Phi) Psi.
-Definition mequiv : (i --> o) --> (i --> o) --> i --> o
- := fun (Phi:i --> o) (Psi:i --> o) => mand (mimplies Phi Psi) (mimplies Psi Phi).
-Definition mdia_generic : (i --> i --> o) --> (i --> o) --> i --> o
- := fun (R:i --> i --> o) (Phi:i --> o) => mnot (mbox_generic R (mnot Phi)).
-Definition mexists_ind : (mu --> i --> o) --> i --> o
- := fun (Phi:mu --> i --> o) => mnot (mforall_ind (fun (X:mu) => mnot (Phi X))).
-Definition mexists_indset : ((mu --> i --> o) --> i --> o) --> i --> o
- := fun (Phi:(mu --> i --> o) --> i --> o) => mnot (mforall_indset (fun (X:mu --> i --> o) => mnot (Phi X))).
-Definition v : (i --> o) --> o
- := fun (Phi:i --> o) => forall (W:i), Phi W.
-Definition msymmetric : (i --> i --> o) --> o
- := fun (R:i --> i --> o) => forall (S:i) (T:i), R S T -> R T S.
-Definition mbox : (i --> o) --> i --> o
- := mbox_generic rel.
-Definition mdia : (i --> o) --> i --> o
- := mdia_generic rel.
-Definition ess : (mu --> i --> o) --> mu --> i --> o
- := fun (Phi:mu --> i --> o) (X:mu) => mforall_indset (fun (Psi:mu --> i --> o) => mimplies (Psi X) (mbox (mforall_ind (fun (Y:mu) => mimplies (Phi Y) (Psi Y))))).
-Definition ne : mu --> i --> o
- := fun (X:mu) => mforall_indset (fun (Phi:mu --> i --> o) => mimplies (ess Phi X) (mbox (mexists_ind (fun (Y:mu) => Phi Y)))).
-Hypothesis sym : msymmetric rel.
-Hypothesis axA1a : v (mforall_indset (fun (Phi:mu --> i --> o) => mimplies (p (fun (X:mu) => mnot (Phi X))) (mnot (p Phi)))).
-Hypothesis axA2 : v (mforall_indset (fun (Phi:mu --> i --> o) => mforall_indset (fun (Psi:mu --> i --> o) => mimplies (mand (p Phi) (mbox (mforall_ind (fun (X:mu) => mimplies (Phi X) (Psi X))))) (p Psi)))).
-Hypothesis axA5 : v (p ne).
-Theorem claim : False.
-% SZS output start Proof
-% Coq Proof Script
-
 tab_start H0.
 tab_inh (i) __0.
 tab_all sym (__0) H1.
