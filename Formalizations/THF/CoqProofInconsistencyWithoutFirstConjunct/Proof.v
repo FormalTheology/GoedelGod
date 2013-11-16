@@ -2,7 +2,7 @@ Add LoadPath "./".
 Require Import stttab.
 Section SatallaxProblem.
 Variable mu:SType.
-Variable i:SType.
+Variable i:SType. 
 Variable rel : i --> i --> o.
 Variable p : (mu --> i --> o) --> i --> o.
 Variable g : mu --> i --> o.
