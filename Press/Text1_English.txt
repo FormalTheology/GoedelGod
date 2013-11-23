@@ -41,6 +41,6 @@ and these systems were now employed in the work of Benzmüller and Woltzenlogel-
 Their chosen approach opens new perspectives for a 
 computer-assisted theoretical philosophy. The critical discussion of the underlying 
 concepts, definitions and axioms remains a human responsibility. But the computer can 
-help to avoid mistakes of a logical nature: the computer can check the aurgumentation chain
+help to avoid mistakes of a logical nature: the computer can check the argumentation chain
 and partially fulfill Leibniz' dictum in case of logical disputes:
 Calculemus --- Let us calculate!
