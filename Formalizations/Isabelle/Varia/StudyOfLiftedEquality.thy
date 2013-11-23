@@ -103,6 +103,7 @@ text {* However, this is not what we would like. To see this see the following p
 certainly not what we want! *}
 
   lemma Con2c : "[\<forall>(\<lambda>\<phi>. (\<phi> m=2 mT) m\<rightarrow> ((\<box> \<phi>) m\<longleftrightarrow> (\<box> mT)))]"  sledgehammer [remote_leo2] by metis
+  lemma Con2d : "[\<forall>(\<lambda>\<phi>. (\<phi> m=2 mT) m\<rightarrow> ((\<box> \<phi>) m\<longleftrightarrow> mT))]"  sledgehammer [remote_leo2] by metis
 
 text {* Hence, @{text "m=2"} is also a congruence relation, but this time this not intended.
 @{text "m=2"} also still coincides primitive equality. But how about functional and Boolean extensionality?
@@ -124,6 +125,7 @@ text {* Let's focus on lifted equality for type \<sigma> only. The problem remai
   abbreviation meq3 :: " \<sigma> \<Rightarrow> \<sigma> \<Rightarrow> \<sigma>" (infixr "m=3" 100) where "x m=3 y \<equiv> (\<lambda>w. x = y)"  
 
   lemma Con3c : "[\<forall>(\<lambda>\<phi>. \<phi> m=3 mT m\<rightarrow> (\<box> \<phi>) m\<longleftrightarrow> (\<box> mT))]"  sledgehammer [remote_leo2] by metis
+  lemma Con3d : "[\<forall>(\<lambda>\<phi>. \<phi> m=3 mT m\<rightarrow> (\<box> \<phi>) m\<longleftrightarrow> mT)]"  sledgehammer [remote_leo2] by metis
   lemma BE3b : "[\<forall>(\<lambda>p.\<forall>(\<lambda>q. (p m\<longleftrightarrow> q) m\<rightarrow> (p m=3 q)))]" nitpick oops
   
 text {* Here is an alternative definition of lifted primitive equality for type \<sigma> which does suffer 
@@ -143,8 +145,9 @@ text {* @{text "m=4"} invalidates the lifted congruance property. This is what w
   lemma Con4a : "[\<forall>(\<lambda>x.\<forall>(\<lambda>y.\<forall>(\<lambda>f. (x m=4 y) m\<rightarrow> (f x) m=4 (f y))))]" nitpick oops  
   lemma Con4b : "[\<forall>(\<lambda>x.\<forall>(\<lambda>y.\<forall>(\<lambda>p. x m=4 y m\<rightarrow> (p x) m\<longleftrightarrow> (p y))))]" nitpick oops  
   lemma Con4c : "[\<forall>(\<lambda>\<phi>. \<phi> m=4 mT m\<rightarrow> (\<box> \<phi>) m\<longleftrightarrow> (\<box> mT))]"  nitpick oops 
- 
+  lemma Con4d : "[\<forall>(\<lambda>\<phi>. \<phi> m=4 mT m\<rightarrow> (\<box> \<phi>) m\<longleftrightarrow> mT)]"  nitpick oops 
 
+  
 section {* Lifted Leibniz equality *}
 
   abbreviation meqL1 :: "\<mu> \<Rightarrow> \<mu> \<Rightarrow> \<sigma>" (infixr "mL=1" 100) where "x mL=1 y \<equiv>  \<forall>(\<lambda>\<phi>.((\<phi> x) m\<rightarrow> (\<phi> y)))"  
@@ -178,14 +181,18 @@ text {* And unfortunately, we have congruence which we don't want in the general
   lemma ConL2a : "[\<forall>(\<lambda>x.\<forall>(\<lambda>y.\<forall>(\<lambda>f. x mL=2 y m\<rightarrow> (f x) mL=2 (f y))))]"  sledgehammer [remote_leo2] oops
   lemma ConL2b : "[\<forall>(\<lambda>x.\<forall>(\<lambda>y.\<forall>(\<lambda>p. x mL=2 y m\<rightarrow> (p x) m\<longleftrightarrow> (p y))))]"  sledgehammer [remote_leo2] oops
   lemma ConL2c : "[\<forall>(\<lambda>\<phi>. \<phi> mL=2 mT m\<rightarrow> (\<box> \<phi>) m\<longleftrightarrow> (\<box> mT))]"  sledgehammer [remote_leo2] oops
+  lemma ConL2c : "[\<forall>(\<lambda>\<phi>. \<phi> mL=2 mT m\<rightarrow> (\<box> \<phi>) m\<longleftrightarrow> mT)]"  sledgehammer [remote_leo2] oops
 
+  
 text {* Let's focus on lifted equality for type \<sigma> only. The problem remains the same. *} 
 
   abbreviation meqL3 :: "\<sigma> \<Rightarrow> \<sigma> \<Rightarrow> \<sigma>" (infixr "mL=3" 100) where "x mL=3 y \<equiv>  \<forall>(\<lambda>\<phi>.((\<phi> x) m\<rightarrow> (\<phi> y)))"  
 
   lemma BEL3b : "[\<forall>(\<lambda>p.\<forall>(\<lambda>q. (p m\<longleftrightarrow> q) m\<rightarrow> (p mL=3 q)))]" nitpick oops
   lemma ConL3c : "[\<forall>(\<lambda>\<phi>. \<phi> mL=3 mT m\<rightarrow> (\<box> \<phi>) m\<longleftrightarrow> (\<box> mT))]"  sledgehammer [remote_leo2] oops
+  lemma ConL3d : "[\<forall>(\<lambda>\<phi>. \<phi> mL=3 mT m\<rightarrow> (\<box> \<phi>) m\<longleftrightarrow> mT)]"  sledgehammer [remote_leo2] oops
 
+  
 text {* Let's try to modify the Leibniz definition. Again we cosinder only the case for \<sigma>. *}
 
   abbreviation meqL4 :: "\<sigma> \<Rightarrow> \<sigma> \<Rightarrow> \<sigma>" (infixr "mL=4" 100) where "x mL=4 y \<equiv>  (\<lambda>w. (\<forall>(\<lambda>\<phi>.((\<phi> (x w) m\<rightarrow> (\<phi> (y w)))))) w)"
@@ -201,7 +208,8 @@ text {* So far that is fine. Moreover, it turns out that congruence fails as int
 
   lemma ConL4a : "[\<forall>(\<lambda>x.\<forall>(\<lambda>y.\<forall>(\<lambda>f. x mL=4 y m\<rightarrow> (f x) mL=4 (f y))))]" nitpick oops
   lemma ConL4b : "[\<forall>(\<lambda>x.\<forall>(\<lambda>y.\<forall>(\<lambda>p. x mL=4 y m\<rightarrow> (p x) m\<longleftrightarrow> (p y))))]" nitpick oops  
-  lemma ConL34 : "[\<forall>(\<lambda>\<phi>. \<phi> mL=4 mT m\<rightarrow> (\<box> \<phi>) m\<longleftrightarrow> (\<box> mT))]" nitpick oops   
+  lemma ConL4c : "[\<forall>(\<lambda>\<phi>. \<phi> mL=4 mT m\<rightarrow> (\<box> \<phi>) m\<longleftrightarrow> (\<box> mT))]" nitpick oops   
+  lemma ConL4d : "[\<forall>(\<lambda>\<phi>. \<phi> mL=4 mT m\<rightarrow> (\<box> \<phi>) m\<longleftrightarrow> mT)]" nitpick oops   
 
 
 section {* Correspondences *}
@@ -211,6 +219,19 @@ section {* Correspondences *}
   lemma Cor3 : "(x m=3 y) = (x mL=3 y)" sledgehammer [remote_satallax] oops
   lemma Cor4 : "(x m=4 y) = (x mL=4 y)" sledgehammer [remote_satallax] oops
 
+
+  
+  lemma Cor5 : "(x m=4 y) = (x m\<longleftrightarrow> y)" by metis
+  lemma Cor6 : "(x mL=4 y) = (x m\<longleftrightarrow> y)" by metis
+  
+text {* Cor 5 and 6 show that we could defined lifted euality on type \<sigma> also simply as follows *}
+
+  abbreviation meq5 :: "\<sigma> \<Rightarrow> \<sigma> \<Rightarrow> \<sigma>" (infixr "m=5" 100) where "x m=5 y \<equiv>  (x m\<longleftrightarrow> y)"
+
+  lemma Cor7 : "(x m=4 y) = (x m=5 y)" by metis
+  lemma Cor8 : "(x mL=4 y) = (x m=5 y)" by metis
+  
+  
 section {* Preliminary Conclusion *}
 
 text {*
@@ -228,10 +249,11 @@ Boolean extensionality fails for both @{text "m=/mL="}.
 
 As an alternative we may thus use
 @{text "x m= y \<equiv> (\<lambda>w. ((x w) = (y w)))"} or 
-@{text "x mL= y \<equiv>  (\<lambda>w. (\<forall>(\<lambda>\<phi>.((\<phi> (x w) m\<rightarrow> (\<phi> (y w)))))) w)"}; we again have 
-that @{text "(x m= y) = (x mL= y)"}.
+@{text "x mL= y \<equiv>  (\<lambda>w. (\<forall>(\<lambda>\<phi>.((\<phi> (x w) m\<rightarrow> (\<phi> (y w)))))) w)"} or
+@{text "x mB= y \<equiv>  x m\<longleftrightarrow> y"}; we have 
+that @{text "(x m= y) = (x mL= y) = (x mB= y)"}.
 For these forms of lifted equalities it holds that congruence fails (which is good and we also don't
-get @{text "[\<forall>(\<lambda>\<phi>. \<phi> m=/mL= mT m\<rightarrow> (\<box> \<phi>) m\<longleftrightarrow> (\<box> mT))]"} as a theorem). Moreover, now Boolean 
+get @{text "[\<forall>(\<lambda>\<phi>. \<phi> m=/mL= mT m\<rightarrow> (\<box> \<phi>) m\<longleftrightarrow> mT)]"} as a theorem). Moreover, now Boolean 
 extensionality holds again. Thus, these two choices of lifted equalities seem more appropriate
 for type \<sigma>. 
 

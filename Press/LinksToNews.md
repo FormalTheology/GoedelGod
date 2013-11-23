@@ -140,6 +140,12 @@ US
 
 [HNGN](http://www.hngn.com/articles/16125/20131029/scientists-prove-gods-existence-with-a-macbook.htm)
 
+[United Academics](http://www.united-academics.org/magazine/getting-right/gods-existence-theorem-is-correct/)
+
+[Whas11](http://www.whas11.com/news/national/Computer-scientists-prove-God-exists-230044661.html)
+
+[23ABC](http://www.turnto23.com/news/us-world/computer-scientists-prove-god-exists)
+
 
 Australia
 ---------
