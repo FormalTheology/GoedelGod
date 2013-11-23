@@ -1,0 +1,107 @@
+== Automated Verification and Reconstruction of Gödel's Proof of God's Existence ==
+
+Attempts to prove the existence (or non-existence) 
+of God by means of purely logical arguments are an 
+old tradition in philosophy and theology, 
+dating back at least to 1078 a.C., when Saint 
+Anselm of Canterbury proposed his famous ontological
+argument. The proof proposed by the Austrian logic genius Kurt Gödel (1906-1978) is a modern culmination
+of this tradition, following particularly the 
+footsteps of Leibniz. 
+
+Gödel worked on the proof for decades and shared a 
+two-page manuscript with Dana Scott in 1970. 
+There Gödel defines God as a being 
+who possesses all positive properties. 
+"Positiveness" of a property is a primitive notion 
+in Gödel's theory: it is the only concept left
+undefined; however, its meaning is not arbitrary, 
+but constrained by five reasonable (but certainly debatable) axioms. 
+They are:
+
+A1) Either a property or its negation is positive, but not both
+
+A2) A property necessarily implied
+by a positive property is positive
+
+A3) The conjunction of any number of positive properties is positive
+
+A4) Positive properties are necessarily positive
+
+A5) Necessary exemplification of an individual's essences is a positive property. (and a property is an essence of an individual if it necessarily implies any property possessed by the individual)
+
+For the derivation of the main theorem (T3: necessarily, God exists), the following few auxiliary lemmas are proposed:
+
+T1) Positive properties are possibly exemplified.
+
+C1) Possibly, God exists
+
+T2) Being god is an essence of any God
+
+L2) If God's existence is possible, 
+then it is necessary
+
+
+The computer-assisted verification of Gödel's proof by 
+Bruno Woltzenlogel Paleo, at the Technische Universität Wien, 
+and Christoph Benzmüller, at the Freie Universität Berlin, 
+established a new bridge between computer science and theoretical
+philosophy and theology, two fields that had so far remained mostly
+untouched by advances in artificial intelligence.
+
+Up to now, the use of computers for metaphysical investigations had been
+hindered by the lack of expressiveness of the logical languages 
+employed by 
+the available theorem proving systems. Gödel's proof, for example, 
+requires a complex higher-order modal logic to adequately formalize
+adverbs such as "possibly" and "necessarily", to allow quantification over 
+properties, and to reason about their positiveness. However, the manuscript 
+does not contain detailed proofs of all the intermediary steps. 
+
+To overcome this challenge, the employed solution consisted of embedding 
+modal logic into higher-order logic, according to techniques described in 
+previous works by Christoph Benzmüller and Lawrence Paulson, 
+and then using 
+existing higher-order automated and interactive theorem proving systems 
+such as LEO-II, Satallax, Coq, Isabelle and Nitpick. The result is: not 
+only we now know for sure that God's necessary existence indeed follows 
+from Gödel's axioms, but in the process of achieving this result a 
+flexible 
+infra-structure for reasoning with very expressive modal logics has been 
+developed. This infra-structure can now be used for more mundane problems 
+as well.
+
+Gödel's manuscript does not contain detailed proofs for the lemmas and 
+theorems it states. It is full of gaps, and hence it can be considered 
+more a proof sketch than an actual proof. The verification required all 
+gaps to be filled, and the fully automatic accomplishment of this task 
+attests the maturity of our current theorem proving technology. 
+
+Yet, there is still plenty of room for improvement. 
+Although the automated theorem provers are able to fill 
+the gaps between the lemmas and the final theorem, 
+they are not yet able to prove the final theorem directly from the 
+axioms without the help of the auxiliary lemmas, even when executed 
+in powerful hardware such as the Vienna Scientific Cluster. This is 
+evidence that Gödel's proof is non-trivial and may be used as a benchmark 
+to measure the progress in automated reasoning in the near future.
+
+The automated reasoning tools were also capable of quickly 
+obtaining various new results 
+of philosophical interest about Gödel's proof. They determined, 
+for example, that Gödel's original axioms were actually inconsistent, 
+but Scott's correction of the definition of essence makes them consistent. 
+They showed that the weak modal logic KB is sufficient for Gödel's proof, 
+and contrary to popular belief, 
+the stronger modal logic S5 is not necessary. 
+And they even confirmed Sobel's controversial criticism known as modal collapse.
+
+This work illustrates the potential for a new 
+computer-assisted theoretical philosophy, 
+where the critical discussion of the underlying 
+concepts and the acceptance of the proposed definitions and axioms 
+remains a human responsibility, but computers can 
+help us to reach correct conclusions more quickly and avoiding 
+mistakes of a logical nature. In case of controversies, a computer 
+can check the competing arguments and partially fulfill Leibniz' dictum:
+Calculemus --- Let us calculate!
