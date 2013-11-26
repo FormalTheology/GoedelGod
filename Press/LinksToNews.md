@@ -20,6 +20,8 @@ Germany
 
 [Freie Universitaet Berlin](http://www.fu-berlin.de/presse/informationen/fup/2013/fup_13_308/index.html)
 
+[Freie Universitaet Berlin (English)](http://www.fu-berlin.de/en/presse/informationen/fup/2013/fup_13_308/index.html)
+
 [Die Welt (online)](http://www.welt.de/wissenschaft/article120995923/Forscher-beweisen-Existenz-Gottes-am-Computer.html)
 
 [Die Welt (print, front cover)](./WeltCover.pdf)
@@ -52,7 +54,6 @@ Austria
 [ORF](http://science.orf.at/stories/1724627/)
 
 [John Lennox's Talk at TU-Wien](http://www.youtube.com/watch?v=E_2_4KyR-6k&feature=share&t=25m15s)
-
 
 Italy
 -----
@@ -89,7 +90,6 @@ Spain
 [La Vanguardia](http://www.lavanguardia.com/vida/20131028/54392787484/cientificos-demostrar-informaticamente-existencia-ser-supremo.html)
 
 [La Voz de Galicia](http://www.lavozdegalicia.es/noticia/sociedad/2013/10/28/logran-probar-teorema-godel-sostiene-existe-superior/00031382958446357261349.htm)
-
 
 Russia
 ------
@@ -145,6 +145,8 @@ US
 [Whas11](http://www.whas11.com/news/national/Computer-scientists-prove-God-exists-230044661.html)
 
 [23ABC](http://www.turnto23.com/news/us-world/computer-scientists-prove-god-exists)
+
+[Parent Herald](http://www.parentherald.com/articles/2840/20131030/scientists-prove-god-exists-and-heres-the-proof.htm)
 
 
 Australia
