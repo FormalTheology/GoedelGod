@@ -3,7 +3,7 @@
 Attempts to prove the existence (or non-existence) 
 of God by means of purely logical arguments are an 
 old tradition in philosophy and theology, 
-dating back at least to 1078 a.C., when Saint 
+dating back at least to 1078 a.C., when St. 
 Anselm of Canterbury proposed his famous ontological
 argument. The proof proposed by the Austrian logic genius Kurt Gödel (1906-1978) is a modern culmination
 of this tradition, following particularly the 
@@ -30,9 +30,9 @@ A4) Positive properties are necessarily positive
 
 A5) Necessary exemplification of an individual's essences is a positive property. (and a property is an essence of an individual if it necessarily implies any property possessed by the individual)
 
-For the derivation of the main theorem (T3: necessarily, God exists), the following few auxiliary lemmas are proposed:
+For the derivation of the main theorem (T3: necessarily, God exists), the following auxiliary lemmas are proposed:
 
-T1) Positive properties are possibly exemplified.
+T1) Positive properties are possibly exemplified
 
 C1) Possibly, God exists
 
@@ -40,7 +40,6 @@ T2) Being god is an essence of any God
 
 L2) If God's existence is possible, 
 then it is necessary
-
 
 The computer-assisted verification of Gödel's proof by 
 Bruno Woltzenlogel Paleo, at the Technische Universität Wien, 
@@ -55,29 +54,34 @@ employed by
 the available theorem proving systems. Gödel's proof, for example, 
 requires a complex higher-order modal logic to adequately formalize
 adverbs such as "possibly" and "necessarily", to allow quantification over 
-properties, and to reason about their positiveness. However, the manuscript 
-does not contain detailed proofs of all the intermediary steps. 
+properties, and to reason about their positiveness. 
 
-To overcome this challenge, the employed solution consisted of embedding 
+As Gödel's manuscript 
+does not contain detailed proofs of the intermediary lemmas, it can be considered 
+more a proof sketch than an actual proof. Therefore, its verification also required the automatic reconstruction of all the missing parts. To overcome this challenge, the production of a draft overview of the proof, written in natural deduction and showing the dependencies of lemmas on axioms and previous lemmas was an important first step.
+
+===============================
+Informal overview of the proof:
+-------------------------------
+
+Gödel proves God's necessary existence by first proving that, if God's existence is at all possible, then it must be necessary (Lemma L2). This idea is already present in St. Anselm's and Descartes' arguments. Leibniz argued that these arguments are incomplete because they assumed the possibility of God's existence (Corollary C1) without any proof. For Leibniz, this should be derivable from the definition of God as a perfect being and from the notion of perfection. This idea can be clearly recognized in Gödel's proof: from axioms A1 and A2, one can derive that, for any positive property, the existence of a being having this property is possible (Theorem T1). As God is defined as a being who possesses all positive properties, the property of being God-like must be, by axiom A3, a positive property as well. C1 then follows trivially from T1. The hardest lemmas in Gödel's proof are T2 and L2. For that, Gödel had to formulate a non-trivial definition of "essence", in order not only to derive T2 from A1 and A4 but also to state an arguably acceptable axiom A5 allowing the derivation of L2 from T2 and other axioms from the modal logic S5.
+
+===========================================
+
+
+The next step was the embedding of 
 modal logic into higher-order logic, according to techniques described in 
-previous works by Christoph Benzmüller and Lawrence Paulson, 
-and then using 
+previous works by Christoph Benzmüller and Lawrence Paulson. This allowed the use of 
 existing higher-order automated and interactive theorem proving systems 
 such as LEO-II, Satallax, Coq, Isabelle and Nitpick. The result is: not 
 only we now know for sure that God's necessary existence indeed follows 
-from Gödel's axioms, but in the process of achieving this result a 
-flexible 
-infra-structure for reasoning with very expressive modal logics has been 
-developed. This infra-structure can now be used for more mundane problems 
+from Gödel's axioms, but a flexible 
+infrastructure for reasoning with very expressive modal logics has been 
+developed. This infrastructure can now be used for more mundane problems 
 as well.
 
-Gödel's manuscript does not contain detailed proofs for the lemmas and 
-theorems it states. It is full of gaps, and hence it can be considered 
-more a proof sketch than an actual proof. The verification required all 
-gaps to be filled, and the fully automatic accomplishment of this task 
-attests the maturity of our current theorem proving technology. 
 
-Yet, there is still plenty of room for improvement. 
+The fully automatic reconstruction of the gaps in Gödel's manuscript attests the maturity of our current theorem proving technology. Yet, there is still plenty of room for improvement. 
 Although the automated theorem provers are able to fill 
 the gaps between the lemmas and the final theorem, 
 they are not yet able to prove the final theorem directly from the 
@@ -101,7 +105,7 @@ computer-assisted theoretical philosophy,
 where the critical discussion of the underlying 
 concepts and the acceptance of the proposed definitions and axioms 
 remains a human responsibility, but computers can 
-help us to reach correct conclusions more quickly and avoiding 
+help us to reach correct conclusions more quickly and avoid 
 mistakes of a logical nature. In case of controversies, a computer 
 can check the competing arguments and partially fulfill Leibniz' dictum:
 Calculemus --- Let us calculate!
