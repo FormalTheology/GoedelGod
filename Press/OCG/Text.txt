@@ -16,21 +16,29 @@ who possesses all positive properties.
 "Positiveness" of a property is a primitive notion 
 in Gödel's theory: it is the only concept left
 undefined; however, its meaning is not arbitrary, 
-but constrained by five reasonable (but certainly debatable) axioms. 
+but constrained by five reasonable 
+(but certainly debatable) axioms. 
 They are:
 
-A1) Either a property or its negation is positive, but not both
+A1) Either a property or its negation is positive, 
+but not both
 
 A2) A property necessarily implied
 by a positive property is positive
 
-A3) The conjunction of any number of positive properties is positive
+A3) The conjunction of any number of 
+positive properties is positive
 
 A4) Positive properties are necessarily positive
 
-A5) Necessary exemplification of an individual's essences is a positive property. (and a property is an essence of an individual if it necessarily implies any property possessed by the individual)
+A5) Necessary exemplification of an individual's 
+essences is a positive property. (and a property 
+is an essence of an individual if it necessarily 
+implies any property possessed by the individual)
 
-For the derivation of the main theorem (T3: necessarily, God exists), the following auxiliary lemmas are proposed:
+For the derivation of the main theorem 
+(T3: necessarily, God exists), 
+the following auxiliary lemmas are proposed:
 
 T1) Positive properties are possibly exemplified
 
@@ -42,70 +50,114 @@ L2) If God's existence is possible,
 then it is necessary
 
 The computer-assisted verification of Gödel's proof by 
-Bruno Woltzenlogel Paleo, at the Technische Universität Wien, 
-and Christoph Benzmüller, at the Freie Universität Berlin, 
-established a new bridge between computer science and theoretical
-philosophy and theology, two fields that had so far remained mostly
+Bruno Woltzenlogel Paleo, at the Technische Universität
+Wien, and Christoph Benzmüller, at the Freie Universität
+Berlin, established a new bridge between computer 
+science and theoretical philosophy and theology, 
+two fields that had so far remained mostly
 untouched by advances in artificial intelligence.
 
-Up to now, the use of computers for metaphysical investigations had been
-hindered by the lack of expressiveness of the logical languages 
-employed by 
-the available theorem proving systems. Gödel's proof, for example, 
-requires a complex higher-order modal logic to adequately formalize
-adverbs such as "possibly" and "necessarily", to allow quantification over 
-properties, and to reason about their positiveness. 
+Up to now, the use of computers for metaphysical 
+investigations had been hindered by the lack of 
+expressiveness of the logical languages employed by 
+the available theorem proving systems. Gödel's proof, 
+for example, requires a complex higher-order modal 
+logic to adequately formalize adverbs such as 
+"possibly" and "necessarily", to allow quantification
+over properties, and to reason about their positiveness. 
 
-As Gödel's manuscript 
-does not contain detailed proofs of the intermediary lemmas, it can be considered 
-more a proof sketch than an actual proof. Therefore, its verification also required the automatic reconstruction of all the missing parts. To overcome this challenge, the production of a draft overview of the proof, written in natural deduction and showing the dependencies of lemmas on axioms and previous lemmas was an important first step.
+As Gödel's manuscript does not contain detailed proofs 
+of the intermediary lemmas, it can be considered 
+more a proof sketch than an actual proof. Therefore, 
+its verification also required the automatic 
+reconstruction of all the missing parts. 
+To overcome this challenge, the production of a draft 
+overview of the proof, written in natural deduction and 
+showing the dependencies of lemmas on axioms and previous 
+lemmas was an important first step.
 
 ===============================
 Informal overview of the proof:
 -------------------------------
 
-Gödel proves God's necessary existence by first proving that, if God's existence is at all possible, then it must be necessary (Lemma L2). This idea is already present in St. Anselm's and Descartes' arguments. Leibniz argued that these arguments are incomplete because they assumed the possibility of God's existence (Corollary C1) without any proof. For Leibniz, this should be derivable from the definition of God as a perfect being and from the notion of perfection. This idea can be clearly recognized in Gödel's proof: from axioms A1 and A2, one can derive that, for any positive property, the existence of a being having this property is possible (Theorem T1). As God is defined as a being who possesses all positive properties, the property of being God-like must be, by axiom A3, a positive property as well. C1 then follows trivially from T1. The hardest lemmas in Gödel's proof are T2 and L2. For that, Gödel had to formulate a non-trivial definition of "essence", in order not only to derive T2 from A1 and A4 but also to state an arguably acceptable axiom A5 allowing the derivation of L2 from T2 and other axioms from the modal logic S5.
+Gödel proves God's necessary existence by first 
+proving that, if God's existence is at all possible, 
+then it must be necessary (Lemma L2). This idea is 
+already present in St. Anselm's and Descartes' 
+arguments. Leibniz argued that these arguments are 
+incomplete because they assumed the possibility of 
+God's existence (Corollary C1) without any proof. 
+For Leibniz, this should be derivable from the 
+definition of God as a perfect being and from the 
+notion of perfection. This idea can be clearly 
+recognized in Gödel's proof: from axioms A1 and A2, 
+one can derive that, for any positive property, 
+the existence of a being having this property is 
+possible (Theorem T1). As God is defined as a being 
+who possesses all positive properties, the property 
+of being God-like must be, by axiom A3, a positive 
+property as well. C1 then follows trivially from T1. 
+The hardest lemmas in Gödel's proof are T2 and L2. 
+For that, Gödel had to formulate a non-trivial 
+definition of "essence", in order not only to derive 
+T2 from A1 and A4 but also to state an arguably 
+acceptable axiom A5 allowing the derivation of L2 
+from T2 and other axioms from the modal logic S5.
 
 ===========================================
 
 
-The next step was the embedding of 
-modal logic into higher-order logic, according to techniques described in 
-previous works by Christoph Benzmüller and Lawrence Paulson. This allowed the use of 
-existing higher-order automated and interactive theorem proving systems 
-such as LEO-II, Satallax, Coq, Isabelle and Nitpick. The result is: not 
-only we now know for sure that God's necessary existence indeed follows 
-from Gödel's axioms, but a flexible 
-infrastructure for reasoning with very expressive modal logics has been 
-developed. This infrastructure can now be used for more mundane problems 
-as well.
+The next step was the embedding of modal logic into 
+-order logic, according to techniques described in 
+previous works by Christoph Benzmüller and 
+Lawrence Paulson. This allowed the use of 
+existing higher-order automated and interactive 
+theorem proving systems such as LEO-II, Satallax, 
+Coq, Isabelle and Nitpick. The result is: not 
+only we now know for sure that God's necessary 
+existence indeed follows from Gödel's axioms, 
+but a flexible infrastructure for reasoning with 
+very expressive modal logics has been developed. 
+This infrastructure can now be used for more 
+mundane problems as well.
 
 
-The fully automatic reconstruction of the gaps in Gödel's manuscript attests the maturity of our current theorem proving technology. Yet, there is still plenty of room for improvement. 
-Although the automated theorem provers are able to fill 
+The fully automatic reconstruction of the gaps in 
+Gödel's manuscript attests the maturity of our current 
+theorem proving technology. Yet, there is still 
+plenty of room for improvement. Although the 
+automated theorem provers are able to fill 
 the gaps between the lemmas and the final theorem, 
-they are not yet able to prove the final theorem directly from the 
-axioms without the help of the auxiliary lemmas, even when executed 
-in powerful hardware such as the Vienna Scientific Cluster. This is 
-evidence that Gödel's proof is non-trivial and may be used as a benchmark 
-to measure the progress in automated reasoning in the near future.
+they are not yet able to prove the final theorem 
+directly from the axioms without the help of the 
+auxiliary lemmas, even when executed 
+in powerful hardware such as the Vienna 
+Scientific Cluster. This is evidence that Gödel's 
+proof is non-trivial and may be used as a benchmark 
+to measure the progress in automated reasoning in 
+the near future.
 
-The automated reasoning tools were also capable of quickly 
-obtaining various new results 
-of philosophical interest about Gödel's proof. They determined, 
-for example, that Gödel's original axioms were actually inconsistent, 
-but Scott's correction of the definition of essence makes them consistent. 
-They showed that the weak modal logic KB is sufficient for Gödel's proof, 
+The automated reasoning tools were also capable 
+of quickly obtaining various new results 
+of philosophical interest about Gödel's proof. 
+They determined, for example, that Gödel's original 
+axioms were actually inconsistent, but Scott's 
+correction of the definition of essence makes 
+them consistent. They showed that the weak modal 
+logic KB is sufficient for Gödel's proof, 
 and contrary to popular belief, 
 the stronger modal logic S5 is not necessary. 
-And they even confirmed Sobel's controversial criticism known as modal collapse.
+And they even confirmed Sobel's controversial 
+criticism known as modal collapse.
 
 This work illustrates the potential for a new 
 computer-assisted theoretical philosophy, 
 where the critical discussion of the underlying 
-concepts and the acceptance of the proposed definitions and axioms 
-remains a human responsibility, but computers can 
-help us to reach correct conclusions more quickly and avoid 
-mistakes of a logical nature. In case of controversies, a computer 
-can check the competing arguments and partially fulfill Leibniz' dictum:
+concepts and the acceptance of the proposed 
+definitions and axioms remains a human 
+responsibility, but computers can help us 
+to reach correct conclusions more quickly and avoid 
+mistakes of a logical nature. In case of controversies, 
+a computer can check the competing arguments 
+and partially fulfill Leibniz' dictum:
 Calculemus --- Let us calculate!
