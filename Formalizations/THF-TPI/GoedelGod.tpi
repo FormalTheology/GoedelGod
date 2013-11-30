@@ -140,10 +140,10 @@ tpi(com,write,'').
 tpi(com,start_group,t2).
   thf(thmT2_con,conjecture,( v @ ( mforall_ind @ ^ [X: mu] : ( mimplies @ ( g @ X ) @ ( ess @ g @ X ) ) ) )).
 tpi(com,end_group,t2).
-tpi(com,execute,'SZS_STATUS_t2' = 'Satallax---2.7 20 $getgroups(embedding,symmetry,sig,d1,d2,a1b,a4,t2)').
+tpi(com,execute,'SZS_STATUS_t2' = 'LEO-II---1.6.0 60 $getgroups(embedding,symmetry,sig,d1,d2,a1b,a4,t2)').
 tpi(com,write,'%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%').
 tpi(com,write,'%%% 4. Analysing theorem t2.').
-tpi(com,write,'%%%    Checking d1,d2,a1b,a4 |- t2 (using Satallax).').
+tpi(com,write,'%%%    Checking d1,d2,a1b,a4 |- t2 (using LEO-II).').
 tpi(com,output,stdout = d1).
 tpi(com,output,stdout = d2).
 tpi(com,output,stdout = a1b).
@@ -213,6 +213,7 @@ tpi(com,waitenv,'SZS_STATUS_D2orig').
 tpi(com,write,'%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%').
 tpi(com,write,'%%% 11. Proving inconsistency of Goedel`s original axioms (d2orig).').
 tpi(com,write,'%%%     Checking  d2orig,a1a,a2,d3,a5  (using LEO-II).').
+tpi(com,output,stdout = d2orig).
 tpi(com,write,'%%%     SZS_STATUS_D2orig for d2orig is ' & '$getenv(SZS_STATUS_D2orig)').
 tpi(com,assert,$getenv('SZS_STATUS_D2orig') = 'Unsatisfiable').
 tpi(com,write,'%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%').
@@ -226,7 +227,7 @@ tpi(com,start_group,mc).
   thf(phi_type,type,(phi : $i > $o)).
   thf(thmMC_con,conjecture,( v @ ( mimplies @ phi @ ( mbox @ phi ) ) )).
 tpi(com,end_group,mc).
-tpi(com,execute_async,'SZS_STATUS_MC' = 'Satallax---2.7 40 $getgroups(embedding,symmetry,sig,d2,t2,t3,mc)').
+tpi(com,execute_async,'SZS_STATUS_MC' = 'LEO-II---1.6.0 40 $getgroups(embedding,symmetry,sig,d2,t2,t3,mc)').
 
 
 % 9a. Analysing flawlessness.
@@ -234,16 +235,18 @@ tpi(com,execute_async,'SZS_STATUS_MC' = 'Satallax---2.7 40 $getgroups(embedding,
 tpi(com,start_group,fg).
   thf(thmFG_con,conjecture,( v @ ( mforall_indset @ ^ [Phi: mu > $i > $o] : ( mforall_ind @ ^ [X: mu] : ( ( mimplies @ ( g @ X ) @ ( mimplies @ ( mnot @ ( p @ Phi ) ) @ ( mnot @ ( Phi @ X ) ) ) ) ) ) ) )).
 tpi(com,end_group,fg).
-tpi(com,execute_async,'SZS_STATUS_FG' = 'Satallax---2.7 40 $getgroups(embedding,sig,a1b,d1,fg)').
+tpi(com,execute_async,'SZS_STATUS_FG' = 'LEO-II---1.6.0 40 $getgroups(embedding,sig,a1b,d1,fg)').
 
 % 8b. Report on modal collapse.
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 tpi(com,waitenv,'SZS_STATUS_MC').
 tpi(com,write,'%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%').
 tpi(com,write,'%%% 8. Analysing modal collapse.').
-tpi(com,write,'%%%    Checking  sym,d2,t2,t3 |- mc (using Satallax).').
+tpi(com,write,'%%%    Checking  sym,d2,t2,t3 |- mc (using LEO-II).').
+tpi(com,output,stdout = mc).
 tpi(com,write,'%%%    SZS_STATUS_MC for mc is ' & '$getenv(SZS_STATUS_MC)').
 tpi(com,assert,$getenv('SZS_STATUS_MC') = 'Theorem').
+tpi(com,set_role,thmMC_con = lemma).
 tpi(com,write,'%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%').
 tpi(com,write,'').
 
@@ -252,9 +255,11 @@ tpi(com,write,'').
 tpi(com,waitenv,'SZS_STATUS_FG').
 tpi(com,write,'%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%').
 tpi(com,write,'%%% 9. Analysing flawless god.').
-tpi(com,write,'%%%    Checking  a1b,d1 |- fg (using Satallax).').
+tpi(com,write,'%%%    Checking  a1b,d1 |- fg (using LEO-II).').
+tpi(com,output,stdout = fg).
 tpi(com,write,'%%%    SZS_STATUS_FG for fg is ' & '$getenv(SZS_STATUS_FG)').
 tpi(com,assert,$getenv('SZS_STATUS_FG') = 'Theorem').
+tpi(com,set_role,thmFG_con = lemma).
 tpi(com,write,'%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%').
 tpi(com,write,'').
 
@@ -263,15 +268,13 @@ tpi(com,write,'').
 tpi(com,start_group,mt).
   thf(thmMT_con,conjecture,( v @ ( mforall_ind @ ^ [X: mu] : ( mforall_ind @ ^ [Y: mu] : ( mimplies @ ( g @ X ) @ ( mimplies @ ( g @ Y ) @ ( mequals @ X @ Y ) ) ) ) ) )). 
 tpi(com,end_group,mt).
-tpi(com,output,stdout = embedding).
-tpi(com,output,stdout = sig).
-tpi(com,output,stdout = fg).
-tpi(com,output,stdout = d1).
-tpi(com,output,stdout = mt).
-tpi(com,execute,'SZS_STATUS_MT' = 'Satallax---2.7 40 $getgroups(embedding,sig,fg,d1,mt)').
+tpi(com,execute,'SZS_STATUS_MT' = 'TPS---3.120601S1b 60 $getgroups(embedding,sig,fg,d1,mt)').
 tpi(com,write,'%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%').
 tpi(com,write,'%%% 10. Analysing monotheism.').
-tpi(com,write,'%%%     Checking  fg,d1 |- mt (using LEO-II).').
+tpi(com,write,'%%%     Checking  fg,d1 |- mt (using TPS).').
+%tpi(com,output,stdout = tpi_premises).
+%tpi(com,output,stdout = tpi_conjectures).
+tpi(com,output,stdout = mt).
 tpi(com,write,'%%%     SZS_STATUS_MT for mt is ' & '$getenv(SZS_STATUS_MT)').
 tpi(com,assert,$getenv('SZS_STATUS_MT') = 'Theorem').
 tpi(com,write,'%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%').
