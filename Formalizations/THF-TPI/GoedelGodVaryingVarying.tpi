@@ -15,12 +15,16 @@ tpi(com,start_group,embedding).
   thf(mimplies,definition,( mimplies = ( ^ [Phi: $i > $o,Psi: $i > $o,W: $i] : ( ( Phi @ W ) => ( Psi @ W ) ) ) )).
   thf(mequiv_type,type,( mequiv: ( $i > $o ) > ( $i > $o ) > $i > $o )).
   thf(mequiv,definition, ( mequiv = ( ^ [Phi: $i > $o,Psi: $i > $o,W: $i] : ( ( Phi @ W ) <=> ( Psi @ W ) ) ) )).
+  thf(eiw_ind,type,(eiw_ind: $i > mu > $o )). 
+  thf(nonempty_ind,axiom,( ! [V:$i] : ? [X:mu] : (eiw_ind @ V @ X ) )).
   thf(mforall_ind_type,type,( mforall_ind: ( mu > $i > $o ) > $i > $o )).
-  thf(mforall_ind,definition,( mforall_ind = ( ^ [Phi: mu > $i > $o,W: $i] : ! [X: mu] : ( Phi @ X @ W ) ) )).
+  thf(mforall_ind,definition,( mforall_ind = ( ^ [Phi: mu > $i > $o,W: $i] : ! [X: mu] : ( (eiw_ind @ W @ X) => ( Phi @ X @ W ) ) ) )).
+  thf(eiw_set,type,(eiw_set: $i > ( mu > $i > $o ) > $o )).
+  thf(nonempty_set,axiom,( ! [V:$i] : ? [X: mu > $i > $o ] : (eiw_set @ V @ X ) )).
   thf(mforall_indset_type,type,( mforall_indset: ( ( mu > $i > $o ) > $i > $o ) > $i > $o )).
-  thf(mforall_indset,definition,( mforall_indset = ( ^ [Phi: ( mu > $i > $o ) > $i > $o,W: $i] : ! [X: mu > $i > $o] : ( Phi @ X @ W ) ) )).
+  thf(mforall_indset,definition,( mforall_indset = ( ^ [Phi: ( mu > $i > $o ) > $i > $o,W: $i] : ! [X: mu > $i > $o] : ( (eiw_set @ W @ X) => ( Phi @ X @ W ) ) ) )).  
   thf(mexists_ind_type,type,( mexists_ind: ( mu > $i > $o ) > $i > $o )).
-  thf(mexists_ind,definition,( mexists_ind = ( ^ [Phi: mu > $i > $o,W: $i] : ? [X: mu] : ( Phi @ X @ W ) ) )).
+  thf(mexists_ind,definition,( mexists_ind = ( ^ [Phi: mu > $i > $o,W: $i] : ? [X: mu] : ( (eiw_ind @ W @ X) & ( Phi @ X @ W ) ) ) )).
   thf(mequals_type,type,( mequals: mu > mu > $i > $o )).
   thf(mequals,definition, ( mequals = ( ^ [X:mu,Y:mu,W:$i] :  ( X = Y )) )).  
   thf(rel_type,type,( rel: $i > $i > $o )).
@@ -84,86 +88,113 @@ tpi(com,write,'%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 tpi(com,write,'').
 
 
+
 % Checking asynchroneously for satisfiability of Axioms.
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% Checking asynchroneously for satisfiability of Axioms.
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 tpi(com,execute_async,'SZS_AXIOM_STATUS' = 'Nitrox---2013 60 $getgroups(tpi)').
 
 
-% Checking asynchroneously for unsatisfiability of Goedel's original Axioms (modified definition D2).
+% Checking asynchroneously for satisfiability of Goedel's original Axioms (modified definition D2).
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 tpi(com,start_group,d2orig).
   thf(defD2orig,definition,( ess = ( ^ [Phi: mu > $i > $o,X: mu] : ( mforall_indset @ ^ [Psi: mu > $i > $o] : ( mimplies @ ( Psi @ X ) @ ( mbox @ ( mforall_ind @ ^ [Y: mu] : ( mimplies @ ( Phi @ Y ) @ ( Psi @ Y ) ) ) ) ) ) ) )).
 tpi(com,end_group,d2orig).
-tpi(com,execute_async,'SZS_STATUS_D2orig' = 'LEO-II---1.6.0 120 $getgroups(embedding,sig,symmetry,d2orig,a1a,a2,d3,a5)').
+tpi(com,execute_async,'SZS_STATUS_D2orig' = 'Nitrox---2013 60 $getgroups(embedding,sig,symmetry,d2orig,a1a,a1b,a2,d3,a5)').
 
 
-% 2. Analysing theorem t1.
+
+% 2. Report on consistency of axioms.
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+tpi(com,waitenv,'SZS_AXIOM_STATUS').
+tpi(com,write,'%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%').
+tpi(com,write,'%%% 2. Checking satisfiability of all assumptions (using Nitpick).').
+tpi(com,write,'%%%    SZS_AXIOM_STATUS for assumptions is '& '$getenv(SZS_AXIOM_STATUS)').
+tpi(com,assert,$getenv('SZS_AXIOM_STATUS') = 'Satisfiable').
+tpi(com,write,'%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%').
+tpi(com,write,'').
+
+
+
+% 3. Report on consistency of Goedel's original axioms.
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+tpi(com,waitenv,'SZS_STATUS_D2orig').
+tpi(com,write,'%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%').
+tpi(com,write,'%%%  3. Proving consistency of Goedel`s original axioms (d2orig).').
+tpi(com,write,'%%%     Checking  d2orig,a1a,a2b,a2,d3,a5  (using Nitpick).').
+tpi(com,output,stdout = d2orig).
+tpi(com,write,'%%%     SZS_STATUS_D2orig for d2orig is ' & '$getenv(SZS_STATUS_D2orig)').
+tpi(com,assert,$getenv('SZS_STATUS_D2orig') = 'Satisfiable').
+tpi(com,write,'%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%').
+tpi(com,write,'').
+
+
+
+% 4. Analysing theorem t1.
 %%%%%%%%%%%%%%%%%%%%%%%%%%
 tpi(com,start_group,t1).
   thf(thmT1_con,conjecture,( v @ ( mforall_indset @ ^ [Phi: mu > $i > $o] : ( mimplies @ ( p @ Phi ) @ ( mdia @ ( mexists_ind @ ^ [X: mu] : ( Phi @ X ) ) ) ) ) )).
 tpi(com,end_group,t1).
-tpi(com,execute,'SZS_STATUS_t1' = 'LEO-II---1.6.0 20 $getgroups(embedding,sig,a1a,a2,t1)').
+tpi(com,execute,'SZS_STATUS_t1' = 'Nitrox---2013 60 $getgroups(embedding,sig,a1a,a2,t1)').
 tpi(com,write,'%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%').
-tpi(com,write,'%%% 2. Analysing theorem t1.').
-tpi(com,write,'%%%    Checking a1a,a2 |- t1 (using LEO-II).').
+tpi(com,write,'%%% 4. Analysing theorem t1.').
+tpi(com,write,'%%%    Checking a1a,a2 |- t1 (using Nitpick).').
 tpi(com,output,stdout = a1a).
 tpi(com,output,stdout = a2).
 tpi(com,output,stdout = t1).
 tpi(com,write,'%%%    SZS_STATUS for t1 is ' & '$getenv(SZS_STATUS_t1)').
-tpi(com,assert,$getenv('SZS_STATUS_t1') = 'Theorem').
+tpi(com,assert,$getenv('SZS_STATUS_t1') = 'CounterSatisfiable').
 tpi(com,set_role,thmT1_con = lemma).
 tpi(com,write,'%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%').
 tpi(com,write,'').
 
-% 3. Analysing corollary c.
+% 5. Analysing corollary c.
 %%%%%%%%%%%%%%%%%%%%%%%%%%%
 tpi(com,start_group,c).
   thf(corC_con,conjecture,( v @ ( mdia @ ( mexists_ind @ ^ [X: mu] : ( g @ X ) ) ) )).
 tpi(com,end_group,c).
-tpi(com,execute,'SZS_STATUS_c' = 'LEO-II---1.6.0 20 $getgroups(embedding,sig,d1,a3,t1,c)').
+tpi(com,execute,'SZS_STATUS_c' = 'Nitrox---2013 60 $getgroups(embedding,sig,d1,a3,t1,c)').
 tpi(com,write,'%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%').
-tpi(com,write,'%%% 3. Analysing corollary c.').
+tpi(com,write,'%%% 5. Analysing corollary c.').
 tpi(com,write,'%%%    Checking d1,a3,t1 |- c (using LEO-II).').
 tpi(com,output,stdout = d1).
 tpi(com,output,stdout = a3).
 tpi(com,output,stdout = t1).
 tpi(com,output,stdout = c).
 tpi(com,write,'%%%    SZS_STATUS for c is ' & '$getenv(SZS_STATUS_c)').
-tpi(com,assert,$getenv('SZS_STATUS_c') = 'Theorem').
+tpi(com,assert,$getenv('SZS_STATUS_c') = 'CounterSatisfiable').
 tpi(com,set_role,corC_con = lemma).
 tpi(com,write,'%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%').
 tpi(com,write,'').
 
-% 4. Analysing theorem t2.
+% 6. Analysing theorem t2.
 %%%%%%%%%%%%%%%%%%%%%%%%%%
 tpi(com,start_group,t2).
   thf(thmT2_con,conjecture,( v @ ( mforall_ind @ ^ [X: mu] : ( mimplies @ ( g @ X ) @ ( ess @ g @ X ) ) ) )).
 tpi(com,end_group,t2).
-tpi(com,execute,'SZS_STATUS_t2' = 'LEO-II---1.6.0 60 $getgroups(embedding,symmetry,sig,d1,d2,a1b,a4,t2)').
+tpi(com,execute,'SZS_STATUS_t2' = 'Nitrox---2013 60 $getgroups(embedding,symmetry,sig,d1,d2,a1b,a4,t2)').
 tpi(com,write,'%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%').
-tpi(com,write,'%%% 4. Analysing theorem t2.').
-tpi(com,write,'%%%    Checking d1,d2,a1b,a4 |- t2 (using LEO-II).').
+tpi(com,write,'%%% 6. Analysing theorem t2.').
+tpi(com,write,'%%%    Checking d1,d2,a1b,a4 |- t2 (using Nitpick).').
 tpi(com,output,stdout = d1).
 tpi(com,output,stdout = d2).
 tpi(com,output,stdout = a1b).
 tpi(com,output,stdout = a4).
 tpi(com,output,stdout = t2).
 tpi(com,write,'%%%    SZS_STATUS for t2 is ' & '$getenv(SZS_STATUS_t2)').
-tpi(com,assert,$getenv('SZS_STATUS_t2') = 'Theorem').
+tpi(com,assert,$getenv('SZS_STATUS_t2') = 'CounterSatisfiable').
 tpi(com,set_role,thmT2_con = lemma).
 tpi(com,write,'%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%').
 tpi(com,write,'').
 
-% 5. Analysing theorem t3.
+% 7. Analysing theorem t3.
 %%%%%%%%%%%%%%%%%%%%%%%%%%
 tpi(com,start_group,t3).
   thf(thmT3_con,conjecture,( v @ ( mbox @ ( mexists_ind @ ^ [X: mu] : ( g @ X ) ) ) )).
 tpi(com,end_group,t3).
-tpi(com,execute,'SZS_STATUS_t3' = 'LEO-II---1.6.0 20 $getgroups(embedding,symmetry,sig,d1,d3,c,t2,a5,t3)').
+tpi(com,execute,'SZS_STATUS_t3' = 'Nitrox---2013 60 $getgroups(embedding,symmetry,sig,d1,d3,c,t2,a5,t3)').
 tpi(com,write,'%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%').
-tpi(com,write,'%%% 5. Analysing theorem t3.').
-tpi(com,write,'%%%    Checking sym,d1,d3,c,t2,a5 |- t3 (using LEO-II).').
+tpi(com,write,'%%% 7. Analysing theorem t3.').
+tpi(com,write,'%%%    Checking sym,d1,d3,c,t2,a5 |- t3 (using Nitpick).').
 tpi(com,output,stdout = d1).
 tpi(com,output,stdout = d3).
 tpi(com,output,stdout = c).
@@ -171,19 +202,19 @@ tpi(com,output,stdout = t2).
 tpi(com,output,stdout = a5).
 tpi(com,output,stdout = t3).
 tpi(com,write,'%%%    SZS_STATUS for t3 is ' & '$getenv(SZS_STATUS_t3)').
-tpi(com,assert,$getenv('SZS_STATUS_t3') = 'Theorem').
+tpi(com,assert,$getenv('SZS_STATUS_t3') = 'CounterSatisfiable').
 tpi(com,set_role,thmT3_con = lemma).
 tpi(com,write,'%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%').
 tpi(com,write,'').
 
-% 6. Analysing theorem c2.
+% 8. Analysing theorem c2.
 %%%%%%%%%%%%%%%%%%%%%%%%%%
 tpi(com,start_group,c2).
   thf(corC2_con,conjecture,( v @ ( mexists_ind @ ^ [X: mu] : ( g @ X ) ) )).
 tpi(com,end_group,c2).
-tpi(com,execute,'SZS_STATUS_c2' = 'LEO-II---1.6.0 20 $getgroups(embedding,symmetry,sig,d1,t1,t3,c2)').
+tpi(com,execute,'SZS_STATUS_c2' = 'LEO-II---1.6.0 60 $getgroups(embedding,symmetry,sig,d1,t1,t3,c2)').
 tpi(com,write,'%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%').
-tpi(com,write,'%%% 6. Analysing corollary c2.').
+tpi(com,write,'%%% 8. Analysing corollary c2.').
 tpi(com,write,'%%%    Checking  sym,d1,t1,t3 |- c2 (using LEO-II).').
 tpi(com,output,stdout = d1).
 tpi(com,output,stdout = t1).
@@ -196,87 +227,62 @@ tpi(com,write,'%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 tpi(com,write,'').
 
 
-% 7. Report on consistency of axioms.
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-tpi(com,waitenv,'SZS_AXIOM_STATUS').
-tpi(com,write,'%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%').
-tpi(com,write,'%%% 7. Checking satisfiability of all assumptions (using Nitpick).').
-tpi(com,write,'%%%    SZS_AXIOM_STATUS for assumptions is '& '$getenv(SZS_AXIOM_STATUS)').
-tpi(com,assert,$getenv('SZS_AXIOM_STATUS') = 'Satisfiable').
-tpi(com,write,'%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%').
-tpi(com,write,'').
-
-
-% 11. Report on Inconsistency of Goedel's original axioms.
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-tpi(com,waitenv,'SZS_STATUS_D2orig').
-tpi(com,write,'%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%').
-tpi(com,write,'%%% 11. Proving inconsistency of Goedel`s original axioms (d2orig).').
-tpi(com,write,'%%%     Checking  d2orig,a1a,a2,d3,a5  (using LEO-II).').
-tpi(com,output,stdout = d2orig).
-tpi(com,write,'%%%     SZS_STATUS_D2orig for d2orig is ' & '$getenv(SZS_STATUS_D2orig)').
-tpi(com,assert,$getenv('SZS_STATUS_D2orig') = 'Unsatisfiable').
-tpi(com,write,'%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%').
-tpi(com,write,'').
-
-
-
-% 8a. Analysing modal collapse.
+% 9a. Analysing modal collapse.
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 tpi(com,start_group,mc).
   thf(phi_type,type,(phi : $i > $o)).
   thf(thmMC_con,conjecture,( v @ ( mimplies @ phi @ ( mbox @ phi ) ) )).
 tpi(com,end_group,mc).
-tpi(com,execute_async,'SZS_STATUS_MC' = 'LEO-II---1.6.0 40 $getgroups(embedding,symmetry,sig,d2,t2,t3,mc)').
+tpi(com,execute_async,'SZS_STATUS_MC' = 'Nitrox---2013 60 $getgroups(embedding,symmetry,sig,d2,t2,t3,mc)').
 
 
-% 9a. Analysing flawlessness.
+% 10a. Analysing flawlessness.
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 tpi(com,start_group,fg).
   thf(thmFG_con,conjecture,( v @ ( mforall_indset @ ^ [Phi: mu > $i > $o] : ( mforall_ind @ ^ [X: mu] : ( ( mimplies @ ( g @ X ) @ ( mimplies @ ( mnot @ ( p @ Phi ) ) @ ( mnot @ ( Phi @ X ) ) ) ) ) ) ) )).
 tpi(com,end_group,fg).
-tpi(com,execute_async,'SZS_STATUS_FG' = 'LEO-II---1.6.0 40 $getgroups(embedding,sig,a1b,d1,fg)').
+tpi(com,execute_async,'SZS_STATUS_FG' = 'Nitrox---2013 60 $getgroups(embedding,sig,a1b,d1,fg)').
 
-% 8b. Report on modal collapse.
+% 9b. Report on modal collapse.
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 tpi(com,waitenv,'SZS_STATUS_MC').
 tpi(com,write,'%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%').
-tpi(com,write,'%%% 8. Analysing modal collapse.').
-tpi(com,write,'%%%    Checking  sym,d2,t2,t3 |- mc (using LEO-II).').
+tpi(com,write,'%%% 9. Analysing modal collapse.').
+tpi(com,write,'%%%    Checking  sym,d2,t2,t3 |- mc (using Nitpick).').
 tpi(com,output,stdout = mc).
 tpi(com,write,'%%%    SZS_STATUS_MC for mc is ' & '$getenv(SZS_STATUS_MC)').
-tpi(com,assert,$getenv('SZS_STATUS_MC') = 'Theorem').
+tpi(com,assert,$getenv('SZS_STATUS_MC') = 'CounterSatisfiable').
 tpi(com,set_role,thmMC_con = lemma).
 tpi(com,write,'%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%').
 tpi(com,write,'').
 
-% 9b. Report on flawlessness.
+% 10b. Report on flawlessness.
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 tpi(com,waitenv,'SZS_STATUS_FG').
 tpi(com,write,'%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%').
-tpi(com,write,'%%% 9. Analysing flawless god.').
-tpi(com,write,'%%%    Checking  a1b,d1 |- fg (using LEO-II).').
+tpi(com,write,'%%% 10. Analysing flawless god.').
+tpi(com,write,'%%%    Checking  a1b,d1 |- fg (using Nitpick).').
 tpi(com,output,stdout = fg).
 tpi(com,write,'%%%    SZS_STATUS_FG for fg is ' & '$getenv(SZS_STATUS_FG)').
-tpi(com,assert,$getenv('SZS_STATUS_FG') = 'Theorem').
+tpi(com,assert,$getenv('SZS_STATUS_FG') = 'CounterSatisfiable').
 tpi(com,set_role,thmFG_con = lemma).
 tpi(com,write,'%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%').
 tpi(com,write,'').
 
-% 10. Analysing monotheism.
+% 11. Analysing monotheism.
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%
 tpi(com,start_group,mt).
   thf(thmMT_con,conjecture,( v @ ( mforall_ind @ ^ [X: mu] : ( mforall_ind @ ^ [Y: mu] : ( mimplies @ ( g @ X ) @ ( mimplies @ ( g @ Y ) @ ( mequals @ X @ Y ) ) ) ) ) )). 
 tpi(com,end_group,mt).
-tpi(com,execute,'SZS_STATUS_MT' = 'TPS---3.120601S1b 60 $getgroups(embedding,sig,fg,d1,mt)').
+tpi(com,execute,'SZS_STATUS_MT' = 'Nitrox---2013 60 $getgroups(embedding,sig,fg,d1,mt)').
 tpi(com,write,'%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%').
-tpi(com,write,'%%% 10. Analysing monotheism.').
-tpi(com,write,'%%%     Checking  fg,d1 |- mt (using TPS).').
+tpi(com,write,'%%% 11. Analysing monotheism.').
+tpi(com,write,'%%%     Checking  fg,d1 |- mt (using Nitpick).').
 %tpi(com,output,stdout = tpi_premises).
 %tpi(com,output,stdout = tpi_conjectures).
 tpi(com,output,stdout = mt).
 tpi(com,write,'%%%     SZS_STATUS_MT for mt is ' & '$getenv(SZS_STATUS_MT)').
-tpi(com,assert,$getenv('SZS_STATUS_MT') = 'Theorem').
+tpi(com,assert,$getenv('SZS_STATUS_MT') = 'CounterSatisfiable').
 tpi(com,write,'%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%').
 tpi(com,write,'').
 

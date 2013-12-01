@@ -15,12 +15,14 @@ tpi(com,start_group,embedding).
   thf(mimplies,definition,( mimplies = ( ^ [Phi: $i > $o,Psi: $i > $o,W: $i] : ( ( Phi @ W ) => ( Psi @ W ) ) ) )).
   thf(mequiv_type,type,( mequiv: ( $i > $o ) > ( $i > $o ) > $i > $o )).
   thf(mequiv,definition, ( mequiv = ( ^ [Phi: $i > $o,Psi: $i > $o,W: $i] : ( ( Phi @ W ) <=> ( Psi @ W ) ) ) )).
+  thf(eiw_ind,type,(eiw_ind: $i > mu > $o )). 
+  thf(nonempty_ind,axiom,( ! [V:$i] : ? [X:mu] : (eiw_ind @ V @ X ) )).
   thf(mforall_ind_type,type,( mforall_ind: ( mu > $i > $o ) > $i > $o )).
-  thf(mforall_ind,definition,( mforall_ind = ( ^ [Phi: mu > $i > $o,W: $i] : ! [X: mu] : ( Phi @ X @ W ) ) )).
+  thf(mforall_ind,definition,( mforall_ind = ( ^ [Phi: mu > $i > $o,W: $i] : ! [X: mu] : ( (eiw_ind @ W @ X) => ( Phi @ X @ W ) ) ) )).
   thf(mforall_indset_type,type,( mforall_indset: ( ( mu > $i > $o ) > $i > $o ) > $i > $o )).
   thf(mforall_indset,definition,( mforall_indset = ( ^ [Phi: ( mu > $i > $o ) > $i > $o,W: $i] : ! [X: mu > $i > $o] : ( Phi @ X @ W ) ) )).
   thf(mexists_ind_type,type,( mexists_ind: ( mu > $i > $o ) > $i > $o )).
-  thf(mexists_ind,definition,( mexists_ind = ( ^ [Phi: mu > $i > $o,W: $i] : ? [X: mu] : ( Phi @ X @ W ) ) )).
+  thf(mexists_ind,definition,( mexists_ind = ( ^ [Phi: mu > $i > $o,W: $i] : ? [X: mu] : ( (eiw_ind @ W @ X) & ( Phi @ X @ W ) ) ) )).
   thf(mequals_type,type,( mequals: mu > mu > $i > $o )).
   thf(mequals,definition, ( mequals = ( ^ [X:mu,Y:mu,W:$i] :  ( X = Y )) )).  
   thf(rel_type,type,( rel: $i > $i > $o )).
