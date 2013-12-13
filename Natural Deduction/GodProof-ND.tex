@@ -10,6 +10,7 @@
 
 \usepackage{calculi}
 \usepackage{theorems}
+\usepackage{natbib}
 
 
 % Logical symbols
@@ -42,22 +43,24 @@ which deals with concepts of the highest abstractness; and this is also most hig
 ToDo: Do also Scott's and G\"{o}del's proofs.
 
 
-The first ontological argument for the existence of God was written by St. Anselm (1033-1109). The argument considers a maximally concievable being. This being must exist, because if it did not have the property of existence, then we could concieve of a greater being that apart from the other properties also has the property of existence. The main critique of this argument is that we do not know whether the concept maximal concievable being in fact designates anything or if it is inconsistent, like a round square. The question is if the argument is sound. 
+The first ontological argument for the existence of God was written by St. Anselm (1033-1109). The argument considers a maximally conceivable being. This being must exist, because if it did not have the property of existence, then we could conceive of a greater being that, apart from the other properties, also has the property of existence. The main critique of this argument is that we do not know whether the concept maximal conceivable being in fact designates anything or if it is inconsistent, like a round square \citep{fitting}[p.134].  The question is if the argument is sound. 
 
-As Bertrand Russell has pointed out the definition of maximal allows us to define properties, like having boots, which the maximal being then also must have. Kant, on the other hand argued against the ontological argument on the basis that existence is not an analytic property. This means that existence cannot be contained in the definition of a concept, because it is generally synthetic. All that we can say is that if God exists, then he necessarily exists.
+As Bertrand Russell has pointed out the definition of maximal allows us to define properties, like having boots, which the maximal being then also must have. Kant, on the other hand argued against the ontological argument on the basis that existence is not an analytic property \citep{kant}. This means that existence cannot be contained in the definition of a concept, because it is generally synthetic. All that we can say is that if God exists, then God necessarily exists.
 
 St. Anselm's proof was processed by Descartes and Leibniz. Leibniz identified the critical point of the argument as establishing the possible existence of God. Leibniz gave an argument for that the properties of God, the perfections, are compatible. This implies that it is possible to have all perfections at once and therefore the existence of a maximal being with all these properties is possible. 
 
 G\"odel continued this argument by defining the properties that must hold for these perfections and giving axioms from which the existence of God can be derived. The acceptance of the correctness of the ontological argument by G\"odel's work boils down to the intuitive correctness of the axioms and definitions and the belief in the soundness of the deductive system. The formal argument of G\"odel is based on Leibniz proof, which in turn is based on Descartes proof. These proofs have two parts; a proof that if God's existence is possible, then it is necessary and a proof that God's existence is in fact possible. The deductive system used in the formal proof is a system for modal logic extended with second-order quantification (or possibly third-order quantification), because the axioms and definitions required for the concept of positive properties or perfections involve quantification over properties. 
 
-G\"odel treated positive properties as not just atomic properties, like Leibniz, but also consisting of collections of these properties, which by Leibniz argument are compatible or possible. (Fitting, p.139) G\"odel fomulated an axiom stating that the conjunction of any set of positive properties is positive. The property of God-likeness, which defines what a God is, must therefore be an infinite conjunction of all the positive properties. This axiom of the positiveness of conjunctions can be given a third order fomulation which is the reason for the claim that third-order quantification may be required. (Fitting, 2002, p. 148). However, this axiom is oly used in the proof to establish that the property of God-likeness is itself positive that led Scott to simply assume the positiveness of  God-likeness as an axiom instead. 
+G\"odel treated positive properties as not just atomic properties, like Leibniz, but also consisting of collections of these properties, which by Leibniz argument are compatible or possible.\citep{fitting}[p.139.] G\"odel formulated an axiom stating that the conjunction of any set of positive properties is positive. The property of God-likeness, which defines what a God is, must therefore be an infinite conjunction of all the positive properties. This axiom of the positiveness of conjunctions can be given a third order formulation which is the reason for the claim that third-order quantification may be required \citep{and}. %\citep{fitting}[p. 148.]   
+However, this axiom is only used in the proof to establish that the property of God-likeness is itself positive. G\"odel's student Scott, who wrote down a version of G\"odel's proof after G\"odel had confided his work in him, simply chose to assume the positiveness of  God-likeness as an axiom instead. 
 
-Nevertheless, both axioms have the unfortunate property of being equivalent to the possibility of God's existence, given the other axioms of G\"odel. The possibility  God's existence in turn is equivalent to  God's necessary existence as well as  God's existence itself. Thus, we have an axiom which seems to be equivalent to the conclusion. 
+Nevertheless, both axioms have the unfortunate property of being equivalent to the possibility of God's existence, given the other axioms of G\"odel \citep{sobel2}.  %\citep{fitting}[Section 11.4. Objections.] 
+The possibility  God's existence in turn is equivalent to  God's necessary existence as well as  God's existence itself. Thus, we have an axiom which seems to be equivalent to the conclusion. 
 
-If one assumes extensionality, that two objects with the same properties are identical, then the definitions of G\"odel's proof give monotheism. Namely, two Gods would both be God-like and by the definition of god-like, they would have the same positive properties and be identical. 
+Another, possibly undesirable, consequence of the formalism is that there can only be one God, which is defined by the axioms. Namely, if one assumes that the theory contains the equality relation then a God has the property of being identical to itself. Since any other god-like being would have at least the same properties it shares the property of being identical to the one God. Thus, we have proved monotheism \citep{sobel2}[Ch. 4, section 3.3.2]. %\citep{fitting}[The proof is Exercise 7.1, p.163]. 
 
-
-It may be so that for all formulas the formula implies its boxed version. That is all that is is necessarily and modality collapses. Fitting provides two solutions to the problem by modifying the axioms. 
+In \citep{sobel} a concern is raised about the whole system of proof, which is further elaborated on in \citep{sobel2}[Ch. 4,  section 6]. Depending on the properties of the rules for second order quantification allowed in the system, the system may have modal collapse. That is, if no restrictions are placed on the properties over which quantification is allowed, then the system says that for all formulas the formula implies its boxed version.  However, there are solutions to this problem by modification of the axioms. Sobel's own solution to the problem is to treat properties as extensional instead of intentional. Another solution by Anderson %(1990) 
+is to require that Godlike beings have positive properties necessarily. A summary of these arguments can be found in Fitting \citep{fitting}[Sections 11.9 and 11.10]. 
 
 
 \section{Natural Deduction}
@@ -108,14 +111,13 @@ It may be so that for all formulas the formula implies its boxed version. That i
 
 \vspace{1em}
 
-ToDo: add intuitionistic rule for negation/bottom
+We let negation be a defined concept by $\neg A\equiv A\imp \bot$. The rules for negation introduction and elimination are special cases of the implication rules. Equivalence is also a defined concept with  $ (A\biimp B)\equiv (A\imp B)\wedge (B\imp A)$. 
 \end{calculus}
 
 \begin{calculus}
-{Classical Rules/Axioms}
+{Classical Rule: Double negation elimination}
 {fig:Classical}
-
-ToDo: add classical rules/axioms that we need
+\infer[\neg\neg_E]{A}{ \neg\neg A }
 \end{calculus}
 
 
@@ -130,14 +132,14 @@ ToDo: add classical rules/axioms that we need
 \s\s\s\s
 \infer[\nec_I]{\nec A}{\eta: \fbox{\infer*{A}{}} }
 \s\s\s\s\s
-\infer[\nec_E]{n: \fbox{ \infer*{}{A} }  }{\nec A}
+\infer[\nec_E]{n: \fbox{ \infer*{}{A} } }{\nec A}
 
 \vspace{2em}
 
 \s\s\s\s
 \infer[\pos_I]{\pos A}{n: \fbox{\infer*{A}{}} }
 \s\s\s\s\s
-\infer[\pos_E]{\eta: \fbox{ \infer*{}{A} }  }{\pos A}
+\infer[\pos_E]{\eta: \fbox{ \infer*{}{A} } }{\pos A}
 
 \vspace{1em}
 \end{calculus}
@@ -253,7 +255,7 @@ $$
 
 \begin{definition}
 \label{D2}
-An \emph{essence} of an individual is a property possessed by it and necessarily implying any of its properties: 
+An \emph{essence} of an individual is a property possessed by it and necessarily implying any of its properties:
 $$
 \ess{\varphi}{x} \biimp \varphi(x) \wedge \all \psi. (\psi(x) \imp \nec \all x. (\varphi(x) \imp \psi(x)))
 $$
@@ -268,69 +270,70 @@ $$
 $$
 \end{theorem}
 \begin{proof}
-Let the following derivation with the open assumption $G(x)$ be $\Pi_1[G(x)]$: 
+Let the following derivation with the open assumption $G(x)$ be $\Pi_1[G(x)]$:
 
 \begin{prooftree}
-\AXC{$ \neg P(\psi)^1$} 
+\AXC{$ \neg P(\psi)^1$}
        \AXC{Axiom \ref{A1}} \dashedLine
-       \UIC{$\forall \varphi.(\neg P(\varphi)\imp P(\neg\varphi))$}\RightLabel{$\all_E$}  
-       \UIC{$\neg P(\psi)\imp P(\neg\psi)$}\RightLabel{$\imp_E$}   
- \BIC{$P(\neg\psi)$}\RightLabel{} 
-           	\AXC{$G(x)$} \dottedLine\RightLabel{D\ref{D1}}
-		 \UIC{$\forall \varphi .(P(\varphi)\imp \varphi(x))$}\RightLabel{$\forall_E$}
-              	\UIC{$P(\neg \psi)\imp \neg \psi(x)$}\RightLabel{$\imp_E$}
-           \BIC{$ \neg \psi(x)$}\RightLabel{$\imp_E$}  
-            \AXC{$ \psi(x)^2$} \RightLabel{$\imp_E$}  
-             \BIC{$\bot $}\RightLabel{$\mathit{RAA}^1$}  
+       \UIC{$\forall \varphi.(\neg P(\varphi)\imp P(\neg\varphi))$}\RightLabel{$\all_E$}
+       \UIC{$\neg P(\psi)\imp P(\neg\psi)$}\RightLabel{$\imp_E$}
+ \BIC{$P(\neg\psi)$}\RightLabel{}
+                   \AXC{$G(x)$} \dottedLine\RightLabel{D\ref{D1}}
+                 \UIC{$\forall \varphi .(P(\varphi)\imp \varphi(x))$}\RightLabel{$\forall_E$}
+                      \UIC{$P(\neg \psi)\imp \neg \psi(x)$}\RightLabel{$\imp_E$}
+           \BIC{$ \neg \psi(x)$}\RightLabel{$\imp_E$}
+            \AXC{$ \psi(x)^2$} \RightLabel{$\imp_E$}
+             \BIC{$\bot $}\RightLabel{$\imp_I^1$}
+             \UIC{$\neg \neg P(\psi)$}\RightLabel{$\neg\neg_E$}
               \UIC{$ P(\psi)$}\RightLabel{$\imp_I^2$}
               \UIC{$ \psi(x)\imp P(\psi)$}
 \end{prooftree}
 
 
 \noindent
-Let the following derivation with the open assumption $G(x)$ be $\Pi_2[G(x)]$: 
+Let the following derivation with the open assumption $G(x)$ be $\Pi_2[G(x)]$:
 \begin{prooftree}
        \AXC{$\psi(x)^3$}
-             	\AXC{$\Pi_1[G(x)] $}  \dashedLine
-		\UIC{$\psi(x)\imp P(\psi)$}\RightLabel{$\imp_E$}
-       		\BIC{$P(\psi)$} 
-		              \AXC{Axiom \ref{A4}} \dashedLine
-       	          \UIC{$\all \varphi .(P(\varphi)\imp \Box P(\varphi))$}\RightLabel{$\all_E$}  
-		              \UIC{$P(\psi)\imp \Box P(\psi)$}\RightLabel{$\imp_E$}  
-           \BIC{$\Box P(\psi)$}\RightLabel{$\imp_I^3$} 
-           \UIC{$\psi(x)\imp\Box P(\psi)$} 
+                     \AXC{$\Pi_1[G(x)] $} \dashedLine
+                \UIC{$\psi(x)\imp P(\psi)$}\RightLabel{$\imp_E$}
+                       \BIC{$P(\psi)$}
+                 \AXC{Axiom \ref{A4}} \dashedLine
+                \UIC{$\all \varphi .(P(\varphi)\imp \Box P(\varphi))$}\RightLabel{$\all_E$}
+                 \UIC{$P(\psi)\imp \Box P(\psi)$}\RightLabel{$\imp_E$}
+           \BIC{$\Box P(\psi)$}\RightLabel{$\imp_I^3$}
+           \UIC{$\psi(x)\imp\Box P(\psi)$}
 \end{prooftree}
 
 \noindent
-Let the following derivation without open assumptions be $\Pi_3$: 
+Let the following derivation without open assumptions be $\Pi_3$:
 
 \begin{prooftree}
        \AXC{$P(\psi)^4$}
-             	\AXC{$G(x)^5$} \dottedLine\RightLabel{D\ref{D1}}
-		\UIC{$\all\varphi .(P(\varphi)\imp \varphi(x))$}\RightLabel{$\all_E$}
-		\UIC{$P(\psi)\imp \psi(x)$}\RightLabel{$\imp_E$}  
-       		\BIC{$\psi(x)$}\RightLabel{$\imp_I^5$}  
-       		\UIC{$G(x)\imp \psi(x)$}\RightLabel{$\all_I$} 
-		\UIC{$\all x .(G(x)\imp \psi(x))$} \RightLabel{$\imp_I^4$}  
-		\UIC{$P(\psi)\imp \forall x .(G(x)\imp \psi(x))$}
+                     \AXC{$G(x)^5$} \dottedLine\RightLabel{D\ref{D1}}
+                \UIC{$\all\varphi .(P(\varphi)\imp \varphi(x))$}\RightLabel{$\all_E$}
+                \UIC{$P(\psi)\imp \psi(x)$}\RightLabel{$\imp_E$}
+                       \BIC{$\psi(x)$}\RightLabel{$\imp_I^5$}
+                       \UIC{$G(x)\imp \psi(x)$}\RightLabel{$\all_I$}
+                \UIC{$\all x .(G(x)\imp \psi(x))$} \RightLabel{$\imp_I^4$}
+                \UIC{$P(\psi)\imp \forall x .(G(x)\imp \psi(x))$}
 \end{prooftree}
 
 \noindent
-Let the following derivation with the open assumption $G(x)$ be $\Pi_4[G(x)]$: 
+Let the following derivation with the open assumption $G(x)$ be $\Pi_4[G(x)]$:
 \begin{prooftree}
        \AXC{$\psi(x)^6 $} \RightLabel{}
-             	\AXC{$\Pi_2$}  \dashedLine
-		\UIC{$\psi(x)\imp\Box P(\psi)$}\RightLabel{$\imp_E$}
-		\BIC{$\Box P(\psi)$}
-		  	\AXC{$\Box P(\psi)^7 $}\RightLabel{$\Box_E$}  
-       			\UIC{$P(\psi)$}
-				\AXC{$\Pi_3$}  \dashedLine\RightLabel{}
-       				\UIC{$P(\psi)\imp \all x .(G(x)\imp \psi(x))$}\RightLabel{$\imp_E$}  
-       			\BIC{$\all x .(G(x)\imp \psi(x))$}\RightLabel{Necessitation}
-			\UIC{$\Box \all x .(G(x)\imp \psi(x))$}  \RightLabel{$\imp_I^7$} 
-			\UIC{$\Box P(\psi)\imp \Box \all x .(G(x)\imp \psi(x))$} \RightLabel{$\imp_E$} 
-         	 \BIC{$\Box \all x .(G(x)\imp \psi(x))$}\RightLabel{$\imp_I^6$}
-           \UIC{$\psi(x)\imp\Box \all x .(G(x)\imp \psi(x))$}  
+                     \AXC{$\Pi_2$} \dashedLine
+                \UIC{$\psi(x)\imp\Box P(\psi)$}\RightLabel{$\imp_E$}
+                \BIC{$\Box P(\psi)$}
+                         \AXC{$\Box P(\psi)^7 $}\RightLabel{$\Box_E$}
+                               \UIC{$P(\psi)$}
+                                \AXC{$\Pi_3$} \dashedLine\RightLabel{}
+                                       \UIC{$P(\psi)\imp \all x .(G(x)\imp \psi(x))$}\RightLabel{$\imp_E$}
+                               \BIC{$\all x .(G(x)\imp \psi(x))$}\RightLabel{$\Box_I$}
+                        \UIC{$\Box \all x .(G(x)\imp \psi(x))$} \RightLabel{$\imp_I^7$}
+                        \UIC{$\Box P(\psi)\imp \Box \all x .(G(x)\imp \psi(x))$} \RightLabel{$\imp_E$}
+                  \BIC{$\Box \all x .(G(x)\imp \psi(x))$}\RightLabel{$\imp_I^6$}
+           \UIC{$\psi(x)\imp\Box \all x .(G(x)\imp \psi(x))$}
 \end{prooftree}
 
 
@@ -339,13 +342,13 @@ The use of the necessitation rule above is correct, because the only open assump
 
 \begin{prooftree}
        \AXC{$G(x)^8 $} \RightLabel{}
-             	\AXC{$\Pi_4[G(x)^8]$}  \dashedLine
-		\UIC{$\psi(x)\imp\Box \all x .(G(x)\imp \psi(x))$}\RightLabel{$\all_I$}
-		\UIC{$\all \psi .(\psi(x)\imp\Box \all x .(G(x)\imp \psi(x)))$}\RightLabel{$\wedge_I$}
-		\BIC{$G(x)\wedge \forall \psi .(\psi(x)\imp\Box \all x .(G(x)\imp \psi(x)))$}\dottedLine\RightLabel{D\ref{D2}} 
-       			\UIC{$\ess{G}{x}$} \RightLabel{$\imp_I^8$}
-			\UIC{$G(x)\imp \ess{G}{x}$} \RightLabel{$\all_I$}
-			  \UIC{$\all y.[G(y) \imp \ess{G}{y}]$}
+                     \AXC{$\Pi_4[G(x)^8]$} \dashedLine
+                \UIC{$\psi(x)\imp\Box \all x .(G(x)\imp \psi(x))$}\RightLabel{$\all_I$}
+                \UIC{$\all \psi .(\psi(x)\imp\Box \all x .(G(x)\imp \psi(x)))$}\RightLabel{$\wedge_I$}
+                \BIC{$G(x)\wedge \forall \psi .(\psi(x)\imp\Box \all x .(G(x)\imp \psi(x)))$}\dottedLine\RightLabel{D\ref{D2}}
+                               \UIC{$\ess{G}{x}$} \RightLabel{$\imp_I^8$}
+                        \UIC{$G(x)\imp \ess{G}{x}$} \RightLabel{$\all_I$}
+                         \UIC{$\all y.[G(y) \imp \ess{G}{y}]$}
 \end{prooftree}
 \end{proof}
 
@@ -377,7 +380,7 @@ $$
 \begin{proof} \hfill
 \begin{prooftree}
 \AXC{$ $} \RightLabel{1}
-\UIC{$\ex z. G(z)$}
+\UIC{$\ex z. G(z)$}\RightLabel{$\ex_E$}
 \UIC{$G(g)$}
 \end{prooftree}
 
@@ -385,19 +388,19 @@ $$
 \AXC{$ $} \dashedLine
 \UIC{$G(g)$}
         \AXC{Theorem \ref{T2}} \dashedLine
-        \UIC{$\all y.[G(y) \imp \ess{G}{y}]$}
-        \UIC{$G(g) \imp \ess{G}{g}$}
+        \UIC{$\all y.[G(y) \imp \ess{G}{y}]$}\RightLabel{$\all_E$}
+        \UIC{$G(g) \imp \ess{G}{g}$}\RightLabel{$\imp_E$}
     \BIC{$\ess{G}{g}$}
                 \AXC{Axiom \ref{A5}} \dashedLine
                 \UIC{$P(E)$}
                         \AXC{$ $} \dashedLine
-                        \UIC{$G(g)$} \dottedLine
-                        \UIC{$\all \varphi.[P(\varphi) \imp \varphi(g)]$}
-                        \UIC{$P(E) \imp E(g)$}
-                     \BIC{$E(g)$} \dottedLine
-                     \UIC{$ \all \varphi.[\ess{\varphi}{g} \imp \nec \ex x.\varphi(x)] $}
-                     \UIC{$ \ess{G}{g} \imp \nec \ex x. G(x) $}
-        \BIC{$\nec \ex x. G(x)$} \RightLabel{1}
+                        \UIC{$G(g)$} \dottedLine \RightLabel{D\ref{D1}}
+                        \UIC{$\all \varphi.[P(\varphi) \imp \varphi(g)]$}\RightLabel{$\all_E$}
+                        \UIC{$P(E) \imp E(g)$}\RightLabel{$\imp_E$}
+                     \BIC{$E(g)$} \dottedLine\RightLabel{D\ref{D3}}
+                     \UIC{$ \all \varphi.[\ess{\varphi}{g} \imp \nec \ex x.\varphi(x)] $}\RightLabel{$\all_E$}
+                     \UIC{$ \ess{G}{g} \imp \nec \ex x. G(x) $}\RightLabel{$\imp_E$}
+        \BIC{$\nec \ex x. G(x)$} \RightLabel{$\imp_I^1$}
         \UIC{$\ex z. G(z) \imp \nec \ex x. G(x)$}
 \end{prooftree}
 \end{proof}
@@ -424,40 +427,40 @@ $$
 \begin{prooftree}
 \AXC{$ $} \RightLabel{1}
 \UIC{$\nec\neg\nec \ex x. G(x)$}\RightLabel{$\nec_E$, axiom T}
-\UIC{$\neg\nec \ex x. G(x)$} 
+\UIC{$\neg\nec \ex x. G(x)$}
 \AXC{ Lemma \ref{L1} } \dashedLine
 \UIC{$\neg\nec \ex x. G(x) \imp \neg\ex x. G(x)$}\RightLabel{$\imp_E$}
  \BIC{$ \neg\ex x. G(x)$} \RightLabel{$\nec_I$}
-\UIC{$\nec \neg\ex x. G(x)$}  \dottedLine
-\UIC{$\neg \pos\ex x. G(x)$} 
+\UIC{$\nec \neg\ex x. G(x)$} \dottedLine
+\UIC{$\neg \pos\ex x. G(x)$}
 \end{prooftree}
 \end{small}
 
 \begin{small}
 \begin{prooftree}
 \AXC{$ $}\dashedLine
-\UIC{$\neg \pos\ex x. G(x)$} 
-\AXC{ Corollary \ref{C1}} \dashedLine 
+\UIC{$\neg \pos\ex x. G(x)$}
+\AXC{ Corollary \ref{C1}} \dashedLine
 \UIC{$ \pos\ex x. G(x)$} \RightLabel{$\imp_E$}
  \BIC{$ \bot$} \RightLabel{$\imp_I^1$}
  \UIC{$\neg\nec\neg\nec \ex x. G(x)$} \dottedLine
  \UIC{$\neg\nec\pos \neg \ex x. G(x)$}
-\AXC{ Axiom B} \dashedLine 
+\AXC{ Axiom B} \dashedLine
 \UIC{$ \neg \ex x. G(x)\imp\nec\pos \neg \ex x. G(x)$} \doubleLine
-\UIC{$ \neg\nec\pos \neg \ex x. G(x)\imp  \neg  \neg \ex x. G(x)$} \RightLabel{$\imp_E$}
- \BIC{$ \neg  \neg \ex x. G(x)$}\RightLabel{$ \neg  \neg$ E}
- \UIC{$  \ex x. G(x)$}
+\UIC{$ \neg\nec\pos \neg \ex x. G(x)\imp \neg \neg \ex x. G(x)$} \RightLabel{$\imp_E$}
+ \BIC{$ \neg \neg \ex x. G(x)$}\RightLabel{$ \neg \neg$ E}
+ \UIC{$ \ex x. G(x)$}
 \end{prooftree}
 \end{small}
 
-Note that the last step is classical and we do not prove the existential statement by providing an object for which the statement holds. 
-This proof makes section \ref{GodsE} superflous and the use of axiom "M" unnecessary. 
+Note that the last step is classical and we do not prove the existential statement by providing an object for which the statement holds.
+This proof makes section \ref{GodsE} superflous and the use of axiom "M" unnecessary.
 
-The system used contains the $\nec_E$-rule with the restriction that we have a $\nec_I$ below it. This is equivalent to modal sytem K that contains axiom K and necessitation rule N.  We aslo use axiom B ($ A\imp\nec\pos A$). No other modal axioms are needed. 
+The system used contains the $\nec_E$-rule with the restriction that we have a $\nec_I$ below it. This is equivalent to modal sytem K that contains axiom K and necessitation rule N. We aslo use axiom B ($ A\imp\nec\pos A$). No other modal axioms are needed.
 
 \section{Necessarily, God exists}
 
-We can also prove that god exists necessarily in our system by simply introducing box on a theorem by rule N in modal sytem K. So we get: 
+We can also prove that god exists necessarily in our system by simply introducing box on a theorem by rule N in modal sytem K. So we get:
 
 
 \begin{corollary}
@@ -472,7 +475,7 @@ $$
 
 
 \section{God exists}\label{GodsE}
-This section is superfluous. 
+This section is superfluous.
 
 \begin{axiom}[M]
 \label{M} What is necessary is the case:
@@ -482,7 +485,7 @@ $$
 \end{axiom}
 
 \begin{corollary}
-\label{C2} 
+\label{C2}
 There exists a God:
 $$
 \ex x. G(x)
@@ -500,42 +503,42 @@ $$
 
 \section{Proof system equivalent to system K}
 
-We show that the proof system with boxed parts of derivations is equivalent to the system K. The modal system K consists of the axiom K and the necessitation rule N. 
+We show that the proof system with boxed parts of derivations is equivalent to the system K. The modal system K consists of the axiom K and the necessitation rule N.
 
 \begin{axiom}[The transitivity axiom K]
 \label{K}
 $$
-\nec(A\imp B)\imp  (\nec A\imp \nec B)
+\nec(A\imp B)\imp (\nec A\imp \nec B)
 $$
 \end{axiom}
 
-\begin{axiom}[The necessitation rule]
+\begin{axiom}[The necessitation rule, $\Box_I$]
 \label{Necessitation}
-If $A$ is a theorem, then $\nec A$ is a theorem. 
+If $A$ is a theorem, then $\nec A$ is a theorem.
 \end{axiom}
 
 
 \begin{lemma}
 \label{systemK}
-The axiom K is derivable in the system. 
+The axiom K is derivable in the system.
 \end{lemma}
 
 \begin{small}
 \begin{prooftree}
 \AXC{$\nec(A\imp B)^2 $}\RightLabel{$\nec_E$}
-\UIC{$A\imp B$} 
+\UIC{$A\imp B$}
       \AXC{$\nec A ^1 $}\RightLabel{$\nec_E$}
       \UIC{$A$} \RightLabel{$\imp_E$}
    \BIC{$ B$} \RightLabel{$\nec_I$}
    \UIC{$ \nec B$} \RightLabel{$\imp_I^1$}
-   \UIC{$\nec A\imp \nec B$}  \RightLabel{$\imp_I^2$}
-   \UIC{$\nec(A\imp B)\imp  (\nec A\imp \nec B)$}
+   \UIC{$\nec A\imp \nec B$} \RightLabel{$\imp_I^2$}
+   \UIC{$\nec(A\imp B)\imp (\nec A\imp \nec B)$}
 \end{prooftree}
 \end{small}
 
 \begin{lemma}
-\label{systemK}
-Assuming the axiom K and the necessitation rule N, the open formula $\nec A $ and the existence of a derivation of $ B$ from the open assumption $ A$, then we can derive $\nec B$ without the rules for boxed parts of derivations.
+\label{systemK2}
+Assuming the axiom K and the necessitation rule $\Box_I$, the open formula $\nec A $ and the existence of a derivation of $ B$ from the open assumption $ A$, then we can derive $\nec B$ without the rules for boxed parts of derivations.
 \end{lemma}
 
 \begin{small}
@@ -543,30 +546,30 @@ Assuming the axiom K and the necessitation rule N, the open formula $\nec A $ an
 \AXC{$A^1 $}\noLine
 \UIC{$\vdots$}\noLine
 \UIC{$ B$} \RightLabel{$\imp_I^1$}
-\UIC{$A\imp B$} \RightLabel{Necessitation}
-\UIC{$\nec(A\imp B)$} 
+\UIC{$A\imp B$} \RightLabel{$\Box_I$}
+\UIC{$\nec(A\imp B)$}
       \AXC{Axiom K}\dashedLine
-      \UIC{$\nec(A\imp B)\imp  (\nec A\imp \nec B)$} \RightLabel{$\imp_E$}
-  \BIC{$\nec A\imp \nec B$} 
+      \UIC{$\nec(A\imp B)\imp (\nec A\imp \nec B)$} \RightLabel{$\imp_E$}
+  \BIC{$\nec A\imp \nec B$}
         \AXC{$\nec A ^1 $}\RightLabel{$\imp_E$}
     \BIC{$\nec B$}
 \end{prooftree}
 \end{small}
 
 
-\section{Crisis in the calculus}
+\section{Modal collapse}
 
-The axioms of the calculus imply the following collapse of modalities: 
+The axioms of the calculus imply the following collapse of modalities:
 
 \begin{theorem}
 \label{T5}
-For all constant fomulas (without free variables), $A$,  we have:
+For all constant fomulas (without free variables), $A$, we have:
 $$
 A \imp \nec A
 $$
 \end{theorem}
 
-Note that in intuitionistic predicate logic we have $\all y.[B \imp C]  \biimp [\ex y.B \imp C]$ if $y$ is not free in $C$. 
+Note that in intuitionistic predicate logic we have $\all y.[B \imp C] \biimp [\ex y.B \imp C]$ if $y$ is not free in $C$.
 
 \begin{small}
 \begin{prooftree}
@@ -593,26 +596,47 @@ Note that in intuitionistic predicate logic we have $\all y.[B \imp C]  \biimp [
 \UIC{$ \ex x. G(x) \imp A$} \RightLabel{$\imp_E$}
 \AXC{Theorem \ref{T4}}\dashedLine
 \UIC{$\ex x.G(x)$} \RightLabel{$\imp_E$}
-\BIC{$A$}  \RightLabel{$\nec_I$}
-\UIC{$ \nec A$}  \RightLabel{$\imp_I^1$}
+\BIC{$A$} \RightLabel{$\nec_I$}
+\UIC{$ \nec A$} \RightLabel{$\imp_I^1$}
    \UIC{$A\imp \nec A$}
 \end{prooftree}
 \end{small}
 
 
 
-This collapse of the sytem is proved in (Fitting, 2002) and he provides two solutions by the modifications of the axioms, see chapter 11 section 8-11. The argument may require that one doesn't instantiate the second order quantifier with $A$ directly but with $\lambda x.A$ to make $A$ a property. But still we have $(\lambda x.A)(y)\equiv A$ because $A$ is constant. 
+This collapse of the system was first proved in \citep{sobel} and the argument is also given in \citep{fitting}[ch. 11, sections 8-11] who provides summaries of two solutions by the modifications of the axioms. The argument may require that one doesn't instantiate the second order quantifier with $A$ directly but with $\lambda x.A$ to make $A$ a property. But still we have $(\lambda x.A)(y)\equiv A$ because $A$ is constant.
 
 
-The question arises what kind of second order quantification is allowed. The instantiations that are used in our proof are instantiated with predicate variables that later work as eigenvariables for the second order universal introduction. In the proof of corollary \ref{C1} we instantiate with $G$ and in the proof of lemma \ref{L1}.  we instantiate with $G$ and $E$. 
+The question arises what kind of second order quantification is allowed. The instantiations that are used in our proof are instantiated with predicate variables that later work as eigenvariables for the second order universal introduction. In the proof of corollary \ref{C1} we instantiate with $G$ and in the proof of lemma \ref{L1}. we instantiate with $G$ and $E$. %In Sobel on G\"{o}del's ontological proof by Robert E. Koons this question is raised.
 
-In Sobel on G\"{o}del's ontological proof by Robert E. Koons this question is raised. 
+One can also discuss if a second order modal logic is sound and complete. With Henkin models, which restrict the second order quantification with comprehension, we have that normal second order logic is sound and complete. There is a completeness proof for a second order modal logic found in A completeness theorem in second order modal logic by Cocchiarella.
 
-One can also discuss if a second order modal logic is sound and complete. With Henkin models, which restrict the second order quantification with comprehension, we have that normal second order logic is sound and complete. There is a completeness proof for a second order modal logic found in A completeness theorem in second order modal logic by Cocchiarella. 
+\begin{thebibliography}{9}
+
+
+
+\bibitem[{\itshape Anderson \& Gettings(1996)}]{and}
+Anderson, C. A.\& Gettings, M. 1996.  {\itshape G\"odel's ontological proof revisited}. In: edited by Hajek P. {\itshape G\"odel '96},  Springer. 
+
+
+\bibitem[{\itshape Fitting(2002)}]{fitting}
+Fitting, M. 2002.  {\itshape Types, Tableaus, and G\"odel's God}, Kluwer Academic Publishers.  
+
+\bibitem[{\itshape Kant(1781)}]{kant}
+Kant, I.  original 1781.   {\itshape Critique of Pure Reason}, J. M. Dent \& Sons LTD, edition from 1959.
+
+\bibitem[{\itshape Sobel(1987)}]{sobel}
+Sobel, J. H. 1987. {\itshape G\"odel's Ontological Proof}. In: edited by J. J. Thompson. {\itshape On being and saying : essays for Richard Cartwright},  MIT Press. 
+
+\bibitem[{\itshape Sobel(2001)}]{sobel2}
+Sobel, J. H. 2001. {\itshape Logic and Theism: Arguments for and against Beliefs in God}, Cambridge University Press. 
+
+
+
+\end{thebibliography}
 
 
 
 
 \end{document}
-
 
