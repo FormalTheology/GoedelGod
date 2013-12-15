@@ -1,0 +1,19 @@
+% 10. Analysing monotheism.
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+tpi(com,start_group,mt).
+  thf(thmMT_con,conjecture,(v@(mforall_ind@^[X:mu]:(mforall_ind@^[Y:mu]:
+                               (mimplies@(g@X)@(mimplies@(g@Y)@(mequals@X@Y))))))). 
+tpi(com,end_group,mt).
+tpi(com,execute,'SZS_STATUS_MT' = 'TPS---3.120601S1b 60 $getgroups(embedding,sig,fg,d1,mt)').
+tpi(com,write,'%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%').
+tpi(com,write,'%%% 10. Analysing monotheism.').
+tpi(com,write,'%%%     Checking  fg,d1 |- mt (using TPS).').
+%tpi(com,output,stdout = tpi_premises).
+%tpi(com,output,stdout = tpi_conjectures).
+tpi(com,output,stdout = mt).
+tpi(com,write,'%%%     SZS_STATUS_MT for mt is ' & '$getenv(SZS_STATUS_MT)').
+tpi(com,assert,$getenv('SZS_STATUS_MT') = 'Theorem').
+tpi(com,write,'%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%').
+tpi(com,write,'').
+
+tpi(end,exit,exit).

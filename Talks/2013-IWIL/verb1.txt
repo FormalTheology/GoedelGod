@@ -1,0 +1,33 @@
+Defining the embedding of quantified modal logics in HOL.
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+tpi(com,write,'%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%').
+tpi(com,write,'%%% 1. Introducing the embedding, signature, definitions, axioms, and theorems.').
+
+tpi(com,start_group,embedding).
+  thf(mu_type,type,(mu:$tType)).
+  thf(mnot_type,type,(mnot:($i>$o)>$i>$o)).
+  thf(mnot,definition,(mnot=(^[Phi:$i>$o,W:$i]:~(Phi@W)))).
+  thf(mor_type,type,(mor:($i>$o)>($i>$o)>$i>$o)).
+  thf(mor,definition,(mor=(^[Phi:$i>$o,Psi:$i>$o,W:$i]:((Phi@W)|(Psi@W))))).
+  thf(mand_type,type,(mand:($i>$o)>($i>$o)>$i>$o)).
+  thf(mand,definition,(mand=(^[Phi:$i>$o,Psi:$i>$o,W:$i]:((Phi@W)&(Psi@W))))).
+  thf(mimplies_type,type,(mimplies:($i>$o)>($i>$o)>$i>$o)).
+  thf(mimplies,definition,(mimplies=(^[Phi:$i>$o,Psi:$i>$o,W:$i]:((Phi@W)=>(Psi@W))))).
+  thf(mequiv_type,type,(mequiv:($i>$o)>($i>$o)>$i>$o)).
+  thf(mequiv,definition,(mequiv=(^[Phi:$i>$o,Psi:$i>$o,W:$i]:((Phi@W)<=>(Psi@W))))).
+  thf(mforall_ind_type,type,(mforall_ind:(mu>$i>$o)>$i>$o)).
+  thf(mforall_ind,definition,(mforall_ind=(^[Phi:mu>$i>$o,W:$i]:![X:mu]:(Phi@X@W)))).
+  thf(mforall_indset_type,type,(mforall_indset:((mu>$i>$o)>$i>$o)>$i>$o)).
+  thf(mforall_indset,definition,(mforall_indset=(^[Phi:(mu>$i>$o)>$i>$o,W:$i]:![X:mu>$i>$o]:(Phi@X@W)))).
+  thf(mexists_ind_type,type,(mexists_ind:(mu>$i>$o)>$i>$o)).
+  thf(mexists_ind,definition,(mexists_ind=(^[Phi:mu>$i>$o,W:$i]:?[X:mu]:(Phi@X@W)))).
+  thf(mequals_type,type,(mequals:mu>mu>$i>$o)).
+  thf(mequals,definition,(mequals=(^[X:mu,Y:mu,W:$i]:(X=Y)))).  
+  thf(rel_type,type,(rel:$i>$i>$o)).
+  thf(mbox_type,type,(mbox:($i>$o)>$i>$o)).
+  thf(mbox,definition,(mbox=(^[Phi:$i>$o,W:$i]:![V:$i]:((rel@W@V)=>(Phi@V))))).
+  thf(mdia_type,type,(mdia:($i>$o)>$i>$o)).
+  thf(mdia,definition,(mdia=(^[Phi:$i>$o,W:$i]:?[V:$i]:((rel@W@V)&(Phi@V))))).
+  thf(mvalid_type,type,(v:($i>$o)>$o)).
+  thf(mvalid,definition,(v=(^[Phi:$i>$o]:![W:$i]:(Phi@W)))).
+tpi(com,end_group,embedding).

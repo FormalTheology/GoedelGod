@@ -1,0 +1,25 @@
+% 8. Report on modal collapse.
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+tpi(com,waitenv,'SZS_STATUS_MC').
+tpi(com,write,'%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%').
+tpi(com,write,'%%% 8. Analysing modal collapse.').
+tpi(com,write,'%%%    Checking  sym,d2,t2,t3 |- mc (using LEO-II).').
+tpi(com,output,stdout = mc).
+tpi(com,write,'%%%    SZS_STATUS_MC for mc is ' & '$getenv(SZS_STATUS_MC)').
+tpi(com,assert,$getenv('SZS_STATUS_MC') = 'Theorem').
+tpi(com,set_role,thmMC_con = lemma).
+tpi(com,write,'%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%').
+tpi(com,write,'').
+
+% 9. Report on flawlessness.
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+tpi(com,waitenv,'SZS_STATUS_FG').
+tpi(com,write,'%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%').
+tpi(com,write,'%%% 9. Analysing flawless god.').
+tpi(com,write,'%%%    Checking  a1b,d1 |- fg (using LEO-II).').
+tpi(com,output,stdout = fg).
+tpi(com,write,'%%%    SZS_STATUS_FG for fg is ' & '$getenv(SZS_STATUS_FG)').
+tpi(com,assert,$getenv('SZS_STATUS_FG') = 'Theorem').
+tpi(com,set_role,thmFG_con = lemma).
+tpi(com,write,'%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%').
+tpi(com,write,'').

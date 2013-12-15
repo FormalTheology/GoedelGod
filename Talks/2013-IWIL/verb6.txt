@@ -1,0 +1,29 @@
+% 6. Analysing theorem c2.
+%%%%%%%%%%%%%%%%%%%%%%%%%%
+tpi(com,start_group,c2).
+  thf(corC2_con,conjecture,(v@(mexists_ind@^[X:mu]:(g@X)))).
+tpi(com,end_group,c2).
+tpi(com,execute,'SZS_STATUS_c2' = 
+    'LEO-II---1.6.0 20 $getgroups(embedding,symmetry,sig,d1,t1,t3,c2)').
+tpi(com,write,'%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%').
+tpi(com,write,'%%% 6. Analysing corollary c2.').
+tpi(com,write,'%%%    Checking  sym,d1,t1,t3 |- c2 (using LEO-II).').
+tpi(com,output,stdout = d1).
+tpi(com,output,stdout = t1).
+tpi(com,output,stdout = t3).
+tpi(com,output,stdout = c2).
+tpi(com,write,'%%%    SZS_STATUS for c2 is ' & '$getenv(SZS_STATUS_c2)').
+tpi(com,assert,$getenv('SZS_STATUS_c2') = 'Theorem').
+tpi(com,set_role,corC2_con = lemma).
+tpi(com,write,'%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%').
+tpi(com,write,'').
+
+% 7a. Report on consistency of axioms.
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+tpi(com,waitenv,'SZS_AXIOM_STATUS').
+tpi(com,write,'%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%').
+tpi(com,write,'%%% 7a. Checking satisfiability of all assumptions (using Nitpick).').
+tpi(com,write,'%%%    SZS_AXIOM_STATUS for assumptions is '& '$getenv(SZS_AXIOM_STATUS)').
+tpi(com,assert,$getenv('SZS_AXIOM_STATUS') = 'Satisfiable').
+tpi(com,write,'%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%').
+tpi(com,write,'').
