@@ -215,3 +215,5 @@ International
 [Decoded Science](http://www.decodedscience.com/modal-logic-proved-godel-right-god-exists/38801)
 
 [MSN](http://now.msn.com/christoph-benzmüller-and-bruno-woltzenlogel-paleo-scientists-say-theyve-proved-god-exists)
+
+[Investor Place](http://investorplace.com/2013/10/computer-scientists-just-prove-god-exists/#.Uq9BJ2RDvcl)
