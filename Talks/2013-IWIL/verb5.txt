@@ -1,0 +1,40 @@
+% 4. Analysing theorem t2.
+%%%%%%%%%%%%%%%%%%%%%%%%%%
+tpi(com,start_group,t2).
+  thf(thmT2_con,conjecture,(v@(mforall_ind@^[X:mu]:(mimplies@(g@X)@(ess@g@X))))).
+tpi(com,end_group,t2).
+tpi(com,execute,'SZS_STATUS_t2' = 'LEO-II---1.6.0 60 $getgroups(embedding,symmetry,sig,d1,d2,a1b,a4,t2)').
+tpi(com,write,'%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%').
+tpi(com,write,'%%% 4. Analysing theorem t2.').
+tpi(com,write,'%%%    Checking d1,d2,a1b,a4 |- t2 (using LEO-II).').
+tpi(com,output,stdout = d1).
+tpi(com,output,stdout = d2).
+tpi(com,output,stdout = a1b).
+tpi(com,output,stdout = a4).
+tpi(com,output,stdout = t2).
+tpi(com,write,'%%%    SZS_STATUS for t2 is ' & '$getenv(SZS_STATUS_t2)').
+tpi(com,assert,$getenv('SZS_STATUS_t2') = 'Theorem').
+tpi(com,set_role,thmT2_con = lemma).
+tpi(com,write,'%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%').
+tpi(com,write,'').
+
+% 5. Analysing theorem t3.
+%%%%%%%%%%%%%%%%%%%%%%%%%%
+tpi(com,start_group,t3).
+  thf(thmT3_con,conjecture,(v@(mbox@(mexists_ind@^[X:mu]:(g@X))))).
+tpi(com,end_group,t3).
+tpi(com,execute,'SZS_STATUS_t3' = 'LEO-II---1.6.0 20 $getgroups(embedding,symmetry,sig,d1,d3,c,t2,a5,t3)').
+tpi(com,write,'%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%').
+tpi(com,write,'%%% 5. Analysing theorem t3.').
+tpi(com,write,'%%%    Checking sym,d1,d3,c,t2,a5 |- t3 (using LEO-II).').
+tpi(com,output,stdout = d1).
+tpi(com,output,stdout = d3).
+tpi(com,output,stdout = c).
+tpi(com,output,stdout = t2).
+tpi(com,output,stdout = a5).
+tpi(com,output,stdout = t3).
+tpi(com,write,'%%%    SZS_STATUS for t3 is ' & '$getenv(SZS_STATUS_t3)').
+tpi(com,assert,$getenv('SZS_STATUS_t3') = 'Theorem').
+tpi(com,set_role,thmT3_con = lemma).
+tpi(com,write,'%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%').
+tpi(com,write,'').
