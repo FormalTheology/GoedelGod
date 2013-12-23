@@ -36,6 +36,9 @@ Germany
 
 [Beetlebum Blog](http://blog.beetlebum.de/2013/11/11/philosophie-vss-kampfroboter/)
 
+[Berliner Zeitung](http://www.berliner-zeitung.de/wissen/gottesbeweis-gott-existiert-,10808894,25720994.html)
+
+
 Austria
 -------
 
@@ -54,6 +57,7 @@ Austria
 [ORF](http://science.orf.at/stories/1724627/)
 
 [John Lennox's Talk at TU-Wien](http://www.youtube.com/watch?v=E_2_4KyR-6k&feature=share&t=25m15s)
+
 
 Italy
 -----
@@ -80,6 +84,7 @@ Italy
 
 [Il Post](http://www.ilpost.it/mauriziocodogno/2013/10/26/godel-dio-e-repubblica/)
 
+
 Spain
 -----
 
@@ -90,6 +95,7 @@ Spain
 [La Vanguardia](http://www.lavanguardia.com/vida/20131028/54392787484/cientificos-demostrar-informaticamente-existencia-ser-supremo.html)
 
 [La Voz de Galicia](http://www.lavozdegalicia.es/noticia/sociedad/2013/10/28/logran-probar-teorema-godel-sostiene-existe-superior/00031382958446357261349.htm)
+
 
 Russia
 ------
