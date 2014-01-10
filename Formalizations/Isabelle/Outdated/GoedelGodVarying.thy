@@ -1,6 +1,5 @@
 (* Formalization of Goedel's ontological argument in Isabelle/HOL *)
 (* Authors: Christoph Benzmueller and Bruno Woltzenlogel-Paleo *)
-(* Date: August 11, 2013; last update on September 1, 2013 *)
 
 (*
 We present a formalization and (partial) automation of Dana Scott's version
@@ -214,19 +213,19 @@ lemma help2: "v (\<diamond> p) \<and> v (p m\<Rightarrow> \<box> p) \<Longrighta
   by metis
   
 (* help3 is only required to prove help4 *)  
-lemma help3: "\<forall>x. v (G x m\<Rightarrow> G ess x m\<Rightarrow> \<box> (\<exists>i G))"
+lemma help3: "v (\<forall>i (\<lambda>x. (G x m\<Rightarrow> G ess x m\<Rightarrow> \<box> (\<exists>i G))))"
   (* immeadiate success with sledgehammer *)
   (* sledgehammer [timeout = 120, provers = remote_leo2 remote_satallax] *)
-  using A3 A5
-  unfolding G_def mforall_indset_def mimplies_def NE_def valid_def
-  by (metis (lifting, mono_tags)) 
+  using A5
+  unfolding G_def NE_def mforall_ind_def mforall_indset_def mimplies_def valid_def
+  by (metis (lifting, mono_tags))
 
 lemma help4: "v (\<exists>i G m\<Rightarrow> \<box> (\<exists>i G))"
   (* immeadiate success with sledgehammer *)
   (* sledgehammer [provers = remote_leo2 remote_satallax] *)
   using help3 T2 
   unfolding mexists_ind_def mforall_ind_def mimplies_def valid_def
-  by metis
+  by (metis (lifting, mono_tags))
 
 (* Checking the consistency of assumptions up to here with Nitpick *)
 lemma True
@@ -257,4 +256,8 @@ theorem cor: "v (\<exists>i G)"
   unfolding valid_def mbox_def
   by metis
 
+lemma MC: "v (p m\<Rightarrow> (\<box> p))"  
+  -- {* sledgehammer [provers = remote\_satallax] *}
+  -- {* by (metis T2 T3 ess\_def) *}
+  nitpick
 
