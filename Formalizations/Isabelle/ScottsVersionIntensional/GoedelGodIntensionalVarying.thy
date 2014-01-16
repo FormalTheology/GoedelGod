@@ -147,7 +147,7 @@ text {* Next, Sledgehammer and Metis prove theorem @{text "T2"}: $\all x [G(x) \
   theorem T2: "[\<forall>i(\<lambda>x. G x m\<rightarrow> G ess x)]"
   -- {* sledgehammer [provers = remote\_leo2] *}
   -- {* metis is too weak: by (metis A1b A4 G_def ess_def) *}
-  sledgehammer [provers = remote_leo2 remote_satallax]
+  sledgehammer [provers = remote_leo2]
   oops
   
   axiomatization where T2: "[\<forall>i(\<lambda>x. G x m\<rightarrow> G ess x)]"
@@ -215,8 +215,8 @@ Calling Metis with @{text "T2"}, @{text "T3"} and @{text "ess_def"} also does no
   lemma MC: "[\<forall>(\<lambda>\<Phi>.(\<Phi> m\<rightarrow> (\<box> \<Phi>)))]"  
   -- {* sledgehammer [provers = remote\_satallax] *}
   -- {* by (metis T2 T3 ess\_def) *}
-  sledgehammer [provers = remote_satallax remote_leo2]
-  nitpick
+  nitpick [user_axioms]
+  sledgehammer [provers = remote_satallax remote_leo2, overlord]
   oops
 (*<*) 
 end
