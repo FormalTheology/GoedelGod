@@ -211,7 +211,6 @@ Calling Metis with @{text "T2"}, @{text "T3"} and @{text "ess_def"} also does no
   -- {* sledgehammer [provers = remote\_satallax] *}
   -- {* by (metis T2 T3 ess\_def) *}
   sledgehammer [provers = remote_satallax remote_leo2]
-  nitpick
   oops
 (*<*) 
 end
