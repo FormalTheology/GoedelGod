@@ -38,6 +38,8 @@ Germany
 
 [Berliner Zeitung](http://www.berliner-zeitung.de/wissen/gottesbeweis-gott-existiert-,10808894,25720994.html)
 
+[Top ten of most read articles in 2013 in Telepolis](http://www.heise.de/tp/artikel/40/40674/1.html)
+
 
 Austria
 -------
@@ -95,6 +97,8 @@ Spain
 [La Vanguardia](http://www.lavanguardia.com/vida/20131028/54392787484/cientificos-demostrar-informaticamente-existencia-ser-supremo.html)
 
 [La Voz de Galicia](http://www.lavozdegalicia.es/noticia/sociedad/2013/10/28/logran-probar-teorema-godel-sostiene-existe-superior/00031382958446357261349.htm)
+
+[Marabilias](http://tendencias.vozpopuli.com/cultura/1957-demostrado-cientificamente-dios-existe)
 
 
 Russia
