@@ -1,0 +1,8 @@
+1)      Kurt Gödel hat seiner Nachwelt einen sogenannten ontologischen Gottesbeweise hinterlassen. Was weiß man über Gödels Motivation sich mit dieser Frage zu beschäftigen. Was wollte Gödel eigentlich wirklich beweisen?
+2)      Wie funktioniert Gödels Gottesbeweis?
+3)      Was hat Ihre Computerberechnung nun wirklich bewiesen? Was war der Sinn des ganzen?
+4)      Hat der Computer nun etwas heraus gefunden, das man vorher nicht wusste?
+5)      Sie haben ja auch herausgefunden, dass Gödels Beweis nicht nur in einer Modallogik „S5“ funktioniert, sondern auch in der Modallogik „KB“. Könnten Sie etwas erklären, was Modallogik überhaupt ist und welchen Unterschied es zwischen S5 und KB gibt?
+6)      Was war Ihre persönliche Motivation sich mit Gödels Gottesbeweis zu beschäftigen?
+7)      Können Gottesbeweise Ihrer Meinung nach tatsächlich die Existenz oder Nichtexistenz Gottes „beweisen“ oder setzen sie im Grunde schon die Annahme, dass es einen Gott gäbe voraus?
+8)      Glauben Sie, dass sich jemand, der nicht an Gott glaubt, von irgendeinem Gottesbeweis von einer Existenz Gottes überzeugen lassen würde?
