@@ -17,8 +17,6 @@ Require Import Coq.Logic.Classical.
 Require Import Coq.Logic.Classical_Pred_Type.
 
 Require Import Modal.
-Require Import ModalClassical.
-
 
 Ltac proof_by_contradiction H := apply NNPP; intro H.
 

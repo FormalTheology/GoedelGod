@@ -50,6 +50,7 @@ Notation "'mforall' x : t , p" := (A (fun x:t => p))
     format "'[' 'mforall' '/ '  x  :  t , '/ '  p ']'")
   : type_scope.
 
+
 Definition E {t: Type}(p: t -> o) := fun w => exists x, p x w.
 Notation "'mexists' x , p" := (E (fun x => p))
   (at level 200, x ident, right associativity) : type_scope.
@@ -89,10 +90,10 @@ Ltac dia_intro w := (exists w; split; [assumption | idtac]).
 Lemma modus_ponens_inside_dia: V (mforall p, mforall q, (dia p) m-> (box (p m-> q)) m-> (dia q)).
 Proof.
 intro.
-intro p. intro q.
+intros p q.
 intro H1.
 intro H2.
-destruct H1 as [w1  [R1 H1]].
+dia_elim H1 w1 R1 H1.
 exists w1.
 split.
   exact R1.
@@ -101,6 +102,18 @@ split.
     exact R1.
 
     exact H1.
+Qed.
+
+Lemma not_dia_box_not: V (mforall p, ((m~ (dia p)) m-> (box (m~ p)) )).
+Proof.
+intro.
+intro p.
+intro H.
+intros w1 H1.
+intro H2.
+apply H.
+exists w1; split. exact H1.
+exact H2.
 Qed.
 
 
