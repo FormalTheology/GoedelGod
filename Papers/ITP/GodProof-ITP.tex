@@ -83,6 +83,9 @@ Parameter r: i -> i -> Prop.
 All modal connectives are simply lifted versions of the usual logical connectives. Notations are used to allow the modal connectives to be used as similarly as possible as the usual connectives. The prefix ``\texttt{m}'' is used to distinguish the modal connectives: if $\odot$ is a connective on type \text{Prop}, $\texttt{m}\odot$ is a connective on the lifted type $\texttt{o}$ of modal propositions.  
 
 \begin{verbatim}
+Definition mequal (x y: u) := fun w: i => x = y.
+Notation "x m= y" := (mequal x y) (at level 99, right associativity).
+
 Definition mnot (p: o)(w: i) := ~ (p w).
 Notation "m~  p" := (mnot p) (at level 74, right associativity).
 
@@ -131,12 +134,9 @@ Definition box (p: o) := fun w => forall w1, (r w w1) -> (p w1).
 Definition dia (p: o) := fun w => exists w1, (r w w1) /\ (p w1).
 \end{verbatim}
 
-\noindent
-Validity of a modal proposition is validity of the grounded proposition on any world.
-
 
 \noindent
-Although 
+Although the embedding via the possible world semantics is necessary, it should be as transparent as possible to the user. Fortunately, basic Coq tactics such \texttt{intro}, \texttt{apply} and \texttt{split} automatically unfold the modal definitions and thus can be used with modal connectives and quantifiers as they are used with the usual connectives and quantifiers. Nothing else needs to be done. For the modal operators, however, the following simple tactics have been implemented, in order to allow the user to work with the concepts of \emph{necessity} and \emph{possibility} without having to unfold the definitions of modal operators and think in terms of possible worlds. These tactics remind rules of labelled calculi for modal logics.
 
 
 \begin{verbatim}
@@ -154,11 +154,17 @@ Ltac dia_elim H w R newH := destruct H as [w [R newH]].
 Ltac dia_intro w := (exists w; split; [assumption | idtac]).
 \end{verbatim}
 
+
+\noindent
+Validity of a modal proposition is validity of its grounding on any world.
+
 \begin{verbatim}
 (* Modal validity of lifted propositions *)
 Definition V (p: o) := forall w, p w.
 \end{verbatim}
 
+\noindent
+The following lemmas are convenient 
 
 \begin{verbatim}
 Lemma modus_ponens_inside_dia: V (mforall p, mforall q, (dia p) m-> (box (p m-> q)) m-> (dia q)).
@@ -473,6 +479,8 @@ apply theorem3.
 Qed.
 \end{verbatim}
 
+
+Note: possible worlds machinery is hidden from the user.
 
 \section{Conclusions}
 \label{sec:conclusions}
