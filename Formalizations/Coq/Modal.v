@@ -68,51 +68,50 @@ Definition dia (p: o) := fun w => exists w1, (r w w1) /\ (p w1).
 
 (* Modal validity of lifted propositions *)
 Definition V (p: o) := forall w, p w.
-
+Notation "[ p ]" := (V p).
+Ltac mv := match goal with [|- (V _)] => intro end.
 
 (* Convenient tactics for modal operators *)
 
-Ltac box_intro w H := intros w H.
+Ltac box_i := let w := fresh "w" in let R := fresh "R" in (intro w at top; intro R at top).
 
-Ltac box_elim H w1 R1 Hn := 
-  let P := match type of H with
-             (* forall w0:i, r ?w w0 -> ?p w0 => p *)
-             ((box ?p) _) => p
-           end
-  in cut (P w1); [intros Hn | apply (H w1 R1)].
+Ltac box_elim H w1 Hn := match type of H with 
+                          ((box ?p) ?w) =>  cut (p w1); [intros Hn | (apply (H w1); try assumption) ]
+                         end.
 
-Ltac dia_elim H w R newH := destruct H as [w [R newH]].
+Ltac box_e H Hn:= match goal with | [ |- (_ ?w) ] => box_elim H w Hn end.
 
-Ltac dia_intro w := (exists w; split; [assumption | idtac]).
+Ltac dia_e H := let w := fresh "w" in let R := fresh "R" in (destruct H as [w [R H]]; move w at top; move R at top).
 
+Ltac dia_i w := (exists w; split; [assumption | idtac]).
 
+Create HintDb modal.
+Hint Unfold mimplies mnot dia box A V : modal.
 
-Lemma modus_ponens_inside_dia: V (mforall p, mforall q, (dia p) m-> (box (p m-> q)) m-> (dia q)).
-Proof.
-intro.
+Lemma mp_dia: [mforall p, mforall q, (dia p) m-> (box (p m-> q)) m-> (dia q)].
+Proof. 
+(* firstorder. *) (* This could solve the goal automatically *)
+mv.
 intros p q.
 intro H1.
 intro H2.
-dia_elim H1 w1 R1 H1.
-exists w1.
-split.
-  exact R1.
-
-  apply H2. 
-    exact R1.
-
-    exact H1.
+dia_e H1.
+dia_i w0.
+box_e H2 H3.
+apply H3.
+exact H1.
 Qed.
 
-Lemma not_dia_box_not: V (mforall p, ((m~ (dia p)) m-> (box (m~ p)) )).
+Lemma not_dia_box_not: [mforall p, (m~ (dia p)) m-> (box (m~ p))].
 Proof.
-intro.
+(* firstorder. *) (* This could solve the goal automatically *)
+mv.
 intro p.
 intro H.
-intros w1 H1.
+box_i.
 intro H2.
 apply H.
-exists w1; split. exact H1.
+dia_i w0.
 exact H2.
 Qed.
 
@@ -130,42 +129,41 @@ Axiom symmetry: forall w1 w2, (r w1 w2) -> (r w2 w1).
 (* Modal axioms *)
 (* Here we show how they can be derived from the accessibility axioms *)
 
-Theorem K: (V (mforall p, mforall q, (box (p m-> q)) m-> ( (box p) m-> (box q) ) )).
+Theorem K: [ mforall p, mforall q, (box (p m-> q)) m-> (box p) m-> (box q) ].
 Proof.
-intros w p q.
+(* firstorder. *) (* This could solve the goal automatically *)
+mv.
+intros p q.
 intros H1 H2.
-intros w1 R1.
-apply H1.
-  exact R1.
-
-  apply H2.
-  exact R1.
+box_i.
+box_e H1 H3. apply H3.
+box_e H2 H4. exact H4.
 Qed.
 
 
-Theorem T: (V (mforall p, (box p) m-> p)).
+Theorem T: [ mforall p, (box p) m-> p ].
 Proof.
-intros w p.
+(* firstorder using reflexivity. *) (* This could solve the goal automatically *)
+mv.
+intro p.
 intro H.
-apply H.
-apply reflexivity.
+box_e H H1. exact H1.
+apply reflexivity. 
 Qed.  
 
-
-
-
 (* In strong modal logics, such as S5, iterations of modal operators can be collapsed *)
-Theorem dia_box_to_box: V (mforall p, (dia (box p)) m-> (box p)).
+Theorem dia_box_to_box: [ mforall p, (dia (box p)) m-> (box p) ].
 Proof.
-intro.
+(* firstorder using transitivity symmetry. *) (* This could solve the goal automatically *)
+mv.
 intro p.
 intro H1.
-destruct H1 as [w1 [R1 H1]].
-intro. intro R0.
-apply H1.
-apply transitivity with (w2 := w).
+dia_e H1.
+box_i.
+box_e H1 H2. exact H2.
+eapply transitivity.
   apply symmetry.
-  exact R1.
+  exact R.
 
   exact R0.
 Qed.

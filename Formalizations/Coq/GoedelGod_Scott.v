@@ -26,42 +26,41 @@ Parameter Positive: (u -> o) -> o.
 
 
 (* Axiom A1: either a property or its negation is positive, but not both *)
-Axiom axiom1a : V (mforall p, (Positive (fun x: u => m~(p x))) m-> (m~ (Positive p))).
-Axiom axiom1b : V (mforall p, (m~ (Positive p)) m-> (Positive (fun x: u => m~ (p x))) ).
+Axiom axiom1a : [ mforall p, (Positive (fun x: u => m~(p x))) m-> (m~ (Positive p)) ].
+Axiom axiom1b : [ mforall p, (m~ (Positive p)) m-> (Positive (fun x: u => m~ (p x))) ].
 
 
 (* Axiom A2: a property necessarily implied by a positive property is positive *)
-Axiom axiom2: V (mforall p, mforall q, Positive p m/\ (box (mforall x, (p x) m-> (q x) )) m-> Positive q).
+Axiom axiom2: [ mforall p, mforall q, Positive p m/\ (box (mforall x, (p x) m-> (q x) )) m-> Positive q ].
 
 
 (* Theorem T1: positive properties are possibly exemplified *)
-Theorem theorem1: V (mforall p, (Positive p) m-> dia (mexists x, p x) ).
-Proof.
-intro.
+Theorem theorem1: [ mforall p, (Positive p) m-> dia (mexists x, p x) ].
+Proof. mv.
 intro p.
 intro H1.
 proof_by_contradiction H2.
 apply not_dia_box_not in H2.
 assert (H3: ((box (mforall x, m~ (p x))) w)). (* Lemma from Scott's notes *)
-  box_intro w1 R1.
+  box_i. (* box_intro w1 R1. *)
   intro x.
-  assert (H4: ((m~ (mexists x : u, p x)) w1)).
-    box_elim H2 w1 R1 G2. 
+  assert (H4: ((m~ (mexists x : u, p x)) w0)).
+    box_e H2 G2. 
     exact G2.
 
-    clear H2 R1 H1 w.
+    clear H2 R H1 w.
     intro H5.
     apply H4.
     exists x.
     exact H5.
 
   assert (H6: ((box (mforall x, (p x) m-> m~ (x m= x))) w)). (* Lemma from Scott's notes *)    
-    box_intro w1 R1.
+    box_i.
     intro x.
     intro H7.
     intro H8.
-    box_elim H3 w1 R1 G3.
-    apply G3 with (x := x).
+    box_elim H3 w0 G3.
+    eapply G3.
     exact H7.
 
     assert (H9: ((Positive (fun x => m~ (x m= x))) w)). (* Lemma from Scott's notes *)
@@ -71,7 +70,7 @@ assert (H3: ((box (mforall x, m~ (p x))) w)). (* Lemma from Scott's notes *)
 
       exact H6.
     assert (H10: ((box (mforall x, (p x) m-> (x m= x))) w)). (* Lemma from Scott's notes *)
-      box_intro w1 R1.
+      box_i.
       intros x H11.     
       reflexivity.
 
@@ -93,20 +92,19 @@ Definition G(x: u) := mforall p, (Positive p) m-> (p x).
 
 
 (* Axiom A3: the property of being God-like is positive *)
-Axiom axiom3: V (Positive G).
+Axiom axiom3: [ Positive G ].
 
 
 (* Corollary C1: possibly, God exists *)
-Theorem corollary1: V (dia (mexists x, G x)). 
-Proof.
-intro. 
+Theorem corollary1: [ dia (mexists x, G x) ]. 
+Proof. mv.
 apply theorem1.
 apply axiom3.
 Qed.
 
 
 (* Axiom A4: positive properties are necessarily positive *)
-Axiom axiom4: V (mforall p, (Positive p) m-> box (Positive p)).
+Axiom axiom4: [ mforall p, (Positive p) m-> box (Positive p) ].
 
 
 (* Definition D2: essence: an essence of an individual is a property possessed by it and necessarily implying any of its properties *)
@@ -115,9 +113,8 @@ Notation "p 'ess' x" := (Essence p x) (at level 69).
 
 
 (* Theorem T2: being God-like is an essence of any God-like being *)
-Theorem theorem2: V (mforall x, (G x) m-> (G ess x)).
-Proof.
-intro.
+Theorem theorem2: [ mforall x, (G x) m-> (G ess x) ].
+Proof. mv.
 intro g.
 intro H1.
 unfold Essence.
@@ -135,7 +132,7 @@ split.
 
     cut (box (Positive q) w). (* Lemma from Scott's notes *)
       apply K.
-      box_intro w1 R1.
+      box_i.
       intro H5.
       intro y.
       intro H6.
@@ -155,12 +152,11 @@ Definition NE(x: u) := mforall p, (p ess x) m-> box (mexists y, (p y)).
 
 
 (* Axiom A5: necessary existence is a positive property *)
-Axiom axiom5: V (Positive NE).
+Axiom axiom5: [ Positive NE ].
 
 
-Lemma lemma1: V ((mexists z, (G z)) m-> box (mexists x, (G x))).
-Proof.
-intro.
+Lemma lemma1: [ (mexists z, (G z)) m-> box (mexists x, (G x)) ].
+Proof. mv.
 intro H1.
 destruct H1 as [g H2].
 cut ((G ess g) w).      (* Lemma from Scott's notes *)
@@ -177,34 +173,31 @@ cut ((G ess g) w).      (* Lemma from Scott's notes *)
 Qed.
 
 
-Lemma lemma2: V (dia (mexists z, (G z)) m-> box (mexists x, (G x))).
-Proof.
-intro.
+Lemma lemma2: [ dia (mexists z, (G z)) m-> box (mexists x, (G x)) ].
+Proof. mv.
 intro H.
 cut (dia (box (mexists x, G x)) w).  (* Lemma from Scott's notes *)
   apply dia_box_to_box.
 
-  apply (modus_ponens_inside_dia w (mexists z, G z)).
+  apply (mp_dia w (mexists z, G z)).
     exact H.
        
-    box_intro w1 R1.
+    box_i.
     apply lemma1.
 Qed.
 
 
 (* Theorem T3: necessarily, a God exists *)
-Theorem theorem3: V (box (mexists x, (G x))).
-Proof.
-intro.
+Theorem theorem3: [ box (mexists x, (G x)) ].
+Proof. mv.
 apply lemma2.
 apply corollary1.
 Qed.
 
 
 (* Corollary C2: There exists a god *)
-Theorem corollary2: V (mexists x, (G x)).
-Proof.
-intro.
+Theorem corollary2: [ mexists x, (G x) ].
+Proof. mv.
 apply T.
 apply theorem3.
 Qed.
