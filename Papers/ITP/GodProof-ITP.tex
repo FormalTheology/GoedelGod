@@ -10,20 +10,29 @@
 \newcommand{\brown}[1]{\textcolor[rgb]{0.8,0.6,0.4}{#1}}
 
 \newcommand{\Parameter}{\red{Parameter}}
+\newcommand{\Ltac}{\red{Ltac}}
+\newcommand{\Axiom}{\red{Axiom}}
 \newcommand{\Lemma}{\red{Lemma}}
 \newcommand{\Theorem}{\red{Theorem}}
 \newcommand{\Definition}{\red{Definition}}
 \newcommand{\Notation}{\blue{Notation}}
 \newcommand{\Prop}{\blue{Prop}}
 \newcommand{\Type}{\blue{Type}}
+\newcommand{\llet}{\blue{let}}
+\newcommand{\match}{\blue{match}}
+\newcommand{\with}{\blue{with}}
+\newcommand{\eend}{\blue{end}}
 \newcommand{\iin}{\blue{in}}
 \newcommand{\as}{\blue{as}}
+\newcommand{\Require}{\blue{Require}}
+\newcommand{\Import}{\blue{Import}}
 \newcommand{\fforall}{\blue{forall}}
 \newcommand{\fun}{\blue{fun}}
 \newcommand{\Proof}{\blue{Proof}}
 \newcommand{\Qed}{\blue{Qed}}
 \newcommand{\Hint}{\blue{Hint}}
 \newcommand{\com}[1]{\brown{#1}}
+\newcommand{\bslash}{\symbol{92}}
 
 \title{
 God in Coq: \\
@@ -78,29 +87,32 @@ To realize this potential, formalizations \cite{FormalTheologyRepository} of G\"
 
 A crucial aspect of modal logics \cite{ToDo} is that the so-called \emph{necessitation rule} allows $\Box A$ to be derived if $A$ is a theorem, but $A \imp \Box A$ is not necessarily a theorem. Naive attempts to define the modal operators $\Box$ and $\Diamond$ may easily be unsound in this respect. To avoid this issue, the \emph{possible world semantics} of modal logics can be explicitly embedded into higher-order logics \cite{J23,B9}. To this aim, a type for worlds must be declared and modal propositions should be not of type \texttt{Prop} but of a lifted type that depends on possible worlds. Possible worlds are connected by an accessibility relation.
 
-\begin{Verbatim}[commandchars=\\\{\}]
+\newcommand{\verbsize}{\small}
+
+\begin{small}
+\begin{Verbatim}[commandchars=\\\{\},fontsize=\verbsize]
 \Parameter i: \Type. \com{(* Type for worlds *)}
 \Parameter u: \Type. \com{(* Type for individuals *)}
 \Definition o := i -> \Prop. \com{(* Type of modal propositions *)}
 \Parameter r: i -> i -> \Prop. \com{(* Acessibility relation for worlds *)}
 \end{Verbatim}
-
+\end{small}
 
 \noindent
 All modal connectives are simply lifted versions of the usual logical connectives. Notations are used to allow the modal connectives to be used as similarly as possible as the usual connectives. The prefix ``\texttt{m}'' is used to distinguish the modal connectives: if $\odot$ is a connective on type \text{Prop}, $\texttt{m}\odot$ is a connective on the lifted type $\texttt{o}$ of modal propositions.  
 
-\begin{Verbatim}[commandchars=\\\{\}]
+\begin{Verbatim}[commandchars=\\\{\},fontsize=\verbsize]
 \Definition mequal (x y: u) := \fun w: i => x = y.
 \Notation "x m= y" := (mequal x y) (at level 99, right associativity).
 
 \Definition mnot (p: o)(w: i) := ~ (p w).
 \Notation "m~  p" := (mnot p) (at level 74, right associativity).
 
-\Definition mand (p q:o)(w: i) := (p w) /\ (q w).
-\Notation "p m/\ q" := (mand p q) (at level 79, right associativity).
+\Definition mand (p q:o)(w: i) := (p w) /\bslash (q w).
+\Notation "p m/\bslash q" := (mand p q) (at level 79, right associativity).
 
-\Definition mor (p q:o)(w: i) := (p w) \/ (q w).
-\Notation "p m\/ q" := (mor p q) (at level 79, right associativity).
+\Definition mor (p q:o)(w: i) := (p w) \bslash\slash (q w).
+\Notation "p m\bslash\slash q" := (mor p q) (at level 79, right associativity).
 
 \Definition mimplies (p q:o)(w:i) := (p w) -> (q w).
 \Notation "p m-> q" := (mimplies p q) (at level 99, right associativity).
@@ -112,7 +124,7 @@ All modal connectives are simply lifted versions of the usual logical connective
 \noindent
 Likewise, modal quantifiers are lifted versions of the usual quantifiers.
 
-\begin{Verbatim}[commandchars=\\\{\}]
+\begin{Verbatim}[commandchars=\\\{\},fontsize=\verbsize]
 \Definition A {t: Type}(p: t -> o) := \fun w => \fforall x, p x w.
 \Notation "'mforall'  x , p" := (A (fun x => p))
   (at level 200, x ident, right associativity) : type_scope.
@@ -131,387 +143,248 @@ Likewise, modal quantifiers are lifted versions of the usual quantifiers.
 \end{Verbatim}
 
 \noindent
-The modal operators $\Diamond$ (\emph{possibly}) and $\Box$ (\emph{necessarily}) are defined according to their meanings in the possible world semantics.
+The modal operators $\Diamond$ (\emph{possibly}) and $\Box$ (\emph{necessarily}) are defined accordingly to their meanings in the possible world semantics.
 
-\begin{Verbatim}[commandchars=\\\{\}]
-(* Modal operator for 'necessarily' *)
-Definition box (p: o) := fun w => forall w1, (r w w1) -> (p w1).
-
-(* Modal operator for 'possibly' *)
-Definition dia (p: o) := fun w => exists w1, (r w w1) /\ (p w1).
+\begin{Verbatim}[commandchars=\\\{\},fontsize=\verbsize]
+\Definition box (p: o) := \fun w => \fforall w1, (r w w1) -> (p w1).
+\Definition dia (p: o) := \fun w => exists w1, (r w w1) /\bslash (p w1).
 \end{Verbatim}
 
+\noindent
+Although the embedding via the possible world semantics is necessary, it should be as transparent as possible to the user. Fortunately, basic Coq tactics such \texttt{intro}, \texttt{apply} and \texttt{split} automatically unfold the modal definitions and thus can be used with modal connectives and quantifiers as they are used with the usual connectives and quantifiers. Nothing else needs to be done. For the modal operators, however, the following simple tactics have been implemented, in order to allow the user to work with the concepts of \emph{necessity} and \emph{possibility} without having to unfold the definitions of modal operators and think in terms of possible worlds.
+
+\begin{Verbatim}[commandchars=\\\{\},fontsize=\verbsize]
+\Ltac box_i := \llet w := fresh "w" \iin \llet R := fresh "R" 
+               \iin (intro w at top; intro R at top).
+
+\Ltac box_elim H w1 H1 := \match type of H \with 
+  ((box ?p) ?w) => cut (p w1); [intros H1 | (apply (H w1); try assumption)] \eend.
+
+\Ltac box_e H H1:= \match goal \with | [ |- (_ ?w) ] => box_elim H w H1 \eend.
+
+\Ltac dia_e H := \llet w := fresh "w" \iin \llet R := fresh "R" 
+                 \iin (destruct H \as [w [R H]]; move w at top; move R at top).
+
+\Ltac dia_i w := (exists w; split; [assumption | idtac]).
+\end{Verbatim}
 
 \noindent
-Although the embedding via the possible world semantics is necessary, it should be as transparent as possible to the user. Fortunately, basic Coq tactics such \texttt{intro}, \texttt{apply} and \texttt{split} automatically unfold the modal definitions and thus can be used with modal connectives and quantifiers as they are used with the usual connectives and quantifiers. Nothing else needs to be done. For the modal operators, however, the following simple tactics have been implemented, in order to allow the user to work with the concepts of \emph{necessity} and \emph{possibility} without having to unfold the definitions of modal operators and think in terms of possible worlds. These tactics remind rules of labelled calculi for modal logics.
+Validity of a modal proposition is validity of its grounding on any world. A non-intrusive notation and a tactic that grounds the proposition to an arbitrary world are provided.
 
-
-\begin{verbatim}
-Ltac box_intro w H := intros w H.
-
-Ltac box_elim H w1 R1 Hn := 
-  let P := match type of H with
-             (* forall w0:i, r ?w w0 -> ?p w0 => p *)
-             ((box ?p) _) => p
-           end
-  in cut (P w1); [intros Hn | apply (H w1 R1)].
-
-Ltac dia_elim H w R newH := destruct H as [w [R newH]].
-
-Ltac dia_intro w := (exists w; split; [assumption | idtac]).
-\end{verbatim}
-
+\begin{Verbatim}[commandchars=\\\{\},fontsize=\verbsize]
+\Definition V (p: o) := \fforall w, p w.
+\Notation "[ p ]" := (V p).
+\Ltac mv := \match goal \with [|- (V _)] => intro \eend.
+\end{Verbatim}
 
 \noindent
-Validity of a modal proposition is validity of its grounding on any world.
+The following lemmas are quite convenient. The first is a kind of modus ponens applicable to formulas under the scope of a modal operator. The second allows pushing negations inside modalities.
 
-\begin{verbatim}
-(* Modal validity of lifted propositions *)
-Definition V (p: o) := forall w, p w.
-\end{verbatim}
+\begin{Verbatim}[commandchars=\\\{\},fontsize=\verbsize]
+\Lemma mp_dia: [mforall p, mforall q, (dia p) m-> (box (p m-> q)) m-> (dia q)].
+\Proof. mv. intros p q H1 H2. dia_e H1. dia_i w0. box_e H2 H3. apply H3. exact H1. \Qed.
+
+\Lemma not_dia_box_not: [mforall p, (m~ (dia p)) m-> (box (m~ p))].
+\Proof. mv. intro p. intro H. box_i. intro H2. apply H. dia_i w0. exact H2. \Qed.
+\end{Verbatim}
 
 \noindent
-The following lemmas are convenient 
+The most well-known modal logics can be distinguished by their acceptance of the following reachability axioms. \textbf{S5} is the modal logic that accepts all three.
 
-\begin{verbatim}
-Lemma modus_ponens_inside_dia: V (mforall p, mforall q, (dia p) m-> (box (p m-> q)) m-> (dia q)).
-Proof.
-intro.
-intros p q.
-intro H1.
-intro H2.
-dia_elim H1 w1 R1 H1.
-exists w1.
-split.
-  exact R1.
+\begin{Verbatim}[commandchars=\\\{\},fontsize=\verbsize]
+\Axiom reflexivity: \fforall w, r w w.
+\Axiom transitivity: \fforall w1 w2 w3, (r w1 w2) -> (r w2 w3) -> (r w1 w3).
+\Axiom symmetry: \fforall w1 w2, (r w1 w2) -> (r w2 w1).
+\end{Verbatim}
 
-  apply H2. 
-    exact R1.
+\noindent
+Modal logic ``axioms'' can be derived from the reachability axioms.
 
-    exact H1.
-Qed.
+\begin{Verbatim}[commandchars=\\\{\},fontsize=\verbsize]
+\Theorem K: [ mforall p, mforall q, (box (p m-> q)) m-> (box p) m-> (box q) ].
+\Proof. mv. intros p q H1 H2. box_i. box_e H1 H3. apply H3. box_e H2 H4. exact H4. \Qed.
 
-Lemma not_dia_box_not: V (mforall p, ((m~ (dia p)) m-> (box (m~ p)) )).
-Proof.
-intro.
-intro p.
-intro H.
-intros w1 H1.
-intro H2.
-apply H.
-exists w1; split. exact H1.
-exact H2.
-Qed.
-\end{verbatim}
+\Theorem T: [ mforall p, (box p) m-> p ].
+\Proof. mv. intro p. intro H. box_e H H1. exact H1. apply reflexivity. \Qed.
+\end{Verbatim}
 
-\begin{verbatim}
-(* Modal accessibility axioms *)
+\noindent
+In strong modal logics, such as S5, iterations of modal operators can be collapsed. This is a controversial principle used in G\"odel's and Scott's versions of the proof.
 
-Axiom reflexivity: forall w, r w w.
-
-Axiom transitivity: forall w1 w2 w3, (r w1 w2) -> (r w2 w3) -> (r w1 w3).
-
-Axiom symmetry: forall w1 w2, (r w1 w2) -> (r w2 w1).
-\end{verbatim}
-
-\begin{verbatim}
-(* Modal axioms *)
-(* Here we show how they can be derived from the accessibility axioms *)
-
-Theorem K: (V (mforall p, mforall q, (box (p m-> q)) m-> ( (box p) m-> (box q) ) )).
-Proof.
-intros w p q.
-intros H1 H2.
-intros w1 R1.
-apply H1.
-  exact R1.
-
-  apply H2.
-  exact R1.
-Qed.
-
-
-Theorem T: (V (mforall p, (box p) m-> p)).
-Proof.
-intros w p.
-intro H.
-apply H.
-apply reflexivity.
-Qed.  
-\end{verbatim}
-
-
-\begin{verbatim}
-(* In strong modal logics, such as S5, iterations of modal operators can be collapsed *)
-Theorem dia_box_to_box: V (mforall p, (dia (box p)) m-> (box p)).
-Proof.
-intro.
-intro p.
-intro H1.
-destruct H1 as [w1 [R1 H1]].
-intro. intro R0.
-apply H1.
-apply transitivity with (w2 := w).
-  apply symmetry.
-  exact R1.
+\begin{Verbatim}[commandchars=\\\{\},fontsize=\verbsize]
+\Theorem dia_box_to_box: [ mforall p, (dia (box p)) m-> (box p) ].
+\Proof. mv. intro p. intro H1. dia_e H1. box_i. box_e H1 H2. exact H2. eapply transitivity.
+  apply symmetry. exact R.
 
   exact R0.
-Qed.
-\end{verbatim}
+\Qed.
+\end{Verbatim}
 
 
 \section{G\"odel's Proof of God's Existence}
 \label{sec:proof}
 
-Moreover, automated reasoning tools such as Nitpick \cite{Nitpick}, LEO-II \cite{LEO-II}, Satallax \cite{Satallax}, Sledgehammer \cite{Sledgehammer} and Metis \cite{Hurd03first-orderproof} have been used and a few interesting new facts have been discovered about this proof \cite{TodO:ArXiv or Journal abstract}. The formalization in Isabelle \cite{ToDo:ArchiveFormalProofs}.
-
 Attempts to prove the existence (or non-existence) of God by means of
 abstract ontological arguments are an old tradition in philosophy and
-theology.  G\"{o}del's proof \cite{Goedel1970,GoedelNotes} is a modern culmination of
+theology.  
+G\"{o}del's proof \cite{Goedel1970,GoedelNotes} is a modern culmination of
 this tradition, following particularly the footsteps of Leibniz.
-%
-G\"{o}del defines God as a being who possesses all \emph{positive} properties.
-He does not extensively discuss what positive properties are, 
-but instead he states a few reasonable (but debatable) axioms that they should satisfy.
 Various slightly different versions of axioms and definitions have
 been considered by G\"{o}del and by several philosophers who commented
 on his proof
-(cf. \cite{sobel2004logic,AndersonGettings,Fitting,Adams,ContemporaryBibliography}). 
-
-Dana Scott's version of G\"odel's proof \cite{ScottNotes}. This formalization aims at
-being as similar as possible to Dana Scott's version of the proof 
-
-The numbering of axioms, definitions and theorems is exactly the same as in Scott's notes
-
-The formal proofs follow the same structure of Scott's proof sketches and fill their gaps
-
-Whenever a `cut' or `assert' uses a lemma mentioned in Scott's sketches,
-this is emphasized with a comment 
-
-\begin{verbatim}
-Require Import Coq.Logic.Classical.
-Require Import Coq.Logic.Classical_Pred_Type.
-
-Require Import Modal.
-
-Ltac proof_by_contradiction H := apply NNPP; intro H.
+(cf. \cite{sobel2004logic,AndersonGettings,Fitting,Adams,ContemporaryBibliography}). The formalization shown in this section aims at
+being as similar as possible to Dana Scott's version of the proof \cite{ScottNotes}. The formulation and numbering of axioms, definitions and theorems is the same as in Scott's notes. Even the Coq proof scripts follow all the steps in Scott's notes. Scott's assertions are emphasized with comments. In contrast to the formalization in Isabelle \cite{ToDo:our isabelle formalization in ArchiveFormalProofs}, where automation via Metis \cite{Hurd03first-orderproof} and Sledgehammer \cite{Sledgehammer} using tools such as Nitpick \cite{Nitpick}, LEO-II \cite{LEO-II} and Satallax \cite{Satallax} has been successfully employed, the formalization in Coq used no automation. This was a deliberate choice, mainly because it allowed a qualitative evaluation of the convenience of the possible world semantic embedding approach for \emph{interactive} theorem proving. Moreover, in order to formalize precisely Scott's version and not another automatically found version, automation would have to be heavily limited anyway. Furthermore, the deliberate preference for simple tactics (mostly \emph{intro}, \emph{apply} and the modal tactics described in the previous section) results in proof scripts that could be read as natural deduction proofs. This hopefully makes the formalization more accessible to those who are not experts in Coq's tactics but are nevertheless interested in G\"odel's proof.
 
 
-(* Constant predicate that distinguishes positive properties *)
-Parameter Positive: (u -> o) -> o.
+\begin{Verbatim}[commandchars=\\\{\},fontsize=\verbsize]
+\Require \Import Coq.Logic.Classical Coq.Logic.Classical_Pred_Type Modal.
 
+\Ltac proof_by_contradiction H := apply NNPP; intro H.
 
-(* Axiom A1: either a property or its negation is positive, but not both *)
-Axiom axiom1a : V (mforall p, (Positive (fun x: u => m~(p x))) m-> (m~ (Positive p))).
-Axiom axiom1b : V (mforall p, (m~ (Positive p)) m-> (Positive (fun x: u => m~ (p x))) ).
+\com{(* Constant predicate that distinguishes positive properties *)}
+\Parameter Positive: (u -> o) -> o.
 
+\com{(* Axiom A1: either a property or its negation is positive, but not both *)}
+\Axiom axiom1a : [ mforall p, (Positive (\fun x: u => m~(p x))) m-> (m~ (Positive p)) ].
+\Axiom axiom1b : [ mforall p, (m~ (Positive p)) m-> (Positive (\fun x: u => m~ (p x))) ].
 
-(* Axiom A2: a property necessarily implied by a positive property is positive *)
-Axiom axiom2: V (mforall p, mforall q, Positive p m/\ (box (mforall x, (p x) m-> (q x) )) m-> Positive q).
+\com{(* Axiom A2: a property necessarily implied by a positive property is positive *)}
+\Axiom axiom2: [ mforall p, mforall q, 
+  Positive p m/\bslash (box (mforall x, (p x) m-> (q x) )) m-> Positive q ].
 
+\com{(* Theorem T1: positive properties are possibly exemplified *)}
+\Theorem theorem1: [ mforall p, (Positive p) m-> dia (mexists x, p x) ].
+\Proof. mv.
+intro p. intro H1. proof_by_contradiction H2. apply not_dia_box_not in H2.
+assert (H3: ((box (mforall x, m~ (p x))) w)). \com{(* Scott *)}
+  box_i. intro x. assert (H4: ((m~ (mexists x : u, p x)) w0)).
+    box_e H2 G2. exact G2.
 
-(* Theorem T1: positive properties are possibly exemplified *)
-Theorem theorem1: V (mforall p, (Positive p) m-> dia (mexists x, p x) ).
-Proof.
-intro.
-intro p.
-intro H1.
-proof_by_contradiction H2.
-apply not_dia_box_not in H2.
-assert (H3: ((box (mforall x, m~ (p x))) w)). (* Lemma from Scott's notes *)
-  box_intro w1 R1.
-  intro x.
-  assert (H4: ((m~ (mexists x : u, p x)) w1)).
-    box_elim H2 w1 R1 G2. 
-    exact G2.
+    clear H2 R H1 w. intro H5. apply H4. exists x. exact H5.
 
-    clear H2 R1 H1 w.
-    intro H5.
-    apply H4.
-    exists x.
-    exact H5.
+  assert (H6: ((box (mforall x, (p x) m-> m~ (x m= x))) w)). \com{(* Scott *)}   
+    box_i. intro x. intros H7 H8. box_elim H3 w0 G3. eapply G3. exact H7.
 
-  assert (H6: ((box (mforall x, (p x) m-> m~ (x m= x))) w)). (* Lemma from Scott's notes *)    
-    box_intro w1 R1.
-    intro x.
-    intro H7.
-    intro H8.
-    box_elim H3 w1 R1 G3.
-    apply G3 with (x := x).
-    exact H7.
+    assert (H9: ((Positive (fun x => m~ (x m= x))) w)). \com{(* Scott *)}
+      apply (axiom2 w p (fun x => m~ (x m= x))). split.
+        exact H1.
 
-    assert (H9: ((Positive (fun x => m~ (x m= x))) w)). (* Lemma from Scott's notes *)
-    apply (axiom2 w p (fun x => m~ (x m= x))).
-    split.
-      exact H1.
+        exact H6.
+      assert (H10: ((box (mforall x, (p x) m-> (x m= x))) w)). \com{(* Scott *)}
+        box_i. intros x H11. reflexivity.
 
-      exact H6.
-    assert (H10: ((box (mforall x, (p x) m-> (x m= x))) w)). (* Lemma from Scott's notes *)
-      box_intro w1 R1.
-      intros x H11.     
-      reflexivity.
+        assert (H11 : ((Positive (fun x => (x m= x))) w)). \com{(* Scott *)}
+          apply (axiom2 w p (fun x => x m= x )). split.
+            exact H1.
 
-      assert (H11 : ((Positive (fun x => (x m= x))) w)). (* Lemma from Scott's notes *)
-        apply (axiom2 w p (fun x => x m= x )).
-        split.
-          exact H1.
+            exact H10.
 
-          exact H10.
+          apply axiom1a in H9. contradiction.
+\Qed.
 
-        clear H1 H2 H3 H6 H10 p.
-        apply axiom1a in H9.
-        contradiction.
-Qed.
+\com{(* Definition D1: God: a God-like being possesses all positive properties *)}
+\Definition G(x: u) := mforall p, (Positive p) m-> (p x).
 
+\com{(* Axiom A3: the property of being God-like is positive *)}
+\Axiom axiom3: [ Positive G ].
 
-(* Definition D1: God: a God-like being possesses all positive properties *)
-Definition G(x: u) := mforall p, (Positive p) m-> (p x).
+\com{(* Corollary C1: possibly, God exists *)}
+\Theorem corollary1: [ dia (mexists x, G x) ]. 
+\Proof. mv. apply theorem1. apply axiom3. \Qed.
 
+\com{(* Axiom A4: positive properties are necessarily positive *)}
+\Axiom axiom4: [ mforall p, (Positive p) m-> box (Positive p) ].
 
-(* Axiom A3: the property of being God-like is positive *)
-Axiom axiom3: V (Positive G).
+\com{(* Definition D2: essence: an essence of an individual is a property possessed by it} 
+\com{and necessarily implying any of its properties *)}
+\Definition Essence(p: u -> o)(x: u) := (p x) m/\bslash mforall q, 
+                                        ((q x) m-> box (mforall y, (p y) m-> (q y))).
+\Notation "p 'ess' x" := (Essence p x) (at level 69).
 
-
-(* Corollary C1: possibly, God exists *)
-Theorem corollary1: V (dia (mexists x, G x)). 
-Proof.
-intro. 
-apply theorem1.
-apply axiom3.
-Qed.
-
-
-(* Axiom A4: positive properties are necessarily positive *)
-Axiom axiom4: V (mforall p, (Positive p) m-> box (Positive p)).
-
-
-(* Definition D2: essence: an essence of an individual is a property possessed by it and necessarily implying any of its properties *)
-Definition Essence(p: u -> o)(x: u) := (p x) m/\ mforall q, ((q x) m-> box (mforall y, (p y) m-> (q y))).
-Notation "p 'ess' x" := (Essence p x) (at level 69).
-
-
-(* Theorem T2: being God-like is an essence of any God-like being *)
-Theorem theorem2: V (mforall x, (G x) m-> (G ess x)).
-Proof.
-intro.
-intro g.
-intro H1.
-unfold Essence.
-split.
+\com{(* Theorem T2: being God-like is an essence of any God-like being *)}
+\Theorem theorem2: [ mforall x, (G x) m-> (G ess x) ].
+\Proof. mv. intro g. intro H1. unfold Essence. split.
   exact H1.
 
-  intro q.
-  intro H2.
-  assert (H3: ((Positive q) w)).
-    proof_by_contradiction H4.
-    unfold G in H1.
-    apply axiom1b in H4.
-    apply H1 in H4.
+  intro q. intro H2. assert (H3: ((Positive q) w)).
+    proof_by_contradiction H4. unfold G in H1. apply axiom1b in H4. apply H1 in H4. 
     contradiction. 
 
-    cut (box (Positive q) w). (* Lemma from Scott's notes *)
-      apply K.
-      box_intro w1 R1.
-      intro H5.
-      intro y.
-      intro H6.
-      unfold G in H6.
-      apply (H6 q).
-      exact H5.
+    cut (box (Positive q) w). \com{(* Scott *)}
+      apply K. box_i. intro H5. intro y. intro H6. unfold G in H6. apply (H6 q). exact H5.
 
-      apply axiom4.
-      exact H3.
-Qed.
+      apply axiom4. exact H3.
+\Qed.
 
-(* At this point in Scott's notes there are two notes that are not necessary for the proof, *)
-(* but it would be interesting to formalize them anyway *)
+\com{(* Definition D3: necessary existence: necessary existence of an individual }
+\com{is the necessary exemplification of all its essences *)}
+\Definition NE(x: u) := mforall p, (p ess x) m-> box (mexists y, (p y)).
 
-(* Definition D3: necessary existence: necessary existence of an individual is the necessary exemplification of all its essences *)
-Definition NE(x: u) := mforall p, (p ess x) m-> box (mexists y, (p y)).
+\com{(* Axiom A5: necessary existence is a positive property *)}
+\Axiom axiom5: [ Positive NE ].
 
+\Lemma lemma1: [ (mexists z, (G z)) m-> box (mexists x, (G x)) ].
+\Proof. mv. intro H1. destruct H1 as [g H2]. cut ((G ess g) w). \com{(* Scott *)}
+  assert (H3: (NE g w)).       \com{(* Scott *)}
+    unfold G in H2. apply (H2 NE). apply axiom5.
 
-(* Axiom A5: necessary existence is a positive property *)
-Axiom axiom5: V (Positive NE).
+    unfold NE in H3. apply H3.
 
+  apply theorem2. exact H2.
+\Qed.
 
-Lemma lemma1: V ((mexists z, (G z)) m-> box (mexists x, (G x))).
-Proof.
-intro.
-intro H1.
-destruct H1 as [g H2].
-cut ((G ess g) w).      (* Lemma from Scott's notes *)
-  assert (H3: (NE g w)).       (* Lemma from Scott's notes *)
-    unfold G in H2.
-    apply (H2 NE).
-    apply axiom5.
-
-    unfold NE in H3.
-    apply H3.
-
-  apply theorem2.
-  exact H2.
-Qed.
-
-
-Lemma lemma2: V (dia (mexists z, (G z)) m-> box (mexists x, (G x))).
-Proof.
-intro.
-intro H.
-cut (dia (box (mexists x, G x)) w).  (* Lemma from Scott's notes *)
+\Lemma lemma2: [ dia (mexists z, (G z)) m-> box (mexists x, (G x)) ].
+\Proof. mv. intro H. cut (dia (box (mexists x, G x)) w).  \com{(* Scott *)}
   apply dia_box_to_box.
 
-  apply (modus_ponens_inside_dia w (mexists z, G z)).
+  apply (mp_dia w (mexists z, G z)).
     exact H.
        
-    box_intro w1 R1.
-    apply lemma1.
-Qed.
+    box_i. apply lemma1.
+\Qed.
 
+\com{(* Theorem T3: necessarily, a God exists *)}
+\Theorem theorem3: [ box (mexists x, (G x)) ].
+\Proof. mv. apply lemma2. apply corollary1. \Qed.
 
-(* Theorem T3: necessarily, a God exists *)
-Theorem theorem3: V (box (mexists x, (G x))).
-Proof.
-intro.
-apply lemma2.
-apply corollary1.
-Qed.
+\com{(* Corollary C2: There exists a god *)}
+\Theorem corollary2: [ mexists x, (G x) ].
+\Proof. mv. apply T. apply theorem3. \Qed.
+\end{Verbatim}
 
-
-(* Corollary C2: There exists a god *)
-Theorem corollary2: V (mexists x, (G x)).
-Proof.
-intro.
-apply T.
-apply theorem3.
-Qed.
-\end{verbatim}
-
-
-Note: possible worlds machinery is hidden from the user.
 
 \section{Conclusions}
 \label{sec:conclusions}
 
-cite related work about modal logics in Coq.
+The successful formalization of Scott's version of G\"odel's proof of 
+God's existence indicates that the 
+\emph{embedding} of modal logics 
+into higher-order logics via the \emph{possible world semantics} is a viable approach for interactive 
+theorem proving within modal logics.
+The minimalistic implementation of the embedding 
+(Section \ref{sec:modal}) takes special care to hide the 
+underlying possible world machinery from the user. 
+An inspection of the proof scripts in Section \ref{sec:proof} shows 
+that this goal has been achieved. The user does not have to 
+explicitly bother about worlds and their mutual reachability; 
+the provided tactics for modalities do the job for him. 
+And for subgoals that do not involve modalities, 
+the user has all the usual interactive tactics at his/her disposal. 
+%The implementation of hints to allow automation tactics to fully cope with the embedding remains for future work. Nevertheless, at this stage a tactic such as \texttt{firstorder} is able to prove all lemmas and theorems in Section \ref{sec:modal} fully automatically. 
 
-no need to bother about the embedding.
+The theological implications of the verified correctness of 
+this proof certainly depend on a critical discussion of the 
+underlying concepts, definitions and axioms, 
+which is beyond the scope of this paper. Nevertheless, the application
+of theorem proving technology to a philosophical domain 
+has been fruitful for both areas. New results of philosophical 
+interest have been obtained \cite{ToDo:our ArXiv or Journal abstract} 
+and basic infra-structure for interactive and automated reasoning 
+in higher-order modal logics has been created.
 
-This work attests the maturity of contemporary interactive and
-automated deduction tools for classical higher-order logic and
-demonstrates the elegance and practical relevance of the
-embeddings-based approach.  Most importantly, our work opens new
-perspectives for a computer-assisted theoretical philosophy.  The
-critical discussion of the underlying concepts, definitions and axioms
-remains a human responsibility, but the computer can assist in
-building and checking rigorously correct logical arguments. In case of
-logico-philosophical disputes, the computer can check the disputing
-arguments and partially fulfill Leibniz' dictum: Calculemus --- Let us
-calculate!
-The philosophical and theological importance of the correctness of this proof is beyond the scope of this paper.
+\marginpar{cite John Rushby's formalization of anselm's argument?}
 
-We welcome feedback on 
-
-\paragraph{Acknowledgements:} ToDo: thank Coq-Club members. Cedric Auger
+\paragraph{Acknowledgements:} Thanks to Cedric Auger and Laurent Th\'ery, for their answers to our newbie questions about Ltac in the Coq-Club mailing-list. 
 
 %\footnotesize
 \bibliographystyle{plain}
