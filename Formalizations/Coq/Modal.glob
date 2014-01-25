@@ -1,4 +1,4 @@
-DIGEST de1ae6a2798507ad73f14d25f57b09ca
+DIGEST 96597499495d9b8d132c2aa3c0b69475
 FModal
 ax 136:136 <> i
 ax 183:183 <> u
@@ -116,102 +116,104 @@ R2200:2200 Modal <> p var
 R2202:2202 Modal <> w var
 R2226:2226 Modal <> V def
 not 2214 <> ::'['_x_']'
-R2465:2467 Modal <> box def
-R2465:2467 Modal <> box def
-R2854:2861 Modal <> mimplies def
-R2863:2866 Modal <> mnot def
-R2868:2870 Modal <> dia def
-R2872:2874 Modal <> box def
-R2876:2876 Modal <> A def
-R2878:2878 Modal <> V def
-prf 2896:2901 <> mp_dia
-R2904:2904 Modal <> ::'['_x_']' not
-R2966:2966 Modal <> ::'['_x_']' not
-R2905:2912 Modal <> :type_scope:'mforall'_x_','_x not
-R2914:2915 Modal <> :type_scope:'mforall'_x_','_x not
-R2916:2923 Modal <> :type_scope:'mforall'_x_','_x not
-R2925:2926 Modal <> :type_scope:'mforall'_x_','_x not
-R2927:2927 Modal <> ::x_'m->'_x not
-R2933:2938 Modal <> ::x_'m->'_x not
-R2928:2930 Modal <> dia def
-R2939:2939 Modal <> ::x_'m->'_x not
-R2953:2959 Modal <> ::x_'m->'_x not
-R2965:2965 Modal <> ::x_'m->'_x not
-R2940:2942 Modal <> box def
-R2946:2950 Modal <> ::x_'m->'_x not
-R2960:2962 Modal <> dia def
-prf 3142:3156 <> not_dia_box_not
-R3159:3159 Modal <> ::'['_x_']' not
-R3200:3200 Modal <> ::'['_x_']' not
-R3160:3167 Modal <> :type_scope:'mforall'_x_','_x not
-R3169:3170 Modal <> :type_scope:'mforall'_x_','_x not
-R3171:3171 Modal <> ::x_'m->'_x not
-R3182:3188 Modal <> ::x_'m->'_x not
+R2264:2264 Modal <> V def
+R2264:2264 Modal <> V def
+R2499:2501 Modal <> box def
+R2499:2501 Modal <> box def
+R2888:2895 Modal <> mimplies def
+R2897:2900 Modal <> mnot def
+R2902:2904 Modal <> dia def
+R2906:2908 Modal <> box def
+R2910:2910 Modal <> A def
+R2912:2912 Modal <> V def
+prf 2930:2935 <> mp_dia
+R2938:2938 Modal <> ::'['_x_']' not
+R3000:3000 Modal <> ::'['_x_']' not
+R2939:2946 Modal <> :type_scope:'mforall'_x_','_x not
+R2948:2949 Modal <> :type_scope:'mforall'_x_','_x not
+R2950:2957 Modal <> :type_scope:'mforall'_x_','_x not
+R2959:2960 Modal <> :type_scope:'mforall'_x_','_x not
+R2961:2961 Modal <> ::x_'m->'_x not
+R2967:2972 Modal <> ::x_'m->'_x not
+R2962:2964 Modal <> dia def
+R2973:2973 Modal <> ::x_'m->'_x not
+R2987:2993 Modal <> ::x_'m->'_x not
+R2999:2999 Modal <> ::x_'m->'_x not
+R2974:2976 Modal <> box def
+R2980:2984 Modal <> ::x_'m->'_x not
+R2994:2996 Modal <> dia def
+prf 3170:3184 <> not_dia_box_not
+R3187:3187 Modal <> ::'['_x_']' not
+R3228:3228 Modal <> ::'['_x_']' not
+R3188:3195 Modal <> :type_scope:'mforall'_x_','_x not
+R3197:3198 Modal <> :type_scope:'mforall'_x_','_x not
 R3199:3199 Modal <> ::x_'m->'_x not
-R3172:3175 Modal <> ::'m~'_x not
-R3181:3181 Modal <> ::'m~'_x not
-R3176:3178 Modal <> dia def
-R3189:3191 Modal <> box def
-R3194:3196 Modal <> ::'m~'_x not
-ax 3389:3399 <> reflexivity
-R3412:3412 Modal <> r defax
-R3416:3416 Modal <> w var
-R3414:3414 Modal <> w var
-ax 3426:3437 <> transitivity
-R3484:3484 Modal <> r defax
-R3489:3490 Modal <> w3 var
-R3486:3487 Modal <> w1 var
-R3471:3471 Modal <> r defax
-R3476:3477 Modal <> w3 var
-R3473:3474 Modal <> w2 var
-R3458:3458 Modal <> r defax
-R3463:3464 Modal <> w2 var
-R3460:3461 Modal <> w1 var
-ax 3501:3508 <> symmetry
-R3539:3539 Modal <> r defax
-R3544:3545 Modal <> w1 var
-R3541:3542 Modal <> w2 var
-R3526:3526 Modal <> r defax
-R3531:3532 Modal <> w2 var
-R3528:3529 Modal <> w1 var
-prf 3653:3653 <> K
-R3656:3657 Modal <> ::'['_x_']' not
-R3719:3720 Modal <> ::'['_x_']' not
-R3658:3665 Modal <> :type_scope:'mforall'_x_','_x not
-R3667:3668 Modal <> :type_scope:'mforall'_x_','_x not
-R3669:3676 Modal <> :type_scope:'mforall'_x_','_x not
-R3678:3679 Modal <> :type_scope:'mforall'_x_','_x not
-R3680:3680 Modal <> ::x_'m->'_x not
-R3694:3699 Modal <> ::x_'m->'_x not
-R3681:3683 Modal <> box def
-R3687:3691 Modal <> ::x_'m->'_x not
-R3700:3700 Modal <> ::x_'m->'_x not
-R3706:3712 Modal <> ::x_'m->'_x not
-R3718:3718 Modal <> ::x_'m->'_x not
-R3701:3703 Modal <> box def
-R3713:3715 Modal <> box def
-prf 3892:3892 <> T
-R3895:3896 Modal <> ::'['_x_']' not
-R3921:3922 Modal <> ::'['_x_']' not
-R3897:3904 Modal <> :type_scope:'mforall'_x_','_x not
-R3906:3907 Modal <> :type_scope:'mforall'_x_','_x not
-R3908:3908 Modal <> ::x_'m->'_x not
-R3914:3919 Modal <> ::x_'m->'_x not
-R3909:3911 Modal <> box def
-R4064:4074 Modal <> reflexivity prfax
-R4064:4074 Modal <> reflexivity prfax
-prf 4183:4196 <> dia_box_to_box
-R4199:4200 Modal <> ::'['_x_']' not
-R4237:4238 Modal <> ::'['_x_']' not
-R4201:4208 Modal <> :type_scope:'mforall'_x_','_x not
-R4210:4211 Modal <> :type_scope:'mforall'_x_','_x not
-R4212:4212 Modal <> ::x_'m->'_x not
-R4224:4230 Modal <> ::x_'m->'_x not
-R4236:4236 Modal <> ::x_'m->'_x not
-R4213:4215 Modal <> dia def
-R4218:4220 Modal <> box def
-R4231:4233 Modal <> box def
-R4410:4421 Modal <> transitivity prfax
-R4410:4421 Modal <> transitivity prfax
-R4432:4439 Modal <> symmetry prfax
-R4432:4439 Modal <> symmetry prfax
+R3210:3216 Modal <> ::x_'m->'_x not
+R3227:3227 Modal <> ::x_'m->'_x not
+R3200:3203 Modal <> ::'m~'_x not
+R3209:3209 Modal <> ::'m~'_x not
+R3204:3206 Modal <> dia def
+R3217:3219 Modal <> box def
+R3222:3224 Modal <> ::'m~'_x not
+ax 3417:3427 <> reflexivity
+R3440:3440 Modal <> r defax
+R3444:3444 Modal <> w var
+R3442:3442 Modal <> w var
+ax 3454:3465 <> transitivity
+R3512:3512 Modal <> r defax
+R3517:3518 Modal <> w3 var
+R3514:3515 Modal <> w1 var
+R3499:3499 Modal <> r defax
+R3504:3505 Modal <> w3 var
+R3501:3502 Modal <> w2 var
+R3486:3486 Modal <> r defax
+R3491:3492 Modal <> w2 var
+R3488:3489 Modal <> w1 var
+ax 3529:3536 <> symmetry
+R3567:3567 Modal <> r defax
+R3572:3573 Modal <> w1 var
+R3569:3570 Modal <> w2 var
+R3554:3554 Modal <> r defax
+R3559:3560 Modal <> w2 var
+R3556:3557 Modal <> w1 var
+prf 3681:3681 <> K
+R3684:3685 Modal <> ::'['_x_']' not
+R3747:3748 Modal <> ::'['_x_']' not
+R3686:3693 Modal <> :type_scope:'mforall'_x_','_x not
+R3695:3696 Modal <> :type_scope:'mforall'_x_','_x not
+R3697:3704 Modal <> :type_scope:'mforall'_x_','_x not
+R3706:3707 Modal <> :type_scope:'mforall'_x_','_x not
+R3708:3708 Modal <> ::x_'m->'_x not
+R3722:3727 Modal <> ::x_'m->'_x not
+R3709:3711 Modal <> box def
+R3715:3719 Modal <> ::x_'m->'_x not
+R3728:3728 Modal <> ::x_'m->'_x not
+R3734:3740 Modal <> ::x_'m->'_x not
+R3746:3746 Modal <> ::x_'m->'_x not
+R3729:3731 Modal <> box def
+R3741:3743 Modal <> box def
+prf 3920:3920 <> T
+R3923:3924 Modal <> ::'['_x_']' not
+R3949:3950 Modal <> ::'['_x_']' not
+R3925:3932 Modal <> :type_scope:'mforall'_x_','_x not
+R3934:3935 Modal <> :type_scope:'mforall'_x_','_x not
+R3936:3936 Modal <> ::x_'m->'_x not
+R3942:3947 Modal <> ::x_'m->'_x not
+R3937:3939 Modal <> box def
+R4092:4102 Modal <> reflexivity prfax
+R4092:4102 Modal <> reflexivity prfax
+prf 4211:4224 <> dia_box_to_box
+R4227:4228 Modal <> ::'['_x_']' not
+R4265:4266 Modal <> ::'['_x_']' not
+R4229:4236 Modal <> :type_scope:'mforall'_x_','_x not
+R4238:4239 Modal <> :type_scope:'mforall'_x_','_x not
+R4240:4240 Modal <> ::x_'m->'_x not
+R4252:4258 Modal <> ::x_'m->'_x not
+R4264:4264 Modal <> ::x_'m->'_x not
+R4241:4243 Modal <> dia def
+R4246:4248 Modal <> box def
+R4259:4261 Modal <> box def
+R4438:4449 Modal <> transitivity prfax
+R4438:4449 Modal <> transitivity prfax
+R4460:4467 Modal <> symmetry prfax
+R4460:4467 Modal <> symmetry prfax

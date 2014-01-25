@@ -42,7 +42,7 @@ intro H1.
 proof_by_contradiction H2.
 apply not_dia_box_not in H2.
 assert (H3: ((box (mforall x, m~ (p x))) w)). (* Lemma from Scott's notes *)
-  box_i. (* box_intro w1 R1. *)
+  box_i.
   intro x.
   assert (H4: ((m~ (mexists x : u, p x)) w0)).
     box_e H2 G2. 
@@ -57,33 +57,32 @@ assert (H3: ((box (mforall x, m~ (p x))) w)). (* Lemma from Scott's notes *)
   assert (H6: ((box (mforall x, (p x) m-> m~ (x m= x))) w)). (* Lemma from Scott's notes *)    
     box_i.
     intro x.
-    intro H7.
-    intro H8.
+    intros H7 H8.
     box_elim H3 w0 G3.
     eapply G3.
     exact H7.
 
     assert (H9: ((Positive (fun x => m~ (x m= x))) w)). (* Lemma from Scott's notes *)
-    apply (axiom2 w p (fun x => m~ (x m= x))).
-    split.
-      exact H1.
+      apply (axiom2 w p (fun x => m~ (x m= x))).
+      split.
+        exact H1.
 
-      exact H6.
-    assert (H10: ((box (mforall x, (p x) m-> (x m= x))) w)). (* Lemma from Scott's notes *)
-      box_i.
-      intros x H11.     
-      reflexivity.
+        exact H6.
+      assert (H10: ((box (mforall x, (p x) m-> (x m= x))) w)). (* Lemma from Scott's notes *)
+        box_i.
+        intros x H11.     
+        reflexivity.
 
-      assert (H11 : ((Positive (fun x => (x m= x))) w)). (* Lemma from Scott's notes *)
-        apply (axiom2 w p (fun x => x m= x )).
-        split.
-          exact H1.
+        assert (H11 : ((Positive (fun x => (x m= x))) w)). (* Lemma from Scott's notes *)
+          apply (axiom2 w p (fun x => x m= x )).
+          split.
+            exact H1.
 
-          exact H10.
+            exact H10.
 
-        clear H1 H2 H3 H6 H10 p.
-        apply axiom1a in H9.
-        contradiction.
+          clear H1 H2 H3 H6 H10 p.
+          apply axiom1a in H9.
+          contradiction.
 Qed.
 
 

@@ -75,11 +75,11 @@ Ltac mv := match goal with [|- (V _)] => intro end.
 
 Ltac box_i := let w := fresh "w" in let R := fresh "R" in (intro w at top; intro R at top).
 
-Ltac box_elim H w1 Hn := match type of H with 
-                          ((box ?p) ?w) =>  cut (p w1); [intros Hn | (apply (H w1); try assumption) ]
+Ltac box_elim H w1 H1 := match type of H with 
+                          ((box ?p) ?w) =>  cut (p w1); [intros H1 | (apply (H w1); try assumption) ]
                          end.
 
-Ltac box_e H Hn:= match goal with | [ |- (_ ?w) ] => box_elim H w Hn end.
+Ltac box_e H H1:= match goal with | [ |- (_ ?w) ] => box_elim H w H1 end.
 
 Ltac dia_e H := let w := fresh "w" in let R := fresh "R" in (destruct H as [w [R H]]; move w at top; move R at top).
 
@@ -93,8 +93,7 @@ Proof.
 (* firstorder. *) (* This could solve the goal automatically *)
 mv.
 intros p q.
-intro H1.
-intro H2.
+intros H1 H2.
 dia_e H1.
 dia_i w0.
 box_e H2 H3.
