@@ -1,18 +1,29 @@
 \documentclass{llncs}
 
-\usepackage{url,amsmath,amssymb,a4wide}
+\usepackage{url,amsmath,amssymb,a4wide,fancyvrb,color}
 
 
 \newcommand{\imp}{\rightarrow}
-\newcommand{\biimp}{\leftrightarrow}
-\newcommand{\all}{\forall}
-\newcommand{\ex}{\exists}
-\newcommand{\seq}{\vdash}
-\newcommand{\nec}{\Box} % necessarily
-\newcommand{\pos}{\Diamond} % possibly
-\newcommand{\ess}[2]{#1 \ \mathit{ess.} \ #2}
-\newcommand{\NE}{\mathit{NE}}
 
+\newcommand{\red}[1]{\textcolor[rgb]{1,0,0}{#1}}
+\newcommand{\blue}[1]{\textcolor[rgb]{0,0,1}{#1}}
+\newcommand{\brown}[1]{\textcolor[rgb]{0.8,0.6,0.4}{#1}}
+
+\newcommand{\Parameter}{\red{Parameter}}
+\newcommand{\Lemma}{\red{Lemma}}
+\newcommand{\Theorem}{\red{Theorem}}
+\newcommand{\Definition}{\red{Definition}}
+\newcommand{\Notation}{\blue{Notation}}
+\newcommand{\Prop}{\blue{Prop}}
+\newcommand{\Type}{\blue{Type}}
+\newcommand{\iin}{\blue{in}}
+\newcommand{\as}{\blue{as}}
+\newcommand{\fforall}{\blue{forall}}
+\newcommand{\fun}{\blue{fun}}
+\newcommand{\Proof}{\blue{Proof}}
+\newcommand{\Qed}{\blue{Qed}}
+\newcommand{\Hint}{\blue{Hint}}
+\newcommand{\com}[1]{\brown{#1}}
 
 \title{
 God in Coq: \\
@@ -52,11 +63,14 @@ G\"{o}del's proof of God's existence is challenging
 to formalize and verify because it requires an 
 expressive logical language with modal operators
 ($\Diamond$ and $\Box$) and
-higher-order quantifiers. Therefore, it can serve as a good benchmark to measure and compare progress in the development of automated and interactive reasonging tools for higher-order modal logics. To fulfill this goal, formalizations \cite{FormalTheologyRepository} in TPTP THF \cite{J22}, Coq \cite{Coq} and Isabelle \cite{Isabelle} have been completed so far, in this order. This paper focuses on the formalization in Coq.
-
-An embedding of modal logics 
-into higher-order logic with
-Henkin semantics \cite{J23,B9} provides the necessary theoretical foundation that enables the use of interactive theorem provers for modal logics as well. In the particular case of Coq, the implementation of this embedding is discussed in detail in Section \ref{sec:modal} and Scott's version of G\"odel's proof is shown in Section \ref{sec:proof}.
+higher-order quantifiers. 
+Specialized modal logic tools lack higher-order capabilities, 
+while higher-order provers lack built-in support for modalities. 
+However, by embedding modal logics into higher-order logic, 
+it is in principle possible to use standard 
+higher-order automated and interactive theorem provers 
+for reasoning about and within modal logics \cite{J23,B9}.
+To realize this potential, formalizations \cite{FormalTheologyRepository} of G\"odel's proof in TPTP THF \cite{J22}, Coq \cite{Coq} and Isabelle \cite{Isabelle} have been completed so far, in this order. This paper focuses on the formalization in Coq. The implementation of the embedding is discussed in detail in Section \ref{sec:modal} and Scott's version of G\"odel's proof is shown in Section \ref{sec:proof}.
 
 
 \section{Modal Logic in Coq}
@@ -64,75 +78,68 @@ Henkin semantics \cite{J23,B9} provides the necessary theoretical foundation tha
 
 A crucial aspect of modal logics \cite{ToDo} is that the so-called \emph{necessitation rule} allows $\Box A$ to be derived if $A$ is a theorem, but $A \imp \Box A$ is not necessarily a theorem. Naive attempts to define the modal operators $\Box$ and $\Diamond$ may easily be unsound in this respect. To avoid this issue, the \emph{possible world semantics} of modal logics can be explicitly embedded into higher-order logics \cite{J23,B9}. To this aim, a type for worlds must be declared and modal propositions should be not of type \texttt{Prop} but of a lifted type that depends on possible worlds. Possible worlds are connected by an accessibility relation.
 
-\begin{verbatim}
-(* Type for worlds *)
-Parameter i: Type.
-
-(* Type for individuals *)
-Parameter u: Type.
-
-(* Type of modal propositions *)
-Definition o := i -> Prop.
-
-(* Acessibility relation for worlds *)
-Parameter r: i -> i -> Prop.
-\end{verbatim}
+\begin{Verbatim}[commandchars=\\\{\}]
+\Parameter i: \Type. \com{(* Type for worlds *)}
+\Parameter u: \Type. \com{(* Type for individuals *)}
+\Definition o := i -> \Prop. \com{(* Type of modal propositions *)}
+\Parameter r: i -> i -> \Prop. \com{(* Acessibility relation for worlds *)}
+\end{Verbatim}
 
 
 \noindent
 All modal connectives are simply lifted versions of the usual logical connectives. Notations are used to allow the modal connectives to be used as similarly as possible as the usual connectives. The prefix ``\texttt{m}'' is used to distinguish the modal connectives: if $\odot$ is a connective on type \text{Prop}, $\texttt{m}\odot$ is a connective on the lifted type $\texttt{o}$ of modal propositions.  
 
-\begin{verbatim}
-Definition mequal (x y: u) := fun w: i => x = y.
-Notation "x m= y" := (mequal x y) (at level 99, right associativity).
+\begin{Verbatim}[commandchars=\\\{\}]
+\Definition mequal (x y: u) := \fun w: i => x = y.
+\Notation "x m= y" := (mequal x y) (at level 99, right associativity).
 
-Definition mnot (p: o)(w: i) := ~ (p w).
-Notation "m~  p" := (mnot p) (at level 74, right associativity).
+\Definition mnot (p: o)(w: i) := ~ (p w).
+\Notation "m~  p" := (mnot p) (at level 74, right associativity).
 
-Definition mand (p q:o)(w: i) := (p w) /\ (q w).
-Notation "p m/\ q" := (mand p q) (at level 79, right associativity).
+\Definition mand (p q:o)(w: i) := (p w) /\ (q w).
+\Notation "p m/\ q" := (mand p q) (at level 79, right associativity).
 
-Definition mor (p q:o)(w: i) := (p w) \/ (q w).
-Notation "p m\/ q" := (mor p q) (at level 79, right associativity).
+\Definition mor (p q:o)(w: i) := (p w) \/ (q w).
+\Notation "p m\/ q" := (mor p q) (at level 79, right associativity).
 
-Definition mimplies (p q:o)(w:i) := (p w) -> (q w).
-Notation "p m-> q" := (mimplies p q) (at level 99, right associativity).
+\Definition mimplies (p q:o)(w:i) := (p w) -> (q w).
+\Notation "p m-> q" := (mimplies p q) (at level 99, right associativity).
 
-Definition mequiv (p q:o)(w:i) := (p w) <-> (q w).
-Notation "p m<-> q" := (mequiv p q) (at level 99, right associativity).
-\end{verbatim}
+\Definition mequiv (p q:o)(w:i) := (p w) <-> (q w).
+\Notation "p m<-> q" := (mequiv p q) (at level 99, right associativity).
+\end{Verbatim}
 
 \noindent
 Likewise, modal quantifiers are lifted versions of the usual quantifiers.
 
-\begin{verbatim}
-Definition A {t: Type}(p: t -> o) := fun w => forall x, p x w.
-Notation "'mforall'  x , p" := (A (fun x => p))
+\begin{Verbatim}[commandchars=\\\{\}]
+\Definition A {t: Type}(p: t -> o) := \fun w => \fforall x, p x w.
+\Notation "'mforall'  x , p" := (A (fun x => p))
   (at level 200, x ident, right associativity) : type_scope.
-Notation "'mforall' x : t , p" := (A (fun x:t => p))
+\Notation "'mforall' x : t , p" := (A (\fun x:t => p))
   (at level 200, x ident, right associativity, 
     format "'[' 'mforall' '/ '  x  :  t , '/ '  p ']'")
   : type_scope.
 
-Definition E {t: Type}(p: t -> o) := fun w => exists x, p x w.
-Notation "'mexists' x , p" := (E (fun x => p))
+\Definition E {t: Type}(p: t -> o) := \fun w => exists x, p x w.
+\Notation "'mexists' x , p" := (E (\fun x => p))
   (at level 200, x ident, right associativity) : type_scope.
-Notation "'mexists' x : t , p" := (E (fun x:t => p))
+\Notation "'mexists' x : t , p" := (E (\fun x:t => p))
   (at level 200, x ident, right associativity, 
     format "'[' 'mexists' '/ '  x  :  t , '/ '  p ']'")
   : type_scope.
-\end{verbatim}
+\end{Verbatim}
 
 \noindent
 The modal operators $\Diamond$ (\emph{possibly}) and $\Box$ (\emph{necessarily}) are defined according to their meanings in the possible world semantics.
 
-\begin{verbatim}
+\begin{Verbatim}[commandchars=\\\{\}]
 (* Modal operator for 'necessarily' *)
 Definition box (p: o) := fun w => forall w1, (r w w1) -> (p w1).
 
 (* Modal operator for 'possibly' *)
 Definition dia (p: o) := fun w => exists w1, (r w w1) /\ (p w1).
-\end{verbatim}
+\end{Verbatim}
 
 
 \noindent
@@ -504,7 +511,7 @@ The philosophical and theological importance of the correctness of this proof is
 
 We welcome feedback on 
 
-\paragraph{Acknowledgements:} ToDo: thank Coq-Club members.
+\paragraph{Acknowledgements:} ToDo: thank Coq-Club members. Cedric Auger
 
 %\footnotesize
 \bibliographystyle{plain}
