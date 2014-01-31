@@ -88,11 +88,9 @@ proof is shown in Section \ref{sec:proof}.
 \section{Modal Logic in Coq}
 \label{sec:modal}
 
-A crucial aspect of modal logics \cite{ModalLogic} is that the so-called \emph{necessitation rule} allows $\Box A$ to be derived if $A$ is a theorem, but $A \imp \Box A$ is not necessarily a theorem. Naive attempts to define the modal operators $\Box$ and $\Diamond$ may easily be unsound in this respect. To avoid this issue, the \emph{possible world semantics} of modal logics can be explicitly embedded into higher-order logics \cite{J23,B9}. To this aim, a type for worlds must be declared and modal propositions should be not of type \texttt{Prop} but of a lifted type that depends on possible worlds. Possible worlds are connected by an accessibility relation.
-
-The embedding is related to labeling techniques
+A crucial aspect of modal logics \cite{ModalLogic} is that the so-called \emph{necessitation rule} allows $\Box A$ to be derived if $A$ is a theorem, but $A \imp \Box A$ is not necessarily a theorem. Naive attempts to define the modal operators $\Box$ and $\Diamond$ may easily be unsound in this respect. To avoid this issue, the \emph{possible world semantics} of modal logics can be explicitly embedded into higher-order logics \cite{J23,B9}. The embedding is related to labeling techniques
 \cite{Labels}. However, the expressiveness of higher-order logic is
-exploited here to encode the labels within the logic language itself.
+exploited here to encode the labels within the logic language itself. To this aim, a type for worlds must be declared and modal propositions should be not of type \texttt{Prop} but of a lifted type that depends on possible worlds. Possible worlds are connected by an accessibility relation.
 
 \newcommand{\verbsize}{\small}
 
@@ -161,7 +159,7 @@ The modal operators $\Diamond$ (\emph{possibly}) and $\Box$ (\emph{necessarily})
 To maximally preserve user intuition in interactive modal logic theorem
 proving, the embedding via the possible world semantics should be as
 transparent as possible to the user. Fortunately, basic Coq tactics
-such \texttt{intro}, \texttt{apply} and \texttt{split} automatically
+such as \texttt{intro}, \texttt{apply} and \texttt{split} automatically
 unfold the modal definitions. They can thus be used with modal
 connectives and quantifiers just as they are used with the usual
 connectives and quantifiers.  For the modal operators, however, the
@@ -316,7 +314,7 @@ assert (H3: ((box (mforall x, m~ (p x))) w)). \com{(* Scott *)}
   exact H1.
   intro q. intro H2. assert (H3: ((Positive q) w)).
     proof_by_contradiction H4. unfold G in H1. apply axiom1b in H4. apply H1 in H4. 
-    contradiction. 
+                                                                    contradiction. 
     cut (box (Positive q) w). \com{(* Scott *)}
       apply K. box_i. intro H5. intro y. intro H6. unfold G in H6. apply (H6 q). exact H5.
       apply axiom4. exact H3.
@@ -368,7 +366,7 @@ world machinery from the user.  An inspection of the proof scripts in
 Section \ref{sec:proof} shows that this goal has been achieved. The
 user does not have to explicitly bother about worlds and their mutual
 reachability; the provided tactics for modalities do the job for him.
-And for subgoals that do not involve modalities, the user has all the
+Moreover, for subgoals that do not involve modalities, the user has all the
 usual interactive tactics at his/her disposal.
 %The implementation of hints to allow automation tactics to fully cope with the embedding remains for future work. Nevertheless, at this stage a tactic such as \texttt{firstorder} is able to prove all lemmas and theorems in Section \ref{sec:modal} fully automatically. 
 
@@ -379,7 +377,7 @@ can be said though is that our work presents further evidence that
 theism is at least not (obviously) irrational. 
 
 Related work includes formalizations of Anselm's argument by Rushby
-\cite{Rushby}, and by Oppenheimer and Zalta \cite{Zalta}.  Obviously,
+\cite{Rushby}, and by Oppenheimer and Zalta \cite{Zalta}.  Clearly,
 the application of theorem proving technology to the domain of
 theoretical philosophy can --- as already pictured by Leibniz ---
 be very fruitful for both areas. In fact, new results of
