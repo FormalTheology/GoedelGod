@@ -4,7 +4,7 @@ call=./RemoteSOT.pl
 # install it and change the above paths accordingly
 
 proverlist='LEO-II---1.6.0 Satallax---2.7 Isabelle---2013 Nitrox---2013 agsyHOL---1.0 TPS---3.120601S1b'
-timeout=120
+timeout=10
 
 echo
 echo Asking various HOL-ATPs in Miami remotely \(thanks to Geoff Sutcliffe\)
@@ -15,11 +15,16 @@ echo
     for prover in $proverlist 
     do
     function_to_fork () { 
-        echo $file ++++++ `$tptp4X -t $timeout -x $file | $call -t $timeout -s $prover | grep RESULT` 
+      res=""
+      while ! (echo $res | grep --quiet RESULT); do
+          res=`$tptp4X -t $timeout -x $file | $call -t $timeout -s $prover |grep RESULT` 
+	  echo ${file}---${prover}---${res}
+      done   
     }
     function_to_fork &
     done
-    echo 
+    wait
+    echo Done 
 done
 
 
