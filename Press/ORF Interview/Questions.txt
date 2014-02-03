@@ -1,8 +1,55 @@
 1)      Kurt Gödel hat seiner Nachwelt einen sogenannten ontologischen Gottesbeweise hinterlassen. Was weiß man über Gödels Motivation sich mit dieser Frage zu beschäftigen. Was wollte Gödel eigentlich wirklich beweisen?
+
+Gödel was introverted about his own motivations in general. 
+What we know is that Gödel studied the works of Leibniz in the 1930's, 
+including Leibniz's ontological argument for God's existence, 
+and he wanted to investigate it with the logics of his time. 
+A first draft of his proof is dated from 1941. He improved it from 1946 to 1955, but never published it. Only in 1970, he shared a two-page manuscript with Dana Scott, who then modified the axioms slightly.
+
+According to Robert Merrihew Adams, he told Oskar Morgenstern that he kept it secret due to fear that it would be thought "that he actually believed in God, whereas he was only engaged in a logical investigation". Others (Adele, Wang, Sobel), however, claim that although Gödel did not go to the church, he did believe in God and read the bible in bed every sunday. 
+
+
 2)      Wie funktioniert Gödels Gottesbeweis?
+
+Any mathematical proof assumes a few axioms and then derives, by following strict logical rules, a theorem. 
+
+In the case of Gödels Gottesbeweis, Gödel defines God as a being who has all positive properties. He assumes 5 axioms that state reasonable conditions that positive properties must satisfy. Three examples of axioms: any property necessarily implied by a positive property is also be positive; the combination of any number of positive properties is also positive; either a property is positive or its negation is, but not both (there are no neutral properties).
+
+From these axioms he derives many intermediary lemmas. Two of the most interesting lemmas state that God's existence is possible and that if God's existence is possible at all, then it must be necessary. From these lemmas, the final theorem stating that God necessarily exists can be derived.
+
+
 3)      Was hat Ihre Computerberechnung nun wirklich bewiesen? Was war der Sinn des ganzen?
+
+The computer has automatically filled all the gaps in Gödel's manuscript and has verified that all logical steps in Gödel's proof are correct. The theorem indeed follows from the axioms. 
+
+His proof is challenging because it requires what we call a higher-order modal logic, for which automated theorem provers still did not exist. For computer scientists and logicians like Christoph Benzmüller and me, this proof was the perfect motivation to develop the missing technologies.
+
+
 4)      Hat der Computer nun etwas heraus gefunden, das man vorher nicht wusste?
+
+Yes. We were able to find an inconsistency in Gödel's version of the axioms and to show the consistency of Scott's version. We confirmed the controversial claim of modal collapse. And we discovered that, contrary to the common belief, the modal logic "S5" is not necessary for proving the theorem; the modal logic "KB" is sufficient.
+
+
 5)      Sie haben ja auch herausgefunden, dass Gödels Beweis nicht nur in einer Modallogik „S5“ funktioniert, sondern auch in der Modallogik „KB“. Könnten Sie etwas erklären, was Modallogik überhaupt ist und welchen Unterschied es zwischen S5 und KB gibt?
+
+Modal logics are able to deal with concepts known as "modalities", such as "necessity" and "possibility". There are various kinds of modalities and, consequently, there are various modal logics. They differ from each other with respect to the axioms that the modalities must satisfy. In S5, the controversial principle stating that "if something is possibly necessarily the case, then it is necessarily the case" is provable. KB, on the other hand relies on much weaker principles.
+
+
 6)      Was war Ihre persönliche Motivation sich mit Gödels Gottesbeweis zu beschäftigen?
+
+One year ago, when I was in holidays in my homeland (Brazil), I had to go through a hard time in my life. Many religious people from a local church gave me support in this difficult period. I decided to work on Gödel's Gottesbeweis as a retribution for their support. I remembered that Christoph Benzmüller had mentioned his interest in this proof in a talk in Vienna a few months earlier. So I contacted him and we started working together on this topic.
+
+
 7)      Können Gottesbeweise Ihrer Meinung nach tatsächlich die Existenz oder Nichtexistenz Gottes „beweisen“ oder setzen sie im Grunde schon die Annahme, dass es einen Gott gäbe voraus?
+
+We invent personal theories in an attempt to organize and comprehend everything that we experience in this world. From a logical point of view, all theories require the acceptance of some axioms, from which all other knowledge can be derived.
+
+Many theists and atheists start by assuming God's existence or non-existence as an axiom in their own personal theories. Gödel's theory, on the other hand, is different. His axioms are rather simple and apparently acceptable even for non-theists and it is not clear that God's necessary existence can be derived from them. This is what makes Gödel's theory particularly interesting.
+
+As a human being, I am happy to experience the world, and this is more important for me than to argue about the existence or non-existence of God. As a logician, I like to explore and compare various theories. I personally favor surprising theories such as Gödel's, but in principle I have nothing against theories that start by assuming either the existence or non-existence of God as a plain axiom. 
+
+
 8)      Glauben Sie, dass sich jemand, der nicht an Gott glaubt, von irgendeinem Gottesbeweis von einer Existenz Gottes überzeugen lassen würde?
+
+When someone is confronted with another theory that contradicts his own, he must fix this contradiction. The easiest solution is simply to reject some of the axioms of the other theory. This can certainly be done with Gödel's Gottesbeweis. Philosophers have already argued against its use of S5 or the lack of neutral properties, for example. Even Gödel suggested that some additional conditions should be added to the axioms.
+This is a rational and logically acceptable way out for atheists who do not want to be convinced. For someone to be convinced by a Gottesbeweis, he must accept all axioms. This may require him to revise his own theory.
