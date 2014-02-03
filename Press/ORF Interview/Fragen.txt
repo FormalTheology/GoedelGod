@@ -12,7 +12,7 @@ Laut Robert Merrihew Adams, hat Gödel zu Oskar Morgenstern gesagt, dass er den 
 
 2)      Wie funktioniert Gödels Gottesbeweis?
 
-Jeder mathematische Beweis nimmt ein paar Axiomen an und leitet davon durch strengen logischen Regeln ein Theorem aus. 
+Jeder mathematische Beweis nimmt ein paar Axiomen an und leitet davon durch strengen logischen Regeln ein Theorem ab. 
 
 Im Fall von Gödels Gottesbeweis, wird Gott als ein Wesen definiert, das alle positiven Eigenschaften hat. Gödel nimmt fünf Axiome, die angemessenen Bedingungen feststellen, die die positiven Eigenschaften erfüllen müssen. Drei Beispiele von Axiomen: jede Eigenschaft, die notwendigerweise durch eine positive Eigenschaft impliziert wird, ist auch positiv; die Kombination einer beliebigen Anzahl von positiven Eigenschaften ist auch positiv; entweder eine Eigenschaft positiv ist oder seine Negation ist, aber nicht beide (es gibt keine neutrale Eigenschaft). 
 
