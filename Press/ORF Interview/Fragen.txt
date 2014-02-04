@@ -1,60 +1,175 @@
-1)      Kurt Gödel hat seiner Nachwelt einen sogenannten ontologischen Gottesbeweise hinterlassen. Was weiß man über Gödels Motivation sich mit dieser Frage zu beschäftigen. Was wollte Gödel eigentlich wirklich beweisen?
+1) Kurt Gödel hat seiner Nachwelt einen sogenannten ontologischen
+Gottesbeweise hinterlassen. Was weiß man über Gödels Motivation sich
+mit dieser Frage zu beschäftigen. Was wollte Gödel eigentlich wirklich
+beweisen?
 
-Gödel war über seine eigene Motivation im allgemeinen introvertiert. 
-Wir wissen, dass Gödel die Werke von Leibniz in den 1930er 
-Jahren studiert hat, 
-darunter auch Leibniz's ontologisches Argument für die Existenz Gottes, 
-was er mit der Logik seiner Zeit untersuchen wollte. 
-Ein erster Entwurf sein Beweis ist von 1941 datiert. 
-Er verbesserte ihn von 1946 bis 1955, aber er hat ihn nie veröffentlicht. Erst 1970, gab er ein zweiseitiges Manuskript zu Dana Scott, der dann die Axiome leicht modifiziert hat. 
+Gödel war über seine eigene Motivation im allgemeinen introvertiert.
+Wir wissen, dass Gödel die Werke von Leibniz in den 1930er Jahren
+studiert hat, darunter auch Leibniz's ontologisches Argument für die
+Existenz Gottes, was er mit der Logik seiner Zeit untersuchen wollte.
+Ein erster Entwurf seines Beweises ist auf 1941 datiert.  Er
+verbesserte ihn von 1946 bis 1955, aber er hat ihn nie
+veröffentlicht. Erst 1970, gab er ein zweiseitiges Manuskript zu Dana
+Scott, der dann die Axiome leicht modifiziert hat.
 
-Laut Robert Merrihew Adams, hat Gödel zu Oskar Morgenstern gesagt, dass er den Beweis geheim gehalten hat, aus Angst dass man denken würde, "dass er tatsächlich an Gott glaubte, während er nur in einer logischen Untersuchung beschäftigt war". Andere (Adele, Wang, Sobel) behaupten jedoch, dass Gödel an Gott glaubte und die Bibel im Bett jeden Sonntag las, obwohl er in die Kirche nicht gang.
-
-
-2)      Wie funktioniert Gödels Gottesbeweis?
-
-Jeder mathematische Beweis nimmt ein paar Axiomen an und leitet davon durch strengen logischen Regeln ein Theorem ab. 
-
-Gödel definiert Gott als ein Wesen, der alle positiven Eigenschaften hat. Dann nimmt Gödel fünf Axiome an, die angemessenen Bedingungen feststellen, die die positiven Eigenschaften erfüllen müssen. Zum Beispiel: der erste Axiom sagt, dass jede Eigenschaft, die notwendigerweise durch eine positive Eigenschaft impliziert wird, auch positiv ist; der zweite Axiom sagt, dass entweder eine Eigenschaft positiv ist oder seine Negation ist, aber nicht beide (also, es gibt keine neutrale Eigenschaft); der dritte Axiom sagt, dass die Kombination einer beliebigen Anzahl von positiven Eigenschaften auch positiv ist; und der vierte Axiom sagt, dass positive Eigenschaften notwendigerweise positiv sind.
-
-Aus diesen Axiomen leitet er einige Zwischenhilfssätze ab. Zwei der interessantesten hilfssätze behaupten, dass die Existenz Gottes möglich ist, und dass die Existenz Gottes notwending ist, wenn sie überhaupt möglich ist. Aus diesen Hilfssätze ableitet man den Hauptsatz, dass Gott existiert notwendigerweise.
-
-
-3)      Was hat Ihre Computerberechnung nun wirklich bewiesen? Was war der Sinn des ganzen?
-
-Der Computer hat alle Lücken in Gödels Manuskript automatisch gefüllt und er hat überprüft, dass alle logischen Schritte in Gödels Beweis korrekt sind. Jetzt sind wir ganz sicher, dass der Hauptsatz aus den Axiomen tatsächlich folgt. 
-
-Sein Beweis ist anspruchsvoll, weil er eine Modallogik höherer Stufe erfordert. Bisher gab es für diese Logik keinen automatischen Theorembeweiser. Für Computer-Wissenschaftler und Logiker wie Christoph Benzmüller und ich, war dieser Beweis die perfekte Motivation, diese fehlende Technologie zu entwickeln.
+Laut Robert Merrihew Adams, hat Gödel zu Oskar Morgenstern gesagt,
+dass er den Beweis geheim gehalten hat, aus Angst dass man denken
+würde, "dass er tatsächlich an Gott glaubte, während er nur in einer
+logischen Untersuchung beschäftigt war". Andere (Adele, Wang, Sobel)
+behaupten jedoch, dass Gödel an Gott glaubte und die Bibel im Bett
+jeden Sonntag las, obwohl er in die Kirche nicht gang.
 
 
-4)      Hat der Computer nun etwas heraus gefunden, das man vorher nicht wusste?
+2) Wie funktioniert Gödels Gottesbeweis?
 
-Ja. Wir waren in der Lage, eine Inkonsistenz in Gödels Version der Axiome zu finden und die Konsistenz der Version von Scott zu zeigen. Wir haben den umstrittenen Satz des so-genannten Modalen Zusammenbruchs bestätigt. Und wir entdeckten, entgegen der landläufigen Meinung, dass die Modallogik "S5" nicht notwendig ist, den Hauptsatz abzuleiten; Die Modallogik "KB" ist ausreichend.
+Jeder mathematische Beweis nimmt ein paar Axiomen an und leitet davon
+durch strenge logische Regeln ein Theorem ab.
 
+Gödel definiert Gott als ein Wesen, das alle positiven Eigenschaften
+hat. Dann nimmt Gödel fünf Axiome an, die angemessene Bedingungen
+formulieren, die die positiven Eigenschaften erfüllen müssen. Zum
+Beispiel: der erste Axiom sagt, dass jede Eigenschaft, die
+notwendigerweise durch eine positive Eigenschaft impliziert wird, auch
+positiv ist; der zweite Axiom sagt, dass entweder eine Eigenschaft
+positiv ist oder seine Negation ist, aber nicht beide (also, es gibt
+keine neutrale Eigenschaft); der dritte Axiom sagt, dass die
+Kombination einer beliebigen Anzahl von positiven Eigenschaften auch
+positiv ist; und der vierte Axiom sagt, dass positive Eigenschaften
+notwendigerweise positiv sind.
 
-5)      Sie haben ja auch herausgefunden, dass Gödels Beweis nicht nur in einer Modallogik „S5“ funktioniert, sondern auch in der Modallogik „KB“. Könnten Sie etwas erklären, was Modallogik überhaupt ist und welchen Unterschied es zwischen S5 und KB gibt?
-
-Modallogiken beschäftigen sich mit Begriffen, die "Modalitäten" genannt werden. Beispiele von Modalitäten sind "Notwendigkeit" und "Möglichkeit". Es gibt verschiedene Arten von Modalitäten und deswegen gibt es verschiedene Modallogiken. Sie unterscheiden sich von einander in Bezug auf die Axiome, die die Modalitäten erfüllen müssen. In der Modallogik S5, zum Beispiel, beweist man das umstrittene Prinzip, dass "wenn etwas möglicherweise notwendigerweise der Fall ist, dann ist es notwendigerweise der Fall". Trotz dieses kontraintuitiven Prinzips wird S5 weithin als eine angemessene Logik für die Formalisierung der Begriffe der logischen Notwendigkeit und Möglichkeit angesehen. Dennoch ist ihre Angemessenheit für die Formalisierung metaphysischer Notwendigkeit und Möglichkeit noch bestrittbar.
-
-Die Modallogik KB, auf der anderen Seite, stützt sich auf die schwächere Axiom, dass "wenn etwas der Fall ist, dann ist es notwendigerweise möglicherweise der Fall". Das klingt intuitiv akzeptabler als S5. Wir sagen, dass KB schwächer als S5 ist, weil sie uns erlaubt, weniger Theoreme zu beweisen. Jeder in KB beweisbarer Satz ist auch in S5 beweisbar, aber nicht umgekehrt. Je schwächer die Axiome, die wir benutzen, je stärker unsere Theoremen. Deshalb ist es gut, dass wir es geschafft haben, genau zu bestimmen, dass eine schwächere Modallogik für Gödels Gottesbeweis ausreichend ist. Das bedeutet, dass sein Satz stärker ist und weniger Axiome benötigt als allgemein angenommen.
-
-
-6)      Was war Ihre persönliche Motivation sich mit Gödels Gottesbeweis zu beschäftigen?
-
-Vor einem Jahr, als ich im Urlaub in Brasilien (meinem Heimat) war, musste ich eine große Schwierigkeit in meinem Leben durchstehen. Viele religiöse Menschen aus einer lokalen Kirche haben mir in dieser schwierigen Zeit unterstützt. In Dankbarkeit für ihre Unterstützung, wollte ich an Gödels Gottesbeweis arbeiten. Dann habe ich mich daran erinnert, dass Christoph Benzmüller an diesem Beweis auch interessiert war, wie er in einem Vortrag in Wien ein paar Monate früher erwähnt hatte. Deshalb habe ich ihn kontaktiert und wir haben begonnen, gemeinsam an diesem Thema zu arbeiten.
-
-
-7)      Können Gottesbeweise Ihrer Meinung nach tatsächlich die Existenz oder Nichtexistenz Gottes „beweisen“ oder setzen sie im Grunde schon die Annahme, dass es einen Gott gäbe voraus?
-
-Wir erfinden persönlichen Theorien in einem Versuch, alles zu organisieren und zu begreifen, was wir in dieser Welt erleben. Aus logischer Sicht erfordern alle Theorien die Annahme von Axiomen, von denen alles unseres Wissens abgeleitet werden kann.
-
-Viele Theisten und Atheisten starten durch die Annahme der Existenz oder Nicht-Existenz Gottes als Axiom in ihren eigenen persönlichen Theorien. Das ist für sie einfach eine Frage des Glaubens. Gödels Theorie ist anders. Seine Axiome sind einfach und scheinbar akzeptabel auch für Nicht-Theisten und es ist nicht sofort klar, dass Gottes notwendige Existenz aus ihnen abgeleitet werden kann. Das macht Gödels Theorie besonders interessant.
-
-Als Mensch, gefällt es mir meine eigene Existenz zu genießen und die Welt zu erleben. Das ist für mich wichtiger, als über die Existenz oder Nicht- Existenz Gottes zu streiten oder sogar mich selbst zu überzeugen. Als Logiker, gefällt es mir verschiedene Theorien zu erkunden und zu vergleichen. Ich persönlich bevorzuge überraschende Theorien wie Gödels, aber im Prinzip habe ich nichts gegen Theorien, die durch die Annahme der Existenz oder der Nicht-Existenz Gottes als Axiom starten.
+Aus diesen Axiomen leitet er einige Zwischenhilfssätze ab. Zwei der
+interessantesten Hilfssätze behaupten, dass die Existenz Gottes
+möglich ist, und dass die Existenz Gottes notwending ist, wenn sie
+überhaupt möglich ist. Aus diesen Hilfssätze leitet man den
+Hauptsatz ab, dass Gott notwendigerweise existiert.
 
 
-8)      Glauben Sie, dass sich jemand, der nicht an Gott glaubt, von irgendeinem Gottesbeweis von einer Existenz Gottes überzeugen lassen würde?
+3) Was hat Ihre Computerberechnung nun wirklich bewiesen? Was war der
+Sinn des ganzen?
 
-Ich glaube, das ist ein polemisches und emotionales Thema für viele Menschen, und viele Atheisten können starke Meinungen gegen solche Beweise haben. Um irrationale Reaktionen zu vermeiden, ist es aber wichtig, eine klare Vorstellung davon zu haben, was ein Beweis eigentlich ist. Ein Beweis sagt uns, dass wir sein Satz akzeptieren müssen, nur wenn wir ihre Axiome akzeptieren. Also, die rationale atheistische Reaktion wäre mindestens ein Axiom zu finden, der man als nicht akzeptabel betrachtet. Der Reiz des Beweises von Gödel liegt darauf, dass es nicht trivial ist, gegen die Akzeptanz seiner Axiome zu streiten. Dennoch haben viele Philosophen es richtig getan, beispielsweise gegen die Verwendung von S5 und gegen den Mangel an neutralen Eigenschaften (was eine unerwünschte Folge, die so-gennante Modal Collapse, bringt). Es gibt eine anhaltende Debatte und viele Varianten von Gödels Beweis mit etwas anderen und angeblich akzeptableren Axiomen sind vorgeschlagen worden. Allerdings werden Beweise immer auf Axiome abhängen und Atheisten haben immer die logische Recht, diese Axiome nicht zu akzeptieren, wenn sie es nicht wollen.
+Der Computer hat alle Lücken in Gödels Manuskript automatisch gefüllt
+und er hat überprüft, dass alle logischen Schritte in Gödels Beweis
+korrekt sind. Jetzt sind wir ganz sicher, dass der Hauptsatz aus den
+Axiomen tatsächlich folgt.
 
-Dennoch soll man auch beachten, dass die theologischen Wert eines solchen Beweises nicht zu seinem Potenzial, Atheisten zu überzeugen, eingeschränkt ist. Hinter formale Gottesbeweise gibt es immer eine Untersuchung über Gottes mögliche Natur. In Gödels Theorie, zum Beispiel, sieht man eine dichte Verbindung zwischen scheinbar unzusammenhängenden Aspekten wie dem Fehlen von neutralen Eigenschaften, der Existenz nur eines Gottes, Seiner Makellosigkeit und dem modalen Zusammenbruch.
+Sein Beweis ist anspruchsvoll, weil er eine Modallogik höherer Stufe
+erfordert. Bisher gab es für diese Logik keinen automatischen
+Theorembeweiser. Für Computer-Wissenschaftler und Logiker wie
+Christoph Benzmüller und ich, war dieser Beweis die perfekte
+Motivation, diese fehlende Technologie zu entwickeln.
+
+
+4) Hat der Computer nun etwas heraus gefunden, das man vorher nicht
+wusste?
+
+Ja. Wir waren in der Lage, eine Inkonsistenz in Gödels Version der
+Axiome zu finden und die Konsistenz der Version von Scott zu
+zeigen. Wir haben den umstrittenen Satz des so-genannten Modalen
+Zusammenbruchs bestätigt. Und wir entdeckten, entgegen der
+landläufigen Meinung, dass die Modallogik "S5" nicht notwendig ist,
+den Hauptsatz abzuleiten; Die Modallogik "KB" ist ausreichend.
+
+
+5) Sie haben ja auch herausgefunden, dass Gödel's Beweis nicht nur in
+einer Modallogik „S5“ funktioniert, sondern auch in der Modallogik
+„KB“. Könnten Sie etwas erklären, was Modallogik überhaupt ist und
+welchen Unterschied es zwischen S5 und KB gibt?
+
+Modallogiken beschäftigen sich mit Begriffen, die "Modalitäten"
+genannt werden. Beispiele von Modalitäten sind "Notwendigkeit" und
+"Möglichkeit". Es gibt verschiedene Arten von Modalitäten und deswegen
+gibt es verschiedene Modallogiken. Sie unterscheiden sich von einander
+in Bezug auf die Axiome, die die Modalitäten erfüllen müssen. In der
+Modallogik S5, zum Beispiel, beweist man das umstrittene Prinzip, dass
+"wenn etwas möglicherweise notwendigerweise der Fall ist, dann ist es
+notwendigerweise der Fall". Trotz dieses kontraintuitiven Prinzips
+wird S5 weithin als eine angemessene Logik für die Formalisierung der
+Begriffe der logischen Notwendigkeit und Möglichkeit
+angesehen. Dennoch ist ihre Angemessenheit für die Formalisierung
+metaphysischer Notwendigkeit und Möglichkeit noch bestreitbar.
+
+Die Modallogik KB, auf der anderen Seite, stützt sich auf das
+schwächere Axiom, dass "wenn etwas der Fall ist, dann ist es
+notwendigerweise möglicherweise der Fall". Das klingt intuitiv
+akzeptabler als S5. Wir sagen, dass Modallogik KB schwächer als S5
+ist, weil sie uns erlaubt, weniger Theoreme zu beweisen. Jeder in KB
+beweisbarer Satz ist auch in S5 beweisbar, aber nicht umgekehrt. Je
+schwächer die Axiome, die wir benutzen, je stärker unsere
+Theoremen. Deshalb ist es gut, dass wir es geschafft haben, genau zu
+bestimmen, dass eine schwächere Modallogik für Gödels Gottesbeweis
+ausreichend ist. Das bedeutet, dass sein Satz stärker ist und weniger
+Axiome benötigt als allgemein angenommen.
+
+
+6) Was war Ihre persönliche Motivation sich mit Gödels Gottesbeweis zu
+beschäftigen?
+
+Vor einem Jahr, als ich im Urlaub in Brasilien (meinem Heimat) war,
+musste ich eine große Schwierigkeit in meinem Leben durchstehen. Viele
+religiöse Menschen aus einer lokalen Kirche haben mir in dieser
+schwierigen Zeit unterstützt. In Dankbarkeit für ihre Unterstützung,
+wollte ich an Gödels Gottesbeweis arbeiten. Dann habe ich mich daran
+erinnert, dass Christoph Benzmüller an diesem Beweis auch interessiert
+war, wie er in einem Vortrag in Wien ein paar Monate früher erwähnt
+hatte. Deshalb habe ich ihn kontaktiert und wir haben begonnen,
+gemeinsam an diesem Thema zu arbeiten.
+
+
+7) Können Gottesbeweise Ihrer Meinung nach tatsächlich die Existenz
+oder Nichtexistenz Gottes „beweisen“ oder setzen sie im Grunde schon
+die Annahme, dass es einen Gott gäbe voraus?
+
+Wir erfinden persönlichen Theorien in einem Versuch, alles zu
+organisieren und zu begreifen, was wir in dieser Welt erleben. Aus
+logischer Sicht erfordern alle Theorien die Annahme von Axiomen, von
+denen alles unseres Wissens abgeleitet werden kann.
+
+Viele Theisten und Atheisten starten durch die Annahme der Existenz
+oder Nicht-Existenz Gottes als Axiom in ihren eigenen persönlichen
+Theorien. Das ist für sie einfach eine Frage des Glaubens. Gödels
+Theorie ist anders. Seine Axiome sind einfach und scheinbar akzeptabel
+auch für Nicht-Theisten und es ist nicht sofort klar, dass Gottes
+notwendige Existenz aus ihnen abgeleitet werden kann. Das macht Gödels
+Theorie besonders interessant.
+
+Als Mensch, gefällt es mir meine eigene Existenz zu genießen und die
+Welt zu erleben. Das ist für mich wichtiger, als über die Existenz
+oder Nicht- Existenz Gottes zu streiten oder sogar mich selbst zu
+überzeugen. Als Logiker, gefällt es mir verschiedene Theorien zu
+erkunden und zu vergleichen. Ich persönlich bevorzuge überraschende
+Theorien wie Gödels, aber im Prinzip habe ich nichts gegen Theorien,
+die durch die Annahme der Existenz oder der Nicht-Existenz Gottes als
+Axiom starten.
+
+
+8) Glauben Sie, dass sich jemand, der nicht an Gott glaubt, von
+irgendeinem Gottesbeweis von einer Existenz Gottes überzeugen lassen
+würde?
+
+Ich glaube, das ist ein polemisches und emotionales Thema für viele
+Menschen, und viele Atheisten können starke Meinungen gegen solche
+Beweise haben. Um irrationale Reaktionen zu vermeiden, ist es aber
+wichtig, eine klare Vorstellung davon zu haben, was ein Beweis
+eigentlich ist. Ein Beweis sagt uns, dass wir sein Satz akzeptieren
+müssen, nur wenn wir ihre Axiome akzeptieren. Also, die rationale
+atheistische Reaktion wäre mindestens ein Axiom zu finden, der man als
+nicht akzeptabel betrachtet. Der Reiz des Beweises von Gödel liegt
+daran, dass es nicht trivial ist, gegen die Akzeptanz seiner Axiome
+zu streiten. Dennoch haben viele Philosophen es richtig getan,
+beispielsweise gegen die Verwendung von S5 und gegen den Mangel an
+neutralen Eigenschaften (was eine unerwünschte Folge, die so-gennante
+Modal Collapse, bringt). Es gibt eine anhaltende Debatte und viele
+Varianten von Gödels Beweis mit etwas anderen und angeblich
+akzeptableren Axiomen sind vorgeschlagen worden. Allerdings werden
+Beweise immer auf Axiome abhängen und Atheisten haben immer das
+logische Recht, diese Axiome nicht zu akzeptieren, wenn sie es nicht
+wollen.
+
+Dennoch soll man auch beachten, dass der theologischen Wert eines
+solchen Beweises nicht auf sein Potenzial, Atheisten zu überzeugen,
+eingeschränkt ist. Hinter formalen Gottesbeweisen gibt es immer eine
+Untersuchung über Gottes mögliche Natur. In Gödels Theorie, zum
+Beispiel, sieht man eine enge Verbindung zwischen scheinbar
+unzusammenhängenden Aspekten wie dem Fehlen von neutralen
+Eigenschaften, der Existenz nur eines Gottes, seiner Makellosigkeit
+und dem modalen Zusammenbruch.
