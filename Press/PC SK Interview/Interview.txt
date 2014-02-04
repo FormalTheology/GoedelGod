@@ -1,0 +1,195 @@
+Questions:
+
+Q 1. : Could you please, explain in few sentences the main idea and
+results of your article [http://arxiv.org/pdf/1308.4526v4.pdf] ?
+
+Kurt Gödel (1906-1978) proposed an argumentation formalism to prove
+the existence of God. Attempts to prove the existence (or
+non-existence) of God by means of abstract, ontological arguments are
+an old tradition in western philosophy.  Before Gödel, several well
+known philosophers, including St. Anselm, Descartes and Leibniz, have
+presented similar arguments. What motivated Gödel as a logician was
+the question, whether it is possible to deduce the existence of God
+from a small number of foundational axioms and definitions, with a
+mathematically precise and logically formal argumentation chain.
+
+What Bruno Woltzenlogel Paleo from TU Vienna and I did was to
+formalize Kurt Gödel's argument for God's existence on a computer and
+to verify it automatically. From Gödel's premises, the computer then
+proved: there exists God.  "Automated theorem proving" is the
+mathematical discipline where such automated systems are
+developed. Interestingly, the theorem provers also found some new
+results about Gödel's argument.
+
+In theoretical philosophy, formal logical confrontations with such
+proofs of God's existence had been so far (mainly) limited to paper
+and pen.  Up to now, the use of computers was prevented, because the
+"logics" of the available theorem proving systems were not expressive
+enough to formalize the abstract concepts adequately. Gödel's proof
+uses, for example, a complex higher-order modal logic to handle
+concepts such as "possible" and "necessary" and to support
+quantification over individuals and properties.
+
+Current works of myself and Larry Paulson from Cambridge University,
+UK, show that many expressive logics, including higher-order modal
+logics, can be embedded into the classical higher-order logic, which
+can thus be seen as a universal logic. For this universal logic,
+efficient automated theorem provers have been developed in recent
+years, and these systems were now employed in our work.
+
+
+Q 2. : When did you get the idea to work on  Gödels ontological proof in "automated way"?
+
+I have been challenged by the idea since about 6 years. It was
+actually Melvin Fittings book on "Types, Tableaus, and Gödel's God"
+that initially raised my interest. In the last few years I have then
+been working on embeddings of various expressive logics in classical
+higher-order order logics. My main goal thereby was to support
+improved reasoning technology for various applications, for example in
+artificial intelligence.  But clearly, this research also paved the
+way for tackling the ontological argument with computer
+technology. End of 2012, I then met Bruno Woltzenlogel Paleo in
+Vienna, where I presented this research to the Kurt Gödel
+society. Bruno was highly interested in formalizing the ontological
+argument for personal reasons (he went though some very hard time end
+of 2012), and he wanted to present a formalization of Gödel's
+ontological proof as a gift to a priest back home in Brazil. He then
+contacted me in early 2013 and we decided to jointly work on the
+formalization and automation of the ontological argument. From the
+very beginning it was very clear to both of us, that the
+computer-based formalization and automation of Gödel's ontological
+argument was of major scientific interest for various reasons. Most
+importantly, we provide a significant novel contribution towards a
+computer-supported theoretical philosophy. Remember, that such a
+computational view on philosophy was already pictured by Leibniz.
+
+
+Q 3. : Is there a story behind creation of the article/code?
+
+Well, yes, and part of the story has already been mentioned above. We
+succeeded with the first automated proof of Dana Scott's version of
+Gödel's ontological argument in early July 2013, and it was actually
+LEO-II, my own higher-order theorem prover, which did prove the result
+first. Subsequently we reproduced the results with other systems. At
+the very beginning, I wasn't sure which publishing strategy we should
+follow. Bruno convinced me that uploading our entire work on Github
+would be the right way to proceed. Raul Rojas at Freie Universität
+Berlin, whom I had briefly told about our successful work, then
+prepared the Telepolis/Heise interview with me. And at the same time
+we did submit the two page article to the arXiv repository in
+order to have a first reference available.  We will, of course, add
+further publications in the near future; one has already appeared:
+http://afp.sourceforge.net/entries/GoedelGod.shtml. Others are
+submitted. These future papers will explain our work and its
+implications in more depth to different target communities.
+
+
+
+Q 4. : What were the reactions after publishing? Were there a lot of them?
+
+Yes, there were strong reactions. In particular, the Telepolis
+interview (http://www.heise.de/tp/artikel/39/39766/1.html) and the
+Spiegel Online article(s) triggered such strong reactions.  In fact,
+the interview on Telepolis was amongst their top ten most read
+articles in 2013. I assume that a similar statement can be made for
+some other reports on our work. Many of the reactions to our work were
+rather irrational, and often they revealed a lack of knowledge in the
+readers about the nature and role of the ontological argument in
+philosophy and theology, or they showed a lack of knowledge about
+formal logic and theorem proving. Other reactions were highly
+interesting and inspiring. We also got some highly valuable feedback
+from expert philosophers, and we have started some very fruitful
+discussions with them. Moreover, we got contacted by the roman
+catholic church, and Bruno met with the Archbishop in Vienna.
+
+
+Q 5. : Were there also funny or surprising ones?
+
+Well, yes, there are many funny forum comments on the various
+website's that reported on our work. I also got contacted by several
+people who presented me their own theories on essential and
+fundamental questions about the world and about God. Unfortunately, I
+do not have the resources and the time to comment on all of these
+requests. Often I have to respond to them that my core
+interests (so far) have been on the pure logical aspects of the
+ontological argument.
+
+
+
+Q 6. : The project was published at GitHub in open source form.  Did
+many people download (/use) your code? Did somebody modify it in any
+way? Is there some contribution of community actually?
+
+Unfortunately such statistics data has only recently been made
+available on GitHub as it seems. This is pity, and I would actually like
+to know these numbers as well. However, I know from many students at
+my university that they have downloaded the sources and worked with
+them. Some students have recently contacted me with some interesting
+comments and developments. Generally, we would like to invite
+interested researchers worldwide to join our
+initiative. Unfortunately, there is still a fair amount of
+logic training required to fully master the code.
+
+
+
+Q 7. : Do you, personally, believe in God? What is your
+"position/mind" in this field?  Note: you can skip this question, if
+it is too personal for you.
+
+I grew up in a religious family; thus my background can be classified
+as religious. As a scientist, however, I have developed a purely
+rational attitude, also regarding fundamental questions as we discuss them
+here. In fact, my personal believe didn't and doesn't play a role in
+our work on Gödel's ontological argument. The driving element for me
+has rather been a deep interest in the logical peculiarities of
+Gödel's proof and also my growing fascination for the field of
+metaphysics. But I have to admit that I am in favor of a positive
+answer to the question of the existence of God. Unfortunately,
+however, Gödel's proof appears not yet fully convincing to me, since
+there is some justified criticism regarding some of his axioms. A very
+interesting question now is whether our technology can eventually help
+to further analyze and improve the argument.
+
+
+
+Q 8. : What are topics/subject that you are currently working on? Or
+plan to work?
+
+I am currently working on basically four interconnected research
+directions:
+
+-- Six years ago I have started studying to what extend classical
+   higher-order logic can be exploited as a universal logic. The idea
+   is to embed other challenge logics in classical higher-order logics
+   and to apply higher-order automated theorem provers to
+   them. Higher-order modal logic, as required in Gödel's ontological
+   argument, is just one example. Another, even more interesting logic
+   that can be easily embedded is higher-order conditional logic. Also
+   security logics can be automated this way. And most interestingly,
+   combinations of these logics and even parts of their meta-theory
+   can be formalized and automated.
+
+-- Together with a group of students I am about to start an
+   re-implementation of my LEO-II theorem prover; I just received some
+   funding from the German National Research Foundation (DFG) to carry
+   out this project. The new system will be called LEO-III. Ideally, I
+   want to optimize LEO-III for the automation of logic embeddings,
+   including the logics as required for automating arguments in theoretical 
+   philosophy.
+
+-- Together with Bruno Woltzenlogel I want to formalize a range of
+   variations of the ontological argument. In fact, we would like to
+   formalize major parts of the textbook by Sobel on 'Logic and
+   Theism'. Moreover, we want to try to further improve Gödel's
+   ontological argument. Currently we try to raise funds for such a
+   project.
+
+-- In order to create a larger community we need to significantly
+   improve the user interfaces of our reasoning tools. So far they are
+   suitable only to expert users. Ideally, we should develop a powerful
+   and easy to use reasoning framework for applications in theoretical
+   philosophy. This is another research direction for which I would
+   like to raise funds and create a strong team.
+
+
+
