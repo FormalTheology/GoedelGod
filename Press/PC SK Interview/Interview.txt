@@ -38,7 +38,7 @@ efficient automated theorem provers have been developed in recent
 years, and these systems were now employed in our work.
 
 
-Q 2. : When did you get the idea to work on  Gödels ontological proof in "automated way"?
+Q 2. : When did you get the idea to work on Gödels ontological proof in "automated way"?
 
 I have been challenged by the idea since about 6 years. It was
 actually Melvin Fittings book on "Types, Tableaus, and Gödel's God"
@@ -60,7 +60,7 @@ very beginning it was very clear to both of us, that the
 computer-based formalization and automation of Gödel's ontological
 argument was of major scientific interest for various reasons. Most
 importantly, we provide a significant novel contribution towards a
-computer-supported theoretical philosophy. Remember, that such a
+computer-supported theoretical philosophy. Remember that such a
 computational view on philosophy was already pictured by Leibniz.
 
 
@@ -99,14 +99,14 @@ philosophy and theology, or they showed a lack of knowledge about
 formal logic and theorem proving. Other reactions were highly
 interesting and inspiring. We also got some highly valuable feedback
 from expert philosophers, and we have started some very fruitful
-discussions with them. Moreover, we got contacted by the roman
-catholic church, and Bruno met with the Archbishop in Vienna.
+discussions with them. Moreover, we got contacted by a bishop from the roman
+catholic church, and Bruno met him in Vienna.
 
 
 Q 5. : Were there also funny or surprising ones?
 
 Well, yes, there are many funny forum comments on the various
-website's that reported on our work. I also got contacted by several
+websites that reported on our work. I also got contacted by several
 people who presented me their own theories on essential and
 fundamental questions about the world and about God. Unfortunately, I
 do not have the resources and the time to comment on all of these
@@ -139,7 +139,7 @@ it is too personal for you.
 I grew up in a religious family; thus my background can be classified
 as religious. As a scientist, however, I have developed a purely
 rational attitude, also regarding fundamental questions as we discuss them
-here. In fact, my personal believe didn't and doesn't play a role in
+here. In fact, my personal belief didn't and doesn't play a role in
 our work on Gödel's ontological argument. The driving element for me
 has rather been a deep interest in the logical peculiarities of
 Gödel's proof and also my growing fascination for the field of
@@ -158,9 +158,9 @@ plan to work?
 I am currently working on basically four interconnected research
 directions:
 
--- Six years ago I have started studying to what extend classical
+-- Six years ago I have started studying to what extent classical
    higher-order logic can be exploited as a universal logic. The idea
-   is to embed other challenge logics in classical higher-order logics
+   is to embed other challenging logics in classical higher-order logics
    and to apply higher-order automated theorem provers to
    them. Higher-order modal logic, as required in Gödel's ontological
    argument, is just one example. Another, even more interesting logic
@@ -169,7 +169,7 @@ directions:
    combinations of these logics and even parts of their meta-theory
    can be formalized and automated.
 
--- Together with a group of students I am about to start an
+-- Together with a group of students I am about to start a
    re-implementation of my LEO-II theorem prover; I just received some
    funding from the German National Research Foundation (DFG) to carry
    out this project. The new system will be called LEO-III. Ideally, I
@@ -177,10 +177,10 @@ directions:
    including the logics as required for automating arguments in theoretical 
    philosophy.
 
--- Together with Bruno Woltzenlogel I want to formalize a range of
+-- Together with Bruno Woltzenlogel Paleo I want to formalize a range of
    variations of the ontological argument. In fact, we would like to
-   formalize major parts of the textbook by Sobel on 'Logic and
-   Theism'. Moreover, we want to try to further improve Gödel's
+   formalize major parts of the textbook by Sobel on "Logic and
+   Theism". Moreover, we want to try to further improve Gödel's
    ontological argument. Currently we try to raise funds for such a
    project.
 
