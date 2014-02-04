@@ -257,3 +257,5 @@ International
 [iReporterstv](http://ireporterstv.co/computer-scientists-prove-god-exists/)
 
 [The Muslim Times](http://www.themuslimtimes.org/2013/10/uncategorized/computer-scientists-prove-mathematically-god-exists)
+
+[TulaTV](http://tulatv.com/2014/02/alemania-cientificos-ya-demostraron-la-existencia-de-dios-como-asi-lo-lograron/#)
