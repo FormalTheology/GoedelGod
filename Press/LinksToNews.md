@@ -38,7 +38,12 @@ Germany
 
 [Berliner Zeitung](http://www.berliner-zeitung.de/wissen/gottesbeweis-gott-existiert-,10808894,25720994.html)
 
+[Life.de](http://www.life.de/themen/people/242181-kurt_goedels_gottesbeweis_ist_richtig.html)
+
+[Lifenet.de](http://www.livenet.de/themen/people/242181-kurt_goedels_gottesbeweis_ist_richtig.html)
+
 [Top ten of most read articles in 2013 in Telepolis](http://www.heise.de/tp/artikel/40/40674/1.html)
+
 
 
 Austria
@@ -139,6 +144,12 @@ Netherlands
 [Spinoza Blogs](http://spinoza.blogse.nl/log/computer-bevestigt-dat-godels-godsbewijs-logisch-klopt.html)
 
 
+Czech Republik
+--------------
+
+[PC ZOZNAM](http://pc.zoznam.sk/novinka/godelov-dokaz-existencie-boha-potvrdeny)
+
+
 US
 --
 
@@ -146,7 +157,9 @@ US
 
 [ABC News](http://abcnews.go.com/Technology/computer-scientists-prove-god-exists/story?id=20678984)
 
-[Examiner](http://www.examiner.com/article/scientists-prove-god-exists-scientific-theory-states-higher-being-must-exist)
+[Examiner1](http://www.examiner.com/article/scientists-prove-god-exists-scientific-theory-states-higher-being-must-exist)
+
+[Examiner2](http://www.examiner.com/article/scientists-prove-god-exists-2-scientists-analyze-theory-to-prove-god-is-real)
 
 [HNGN](http://www.hngn.com/articles/16125/20131029/scientists-prove-gods-existence-with-a-macbook.htm)
 
@@ -157,6 +170,8 @@ US
 [23ABC](http://www.turnto23.com/news/us-world/computer-scientists-prove-god-exists)
 
 [Parent Herald](http://www.parentherald.com/articles/2840/20131030/scientists-prove-god-exists-and-heres-the-proof.htm)
+
+[Harmonist](http://harmonist.us/2013/11/god-godel-and-gigabytes/)
 
 
 Australia
@@ -199,6 +214,11 @@ Bulgaria
 [Эпохални Времена](http://www.epochtimes-bg.com/2013-04/2013-10-30_15.html)
 
 
+Greece
+------
+[BIO Magazine](http://www.biomagazine.gr/index.php/site/article/6/42/BIO%20Ethics/Scientists-Prove-God-Exists-An-Austrian-Math-Model-A-Macbook-And-Now-Artificial-Intelligence)
+
+
 International
 -------------
 
@@ -226,4 +246,14 @@ International
 
 [MSN](http://now.msn.com/christoph-benzmüller-and-bruno-woltzenlogel-paleo-scientists-say-theyve-proved-god-exists)
 
-[Investor Place](http://investorplace.com/2013/10/computer-scientists-just-prove-god-exists/#.Uq9BJ2RDvcl)
+[Investor Place](http://investorplace.com/2013/10/computer-scientists-just-prove-god-exists/#.Uq9BJ2RDv
+
+[International Business Times](http://www.ibtimes.com/god-real-scientists-prove-his-existence-godels-theory-macbooks-1446396)
+
+[Free-i-News](http://www.freeinews.com/science-and-beyond/scientists-prove-god-exists-german-scientists-say-they-have)
+
+[Anglican Patrimony](http://anglicanpatrimony.wordpress.com/2013/12/14/godels-ontological-proof/)
+
+[iReporterstv](http://ireporterstv.co/computer-scientists-prove-god-exists/)
+
+[The Muslim Times](http://www.themuslimtimes.org/2013/10/uncategorized/computer-scientists-prove-mathematically-god-exists)
