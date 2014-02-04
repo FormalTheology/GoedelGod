@@ -6,10 +6,10 @@ beweisen?
 Gödel war über seine eigene Motivation im allgemeinen introvertiert.
 Wir wissen, dass Gödel die Werke von Leibniz in den 1930er Jahren
 studiert hat, darunter auch Leibniz's ontologisches Argument für die
-Existenz Gottes, was er mit der Logik seiner Zeit untersuchen wollte.
+Existenz Gottes. Und er wollte dieses Argument mit der Logik seiner Zeit untersuchen.
 Ein erster Entwurf seines Beweises ist auf 1941 datiert.  Er
 verbesserte ihn von 1946 bis 1955, aber er hat ihn nie
-veröffentlicht. Erst 1970, gab er ein zweiseitiges Manuskript zu Dana
+veröffentlicht. Erst 1970 gab er ein zweiseitiges Manuskript zu Dana
 Scott, der dann die Axiome leicht modifiziert hat.
 
 Laut Robert Merrihew Adams, hat Gödel zu Oskar Morgenstern gesagt,
@@ -17,7 +17,7 @@ dass er den Beweis geheim gehalten hat, aus Angst dass man denken
 würde, "dass er tatsächlich an Gott glaubte, während er nur in einer
 logischen Untersuchung beschäftigt war". Andere (Adele, Wang, Sobel)
 behaupten jedoch, dass Gödel an Gott glaubte und die Bibel im Bett
-jeden Sonntag las, obwohl er in die Kirche nicht gang.
+jeden Sonntag las, obwohl er nicht in die Kirche ging.
 
 
 2) Wie funktioniert Gödels Gottesbeweis?
@@ -28,13 +28,13 @@ durch strenge logische Regeln ein Theorem ab.
 Gödel definiert Gott als ein Wesen, das alle positiven Eigenschaften
 hat. Dann nimmt Gödel fünf Axiome an, die angemessene Bedingungen
 formulieren, die die positiven Eigenschaften erfüllen müssen. Zum
-Beispiel: der erste Axiom sagt, dass jede Eigenschaft, die
+Beispiel: das erste Axiom sagt, dass jede Eigenschaft, die
 notwendigerweise durch eine positive Eigenschaft impliziert wird, auch
-positiv ist; der zweite Axiom sagt, dass entweder eine Eigenschaft
+positiv ist; das zweite Axiom sagt, dass entweder eine Eigenschaft
 positiv ist oder seine Negation ist, aber nicht beide (also, es gibt
-keine neutrale Eigenschaft); der dritte Axiom sagt, dass die
+keine neutrale Eigenschaft); das dritte Axiom sagt, dass die
 Kombination einer beliebigen Anzahl von positiven Eigenschaften auch
-positiv ist; und der vierte Axiom sagt, dass positive Eigenschaften
+positiv ist; und das vierte Axiom sagt, dass positive Eigenschaften
 notwendigerweise positiv sind.
 
 Aus diesen Axiomen leitet er einige Zwischenhilfssätze ab. Zwei der
@@ -55,7 +55,7 @@ Axiomen tatsächlich folgt.
 Sein Beweis ist anspruchsvoll, weil er eine Modallogik höherer Stufe
 erfordert. Bisher gab es für diese Logik keinen automatischen
 Theorembeweiser. Für Computer-Wissenschaftler und Logiker wie
-Christoph Benzmüller und ich, war dieser Beweis die perfekte
+Christoph Benzmüller und mich, war dieser Beweis die perfekte
 Motivation, diese fehlende Technologie zu entwickeln.
 
 
@@ -106,9 +106,10 @@ beschäftigen?
 
 Vor einem Jahr, als ich im Urlaub in Brasilien (meinem Heimat) war,
 musste ich eine große Schwierigkeit in meinem Leben durchstehen. Viele
-religiöse Menschen aus einer lokalen Kirche haben mir in dieser
+religiöse Menschen aus einer lokalen Kirche haben mich in dieser
 schwierigen Zeit unterstützt. In Dankbarkeit für ihre Unterstützung,
-wollte ich an Gödels Gottesbeweis arbeiten. Dann habe ich mich daran
+habe ich mich entschieden, an Gödels Gottesbeweis zu arbeiten. 
+Dann habe ich mich daran
 erinnert, dass Christoph Benzmüller an diesem Beweis auch interessiert
 war, wie er in einem Vortrag in Wien ein paar Monate früher erwähnt
 hatte. Deshalb habe ich ihn kontaktiert und wir haben begonnen,
@@ -119,27 +120,28 @@ gemeinsam an diesem Thema zu arbeiten.
 oder Nichtexistenz Gottes „beweisen“ oder setzen sie im Grunde schon
 die Annahme, dass es einen Gott gäbe voraus?
 
-Wir erfinden persönlichen Theorien in einem Versuch, alles zu
+Wir erfinden Theorien in einem Versuch, alles zu
 organisieren und zu begreifen, was wir in dieser Welt erleben. Aus
-logischer Sicht erfordern alle Theorien die Annahme von Axiomen, von
-denen alles unseres Wissens abgeleitet werden kann.
+logischer Sicht erfordern alle Theorien die Annahme von Axiomen.
 
-Viele Theisten und Atheisten starten durch die Annahme der Existenz
-oder Nicht-Existenz Gottes als Axiom in ihren eigenen persönlichen
-Theorien. Das ist für sie einfach eine Frage des Glaubens. Gödels
+Viele Theisten und Atheisten nehmen die Existenz
+oder Nicht-Existenz Gottes als Axiom im voraus an. 
+Das ist für sie einfach eine Frage des Glaubens. Gödels
 Theorie ist anders. Seine Axiome sind einfach und scheinbar akzeptabel
-auch für Nicht-Theisten und es ist nicht sofort klar, dass Gottes
+auch für Nicht-Theisten. Und es ist nicht sofort klar, dass Gottes
 notwendige Existenz aus ihnen abgeleitet werden kann. Das macht Gödels
 Theorie besonders interessant.
 
-Als Mensch, gefällt es mir meine eigene Existenz zu genießen und die
-Welt zu erleben. Das ist für mich wichtiger, als über die Existenz
-oder Nicht- Existenz Gottes zu streiten oder sogar mich selbst zu
-überzeugen. Als Logiker, gefällt es mir verschiedene Theorien zu
+Als Logiker, gefällt es mir verschiedene Theorien zu
 erkunden und zu vergleichen. Ich persönlich bevorzuge überraschende
 Theorien wie Gödels, aber im Prinzip habe ich nichts gegen Theorien,
-die durch die Annahme der Existenz oder der Nicht-Existenz Gottes als
-Axiom starten.
+die die Existenz oder Nicht-Existenz Gottes als
+Axiom annehmen.
+
+Als Mensch, gefällt es mir meine eigene Existenz zu genießen und die
+Welt zu erleben. Das ist für mich wichtiger, als über die Existenz
+Gottes zu streiten oder sogar mich selbst zu
+überzeugen. 
 
 
 8) Glauben Sie, dass sich jemand, der nicht an Gott glaubt, von
@@ -150,19 +152,20 @@ Ich glaube, das ist ein polemisches und emotionales Thema für viele
 Menschen, und viele Atheisten können starke Meinungen gegen solche
 Beweise haben. Um irrationale Reaktionen zu vermeiden, ist es aber
 wichtig, eine klare Vorstellung davon zu haben, was ein Beweis
-eigentlich ist. Ein Beweis sagt uns, dass wir sein Satz akzeptieren
-müssen, nur wenn wir ihre Axiome akzeptieren. Also, die rationale
-atheistische Reaktion wäre mindestens ein Axiom zu finden, der man als
+eigentlich ist. Ein Beweis sagt uns, dass wir sein Theorem akzeptieren
+müssen, nur wenn wir seine Axiome akzeptieren. Also, die rationale
+atheistische Reaktion wäre mindestens ein Axiom zu finden, das man als
 nicht akzeptabel betrachtet. Der Reiz des Beweises von Gödel liegt
-daran, dass es nicht trivial ist, gegen die Akzeptanz seiner Axiome
-zu streiten. Dennoch haben viele Philosophen es richtig getan,
-beispielsweise gegen die Verwendung von S5 und gegen den Mangel an
-neutralen Eigenschaften (was eine unerwünschte Folge, die so-gennante
-Modal Collapse, bringt). Es gibt eine anhaltende Debatte und viele
-Varianten von Gödels Beweis mit etwas anderen und angeblich
-akzeptableren Axiomen sind vorgeschlagen worden. Allerdings werden
-Beweise immer auf Axiome abhängen und Atheisten haben immer das
-logische Recht, diese Axiome nicht zu akzeptieren, wenn sie es nicht
+darin, dass es nicht trivial ist, gegen die Akzeptanz seiner Axiome
+zu streiten. Dennoch haben viele Philosophen korrekterweise 
+Einwände erhoben,
+beispielsweise gegen die Verwendung der Modallogik S5, den Mangel an
+neutralen Eigenschaften und den modalen Zusammenbruch. 
+Es gibt eine anhaltende Debatte und viele
+Varianten von Gödels Beweis; indem auch andere und angeblich
+akzeptablere Axiome vorgeschlagen worden sind. Allerdings werden
+Beweise immer von Axiomen abhängen und Atheisten haben immer das
+logische Recht, diese Axiome einfach nicht zu akzeptieren, wenn sie es nicht
 wollen.
 
 Dennoch soll man auch beachten, dass der theologischen Wert eines
