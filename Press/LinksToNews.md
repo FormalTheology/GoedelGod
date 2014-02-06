@@ -149,6 +149,19 @@ Czech Republik
 
 [PC ZOZNAM](http://pc.zoznam.sk/novinka/godelov-dokaz-existencie-boha-potvrdeny)
 
+[PC ZOZNAM Interview](http://pc.zoznam.sk/interview-christoph-benzmueller-potom-pocitac-dokazal-boh-existuje?page=0)
+
+[PC ZOZNAM Interview (English)](http://pc.zoznam.sk/interview-christoph-benzmueller-potom-pocitac-dokazal-boh-existuje?page=1)
+
+[vybrali SMA](http://vybrali.sme.sk/c/166339)
+
+
+
+Indonesia
+----------
+
+[lintas.me](http://www.lintas.me/article/malesboy.blogspot.com/ilmuwan-jerman-berhasil-buktikan-bahwa-tuhan-itu-ada)
+
 
 US
 --
