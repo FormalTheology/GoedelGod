@@ -41,21 +41,6 @@ thf(axA1,axiom,
                 ( mnot @ ( Phi @ X ) ) )
           @ ( mnot @ ( p @ Phi ) ) ) ) )).
 
-%----A2: A property necessarily implied by a positive property is positive.
-thf(axA2,axiom,
-    ( v
-    @ ( mforall_indset
-      @ ^ [Phi: mu > $i > $o] :
-          ( mforall_indset
-          @ ^ [Psi: mu > $i > $o] :
-              ( mimplies
-              @ ( mand @ ( p @ Phi )
-                @ ( mbox
-                  @ ( mforall_ind
-                    @ ^ [X: mu] :
-                        ( mimplies @ ( Phi @ X ) @ ( Psi @ X ) ) ) ) )
-              @ ( p @ Psi ) ) ) ) )).
-
 %----D1: A God-like being possesses all positive properties.
 thf(defD1,definition,
     ( g
@@ -63,6 +48,7 @@ thf(defD1,definition,
           ( mforall_indset
           @ ^ [Phi: mu > $i > $o] :
               ( mimplies @ ( p @ Phi ) @ ( Phi @ X ) ) ) ) )).
+
 
 thf(thmFG_con,conjecture,
     ( v
