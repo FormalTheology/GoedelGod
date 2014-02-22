@@ -1,0 +1,81 @@
+Asking various HOL-ATPs in Miami remotely (thanks to Geoff Sutcliffe)
+
+C_K_const_max.p---LEO-II---1.6.2---RESULT: SOT_6I01zD - LEO-II---1.6.2 says Theorem - CPU = 0.00 WC = 0.09
+C_K_const_max.p---Satallax---2.7---RESULT: SOT_PmddCm - Satallax---2.7 says Theorem - CPU = 5.31 WC = 5.41
+Done
+
+C_K_const_min.p---Satallax---2.7---RESULT: SOT_nl9WZl - Satallax---2.7 says Theorem - CPU = 0.00 WC = 0.07
+C_K_const_min.p---LEO-II---1.6.2---RESULT: SOT_UWte99 - LEO-II---1.6.2 says Theorem - CPU = 0.00 WC = 0.05
+Done
+
+C_K_vary_max.p---LEO-II---1.6.2---RESULT: SOT_NvT4Xx - LEO-II---1.6.2 says Theorem - CPU = 0.00 WC = 0.10
+C_K_vary_max.p---Satallax---2.7---RESULT: SOT_20VVeR - Satallax---2.7 says Theorem - CPU = 31.44 WC = 31.54
+Done
+
+C_K_vary_min.p---Satallax---2.7---RESULT: SOT_sp7Ecw - Satallax---2.7 says Theorem - CPU = 0.00 WC = 0.01
+C_K_vary_min.p---LEO-II---1.6.2---RESULT: SOT_jR9Qo4 - LEO-II---1.6.2 says Theorem - CPU = 0.03 WC = 0.06
+Done
+
+T1_K_const_max.p---Satallax---2.7---RESULT: SOT_fflQP7 - Satallax---2.7 says Theorem - CPU = 0.01 WC = 0.05
+T1_K_const_max.p---LEO-II---1.6.2---RESULT: SOT_UVCoW0 - LEO-II---1.6.2 says Theorem - CPU = 0.05 WC = 0.10
+Done
+
+T1_K_const_min.p---Satallax---2.7---RESULT: SOT_Z2NI0f - Satallax---2.7 says Theorem - CPU = 0.00 WC = 0.01
+T1_K_const_min.p---LEO-II---1.6.2---RESULT: SOT_3kNWoH - LEO-II---1.6.2 says Theorem - CPU = 0.00 WC = 0.08
+Done
+
+T1_K_vary_max.p---LEO-II---1.6.2---RESULT: SOT_SyBVz6 - LEO-II---1.6.2 says Theorem - CPU = 0.07 WC = 0.10
+T1_K_vary_max.p---Satallax---2.7---RESULT: SOT_Gxp42f - Satallax---2.7 says Theorem - CPU = 5.26 WC = 5.34
+Done
+
+T1_K_vary_min.p---LEO-II---1.6.2---RESULT: SOT_kCrJVH - LEO-II---1.6.2 says Theorem - CPU = 0.06 WC = 0.09
+T1_K_vary_min.p---Satallax---2.7---RESULT: SOT_9cAWxY - Satallax---2.7 says Theorem - CPU = 0.00 WC = 0.04
+Done
+
+T2_K_const_max.p---Satallax---2.7---RESULT: SOT_sFCUne - Satallax---2.7 says Theorem - CPU = 0.00 WC = 0.11
+T2_K_const_max.p---LEO-II---1.6.2---RESULT: SOT_2PQD_2 - LEO-II---1.6.2 says Theorem - CPU = 12.41 WC = 12.58
+Done
+
+T2_K_const_min.p---Satallax---2.7---RESULT: SOT_K67hKc - Satallax---2.7 says Theorem - CPU = 0.00 WC = 0.11
+T2_K_const_min.p---LEO-II---1.6.2---RESULT: SOT_0wKt3u - LEO-II---1.6.2 says Theorem - CPU = 18.33 WC = 18.40
+Done
+
+T2_K_vary_max.p---Satallax---2.7---RESULT: SOT_GycxLU - Satallax---2.7 says Theorem - CPU = 0.08 WC = 0.12
+T2_K_vary_max.p---LEO-II---1.6.2---RESULT: SOT_4mBQuM - LEO-II---1.6.2 says Theorem - CPU = 13.66 WC = 13.76
+Done
+
+T2_K_vary_min.p---Satallax---2.7---RESULT: SOT_3SFOvl - Satallax---2.7 says Theorem - CPU = 0.00 WC = 0.10
+T2_K_vary_min.p---LEO-II---1.6.2---RESULT: SOT_fPY111 - LEO-II---1.6.2 says Theorem - CPU = 18.47 WC = 18.60
+Done
+
+T3_KB_const_max.p---LEO-II---1.6.2---RESULT: SOT_dkFyoA - LEO-II---1.6.2 says Timeout - CPU = 60 WC = 59.97
+T3_KB_const_max.p---Satallax---2.7---RESULT: SOT_Q4giLQ - Satallax---2.7 says Timeout - CPU = 60.11 WC = 60.20
+Done
+
+T3_KB_const_min.p---LEO-II---1.6.2---RESULT: SOT_6yiwiS - LEO-II---1.6.2 says Theorem - CPU = 0.01 WC = 0.07
+T3_KB_const_min.p---Satallax---2.7---RESULT: SOT_7G04OD - Satallax---2.7 says Theorem - CPU = 0.08 WC = 0.13
+Done
+
+T3_KB_vary_max.p---Satallax---2.7---RESULT: SOT_Tiw4ec - Satallax---2.7 says Timeout - CPU = 60.00 WC = 60.11
+T3_KB_vary_max.p---LEO-II---1.6.2---RESULT: SOT_btwty2 - LEO-II---1.6.2 says Timeout - CPU = 60.03 WC = 60.11
+Done
+
+T3_KB_vary_min.p---LEO-II---1.6.2---RESULT: SOT_8HN62B - LEO-II---1.6.2 says Theorem - CPU = 0.05 WC = 0.08
+T3_KB_vary_min.p---Satallax---2.7---RESULT: SOT_dyg6P9 - Satallax---2.7 says Theorem - CPU = 5.36 WC = 5.42
+Done
+
+T3_K_const_max.p---LEO-II---1.6.2---RESULT: SOT_wGVygx - LEO-II---1.6.2 says Timeout - CPU = 60.04 WC = 60.10
+T3_K_const_max.p---Satallax---2.7---RESULT: SOT_8sWXwl - Satallax---2.7 says Timeout - CPU = 60.04 WC = 60.11
+Done
+
+T3_K_const_min.p---Satallax---2.7---RESULT: SOT_AscnxO - Satallax---2.7 says Timeout - CPU = 60.05 WC = 60.12
+T3_K_const_min.p---LEO-II---1.6.2---RESULT: SOT_xvnF0q - LEO-II---1.6.2 says Timeout - CPU = 60.02 WC = 60.12
+Done
+
+T3_K_vary_max.p---LEO-II---1.6.2---RESULT: SOT_NjFqHM - LEO-II---1.6.2 says Timeout - CPU = 60 WC = 59.80
+T3_K_vary_max.p---Satallax---2.7---RESULT: SOT_I36NKe - Satallax---2.7 says Timeout - CPU = 60.09 WC = 60.20
+Done
+
+T3_K_vary_min.p---LEO-II---1.6.2---RESULT: SOT_at8PK7 - LEO-II---1.6.2 says Timeout - CPU = 60.04 WC = 60.12
+T3_K_vary_min.p---Satallax---2.7---RESULT: SOT_00l9WA - Satallax---2.7 says Timeout - CPU = 60.08 WC = 60.11
+Done
