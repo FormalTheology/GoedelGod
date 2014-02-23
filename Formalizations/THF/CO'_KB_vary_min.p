@@ -7,6 +7,8 @@
 %----July, 16 2013 (update on August 21, 2013)
 
 %----Informal: Scott's version of Goedel's ontological proof
+%              Here we are interested in the consistency of the
+%              axioms and definitions.
 
 
 %------------------------------------------------------------------------------
@@ -31,12 +33,12 @@ thf(ess_tp,type,(
 thf(ne_tp,type,(
     ne: mu > $i > $o )).
 
-%----A1: Either the property or its negation are positive, but not both.
-thf(axA1,axiom,
+%----A1a: Either the property or its negation are positive, but not both.
+thf(axA1a,axiom,
     ( v
     @ ( mforall_indset
       @ ^ [Phi: mu > $i > $o] :
-          ( mequiv
+          ( mimplies
           @ ( p
             @ ^ [X: mu] :
                 ( mnot @ ( Phi @ X ) ) )
@@ -57,38 +59,20 @@ thf(axA2,axiom,
                         ( mimplies @ ( Phi @ X ) @ ( Psi @ X ) ) ) ) )
               @ ( p @ Psi ) ) ) ) )).
 
-%----D1: A God-like being possesses all positive properties.
-thf(defD1,definition,
-    ( g
-    = ( ^ [X: mu] :
-          ( mforall_indset
-          @ ^ [Phi: mu > $i > $o] :
-              ( mimplies @ ( p @ Phi ) @ ( Phi @ X ) ) ) ) )).
 
-%----A3: The property of being God-like is positive.
-thf(axA3,axiom,
-    ( v @ ( p @ g ) )).
-
-%----A4: Positive properties are necessary positive properties.
-thf(axA4,axiom,
-    ( v
-    @ ( mforall_indset
-      @ ^ [Phi: mu > $i > $o] :
-          ( mimplies @ ( p @ Phi ) @ ( mbox @ ( p @ Phi ) ) ) ) )).
 
 %----D2: An essence of an individual is a property possessed by it and
 %----necessarily implying any of its properties
 thf(defD2,definition,
     ( ess
     = ( ^ [Phi: mu > $i > $o,X: mu] :
-          ( mand @ ( Phi @ X )
-          @ ( mforall_indset
+            ( mforall_indset
             @ ^ [Psi: mu > $i > $o] :
                 ( mimplies @ ( Psi @ X )
                 @ ( mbox
                   @ ( mforall_ind
                     @ ^ [Y: mu] :
-                        ( mimplies @ ( Phi @ Y ) @ ( Psi @ Y ) ) ) ) ) ) ) ) )).
+                        ( mimplies @ ( Phi @ Y ) @ ( Psi @ Y ) ) ) ) ) ) ) )).
 
 %----D3: Necessary existence of an individual is the necessary 
 %----exemplification of all its essences
@@ -107,17 +91,3 @@ thf(defD3,definition,
 thf(axA5,axiom,
     ( v @ ( p @ ne ) )).
 
-thf(mequals_type,type,(
-    mequals: mu > mu > $i > $o )).
-
-thf(mequals,definition,
-    ( mequals
-    = ( ^ [X: mu,Y: mu,W: $i] : ( X = Y ) ) )).
-
-thf(thmMT_con,conjecture,
-    ( v
-    @ ( mforall_ind
-      @ ^ [X: mu] :
-          ( mforall_ind
-          @ ^ [Y: mu] :
-              ( mimplies @ ( g @ X ) @ ( mimplies @ ( g @ Y ) @ ( mequals @ X @ Y ) ) ) ) ) )).

@@ -7,11 +7,13 @@
 %----July, 16 2013 (update on August 21, 2013)
 
 %----Informal: Scott's version of Goedel's ontological proof
+%              Here we are interested in the consistency of the
+%              axioms and definitions.
 
 
 %------------------------------------------------------------------------------
 %----Axioms for Quantified Modal Logic KB.
-include('Quantified_KB_varying.ax').
+include('Quantified_KB.ax').
 
 %------------------------------------------------------------------------------
 
@@ -107,17 +109,3 @@ thf(defD3,definition,
 thf(axA5,axiom,
     ( v @ ( p @ ne ) )).
 
-thf(mequals_type,type,(
-    mequals: mu > mu > $i > $o )).
-
-thf(mequals,definition,
-    ( mequals
-    = ( ^ [X: mu,Y: mu,W: $i] : ( X = Y ) ) )).
-
-thf(thmMT_con,conjecture,
-    ( v
-    @ ( mforall_ind
-      @ ^ [X: mu] :
-          ( mforall_ind
-          @ ^ [Y: mu] :
-              ( mimplies @ ( g @ X ) @ ( mimplies @ ( g @ Y ) @ ( mequals @ X @ Y ) ) ) ) ) )).

@@ -46,6 +46,14 @@ thf(thmFG_con,axiom,
           @ ^ [X: mu] :
               ( mimplies @ ( g @ X ) @ ( mimplies @ ( mnot @ ( p @ Phi ) ) @ ( mnot @ ( Phi @ X ) ) ) ) ) ) )).
 
+
+thf(mequals_type,type,(
+    mequals: mu > mu > $i > $o )).
+
+thf(mequals,definition,
+    ( mequals
+    = ( ^ [X: mu,Y: mu,W: $i] : ( X = Y ) ) )).
+
 thf(thmMT_con,conjecture,
     ( v
     @ ( mforall_ind

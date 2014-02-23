@@ -107,7 +107,12 @@ thf(defD3,definition,
 thf(axA5,axiom,
     ( v @ ( p @ ne ) )).
 
+thf(mequals_type,type,(
+    mequals: mu > mu > $i > $o )).
 
+thf(mequals,definition,
+    ( mequals
+    = ( ^ [X: mu,Y: mu,W: $i] : ( X = Y ) ) )).
 
 thf(thmMT_con,conjecture,
     ( v
