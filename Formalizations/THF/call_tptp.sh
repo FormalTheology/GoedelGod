@@ -5,7 +5,7 @@ call=./RemoteSOT.pl
 
 #proverlist='LEO-II---1.6.2 Satallax---2.7 Isabelle---2013 Nitrox---2013 agsyHOL---1.0 TPS---3.120601S1b'
 proverlist='LEO-II---1.6.2 Satallax---2.7 Nitrox---2013'
-timeout=600
+timeout=60
 
 echo
 echo Asking various HOL-ATPs in Miami remotely \(thanks to Geoff Sutcliffe\)
