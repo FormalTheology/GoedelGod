@@ -83,15 +83,14 @@ Ltac box_e H H1:= match goal with | [ |- (_ ?w) ] => box_elim H w H1 end.
 
 Ltac dia_e H := let w := fresh "w" in let R := fresh "R" in (destruct H as [w [R H]]; move w at top; move R at top).
 
-Ltac dia_i w := (exists w; split; [assumption | idtac]).
+Ltac dia_i w := (exists w; split; [auto | idtac]).
 
 Create HintDb modal.
 Hint Unfold mimplies mnot dia box A V : modal.
 
 Lemma mp_dia: [mforall p, mforall q, (dia p) m-> (box (p m-> q)) m-> (dia q)].
-Proof. 
+Proof. mv.
 (* firstorder. *) (* This could solve the goal automatically *)
-mv.
 intros p q.
 intros H1 H2.
 dia_e H1.
@@ -102,9 +101,8 @@ exact H1.
 Qed.
 
 Lemma not_dia_box_not: [mforall p, (m~ (dia p)) m-> (box (m~ p))].
-Proof.
+Proof. mv.
 (* firstorder. *) (* This could solve the goal automatically *)
-mv.
 intro p.
 intro H.
 box_i.
@@ -113,6 +111,31 @@ apply H.
 dia_i w0.
 exact H2.
 Qed.
+
+Lemma box_not_not_dia: [ mforall p, (box (m~ p)) m-> (m~ (dia p)) ].
+Proof. mv.
+(* firstorder. *) (* This could solve the goal automatically *)
+intro p.
+intro H1.
+intro H2.
+dia_e H2.
+box_elim H1 w0 H3.
+apply H3.
+exact H2.
+Qed.
+
+Lemma dia_not_not_box: [ mforall p, (dia (m~ p)) m-> (m~ (box p)) ].
+Proof. mv.
+(* firstorder. *) (* This could solve the goal automatically *)
+intro p.
+intro H1.
+intro H2.
+dia_e H1.
+apply H1.
+box_e H2 H3.
+exact H3.
+Qed.
+
 
 
 (* Modal accessibility axioms *)
@@ -148,7 +171,21 @@ intro p.
 intro H.
 box_e H H1. exact H1.
 apply reflexivity. 
-Qed.  
+Qed. 
+
+Theorem B: [ mforall p, (p m-> (box (dia p))) ].
+Proof.
+mv.
+intro p.
+intro H.
+box_i.
+dia_i w.
+  apply symmetry.
+  assumption.
+
+  exact H.
+Qed.
+ 
 
 (* In strong modal logics, such as S5, iterations of modal operators can be collapsed *)
 Theorem dia_box_to_box: [ mforall p, (dia (box p)) m-> (box p) ].

@@ -1,16 +1,23 @@
-(* Formalization of Goedel's Ontological Proof of God's Existence *)
+(* Formalization of a variant of Goedel's Ontological Proof of God's Existence *)
 
-(* Authors: Bruno Woltzenlogel Paleo and Christoph Benzmueller *)
+(* Authors: Bruno Woltzenlogel Paleo, Annika Siders and Christoph Benzmueller *)
 
-(* This formalization aims at *)
-(* being as similar as possible to Dana Scott's version of the proof *)
+(* This variant differs from Scott's and Gödel's versions in the following aspects: 
+     
+     - The proof of theorem 1 is shorter. 
+       Moreover, it uses axiom 2 only once and does not rely on equality.
+       (this improved proof was found by Bruno)
+
+     - Instead of proving theorem 3 using a strong iteration principle from S5
+       and then proving corollary 2 from theorem 3 via axiom T, 
+       corollary 2 is proved firstly and directly, using the weaker modal axiom B,
+       and then theorem 3 follows trivially from corollary 2 by necessitation.
+       (the fact that B is sufficient can be traced back at least to a work by André Fuhrmann, 
+       and it has been discovered independently by Christoph and Bruno using automated provers.  
+       The direct proof of corollary 2 using B was found by Annika)
+*)
 
 (* The numbering of axioms, definitions and theorems is exactly the same as in Scott's notes *)
-
-(* The formal proofs follow the same structure of Scott's proof sketches and fill their gaps *)
-(* Whenever a 'cut' or 'assert' uses a lemma mentioned in Scott's sketches, *) 
-(* this is emphasized with a comment *)
-
 
 
 Require Import Coq.Logic.Classical.
@@ -40,7 +47,7 @@ intro p.
 intro H1.
 proof_by_contradiction H2.
 apply not_dia_box_not in H2.
-assert (H3: ((box (mforall x, m~ (p x))) w)). (* Lemma from Scott's notes *)
+assert (H3: ((box (mforall x, m~ (p x))) w)).
   box_i.
   intro x.
   assert (H4: ((m~ (mexists x : u, p x)) w0)).
@@ -53,7 +60,7 @@ assert (H3: ((box (mforall x, m~ (p x))) w)). (* Lemma from Scott's notes *)
     exists x.
     exact H5.
 
-  assert (H6: ((box (mforall x, (p x) m-> m~ (x m= x))) w)). (* Lemma from Scott's notes *)    
+  assert (H6: ((box (mforall x, (p x) m-> m~ (p x))) w)).    
     box_i.
     intro x.
     intros H7 H8.
@@ -61,28 +68,15 @@ assert (H3: ((box (mforall x, m~ (p x))) w)). (* Lemma from Scott's notes *)
     eapply G3.
     exact H7.
 
-    assert (H9: ((Positive (fun x => m~ (x m= x))) w)). (* Lemma from Scott's notes *)
-      apply (axiom2 w p (fun x => m~ (x m= x))).
+    assert (H9: ((Positive (fun x => m~ (p x))) w)).
+      apply (axiom2 w p (fun x => m~ (p x))).
       split.
         exact H1.
 
         exact H6.
 
-      assert (H10: ((box (mforall x, (p x) m-> (x m= x))) w)). (* Lemma from Scott's notes *)
-        box_i.
-        intros x H11.     
-        reflexivity.
-
-        assert (H11 : ((Positive (fun x => (x m= x))) w)). (* Lemma from Scott's notes *)
-          apply (axiom2 w p (fun x => x m= x )).
-          split.
-            exact H1.
-
-            exact H10.
-
-          clear H1 H2 H3 H6 H10 p.
-          apply axiom1a in H9.
-          contradiction.
+      apply axiom1a in H9.
+      contradiction.
 Qed.
 
 
@@ -143,8 +137,6 @@ split.
       exact H3.
 Qed.
 
-(* At this point in Scott's notes there are two notes that are not necessary for the proof, *)
-(* but it would be interesting to formalize them anyway *)
 
 (* Definition D3: necessary existence: necessary existence of an individual is the necessary exemplification of all its essences *)
 Definition NE(x: u) := mforall p, (p ess x) m-> box (mexists y, (p y)).
@@ -172,31 +164,39 @@ cut ((G ess g) w).      (* Lemma from Scott's notes *)
 Qed.
 
 
-Lemma lemma2: [ dia (mexists z, (G z)) m-> box (mexists x, (G x)) ].
+(* Corollary C2: There exists a god *)
+Theorem corollary2: [ mexists x, (G x) ].
 Proof. mv.
-intro H.
-cut (dia (box (mexists x, G x)) w).  (* Lemma from Scott's notes *)
-  apply dia_box_to_box.
+apply NNPP.
+assert (H: ((m~ (box  (dia (m~ mexists x, (G x) ) ) ) ) w) ).
+  intro H1.
+  assert (H2: ((dia (mexists x, (G x))) w)).
+    apply corollary1.
 
-  apply (mp_dia w (mexists z, G z)).
-    exact H.
-       
+    contradict H2.
+    apply box_not_not_dia.
     box_i.
-    apply lemma1.
+    cut ((m~ (box (mexists x : u, G x))) w0).
+      intro H3.
+      intro H4.
+      apply H3.
+      apply lemma1.
+      exact H4.
+    
+      box_e H1 H5.
+      apply dia_not_not_box.
+      exact H5.
+
+  intro H6.
+  apply H.
+  apply B.
+  exact H6.      
 Qed.
 
 
 (* Theorem T3: necessarily, a God exists *)
 Theorem theorem3: [ box (mexists x, (G x)) ].
 Proof. mv.
-apply lemma2.
-apply corollary1.
-Qed.
-
-
-(* Corollary C2: There exists a god *)
-Theorem corollary2: [ mexists x, (G x) ].
-Proof. mv.
-apply T.
-apply theorem3.
+box_i.
+apply corollary2.
 Qed.
