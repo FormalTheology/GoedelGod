@@ -45,7 +45,7 @@ actually Melvin Fittings book on "Types, Tableaus, and Gödel's God"
 that initially raised my interest. In the last few years I have then
 been working on embeddings of various expressive logics in classical
 higher-order order logics. My main goal thereby was to support
-improved reasoning technology for various applications, for example in
+improved reasoning technology for various applications, for example, in
 artificial intelligence.  But clearly, this research also paved the
 way for tackling the ontological argument with computer
 technology. End of 2012, I then met Bruno Woltzenlogel Paleo in
@@ -72,7 +72,7 @@ Gödel's ontological argument in early July 2013, and it was actually
 LEO-II, my own higher-order theorem prover, which did prove the result
 first. Subsequently we reproduced the results with other systems. At
 the very beginning, I wasn't sure which publishing strategy we should
-follow. Bruno convinced me that uploading our entire work on Github
+follow. Bruno convinced me that uploading our entire work on GitHub
 would be the right way to proceed. Raul Rojas at Freie Universität
 Berlin, whom I had briefly told about our successful work, then
 prepared the Telepolis/Heise interview with me. And at the same time

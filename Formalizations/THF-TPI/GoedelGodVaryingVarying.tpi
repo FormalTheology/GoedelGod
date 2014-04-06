@@ -120,7 +120,7 @@ tpi(com,write,'').
 tpi(com,waitenv,'SZS_STATUS_D2orig').
 tpi(com,write,'%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%').
 tpi(com,write,'%%%  3. Proving consistency of Goedel`s original axioms (d2orig).').
-tpi(com,write,'%%%     Checking  d2orig,a1a,a2b,a2,d3,a5  (using Nitpick).').
+tpi(com,write,'%%%     Checking  d2orig,a1a,a2b,,a2,d3,a5  (using Nitpick).').
 tpi(com,output,stdout = d2orig).
 tpi(com,write,'%%%     SZS_STATUS_D2orig for d2orig is ' & '$getenv(SZS_STATUS_D2orig)').
 tpi(com,assert,$getenv('SZS_STATUS_D2orig') = 'Satisfiable').

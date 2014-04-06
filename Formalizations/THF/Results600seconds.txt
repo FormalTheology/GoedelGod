@@ -1,0 +1,195 @@
+
+Asking various HOL-ATPs in Miami remotely (thanks to Geoff Sutcliffe)
+
+CO'_KB_const_max.p---LEO-II---1.6.2---RESULT: SOT_rGXWuh - LEO-II---1.6.2 says Unsatisfiable - CPU = 36.82 WC = 43.94
+CO'_KB_const_max.p---Satallax---2.7---RESULT: SOT_2G_ghg - Satallax---2.7 says Unsatisfiable - CPU = 136.95 WC = 149.04
+CO'_KB_const_max.p---Nitrox---2013---RESULT: SOT_zBKzk4 - Nitrox---2013 says Timeout - CPU = 600.07 WC = 584.79
+Done
+
+CO'_KB_const_min.p---LEO-II---1.6.2---RESULT: SOT_wbL0X3 - LEO-II---1.6.2 says Unsatisfiable - CPU = 25.29 WC = 28.35
+CO'_KB_const_min.p---Satallax---2.7---RESULT: SOT_zaIrsE - Satallax---2.7 says Unsatisfiable - CPU = 145.41 WC = 147.97
+CO'_KB_const_min.p---Nitrox---2013---RESULT: SOT_88BLz1 - Nitrox---2013 says Timeout - CPU = 600.02 WC = 570.58
+Done
+
+CO'_KB_vary_max.p---LEO-II---1.6.2---RESULT: SOT_2qnESf - LEO-II---1.6.2 says Unsatisfiable - CPU = 37.81 WC = 38.13
+CO'_KB_vary_max.p---Satallax---2.7---RESULT: SOT_GQnFAo - Satallax---2.7 says Unsatisfiable - CPU = 148.88 WC = 149.71
+CO'_KB_vary_max.p---Nitrox---2013---RESULT: SOT_Ct0zXI - Nitrox---2013 says Timeout - CPU = 600.08 WC = 562.30
+Done
+
+CO'_KB_vary_min.p---LEO-II---1.6.2---RESULT: SOT_Kfkuxw - LEO-II---1.6.2 says Unsatisfiable - CPU = 25.49 WC = 25.83
+CO'_KB_vary_min.p---Satallax---2.7---RESULT: SOT_wzbsNe - Satallax---2.7 says Unsatisfiable - CPU = 147.65 WC = 147.91
+CO'_KB_vary_min.p---Nitrox---2013---RESULT: SOT_x3vPRH - Nitrox---2013 says Timeout - CPU = 600.05 WC = 560.00
+Done
+
+CO_KB_const_max.p---Nitrox---2013---RESULT: SOT_zsu2Sj - Nitrox---2013 says Satisfiable - CPU = 17.37 WC = 17.19
+CO_KB_const_max.p---Satallax---2.7---RESULT: SOT_5o53BR - Satallax---2.7 says Timeout - CPU = 600.07 WC = 600.41
+CO_KB_const_max.p---LEO-II---1.6.2---RESULT: SOT_FDj36m - LEO-II---1.6.2 says Timeout - CPU = 600.04 WC = 600.52
+Done
+
+CO_KB_vary_max.p---Nitrox---2013---RESULT: SOT_9scuoP - Nitrox---2013 says Satisfiable - CPU = 28.55 WC = 28.00
+CO_KB_vary_max.p---LEO-II---1.6.2---RESULT: SOT_C3ox9f - LEO-II---1.6.2 says Timeout - CPU = 601.05 WC = 576.71
+CO_KB_vary_max.p---Satallax---2.7---RESULT: SOT_tWHCof - Satallax---2.7 says Timeout - CPU = 600.08 WC = 600.41
+Done
+
+C_K_const_max.p---LEO-II---1.6.2---RESULT: SOT_ZCBCjk - LEO-II---1.6.2 says Theorem - CPU = 0.06 WC = 0.09
+C_K_const_max.p---Satallax---2.7---RESULT: SOT_yWC8v9 - Satallax---2.7 says Theorem - CPU = 10.63 WC = 10.76
+C_K_const_max.p---Nitrox---2013---RESULT: SOT_azdq8s - Nitrox---2013 says Timeout - CPU = 600.03 WC = 557.19
+Done
+
+C_K_const_min.p---LEO-II---1.6.2---RESULT: SOT_5mJDhD - LEO-II---1.6.2 says Theorem - CPU = 0.00 WC = 0.06
+C_K_const_min.p---Satallax---2.7---RESULT: SOT_xCW8nz - Satallax---2.7 says Theorem - CPU = 0.00 WC = 0.08
+C_K_const_min.p---Nitrox---2013---RESULT: SOT_Jo0Rjw - Nitrox---2013 says Unknown - CPU = 234.06 WC = 188.45
+Done
+
+C_K_vary_max.p---LEO-II---1.6.2---RESULT: SOT_BxqaUV - LEO-II---1.6.2 says Theorem - CPU = 0.07 WC = 0.11
+C_K_vary_max.p---Satallax---2.7---RESULT: SOT_rCC_LJ - Satallax---2.7 says Theorem - CPU = 62.87 WC = 63.04
+C_K_vary_max.p---Nitrox---2013---RESULT: SOT__u6Wka - Nitrox---2013 says Timeout - CPU = 600.03 WC = 552.31
+Done
+
+C_K_vary_min.p---LEO-II---1.6.2---
+C_K_vary_min.p---Nitrox---2013---
+C_K_vary_min.p---Satallax---2.7---
+C_K_vary_min.p---Satallax---2.7---RESULT: SOT_3s0A7N - Satallax---2.7 says Theorem - CPU = 0.00 WC = 0.03
+C_K_vary_min.p---LEO-II---1.6.2---RESULT: SOT_UQepJT - LEO-II---1.6.2 says Theorem - CPU = 0.00 WC = 0.07
+C_K_vary_min.p---Nitrox---2013---RESULT: SOT_U2SLqQ - Nitrox---2013 says Unknown - CPU = 237.06 WC = 190.18
+Done
+
+FG_KB_const_max.p---Satallax---2.7---RESULT: SOT_GC9WDn - Satallax---2.7 says Theorem - CPU = 0.06 WC = 0.18
+FG_KB_const_max.p---LEO-II---1.6.2---RESULT: SOT_tNzwpx - LEO-II---1.6.2 says Theorem - CPU = 29.83 WC = 30.70
+FG_KB_const_max.p---Nitrox---2013---RESULT: SOT_NGFu4O - Nitrox---2013 says Timeout - CPU = 600.10 WC = 565.49
+Done
+
+FG_KB_const_min.p---Satallax---2.7---RESULT: SOT_WxPbNI - Satallax---2.7 says Theorem - CPU = 0.00 WC = 0.15
+FG_KB_const_min.p---LEO-II---1.6.2---RESULT: SOT_GQyPSp - LEO-II---1.6.2 says Theorem - CPU = 151.45 WC = 151.60
+FG_KB_const_min.p---Nitrox---2013---RESULT: SOT_z9ynXo - Nitrox---2013 says Unknown - CPU = 494.93 WC = 431.38
+Done
+
+FG_KB_vary_max.p---Satallax---2.7---RESULT: SOT_Z_BigP - Satallax---2.7 says Theorem - CPU = 0.00 WC = 0.19
+FG_KB_vary_max.p---LEO-II---1.6.2---RESULT: SOT_WDQCOJ - LEO-II---1.6.2 says Theorem - CPU = 32.88 WC = 33.08
+FG_KB_vary_max.p---Nitrox---2013---RESULT: SOT_aYF44S - Nitrox---2013 says Timeout - CPU = 600.05 WC = 561.59
+Done
+
+FG_KB_vary_min.p---Satallax---2.7---RESULT: SOT_67s1BG - Satallax---2.7 says Theorem - CPU = 0.00 WC = 0.22
+FG_KB_vary_min.p---Nitrox---2013---RESULT: SOT_51sncr - Nitrox---2013 says Unknown - CPU = 490.29 WC = 428.60
+FG_KB_vary_min.p---LEO-II---1.6.2---RESULT: SOT_lbFaIk - LEO-II---1.6.2 says Timeout - CPU = 600.46 WC = 600.80
+Done
+
+MC_KB_const_max.p---Nitrox---2013---RESULT: SOT_BZNzkB - Nitrox---2013 says Timeout - CPU = 600.02 WC = 578.91
+MC_KB_const_max.p---Satallax---2.7---RESULT: SOT_ELASXu - Satallax---2.7 says Timeout - CPU = 600 WC = 600.97
+MC_KB_const_max.p---LEO-II---1.6.2---RESULT: SOT_d2fZh1 - LEO-II---1.6.2 says Timeout - CPU = 600 WC = 601.07
+Done
+
+MC_KB_const_min.p---Satallax---2.7---RESULT: SOT_axfib1 - Satallax---2.7 says Theorem - CPU = 0.00 WC = 0.26
+MC_KB_const_min.p---LEO-II---1.6.2---RESULT: SOT_YLOJY2 - LEO-II---1.6.2 says Theorem - CPU = 15.10 WC = 15.40
+MC_KB_const_min.p---Nitrox---2013---RESULT: SOT_d264il - Nitrox---2013 says Timeout - CPU = 600.09 WC = 566.89
+Done
+
+MC_KB_vary_max.p---Satallax---2.7---RESULT: SOT_pDCUeD - Satallax---2.7 says Unknown - CPU = 514.17 WC = 601.72
+MC_KB_vary_max.p---LEO-II---1.6.2---RESULT: SOT_fS3l1i - LEO-II---1.6.2 says Unknown - CPU = 522.49 WC = 603.45
+MC_KB_vary_max.p---Nitrox---2013---RESULT: SOT_YRuFWy - Nitrox---2013 says Unknown - CPU = 517.56 WC = 603.90
+Done
+
+MC_KB_vary_min.p---Satallax---2.7---RESULT: SOT_X6d0go - Satallax---2.7 says Theorem - CPU = 6.43 WC = 7.20
+MC_KB_vary_min.p---LEO-II---1.6.2---RESULT: SOT_JUncuG - LEO-II---1.6.2 says Theorem - CPU = 26.09 WC = 26.53
+MC_KB_vary_min.p---Nitrox---2013---RESULT: SOT_7AEcVQ - Nitrox---2013 says Timeout - CPU = 600.05 WC = 558.12
+Done
+
+MT_KB_const_max.p---Satallax---2.7---RESULT: SOT_IyAuYP - Satallax---2.7 says Theorem - CPU = 91.97 WC = 125.01
+MT_KB_const_max.p---LEO-II---1.6.2---RESULT: SOT_dQHRC8 - LEO-II---1.6.2 says Unknown - CPU = 562.72 WC = 600.49
+MT_KB_const_max.p---Nitrox---2013---RESULT: SOT_l67cxP - Nitrox---2013 says Timeout - CPU = 600 WC = 604.07
+Done
+
+MT_KB_const_min.p---Satallax---2.7---RESULT: SOT_oBK4e6 - Satallax---2.7 says Theorem - CPU = 0.00 WC = 0.12
+MT_KB_const_min.p---Nitrox---2013---RESULT: SOT_VHRWdC - Nitrox---2013 says Unknown - CPU = 516.04 WC = 489.15
+MT_KB_const_min.p---LEO-II---1.6.2---RESULT: SOT_dbFEub - LEO-II---1.6.2 says Timeout - CPU = 600 WC = 601.75
+Done
+
+MT_KB_vary_max.p---Satallax---2.7---RESULT: SOT_bNiC_f - Satallax---2.7 says Theorem - CPU = 122.67 WC = 128.30
+MT_KB_vary_max.p---Nitrox---2013---RESULT: SOT_isjElg - Nitrox---2013 says Timeout - CPU = 600.08 WC = 573.69
+MT_KB_vary_max.p---LEO-II---1.6.2---RESULT: SOT_8hsYlE - LEO-II---1.6.2 says Timeout - CPU = 600.14 WC = 603.76
+Done
+
+MT_KB_vary_min.p---Satallax---2.7---RESULT: SOT_SR54Mn - Satallax---2.7 says Theorem - CPU = 0.00 WC = 0.23
+MT_KB_vary_min.p---Nitrox---2013---RESULT: SOT_QF_GaP - Nitrox---2013 says Timeout - CPU = 600.01 WC = 572.29
+MT_KB_vary_min.p---LEO-II---1.6.2---RESULT: SOT_KkGXEt - LEO-II---1.6.2 says Timeout - CPU = 600 WC = 602.07
+Done
+
+T1_K_const_max.p---Satallax---2.7---RESULT: SOT_Cyv8Nh - Satallax---2.7 says Theorem - CPU = 0.00 WC = 0.07
+T1_K_const_max.p---LEO-II---1.6.2---RESULT: SOT_uo95ku - LEO-II---1.6.2 says Theorem - CPU = 0.05 WC = 0.10
+T1_K_const_max.p---Nitrox---2013---RESULT: SOT_22Z4TM - Nitrox---2013 says Timeout - CPU = 600.05 WC = 558.90
+Done
+
+T1_K_const_min.p---Satallax---2.7---RESULT: SOT_lMTxWq - Satallax---2.7 says Theorem - CPU = 0.00 WC = 0.04
+T1_K_const_min.p---LEO-II---1.6.2---RESULT: SOT_P1RoDT - LEO-II---1.6.2 says Theorem - CPU = 0.05 WC = 0.12
+T1_K_const_min.p---Nitrox---2013---RESULT: SOT_iU22gL - Nitrox---2013 says Timeout - CPU = 600.10 WC = 559.60
+Done
+
+T1_K_vary_max.p---LEO-II---1.6.2---RESULT: SOT_v2Aam4 - LEO-II---1.6.2 says Theorem - CPU = 0.06 WC = 0.13
+T1_K_vary_max.p---Satallax---2.7---RESULT: SOT_1mHrc_ - Satallax---2.7 says Theorem - CPU = 10.30 WC = 10.74
+T1_K_vary_max.p---Nitrox---2013---RESULT: SOT_2WUbe3 - Nitrox---2013 says Timeout - CPU = 600.02 WC = 557.51
+Done
+
+T1_K_vary_min.p---Satallax---2.7---RESULT: SOT_FyPYUf - Satallax---2.7 says Theorem - CPU = 0.00 WC = 0.08
+T1_K_vary_min.p---LEO-II---1.6.2---RESULT: SOT_aUJ0bc - LEO-II---1.6.2 says Theorem - CPU = 0.06 WC = 0.11
+T1_K_vary_min.p---Nitrox---2013---RESULT: SOT_PIM3K6 - Nitrox---2013 says Timeout - CPU = 600.01 WC = 552.31
+Done
+
+T2_K_const_max.p---Satallax---2.7---RESULT: SOT_lknZxN - Satallax---2.7 says Theorem - CPU = 0.00 WC = 0.17
+T2_K_const_max.p---LEO-II---1.6.2---RESULT: SOT_rvemJX - LEO-II---1.6.2 says Theorem - CPU = 29.92 WC = 30.61
+T2_K_const_max.p---Nitrox---2013---RESULT: SOT_TmYfhG - Nitrox---2013 says Timeout - CPU = 600.02 WC = 547.99
+Done
+
+T2_K_const_min.p---Satallax---2.7---RESULT: SOT_FpTdZa - Satallax---2.7 says Theorem - CPU = 0.00 WC = 0.09
+T2_K_const_min.p---LEO-II---1.6.2---RESULT: SOT_VUfGuz - LEO-II---1.6.2 says Theorem - CPU = 151.77 WC = 153.30
+T2_K_const_min.p---Nitrox---2013---RESULT: SOT_HfcR5q - Nitrox---2013 says Unknown - CPU = 524.76 WC = 463.20
+Done
+
+T2_K_vary_max.p---Satallax---2.7---RESULT: SOT_L2JxYO - Satallax---2.7 says Theorem - CPU = 0.00 WC = 0.14
+T2_K_vary_max.p---LEO-II---1.6.2---RESULT: SOT_iMLwHn - LEO-II---1.6.2 says Theorem - CPU = 31.87 WC = 31.96
+T2_K_vary_max.p---Nitrox---2013---RESULT: SOT_jB4RIg - Nitrox---2013 says Timeout - CPU = 600.09 WC = 537.59
+Done
+
+T2_K_vary_min.p---Satallax---2.7---RESULT: SOT_7FTGic - Satallax---2.7 says Theorem - CPU = 0.00 WC = 0.13
+T2_K_vary_min.p---LEO-II---1.6.2---RESULT: SOT_jMonKr - LEO-II---1.6.2 says Theorem - CPU = 153.52 WC = 153.78
+T2_K_vary_min.p---Nitrox---2013---RESULT: SOT_9mh9uA - Nitrox---2013 says Unknown - CPU = 518.70 WC = 453.37
+Done
+
+T3_KB_const_max.p---Nitrox---2013---RESULT: SOT_Fi2c4v - Nitrox---2013 says Timeout - CPU = 600.04 WC = 577.99
+T3_KB_const_max.p---Satallax---2.7---RESULT: SOT_LLQvzl - Satallax---2.7 says Timeout - CPU = 600 WC = 600.94
+T3_KB_const_max.p---LEO-II---1.6.2---RESULT: SOT_pLYzm4 - LEO-II---1.6.2 says Timeout - CPU = 600.08 WC = 605.71
+Done
+
+T3_KB_const_min.p---LEO-II---1.6.2---RESULT: SOT_D74LB7 - LEO-II---1.6.2 says Theorem - CPU = 0.00 WC = 0.08
+T3_KB_const_min.p---Satallax---2.7---RESULT: SOT_YW2mWP - Satallax---2.7 says Theorem - CPU = 0.00 WC = 0.15
+T3_KB_const_min.p---Nitrox---2013---RESULT: SOT_ivqSCl - Nitrox---2013 says Unknown - CPU = 71.56 WC = 38.70
+Done
+
+T3_KB_vary_max.p---Nitrox---2013---RESULT: SOT_EDq8FG - Nitrox---2013 says Timeout - CPU = 600.11 WC = 595.12
+T3_KB_vary_max.p---Satallax---2.7---RESULT: SOT_r2rK1q - Satallax---2.7 says Timeout - CPU = 600 WC = 600.91
+T3_KB_vary_max.p---LEO-II---1.6.2---RESULT: SOT_4Ej8mU - LEO-II---1.6.2 says Timeout - CPU = 601.10 WC = 615.41
+Done
+
+T3_KB_vary_min.p---LEO-II---1.6.2---RESULT: SOT_vqaf9X - LEO-II---1.6.2 says Theorem - CPU = 0.05 WC = 0.12
+T3_KB_vary_min.p---Satallax---2.7---RESULT: SOT_4RqBFi - Satallax---2.7 says Theorem - CPU = 10.36 WC = 10.78
+T3_KB_vary_min.p---Nitrox---2013---RESULT: SOT_Vb8XFC - Nitrox---2013 says Unknown - CPU = 100.47 WC = 65.36
+Done
+
+T3_K_const_max.p---Nitrox---2013---RESULT: SOT_U1vygu - Nitrox---2013 says CounterSatisfiable - CPU = 17.52 WC = 17.47
+T3_K_const_max.p---LEO-II---1.6.2---RESULT: SOT_j43Vny - LEO-II---1.6.2 says Timeout - CPU = 600 WC = 600.21
+T3_K_const_max.p---Satallax---2.7---RESULT: SOT_H1H3Ct - Satallax---2.7 says Timeout - CPU = 600.01 WC = 600.01
+Done
+
+T3_K_const_min.p---Nitrox---2013---RESULT: SOT_5QLjzK - Nitrox---2013 says CounterSatisfiable - CPU = 3.77 WC = 4.38
+T3_K_const_min.p---Satallax---2.7---RESULT: SOT_WRcBoi - Satallax---2.7 says Timeout - CPU = 600.10 WC = 599.82
+T3_K_const_min.p---LEO-II---1.6.2---RESULT: SOT_ImS7Am - LEO-II---1.6.2 says Timeout - CPU = 600.13 WC = 600.35
+Done
+
+T3_K_vary_max.p---Nitrox---2013---RESULT: SOT_971Qyl - Nitrox---2013 says CounterSatisfiable - CPU = 28.42 WC = 27.53
+T3_K_vary_max.p---LEO-II---1.6.2---RESULT: SOT_R9Yctn - LEO-II---1.6.2 says Timeout - CPU = 600.02 WC = 600.31
+T3_K_vary_max.p---Satallax---2.7---RESULT: SOT_9K3wmF - Satallax---2.7 says Timeout - CPU = 600.06 WC = 600.41
+Done
+
+T3_K_vary_min.p---Nitrox---2013---RESULT: SOT_eHedNN - Nitrox---2013 says CounterSatisfiable - CPU = 16.38 WC = 15.69
+T3_K_vary_min.p---Satallax---2.7---RESULT: SOT_Z9VH_B - Satallax---2.7 says Timeout - CPU = 600 WC = 600.84
+T3_K_vary_min.p---LEO-II---1.6.2---RESULT: SOT_8qVYN6 - LEO-II---1.6.2 says Timeout - CPU = 600.05 WC = 605.14
+Done
