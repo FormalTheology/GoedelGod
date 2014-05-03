@@ -259,7 +259,7 @@ International
 
 [MSN](http://now.msn.com/christoph-benzmüller-and-bruno-woltzenlogel-paleo-scientists-say-theyve-proved-god-exists)
 
-[Investor Place](http://investorplace.com/2013/10/computer-scientists-just-prove-god-exists/#.Uq9BJ2RDv
+[Investor Place](http://investorplace.com/2013/10/computer-scientists-just-prove-god-exists/#.Uq9BJ2RDv)
 
 [International Business Times](http://www.ibtimes.com/god-real-scientists-prove-his-existence-godels-theory-macbooks-1446396)
 
