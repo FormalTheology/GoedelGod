@@ -45,7 +45,7 @@ consistency checks with Nitpick have now been added to this file.
 *)
 
 theory GoedelGodVarying
-imports Main HOL
+imports Main
 
 begin
 typedecl i  (* the type for possible worlds *)
