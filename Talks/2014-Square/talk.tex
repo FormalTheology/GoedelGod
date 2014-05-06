@@ -231,31 +231,31 @@ Vatican, May 6, 2014}
 \end{minipage}
 }
 \vfill
-Work context/history:
+Work context/history:\\[.2em]
 \begin{itemize}
-\item Proposal: classical higher-order logic (HOL) as a (quite)
+\item \textbf{Proposal:} exploit classical higher-order logic (HOL) as
   universal meta-logic --- cf. previous talks at UNILOG
   \begin{itemize}
-  \item for object-level reasoning
-  \item for meta-level reasoning
+  \item for object-level reasoning (in embedded non-classical logics)
+  \item for meta-level reasoning (about embedded non-classical logics)
   \end{itemize}
-\item Proof of concept: demonstrate practical relevance of the approach by
+\item \textbf{Proof of concept:} demonstrate practical relevance of the approach by
   an interesting and relevant application
-\item Experiments: systematic study of Gödel's argument
+\item \textbf{Experiments:} systematic study of Gödel's argument
 % \item Results: Verification  of known results / partly novel results
-\item Relation to Square of Opposition: should be easy to analyze variants of the Square within our approach
+\item \textbf{Relation to Square of Opposition:} should be easy to analyze variants of the Square within our approach
 \end{itemize}
 \end{frame}
 
 
 
 \begin{frame}{Introduction} \large
-\hskip-1em Challenge: \hfill No provers for \emph{Higher-order Quantified Modal Logic\/} (\textcolor{red}{QML}) \\[1em]
+\hskip-1em \textbf{Challenge:} \hfill No provers for \emph{Higher-order Quantified Modal Logic\/} (\textcolor{red}{QML}) \\[1em]
 
-\hskip-1em Our solution: \hfill Embedding in \emph{Higher-order Classical Logic\/} (\textcolor{blue}{HOL}) \\
+\hskip-1em \textbf{Our solution:} \hfill Embedding in \emph{Higher-order Classical Logic\/} (\textcolor{blue}{HOL}) \\[1em]
 %\,\hfill {\small [Benzm\"ullerPaulson, Logica Universalis, 2013]} \\[2em]
 
-\hskip-1em What we did: \\
+\hskip-1em \textbf{What we did:} \\
 
 \begin{itemize}
 \item[A:] Pen and paper: \hfill detailed natural deduction proof 
@@ -266,7 +266,7 @@ Work context/history:
 \item[D:] Automation \& verification: \hfill proof assistant \textsc{Isabelle} \\[2em]
 %\item[ ] Conclusion \\[2em]
 \end{itemize}
-\hskip-1em  Did we get any new results? \hfill  \textcolor{red}{Yes --- let's discuss this later!}
+\hskip-1em  \textbf{Did we get any new results? }\hfill  \textcolor{red}{Yes --- let's discuss this later!}
 \end{frame}
 
 
@@ -337,7 +337,7 @@ Did Apple send us some money? \hfill No \\
 
 
 \begin{frame}{Introduction} \Large
-{Rich history on ontological arguments (\textcolor{blue}{pros} and \textcolor{red}{cons})}\\[1em]
+\textbf{Rich history on ontological arguments} (\textcolor{blue}{pros} and \textcolor{red}{cons})\\[1em]
 
 \hskip-.5em
 \ldots\rotatebox[origin = bl,width = 0mm]{65}{\textcolor{blue}{Anselm v. C.}} \hskip-2.3em
@@ -359,14 +359,14 @@ Did Apple send us some money? \hfill No \\
 
 \pause
 \vfill
-Anselm's notion of God:\\
+\textbf{Anselm's notion of God:}\\
 \,\hfill \emph{``God is that, than which nothing greater can be
   conceived.''} \\[1em]
 
-G\"odel's notion of God:\\
+\textbf{G\"odel's notion of God:}\\
 \,\hfill \emph{``A God-like being possesses all `positive' properties.''} \\[1em]
 
-To show by logical reasoning: \\
+\textbf{To show by logical reasoning:} \\
 \,\hfill \emph{``(Necessarily) God exists.''} \\[1em]
 
 % \rnode{n2}{}\emph{}
@@ -375,7 +375,7 @@ To show by logical reasoning: \\
 
 
 \begin{frame}{Introduction} \Large
-Different Interests in Ontological Arguments: \\[1em]
+\textbf{Different Interests in Ontological Arguments:} \\[1em]
 \begin{itemize}
 \item \textcolor{blue}{Philosophical:} Boundaries of Metaphysics \& Epistemology
   \begin{itemize}
@@ -418,7 +418,7 @@ Different Interests in Ontological Arguments: \\[1em]
 \begin{frame}{Remainder of this Talk}\Large
 \begin{itemize}
 \item Embedding of \textcolor{red}{QML} in \textcolor{blue}{HOL} and
-  Proof Automation (myself)
+  Proof Automation (myself) \\[1em]
 \item Proof Overview (Bruno)
 \item Experiments and Results (Bruno)
 \item Conclusion and Outlook (Bruno)
@@ -436,17 +436,17 @@ Different Interests in Ontological Arguments: \\[1em]
 
 \begin{frame}{Formalization in HOL} \large
 
-\hskip-1em Challenge: \hfill No provers for \emph{Higher-order
+\hskip-1em \textbf{Challenge:} \hfill No provers for \emph{Higher-order
   Quantified Modal
   Logic\/} (\textcolor{red}{QML}) \\[1em]
 
-\hskip-1em Our solution: \hfill Embedding in \emph{Higher-order Classical
+\hskip-1em \textbf{Our solution:} \hfill Embedding in \emph{Higher-order Classical
   Logic\/} (\textcolor{blue}{HOL}) \\
 \, \hfill Then use existing \textcolor{blue}{HOL} theorem provers for reasoning in \textcolor{red}{QML} \\
 \,\hfill {\small [Benzm\"ullerPaulson, Logica Universalis, 2013]}
 \\[2em]
 
-\hskip-1em Previous empirical findings:  \\[.5em]
+\hskip-1em \textbf{Previous empirical findings:}  \\[.5em]
 \,\hfill Embedding of  \emph{First-order Modal Logic} in HOL works well 
 
 \,\hfill {\small [Benzm\"ullerOttenRaths, ECAI, 2012]} \\
@@ -571,7 +571,7 @@ $\begin{array}{lcl}
 
 \begin{frame}{Formalization in HOL} \large
 
-\hskip-1em Example \\[.5em]
+\hskip-1em \textbf{Example:} \\[.5em]
 
  \textcolor{red}{QML} formula  \hfill \textcolor{red}{$\Diamond \exists x G(x)$}
 
@@ -615,10 +615,10 @@ from \textcolor{blue}{Ax} in \textcolor{blue}{HOL}. \\[1em]
 This can be done with interactive or automated \textcolor{blue}{HOL} theorem provers.
 \end{block}
 \pause
+%\vfill
+%\hskip-1em Expansion: \hfill user or prover may flexibly choose expansion depth \\[.5em]
 \vfill
-\hskip-1em Expansion: \hfill user or prover may flexibly choose expansion depth \\[.5em]
-\vfill
-\hskip-1em Soundness and Completeness: \hfill wrt. Henkin semantics \\[.5em]
+\hskip-1em \textbf{Soundness and Completeness:} \hfill wrt. Henkin semantics \\[.5em]
 \end{frame}
 
 
