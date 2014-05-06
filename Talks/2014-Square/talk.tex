@@ -163,28 +163,25 @@
 \begin{itemize}
 \item[Axiom A1] Either a property or its negation is positive, but not
   both: \hfill 
-  ${\allq \phi [P(\neg \phi) \biimp \neg P(\phi)]}$ 
+  ${\alt<3>{\textcolor{red}{\allq \phi}}{\allq \phi} [P(\neg \phi) \biimp \neg P(\phi)]}$ 
 \item[Axiom A2] A property necessarily implied by a
   positive property is positive:  \phantom{bla bla bla bla bla bla bla}  \hfill 
-  ${\allq \phi \allq \psi [(P(\phi) \wedge \nec \allq x [\phi(x)
+  ${\alt<3>{\textcolor{red}{\allq \phi \allq \psi}}{\allq \phi \allq \psi} [(P(\phi) \wedge \alt<2>{\textcolor{red}{\nec}}{\nec} \allq x [\phi(x)
   \imp \psi(x)]) \imp P(\psi)]}$ 
-\item[\textcolor{blue}{Thm. T1}] \textcolor{blue}{Positive properties are possibly exemplified:} \hfill \textcolor{blue}{${\allq
-  \phi [P(\phi) \imp \pos \exq x \phi(x)]}$}
+\item[\textcolor{blue}{Thm. T1}] \textcolor{blue}{Positive properties are possibly exemplified:} \hfill \textcolor{blue}{${\alt<3>{\textcolor{red}{\allq \phi}}{\allq \phi} [P(\phi) \imp \alt<2>{\textcolor{red}{\pos}}{\pos}  \exq x \phi(x)]}$}
 \item[Def. D1] A \emph{God-like} being possesses all positive properties: \hfill
-  ${G(x) \biimp \forall \phi [P(\phi) \imp \phi(x)]}$ 
+  ${G(x) \biimp \alt<3>{\textcolor{red}{\allq \phi}}{\allq \phi} [P(\phi) \imp \phi(x)]}$ 
 \item[Axiom A3]  The property of being God-like is positive: \hfill   ${P(G)}$ 
-\item[\textcolor{blue}{Cor. C\phantom{1}}] \textcolor{blue}{Possibly, God exists:}\hfill \textcolor{blue}{${\pos \exq x G(x)}$}
+\item[\textcolor{blue}{Cor. C\phantom{1}}] \textcolor{blue}{Possibly, God exists:}\hfill \textcolor{blue}{${\alt<2>{\textcolor{red}{\pos}}{\pos} \exq x G(x)}$}
 \item[Axiom A4]  Positive properties are necessarily positive: \hfill 
-  ${\allq \phi [P(\phi) \imp \Box \; P(\phi)]}$ 
-\item[Def. D2] An \emph{essence} of an individual is a property possessed by it and necessarily implying any of its properties: \hfill ${\ess{\phi}{x} \biimp \textcolor{red}{\phi(x)\,\wedge\,}\allq
-  \psi (\psi(x) \imp \nec \allq y (\phi(y) \imp \psi(y)))}$ 
+  ${\alt<3>{\textcolor{red}{\allq \phi}}{\allq \phi} [P(\phi) \imp \alt<2>{\textcolor{red}{\nec}}{\nec} P(\phi)]}$ 
+\item[Def. D2] An \emph{essence} of an individual is a property possessed by it and necessarily implying any of its properties: \hfill ${\ess{\phi}{x} \biimp \alt<4>{\textcolor{red}{\phi(x)\,\wedge\,}}{\phi(x)\,\wedge\,}\alt<3>{\textcolor{red}{\allq \psi}}{\allq \psi} (\psi(x) \imp \alt<2>{\textcolor{red}{\nec}}{\nec} \allq y (\phi(y) \imp \psi(y)))}$ 
 \item[\textcolor{blue}{Thm. T2}]  \textcolor{blue}{Being God-like is an essence of any
   God-like being:}  \hfill \textcolor{blue}{${\allq x [G(x) \imp \ess{G}{x}]}$}
 \item[Def. D3] \emph{Necessary existence} of an individ.~is the necessary exemplification of all its essences: 
-  \phantom{b} \hfill ${\NE(x) \biimp \allq \phi [\ess{\phi}{x} \imp \nec
-  \exq y \phi(y)]}$
+  \phantom{b} \hfill ${\NE(x) \biimp \alt<3>{\textcolor{red}{\allq \phi}}{\allq \phi} [\ess{\phi}{x} \imp \alt<2>{\textcolor{red}{\nec}}{\nec}  \exq y \phi(y)]}$
 \item[Axiom A5] Necessary existence is a positive property: \hfill ${P(\NE)}$ 
-\item[\textcolor{blue}{Thm. T3}] \textcolor{blue}{Necessarily, God exists:} \hfill \textcolor{blue}{${\nec \exq x G(x)}$}
+\item[\textcolor{blue}{Thm. T3}] \textcolor{blue}{Necessarily, God exists:} \hfill \textcolor{blue}{${\alt<2>{\textcolor{red}{\nec}}{\nec} \exq x G(x)}$}
 \end{itemize}
 \end{minipage}
 }}
