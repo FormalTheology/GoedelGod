@@ -1,0 +1,127 @@
+Dear Christoph Benzmüller, Bruno  Woltzenlogel Paleo,
+
+I am very pleased to inform you that your paper
+
+Title: Automating Goedel’s Ontological Proof of God’s Existence with Higher-order Automated Theorem Provers
+Authors Christoph Benzmüller, Bruno  Woltzenlogel Paleo
+
+has been accepted for presentation at ECAI'14 and a publication in its proceedings.
+
+In total, 611 papers were submitted to ECAI'14, viz. 562 long and 49 short papers.
+Among them, 158 (28%) and 20 (41%) were accepted, respectively,
+as well 89 long papers were accepted as short papers.
+
+The reviews of your paper are attached below.
+
+In case there was a discussion or different opinions among the reviewers,
+there is typically an additional meta-review providing further explanations about
+the underlying decision process.
+I hope you find these reviews useful in further improving your work.
+
+Let me mention that there are still opportunities for presenting other work at
+Prague this summer.
+In fact, all workshops, STAIRS as well as RuleML submission is still open.
+In particular, I would like to encourage the students in your environment
+to submit to the "Starting AI Research Symposium" (STAIRS).
+Checkout http://www.ecai2014.org for more details.
+
+Formatting and submission instructions for the final version of your paper
+will be sent to you in the next days.
+
+I would like to thank for your interest in ECAI'14 and
+look forward to seeing you at Prague this summer.
+
+Best regards,
+Torsten Schaub
+
+------------- Review from Reviewer 1 -------------
+Significance                                  : 7
+Originality                                   : 9
+Relevance                                     : 9
+Technical quality                             : 8
+Presentation quality                          : 9
+Scholarship                                   : 8
+Confidence                                    : 6
+Overall recommendation                        : 8
+
+-- Comments to the author(s):
+This paper replicates the Goedel's proof of God existence, using Higher Order Logic and existing solvers. I am not sure about the significance of the contribution of the paper. The proof itself is not new, it dates back to Goedel. The logic and the solvers already exist. The paper just demonstrates that existing formalisms and solvers can be used to replicate a known proof. Was this not known?
+
+
+
+Furthermore, the authors have already published a lot of work on the same topic. They claim that this work is new, but it is not apparent to me what is the innovation in this paper with respect to their previous work.
+
+-- Summary:
+I accept the authors' response to my review. I am OK with accepting this paper.
+
+---------- End of Review from Reviewer 1 ----------
+
+------------- Review from Reviewer 2 -------------
+Significance                                  : 6
+Originality                                   : 6
+Relevance                                     : 6
+Technical quality                             : 6
+Presentation quality                          : 5
+Scholarship                                   : 6
+Confidence                                    : 4
+Overall recommendation                        : 5
+
+-- Comments to the author(s):
+This paper investigates the automation of Godel's proof for the existence of God. It examines the use of available theoretical insights and (higher-order) logic proof tools.
+
+
+
+This paper provides some interesting insights into how you might take abstract philosophical arguments, formalise them using (higher-order) logic and then use software tools in verifying them. I have a few suggestions for improving the paper. Firstly, while the focus has been clearly on Godel's proof, it would help to have some explanations of the broader insights that were gained during this exercise and that are relevant to formalising and automating philosophical proofs like Godel's. The insights provided apply only to Gdel's proof but I'm sure there are some broader lessons that are of value. The presentation itself is quite dense and I wonder whether it is also possible to simplify it and make it clearer.
+
+
+
+-- Summary:
+An interesting idea that is well worth pursuing. The paper could be improved by providing some broader insights into how philosophical reasoning can be formalised and automated. The presentation could also be improved.
+
+---------- End of Review from Reviewer 2 ----------
+
+------------- Review from Reviewer 3 -------------
+Significance                                  : 10
+Originality                                   : 10
+Relevance                                     : 10
+Technical quality                             : 10
+Presentation quality                          : 9
+Scholarship                                   : 9
+Confidence                                    : 8
+Overall recommendation                        : 9
+
+-- Comments to the author(s):
+Minor issues:
+
+
+
+-section 3: "some further, related problems" - please add more detail or leave this out if it's irrelevant
+
+
+
+- first paragraph of conclusions: is your claim that philosophical arguments are "final frontier for automated reasoning" supported by any kind of complexity result or characterization of the underlying logic in which problems are formulated? I certainly hope that we can do more with ATPs than checking proofs with disputable axioms, even if that comes to existence of God.
+
+
+
+-second paragraph of the conclusion: you should stay consistent with writing God (or god). Same goes for the references
+
+
+
+- last paragraph of the conclusion, first line: "computational theoretical philosophy"
+
+
+
+ - reference 23: "explained"
+
+-- Summary:
+The paper presents an encoding of the known Gödel's ontological proof of God's existence in higher-order logic (HOL) with the purpose to automatically check it using state-of-the-art higher-order automated provers. Towards this purpose, the authors define a base higher-order modal logic (HOML) together with a semantic-preserving encoding of HOML in HOL, much in an expected way. Thus, one can use the existing proof support of HOL for the encoding of Gödel's argument. Technically, this is achieved by representing the problem in the interchange format for higher-order provers THF0 and by performing a number of proofs on the resulting THF0 theory, including consistency checks of the axioms and definitions.The parameters of the experiments have been allowed to vary, in the sense that different modal logics (K, KB) have been employed, the domain of individuals has been assumed fixed or varying, and different sets of axioms have been tried out for proving one and the same expected result. T
+ he results of the experimla   
+ents show that the argument and the main criticisms against it can be verified using HOL automated provers.
+
+
+
+I find the paper extremely well written and presentation clear. The main lessons
+
+to be learned from this impressive enterprise of the authors go in two directions. On one side, the paper sets bases for a new domain of application of automated theorem proving, namely philosophical arguments, which can now be rigorously checked for correctness by a machine. On the other side, the authors present a nice framework for obtaining proof support for a problem at hand. Once the logic underlying the problem has been properly (read, in a way that semantics is preserved) encoded in HOL, one can make use of the entire apparatus of HOL automated provers to verify the problem. This is relevant not only for philosophical or theological problems, where one can imagine that other logic than HOML is employed, but also for other domains. Given the above and the high relevance of the paper for ECAI, I recommend acceptance.
+
+---------- End of Review from Reviewer 3 ----------

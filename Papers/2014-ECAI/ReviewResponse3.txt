@@ -1,0 +1,5 @@
+Our paper was planned to be self-contained and a primarily goal was to present the detailed theoretical background, which has not been published  elsewhere yet. This was not easy to achieve given the limited space. However, in addition, we clearly present the wider and future picture of our research: see in particular the last paragraph in Section 6. We also point to [6] which discusses the wider picture for future AI applications of our approach.
+
+Moreover, we also clearly present the philosophically relevant new insights we gained from our systematic investigation of variations of Gödel's proof and some insights are new in philosophy; cf. Section 4. Sacrificing self-containedness for an extended methodological and philosophical debate would be less appropriate; first the technical soundness of the employed method should be established. We have focused on the latter and the remaining space we use as well as we can.
+
+

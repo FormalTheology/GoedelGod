@@ -1,0 +1,1104 @@
+\documentclass{ecai2014}
+\usepackage{times}
+\usepackage{graphicx}
+
+\usepackage{verbatim}
+\usepackage{wrapfig}
+\usepackage{amsmath,latexsym}
+\usepackage{xspace}
+\usepackage{stmaryrd}
+\usepackage{txgreeks}
+\usepackage[hyphens]{url}
+
+
+%%\ecaisubmission   % inserts page numbers. Use only for submission of paper.
+                  % Do NOT use for camera-ready version of paper.
+
+%%%%%%%%%%%% some personal definitions  %%%%%%%%%%%%%
+
+% -----------------------------------------------
+\newtheorem{definition}{Def.}
+\newtheorem{example}{Ex.}
+% -----------------------------------------------
+
+\def\lambdot{\rule{0.6mm}{0.6mm}\hspace{0.4ex}} 
+\def\all#1{\forall #1\lambdot}
+\def\exi#1{\exists #1\lambdot}
+\def\lam#1{\lambda #1\lambdot}
+
+
+\def\modal#1{#1}
+\def\mfalse{\modal\bot}
+\def\mtrue{\modal\top}
+\def\mnot{\modal\neg\,}
+\def\mor{\,\modal\vee\,}
+\def\mand{\,\modal\wedge\,}
+\def\mimpl{\,\modal\supset\,}
+\def\miff{\,\modal\Leftrightarrow\,}
+\def\mball#1{\modal\Box_{#1}\,}
+\def\mdexi#1{\modal\Diamond_{#1}\,}
+\def\mall#1{\modal{\forall}{#1}\lambdot\,}
+\def\mexi#1{\modal{\exists}{#1}\lambdot\,}
+\def\mpi{\modal{\Pi}\,}
+\def\mvalid{\modal{\texttt{valid}}} 
+
+\def\Metaeq{=}
+\def\bnormform#1{\left.#1\hspace*{-.4ex}\right\downarrow_\beta}
+\def\benormform#1{\left.#1\hspace*{-.4ex}\right\downarrow_{\beta\eta}}
+\def\Bnormform#1{\left.{#1}\hspace*{-.4ex}\right\downarrow_\beta}
+\def\Benormform#1{\left.{#1}\hspace*{-.4ex}\right\downarrow_{\beta\eta}}
+\def\ambnormform#1{{#1}\hspace*{-1.1ex}\downarrow_{\kern-.2em\scriptscriptstyle *}} % ``ambiguous'' normal form
+\def\eqb{\Metaeq_{\beta}}
+\def\eqe{\Metaeq_{\eta}}
+\def\eqbe{\Metaeq_{\beta\eta}}
+\def\convarrow{\rightarrow}
+
+
+\newcommand\entity[1]{\text{\textrm{#1}}}
+\def\QHL{\entity{QHL}}
+\def\QML{\entity{QML}}
+\def\NOM{\entity{NOM}}
+\def\SVAR{\entity{SVAR}}
+\def\CON{\entity{CON}}
+\def\FVAR{\entity{FVAR}}
+%\def\IC{\entity{IC}}
+\def\FSYM{\entity{FSYM}}
+\def\RSYM{\entity{RSYM}}
+\def\QHLSTT{\entity{QHLSTT}}
+\def\QMLSTT{\entity{QMLSTT}}
+\def\IV{\entity{IV}}
+\def\PV{\entity{PV}}
+\def\SYM{\entity{SYM}}
+\def\IVSTT{\entity{IVSTT}}
+\def\PVSTT{\entity{PVSTT}}
+\def\SYMSTT{\entity{SYMSTT}}
+\def\SSTT{\entity{SSTT}}
+\def\AR{\entity{AR}}
+\def\STT{\entity{STT}\xspace}
+
+\def\QKPIm{\entity{QK}\pi^-\xspace}
+\def\QKPI{\entity{QK}\pi\xspace}
+\def\QKPIp{\entity{QK}\pi^+\xspace}
+\def\QSFPIm{\entity{QS5}\pi^-\xspace}
+\def\QSFPI{\entity{QS5}\pi\xspace}
+\def\QSFPIp{\entity{QS5}\pi^+\xspace}
+
+\def\stt{\entity{STT}\xspace}
+\def\tt{\entity{STT}}
+\def\lm{\entity{MM}\xspace}
+\def\ipl{\entity{IPL}\xspace}
+\def\HOML{\entity{HOML}\xspace}
+\def\HOL{\entity{HOL}\xspace}
+
+\def\worldtype{\mu}
+\def\indtype{\iota}
+\def\mutype{\mu}
+\def\boola{\omicron}
+\def\boolb{\hat{\omicron}}
+
+\def\ar{\shortrightarrow}
+
+\newcommand\hol[1]{\boldsymbol{#1}}
+\newcommand\lift[1]{\lceil #1 \rceil}
+\newcommand\llift[1]{\dot{#1}}
+
+\newcommand{\imp}{\supset}
+\newcommand{\biimp}{\equiv}
+\newcommand{\allq}{\forall}
+\newcommand{\exq}{\exists}
+\newcommand{\seq}{\vdash}
+\newcommand{\nec}{\Box} % necessarily
+\newcommand{\pos}{\Diamond} % possibly
+\newcommand{\ess}[2]{#1 \ \mathit{ess.} \ #2}
+\newcommand{\NE}{\mathit{NE}}
+
+%%%%%%%%%%
+
+
+\begin{document}
+
+\title{Automating G\"odel's Ontological Proof of God's Existence with Higher-order Automated Theorem Provers}
+
+\author{Christoph Benzm\"uller\institute{Freie Universit\"at Berlin,
+    Germany, email: c.benzmueller@fu-berlin.de}
+  \and Bruno Woltzenlogel Paleo\institute{Technical University
+    Vienna, Austria,  email: bruno@logic.at}  
+}
+
+\maketitle
+
+
+\begin{abstract}
+  Kurt G{\"o}del's ontological argument for God's existence has been
+  formalized and automated on a computer with higher-order automated
+  theorem provers. From G{\"o}del's premises, the computer proved:
+  necessarily, there exists God. On the other hand, the theorem
+  provers have also confirmed prominent criticism on G{\"o}del's
+  ontological argument, and they found some new results about it.  
+
+  The background theory of the work presented here offers a novel
+  perspective towards a \emph{computational theoretical philosophy}.
+\end{abstract}
+
+\section{INTRODUCTION}
+Kurt G{\"o}del proposed an argumentation formalism to prove the
+existence of God \cite{GoedelNotes,ScottNotes}. Attempts to prove the
+existence (or non-existence) of God by means of abstract, ontological
+arguments are an old tradition in western philosophy.  Before
+G{\"o}del, several prominent philosophers, including St. Anselm of
+Canterbury, Descartes and Leibniz, have presented similar
+arguments. Moreover, there is an impressive body of recent and ongoing
+work (cf.~\cite{sobel2004logic,Fitting,ContemporaryBibliography} and the references therein).
+Ontological arguments, for or against the existence of God,
+illustrate well an essential aspect of metaphysics: some (necessary) facts
+for our existing world are deduced by purely a priori, analytical means from some
+abstract definitions and axioms. % Contingent truths are to be
+% distinguished from necessary truths.
+
+What motivated G{\"o}del as a logician was the question, whether it is
+possible to deduce the existence of God from a small number of
+foundational (but debatable) axioms and definitions, with a mathematically precise,
+formal argumentation chain in a well defined logic.
+
+
+
+In theoretical philosophy, formal logical confrontations with such
+ontological arguments had been so far (mainly) limited to paper
+and pen.  Up to now, the use of computers was prevented, because the
+logics of the available theorem proving systems were not expressive
+enough to formalize the abstract concepts adequately. G{\"o}del's proof
+uses, for example, a complex higher-order modal logic (\HOML) to handle
+concepts such as \emph{possible} and \emph{necessary} and to support
+quantification over individuals and properties.
+
+Current works \cite{J23,B9} of the first author and Paulson illustrate that many
+expressive logics, including quantified (multi-)modal logics, can be
+embedded into the classical higher-order logic (\HOL), which can thus be seen
+as a universal logic \cite{C36}. For this universal logic, efficient automated
+theorem provers have been developed in recent years, and these systems
+were now employed in our work.
+
+G\"{o}del defines God (see Fig.~\ref{fig1}) as a being who possesses all \emph{positive}
+properties.  He does not extensively discuss what positive properties
+are, but instead he states a few reasonable (but debatable) axioms
+that they should satisfy.  Various slightly different versions of
+axioms and definitions have been considered by G\"{o}del and by
+several philosophers who commented on his proof
+(cf.~\cite{sobel2004logic,anderson90:_some_emend_of_goedel_ontol_proof,AndersonGettings,Fitting,Adams,ContemporaryBibliography}).
+
+\begin{figure}[t]
+\noindent \framebox[\columnwidth][r]{
+\begin{minipage}{.94\columnwidth}%\small
+\begin{itemize}
+\item[A1] Either a property or its negation is positive, but not
+  both: \\ \phantom{b} \hfill 
+  $\hol{\allq \phi [P(\neg \phi) \biimp \neg P(\phi)]}$ 
+\item[A2] A property necessarily implied by a
+  positive property is positive:  \hfill 
+  $\hol{\allq \phi \allq \psi [(P(\phi) \wedge \nec \allq x [\phi(x)
+  \imp \psi(x)]) \imp P(\psi)]}$ 
+\item[T1] Positive properties are possibly exemplified: \\ \phantom{b} \hfill $\hol{\allq
+  \phi [P(\phi) \imp \pos \exq x \phi(x)]}$ 
+\item[D1] A \emph{God-like} being possesses all positive properties: \\ \phantom{b} \hfill
+  $\hol{G(x) \biimp \forall \phi [P(\phi) \imp \phi(x)]}$ 
+\item[A3]  The property of being God-like is positive: \hfill   $\hol{P(G)}$ 
+\item[C\phantom{1}] Possibly, God exists: \hfill $\hol{\pos \exq x G(x)}$ 
+\item[A4]  Positive properties are necessarily positive: \\  \phantom{b} \hfill 
+  $\hol{\allq \phi [P(\phi) \imp \Box \; P(\phi)]}$ 
+\item[D2] An \emph{essence} of an individual is a property possessed by it and necessarily implying any of its properties: \\
+  \phantom{b} \hfill $\hol{\ess{\phi}{x} \biimp \phi(x) \wedge \allq
+  \psi (\psi(x) \imp \nec \allq y (\phi(y) \imp \psi(y)))}$ 
+\item[T2]  Being God-like is an essence of any
+  God-like being:  \\ \phantom{b}  \hfill $\hol{\allq x [G(x) \imp \ess{G}{x}]}$ 
+\item[D3] \emph{Necessary existence} of an individ.~is the necessary exemplification of all its essences: 
+  \phantom{b} \hfill $\hol{\NE(x) \biimp \allq \phi [\ess{\phi}{x} \imp \nec
+  \exq y \phi(y)]}$
+\item[A5] Necessary existence is a positive property: \hfill $\hol{P(\NE)}$ 
+\item[T3] Necessarily, God exists: \hfill $\hol{\nec \exq x G(x)}$ 
+\end{itemize}
+\end{minipage}
+} \vskip-.5em
+\caption{Scott's version of G\"odel's ontological argument \cite{ScottNotes}.\label{fig1}} 
+\end{figure}
+
+The overall idea of G{\"o}del's proof is in the tradition of Anselm's
+argument, who defined God as some entity of which nothing greater can be
+conceived. Anselm argued that existence in the actual world would
+make such an assumed being even greater; hence, by definition God must
+exist. G{\"o}del's ontological argument is clearly related to this
+reasoning pattern. However, it also tries to fix some fundamental
+weaknesses in Anselm's work. For example, G{\"o}del explicitly proves
+that God's existence is possible, which has been a basic assumption of
+Anselm. Because of this, Anselm's argument has been
+criticized as incomplete by Leibniz. Leibniz instead claimed that the
+assumption should be derivable from the definition of God as a perfect
+being and from the notion of perfection.  G{\"o}del's proof 
+addresses this critique, and it also addresses the critique of others,
+including Kant's objection that existence should not be treated as a predicate. On the other hand, G{\"o}del's work
+still leaves room for criticism, in particular, his axioms are so
+strong that they imply \emph{modal collapse}, that is, a situation where
+contingent truths and necessary
+truths coincide. More information on the philosophical debate on
+G{\"o}del's proof is provided in~\cite{sobel2004logic}.
+
+
+We have analyzed Dana Scott's version of G\"{o}del's proof
+\cite{ScottNotes} (cf.~Fig.~\ref{fig1}) for the first-time with an
+unprecedented degree of detail and formality with the help of
+higher-order automated theorem provers (HOL-ATPs).\footnote{All
+  sources of our formalization are publicly available
+  at~\url{https://github.com/FormalTheology/GoedelGod}. Our work has
+  attracted major public interest, and leading media institutions
+  worldwide have reported on it; some exemplary links to respective
+  media reports and interviews are available at the above URL (see
+  `Press' subfolder).}  The following has been done (and in this
+order):
+% \footnote{System URLs:
+%  TPTP---\url{http://tptp.org};
+%  Nitpick---\url{http://www4.in.tum.de/\~{}blanchet/nitpick.html};
+%  LEO-II---\url{http://leoprover.org};
+%  Satallax---\url{http://www.ps.uni-saarland.de/\~{}cebrown/satallax}; 
+%  Coq---\url{http://coq.inria.fr};
+%  Isabelle---\url{http://isabelle.in.tum.de}.
+% }
+(i) a detailed natural deduction proof;
+%
+(ii) a formalization in TPTP THF syntax \cite{J22};
+%
+(iii) an automatic verification of the consistency of the axioms and 
+definitions with Nitpick \cite{Nitpick};
+%
+(iv) an automatic demonstration of the theorems with the provers LEO-II \cite{LEO-II} and Satallax \cite{Satallax};
+%
+(v) a step-by-step formalization using the Coq proof assistant \cite{Coq};
+%
+(vi) a formalization using the Isabelle proof assistant \cite{Isabelle}, where the
+theorems (and some additional lemmata) have been automated with the
+Isabelle tools Sledgehammer %~\cite{Sledgehammer} 
+and Metis. %~\cite{Metis}.
+Subsequently, we have studied additional consequences
+of G\"odel's axioms, including modal collapse and monotheism, and we
+have investigated variations of the proof, for example, by switching
+from constant domain semantics to varying domain semantics.
+
+
+In this paper we focus on the core aspect of our work related to AI: proof automation with HOL-ATPs (cf.~aspects (ii)--(iv)
+above). % In addition, we present the detailed technical
+% background, i.e., the embedding of \HOML in \HOL.  None of these
+% aspects have been adressed in detail yet in any of our other existing 
+% (short and partly non-reviewed) papers on the subject \cite{J30,W50,J29,J28}.
+The particular contributions of this paper are as follows: 
+% In Sec.~\ref{sec1} we present Scott's script \cite{ScottNotes} of
+% G\"odel's proof, and we summarize the results of our
+% recent automation of this script with HOL-ATPs. 
+In Sec.~\ref{sec2} we present an elegant embedding of 
+\HOML \cite{Gallin75,homl} in \HOL \cite{andrewsSEP,B5}. 
+This background theory extends and
+adapts the work as presented in \cite{J23,B9}.
+In Sec.~\ref{sec3}, we present details on the
+encoding of this embedding and of G{\"o}del's argument in the
+concrete THF syntax \cite{J22} for \HOL, and we report on the
+experiments we have conducted with HOL-ATPs.  The main findings of
+these experiments are summarized in Sec.~\ref{sec4},
+% : in addition to
+% automating G{\"o}del's proof script we have automated also some further
+% results (e.g.~modal collapse), and we have studied
+% the argument under modified logical settings (varying vs.~constant domain semantics).
+% (by switching from constant
+% domain semantics to varying domain semantics)
+Related and future work is addressed in Sec.~\ref{sec5}, and the paper
+is concluded in Sec.~\ref{sec6}.
+%  where we also discuss potential
+% implications towards a \emph{computational theoretical
+%   philosophy}.
+None of the above aspects have been addressed (at least
+not in depth) in any of our other existing (short and partly
+non-reviewed) publications on the subject \cite{J30,W50,J29,J28}.
+
+
+
+\section{THEORY FRAMEWORK}\label{sec2}
+An embedding of quantified modal logic (with first-order and
+propositional quantifiers) in HOL has been presented in
+\cite{J23}. The theory below extends this work: quantifiers for all
+types are now supported, and nested uninterpreted predicate and
+function symbols of arbitrary types
+are allowed as opposed to allowing top-level uninterpreted
+predicate symbols over individual variables only.
+
+\subsection{Higher-order modal logic}
+A notion of \HOML is introduced that extends \HOL with a modal
+operator $\Box$. An appropriate notion of semantics for \HOML is
+obtained by adapting Henkin semantics for \HOL (cf.~\cite{Henkin50}
+and~\cite{Gallin75}). The presentation in this section is adapted
+from~\cite{homl} and~\cite{andrewsSEP}.
+
+% First-order quantification can be constant domain or varying domain.  Below we only consider the constant domain case: every possible world has the same domain. We adapt the presentation of syntax and
+%  semantics of quantified modal logic from Fitting \cite{Fitting02} to
+%  the higher-order case.
+
+% Let $\IV$ be a set of first-order (individual) variables, $\PV$ a
+% set of propositional variables, and $\SYM$ a set of predicate
+% symbols of any arity. Like Fitting, we keep our definitions simple by not having function or constant symbols; our language has no terms other than variables.
+%   While Fitting \cite{Fitting02} studies quantified monomodal logic, we
+%   are interested in quantified multimodal logic. Hence, we introduce
+%   multiple $\mball{r}$ operators for symbols $r$ from an index set
+%   $S$. 
+
+\begin{definition}\label{homltypes} The set $\entity{T}$ of \emph{simple
+    types} is freely generated from the set of basic types $\{o,
+  \mu\}$ ($o$ stands for Booleans and $\mu$ for individuals) using the
+  function type constructor $\ar$. We may avoid parentheses, and
+  $\alpha\ar\alpha\ar\alpha$ then stands for
+  $(\alpha\ar(\alpha\ar\alpha))$, that is, function types associate to
+  the right.
+\end{definition} 
+
+\begin{definition}\label{homlgrammar}
+The \emph{grammar} for \HOML is:
+\begin{align*} 
+  s,t \quad ::= \quad & p_\alpha \mid X_\alpha \mid (\lam{X_\alpha}
+  s_\beta)_{\alpha\ar\beta} \mid (s_{\alpha\ar\beta}\, t_\alpha)_\beta
+  \mid (\neg_{o\ar o}\, s_o)_o \mid \\
+  & ((\vee_{o\ar o\ar o} s_o)\, t_o)_o  
+  \mid (\forall_{(\alpha\ar
+    o)\ar o}(\lam{X_\alpha} s_o))_o  \mid (\Box_{o\ar o}\, s_o)_o
+%P \mid k(X^1,\ldots,X^n) \mid \mnot s \mid s \mor t \mid \all{X} s  \mid \all{P} s  \mid \mball{r} s
+\end{align*}
+where $\alpha,\beta\in T$.  $p_\alpha$ denotes typed constants and
+$X_\alpha$ typed variables (distinct from $p_\alpha$).  Complex typed
+terms are constructed via abstraction and application. The type of
+each term is given as a subscript.  Terms $s_o$ of type $o$ are called
+formulas.  The logical connectives of choice are
+$\neg_{o\ar o}$, $\vee_{o\ar
+  o\ar o}$, $\forall_{(\alpha\ar
+  o)\ar o}$ (for $\alpha\in T$), and
+$\Box_{o\ar o}$.  Type subscripts may be dropped if
+irrelevant or obvious. Similarly, parentheses may be avoided.  Binder
+notation $\all{X_\alpha} s_o$ is used as shorthand for
+$\forall_{(\alpha\ar o)\ar o}
+(\lam{X_\alpha} s_o)$, and infix notation $s \vee t$ is employed
+instead of $((\vee s)\, t)$. From the above connectives, other logical
+connectives, such as $\top$, $\bot$, $\wedge$, $\supset$, $\equiv$, $\exists$,
+and $\Diamond$, can be defined in the usual way.
+\end{definition}
+
+\begin{definition}\label{homlsubstitution}
+  \emph{Substitution} of a term $A_\alpha$ for a variable $X_\alpha$
+  in a term $B_\beta$ is denoted by $[A/X]B$.  Since we consider
+  $\alpha$-conversion implicitly, we assume the bound variables of $B$
+  avoid variable capture.
+\end{definition}
+
+\begin{definition}\label{homlbetaeta} %\footnote{\textbf{Chris:} Is Def.4 needed at all?}
+  Two common relations on terms are given by $\beta$-reduction and
+  $\eta$-reduction.  A $\beta$-redex has the form $(\lam{X}s)t$ and
+  $\beta$-reduces to $[t/X]s$.  An $\eta$-redex has the form
+  $(\lam{X}s X)$ where variable $X$ is not free in $s$; it
+  $\eta$-reduces to $s$.  We write $s\eqb t$ to mean $s$ can be
+  converted to $t$ by a series of $\beta$-reductions and expansions.
+  Similarly, $s\eqbe t$ means $s$ can be converted to $t$ using both
+  $\beta$ and $\eta$.  For each $s_\alpha\in \HOML$ there is a unique
+  \emph{$\beta$-normal form} and a unique \emph{$\beta\eta$-normal
+    form}.
+% From this fact we know $s\eqb t$ ($s\eqbe t$) iff
+% $\Bnormform s\Metaeq\Bnormform t$
+% ($\Benormform s\Metaeq\Benormform t$).
+% The semantics of $\stt$ is well understood and thoroughly documented
+% in the literature \cite{Henkin50,Andrews72b,Andrews72a,BBK04}; our
+% summary below is adapted from Andrews~\cite{sep-type-theory-church}.
+\end{definition}
+
+
+\begin{definition}\label{homlframe}
+A \emph{frame} $D$ is a collection $\{D_\alpha\}_{\alpha\in\entity{T}}$
+of nonempty sets $D_\alpha$, such that $D_o = \{T,F\}$
+(for truth and falsehood).  The
+$D_{\alpha\ar\beta}$ are collections of functions mapping
+$D_\alpha$ into $D_\beta$. 
+\end{definition}
+
+
+\begin{definition}\label{homlassignment}
+A \emph{variable assignment} $g$ maps
+variables $X_\alpha$ to elements in $D_\alpha$. $g[d/W]$ denotes the
+assignment that is identical to $g$, except for variable $W$, which is
+now mapped to $d$.
+\end{definition}
+
+\begin{definition}\label{homlmodel}
+  A \emph{model} for \HOML is a quadruple $M=\langle W, R, D,
+  \{I_w\}_{w\in W} \rangle$, where $W$ is a set of worlds (or states),
+  $R$ is an accessibility relation between the worlds in $W$, $D$ is a
+  frame, and for each $w\in W$, $\{I_w\}_{w\in W}$ is a family of
+  typed interpretation functions mapping constant symbols $p_\alpha$
+  to appropriate elements of $D_\alpha$, called the \emph{denotation
+    of $p_\alpha$ in world $w$} (the logical connectives $\neg$,
+  $\vee$, $\forall$, and $\Box$ are always given the standard
+  denotations, see below).  Moreover, it is assumed that the domains
+  $D_{\alpha\ar\alpha\ar o}$ contain the respective identity relations
+  on objects of type $\alpha$ (to overcome the extensionality
+  issue discussed in \cite{Andrews:gmae72}).
+\end{definition}
+
+
+% \emph{Validity} of a formula $s$ for a model $M=\langle  W, R, \{D_\alpha\}_{\alpha\in\entity{T}}, \{I_\alpha\}_{\alpha\in\entity{T}} \rangle$,
+% a world $w\in W$, and a variable assignment $g$ is denoted as $M,g,w\models s$ and defined as
+% follows, where $[a/Z]g$ denotes the assignment identical to $g$ except that 
+% $([a/Z]g)(Z) = a$:
+% \begin{align*}
+% M,g,w &\models k(X^1,\ldots,X^n) &\text{if and only if}& \quad \langle g^{iv}(X^1),\ldots,g^{iv}(X^n)\rangle\in I_w(k) \\
+% M,g,w &\models P &\text{if and only if}& \quad  w\in g^{pv}(P) \\
+% M,g,w &\models \mnot s &\text{if and only if}& \quad  M,g,w \not\models s \\
+% M,g,w &\models s \mor t &\text{if and only if}& \quad  M,g,w \models s \text{ or } M,g,w \models t \\
+% M,g,w &\models \mall{X}s &\text{if and only if}& \quad  M,([d/X]g^{iv},g^{pv}),w \models s \\ 
+% & & & \quad \text{for all } d\in D \\
+% M,g,w &\models \mall{Q}s &\text{if and only if}& \quad  M,(g^{iv},[p/Q]g^{pv}),w \models s \\ 
+% & & & \quad \text{for all } p\in P \\
+% M,g,w &\models \mball{r}s &\text{if and only if}& \quad  M,g,v \models s \text{ for all } v\in W \\
+% & & & \quad \text{with } \langle w,v\rangle\in R_r
+% \end{align*}
+
+
+\begin{definition}\label{homlvalue}
+The \emph{value} $\| s_\alpha\|^{M,g,w}$ of a \HOML term $s_\alpha$ on a model $M=\langle W, R, D, \{I_w\}_{w\in W}
+\rangle$ in a world $w\in W$ under variable assignment $g$ is an element $d\in D_\alpha$ defined in the following way:
+\begin{enumerate}
+\item $\|p_\alpha\|^{M,g,w} = I_w(p_\alpha)$ and $\|X_\alpha\|^{M,g,w} = g(X_\alpha)$
+\item $\|(s_{\alpha\ar\beta}\, t_\alpha)_\beta\|^{M,g,w} = \|s_{\alpha\ar\beta}\|^{M,g,w}(\|t_\alpha\|^{M,g,w})$
+\item $\|(\lam{X_\alpha}s_\beta)_{\alpha\ar\beta}\|^{M,g,w} = $ the
+  function $f$ from $D_\alpha$ to $D_\beta$ such that $f(d) = \|s_\beta\|^{M,g[d/X_\alpha],w}$ for all $d\in D_\alpha$
+\item $\|(\neg_{o\ar o}\, s_o)_o\|^{M,g,w} = T$ iff $\|s_o\|^{M,g,w} = F$
+\item $\|(({\vee_{o\ar o\ar o}}\,s_o)\,t_o)_o\|^{M,g,w} = T$ iff \,$\|s_o\|^{M,g,w} = T$ or $\|t_o\|^{M,g,w} = T$
+\item $\|(\forall_{(\alpha\ar o)\ar o}(\lam{X_\alpha} s_o))_o\|^{M,g,w} = T$ iff for all $d\in D_\alpha$ we have  $\|s_o\|^{M,g[d/X_\alpha],w}  = T$
+\item $\|(\Box_{o\ar o}\, s_o)_o\|^{M,g,w} = T$ iff for all $v \in W$ with $w R v$ we have  $\|s_o\|^{M,g,v}  = T$
+\end{enumerate}
+\end{definition}
+
+\begin{definition}\label{homlhenkinmodel}
+ A model $M=\langle W, R, D, \{I_w\}_{w\in W}\rangle$ is called a
+ \emph{standard model} iff for all $\alpha,\beta\in T$ we have
+ $D_{\alpha\ar\beta} = \{ f \mid f : D_\alpha \longrightarrow D_\beta
+ \}$. In a \emph{Henkin model} function spaces are not necessarily
+ full. Instead it is only required that $D_{\alpha\ar\beta}
+ \subseteq \{ f \mid f : D_\alpha \longrightarrow D_\beta \}$ (for all
+ $\alpha,\beta\in T$) and that the valuation function 
+ $\|\cdot\|^{M,g,w}$ from above is total (i.e., every term denotes). Any standard model is obviously
+ also a Henkin model. We consider Henkin models in the remainder.
+\end{definition}
+
+\begin{definition}\label{homlvalid}
+A formula $s_o$ is \emph{true} in model $M$ for world $w$
+under assignment $g$ iff $\|s_o\|^{M,g,w} = T$; this is also denoted
+as $M,g,w \models s_o$.  A formula $s_o$ is called \emph{valid} in
+$M$ iff $M,g,w \models s_o$ for all $w\in W$ and all
+assignments $g$. Finally, a formula $s_o$ is called
+\emph{valid}, which we denote by $\models s_o$, iff $s_o$ is valid for
+all $M$. Moreover, we write $\Gamma\models \Delta$ (for sets of
+ formulas $\Gamma$ and $\Delta$) iff there is a model $M=\langle W, R, D, \{I_w\}_{w\in W}
+\rangle$, an assignment $g$, and a world $w\in W$, such that  
+ $M,g,w \models s_o$ for all $s_o\in \Gamma$ and $M,g,w \models t_o$ for at least one $t_o\in \Delta$.
+\end{definition}
+
+The above definitions introduce higher-order modal logic K. In order
+to obtain logics KB and S5 respective conditions on accessibility
+relation $R$ are postulated: $R$ is a symmetric relation in logic KB,
+and it is an equivalence relation in logic S5. If these restriction apply,
+we use the notations $\models^{KB}$ and $\models^{S5}$.  G{\"o}del's
+argument has been developed and studied in the context of logic
+S5 (and logic S5 has subsequently been criticized). However, the
+HOL-ATPs discovered (cf.~Sec.~\ref{sec4}) that logic KB
+is sufficient.
+
+An important issue for quantified modal logics is whether constant
+domain or varying domain semantics is considered. The theory above
+introduces constant domains. 
+Terms (other than those of Boolean type) are modeled as rigid, that
+is, their denotation is fixed for all worlds. 
+%
+An adaptation to varying or cumulative
+domains is straightforward (cf.~\cite{fitting98}). Moreover, non-rigid
+terms could be modeled; that is, terms whose denotation may switch
+from world to world. 
+%
+The respective assumptions of 
+G\"odel are not obvious to us.
+
+
+
+
+\subsection{Classical higher-order logic}
+\HOL is easily obtained from \HOML by removing the modal operator
+$\Box$ from the grammar, and by dropping the set of possible worlds
+$W$ and the accessibility relation $R$ from the definition of a model.
+Nevertheless, we explicitly state the most relevant definitions for
+the particular notion of \HOL as employed in this paper. One reason is
+that we do want to carefully distinguish the \HOL and \HOML languages
+in the remainder (we use boldface fonts for \HOL and standard fonts
+for \HOML). There is also a subtle, but harmless, difference in the
+\HOL language as employed here  in comparison to the standard
+presentation: here three base types are employed, whereas
+usually only two base types are considered. The third base type plays
+a crucial role in our embedding of \HOML in \HOL.
+
+
+\begin{definition}\label{holtypes}
+  The set $\hol{T}$ of simple types freely generated from a set of
+  basic types $\{\hol{o}, \hol{\mu}, \hol{\iota}\}$ using the function type
+  constructor $\hol{\ar}$. $\hol{o}$ is the type of Booleans,
+  $\hol{\mu}$ is the type of individuals, and type
+  $\hol{\iota}$ is employed as the type of possible worlds below. As
+  before we may avoid parentheses.
+\end{definition}
+
+\begin{definition}\label{holgrammar}
+The grammar for higher-order logic $\HOL$ is:
+\begin{align*} 
+  \hol{s},\hol{t} \quad ::= \quad & \hol{p_\alpha} \mid \hol{X_\alpha} \mid \hol{(\lam{X_\alpha}
+  s_\beta)_{\alpha\ar\beta}} \mid \hol{(s_{\alpha\ar\beta}\, t_\alpha)_\beta} \mid  \hol{\neg_{o\ar o}\, s_o} \mid \\
+  & \hol{(({\vee_{o\ar o\ar o}}\,s_o)\,t_o)} \mid \hol{\forall_{(\alpha\ar
+    o)\ar o}(\lam{X_\alpha} s_o)} 
+\end{align*}
+where $\hol{\alpha},\hol{\beta}\in \hol{T}$. The text from
+Def.~\ref{homlgrammar} analogously applies, except that we do not
+consider the modal  connectives $\hol{\Box}$ and $\hol{\Diamond}$.
+\end{definition}
+
+The definitions for substitution (Def.~\ref{homlsubstitution}), $\beta$- and $\eta$-reduction (Def.~\ref{homlbetaeta}), frame (Def.~\ref{homlframe}), and assignment (Def.~\ref{homlassignment}) remain unchanged.
+
+\begin{definition}\label{holmodel}
+  A \emph{model} for \HOL is a tuple $\hol{M}=\hol{\langle D, I \rangle}$, where
+  $\hol{D}$ is a frame, and $\hol{I}$ is a family of typed interpretation
+  functions mapping constant symbols $\hol{p_\alpha}$ to appropriate
+  elements of $\hol{D_\alpha}$, called the \emph{denotation of $\hol{p_\alpha}$}
+  (the logical connectives $\hol{\neg}$, $\hol{\vee}$, and $\hol{\forall}$ are always
+  given the standard denotations, see below).  Moreover, we assume that the domains
+  $\hol{D_{\alpha\ar\alpha\ar o}}$ contain the respective identity relations.
+\end{definition}
+
+
+\begin{definition}\label{holvalue}
+  The \emph{value} $\hol{\| s_\alpha\|^{M,g}}$ of a \HOML term
+  $\hol{s_\alpha}$ on a model $\hol{M}=\hol{\langle W, R, D, I_{w\in
+      W} \rangle}$ in a world $\hol{w}\in \hol{W}$ under assignment $\hol{g}$ is an element $\hol{d}\in \hol{D_\alpha}$
+  defined in the following way:
+\begin{enumerate}
+\item $\hol{\|p_\alpha\|^{M,g}} = \hol{I(p_\alpha)}$ and $\hol{\|X_\alpha\|^{M,g}} = \hol{g(X_\alpha)}$
+\item $\hol{\|(s_{\alpha\ar\beta}\, t_\alpha)_\beta\|^{M,g}} = \hol{\|s_{\alpha\ar\beta}\|^{M,g}(\|t_\alpha\|^{M,g})}$
+\item $\hol{\|(\lam{X_\alpha}s_\beta)_{\alpha\ar\beta}\|^{M,g}} = $
+  the function $\hol{f}$ from $\hol{D_\alpha}$ to $\hol{D_\beta}$ such
+  that $\hol{f(d)} = \hol{\|s_\beta\|^{M,g[d/X_\alpha]}}$ for all
+  $\hol{d}\in \hol{D_\alpha}$
+\item $\hol{\|(\neg_{o\ar o}\, s_o)_o\|^{M,g}} = \hol{T}$ iff $\hol{\|s_o\|^{M,g}} = \hol{F}$
+\item $\hol{\|(({\vee_{o\ar o\ar o}}\,s_o)\,t_o)_o\|^{M,g}} =
+  \hol{T}$ iff\, $\hol{\|s_o\|^{M,g}} = \hol{T}$ or $\hol{\|t_o\|^{M,g}}
+  = \hol{T}$
+\item $\hol{\|(\forall_{(\alpha\ar o)\ar o}(\lam{X_\alpha}
+    s_o))_o\|^{M,g}} = \hol{T}$ iff for all $\hol{d}\in
+  \hol{D_\alpha}$ we have $\hol{\|s_o\|^{M,g[d/X_\alpha]}} = \hol{T}$
+%\item $\|(\Box_{o\ar o}\, s_o)_o\|^{M,g,w} = T$ iff for all $v \in W$ with $w R v$ we have  $\|s_o\|^{M,g,v}  = T$
+\end{enumerate}
+\end{definition}
+
+
+The definition for standard and Henkin models
+(Def.~\ref{homlhenkinmodel}), and for truth in a model, validity,
+etc. (Def.~\ref{homlvalid}) are adapted in the obvious way, and we use
+the notation $\hol{M,g \models s_o}$, $\hol{\models s_o}$, and
+$\hol{\Gamma \models \Delta}$. As for \HOML, we assume Henkin
+semantics in the remainder.
+
+
+\subsection{\HOML as a fragment of \HOL}
+The encoding of \HOML in \HOL is simple: we identify \HOML formulas of
+type $o$ with certain \HOL formulas of type $\hol{\iota \ar o}$. The \HOL
+type $\hol{\iota \ar o}$ is abbreviated as $\hol{\sigma}$ in the
+remainder. More generally, we define for each \HOML type $\alpha\in T$
+the associated raised \HOL type $\lift{\alpha}$ as follows: $\lift{\mu}
+= \hol{\mu}$, $\lift{o} = \hol{\sigma} = \hol{\iota \ar o}$, and
+$\lift{\alpha\ar\beta} = \lift{\alpha} \hol{\ar} \lift{\beta}$.
+Hence, all \HOML terms are rigid, except for those of type $o$.
+% \footnote{This choice could be modified in an obvious way to
+  % obtain non-rigid terms.}
+
+\begin{definition}\label{operators}
+\HOML terms $s_\alpha$ are associated with type-raised \HOL terms
+$\lift{s_\alpha}$ in the following way:
+\begin{align*} {\lift{p_\alpha}} & = \hol{p}_{\lift{\alpha}}
+  \\
+  {\lift{X_\alpha}} & = \hol{X}_{\lift{\alpha}}
+  \\
+  {\lift{(s_{\alpha\ar\beta}\,t_{\alpha})}} & =
+  {(\lift{s_{\alpha\ar\beta}}\,\lift{ t_{\alpha}})}
+  \\
+  {\lift{(\lam{X_\alpha} s_\beta)}} & = {(\hol{\lambda}
+    \lift{X_\alpha} \lambdot \lift{s_\beta})}
+  \\
+  {\lift{(\neg_{o\ar o}\,s_{o})}} & =
+  (\hol{\llift{\neg}_{\sigma\ar\sigma}}\,\lift{ s_{\alpha}})
+  \\
+  {\lift{(({\vee}_{o\ar o\ar o}\,s_{o})\,t_{o})}} & =
+  ((\hol{\llift{\vee}_{\sigma\ar\sigma\ar\sigma}}\,\lift{
+    s_{\alpha}})\,\lift{ t_{\alpha}})
+  \\
+  {\lift{((\forall_{(\alpha\ar o)\ar o}\,(\lam{X_\alpha} s_\beta)}} & =
+  (\hol{\llift{\forall}_{(\alpha\ar\sigma)\ar\sigma}}\,(\hol{\lambda}
+  \lift{X_\alpha} \lambdot \lift{s_\beta})
+  \\
+  {\lift{(\Box_{o\ar o}\,s_{o})}} & =
+  (\hol{\llift{\Box}_{\sigma\ar\sigma}}\,\lift{ s_{\alpha}})
+\end{align*}
+
+$\hol{\llift{\neg}},\hol{\llift{\vee}},\hol{\llift{\forall}}$, and
+$\hol{\llift{\Box}}$ are the \emph{type-raised modal \HOL connectives}
+associated with the corresponding modal \HOML connectives. They are defined as follows (where $\hol{r_{\iota\ar
+    \iota\ar o}}$ is a new constant symbol in \HOL associated with the
+accessibility relation $R$ of \HOML):
+\begin{align*}
+\hol{\llift{\neg}_{\sigma\ar\sigma}} & = \hol{\lam{s_\sigma}\lam{W_\iota}\neg\,(s\,W)}
+\\
+\hol{\llift{\vee}_{\sigma\ar\sigma\ar\sigma}} & = \hol{\lam{s_\sigma} \lam{t_\sigma} \lam{W_\iota} s\,W \vee t\,W}
+\\
+\hol{\llift{\forall}_{(\alpha\ar \sigma)\ar
+\sigma}} & = \hol{\lam{s_{\alpha\ar \sigma}} \lam{W_\iota}
+\all{X_\alpha} s\,X\,W} 
+\\
+\hol{\llift{\Box}_{\sigma\ar\sigma}} & =  
+\hol{\lam{s_\sigma} \lam{W_{\iota}} \all{V_{\iota}} \neg (r_{\iota\ar \iota\ar o}\,W\,V) \vee s\,V}
+\end{align*}
+As before, we write $\hol{\llift{\forall} {X_\alpha} \lambdot
+  s_\sigma}$ as shorthand for $\hol{\llift{\forall}_{(\alpha\ar
+    \sigma)\ar \sigma}(\lam{X_\alpha} s_\sigma)}$. Further operators,
+such as $\hol{\llift{\top}}$, $\hol{\llift{\bot}}$,
+$\hol{\llift{\wedge}}$, $\hol{\llift{\supset}}$, $\hol{\llift{\equiv}}$,
+$\hol{\llift{\Diamond}}$, and $\hol{\llift{\exists}}$
+($\hol{\llift{\exists} {X_\alpha} \lambdot s_\sigma}$ is used as
+shorthand for $\hol{\llift{\exists}_{(\alpha\ar \sigma)\ar \sigma}
+  (\lam{X_\alpha} s_\sigma)}$) can now be easily defined.\footnote{We
+  could introduce further modal operators, such as the difference
+  modality $\hol{D}$, the global modality $\hol{E}$, nominals with $\hol{!}$, and the $\hol{@}$
+  operator (cf.~\cite{J23}).} The above equations can be treated as
+abbreviations in \HOL theorem provers. Alternatively, they can be
+ stated as axioms where $=$ is either Leibniz equality or
+primitive equality (if additionally provided in the \HOL grammar, as
+is the case for most modern \HOL provers).
+\end{definition}
+% \begin{align*}
+% D_{(\iota\ar o)\ar(\iota\ar o)} & = \lam{s_{\iota\ar o}} \lam{W_\iota} \exi{V_\iota} W \not= V \wedge s V 
+% \\
+% E_{(\iota\ar o)\ar(\iota\ar o)} & = \lam{s_{\iota\ar o}} s \mor D\, s 
+% \\
+% !_{(\iota\ar o)\ar(\iota\ar o)} & = \lam{s_{\iota\ar o}} E\, (s \mand \mnotinpit{D\,s}) 
+% \\
+% @_{\iota\ar(\iota\ar o)\ar(\iota\ar o)} & = \lam{W_\iota} \lam{s_{\iota\ar o}} s\, W 
+% \end{align*}
+% % This illustrates the potential of our embedding for encoding quantified
+% hybrid logic, an issue that we might explore in future work.
+
+%  In
+% particular, the \HOML connectives $\neg_{o\ar o}$, $\vee_{o\ar o\ar
+%   o}$, $\Pi_{(\alpha\ar o)\ar o}$, and $\Box_{o\ar o}$ are associated
+% with ``type-raised'' \HOL terms of
+% $\hol{\lift{\neg}_{\sigma\ar\sigma}}$,
+% $\hol{\lift{\vee}_{\sigma\ar\sigma\ar\sigma}}$,
+% $\hol{\lift{\Pi}_{(\alpha\ar \sigma)\ar \sigma}}$, and
+% $\hol{\lift{\Box}_{\sigma\ar\sigma}}$, respectively.
+
+As a consequence of the above embedding we can express \HOML proof
+problems elegantly in the type-raised syntax of \HOL. Using rewriting
+or definition expanding, we can reduce these representations to
+corresponding statements containing only the basic \HOL connectives
+$\hol{\neg_{o\ar o}}$, $\hol{\vee_{o\ar o\ar o}}$, and
+$\hol{\forall_{(\alpha\ar o)\ar o}}$.
+
+\begin{example}\label{ex1} %\footnote{Maybe we should instead use an axiom or theorem from G{\"o}del's proof?}
+  The \HOML formula $\Box\,\exi{P_{\mu \ar o}} P\,a_\mu$ is
+  associated with the type raised \HOL formula
+  $\hol{\llift{\Box}\,\llift{\exists} {P_{\mu\ar
+        \sigma}} \lambdot P\ a_\mu}$, which rewrites into the following
+  $\beta\eta$-normal \HOL term of type $\sigma$
+\[\hol{\lam{W_\iota} \all{V_\iota} \neg (r\,W\,V) \vee \neg \all{P_{\mu\ar \sigma}} \neg (P\, a_\mu\, V)}\]
+\end{example}
+
+
+
+Next, we define validity of type-raised modal \HOL propositions 
+$\hol{s_\sigma}$ in the obvious way: 
+$\hol{s_\sigma}$ is valid iff for all possible worlds
+$\hol{w_\iota}$ we have 
+$\hol{w_\iota\in s_\sigma}$,
+that is, iff
+$\hol{(s_\sigma\,w_\iota)}$ holds.
+
+\begin{definition}\label{validity}
+  \emph{Validity} is modeled as an abbreviation for the following
+  $\lambda$-term: $\textbf{valid} = \hol{\lam{s_{\iota\ar o}} \all{W_\iota}
+    s\,W}$ (alternatively, we could define validity simply as
+  $\hol{\forall_{(\iota\ar o)\ar o}}$). Instead of 
+  $\hol{\textbf{valid}\,s_\sigma}$ we also use the notation
+  $\hol{[s_\sigma]}$.
+\end{definition}
+
+\begin{example} \label{ex2} \sloppy We analyze whether the type-raised
+  modal \HOL formula $\hol{\llift{\Box}\,\llift{\exists} {P_{\mu\ar
+        \sigma}} \lambdot (P\ a_\mu)}$ is valid or not. For this, we
+  formalize the \HOL proof problem
+  $\hol{[{\llift{\Box}\,\llift{\exists} {P_{\mu-\ar \sigma}} \lambdot (P\
+      a_\mu)}]}$, which expands into $\hol{\all{W_\iota} \all{V_\iota} \neg
+    (r\,W\,V) \vee \neg \all{P_{\mu\ar \sigma}} \neg (P\, a_\mu\, V)}$.
+  It is easy to check that this term is valid in Henkin semantics: put
+  $\hol{P} = \hol{\lam{X_\mu} \lam{Y_\iota} \top}$.
+%  Proving the statement automatically is non-trivial though as we shall shortly see.
+\end{example}
+
+
+\begin{theorem}[Soundness and Completeness] \label{thm1} 
+For all \HOML formulas $s_o$ we have: 
+\[\models s_o \quad \text{iff} \quad \hol{\models} \hol{[}\lceil s_o \rceil\hol{]}\]
+\textbf{Proof sketch:} The proof adapts the ideas presented
+in \cite{J23}. By contraposition it is sufficient to show $\not\models
+s_o \,\,\text{iff}\,\hol{\not\models} \hol{[}\lceil s_o \rceil\hol{]}$,
+that is, $\| s_o \|^{M,g,w}$ (for some \HOML model $M$, assignment
+$g$, and $w$) iff $\hol{\| \all{W_\iota} \lceil s_o \rceil\,W\|^{M,g}}$
+(for some \HOL model $\hol{M}$ and assignment $\hol{g}$) iff $\hol{\|
+  \lceil s_o \rceil\,W\|^{M,g[w/W]}}$ (for some $\hol{M}$, $\hol{g}$,
+and $w$). We easily get the proof by choosing the obvious
+correspondences between $D$ and $\hol{D}$, $W$ and $\hol{D_\iota}$, $I$
+and $\hol{I}$, $g$ and $\hol{g}$, $R$ and $r_{\iota\ar \iota\ar o}$,  and $w$
+and $\hol{w}$. \hfill $\Box$
+\end{theorem}
+
+From Theorem~\ref{thm1} we get the following corollaries:
+\[\models^{KB} s_o  \quad \text{iff}  \quad \hol{(\textbf{symmetric}\,r_{\iota\ar \iota\ar o})} \hol{\models} \hol{[}\lceil s_o \rceil\hol{]}\]
+\[\models^{S5} s_o  \quad \text{iff}  \quad
+\hol{(\textbf{equiv-rel}\,r_{\iota\ar \iota\ar o})} \hol{\models}
+\hol{[}\lceil s_o \rceil\hol{]}\]
+where \textbf{symmetric} and \textbf{equiv-rel} are defined in an
+obvious way.
+
+Constant domain quantification is
+addressed above. Techniques for handling varying domain and cumulative domain
+quantification in the embedding of first-order modal logics in \HOL
+have been outlined in \cite{C34}. These techniques, which have also been
+adapted  for the theory above, cannot be presented here for space limitations.
+
+Note that also non-rigid terms can easily be modeled by
+type-raising. For example, a non-rigid \HOML constant symbol
+$\mathrm{kingOfFrance}_\mu$ would be mapped to a type-raised
+(and thus world-depended) \HOL constant symbol $\mathbf{kingOfFrance_{\iota\ar \mu}}$.
+
+
+
+\section{EXPERIMENTS} \label{sec3} The above embedding 
+%from Sec.~\ref{sec2} 
+has been encoded in the concrete THF0 syntax \cite{J22} for \HOL; cf.~the
+files \texttt{Quantified\_K/\_KB/\_S5.ax}\footnote{The formalization in
+  these files slightly varies from the above theory w.r.t. technical
+  details. For example, a generic $\Box$-operator is introduced that
+  can be instantiated for different accessibility relations as
+  e.g. required for multi-modal logic applications
+  (cf.~\cite{J23}). Moreover, since THF0 does not support
+  polymorphism, copies of the $\hol{\llift{\forall}_{(\alpha\ar
+      \sigma)\ar \sigma}}$ and $\hol{\llift{\exists}_{(\alpha\ar
+      \sigma)\ar \sigma}}$ connectives are provided only for the
+  selected types ${(\mu \ar \sigma)\ar \sigma}$ and ${((\mu \ar
+    \sigma)\ar \sigma)\ar \sigma}$ as precisely required in
+  G{\"o}dels's proof. The Isabelle version~\cite{J28} and the Coq
+  version of the encoding instead provide respective polymorphic
+  definitions.} available at
+\url{https://github.com/FormalTheology/GoedelGod/tree/master/Formalizations/THF}
+(all files mentioned below are provided under this URL). The
+definition for quantifier
+$\hol{\llift{\forall}_{((\mu \ar \sigma)\ar \sigma)\ar \sigma}}$, for
+example, is given as\footnote{\texttt{\$i}, \texttt{\$o}, and
+  \texttt{mu} represent the HOL base types $\hol{i}$, $\hol{o}$, and
+  $\hol{\mu}$. \texttt{\$i>\$o} encodes a function (predicate) type.
+  Function application is represented by \texttt{@}, and for universal
+  quantification, existential quantification and $\lambda$-abstraction
+  the symbols \texttt{!}, \texttt{?}  and \texttt{\^{}} are
+  employed. $\hol{\neg}$, $\hol{\vee}$, $\hol{\wedge}$, and
+  $\hol{\supset}$ are written as \texttt{\url{~}}, \texttt{|},
+  \texttt{\&}, and \texttt{=>}, respectively. The type-raised modal
+  connectives are called \texttt{mforall\_*}, \texttt{mexists\_*},
+  \texttt{mnot}, \texttt{mor}, \texttt{mand}, \texttt{mimplies}, etc.}
+
+{\footnotesize
+\begin{verbatim}
+  thf(mforall_indset,definition,
+      ( mforall_indset
+      = ( ^ [S: ( mu > $i > $o ) > $i > $o,W: $i] :
+          ! [X: mu > $i > $o] :
+            ( S @ X @ W ) ) )).
+\end{verbatim}
+}
+
+
+Subsequently the axioms, definitions, and theorems from
+Fig.~\ref{fig1} and some further, related problems have been encoded
+in THF0. Then the THF0 compliant HOL-ATPs LEO-II \cite{LEO-II},
+Satallax \cite{Satallax}, and Nitpick \cite{Nitpick} have been
+employed to automate the proof problems. LEO-II, which internally
+cooperates with the first-order prover E~\cite{Schulz:AICOM-2002}, was
+used exclusively in the initial round of experiments, that is, it was the
+first prover to automate G{\"o}del's ontological argument.
+
+
+%\subsection{Automation of Scott's version of G{\"o}del's proof}
+Theorem T1 from Fig.~\ref{fig1}, for example, is formalized as 
+
+{\footnotesize
+\begin{verbatim}
+  thf(thmT1,conjecture,
+     ( v
+      @ ( mforall_indset
+        @ ^ [Phi: mu > $i > $o] :
+            ( mimplies @ ( p @ Phi )
+            @ ( mdia
+              @ ( mexists_ind
+                @ ^ [X: mu] :
+                    ( Phi @ X ) ) ) ) ) )).
+\end{verbatim}
+} 
+
+\noindent This encodes the \HOL formula
+$$\hol{[\llift{\forall}\phi_{\mu\ar \sigma} \lambdot}\hol{p_{(\mu\ar
+    \sigma)\ar \sigma}\phi\,\llift{\supset}\, \llift{\Diamond}
+  \llift{\exists} X_\mu \lambdot \phi X]}$$ (\texttt{v} in the THF0
+encoding stands for \textbf{valid} and $p$ corresponds to the
+uppercase $P$, for `positive', from Fig.~\ref{fig1}).  The
+respective encodings and the results of a series of recent experiments with
+LEO-II (version 1.6.2), Satallax (version 2.7), and Nitpick (version
+2013) are provided in Fig.~\ref{fig2}.  The first row marked with T1,
+for example, shows that this theorem follows from axioms A2 and A1
+(where only the $\supset$-direction is needed); LEO-II and Satallax
+confirm this in 0.1 second.  The experiments have been carried
+out w.r.t.~the logics K and/or KB, and w.r.t.~constant (const) and
+varying (vary) domain semantics for the domains of individuals. The
+exact dependencies (available axioms and definitions) are displayed for each
+single problem. The results of the prover calls are given in
+seconds. `---' means timeout. `THM', `CSA', `SAT', and `UNS'
+are the reported result statuses; they stand for `Theorem',
+`CounterSatisfiable', `Satisfiable', and `Unsatisfiable',
+respectively.  {The experiments can be easily reproduced: all relevant
+  files have been provided at the above URL.  For example, the two
+  THF0 problem files associated with the first table row for T1 are
+  \texttt{T1\_K\_const\_min.p} and \texttt{T1\_K\_vary\_min.p}, and
+  those associated with the second row for T1 are
+  \texttt{T1\_K\_const\_max.p} and
+  \texttt{T1\_K\_vary\_max.p}, respectively. Moreover, a simple shell script
+  \texttt{call\_tptp.sh} is provided, which can be used to make remote
+  calls to LEO-II, Satallax, and Nitpick installed at Sutcliffe's
+  SystemOnTPTP infrastructure \cite{sutcliffe2009tptp} at the
+  University of Miami. The experiments used standard 2.80GHz
+  computers with 1GB memory remotely located in Miami. 
+\begin{figure*}[t] 
+\noindent \framebox[\textwidth][r]{
+\begin{minipage}{.99\textwidth}
+\small
+$\begin{array}{llllllll}
+   & \text{\HOL encoding} & \text{dependencies} & \text{logic} & \text{status} & \text{LEO-II} & \text{Satallax} & \text{Nitpick} \\  
+   &                      &                     &              &               & \text{const/vary} & \text{const/vary} & \text{const/vary} 
+\\
+  \text{A1} &  {\hol{[\llift{\forall}\phi_{\mu\ar \sigma} \lambdot p_{(\mu\ar \sigma)\ar \sigma} (\lambda X_\mu \lambdot \llift{\neg} (\phi X)) \, \llift{\equiv}\,  \llift{\neg} (p \phi) ]}} \\
+  % \text{A2} &  \allq \phi \allq \psi [(P(\phi) \wedge \nec \allq x [\phi(x) \imp \psi(x)]) \imp P(\psi)] \\
+  \text{A2} &  \multicolumn{4}{l}{\hol{[\llift{\forall}\phi_{\mu\ar \sigma}\lambdot \llift{\forall}\psi_{\mu\ar \sigma}\lambdot (p_{(\mu\ar \sigma)\ar \sigma} \phi \,\llift{\wedge}\, \llift{\Box} \llift{\forall}X_\mu\lambdot (\phi X \, \llift{\supset}\, \psi X)) \, \llift{\supset}\, p \psi]}}\\
+  \text{T1} & \hol{[\llift{\forall}\phi_{\mu\ar \sigma} \lambdot p_{(\mu\ar \sigma)\ar \sigma}\phi\, \llift{\supset}\, \llift{\Diamond} \llift{\exists} X_\mu \lambdot \phi X]} & \text{A1}(\supset), \text{A2} & \text{K} & \text{THM} 
+  & 0.1/0.1 & 0.0/0.0 & \text{---/---}\\
+  & & \text{A1}, \text{A2} & \text{K} & \text{THM} 
+  & 0.1/0.1 & 0.0/5.2 & \text{---/---}\\
+%\text{D1} & G(x) \biimp \forall \phi [P(\phi) \imp \phi(x)] \\
+\text{D1} & {\hol{g_{\mu\ar \sigma} = \lambda X_\mu \lambdot  \llift{\forall}\phi_{\mu\ar \sigma} \lambdot p_{(\mu\ar \sigma)\ar \sigma}\phi\, \llift{\supset}\, \phi X}} \\
+\text{A3} &  \hol{[p_{(\mu\ar \sigma)\ar \sigma} g_{\mu\ar \sigma}]} \\
+\text{C} &  \hol{[\llift{\Diamond} \llift{\exists} X_\mu \lambdot g_{\mu\ar \sigma} X]} & \text{T1}, \text{D1}, \text{A3} & \text{K} & \text{THM} & 0.0/0.0 & 0.0/0.0 & \text{---/---}\\
+ & & \text{A1}, \text{A2}, \text{D1}, \text{A3} & \text{K} & \text{THM} 
+& 0.0/0.0 & 5.2/31.3 & \text{---/---}\\
+%\text{A4} &  \allq \phi [P(\phi) \imp \Box \; P(\phi)] \\
+\text{A4} &  \hol{[\llift{\forall}\phi_{\mu\ar \sigma} \lambdot p_{(\mu\ar \sigma)\ar \sigma}\phi\,\llift{\supset}\, \llift{\Box} p \phi]} \\
+%\text{D2} & \ess{\phi}{x} \biimp \phi(x) \wedge \allq \psi (\psi(x) \imp \nec \allq y (\phi(y) \imp \psi(y)))   \\
+\text{D2} & \multicolumn{4}{l}{\hol{\mathbf{ess}_{(\mu\ar \sigma)\ar \mu \ar \sigma} = \lambda \phi_{\mu\ar \sigma} \lambdot \lambda X_\mu \lambdot \phi X \,\llift{\wedge}\, \llift{\forall}\psi_{\mu\ar \sigma} \lambdot (\psi X \,\llift{\supset}\,\llift{\Box}   \llift{\forall} Y_\mu \lambdot (\phi Y \,\llift{\supset}\, \psi Y))}} \\
+%\text{T2} &  \allq x [G(x) \imp \ess{G}{x}] \\
+\text{T2} &  \hol{[\llift{\forall} X_\mu \lambdot g_{\mu\ar \sigma} X \,\llift{\supset}\, (\mathbf{ess}_{(\mu\ar \sigma)\ar \mu \ar \sigma} g X)]} & \text{A1}, \text{D1}, \text{A4}, \text{D2} & \text{K} & \text{THM} 
+& 19.1/18.3 & 0.0/0.0 & \text{---/---}\\
+  & & \text{A1}, \text{A2}, \text{D1}, \text{A3}, \text{A4}, \text{D2} & \text{K} & \text{THM} 
+& 12.9/14.0 & 0.0/0.0 & \text{---/---}\\
+%\text{D3} & NE(x) \biimp \allq \phi [\ess{\phi}{x} \imp \nec  \exq y \phi(y)] \\
+\text{D3} & \multicolumn{4}{l}{\hol{\mathbf{NE}_{\mu\ar \sigma} = \lambda X_\mu \lambdot  \llift{\forall}\phi_{\mu\ar \sigma} \lambdot (\mathbf{ess}\, \phi X \,\llift{\supset}\, \llift{\Box}  \llift{\exists} Y_\mu \lambdot \phi Y ) }} \\
+\text{A5} & \hol{[p_{(\mu\ar \sigma)\ar \sigma} \mathbf{NE}_{\mu\ar \sigma}]} \\
+\text{T3} & \hol{[\llift{\Box}  \llift{\exists} X_\mu \lambdot g_{\mu\ar \sigma} X]} 
+  &  \text{D1}, \text{C}, \text{T2}, \text{D3}, \text{A5}  & \text{K} & \text{CSA} 
+& \text{---/---} & \text{---/---} & 3.8/6.2\\
+  & & \text{A1}, \text{A2}, \text{D1}, \text{A3}, \text{A4}, \text{D2}, \text{D3}, \text{A5} & \text{K} & \text{CSA} 
+& \text{---/---} & \text{---/---} & 8.2/7.5\\
+ & &  \text{D1}, \text{C}, \text{T2}, \text{D3}, \text{A5}  & \text{KB} & \text{THM} & 0.0/0.1 & 0.1/5.3 & \text{---/---}\\
+  & & \text{A1}, \text{A2}, \text{D1}, \text{A3}, \text{A4}, \text{D2}, \text{D3}, \text{A5} & \text{KB} & \text{THM} & \text{---/---} & \text{---/---} & \text{---/---}\\ \\
+\text{MC} & \hol{[s_\sigma  \,\llift{\supset}\, \llift{\Box}  s_\sigma]} 
+   & \text{D2}, \text{T2}, \text{T3} & \text{KB} & \text{THM} & 17.9/\text{---} & 3.3/3.2 & \text{---/---}\\
+  & & \text{A1}, \text{A2}, \text{D1}, \text{A3}, \text{A4}, \text{D2}, \text{D3}, \text{A5} & \text{KB} & \text{THM} & \text{---/---} & \text{---/---} & \text{---/---}\\
+\text{FG} & \multicolumn{2}{l}{\hol{[\llift{\forall}\phi_{\mu\ar \sigma} \lambdot  \llift{\forall}X_\mu\lambdot  (g_{\mu\ar \sigma} X \,\llift{\supset}\,  (\llift{\neg} (p_{(\mu\ar \sigma)\ar \sigma} \phi) \,\llift{\supset}\, \llift{\neg} (\phi X))) ]} \quad \text{A1}, \text{D1}} & \text{KB} & \text{THM} & 16.5/\text{---} & 0.0/0.0 & \text{---/---} \\
+  & & \text{A1}, \text{A2}, \text{D1}, \text{A3}, \text{A4}, \text{D2}, \text{D3}, \text{A5}  
+  & \text{KB} & \text{THM} & 12.8/15.1 & 0.0/5.4 & \text{---/---} \\
+\text{MT} & \hol{[\llift{\forall}X_\mu\lambdot  \llift{\forall}Y_\mu\lambdot (g_{\mu\ar \sigma} X \,\llift{\supset}\,  (g_{\mu\ar \sigma} Y \,\llift{\supset}\,  X\,\llift{=}\,Y))]} & \text{D1}, \text{FG} & \text{KB} & \text{THM} & \text{---/---}  &  0.0/3.3 & \text{---/---} \\
+  & & \text{A1}, \text{A2}, \text{D1}, \text{A3}, \text{A4}, \text{D2}, \text{D3}, \text{A5}  
+  & \text{KB} & \text{THM} & \text{---/---}  &  \text{---/---} & \text{---/---} \\ \\
+\text{CO} & \emptyset\, \text{(no goal, check for consistency)} & \text{A1}, \text{A2}, \text{D1}, \text{A3}, \text{A4}, \text{D2}, \text{D3}, \text{A5} & \text{KB} & \text{SAT} & \text{---/---} & \text{---/---} & 7.3/7.4 \\ 
+% & & \text{A1}, \text{A2}, \text{D1}, \text{A3}, \text{A4}, \text{D2}, \text{D3}, \text{A5} & \text{KB} & \text{SAT} & \text{---/---} & \text{---/---} & \text{---/---} \\ 
+\text{D2'} & \multicolumn{4}{l}{\hol{\mathbf{ess}_{(\mu\ar \sigma)\ar \mu \ar \sigma} = \lambda \phi_{\mu\ar \sigma} \lambdot \lambda X_\mu \lambdot \llift{\forall}\psi_{\mu\ar \sigma} \lambdot (\psi X \,\llift{\supset}\,\llift{\Box}   \llift{\forall} Y_\mu \lambdot (\phi Y \,\llift{\supset}\, \psi Y))}} \\
+\text{CO'} & \emptyset\, \text{(no goal, check for consistency)} & \text{A1}(\supset), \text{A2}, \text{D2'}, \text{D3}, \text{A5} & \text{KB} & \text{UNS} & 7.5/7.8 & \text{---/---} & \text{---/---} \\ 
+ & & \text{A1}, \text{A2}, \text{D1}, \text{A3}, \text{A4}, \text{D2'}, \text{D3}, \text{A5} & \text{KB} & \text{UNS} & \text{---/---} & \text{---/---} & \text{---/---} \\ 
+\end{array}$
+\end{minipage}
+}
+\caption{\HOL encodings and experiment results for Scott's version of G{\"o}del's ontological argument from Fig.~\ref{fig1}. \label{fig2}}
+\end{figure*}
+
+
+
+%  Figure~\ref{fig2} shows the entire results
+% of this experiment. The provers were given a timeout of 60 seconds. The mentioned dependencies for T1 are encoded in
+% this table in the
+% third column. We also present the results for maximal sets of axioms
+% (and theorems) as being accumulated along the proof script. This
+% demonstrates the provers robustness and effectiveness when respective
+% (ir-)relevance information is still missing and has to be 
+% determined first. It was in fact the latter kind of proof problems 
+% we started with in our experiments. Then the former dependency information was
+% extracted from the proof objects of LEO-II.
+
+% We have additionally encoded some further
+% theorems. Moreover, we have added some variations of the embedding in
+% which we e.g. consider varying domain semantics as opposed to const
+% domain semantics. These encodings are available at
+% \url{https://github.com/FormalTheology/GoedelGod/tree/master/Formalizations/THF}.
+% A subset of those has also been submitted to the public TPTP problem
+% library at \url{www.tptp.org}, (they will be released in summer after
+% the CASC-J7 competition).  Our contribution has in fact led to the set
+% up of the new TPTP problem category \texttt{PHI} for philosophy
+% problems.
+
+\section{MAIN FINDINGS} \label{sec4}
+Several interesting and partly novel findings have been contributed by the HOL-ATPs, including:
+\begin{enumerate}
+\item The axioms and definitions from Fig.~\ref{fig1} are consistent (cf.~CO in Fig.~\ref{fig2}). 
+\item Logic K is sufficient for proving T1, C and T2.
+\item For proving the final theorem T3, logic KB is sufficient (and
+  for K a countermodel is reported). This is highly relevant since
+  several philosophers have criticized G{\"o}del's argument for the
+  use of logic S5. This criticism is thus provably pointless.
+\item Only for T3 the HOL-ATPs still fail to produce a proof directly
+  from the axioms; thus, T3 remains an interesting benchmark problem; T1, C, and T2 are rather trivial for HOL-ATPs.
+\item G\"odel's original version of the proof \cite{GoedelNotes},
+  which omits conjunct $\phi(x)$ in the definition of \emph{essence} (cf.~D2'),
+  seems inconsistent (cf.~the failed consistency check for CO' in
+  Fig.~\ref{fig2}). As far as we are aware of, this is a new result.
+\item G{\"o}del's axioms imply what is called the modal collapse (cf.~MC
+  in Fig.~\ref{fig2}) $\phi\supset\Box\phi$, that is, contingent truth
+  implies necessary truth (which can even be interpreted as an
+  argument against free will; cf.~\cite{sobel2004logic}). MC is probably the most fundamental
+  criticism put forward against G{\"o}del's argument.
+\item For proving T1, only the $\supset$-direction of A1 is
+  needed. However, the $\subset$-direction of A1 is required for
+  proving T2. Some philosophers (e.g.~\cite{anderson90:_some_emend_of_goedel_ontol_proof}) try to avoid MC by
+  eluding/replacing the $\supset$-direction of A1.
+\item G{\"o}del's axioms imply a `flawless God', that is, an entity
+  that can only have `positive' properties (cf.~FG in
+  Fig.~\ref{fig2}). However, a comment by G{\"o}del in \cite{GoedelNotes}
+  explains that `positive' is to be interpreted in a moral aesthetic
+  sense only.
+% \footnote{In order to better understand G\"odel's notion of
+%     `positive' properties, we have reformulated G{\"o}del's theory
+%     and used `divine' instead of `positive'. Then we introduced
+%     orthogonal predicates `positive' and `negative' and we showed that
+%     God-like beings may well have positive and negative properties as
+%     long as all these properties are classified as divine properties. A respective
+%     formalization in Isabelle can be found at
+%     \url{https://github.com/FormalTheology/GoedelGod/blob/master/Formalizations/Isabelle/DivineVersion/GoedelGodDivine.thy}.}
+\item Another implication of G{\"o}del's axioms is monotheism (see MT
+  in Fig.~\ref{fig2}). MT can easily be proved by Satallax from FG and
+  D1. It remains non-trivial to prove it directly from
+  G{\"o}del's axioms.
+\item \label{vary} All of the above findings hold for both constant domain semantics and varying domain semantics (for the domain of individuals).
+\end{enumerate}
+
+The above findings, in particular \eqref{vary}, well illustrate that
+the theory framework from Sec.~\ref{sec2} has a great potential
+towards a flexible support system for \emph{computational theoretical
+  philosophy}. In fact, G\"odel's ontological argument has been
+verified and even automated not only for one particular setting of
+logic parameters, but these logic parameters have been varied and the
+validity of the argument has been reconfirmed (or falsified, cf.~D2'
+and CO') for the modified setting.  Moreover, our framework is not
+restricted to a particular theorem proving system, but has been
+fruitfully employed with some of the most prominent automated and
+interactive theorem provers available to date.
+
+
+
+\section{RELATED AND FUTURE WORK}\label{sec5}
+We are pioneering the computer-supported automation of modern versions
+of the ontological argument. There are two related papers
+\cite{oppenheimera11,rushby13}. Both focus on the comparably simpler
+argument by Anselm. \cite{oppenheimera11} encodes (a variant) of
+Anselm's argument in first-order logic and employs the theorem prover
+PROVER9 in experiments; this work has been criticized in
+\cite{garbacz12:_prover_simpl_expal_away}. The work in
+\cite{rushby13}, which has evolved in parallel to ours, interactively
+verifies Anselm's argument in the higher-order proof assistant
+PVS. Note in particular, that both formalizations do not achieve the
+close correspondence between the original formulations and the formal
+encodings that can be found in our approach.
+
+A particular strength of our universal logic framework is that it can
+be easily adapted for logic variations and even supports flexible
+combinations of logics (cf.~\cite{C36}). In ongoing and future work we
+will therefore investigate further logic parameters for G{\"o}del's
+argument, including varying domains at higher types and non-rigid
+terms. We plan to make the entire landscape of results available to
+the interested theoretical philosophy and theology communities. This
+is relevant, since philosophers are sometimes imprecise about the
+very details of the logics they employ.
+
+
+% the main activity of our project will be the use of state-of-the-art automated deduction tools and proof assistants to represent, verify and strengthen arguments about God’s existence.
+
+\section{CONCLUSION} \label{sec6} While computers can now calculate,
+play games, translate, plan, learn and classify data much better than
+we humans do, tasks involving philosophical and theological inquiries
+have remained mostly untouched by our technological progress up to
+now. Due to the abstract and sophisticated types of reasoning they
+require, they can be considered a challenging frontier for automated
+reasoning.  
+
+We accepted this challenge and decided to tackle, with automated
+reasoning techniques, a philosophical problem that is almost 1000
+years old: the ontological argument for God's existence, firstly
+proposed by St. Anselm of Canterbury and greatly improved by
+Descartes, Leibniz, G{\"o}del and many others throughout the
+centuries.  % G{\"o}del's modern version of this argument can be
+% formalized in a very expressive higher-order modal logic.
+So far,
+there was no AI system capable of dealing with
+such complex problems. We created a prototypical infrastructure
+extending widely used systems such as LEO-II, Satallax, and Nitpick
+(and Isabelle and Coq) to allow them to cope with modalities; and
+using the extended systems we were able to automatically reconstruct
+and verify G{\"o}del's argument, as well as discover new facts and
+confirm controversial claims about it.  This is a landmark result,
+with media repercussion in a global scale, and yet it is only a
+glimpse of what can be achieved by combining computer science,
+philosophy and theology. 
+
+Our work, in this sense, offers new perspectives for a
+computational theoretical philosophy. The critical discussion of
+the underlying concepts, definitions and axioms remains a human
+responsibility, but the computer can assist in building and checking
+rigorously correct logical arguments. In case of logico-philosophical
+disputes, the computer can check the disputing arguments and partially
+fulfill Leibniz' dictum: Calculemus --- Let us calculate!
+
+
+\paragraph{Acknowledgments} This work has been supported by the German Research Foundation under grants BE 2501/9-1 and BE 2501/11-1. %We thank the anonymous reviewers for their comments and suggestions.
+
+\bibliographystyle{ecai2014}
+\bibliography{Bibliography}
+\end{document}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%

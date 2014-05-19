@@ -1,0 +1,6 @@
+Goedel's proof sketch has never been automated before. So far there was no approach/system available for automating *higher-order modal logic*, and the crucial embedding of modalities and (higher-order) quantifiers in HOL is new. It was not known whether this technique would be capable of automatically proving Goedel's non-trivial lemmas and theorems. 
+
+Moreover, there are various different versions of Goedel's proof. One of them is flawed, as shown by our own ATP.  This result was also unknown. The systematic study of the proof (different logics, domain conditions, etc.) is also new.
+
+This is our core paper on this topic; we have decided to send it to ECAI-2014. Our other preliminary papers are either not formally reviewed (e.g. [14]) or are abstracts of 2 pages or less to a limited audience, announcing what had been done but not explaining it. The existence of such abstracts is compatible with ECAI's originality criterium.
+
