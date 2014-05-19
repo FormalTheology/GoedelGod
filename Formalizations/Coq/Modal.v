@@ -86,7 +86,7 @@ Ltac dia_e H := let w := fresh "w" in let R := fresh "R" in (destruct H as [w [R
 Ltac dia_i w := (exists w; split; [auto | idtac]).
 
 Create HintDb modal.
-Hint Unfold mimplies mnot dia box A V : modal.
+Hint Unfold mequal mimplies mnot mor mand dia box A E V : modal.
 
 Lemma mp_dia: [mforall p, mforall q, (dia p) m-> (box (p m-> q)) m-> (dia q)].
 Proof. mv.
