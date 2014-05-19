@@ -299,7 +299,7 @@ In Sec.~\ref{sec3}, we present details on the
 encoding of this embedding and of G{\"o}del's argument in the
 concrete THF syntax \cite{J22} for \HOL, and we report on the
 experiments we have conducted with HOL-ATPs.  The main findings of
-these experiments are summarized in Sec.~\ref{sec4},
+these experiments are summarized in Sec.~\ref{sec4}.
 % : in addition to
 % automating G{\"o}del's proof script we have automated also some further
 % results (e.g.~modal collapse), and we have studied
@@ -313,7 +313,7 @@ is concluded in Sec.~\ref{sec6}.
 %   philosophy}.
 None of the above aspects have been addressed (at least
 not in depth) in any of our other existing (short and partly
-non-reviewed) publications on the subject \cite{J30,W50,J29,J28}.
+non-reviewed) publications on the subject \cite{J30,J29,W50,J28}.
 
 
 
@@ -863,13 +863,13 @@ Theorem T1 from Fig.~\ref{fig1}, for example, is formalized as
 \noindent This encodes the \HOL formula
 $$\hol{[\llift{\forall}\phi_{\mu\ar \sigma} \lambdot}\hol{p_{(\mu\ar
     \sigma)\ar \sigma}\phi\,\llift{\supset}\, \llift{\Diamond}
-  \llift{\exists} X_\mu \lambdot \phi X]}$$ (\texttt{v} in the THF0
+  \llift{\exists} X_\mu \lambdot \phi X]}$$ \texttt{v} in the THF0
 encoding stands for \textbf{valid} and $p$ corresponds to the
-uppercase $P$, for `positive', from Fig.~\ref{fig1}).  The
+uppercase $P$, for `positive', from Fig.~\ref{fig1}.  The
 respective encodings and the results of a series of recent experiments with
 LEO-II (version 1.6.2), Satallax (version 2.7), and Nitpick (version
 2013) are provided in Fig.~\ref{fig2}.  The first row marked with T1,
-for example, shows that this theorem follows from axioms A2 and A1
+for example, shows that theorem T1 follows from axioms A2 and A1
 (where only the $\supset$-direction is needed); LEO-II and Satallax
 confirm this in 0.1 second.  The experiments have been carried
 out w.r.t.~the logics K and/or KB, and w.r.t.~constant (const) and
@@ -895,7 +895,7 @@ respectively.  {The experiments can be easily reproduced: all relevant
 \noindent \framebox[\textwidth][r]{
 \begin{minipage}{.99\textwidth}
 \small
-$\begin{array}{llllllll}
+$\begin{array}{llllllll} \\[-.5em]
    & \text{\HOL encoding} & \text{dependencies} & \text{logic} & \text{status} & \text{LEO-II} & \text{Satallax} & \text{Nitpick} \\  
    &                      &                     &              &               & \text{const/vary} & \text{const/vary} & \text{const/vary} 
 \\
@@ -944,7 +944,7 @@ $\begin{array}{llllllll}
 % & & \text{A1}, \text{A2}, \text{D1}, \text{A3}, \text{A4}, \text{D2}, \text{D3}, \text{A5} & \text{KB} & \text{SAT} & \text{---/---} & \text{---/---} & \text{---/---} \\ 
 \text{D2'} & \multicolumn{4}{l}{\hol{\mathbf{ess}_{(\mu\ar \sigma)\ar \mu \ar \sigma} = \lambda \phi_{\mu\ar \sigma} \lambdot \lambda X_\mu \lambdot \llift{\forall}\psi_{\mu\ar \sigma} \lambdot (\psi X \,\llift{\supset}\,\llift{\Box}   \llift{\forall} Y_\mu \lambdot (\phi Y \,\llift{\supset}\, \psi Y))}} \\
 \text{CO'} & \emptyset\, \text{(no goal, check for consistency)} & \text{A1}(\supset), \text{A2}, \text{D2'}, \text{D3}, \text{A5} & \text{KB} & \text{UNS} & 7.5/7.8 & \text{---/---} & \text{---/---} \\ 
- & & \text{A1}, \text{A2}, \text{D1}, \text{A3}, \text{A4}, \text{D2'}, \text{D3}, \text{A5} & \text{KB} & \text{UNS} & \text{---/---} & \text{---/---} & \text{---/---} \\ 
+ & & \text{A1}, \text{A2}, \text{D1}, \text{A3}, \text{A4}, \text{D2'}, \text{D3}, \text{A5} & \text{KB} & \text{UNS} & \text{---/---} & \text{---/---} & \text{---/---} \\ \\[-.5em]
 \end{array}$
 \end{minipage}
 }
