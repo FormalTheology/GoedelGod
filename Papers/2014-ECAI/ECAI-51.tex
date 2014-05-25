@@ -120,7 +120,9 @@
 \title{Automating G\"odel's Ontological Proof of God's Existence with Higher-order Automated Theorem Provers}
 
 \author{Christoph Benzm\"uller\institute{Freie Universit\"at Berlin,
-    Germany, email: c.benzmueller@fu-berlin.de}
+    Germany, email: c.benzmueller@fu-berlin.de; this author has been
+    supported by the German National Research Foundation (DFG) under
+ grants BE 2501/9-1 and BE 2501/11-1. }
   \and Bruno Woltzenlogel Paleo\institute{Technical University
     Vienna, Austria,  email: bruno@logic.at}  
 }
@@ -168,13 +170,13 @@ and pen.  Up to now, the use of computers was prevented, because the
 logics of the available theorem proving systems were not expressive
 enough to formalize the abstract concepts adequately. G{\"o}del's proof
 uses, for example, a complex higher-order modal logic (\HOML) to handle
-concepts such as \emph{possible} and \emph{necessary} and to support
+concepts such as \emph{possibility} and \emph{necessity} and to support
 quantification over individuals and properties.
 
 Current works \cite{J23,B9} of the first author and Paulson illustrate that many
 expressive logics, including quantified (multi-)modal logics, can be
 embedded into the classical higher-order logic (\HOL), which can thus be seen
-as a universal logic \cite{C36}. For this universal logic, efficient automated
+as an universal logic \cite{C36}. For this universal logic, efficient automated
 theorem provers have been developed in recent years, and these systems
 were now employed in our work.
 
@@ -578,9 +580,8 @@ The definitions for substitution (Def.~\ref{homlsubstitution}), $\beta$- and $\e
 
 
 \begin{definition}\label{holvalue}
-  The \emph{value} $\hol{\| s_\alpha\|^{M,g}}$ of a \HOML term
-  $\hol{s_\alpha}$ on a model $\hol{M}=\hol{\langle W, R, D, I_{w\in
-      W} \rangle}$ in a world $\hol{w}\in \hol{W}$ under assignment $\hol{g}$ is an element $\hol{d}\in \hol{D_\alpha}$
+  The \emph{value} $\hol{\| s_\alpha\|^{M,g}}$ of a \HOL term
+  $\hol{s_\alpha}$ on a model $\hol{M}=\hol{\langle D, I \rangle}$ under assignment $\hol{g}$ is an element $\hol{d}\in \hol{D_\alpha}$
   defined in the following way:
 \begin{enumerate}
 \item $\hol{\|p_\alpha\|^{M,g}} = \hol{I(p_\alpha)}$ and $\hol{\|X_\alpha\|^{M,g}} = \hol{g(X_\alpha)}$
@@ -716,7 +717,7 @@ $\hol{\forall_{(\alpha\ar o)\ar o}}$.
   associated with the type raised \HOL formula
   $\hol{\llift{\Box}\,\llift{\exists} {P_{\mu\ar
         \sigma}} \lambdot P\ a_\mu}$, which rewrites into the following
-  $\beta\eta$-normal \HOL term of type $\sigma$
+  $\beta\eta$-normal \HOL term of type $\hol{\sigma}$
 \[\hol{\lam{W_\iota} \all{V_\iota} \neg (r\,W\,V) \vee \neg \all{P_{\mu\ar \sigma}} \neg (P\, a_\mu\, V)}\]
 \end{example}
 
@@ -1099,7 +1100,8 @@ fulfill Leibniz' dictum: Calculemus --- Let us calculate!
 
 %\paragraph{Acknowledgments}
 \section*{ACKNOWLEDGEMENTS}
- This work has been supported by the German Research Foundation under grants BE 2501/9-1 and BE 2501/11-1. %We thank the anonymous reviewers for their comments and suggestions.
+ We thank Alexander Steen,
+ Max Wisniewski, and the anonymous reviewers for their comments and suggestions.
 
 \bibliographystyle{ecai2014}
 \bibliography{Bibliography}
