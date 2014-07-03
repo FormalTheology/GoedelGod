@@ -63,9 +63,15 @@ Austria
 
 [ORF](http://science.orf.at/stories/1724627/)
 
-[ORF Radio](http://oe1.orf.at/programm/371214)
+[ORF Radio](http://oe1.orf.at/programm/371214) (Interview in the "Logos: Theologie und Leben" series.)
 
 [John Lennox's Talk at TU-Wien](http://www.youtube.com/watch?v=E_2_4KyR-6k&feature=share&t=25m15s)
+
+[ORF](http://science.orf.at/stories/1741595) (this interview is part of a series with Brasilian scientists residing in Austria, motivated by the World Cup in Brazil. Therefore, an attempt is made to relate research topics to football.)
+
+[ORF Radio](http://oe1.orf.at/programm/376866) (audio version of the World Cup interview)
+
+
 
 
 Italy
