@@ -2,16 +2,6 @@
 
 (* Authors: Bruno Woltzenlogel Paleo and Christoph Benzmueller *)
 
-(* This formalization aims at *)
-(* being as similar as possible to Dana Scott's version of the proof *)
-
-(* The numbering of axioms, definitions and theorems is exactly the same as in Scott's notes *)
-
-(* The formal proofs follow the same structure of Scott's proof sketches and fill their gaps *)
-(* Whenever a 'cut' or 'assert' uses a lemma mentioned in Scott's sketches, *) 
-(* this is emphasized with a comment *)
-
-
 
 Require Import Coq.Logic.Classical.
 
@@ -19,41 +9,49 @@ Require Import Modal.
 
 Ltac proof_by_contradiction H := apply NNPP; intro H.
 
+(* Type of non-rigid unary properties *)
+Definition property := i -> u -> o.
+
+(* Current World *)
+Parameter cw: i.
 
 (* Constant predicate that distinguishes positive properties *)
-Parameter Positive: (u -> o) -> o.
+(* Positivity is a rigid second-order property. It does not depend on worlds. *)
+Parameter Positive: property -> o.
+
+Definition property_neg(p: property) :=  fun w: i => (fun x: u => m~(p w x)) .
 
 
 (* Axiom A1: either a property or its negation is positive, but not both *)
-Axiom axiom1a : [ mforall p, (Positive (fun x: u => m~(p x))) m-> (m~ (Positive p)) ].
-Axiom axiom1b : [ mforall p, (m~ (Positive p)) m-> (Positive (fun x: u => m~ (p x))) ].
+Axiom axiom1a : [ mforall p, (Positive (property_neg p)) m-> (m~ (Positive p)) ].
+Axiom axiom1b : [ mforall p, (m~ (Positive p)) m-> (Positive (property_neg p)) ].
 
 
 (* Axiom A2: a property necessarily implied by a positive property is positive *)
-Axiom axiom2: [ mforall p, mforall q, Positive p m/\ (box (mforall x, (p x) m-> (q x) )) m-> Positive q ].
+Axiom axiom2: forall w: i,( mforall p, mforall q, Positive p m/\ (box (mforall x, (p w x) m-> (q w x) )) m-> Positive q ) w.
 
 
 (* Theorem T1: positive properties are possibly exemplified *)
-Theorem theorem1: [ mforall p, (Positive p) m-> dia (mexists x, p x) ].
-Proof. mv.
+Theorem theorem1: forall w: i, ( mforall p, (Positive p) m-> dia (mexists x, p w x) ) w.
+Proof. intro w.
 intro p.
 intro H1.
 proof_by_contradiction H2.
 apply not_dia_box_not in H2.
-assert (H3: ((box (mforall x, m~ (p x))) w)). (* Lemma from Scott's notes *)
+assert (H3: ((box (mforall x, m~ (p w x))) w)). (* Lemma from Scott's notes *)
   box_i.
   intro x.
-  assert (H4: ((m~ (mexists x : u, p x)) w0)).
+  assert (H4: ((m~ (mexists x : u, p w x)) w0)).
     box_e H2 G2. 
     exact G2.
 
-    clear H2 R H1 w.
+    clear H2 R H1.
     intro H5.
     apply H4.
     exists x.
     exact H5.
 
-  assert (H6: ((box (mforall x, (p x) m-> m~ (x m= x))) w)). (* Lemma from Scott's notes *)    
+  assert (H6: ((box (mforall x, (p w x) m-> m~ (x m= x))) w)). (* Lemma from Scott's notes *)    
     box_i.
     intro x.
     intros H7 H8.
@@ -61,20 +59,20 @@ assert (H3: ((box (mforall x, m~ (p x))) w)). (* Lemma from Scott's notes *)
     eapply G3.
     exact H7.
 
-    assert (H9: ((Positive (fun x => m~ (x m= x))) w)). (* Lemma from Scott's notes *)
-      apply (axiom2 w p (fun x => m~ (x m= x))).
+    assert (H9: ((Positive (fun w:i => (fun x => m~ (x m= x)) ) ) w)). (* Lemma from Scott's notes *)
+      apply (axiom2 w p (fun w:i => (fun x => m~ (x m= x)))).
       split.
         exact H1.
 
         exact H6.
 
-      assert (H10: ((box (mforall x, (p x) m-> (x m= x))) w)). (* Lemma from Scott's notes *)
+      assert (H10: ((box (mforall x, (p w x) m-> (x m= x))) w)). (* Lemma from Scott's notes *)
         box_i.
-        intros x H11.     
+        intros x H11.
         reflexivity.
 
-        assert (H11 : ((Positive (fun x => (x m= x))) w)). (* Lemma from Scott's notes *)
-          apply (axiom2 w p (fun x => x m= x )).
+        assert (H11 : ((Positive (fun w:i => (fun x => (x m= x))) ) w)). (* Lemma from Scott's notes *)
+          apply (axiom2 w p (fun w:i => (fun x => x m= x ) )).
           split.
             exact H1.
 
@@ -87,7 +85,7 @@ Qed.
 
 
 (* Definition D1: God: a God-like being possesses all positive properties *)
-Definition G(x: u) := mforall p, (Positive p) m-> (p x).
+Definition G(w: i)(x: u) := mforall p, (Positive p) m-> (p w x).
 
 
 (* Axiom A3: the property of being God-like is positive *)
@@ -95,8 +93,8 @@ Axiom axiom3: [ Positive G ].
 
 
 (* Corollary C1: possibly, God exists *)
-Theorem corollary1: [ dia (mexists x, G x) ]. 
-Proof. mv.
+Theorem corollary1: forall w:i, (dia (mexists x, G w x)) w .
+Proof. intro.
 apply theorem1.
 apply axiom3.
 Qed.
@@ -107,13 +105,16 @@ Axiom axiom4: [ mforall p, (Positive p) m-> box (Positive p) ].
 
 
 (* Definition D2: essence: an essence of an individual is a property possessed by it and necessarily implying any of its properties *)
-Definition Essence(p: u -> o)(x: u) := (p x) m/\ mforall q, ((q x) m-> box (mforall y, (p y) m-> (q y))).
-Notation "p 'ess' x" := (Essence p x) (at level 69).
+Definition Essence(w: i)(p: property)(x: u) := (p w x) m/\ mforall q: property, ((q w x) m-> box (mforall y, (p w y) m-> (q w y))).
+Notation "p 'ess' x 'at' w" := (Essence w p x) (at level 69).
 
 
 (* Theorem T2: being God-like is an essence of any God-like being *)
-Theorem theorem2: [ mforall x, (G x) m-> (G ess x) ].
-Proof. mv.
+Theorem theorem2: forall w w0: i, ( mforall x, (G w x) m-> (G ess x at w) ) w0.
+Proof.
+Admitted.
+(*
+intros w w0.
 intro g.
 intro H1.
 unfold Essence.
@@ -142,61 +143,69 @@ split.
       apply axiom4.
       exact H3.
 Qed.
+*)
 
-(* At this point in Scott's notes there are two notes that are not necessary for the proof, *)
-(* but it would be interesting to formalize them anyway *)
 
 (* Definition D3: necessary existence: necessary existence of an individual is the necessary exemplification of all its essences *)
-Definition NE(x: u) := mforall p, (p ess x) m-> box (mexists y, (p y)).
+Definition NE(w: i)(x: u) := mforall p, (p ess x at w) m-> box (mexists y, (p w y)).
 
 
 (* Axiom A5: necessary existence is a positive property *)
 Axiom axiom5: [ Positive NE ].
 
 
-Lemma lemma1: [ (mexists z, (G z)) m-> box (mexists x, (G x)) ].
-Proof. mv.
+Lemma lemma1: forall w w0: i, (r w w0) -> (( (mexists z, (G w z)) m-> box (mexists x, (G w x)) ) w0).
+Proof.
+intros w w0 R.
 intro H1.
 destruct H1 as [g H2].
-cut ((G ess g) w).      (* Lemma from Scott's notes *)
-  assert (H3: (NE g w)).       (* Lemma from Scott's notes *)
+cut ((G ess g at w) w).      (* Lemma from Scott's notes *)
+  assert (H3: (NE w g w0)).       (* Lemma from Scott's notes *)
     unfold G in H2.
     apply (H2 NE).
     apply axiom5.
 
     unfold NE in H3.
+    intro H4.
     apply H3.
+    apply theorem2.
+    exact H2.
 
   apply theorem2.
   exact H2.
 Qed.
 
 
-Lemma lemma2: [ dia (mexists z, (G z)) m-> box (mexists x, (G x)) ].
-Proof. mv.
+Lemma lemma2: forall w: i, ( dia (mexists z, (G w z)) m-> box (mexists x, (G w x)) ) w.
+Proof.
+intro.
 intro H.
-cut (dia (box (mexists x, G x)) w).  (* Lemma from Scott's notes *)
+cut (dia (box (mexists x, G w x)) w).  (* Lemma from Scott's notes *)
   apply dia_box_to_box.
 
-  apply (mp_dia w (mexists z, G z)).
+  apply (mp_dia w (mexists z, G w z)).
     exact H.
        
     box_i.
-    apply lemma1.
+    apply (lemma1 w w0).
 Qed.
 
 
 (* Theorem T3: necessarily, a God exists *)
-Theorem theorem3: [ box (mexists x, (G x)) ].
-Proof. mv.
+(* Theorem theorem3: forall w:i, (box (mexists x, (G w x)) ) w. *)
+(* Theorem theorem3: forall w:i, (forall w1: i, (r w w1) -> (mexists x, (G w x)) ) w. *)
+Theorem theorem3: forall w:i, (forall w1: i, (r w w1) -> (mexists x, (G w1 x)) ) w.
+Proof.
+intro w.
 apply lemma2.
 apply corollary1.
 Qed.
 
 
 (* Corollary C2: There exists a god *)
-Theorem corollary2: [ mexists x, (G x) ].
-Proof. mv.
+Theorem corollary2: forall w:i, ( mexists x, (G w x) ) w.
+Proof.
+intro w.
 apply T.
 apply theorem3.
 Qed.

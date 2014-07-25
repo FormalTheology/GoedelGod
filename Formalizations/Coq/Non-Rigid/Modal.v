@@ -1,13 +1,18 @@
-(* Modal Logic *)
+(* Embedding of Higher-Order Modal Logic into Classical Higher-Order Logic *)
+(* Using non-rigid semantics *)
 
 (* Authors: Bruno Woltzenlogel Paleo (bruno@logic.at) and Christoph Benzmueller *)
-
 
 (* Type for worlds *)
 Parameter i: Type.
 
-(* Type for individuals *)
-Parameter u: Type.
+(* Type for rigid individuals *)
+Parameter v: Type.
+
+(* Type for non-rigid individuals *)
+Definition u := i -> v.
+
+
 
 (* Type of lifted propositions *)
 Definition o := i -> Prop.
