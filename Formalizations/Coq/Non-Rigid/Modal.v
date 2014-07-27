@@ -68,6 +68,7 @@ Notation "'mexists' x : t , p" := (E (fun x:t => p))
 (* Modal operator for 'necessarily' *)
 Definition box (p: o) := fun w => forall w1, (r w w1) -> (p w1).
 
+
 (* Modal operator for 'possibly' *)
 Definition dia (p: o) := fun w => exists w1, (r w w1) /\ (p w1).
 
@@ -176,7 +177,7 @@ intro p.
 intro H.
 box_e H H1. exact H1.
 apply reflexivity. 
-Qed. 
+Qed.
 
 Theorem B: [ mforall p, (p m-> (box (dia p))) ].
 Proof.
