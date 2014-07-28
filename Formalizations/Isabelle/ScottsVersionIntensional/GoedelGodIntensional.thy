@@ -43,7 +43,7 @@ section {* An Embedding of QML KB in HOL *}
 text {* The types @{text "i"} for possible worlds and $\mu$ for individuals are introduced. *}
 
   typedecl i    -- "the type for possible worlds" 
-  typedecl \<mu>    -- "the type for indiviuals"      
+  typedecl mu    -- "the type for indiviuals"      
 
 text {* Possible worlds are connected by an accessibility relation @{text "r"}.*} 
 
@@ -55,6 +55,8 @@ for the original actual world, i.e. the world the evaluation of a formula has st
 The second argument is the dynamically changing world in which the formula is evaluated. *}
 
   type_synonym \<sigma> = "(i \<Rightarrow> i \<Rightarrow> bool)"
+  type_synonym \<mu> = "(i \<Rightarrow> i \<Rightarrow> mu)"
+  
  
 text {* The classical connectives $\neg, \wedge, \rightarrow$, and $\forall$
 (over individuals and over sets of individuals) and $\exists$ (over individuals) are
@@ -167,7 +169,8 @@ for proving theorem T3 and for corollary C2. *}
 text {* Finally, Sledgehammer and Metis prove the main theorem @{text "T3"}: $\nec \ex x G(x)$ \\
 (Necessarily, God exists). *}
 
-  theorem T3: "[\<box> (\<exists> G)]" 
+  theorem T3: "[\<box> (\<exists> G)]"
+  unfolding G_def
   -- {* sledgehammer [provers = remote\_leo2] *}
   by (metis A5 C T2 sym G_def NE_def)
 
