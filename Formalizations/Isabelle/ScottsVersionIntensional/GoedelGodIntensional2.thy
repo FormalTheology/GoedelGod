@@ -148,7 +148,6 @@ text {* Next, Sledgehammer and Metis prove theorem @{text "T2"}: $\all x [G(x) \
   theorem T2: "\<forall>v w. ((\<forall>(\<lambda>x. G v w x m\<rightarrow> ess v w (G v w) x)) v w)"
   -- {* sledgehammer [provers = remote\_leo2] *}
   -- {* metis is too weak: by (metis A1b A4 G_def ess_def) *}
-  sledgehammer [provers = remote_leo2 remote_satallax]
   oops
   
   axiomatization where T2: "\<forall>v w. ((\<forall>(\<lambda>x. G v w x m\<rightarrow> ess v w (G v w) x)) v w)"
