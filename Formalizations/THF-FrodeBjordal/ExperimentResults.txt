@@ -20,3 +20,4 @@ GodTheorem.p---LEO-II---1.6.2---RESULT: SOT_KAnmAG - LEO-II---1.6.2 says Theorem
 ModalCollapse.p---LEO-II---1.6.2---RESULT: SOT_ZSwkNO - LEO-II---1.6.2 says Timeout - CPU = 60.02 WC = 63.43
 ModalCollapse.p---Nitrox---2013---RESULT: SOT_JNqvDA - Nitrox---2013 says CounterSatisfiable - CPU = 7.30 WC = 20.65
 
+Consistency.p---Nitrox---2013---RESULT: SOT_KVVfBM - Nitrox---2013 says Satisfiable - CPU = 10.77 WC = 11.55
