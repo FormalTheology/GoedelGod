@@ -1,3 +1,4 @@
+
 D_EntailsInS4_A2.p---LEO-II---1.6.2---RESULT: SOT_drxBq1 - LEO-II---1.6.2 says Theorem - CPU = 0.00 WC = 0.12
 
 D_EntailsInS4_A3.p---LEO-II---1.6.2---RESULT: SOT_RWLpfj - LEO-II---1.6.2 says Theorem - CPU = 0.00 WC = 0.06
@@ -6,7 +7,7 @@ D_EntailsInS4_A4.p---LEO-II---1.6.2---RESULT: SOT_dh_qY1 - LEO-II---1.6.2 says T
 
 D_EntailsInS4_Def1.p---LEO-II---1.6.2---RESULT: SOT_rtQ7ZM - LEO-II---1.6.2 says Theorem - CPU = 0.05 WC = 0.26
 
-Def1+A2+A3+A4_Entails_D.p---LEO-II---1.6.2---RESULT: SOT_ZiHcjn - LEO-II---1.6.2 says Unknown - CPU = 25.06 WC = 74.91
+Def1+A2+A3+A4_Entails_D.p---LEO-II---1.6.2---RESULT: SOT_dm2qjt - LEO-II---1.6.2 says Theorem - CPU = 43.14 WC = 46.12
 
 Def1+A2+A3+A4_Entails_D-Case2.p---LEO-II---1.6.2---RESULT: SOT_GwlfZ_ - LEO-II---1.6.2 says Theorem - CPU = 0.08 WC = 0.61
 

@@ -193,7 +193,7 @@ thf(mdia_type,type,(
 
 thf(mdia,definition,
     ( mdia
-    = ( mdia_generic @ rel ) )).b
+    = ( mdia_generic @ rel ) )).
 
 %----We have now two options for stating the S4 conditions: 
 %----We can (i) directly formulate conditions for the accessibility relation
