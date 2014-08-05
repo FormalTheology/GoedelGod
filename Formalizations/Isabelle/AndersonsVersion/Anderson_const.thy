@@ -53,50 +53,48 @@ text {* For grounding lifted formulas, the meta-predicate @{text "valid"} is int
   abbreviation valid :: "\<sigma> \<Rightarrow> bool" ("[_]") where "[p] \<equiv> \<forall>w. p w"
   
 section {* Anderson's Ontological Argument -- constant domain*}
-text{* The formalisation follows Fitting's 'Types, Tableaus, and Gödels God' *} 
-  
-text {* Constant symbol @{text "IP"} (Anderson's imperfect is declared. *}
+
+text{* The formalisation follows Fitting's book "Types, Tableaus, and Gödels God" *} 
 
   consts P :: "(\<mu> \<Rightarrow> \<sigma>) \<Rightarrow> \<sigma>"  
   
-  definition G :: "\<mu> \<Rightarrow> \<sigma>" where "G = (\<lambda>x. \<forall>(\<lambda>\<Phi>. P \<Phi> m\<equiv>  ( (\<box> (\<Phi> x ))) ))" 
+  definition G :: "\<mu> \<Rightarrow> \<sigma>" where 
+            "G = (\<lambda>x. \<forall>(\<lambda>\<Phi>. P \<Phi> m\<equiv>  ( (\<box> (\<Phi> x ))) ))" 
 
-  definition ess :: "(\<mu> \<Rightarrow> \<sigma>) \<Rightarrow> \<mu> \<Rightarrow> \<sigma>" where
- "ess = (\<lambda>\<Phi>. \<lambda>x. (( (\<forall>(\<lambda>\<Psi>. ((\<box> (\<Psi> x )) m\<equiv>  \<box>(\<forall>(\<lambda>y. \<Phi> y m\<rightarrow> \<Psi> y))))))))" 
+--{* In Anderson's version as presented by Fuhrmann, 
+     "ess" has the extra conjunct introduced by Scott,
+     which is missing here. There is discrepancy between Fitting's 
+     and Fuhrmann's presentations of Anderson's proof.  *}
 
-  definition NE :: "\<mu> \<Rightarrow> \<sigma>" where "NE = (\<lambda>x. \<forall>(\<lambda>\<Phi>. ess \<Phi> x m\<rightarrow> (\<box> (\<exists>(\<lambda>y. \<Phi> y)))))"
+  definition ess :: "(\<mu> \<Rightarrow> \<sigma>) \<Rightarrow> \<mu> \<Rightarrow> \<sigma>" where 
+            "ess = (\<lambda>\<Phi>. \<lambda>x. (( (\<forall>(\<lambda>\<Psi>. ((\<box> (\<Psi> x )) m\<equiv>  \<box>(\<forall>(\<lambda>y. \<Phi> y m\<rightarrow> \<Psi> y))))))))" 
+
+  definition NE :: "\<mu> \<Rightarrow> \<sigma>" where 
+            "NE = (\<lambda>x. \<forall>(\<lambda>\<Phi>. ess \<Phi> x m\<rightarrow> (\<box> (\<exists>(\<lambda>y. \<Phi> y)))))"
 
   axiomatization where
+
+--{* Fuhrmann also presents a slightly different axiom A1.  *}
 
     A1:  "[\<forall>(\<lambda>\<Phi>. ( (P \<Phi>)) m\<rightarrow> m\<not> (P (\<lambda>x. m\<not> (\<Phi> x))))]" and
     A2:  "[\<forall>(\<lambda>\<Phi>. \<forall>(\<lambda>\<Psi>. ( (P \<Phi>) m\<and> \<box> (\<forall>(\<lambda>x. \<Phi> x m\<rightarrow> \<Psi> x))) m\<rightarrow> P \<Psi>))]" and
     A3:  "[P G]" 
 
-    --{* As noted by Petr Hajek, A4 and A5 are redundant, because they can be infered
-      from A1 - A3 and def.G . *}
---{*and 
-    A4:  "[\<forall>(\<lambda>\<Phi>. P \<Phi> m\<rightarrow> \<box> (P \<Phi>))]" and
-    A5:  "[P NE]"*}
-
  
   theorem T1: "[\<forall>(\<lambda>\<Phi>. P \<Phi> m\<rightarrow> \<diamond> (\<exists> \<Phi>))]"
   by (metis A1 A2)
          
-  corollary C: "[\<diamond> (\<exists> G)]"
+  corollary C1: "[\<diamond> (\<exists> G)]"
   by (metis A3 T1)
 
-  
   lemma T2_lem: "[\<forall>(\<lambda>x. \<forall>(\<lambda>\<Phi>. ((G x) m\<and> ( ess \<Phi> x)) m\<rightarrow> \<forall>(\<lambda>y. ((G y) m\<rightarrow> \<Phi> y))))]"
   by (metis G_def Anderson_const.refl ess_def)
     
-
-
-theorem T3: "[\<box> (\<exists> G)]"
- by (metis  A3  G_def Anderson_const.sym T1)
-
-   
+  theorem T3: "[\<box> (\<exists> G)]"
+  by (metis  A3  G_def sym T1)
+  
   corollary C2: "[\<exists> G]"
-  by (metis Anderson_const.refl T3)
+  by (metis refl T3)
   
 
 text {* The consistency of the entire theory is confirmed by Nitpick. *}
@@ -109,17 +107,28 @@ section {* Modal Collapse *}
   --{* Nitpick generates a counter-model with the same cardinalities used by Anderson. *}
   lemma MC: "[\<forall>(\<lambda>\<Phi>.(\<Phi> m\<rightarrow> (\<box> \<Phi>)))]"
   nitpick [user_axioms]
-   -- {* sledgehammer [provers = remote_satallax remote_leo2] *}
-  -- {* by (metis T2 T3 ess\_def) *}
   oops
 
-text {* Additional results:
-      Now A4 can be proved. 
-      *}
+section {* Additional results: *}
 
-theorem A4:  "[\<forall>(\<lambda>\<Phi>. P \<Phi> m\<rightarrow> \<box> (P \<Phi>))]" 
-    --{*by (metis A3 G_def Anderson_const.sym Anderson_const.trans T3)*}
-    oops
+text{* As noted by Petr Hajek, A4 and A5 can be derived
+       from the other axioms and definitions. *}
+
+  theorem A4:  "[\<forall>(\<lambda>\<Phi>. P \<Phi> m\<rightarrow> \<box> (P \<Phi>))]" 
+  by (metis A3 G_def sym trans T3)
+
+  theorem A5: "[P NE]"
+  by (metis A2 A3 ess_def NE_def)
+
+
+text{* Fuhrmann remarks that these derivations depend on 
+       "meist stillschweigen gemachten Annahmen über die 
+       Logik der zweiten Stufe, die Anderson jedoch nicht teilt." *}
+
+--{* It should be checked whether the version formalized here is really Anderson's version. 
+     It could be a modification by Hajek presented by Fitting. *}
+
+
 
 (*<*) 
 end
