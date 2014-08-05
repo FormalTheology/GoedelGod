@@ -1,5 +1,5 @@
 (*<*) 
-theory GoedelGodIntensional
+theory GoedelGodIntensional2
 imports Main 
 
 begin
@@ -88,7 +88,7 @@ section {* G\"odel's Ontological Argument *}
   
 text {* Constant symbol @{text "P"} (G\"odel's `Positive') is declared. *}
 
-  consts P :: "(\<mu> \<Rightarrow> \<sigma>) \<Rightarrow> \<sigma>"  
+  consts P :: "i \<Rightarrow> i \<Rightarrow> (i \<Rightarrow> i \<Rightarrow> \<mu> \<Rightarrow> \<sigma>) \<Rightarrow> \<sigma>"  
 
 text {* The meaning of @{text "P"} is restricted by axioms @{text "A1(a/b)"}: $\all \phi 
 [P(\neg \phi) \biimp \neg P(\phi)]$ (Either a property or its negation is positive, but not both.) 
@@ -96,9 +96,11 @@ and @{text "A2"}: $\all \phi \all \psi [(P(\phi) \wedge \nec \all x [\phi(x) \im
 \imp P(\psi)]$ (A property necessarily implied by a positive property is positive). *}
 
   axiomatization where
-    A1a: "[\<forall>(\<lambda>\<Phi>. P (\<lambda>x. m\<not> (\<Phi> x)) m\<rightarrow> m\<not> (P \<Phi>))]" and
-    A1b: "[\<forall>(\<lambda>\<Phi>. m\<not> (P \<Phi>) m\<rightarrow> P (\<lambda>x. m\<not> (\<Phi> x)))]" and
-    A2:  "[\<forall>(\<lambda>\<Phi>. \<forall>(\<lambda>\<Psi>. (P \<Phi> m\<and> \<box> (\<forall>(\<lambda>x. \<Phi> x m\<rightarrow> \<Psi> x))) m\<rightarrow> P \<Psi>))]"
+    A1a: " \<forall>v w. ((\<forall>(\<lambda>\<Phi>. P v w (\<lambda>m n. (\<lambda>x. m\<not> (\<Phi> m n x))) m\<rightarrow> m\<not> (P v w \<Phi>))) v w)"
+  axiomatization where   
+    A1b: "\<forall>v w. ((\<forall>(\<lambda>\<Phi>. m\<not> (P v w \<Phi>) m\<rightarrow> P v w (\<lambda>m n. (\<lambda>x. m\<not> (\<Phi> m n x))))) v w)" 
+  axiomatization where    
+    A2:  "\<forall>v w. ((\<forall>(\<lambda>\<Phi>. \<forall>(\<lambda>\<Psi>. (P v w \<Phi> m\<and> \<box> (\<forall>(\<lambda>x. \<Phi> v w x m\<rightarrow> \<Psi> v w x))) m\<rightarrow> P v w \<Psi>))) v w)"
 
 text {* We prove theorem T1: $\all \phi [P(\phi) \imp \pos \ex x \phi(x)]$ (Positive 
 properties are possibly exemplified). T1 is proved directly by Sledgehammer with command @{text 
@@ -107,7 +109,7 @@ Sledgehammer suggests to call Metis with axioms A1a and A2.
 Metis sucesfully generates a proof object 
 that is verified in Isabelle/HOL's kernel. *}
  
-  theorem T1: "[\<forall>(\<lambda>\<Phi>. P \<Phi> m\<rightarrow> \<diamond> (\<exists> \<Phi>))]"  
+  theorem T1: "\<forall>v w. ((\<forall>(\<lambda>\<Phi>. P v w \<Phi> m\<rightarrow> \<diamond> (\<exists> (\<Phi> v w)))) v w)"  
   -- {* sledgehammer [provers = remote\_leo2] *}
   by (metis A1a A2)
 
@@ -115,51 +117,51 @@ text {* Next, the symbol @{text "G"} for `God-like'  is introduced and defined
 as $G(x) \biimp \forall \phi [P(\phi) \to \phi(x)]$ \\ (A God-like being possesses 
 all positive properties). *} 
 
-  definition G :: "\<mu> \<Rightarrow> \<sigma>" where "G = (\<lambda>x. \<forall>(\<lambda>\<Phi>. P \<Phi> m\<rightarrow> \<Phi> x))"   
+  definition G :: "i \<Rightarrow> i \<Rightarrow> \<mu> \<Rightarrow> \<sigma>" where "G = (\<lambda>v. \<lambda>w. \<lambda>x. \<forall>(\<lambda>\<Phi>. P v w \<Phi> m\<rightarrow> \<Phi> v w x))"   
 
 text {* Axiom @{text "A3"} is added: $P(G)$ (The property of being God-like is positive).
 Sledgehammer and Metis then prove corollary @{text "C"}: $\pos \ex x G(x)$ 
 (Possibly, God exists). *} 
  
-  axiomatization where A3:  "[P G]" 
+  axiomatization where A3:  "\<forall>v w. (((P v w) G) v w)" 
 
-  corollary C: "[\<diamond> (\<exists> G)]" 
+  corollary C: "\<forall>v w. ((\<diamond> (\<exists> (G v w))) v w)" 
   -- {* sledgehammer [provers = remote\_leo2] *}
   by (metis A3 T1)
 
 text {* Axiom @{text "A4"} is added: $\all \phi [P(\phi) \to \Box \; P(\phi)]$ 
 (Positive properties are necessarily positive). *}
 
-  axiomatization where A4:  "[\<forall>(\<lambda>\<Phi>. P \<Phi> m\<rightarrow> \<box> (P \<Phi>))]" 
+  axiomatization where A4:  "\<forall>v w. ((\<forall>(\<lambda>\<Phi>. P v w \<Phi> m\<rightarrow> \<box> (P v w \<Phi>))) v w)" 
 
 text {* Symbol @{text "ess"} for `Essence' is introduced and defined as 
 $$\ess{\phi}{x} \biimp \phi(x) \wedge \all \psi (\psi(x) \imp \nec \all y (\phi(y) 
-\imp \psi(y)))$$ (An \emph{essence} of an individual is a property possessed by it and necessarily implying any of its properties). *}
+\imp \psi(y)))$$ (An \emph{essence} of an individual is a property possessed by it and necessarily 
+implying any of its properties). *}
 
-  definition ess :: "(\<mu> \<Rightarrow> \<sigma>) \<Rightarrow> \<mu> \<Rightarrow> \<sigma>" (infixr "ess" 85) where
-    "\<Phi> ess x = \<Phi> x m\<and> \<forall>(\<lambda>\<Psi>. \<Psi> x m\<rightarrow> \<box> (\<forall>(\<lambda>y. \<Phi> y m\<rightarrow> \<Psi> y)))"
+  definition ess :: "i \<Rightarrow> i \<Rightarrow> (\<mu> \<Rightarrow> \<sigma>) \<Rightarrow> (\<mu> \<Rightarrow> \<sigma>)" where
+    "ess = (\<lambda>v w \<Phi> x. (\<Phi> x) m\<and> \<forall>(\<lambda>\<Psi>. \<Psi> x m\<rightarrow> \<box> (\<forall>(\<lambda>y. \<Phi> y m\<rightarrow> \<Psi> y))))"
 
 text {* Next, Sledgehammer and Metis prove theorem @{text "T2"}: $\all x [G(x) \imp \ess{G}{x}]$ \\
 (Being God-like is an essence of any God-like being). *}
 
-  theorem T2: "[\<forall>(\<lambda>x. G x m\<rightarrow> G ess x)]"
+  theorem T2: "\<forall>v w. ((\<forall>(\<lambda>x. G v w x m\<rightarrow> ess v w (G v w) x)) v w)"
   -- {* sledgehammer [provers = remote\_leo2] *}
   -- {* metis is too weak: by (metis A1b A4 G_def ess_def) *}
-  sledgehammer [provers = remote_leo2]
   oops
   
-  axiomatization where T2: "[\<forall>(\<lambda>x. G x m\<rightarrow> G ess x)]"
+  axiomatization where T2: "\<forall>v w. ((\<forall>(\<lambda>x. G v w x m\<rightarrow> ess v w (G v w) x)) v w)"
 
 text {* Symbol @{text "NE"}, for `Necessary Existence', is introduced and
 defined as $$\NE(x) \biimp \all \phi [\ess{\phi}{x} \imp \nec \ex y \phi(y)]$$ (Necessary 
 existence of an individual is the necessary exemplification of all its essences). *}
 
-  definition NE :: "\<mu> \<Rightarrow> \<sigma>" where "NE = (\<lambda>x. \<forall>(\<lambda>\<Phi>. \<Phi> ess x m\<rightarrow> \<box> (\<exists> \<Phi>)))"
+  definition NE :: "i \<Rightarrow> i \<Rightarrow> \<mu> \<Rightarrow> \<sigma>" where "NE = (\<lambda>v w x. \<forall>(\<lambda>\<Phi>. ess v w (\<Phi> v w) x m\<rightarrow> \<box> (\<exists> (\<Phi> v w))))"
 
 text {* Moreover, axiom @{text "A5"} is added: $P(\NE)$ (Necessary existence is a positive 
 property). *}
 
-  axiomatization where A5:  "[P NE]"
+  axiomatization where A5:  "\<forall>v w. ((P v w NE) v w)"
 
 text {* The @{text "B"} axiom (symmetry) for relation r is stated. @{text "B"} is needed only 
 for proving theorem T3 and for corollary C2. *}
@@ -169,18 +171,18 @@ for proving theorem T3 and for corollary C2. *}
 text {* Finally, Sledgehammer and Metis prove the main theorem @{text "T3"}: $\nec \ex x G(x)$ \\
 (Necessarily, God exists). *}
 
-  theorem T3: "[\<box> (\<exists> G)]"
+  theorem T3: "\<forall>v w. ((\<box> (\<exists> (G v w))) v w)"
   unfolding G_def
   -- {* sledgehammer [provers = remote\_leo2] *}
-  by (metis A5 C T2 sym G_def NE_def)
-
+  oops
+  
 text {* Surprisingly, the following corollary can be derived even without the @{text "T"} axiom 
 (reflexivity). *}
 
-  corollary C2: "[\<exists> G]" 
+  corollary C2: "\<forall>v w. ((\<exists> (G v w)) v w)" 
   -- {* sledgehammer [provers = remote\_leo2] *}
-  by (metis T1 T3 G_def sym)
-
+  oops
+  
 text {* The consistency of the entire theory is confirmed by Nitpick. *}
 
   lemma True nitpick [satisfy, user_axioms, expect = genuine] oops
@@ -190,16 +192,16 @@ section {* Additional Results on G\"odel's God. *}
 
 text {* G\"odel's God is flawless: (s)he does not have non-positive properties. *}
 
-  theorem Flawlessness: "[\<forall>(\<lambda>\<Phi>. \<forall>(\<lambda>x. (G x m\<rightarrow> (m\<not> (P \<Phi>) m\<rightarrow> m\<not> (\<Phi> x)))))]"
+  theorem Flawlessness: "\<forall>v w. ((\<forall>(\<lambda>\<Phi>. \<forall>(\<lambda>x. (G v w x m\<rightarrow> (m\<not> (P v w \<Phi>) m\<rightarrow> m\<not> (\<Phi> v w x)))))) v w)"
   -- {* sledgehammer [provers = remote\_leo2] *}
   by (metis A1b G_def) 
   
 text {* There is only one God: any two God-like beings are equal. *}   
   
-  theorem Monotheism: "[\<forall>(\<lambda>x.\<forall>(\<lambda>y. (G x m\<rightarrow> (G y m\<rightarrow> (x mL= y)))))]"
+  theorem Monotheism: "\<forall>v w. ((\<forall>(\<lambda>x.\<forall>(\<lambda>y. (G v w x m\<rightarrow> (G v w y m\<rightarrow> (x mL= y)))))) v w)"
   -- {* sledgehammer [provers = remote\_leo2] *}
-  by (metis Flawlessness G_def) 
-
+  oops
+  
 section {* Modal Collapse *}  
 
 text {* G\"odel's axioms have been criticized for entailing the so-called 
@@ -210,10 +212,9 @@ hence it suggests to call Metis using everything, but this (unsurprinsingly) fai
 Attempting to use `Sledegehammer min' to minimize Sledgehammer's suggestion does not work.
 Calling Metis with @{text "T2"}, @{text "T3"} and @{text "ess_def"} also does not work. *} 
 
-  lemma MC: "[\<forall>(\<lambda>\<Phi>.(\<Phi> m\<rightarrow> (\<box> \<Phi>)))]"  
+  lemma MC: "\<forall>v w. ((\<forall>(\<lambda>\<Phi>.(\<Phi> m\<rightarrow> (\<box> \<Phi>)))) v w)"  
   -- {* sledgehammer [provers = remote\_satallax] *}
   -- {* by (metis T2 T3 ess\_def) *}
-  sledgehammer [provers = remote_satallax remote_leo2]
   oops
 (*<*) 
 end

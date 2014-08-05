@@ -1,0 +1,211 @@
+%--------------------------------------------------------------------------
+% This file contains an semantic embedding of quantified modal logic S4 into
+% classical higher-order logic (Church's simple type theory).-
+% 
+% This embedding has been worked out by Christoph Benzmueller as an adaptation
+% of the work presented in the following article: 
+%
+%   Quantified Multimodal Logics in Simple Type Theory (Christoph Benzmueller, 
+%   Lawrence Paulson), In Logica Universalis (Special Issue on Multimodal 
+%   Logics), volume 7, number 1, pp. 7-20, 2013. 
+%
+% New is a quantifier supporting quantification over sets of individuals. 
+% Embeddings of such higher quantifiers have already been presented in the 
+% following paper:
+%
+%   Exploring Properties of Normal Multimodal Logics in Simple Type Theory 
+%   with LEO-II (Christoph Benzmueller, Lawrence Paulson), Chapter in Reasoning 
+%   in Simple Type Theory --- Festschrift in Honor of Peter B. Andrews on His 
+%   70th Birthday (Christoph Benzmüller, Chad Brown, Joerg Siekmann, Richard 
+%   Statman, eds.), College Publications, Studies in Logic, Mathematical Logic 
+%   and Foundations, pp. 386-406, 2008.
+%
+% Christoph Benzmueller, August 2014
+%--------------------------------------------------------------------------
+%----Declaration of additional base type mu (for individuals)
+%----type $i stands for possible worlds
+thf(mu_type,type,(
+    mu: $tType )).
+
+%----Modal operators not, or, box (generic)
+thf(mnot_type,type,(
+    mnot: ( $i > $o ) > $i > $o )).
+
+thf(mnot,definition,
+    ( mnot
+    = ( ^ [Phi: $i > $o,W: $i] :
+          ~ ( Phi @ W ) ) )).
+
+thf(mor_type,type,(
+    mor: ( $i > $o ) > ( $i > $o ) > $i > $o )).
+
+thf(mor,definition,
+    ( mor
+    = ( ^ [Phi: $i > $o,Psi: $i > $o,W: $i] :
+          ( ( Phi @ W )
+          | ( Psi @ W ) ) ) )).
+
+thf(mbox_generic_type,type,(
+    mbox_generic: ( $i > $i > $o ) > ( $i > $o ) > $i > $o )).
+
+thf(mbox_generic,definition,
+    ( mbox_generic
+    = ( ^ [R: $i > $i > $o,Phi: $i > $o,W: $i] :
+        ! [V: $i] :
+          ( ~ ( R @ W @ V )
+          | ( Phi @ V ) ) ) )).
+
+%----Modal quantifier (as constant Pi) for individuals and propositions 
+
+thf(mforall_ind_type,type,(
+    mforall_ind: ( mu > $i > $o ) > $i > $o )).
+
+thf(mforall_ind,definition,
+    ( mforall_ind
+    = ( ^ [Phi: mu > $i > $o,W: $i] :
+        ! [X: mu] :
+          ( Phi @ X @ W ) ) )).
+
+%----Modal quantifier for sets of individuals
+%----this is new!
+
+thf(mforall_indset_type,type,(
+    mforall_indset: ( ( mu > $i > $o ) > $i > $o ) > $i > $o )).
+
+thf(mforall_indset,definition,
+    ( mforall_indset
+    = ( ^ [Phi: ( mu > $i > $o ) > $i > $o,W: $i] :
+        ! [X: mu > $i > $o] :
+          ( Phi @ X @ W ) ) )).
+
+%----Further modal operators
+thf(mand_type,type,(
+    mand: ( $i > $o ) > ( $i > $o ) > $i > $o )).
+
+thf(mand,definition,
+    ( mand
+    = ( ^ [Phi: $i > $o,Psi: $i > $o] :
+          ( mnot @ ( mor @ ( mnot @ Phi ) @ ( mnot @ Psi ) ) ) ) )).
+
+thf(mimplies_type,type,(
+    mimplies: ( $i > $o ) > ( $i > $o ) > $i > $o )).
+
+thf(mimplies,definition,
+    ( mimplies
+    = ( ^ [Phi: $i > $o,Psi: $i > $o] :
+          ( mor @ ( mnot @ Phi ) @ Psi ) ) )).
+
+thf(mequiv_type,type,(
+    mequiv: ( $i > $o ) > ( $i > $o ) > $i > $o )).
+
+thf(mequiv,definition,
+    ( mequiv
+    = ( ^ [Phi: $i > $o,Psi: $i > $o] :
+          ( mand @ ( mimplies @ Phi @ Psi ) @ ( mimplies @ Psi @ Phi ) ) ) )).
+
+thf(mdia_generic_type,type,(
+    mdia_generic: ( $i > $i > $o ) > ( $i > $o ) > $i > $o )).
+
+thf(mdia_generic,definition,
+    ( mdia_generic
+    = ( ^ [R: $i > $i > $o,Phi: $i > $o] :
+          ( mnot @ ( mbox_generic @ R @ ( mnot @ Phi ) ) ) ) )).
+
+thf(mexists_ind_type,type,(
+    mexists_ind: ( mu > $i > $o ) > $i > $o )).
+
+thf(mexists_ind,definition,
+    ( mexists_ind
+    = ( ^ [Phi: mu > $i > $o] :
+          ( mnot
+          @ ( mforall_ind
+            @ ^ [X: mu] :
+                ( mnot @ ( Phi @ X ) ) ) ) ) )).
+
+thf(mexists_indset_type,type,(
+    mexists_indset: ( ( mu > $i > $o ) > $i > $o ) > $i > $o )).
+
+thf(mexists_indset,definition,
+    ( mexists_indset
+    = ( ^ [Phi: ( mu > $i > $o ) > $i > $o] :
+          ( mnot	  
+          @ ( mforall_indset
+            @ ^ [X: mu > $i > $o ] :
+                ( mnot @ ( Phi @ X ) ) ) ) ) )).
+
+%----Definition of validity
+thf(v_type,type,(
+    v: ( $i > $o ) > $o )).
+
+thf(mvalid,definition,
+    ( v
+    = ( ^ [Phi: $i > $o] :
+        ! [W: $i] :
+          ( Phi @ W ) ) )).
+
+%----Definition of properties of accessibility relations
+thf(mreflexive_type,type,(
+    mreflexive: ( $i > $i > $o ) > $o )).
+
+thf(mreflexive,definition,
+    ( mreflexive
+    = ( ^ [R: $i > $i > $o] :
+        ! [S: $i] :
+          ( R @ S @ S ) ) )).
+
+thf(msymmetric_type,type,(
+    msymmetric: ( $i > $i > $o ) > $o )).
+
+thf(msymmetric,definition,
+    ( msymmetric
+    = ( ^ [R: $i > $i > $o] :
+        ! [S: $i,T: $i] :
+          ( ( R @ S @ T )
+         => ( R @ T @ S ) ) ) )).
+
+thf(mtransitive_type,type,(
+    mtransitive: ( $i > $i > $o ) > $o )).
+
+thf(mtransitive,definition,
+    ( mtransitive
+    = ( ^ [R: $i > $i > $o] :
+        ! [S: $i,T: $i,U: $i] :
+          ( ( ( R @ S @ T )
+            & ( R @ T @ U ) )
+         => ( R @ S @ U ) ) ) )).
+
+%------------------------------------------------------------------------------
+%----We work with logic S4 and instantiate the generic box and dia operators
+%----We reserve an accessibility relation constant rel
+thf(rel_type,type,(
+    rel: $i > $i > $o )).
+
+%----We define mbox and mdia based on rel
+thf(mbox_type,type,(
+    mbox: ( $i > $o ) > $i > $o )).
+
+thf(mbox,definition,
+    ( mbox
+    = ( mbox_generic @ rel ) )).
+
+thf(mdia_type,type,(
+    mdia: ( $i > $o ) > $i > $o )).
+
+thf(mdia,definition,
+    ( mdia
+    = ( mdia_generic @ rel ) )).
+
+%----We have now two options for stating the S4 conditions: 
+%----We can (i) directly formulate conditions for the accessibility relation
+%----constant or we can (ii) state corresponding axioms. We here prefer (i)
+
+thf(refl,axiom,
+    ( mreflexive @ rel )).
+
+thf(trans,axiom,
+    ( mtransitive @ rel )).
+
+%------------------------------------------------------------------------------
+
+
+
