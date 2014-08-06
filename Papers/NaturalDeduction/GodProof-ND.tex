@@ -58,6 +58,9 @@ St. Anselm's argument was elaborated further by Descartes and Leibniz. Leibniz i
 G\"odel studied Leibniz's work \citep{Adams} and brought his ontological argument to a modern form using a modal logic with higher-order quantification over properties. In this setting, he gave precise axioms describing the notion of \emph{positive} property and defined God as a being having all positive properties. 
 
 G\"odel's notion of positive property and Leibniz's notion of perfection are not exactly the same \citep{Adams}. On a technical level, the main distinction seems to be that G\"odel's positive properties are not just atomic properties, like Leibniz's perfections, but can also consist of complex combinations of atomic properties \citep{fitting}[p.139.] (TODO: Check this claim). In particular, one of G\"odel's axioms states that the conjunction of any set of positive properties is positive. And from this axiom, it follows immediately that the property of being God-like is positive. While this step is intuitively and informally clear, it is not easily formalizable in a typical logical calculus, because it requires inferring that being god-like is a (possibly infinite) conjuntion of positive properties, while it has only been defined as the property holding for individuals who have all positive properties. This interplay between universal quantification (in the definition of a God-like being) and conjunction (in G\"odel's mentioned axiom) is a technical difficulty that probably explains why, starting with Scott \cite{scott}, to whom G\"odel confided his manuscript, this axiom of G\"odel's has been replaced by another one that simply assumes the positivity of the property of being God-like. 
+
+The main criticism against G\"odel's ontological argument is the \emph{modal collapse}, an undesirable consequence of the stipulated axioms. Most recent works \cite{todo} on the ontological argument have focused on proposing modifications of the argument that would not entail a modal collapse. This is discussed in more detail in Section \ref{sec:collapse}.
+
 %This axiom is unfortunately equivalent to the possibility of God's existence given the other axioms, leading to criticisms that it might be too strong \citep{sobel2}\citep{fitting}[Section 11.4. Objections.]. 
 
 %The possibility  God's existence in turn is equivalent to  God's necessary existence as well as  God's existence itself. Thus, we have an axiom which seems to be equivalent to the conclusion. 
@@ -67,11 +70,9 @@ G\"odel's notion of positive property and Leibniz's notion of perfection are not
 
 % Another, possibly undesirable, consequence of the formalism is that there can only be one God, which is defined by the axioms. Namely, if one assumes that the theory contains the equality relation then a God has the property of being identical to itself. Since any other god-like being would have at least the same properties it shares the property of being identical to the one God. Thus, we have proved monotheism \citep{sobel2}[Ch. 4, section 3.3.2]. %\citep{fitting}[The proof is Exercise 7.1, p.163]. 
 
+The first contribution of this paper is the detailed formalization of Scott's version \cite{Scott} of G\"odel's ontological argument \cite{Goedel} (as shown in Section \ref{sec:scott}) in a natural deduction calculus (as defined in Section \ref{sec:calculus}). A natural deduction style \citep{gentzen,prawitz} was chosen mainly for three reasons. Firstly, presentations of G\"oedel's proof are typically either informal or formalized in other styles of calculi (e.g. Fitting's tableaux \cite{fitting} or Sobel's sentential modal calculus \cite{sobel2}). Therefore, a formalization in natural deduction is a valuable complement to the existing presentations. Secondly, natural deduction is a familiar style for many people, who can now benefit from a natural deduction presentation of G\"odel's ontological argument. Finally, as natural deduction is the style used by proof assistants such as Coq \cite{coq} and Isabelle \cite{isabelle}, the natural deduction formalizations have been easily checked step-by-step in Coq \cite{coqformalizations}.
 
-
-This paper presents new natural deduction proofs of (Scott's version of) the lemmas and theorems in G\"odel's ontological argument \cite{Goedel}. In contrast to Scott's version \cite{Scott}, also shown here in natural deduction form, the version presented here is characterized by shorter and more direct derivations.
-
-Section \ref{sec:calculus} defines the higher-order modal natural deduction calculus used to construct the formal proofs. Section \ref{sec:scott} shows Scott's proofs, translated to natural deduction. And section \ref{sec:proof} presents the new proofs.
+The main contribution of the paper, however, is the presentation of new proofs (also in natural deduction style) of the lemmas, theorems and corollaries in G\"odel's manuscript. In contrast to Scott's proofs \cite{Scott}, the proofs presented here are simpler and shorter, as discussed in Section \ref{sec:conclusion}.
 
 
 
@@ -106,16 +107,22 @@ where $\mu$ is the atomic type for individuals, $o$ is the atomic type for propo
 where $p_\tau$ and $X_\tau$ range over, respectively, constants and variables of type $\tau$. Parenthesis conventions, infix notation for propositional connectives and binding notation for quantifiers are assumed. Furthermore, subscript types are omitted when they are clear from the context. Negation ($\neg_{o\imp o}$) and equivalence ($\biimp_{o\imp o\imp o}$) are defined by $\neg A\equiv A\imp \bot$ and $ (A\biimp B)\equiv (A\imp B)\wedge (B\imp A)$.
 \end{definition}
 
-For Natural deduction
 
+The natural deduction calculus used here has standard rules for propositional connectives and quantifiers, as shown in Figures \ref{fig:PropositionalRules} and \ref{fig:QuantifierRules}. 
+To deal with classicality \ref{fig:Classical} and \ref{fig:NDK}. These rules 
+
+A \emph{derivation} is a directed acyclic graph whose nodes are formulas and whose edges correspond to applications of the inference rules shown in Figures . Parts of a derivation may be surrounded by boxes. A \emph{proof} is a derivation that additionally satisfies the following conditions:
 
 beta reduction
 
 \newcommand{\s}{\qquad}
 
+ToDo: check if disjunction rules are used in Goedel's proof. If not, we could define disjunction as we already do for negation and equivalence.
+
+
 \begin{calculus}
 {propositional rules}
-{fig:ND}
+{fig:PropositionalRules}
 
 \vspace{1em}
 
@@ -173,6 +180,12 @@ beta reduction
 
 \vspace{1em}
 
+\textbf{eigen-variable conditions:}
+if $\rho$ is a $\all_I$ inference eliminating a variable $\alpha$, then any occurrence of $\alpha$ in the proof should be an ancestor of the occurrence of $\alpha$ eliminated by $\rho$;
+if $\rho$ is a $\ex_E$ inference introducing a variable $\beta$, then any occurrence of $\beta$ in the proof should be a descendant of the occurrence of $\beta$ introduced by $\rho$.
+
+\vspace{1em}
+
 \end{calculus}
 
 
@@ -188,23 +201,20 @@ beta reduction
 \s\s\s\s
 \infer[\nec_E]{w: \fbox{ \infer*{}{A} } }{\nec A}
 
-% \vspace{2em}
+\vspace{2em}
 
-% \s\s\s\s
-% \infer[\pos_I]{\pos A}{n: \fbox{\infer*{A}{}} }
-% \s\s\s\s\s
-% \infer[\pos_E]{\eta: \fbox{ \infer*{}{A} } }{\pos A}
+\s\s\s\s
+\infer[\pos_I]{\pos A}{w: \fbox{\infer*{A}{}} }
+\s\s\s\s\s
+\infer[\pos_E]{\omega: \fbox{ \infer*{}{A} } }{\pos A}
 
 \vspace{1em}
 \end{calculus}
 
-\noindent
-A \emph{derivation} is a directed acyclic graph whose nodes are formulas and whose edges correspond to applications of the inference rules shown in Figures \ref{fig:ND}, \ref{fig:Classical} and \ref{fig:NDK}. Parts of a derivation may be surrounded by boxes. A \emph{proof} is a derivation that additionally satisfies the following conditions:
+
 
 \begin{itemize}
-\item \textbf{eigen-variable conditions:}
-if $\rho$ is a $\all_I$ inference eliminating a variable $\alpha$, then any occurrence of $\alpha$ in the proof should be an ancestor of the occurrence of $\alpha$ eliminated by $\rho$;
-if $\rho$ is a $\ex_E$ inference introducing a variable $\beta$, then any occurrence of $\beta$ in the proof should be a descendant of the occurrence of $\beta$ introduced by $\rho$.
+\item 
 %
 \item \textbf{eigen-box conditions:} $\omega$ must be a fresh name for a box.
 %
