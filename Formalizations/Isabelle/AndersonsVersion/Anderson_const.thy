@@ -64,7 +64,10 @@ text{* The formalisation follows Fitting's book "Types, Tableaus, and Gödels Go
 --{* In Anderson's version as presented by Fuhrmann, 
      "ess" has the extra conjunct introduced by Scott,
      which is missing here. There is discrepancy between Fitting's 
-     and Fuhrmann's presentations of Anderson's proof.  *}
+     and Fuhrmann's presentations of Anderson's proof. Christoph: Yes, the exra
+     conjunct is indeed missing in Fitting's presentation of Anderson's proof; in fact,
+     there is even a sentence "The Scott addition that the essence of an object actually
+     apply to the object, is dropped." *}
 
   definition ess :: "(\<mu> \<Rightarrow> \<sigma>) \<Rightarrow> \<mu> \<Rightarrow> \<sigma>" where 
             "ess = (\<lambda>\<Phi>. \<lambda>x. (( (\<forall>(\<lambda>\<Psi>. ((\<box> (\<Psi> x )) m\<equiv>  \<box>(\<forall>(\<lambda>y. \<Phi> y m\<rightarrow> \<Psi> y))))))))" 
@@ -74,9 +77,11 @@ text{* The formalisation follows Fitting's book "Types, Tableaus, and Gödels Go
 
   axiomatization where
 
---{* Fuhrmann also presents a slightly different axiom A1.  *}
+--{* Fuhrmann also presents a slightly different axiom A1; Christoph: That was a mistake 
+     by Leon, I assume. I changed this from [\<forall>(\<lambda>\<Phi>. ( (P \<Phi>)) m\<rightarrow> m\<not> (P (\<lambda>x. m\<not> (\<Phi> x))))] 
+     to [\<forall>(\<lambda>\<Phi>. ( (P (\<lambda>x. m\<not> (\<Phi> x)))) m\<rightarrow> m\<not> (P \<Phi>))]. *}
 
-    A1:  "[\<forall>(\<lambda>\<Phi>. ( (P \<Phi>)) m\<rightarrow> m\<not> (P (\<lambda>x. m\<not> (\<Phi> x))))]" and
+    A1:  "[\<forall>(\<lambda>\<Phi>. ( (P (\<lambda>x. m\<not> (\<Phi> x)))) m\<rightarrow> m\<not> (P \<Phi>))]" and
     A2:  "[\<forall>(\<lambda>\<Phi>. \<forall>(\<lambda>\<Psi>. ( (P \<Phi>) m\<and> \<box> (\<forall>(\<lambda>x. \<Phi> x m\<rightarrow> \<Psi> x))) m\<rightarrow> P \<Psi>))]" and
     A3:  "[P G]" 
 
