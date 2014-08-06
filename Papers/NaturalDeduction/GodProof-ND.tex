@@ -1,9 +1,10 @@
-\documentclass{article}
+\documentclass{llncs}
 
 \usepackage{fancybox}
 \usepackage{latexsym}
 \usepackage{proof}
 \usepackage{bussproofs}
+\usepackage{amsmath}
 \EnableBpAbbreviations
 \newcommand{\rl}[1]{\RightLabel{#1}}
 
@@ -74,23 +75,57 @@ Section \ref{sec:calculus} defines the higher-order modal natural deduction calc
 
 
 
-
 \section{Natural Deduction}
 \label{sec:calculus}
+
+The language of higher-order modal logic used here is inspired by that of Church's simple type theory \citep{church}.
+
+\begin{definition} \emph{Simple types} are given by the following grammar:
+$$
+  \theta,\tau \quad ::= \quad \mu \ \mid \ o \ \mid \ \theta \imp \tau
+$$
+where $\mu$ is the atomic type for individuals, $o$ is the atomic type for propositions and $\theta \imp \tau$ is the type for functions taking an argument of type $\theta$ and returning something of type $\tau$. `$\imp$' is assumed to be right associative.
+\end{definition}
+
+\begin{definition} \emph{Terms and formulas} are given by the following grammar:
+\begin{align*}
+ s,t \quad ::= \quad & 
+  p_\tau \ \mid \ 
+  X_\tau \ \mid \
+  (\lambda X_\theta.s_\tau)_{\theta\imp\tau} \ \mid \ 
+  (s_{\theta\imp\tau}\, t_\theta)_\tau \ \mid \\
+& \bot_o \ \mid \
+  \imp_{o\imp o\imp o} \ \mid \ 
+  \wedge_{o\imp o\imp o} \ \mid \
+  \vee_{o\imp o\imp o} \ \mid \\
+& \all_{(\tau\imp o)\imp o} \ \mid \ 
+  \ex_{(\tau\imp o)\imp o} \ \mid \
+  \nec_{o\imp o} \ \mid \
+  \pos_{o\imp o}
+\end{align*}
+where $p_\tau$ and $X_\tau$ range over, respectively, constants and variables of type $\tau$. Parenthesis conventions, infix notation for propositional connectives and binding notation for quantifiers are assumed. Furthermore, subscript types are omitted when they are clear from the context. Negation ($\neg_{o\imp o}$) and equivalence ($\biimp_{o\imp o\imp o}$) are defined by $\neg A\equiv A\imp \bot$ and $ (A\biimp B)\equiv (A\imp B)\wedge (B\imp A)$.
+\end{definition}
+
+For Natural deduction
+
+
+beta reduction
 
 \newcommand{\s}{\qquad}
 
 \begin{calculus}
-{The intuitionistic natural deduction calculus \ND}
+{propositional rules}
 {fig:ND}
 
 \vspace{1em}
 
 \s\s
+\infer[\bot_E]{A}{ \bot }
+\s
 \infer[\imp_I]{A \imp B}{ B }
-\s\s
+\s
 \infer[\imp_I^n]{A \imp B}{ \infer*{B}{\infer[n]{A}{}} }
-\s\s
+\s
 \infer[\imp_E]{B}{A & A \imp B}
 
 \vspace{2em}
@@ -111,7 +146,21 @@ Section \ref{sec:calculus} defines the higher-order modal natural deduction calc
 \s\s
 \infer[\vee_{I_2}]{A \vee B}{B}
 
-\vspace{2em}
+\vspace{1em}
+\end{calculus}
+
+\begin{calculus}
+{double negation elimination}
+{fig:Classical}
+\infer[\neg\neg_E]{A}{ \neg\neg A }
+\end{calculus}
+
+
+\begin{calculus}
+{quantifier rules}
+{fig:QuantifierRules}
+
+\vspace{1em}
 
 \s
 \infer[\all_I]{\all x. A[x]}{ A[\alpha] }
@@ -124,15 +173,7 @@ Section \ref{sec:calculus} defines the higher-order modal natural deduction calc
 
 \vspace{1em}
 
-We let negation be a defined concept by $\neg A\equiv A\imp \bot$. The rules for negation introduction and elimination are special cases of the implication rules. Equivalence is also a defined concept with  $ (A\biimp B)\equiv (A\imp B)\wedge (B\imp A)$. 
 \end{calculus}
-
-\begin{calculus}
-{Classical Rule: Double negation elimination}
-{fig:Classical}
-\infer[\neg\neg_E]{A}{ \neg\neg A }
-\end{calculus}
-
 
 
 
@@ -143,29 +184,29 @@ We let negation be a defined concept by $\neg A\equiv A\imp \bot$. The rules for
 \vspace{1em}
 
 \s\s\s\s
-\infer[\nec_I]{\nec A}{\eta: \fbox{\infer*{A}{}} }
-\s\s\s\s\s
-\infer[\nec_E]{n: \fbox{ \infer*{}{A} } }{\nec A}
-
-\vspace{2em}
-
+\infer[\nec_I]{\nec A}{\omega: \fbox{\infer*{A}{}} }
 \s\s\s\s
-\infer[\pos_I]{\pos A}{n: \fbox{\infer*{A}{}} }
-\s\s\s\s\s
-\infer[\pos_E]{\eta: \fbox{ \infer*{}{A} } }{\pos A}
+\infer[\nec_E]{w: \fbox{ \infer*{}{A} } }{\nec A}
+
+% \vspace{2em}
+
+% \s\s\s\s
+% \infer[\pos_I]{\pos A}{n: \fbox{\infer*{A}{}} }
+% \s\s\s\s\s
+% \infer[\pos_E]{\eta: \fbox{ \infer*{}{A} } }{\pos A}
 
 \vspace{1em}
 \end{calculus}
 
 \noindent
-A \emph{derivation} is a directed acyclich graph whose nodes are formulas and whose edges correspond to applications of the inference rules shown in Figures \ref{fig:ND} and \ref{fig:NDK}. Parts of a derivation may be surrounded by boxes. A \emph{proof} is a derivation that additionally satisfies the following conditions:
+A \emph{derivation} is a directed acyclic graph whose nodes are formulas and whose edges correspond to applications of the inference rules shown in Figures \ref{fig:ND}, \ref{fig:Classical} and \ref{fig:NDK}. Parts of a derivation may be surrounded by boxes. A \emph{proof} is a derivation that additionally satisfies the following conditions:
 
 \begin{itemize}
 \item \textbf{eigen-variable conditions:}
 if $\rho$ is a $\all_I$ inference eliminating a variable $\alpha$, then any occurrence of $\alpha$ in the proof should be an ancestor of the occurrence of $\alpha$ eliminated by $\rho$;
 if $\rho$ is a $\ex_E$ inference introducing a variable $\beta$, then any occurrence of $\beta$ in the proof should be a descendant of the occurrence of $\beta$ introduced by $\rho$.
 %
-\item \textbf{eigen-box conditions:} $\eta$ must be a fresh name for a box.
+\item \textbf{eigen-box conditions:} $\omega$ must be a fresh name for a box.
 %
 \item \textbf{boxed assumption condition:} any assumption should be discharged within the box where it is made.
 %
@@ -176,14 +217,92 @@ if $\rho$ is a $\ex_E$ inference introducing a variable $\beta$, then any occurr
 Double lines are used to abbreviate tedious propositional reasoning steps in the derivations. Dashed lines are used to refer to a proof shown elsewhere. Dotted lines are used to indicate folding and unfolding of definitions.
 
  
+\subsection{Suitability for K}
 
-\section{Scott's Proof}
+We show that the proof system with boxed parts of derivations is equivalent to the system K. The modal system K consists of the axiom K and the necessitation rule N.
 
+\begin{axiom}[The transitivity axiom K]
+\label{K}
+$$
+\nec(A\imp B)\imp (\nec A\imp \nec B)
+$$
+\end{axiom}
+
+\begin{axiom}[The necessitation rule, $\Box_I$]
+\label{Necessitation}
+If $A$ is a theorem, then $\nec A$ is a theorem.
+\end{axiom}
+
+
+\begin{lemma}
+\label{systemK}
+The axiom K is derivable in the system.
+\end{lemma}
+
+\begin{small}
+\begin{prooftree}
+\AXC{$\nec(A\imp B)^2 $}\RightLabel{$\nec_E$}
+\UIC{$A\imp B$}
+      \AXC{$\nec A ^1 $}\RightLabel{$\nec_E$}
+      \UIC{$A$} \RightLabel{$\imp_E$}
+   \BIC{$ B$} \RightLabel{$\nec_I$}
+   \UIC{$ \nec B$} \RightLabel{$\imp_I^1$}
+   \UIC{$\nec A\imp \nec B$} \RightLabel{$\imp_I^2$}
+   \UIC{$\nec(A\imp B)\imp (\nec A\imp \nec B)$}
+\end{prooftree}
+\end{small}
+
+\begin{lemma}
+\label{systemK2}
+Assuming the axiom K and the necessitation rule $\Box_I$, the open formula $\nec A $ and the existence of a derivation of $ B$ from the open assumption $ A$, then we can derive $\nec B$ without the rules for boxed parts of derivations.
+\end{lemma}
+
+\begin{small}
+\begin{prooftree}
+\AXC{$A^1 $}\noLine
+\UIC{$\vdots$}\noLine
+\UIC{$ B$} \RightLabel{$\imp_I^1$}
+\UIC{$A\imp B$} \RightLabel{$\Box_I$}
+\UIC{$\nec(A\imp B)$}
+      \AXC{Axiom K}\dashedLine
+      \UIC{$\nec(A\imp B)\imp (\nec A\imp \nec B)$} \RightLabel{$\imp_E$}
+  \BIC{$\nec A\imp \nec B$}
+        \AXC{$\nec A ^1 $}\RightLabel{$\imp_E$}
+    \BIC{$\nec B$}
+\end{prooftree}
+\end{small}
+
+
+\section{Scott's Proof in Natural Deduction}
 
 The acceptance of the correctness of the ontological argument by G\"odel's work boils down to the intuitive correctness of the axioms and definitions and the belief in the soundness of the deductive system. The formal argument of G\"odel is based on Leibniz proof, which in turn is based on Descartes proof. These proofs have two parts; a proof that if God's existence is possible, then it is necessary and a proof that God's existence is in fact possible. 
 
 
+\begin{axiom}
+\label{A1}
+Either a property or its negation is positive, but not both:
+$$
+\all \varphi. [P(\neg \varphi) \biimp \neg P(\varphi)]
+$$
+\end{axiom}
+
+\begin{axiom}
+\label{A2}
+A property necessarily implied by a positive property is positive:
+$$
+\all \varphi. \all \psi.[(P(\varphi) \wedge \nec \all x.[\varphi(x) \imp \psi(x)]) \imp P(\psi)]
+$$
+\end{axiom}
+
+
+\section{New Proof}
+
+
+
+
 \subsection{Possibly, God Exists}
+
+\setcounter{axiom}{0}
 
 \begin{axiom}
 \label{A1}
@@ -519,60 +638,7 @@ $$
 \end{proof}
 
 
-\section{Proof system equivalent to system K}
 
-We show that the proof system with boxed parts of derivations is equivalent to the system K. The modal system K consists of the axiom K and the necessitation rule N.
-
-\begin{axiom}[The transitivity axiom K]
-\label{K}
-$$
-\nec(A\imp B)\imp (\nec A\imp \nec B)
-$$
-\end{axiom}
-
-\begin{axiom}[The necessitation rule, $\Box_I$]
-\label{Necessitation}
-If $A$ is a theorem, then $\nec A$ is a theorem.
-\end{axiom}
-
-
-\begin{lemma}
-\label{systemK}
-The axiom K is derivable in the system.
-\end{lemma}
-
-\begin{small}
-\begin{prooftree}
-\AXC{$\nec(A\imp B)^2 $}\RightLabel{$\nec_E$}
-\UIC{$A\imp B$}
-      \AXC{$\nec A ^1 $}\RightLabel{$\nec_E$}
-      \UIC{$A$} \RightLabel{$\imp_E$}
-   \BIC{$ B$} \RightLabel{$\nec_I$}
-   \UIC{$ \nec B$} \RightLabel{$\imp_I^1$}
-   \UIC{$\nec A\imp \nec B$} \RightLabel{$\imp_I^2$}
-   \UIC{$\nec(A\imp B)\imp (\nec A\imp \nec B)$}
-\end{prooftree}
-\end{small}
-
-\begin{lemma}
-\label{systemK2}
-Assuming the axiom K and the necessitation rule $\Box_I$, the open formula $\nec A $ and the existence of a derivation of $ B$ from the open assumption $ A$, then we can derive $\nec B$ without the rules for boxed parts of derivations.
-\end{lemma}
-
-\begin{small}
-\begin{prooftree}
-\AXC{$A^1 $}\noLine
-\UIC{$\vdots$}\noLine
-\UIC{$ B$} \RightLabel{$\imp_I^1$}
-\UIC{$A\imp B$} \RightLabel{$\Box_I$}
-\UIC{$\nec(A\imp B)$}
-      \AXC{Axiom K}\dashedLine
-      \UIC{$\nec(A\imp B)\imp (\nec A\imp \nec B)$} \RightLabel{$\imp_E$}
-  \BIC{$\nec A\imp \nec B$}
-        \AXC{$\nec A ^1 $}\RightLabel{$\imp_E$}
-    \BIC{$\nec B$}
-\end{prooftree}
-\end{small}
 
 
 \section{Modal collapse}
