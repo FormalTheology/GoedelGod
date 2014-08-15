@@ -61,53 +61,72 @@ text {* For grounding lifted formulas, the meta-predicate @{text "valid"} is int
 
 section {* Anderson's Ontological Argument -- varying domain*}  
 text{* The formalisation follows Fitting's 'Types, Tableaus, and Gödels God' *}  
+  
+  consts Defective :: "\<mu> \<Rightarrow> \<sigma>" 
 
+ --{*
   consts P :: "(\<mu> \<Rightarrow> \<sigma>) \<Rightarrow> \<sigma>"  
+  *}
+  
+  definition P :: "(\<mu> \<Rightarrow> \<sigma>) \<Rightarrow> \<sigma>" where
+  "P = (\<lambda>\<Phi>. \<box> (\<forall>(\<lambda>x. (m\<not> (\<Phi>(x))) m\<rightarrow> Defective(x))))"
   
   definition G :: "\<mu> \<Rightarrow> \<sigma>" where "G = (\<lambda>x. \<forall>(\<lambda>\<Phi>. ( (\<box> (\<Phi> x )) m\<equiv> P \<Phi> ) ))" 
+  
+  
+  definition fitting_ess :: "(\<mu> \<Rightarrow> \<sigma>) \<Rightarrow> \<mu> \<Rightarrow> \<sigma>" where 
+            "fitting_ess = (\<lambda>\<Phi>. \<lambda>x. (( (\<forall>(\<lambda>\<Psi>. ((\<box> (\<Psi> x )) m\<equiv>  \<box>(\<forall>i(\<lambda>y. \<Phi> y m\<rightarrow> \<Psi> y))))))))" 
 
-  definition ess :: "(\<mu> \<Rightarrow> \<sigma>) \<Rightarrow> \<mu> \<Rightarrow> \<sigma>" where
-  "ess = (\<lambda>\<Phi>. \<lambda>x. (( (\<forall>(\<lambda>\<Psi>. ((\<box> (\<Psi> x )) m\<equiv>  \<box>(\<forall>i(\<lambda>y. \<Phi> y m\<rightarrow> \<Psi> y))))))))"
+  definition anderson_ess :: "(\<mu> \<Rightarrow> \<sigma>) \<Rightarrow> \<mu> \<Rightarrow> \<sigma>" where 
+            "anderson_ess = (\<lambda>\<Phi>. \<lambda>x. (( (\<forall>(\<lambda>\<Psi>. ((\<box> (\<Psi> x )) m\<equiv>  (\<forall>i(\<lambda>y. \<Phi> y m\<rightarrow> \<Psi> y))))))))" 
+ 
+   definition fuhrmann_ess :: "(\<mu> \<Rightarrow> \<sigma>) \<Rightarrow> \<mu> \<Rightarrow> \<sigma>" where 
+            "fuhrmann_ess = (\<lambda>\<Phi>. \<lambda>x. (\<Phi> x m\<and> ( (\<forall>(\<lambda>\<Psi>. ((\<box> (\<Psi> x )) m\<equiv>  \<box>(\<forall>i(\<lambda>y. \<Phi> y m\<rightarrow> \<Psi> y))))))))" 
+    
+  theorem fitting_implies_fuhrmann: "[\<forall>(\<lambda>\<Phi>. \<forall>i(\<lambda>x. fitting_ess \<Phi> x m\<rightarrow>  \<Phi> x)) ]"
+  by (metis Anderson_var.refl fitting_ess_def)
 
-  definition NE :: "\<mu> \<Rightarrow> \<sigma>" where "NE = (\<lambda>x. \<forall>(\<lambda>\<Phi>. ess \<Phi> x m\<rightarrow> (\<box> (\<exists>i(\<lambda>y. \<Phi> y)))))"
+  text {* The two box definition of essence is not equivalent to the original definition
+        in Anderson's paper. *}
+  theorem test: "[\<forall>(\<lambda>\<Phi>. \<forall>(\<lambda>x. anderson_ess \<Phi> x m\<equiv> fitting_ess \<Phi> x)) ]"
+  nitpick[user_axioms] oops
+  
+  
+  definition NE :: "\<mu> \<Rightarrow> \<sigma>" where "NE = (\<lambda>x. \<forall>(\<lambda>\<Phi>. anderson_ess \<Phi> x m\<rightarrow> (\<box> (\<exists>i(\<lambda>y. \<Phi> y)))))"
 
-  text{* Neither the dependency of axioms can be shown nor can it be refuted by producing counter-
-      models. No proof is found for T2-col without A4 and A5.*}
+  text{* Leon: Aligned A1 to the constant version. *}
   axiomatization where
-
-    A1:  "[\<forall>(\<lambda>\<Phi>. ( (P \<Phi>)) m\<rightarrow> m\<not> (P (\<lambda>x. m\<not> (\<Phi> x))))]" and
+    A1: "[\<forall>(\<lambda>\<Phi>. ( (P (\<lambda>x. m\<not> (\<Phi> x)))) m\<rightarrow> m\<not> (P \<Phi>))]" and
     A2:  "[\<forall>(\<lambda>\<Phi>. \<forall>(\<lambda>\<Psi>. ( (P \<Phi>) m\<and> \<box> (\<forall>i(\<lambda>x. (\<Phi> x) m\<rightarrow> (\<Psi> x) ))) m\<rightarrow> (P \<Psi>)))]" and
-    A3:  "[P G]" and
-    A4:  "[\<forall>(\<lambda>\<Phi>. (P \<Phi>) m\<rightarrow> \<box> (P \<Phi>))]" and
-    A5:  "[P NE]"
+    A3:  "[P G]" 
  
   theorem T1: "[\<forall>(\<lambda>\<Phi>. (P \<Phi>) m\<rightarrow> \<diamond> (\<exists> \<Phi>))]"
   by (metis A1 A2)
         
-  corollary C: "[\<diamond> (\<exists> G)]"
+  corollary C1: "[\<diamond> (\<exists> G)]"
   by (metis A3 T1)
-
   
-  lemma T2_lem: "[\<forall>i(\<lambda>x. \<forall>(\<lambda>\<Phi>. ((G x) m\<and> (ess \<Phi> x)) m\<rightarrow> \<forall>i(\<lambda>y. ((G y) m\<rightarrow> \<Phi> y))))]"
-  by (metis Anderson_var.refl G_def ess_def)
+  lemma T2_lem: "[\<forall>i(\<lambda>x. \<forall>(\<lambda>\<Phi>. ((G x) m\<and> (anderson_ess \<Phi> x)) m\<rightarrow> \<forall>i(\<lambda>y. ((G y) m\<rightarrow> \<Phi> y))))]"
+  by (metis Anderson_var.refl G_def anderson_ess_def)
   
   -- {* Satallax provides a proof but metis fails to reconstruct it.*}
-  theorem T2: "[\<forall>i(\<lambda>x. (G x) m\<rightarrow> (ess G x))]"
- --{*by (metis A2 A3 A4 Anderson_var.refl G_def ess_def nonempty)*}
+  theorem T2: "[\<forall>i(\<lambda>x. (G x) m\<rightarrow> (anderson_ess G x))]"
+ --{*by (metis A2 A3 A4 Anderson_var.refl G_def anderson_ess_def nonempty)*}
   oops
 
-
+  --{*
   axiomatization where
   T2: "[\<forall>i(\<lambda>x. (G x) m\<rightarrow> (ess G x))]"
-
-  
+  *}
+ 
 
 theorem T3: "[\<box> (\<exists>(\<lambda>x. (G x)))]"
  by (metis  A3 G_def sym T1)
 
    
   corollary C2: "[\<exists>(\<lambda>x. (G x) )]"
-  by (metis A5 sym T1 T3)
+  by (metis Anderson_var.sym C1 T3)
+
 
 text {* The consistency of the entire theory is confirmed by Nitpick. *}
    lemma True 
@@ -117,13 +136,28 @@ text {* The consistency of the entire theory is confirmed by Nitpick. *}
 section {* Modal Collapse *}  
  
   --{* Nitpick generates counter model but the cardinality of the set of individuals
-    is lower (1) than the one used by Anderson (2). *}
+    is lower (1) than the one used by Anderson (2). 
+    
+    Leon: Without introducing T2, A4, A5 the cardinalities of the counter model match those of Anderson and 
+    our formalized constant domain variant.
+    *}
   lemma MC: "[\<forall>(\<lambda>\<Phi>.(\<Phi> m\<rightarrow> (\<box> \<Phi>)))]"
   nitpick [user_axioms]
-   -- {* sledgehammer [provers = remote_satallax remote_leo2] *}
-  -- {* by (metis T2 T3 ess\_def) *}
   oops
 
+  theorem  A4:  "[\<forall>(\<lambda>\<Phi>. (P \<Phi>) m\<rightarrow> \<box> (P \<Phi>))]"
+
+  by (metis A3 Anderson_var.trans C2 G_def)
+ 
+  
+  --{* Leon: Leo-2 gives up on this and I have troubles calling satallax 
+      (it seems to surrender instantly disregarding of which problem it is called on
+      Nitpick fails to find a counter model, though.
+      *}
+theorem A5:  "[P NE]"
+  --{*nitpick[user_axioms]*}
+  oops
+ 
 (*<*) 
 end
 (*>*) 
