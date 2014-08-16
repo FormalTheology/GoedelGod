@@ -81,7 +81,11 @@ It is also noticeable that, in Anderson's text, the box is missing both in Goede
 Anderson's definitions of Essence. I suppose that Anderon's "entails" ought to be formalized as:
 "A(x) entails B(x)"  --->  box (A(x) implies B(x))".
 Interestingly, while investigating this issue, I found out that Goedel's original manuscript has
-a partially erased extra box that has been ignored by everybody so far!         
+a partially erased extra box that has been ignored by everybody so far!
+
+Leon: In the version of Anderson's paper which I found (Some Emendation of Gödel's Ontological Proof, in Faith and Philosophy 
+Vol. 7 No. 3 July 1990) there is an appendix in which most of the natural language formulae in the paper are formalized.
+To this appendix I was referring when I was mentioning Andersons' formalization.
 
 Fuhrmann's definition of essence has the missing conjunct, 
 whereas Anderson has it neither in the text nor in his formalization. 
