@@ -72,6 +72,17 @@ Fitting, and Fuhrmann put a box in front of the the implication in the definitio
 This box does not appear in Anderson's original paper (neither in the text nor in his formalization). 
 According to nitpick those two definitions are not equivalent.
 
+Bruno: Anderson's paper is written in natural language. He does not write logical formulas. 
+This might (partially) explain why various authors end up choosing different formulas when talking 
+about Anderson's work in a logical language. He also writes: 
+'"Entailed" is understood to mean "strictly implied" - in this case, that it is 
+impossible for something to have the one property and not the other' (page 1).
+It is also noticeable that, in Anderson's text, the box is missing both in Goedel's and 
+Anderson's definitions of Essence. I suppose that Anderon's "entails" ought to be formalized as:
+"A(x) entails B(x)"  --->  box (A(x) implies B(x))".
+Interestingly, while investigating this issue, I found out that Goedel's original manuscript has
+a partially erased extra box that has been ignored by everybody so far!         
+
 Fuhrmann's definition of essence has the missing conjunct, 
 whereas Anderson has it neither in the text nor in his formalization. 
 But it should be easy to prove that Andersons definition implies the missing conjunct: 
@@ -103,6 +114,31 @@ The only restriction that I have found in Anderson's text is the demand for vary
 quantification and I don't see how that could interfere with Hajeks proof. 
 (This may be because I misunderstand Hajeks proof. 
 I'd be glad if someone could look into this aswell.) 
+
+Bruno: 
+varying domain semantics is mentioned when Anderson constructs a model of his axioms
+where the modal collapse is falsified (page 7). His footnote 14 also mentions how the quantifiers 
+in his natural language axioms and theorems ought to be formalized in this varying domain semantics.
+
+Bruno:
+Anderson (1990) also writes (page 2):
+'It's worth noticing that there is here an implicit assumption: if we have
+defined a predicate, then we can straight-away form a name of the property which it expresses. 
+(The technically minded will thus wish to note that it is in effect assumed that anything is 
+counted as a property which can be defined by "abstraction on a formula.")'
+He is talking about full comprehension here, and indeed there is nothing in Anderson's text that
+strongly suggests that he does not wish to admit full comprehension. 
+Hajek apparently picks up on this comment by Anderson, and investigate the status variants
+with a weaker "cautious" comprehension schema. 
+In particular, he (Hajek 1996) investigates Magari's claim that
+axioms A4 and A5 are unnecessary, and he concludes that this is:
+* false for Gödel's axioms
+* true for Gödel' axioms together with an additional axiom called PEP
+* true for Anderson's axioms
+Hajek (2002, page 7) mentions that Anderson and Gettings (1996) argue that A4 and A5 are needed
+if a "finer logic" (i.e. varying domains) is used. 
+This is discussed in more detail in his section 4, which I still need to read. 
+I also still need to read Anderson and Gettings (1996).
 *} 
 
   consts Defective :: "\<mu> \<Rightarrow> \<sigma>" 
