@@ -4,8 +4,8 @@ call=./RemoteSOT.pl
 # install it and change the above paths accordingly
 
 #proverlist='LEO-II---1.6.2 Satallax---2.7 Isabelle---2013 Nitrox---2013 agsyHOL---1.0 TPS---3.120601S1b'
-#proverlist='LEO-II---1.6.2 Satallax---2.7 Nitrox---2013'
-proverlist='LEO-II---1.6.2 Satallax-MaLeS---1.2 Nitrox---2013'
+proverlist='LEO-II---1.6.2 Satallax---2.7 Nitrox---2013'
+#proverlist='LEO-II---1.6.2 Satallax-MaLeS---1.2 Nitrox---2013'
 
 timeout=60
 
