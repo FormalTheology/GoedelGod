@@ -1,0 +1,174 @@
+#!/bin/csh
+#--------------------------------------------------------------------------
+#----If -default flag is specified, just take what happens and report
+if ("$1" == "-default") then
+    set Defaults = "yes"
+else
+    set Defaults = "no"
+endif
+
+echo "--------------------------------------------------------------------"
+echo "                This is the tptp2T installation"
+echo ""
+if ($Defaults == "yes") then
+    echo "Taking all defaults - you should check them!"
+else
+    echo "All paths must be absolute."
+    echo "Press return to accept the default values in []s"
+endif
+echo "--------------------------------------------------------------------"
+#--------------------------------------------------------------------------
+#----TPTP directory
+#----Look for TPTP environment variable
+set TPTPDirectory = `printenv TPTP`
+#----Look for TPTP_HOME environment variable
+if ("$TPTPDirectory" == "") then
+    set TPTPDirectory = `printenv TPTP_HOME`
+    if ("$TPTPDirectory" != "") then
+#----Look for TPTP-v*
+        set LSOutput = `ls -d $TPTPDirectory/TPTP-v*.*.*`
+        if ("$LSOutput" != "" && (-d "$LSOutput")) then
+            set TPTPDirectory = $LSOutput
+        else
+#----Look for TPTP* (for me)
+            set LSOutput = `ls -d $TPTPDirectory/TPTP*`
+            if ("$LSOutput" != "" && (-d "$LSOutput")) then
+                set TPTPDirectory = $LSOutput
+            else
+                set TPTPDirectory = ""
+            endif
+        endif
+    endif
+endif
+
+#----Look for being in or below TPTP-v*
+if ("$TPTPDirectory" == "") then
+    set TPTPDirectory=`expr "$cwd" : "\(.*TPTP-v[0-9\.]*\).*"`
+endif
+#----Look for being below TPTP (for me)
+if ("$TPTPDirectory" == "") then
+    set TPTPDirectory=`expr "$cwd" : "\(.*TPTP\)\/.*"`
+endif
+#----Look for being in TPTP (for me)
+if ("$TPTPDirectory" == "") then
+    set TPTPDirectory=`expr "$cwd" : "\(.*TPTP\)"`
+endif
+#----Look for being above TPTP-v* (for installation)
+if ("$TPTPDirectory" == "") then
+    set LSOutput=`ls -d TPTP-v*.*.*`
+    if ("$LSOutput" != "" && (-d "$LSOutput")) then
+        set TPTPDirectory="$cwd/"`expr "$LSOutput" : "\(.*TPTP-v[0-9\.]*\).*"`
+    endif
+endif
+
+if ($Defaults == "yes") then
+    if ($TPTPDirectory != "") then
+        echo "TPTP directory     : $TPTPDirectory"
+    else
+        echo "ERROR: TPTP directory not found"
+        exit 1;
+    endif
+else
+#----Ask the user
+    set LegalResponse=no
+    echo "The TPTP directory must contain the Scripts directory."
+    while ($LegalResponse != yes)
+        echo -n "TPTP directory        [$TPTPDirectory] : "
+        set Response=$<
+        if ($Response == "") then
+            set Response=$TPTPDirectory
+        endif
+#----Check for non empty response
+        if ("$Response" != "") then
+#----Check that the TPTP directory exists
+            if (!(-d $Response)) then
+                echo "$Response is not a directory"
+            else
+                set LegalResponse=yes
+                set TPTPDirectory=$Response
+            endif
+        endif
+    end
+    echo "--------------------------------------------------------------------"
+endif
+#--------------------------------------------------------------------------
+#----Check that the Scripts directory exists
+set ScriptsDirectory=$TPTPDirectory/Scripts
+if (!(-d $ScriptsDirectory)) then
+    echo "ERROR: $TPTPDirectory does not contain the Scripts directory"
+    exit 1
+endif
+#----Check that tptp2T exists (rough check of the directory)
+if (!(-f $ScriptsDirectory/tptp2T)) then
+    echo "ERROR: $ScriptsDirectory does not contain the tptp2T"
+    exit 1
+endif
+#--------------------------------------------------------------------------
+#----Perl
+set Perl=perl
+set Version="version 5|v5"
+set PerlPath=`which $Perl`
+
+#----Check that perl can be found
+if ("$PerlPath" =~ /*) then
+    set VersionLine = `$PerlPath -v | egrep "$Version"`
+    if ("$VersionLine" == "") then
+        set PerlPath=""
+        echo "$PerlPath is not perl version 5"
+    endif
+else
+    set PerlPath=""
+endif
+
+if ($Defaults == "yes") then
+    if ($PerlPath != "") then
+        echo "Perl               : $PerlPath"
+    else 
+        echo "ERROR: Perl not found"
+        exit 1;
+    endif
+else    
+#----Ask the user
+    set LegalResponse=no
+    while ($LegalResponse != yes)
+        echo -n "perl version 5        [$PerlPath] : "
+        set Response=$<
+        if ($Response == "") then
+            set Response=$PerlPath
+        endif
+#----Check for non empty response
+        if ("$Response" != "") then
+#----Check that perl can be found
+            set AbsolutePath=`which $Response`
+            if ($AbsolutePath =~ /*) then
+#----Check that it's perl version 5.something
+                set VersionLine = `$AbsolutePath -v | egrep "$Version"`
+                if ("$VersionLine" != "") then
+                    set LegalResponse=yes
+                    set PerlPath=$AbsolutePath
+                else
+                    echo "$PerlPath is not perl version 5"
+                endif
+            else
+                echo $Response does not lead to an executable.
+            endif
+        endif
+    end
+endif
+#--------------------------------------------------------------------------
+#----Install tptp2T: 
+echo Installing tptp2T
+#----Have to use ? as the separator as there are /s in the substitutions
+sed -e "1s?.*?#\!$PerlPath?" -e "/^my .TPTPDirectory =/s?= .*?= '$TPTPDirectory';?" $ScriptsDirectory/tptp2T >$ScriptsDirectory/tptp2T.new
+
+#----Move the new file into place
+# mv $ScriptsDirectory/tptp2T $ScriptsDirectory/tptp2T.old
+mv -f $ScriptsDirectory/tptp2T.new $ScriptsDirectory/tptp2T
+
+#----Set the mode to executable
+chmod 755 $ScriptsDirectory/tptp2T
+#--------------------------------------------------------------------------
+echo "--------------------------------------------------------------------"
+echo "                tptp2T installation complete"
+echo "--------------------------------------------------------------------"
+#--------------------------------------------------------------------------
