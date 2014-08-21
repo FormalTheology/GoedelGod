@@ -1,23 +1,76 @@
 
-D_EntailsInS4_A2.p---LEO-II---1.6.2---RESULT: SOT_drxBq1 - LEO-II---1.6.2 says Theorem - CPU = 0.00 WC = 0.12
+Asking various HOL-ATPs in Miami remotely (thanks to Geoff Sutcliffe)
 
-D_EntailsInS4_A3.p---LEO-II---1.6.2---RESULT: SOT_RWLpfj - LEO-II---1.6.2 says Theorem - CPU = 0.00 WC = 0.06
+D_EntailsInS4_A2.p---Nitrox---2013---
+D_EntailsInS4_A2.p---Satallax---2.7---
+D_EntailsInS4_A2.p---LEO-II---1.6.2---
+D_EntailsInS4_A2.p---Satallax---2.7---RESULT: SOT_fciv65 - Satallax---2.7 says Theorem - CPU = 0.00 WC = 0.04
+D_EntailsInS4_A2.p---LEO-II---1.6.2---RESULT: SOT_goF3dk - LEO-II---1.6.2 says Theorem - CPU = 0.07 WC = 0.21
+D_EntailsInS4_A2.p---Nitrox---2013---RESULT: SOT_hwC9Do - Nitrox---2013 says Timeout - CPU = 200.16 WC = 171.80
+Done
 
-D_EntailsInS4_A4.p---LEO-II---1.6.2---RESULT: SOT_dh_qY1 - LEO-II---1.6.2 says Theorem - CPU = 0.03 WC = 0.16
+Asking various HOL-ATPs in Miami remotely (thanks to Geoff Sutcliffe)
 
-D_EntailsInS4_Def1.p---LEO-II---1.6.2---RESULT: SOT_rtQ7ZM - LEO-II---1.6.2 says Theorem - CPU = 0.05 WC = 0.26
+D_EntailsInS4_A3.p---LEO-II---1.6.2---RESULT: SOT_AwGQ4S - LEO-II---1.6.2 says Theorem - CPU = 0.02 WC = 0.07
+D_EntailsInS4_A3.p---Satallax---2.7---RESULT: SOT_YeVhWU - Satallax---2.7 says Theorem - CPU = 0.00 WC = 0.01
+D_EntailsInS4_A3.p---Nitrox---2013---RESULT: SOT_xZma2w - Nitrox---2013 says Timeout - CPU = 200.10 WC = 101.78
+Done
 
-Def1+A2+A3+A4_Entails_D.p---LEO-II---1.6.2---RESULT: SOT_dm2qjt - LEO-II---1.6.2 says Theorem - CPU = 43.14 WC = 46.12
+Asking various HOL-ATPs in Miami remotely (thanks to Geoff Sutcliffe)
 
-Def1+A2+A3+A4_Entails_D-Case2.p---LEO-II---1.6.2---RESULT: SOT_GwlfZ_ - LEO-II---1.6.2 says Theorem - CPU = 0.08 WC = 0.61
+D_EntailsInS4_A4.p---LEO-II---1.6.2---
+D_EntailsInS4_A4.p---Satallax---2.7---
+D_EntailsInS4_A4.p---Nitrox---2013---
+D_EntailsInS4_A4.p---Satallax---2.7---RESULT: SOT_64YYBN - Satallax---2.7 says Theorem - CPU = 0.00 WC = 0.01
+D_EntailsInS4_A4.p---LEO-II---1.6.2---RESULT: SOT_HYdRfE - LEO-II---1.6.2 says Theorem - CPU = 0.03 WC = 0.05
+D_EntailsInS4_A4.p---Nitrox---2013---RESULT: SOT_fAGKwt - Nitrox---2013 says Timeout - CPU = 200.15 WC = 91.30
+Done
 
-Def1+A2+A3+A4_Entails_D-Case1.p---LEO-II---1.6.2---RESULT: SOT_jqsNed - LEO-II---1.6.2 says Theorem - CPU = 0.05 WC = 0.29
+Asking various HOL-ATPs in Miami remotely (thanks to Geoff Sutcliffe)
 
-Def1+A2+A3+A4_Entails_D-CasesCombined.p---LEO-II---1.6.2---RESULT: SOT_mZdUyv - LEO-II---1.6.2 says Theorem - CPU = 0.12 WC = 0.50
+D_EntailsInS4_Def1.p---Satallax---2.7---RESULT: SOT_RLN4S4 - Satallax---2.7 says Theorem - CPU = 0.00 WC = 0.01
+D_EntailsInS4_Def1.p---LEO-II---1.6.2---RESULT: SOT_PceKB1 - LEO-II---1.6.2 says Theorem - CPU = 0.02 WC = 0.08
+D_EntailsInS4_Def1.p---Nitrox---2013---RESULT: SOT_3GTFnW - Nitrox---2013 says Timeout - CPU = 200.05 WC = 177.21
+Done
 
-GodTheorem.p---LEO-II---1.6.2---RESULT: SOT_KAnmAG - LEO-II---1.6.2 says Theorem - CPU = 140.10 WC = 152.65
+Asking various HOL-ATPs in Miami remotely (thanks to Geoff Sutcliffe)
 
-ModalCollapse.p---LEO-II---1.6.2---RESULT: SOT_ZSwkNO - LEO-II---1.6.2 says Timeout - CPU = 60.02 WC = 63.43
-ModalCollapse.p---Nitrox---2013---RESULT: SOT_JNqvDA - Nitrox---2013 says CounterSatisfiable - CPU = 7.30 WC = 20.65
+Def1+A2+A3+A4_Entails_D.p---Satallax---2.7---RESULT: SOT_3mU72t - Satallax---2.7 says Theorem - CPU = 0.00 WC = 0.16
+Def1+A2+A3+A4_Entails_D.p---LEO-II---1.6.2---RESULT: SOT__MdNXG - LEO-II---1.6.2 says Theorem - CPU = 42.64 WC = 42.71
+Def1+A2+A3+A4_Entails_D.p---Nitrox---2013---RESULT: SOT_lXt4KV - Nitrox---2013 says Timeout - CPU = 200.02 WC = 175.68
+Done
 
-Consistency.p---Nitrox---2013---RESULT: SOT_KVVfBM - Nitrox---2013 says Satisfiable - CPU = 10.77 WC = 11.55
+Asking various HOL-ATPs in Miami remotely (thanks to Geoff Sutcliffe)
+
+Def1+A2+A3+A4_Entails_D-Case2.p---Satallax---2.7---RESULT: SOT_ZTTIia - Satallax---2.7 says Theorem - CPU = 0.00 WC = 0.12
+Def1+A2+A3+A4_Entails_D-Case2.p---LEO-II---1.6.2---RESULT: SOT_c0MFN8 - LEO-II---1.6.2 says Theorem - CPU = 0.07 WC = 0.12
+Def1+A2+A3+A4_Entails_D-Case2.p---Nitrox---2013---RESULT: SOT_Gu6fkg - Nitrox---2013 says Timeout - CPU = 200.07 WC = 174.17
+Done
+
+Asking various HOL-ATPs in Miami remotely (thanks to Geoff Sutcliffe)
+
+Def1+A2+A3+A4_Entails_D-Case1.p---Satallax---2.7---RESULT: SOT_iasKkl - Satallax---2.7 says Theorem - CPU = 0.00 WC = 0.04
+Def1+A2+A3+A4_Entails_D-Case1.p---LEO-II---1.6.2---RESULT: SOT_Xgv7_1 - LEO-II---1.6.2 says Theorem - CPU = 0.05 WC = 0.13
+Def1+A2+A3+A4_Entails_D-Case1.p---Nitrox---2013---RESULT: SOT_JXcqDH - Nitrox---2013 says Timeout - CPU = 200.08 WC = 183.57
+Done
+
+Asking various HOL-ATPs in Miami remotely (thanks to Geoff Sutcliffe)
+
+Def1+A2+A3+A4_Entails_D-CasesCombined.p---LEO-II---1.6.2---RESULT: SOT_dLQclF - LEO-II---1.6.2 says Theorem - CPU = 0.06 WC = 0.14
+Def1+A2+A3+A4_Entails_D-CasesCombined.p---Satallax---2.7---RESULT: SOT_NjitPF - Satallax---2.7 says Theorem - CPU = 0.19 WC = 0.42
+Def1+A2+A3+A4_Entails_D-CasesCombined.p---Nitrox---2013---RESULT: SOT_lpudmH - Nitrox---2013 says Unknown - CPU = 177.50 WC = 136.18
+Done
+
+Asking various HOL-ATPs in Miami remotely (thanks to Geoff Sutcliffe)
+
+GodTheorem.p---Satallax---2.7---RESULT: SOT_88JkGC - Satallax---2.7 says Theorem - CPU = 28.99 WC = 32.23
+GodTheorem.p---LEO-II---1.6.2---RESULT: SOT_eVMTHf - LEO-II---1.6.2 says Theorem - CPU = 142.82 WC = 145.28
+GodTheorem.p---Nitrox---2013---RESULT: SOT_9ATIzn - Nitrox---2013 says Timeout - CPU = 200.03 WC = 177.59
+Done
+
+Asking various HOL-ATPs in Miami remotely (thanks to Geoff Sutcliffe)
+
+ModalCollapse.p---Nitrox---2013---RESULT: SOT_ixjCJg - Nitrox---2013 says CounterSatisfiable - CPU = 11.69 WC = 11.43
+ModalCollapse.p---Satallax---2.7---RESULT: SOT_xlDMFu - Satallax---2.7 says Unknown - CPU = 173.99 WC = 175.83
+ModalCollapse.p---LEO-II---1.6.2---RESULT: SOT_bA6W87 - LEO-II---1.6.2 says Timeout - CPU = 200.07 WC = 200.31
+Done

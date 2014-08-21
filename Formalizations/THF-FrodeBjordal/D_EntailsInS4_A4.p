@@ -13,14 +13,6 @@ thf(p_tp,type,(
 thf(g_tp,type,(
     g: mu > $i > $o )).
 
-%----constant symbol for essence: ess
-thf(ess_tp,type,(
-    ess: ( mu > $i > $o ) > mu > $i > $o )).
-
-%----constant symbol for necessary existence: ne
-thf(ne_tp,type,(
-    ne: mu > $i > $o )).
-
 %----D: Frode Bjordal's definition D: F is a positive property iff it is necessarily
 %----the case that anything which is god-like has the property F.
 thf(defD,definition,

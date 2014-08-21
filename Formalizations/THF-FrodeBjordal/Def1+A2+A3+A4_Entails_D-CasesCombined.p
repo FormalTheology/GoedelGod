@@ -13,14 +13,6 @@ thf(p_tp,type,(
 thf(g_tp,type,(
     g: mu > $i > $o )).
 
-%----constant symbol for essence: ess
-thf(ess_tp,type,(
-    ess: ( mu > $i > $o ) > mu > $i > $o )).
-
-%----constant symbol for necessary existence: ne
-thf(ne_tp,type,(
-    ne: mu > $i > $o )).
-
 %----D Case1   
 thf(axDCase1,axiom,
     ( v
