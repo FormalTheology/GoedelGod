@@ -1,0 +1,187 @@
+% ------------------------------------------------------------------------
+% bjourdoc.tex for birkjour.cls*******************************************
+% ------------------------------------------------------------------------
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\documentclass{birkjour}
+%
+%
+% THEOREM Environments (Examples)-----------------------------------------
+%
+ \newtheorem{thm}{Theorem}[section]
+ \newtheorem{cor}[thm]{Corollary}
+ \newtheorem{lem}[thm]{Lemma}
+ \newtheorem{prop}[thm]{Proposition}
+ \theoremstyle{definition}
+ \newtheorem{defn}[thm]{Definition}
+ \theoremstyle{remark}
+ \newtheorem{rem}[thm]{Remark}
+ \newtheorem*{ex}{Example}
+ \numberwithin{equation}{section}
+
+
+\begin{document}
+
+%-------------------------------------------------------------------------
+% editorial commands: to be inserted by the editorial office
+%
+%\firstpage{1} \volume{228} \Copyrightyear{2004} \DOI{003-0001}
+%
+%
+%\seriesextra{Just an add-on}
+%\seriesextraline{This is the Concrete Title of this Book\br H.E. R and S.T.C. W, Eds.}
+%
+% for journals:
+%
+%\firstpage{1}
+%\issuenumber{1}
+%\Volumeandyear{1 (2004)}
+%\Copyrightyear{2004}
+%\DOI{003-xxxx-y}
+%\Signet
+%\commby{inhouse}
+%\submitted{March 14, 2003}
+%\received{March 16, 2000}
+%\revised{June 1, 2000}
+%\accepted{July 22, 2000}
+%
+%
+%
+%---------------------------------------------------------------------------
+%Insert here the title, affiliations and abstract:
+%
+
+
+\title[Modal Collapse]
+ {The Ontological Modal Colapse \\ 
+ as a Collapse of the Square of Opposition}
+
+
+
+%----------Author 1
+\author[Benzm\"uller]{Christoph Benzm\"uller}
+
+\address{%
+Viaduktstr. 42\\
+P.O. Box 133\\
+CH 4010 Basel\\
+Switzerland}
+
+\email{c.benzmueller@gmail.com}
+
+\thanks{This work was completed with the support of ToDo}
+
+
+%----------Author 2
+\author[Woltzenlogel-Paleo]{Bruno Woltzenlogel Paleo}
+\address{ }
+\email{bruno.wp@gmail.com}
+%----------classification, keywords, date
+\subjclass{
+Primary 03A02;  % Philosophical aspects of logic and foundations
+Secondary 68T02 % Artificial Intelligence
+}
+
+\keywords{Modal Logics, Higher-Order Modal Logics}
+
+\date{August 21, 2014}
+%----------additions
+\dedicatory{ }
+%%% ----------------------------------------------------------------------
+
+\begin{abstract}
+This work presents.
+\end{abstract}
+
+%%% ----------------------------------------------------------------------
+\maketitle
+%%% ----------------------------------------------------------------------
+%\tableofcontents
+\section{Introduction}
+
+
+\begin{defn}
+This serves as environment for definitions. Note that the text
+appears not in italics.
+\end{defn}
+
+\begin{equation}\label{testequation}
+\text{This is a sample equation: } c^2=a^2+b^2
+\end{equation}
+
+\begin{thm}[Main Theorem]
+In contrast to definitions, theorems appear typeset in italics as
+it has become more or less standard in most textbooks and
+monographs. Equations can be cited using the \verb+\eqref+ command which
+automatically adds brackets: \verb+\eqref{testequation}+ results in \eqref{testequation}.
+\end{thm}
+
+\begin{proof}
+A special environment is predefined: the \textit{proof} environment. Please use
+\begin{verbatim}\begin{proof}\end{verbatim}
+proof of the statement
+\begin{verbatim}\end{proof}\end{verbatim}
+for typesetting your proofs. The end-of-proof symbol $\Box$ will be added automatically.
+\end{proof}
+
+There are two known problems with the placement of the end-of-proof sign:
+
+\begin{enumerate}
+  \item if your proof ends with a\ \ s i n g l e\ \ displayed line, the end-of-proof sign would
+be placed in the line below; if you want to avoid this, write your line in the form
+\begin{verbatim}$$displayed math line \eqno\qedhere$$\end{verbatim}
+which results in
+
+\begin{proof}
+$$displayed math line \eqno\qedhere$$
+\end{proof}
+\item if your proof ends with an aligned displayed environment, the command
+\verb+\tag*{\qed}+ can be used to place the end-of-proof sign properly:
+\begin{verbatim}
+\begin{align*}
+\alpha&=\beta+\gamma\\
+&=\delta+\epsilon\tag*{\qed}
+\end{align*}
+\end{verbatim}
+results in
+\begin{align*}
+\alpha&=\beta+\gamma\\
+&=\delta+\epsilon\tag*{\qed}
+\end{align*}
+\end{enumerate}
+Please try to avoid using the obsolete \verb+\eqnarray+ environment. This environment has several bugs
+and has been replaced by the more flexible \AmS\ environments \verb+align, split, multline+.
+
+
+\begin{rem}
+Additional comments are being typeset without boldfaced entrance
+word as they may be minor important.
+\end{rem}
+
+\begin{ex}
+For some constructs, even no number is required.
+\end{ex}
+
+Displayed equations may be numbered like the following one:
+\begin{equation}
+\sqrt{1-\sin^2(x)}=|\cos(x)|.
+\end{equation}
+
+
+\subsection{Conclusions}
+% ------------------------------------------------------------------------
+
+% \subsection*{Acknowledgment}
+% Many thanks to ...
+
+
+\begin{thebibliography}{1}
+\bibitem{test} A. B. C. Test, \textit{On a Test.} J. of Testing
+\textbf{88} (2000), 100--120.
+\bibitem{latex} G. Gr\"atzer, \textit{Math into \LaTeX.} 3rd Edition,
+Birkh\"auser, 2000.
+\end{thebibliography}
+
+% ------------------------------------------------------------------------
+\end{document}
+% ------------------------------------------------------------------------
