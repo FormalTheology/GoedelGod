@@ -1,0 +1,5 @@
+Comments about Fitting's formalization:
+
+1)  positivity should be independent of the accidental structure of the world. Fitting makes it dependent, but then argues (page 150) that it is actually rigid because of axiom 11.11.
+
+
