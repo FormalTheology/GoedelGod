@@ -1,0 +1,98 @@
+% -----------------------------------------------
+\newtheorem{definition}{Def.}
+\newtheorem{example}{Ex.}
+% -----------------------------------------------
+
+\def\lambdot{\rule{0.6mm}{0.6mm}\hspace{0.4ex}} 
+\def\all#1{\forall #1\lambdot}
+\def\exi#1{\exists #1\lambdot}
+\def\lam#1{\lambda #1\lambdot}
+
+
+\def\modal#1{#1}
+\def\mfalse{\modal\bot}
+\def\mtrue{\modal\top}
+\def\mnot{\modal\neg\,}
+\def\mor{\,\modal\vee\,}
+\def\mand{\,\modal\wedge\,}
+\def\mimpl{\,\modal\supset\,}
+\def\miff{\,\modal\Leftrightarrow\,}
+\def\mball#1{\modal\Box_{#1}\,}
+\def\mdexi#1{\modal\Diamond_{#1}\,}
+\def\mall#1{\modal{\forall}{#1}\lambdot\,}
+\def\mexi#1{\modal{\exists}{#1}\lambdot\,}
+\def\mpi{\modal{\Pi}\,}
+\def\mvalid{\modal{\texttt{valid}}} 
+
+\def\Metaeq{=}
+\def\bnormform#1{\left.#1\hspace*{-.4ex}\right\downarrow_\beta}
+\def\benormform#1{\left.#1\hspace*{-.4ex}\right\downarrow_{\beta\eta}}
+\def\Bnormform#1{\left.{#1}\hspace*{-.4ex}\right\downarrow_\beta}
+\def\Benormform#1{\left.{#1}\hspace*{-.4ex}\right\downarrow_{\beta\eta}}
+\def\ambnormform#1{{#1}\hspace*{-1.1ex}\downarrow_{\kern-.2em\scriptscriptstyle *}} % ``ambiguous'' normal form
+\def\eqb{\Metaeq_{\beta}}
+\def\eqe{\Metaeq_{\eta}}
+\def\eqbe{\Metaeq_{\beta\eta}}
+\def\convarrow{\rightarrow}
+
+
+\newcommand\entity[1]{\text{\textrm{#1}}}
+\def\QHL{\entity{QHL}}
+\def\QML{\entity{QML}}
+\def\NOM{\entity{NOM}}
+\def\SVAR{\entity{SVAR}}
+\def\CON{\entity{CON}}
+\def\FVAR{\entity{FVAR}}
+%\def\IC{\entity{IC}}
+\def\FSYM{\entity{FSYM}}
+\def\RSYM{\entity{RSYM}}
+\def\QHLSTT{\entity{QHLSTT}}
+\def\QMLSTT{\entity{QMLSTT}}
+\def\IV{\entity{IV}}
+\def\PV{\entity{PV}}
+\def\SYM{\entity{SYM}}
+\def\IVSTT{\entity{IVSTT}}
+\def\PVSTT{\entity{PVSTT}}
+\def\SYMSTT{\entity{SYMSTT}}
+\def\SSTT{\entity{SSTT}}
+\def\AR{\entity{AR}}
+\def\STT{\entity{STT}\xspace}
+
+\def\QKPIm{\entity{QK}\pi^-\xspace}
+\def\QKPI{\entity{QK}\pi\xspace}
+\def\QKPIp{\entity{QK}\pi^+\xspace}
+\def\QSFPIm{\entity{QS5}\pi^-\xspace}
+\def\QSFPI{\entity{QS5}\pi\xspace}
+\usepackage{xspace}
+
+\def\QSFPIp{\entity{QS5}\pi^+\xspace}
+
+\def\stt{\entity{STT}\xspace}
+\def\tt{\entity{STT}}
+\def\lm{\entity{MM}\xspace}
+\def\ipl{\entity{IPL}\xspace}
+\def\HOML{\entity{HOML}\xspace}
+\def\HOL{\entity{HOL}\xspace}
+
+\def\worldtype{\mu}
+\def\indtype{\iota}
+\def\mutype{\mu}
+\def\boola{\omicron}
+\def\boolb{\hat{\omicron}}
+
+\def\ar{\shortrightarrow}
+
+\newcommand\hol[1]{\boldsymbol{#1}}
+\newcommand\lift[1]{\lceil #1 \rceil}
+\newcommand\llift[1]{\dot{#1}}
+
+\newcommand{\imp}{\rightarrow}
+\newcommand{\biimp}{\leftrightarrow}
+\newcommand{\allq}{\forall}
+\newcommand{\exq}{\exists}
+\newcommand{\seq}{\vdash}
+\newcommand{\nec}{\Box} % necessarily
+\newcommand{\pos}{\Diamond} % possibly
+\newcommand{\ess}[2]{#1 \ \mathit{ess.} \ #2}
+\newcommand{\essA}[2]{#1 \ \mathit{ess.}_A \ #2}
+\newcommand{\NE}{\mathit{NE}}
