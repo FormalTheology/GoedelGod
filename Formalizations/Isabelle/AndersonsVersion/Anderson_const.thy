@@ -56,58 +56,15 @@ section {* Anderson's Ontological Argument -- constant domain*}
 
 text{* 
 
-Adapted to follow Anderson's original paper more closely.
-
-- Axiom 1: 
----------------------
-The dropped implication of Axiom 1 is not mentioned in Anderson's formalization 
-(only in the semi-formal text)
-
-- Definition of essence:
-------------------------- 
-In Anderson's definition of essence the implication on the right side of the equivalence is not in 
-the scope of a box. There is only a box for the left side of the equivalence. This does not seem to 
-change anything: Metis still succeeds to prove all formulae. What surprises me is that Hajek, 
-Fitting, and Fuhrmann put a box in front of the the implication in the definition of essence. 
-This box does not appear in Anderson's original paper (neither in the text nor in his formalization). 
-According to nitpick those two definitions are not equivalent.
-
-Bruno: Anderson's paper is written in natural language. He does not write logical formulas. 
-This might (partially) explain why various authors end up choosing different formulas when talking 
-about Anderson's work in a logical language. He also writes: 
-'"Entailed" is understood to mean "strictly implied" - in this case, that it is 
-impossible for something to have the one property and not the other' (page 1).
-It is also noticeable that, in Anderson's text, the box is missing both in Goedel's and 
-Anderson's definitions of Essence. I suppose that Anderon's "entails" ought to be formalized as:
-"A(x) entails B(x)"  --->  box (A(x) implies B(x))".
 Interestingly, while investigating this issue, I found out that Goedel's original manuscript has
 a partially erased extra box that has been ignored by everybody so far!
 
-Leon: In the version of Anderson's paper which I found (Some Emendation of Gödel's Ontological Proof, in Faith and Philosophy 
-Vol. 7 No. 3 July 1990) there is an appendix in which most of the natural language formulae in the paper are formalized.
-To this appendix I was referring when I was mentioning Andersons' formalization.
-
-Fuhrmann's definition of essence has the missing conjunct, 
-whereas Anderson has it neither in the text nor in his formalization. 
-But it should be easy to prove that Andersons definition implies the missing conjunct: 
-Just instantiate the consequent of the implication with the essence of x. 
-Then, by the equivalence follows that x has the essence.  
-(This seems too trivial, did I miss something?) 
-(Metis finds a proof aswell)
 
 - Varying domain: 
 -------------------
 Anderson notes that for the definition of necessary existence the "e-quantifier" of Cocchiarella's 
 logic should be used (which should correspond to varying domain quantification)
-
-- Positivity:
-------------------
-To circumvent the constraints of second-order logic Anderson defines positivity indirectly:
-He introduces the predicate defective(x) and then defines positive(P) as "not P implies defective". 
-Where "A implies B" (for predicates) means "box forall(x) A(x) implies B(x)". 
-When I change the formalization accordingly, everything still goes through, 
-but the cardinalities of the counter model for modal collapse differ 
-(2 possible worlds, 1 individual instead of 2 possible worlds, 2 individuals).     
+   
 
 - Dependency of A4 and A5:
 ------------------------------
@@ -145,61 +102,19 @@ This is discussed in more detail in his section 4, which I still need to read.
 I also still need to read Anderson and Gettings (1996).
 *} 
 
-  consts Defective :: "\<mu> \<Rightarrow> \<sigma>" 
-
- --{*
   consts P :: "(\<mu> \<Rightarrow> \<sigma>) \<Rightarrow> \<sigma>"  
-  *}
-  
-  definition P :: "(\<mu> \<Rightarrow> \<sigma>) \<Rightarrow> \<sigma>" where
-  "P = (\<lambda>\<Phi>. \<box> (\<forall>(\<lambda>x. (m\<not> (\<Phi>(x))) m\<rightarrow> Defective(x))))"
-  
-  
+
   definition G :: "\<mu> \<Rightarrow> \<sigma>" where 
             "G = (\<lambda>x. \<forall>(\<lambda>\<Phi>. P \<Phi> m\<equiv>  ( (\<box> (\<Phi> x ))) ))" 
 
---{* In Anderson's version as presented by Fuhrmann, 
-     "ess" has the extra conjunct introduced by Scott,
-     which is missing here. There is discrepancy between Fitting's 
-     and Fuhrmann's presentations of Anderson's proof. Christoph: Yes, the exra
-     conjunct is indeed missing in Fitting's presentation of Anderson's proof; in fact,
-     there is even a sentence "The Scott addition that the essence of an object actually
-     apply to the object, is dropped."
-     Leon: The extra conjunct is missing in Anderson's formalization aswell. Still, there is 
-     discrepancy because the second box in the definiton of essence is not present in Anderson's
-     formalization.
-     *}
-
-  definition fitting_ess :: "(\<mu> \<Rightarrow> \<sigma>) \<Rightarrow> \<mu> \<Rightarrow> \<sigma>" where 
-            "fitting_ess = (\<lambda>\<Phi>. \<lambda>x. (( (\<forall>(\<lambda>\<Psi>. ((\<box> (\<Psi> x )) m\<equiv>  \<box>(\<forall>(\<lambda>y. \<Phi> y m\<rightarrow> \<Psi> y))))))))" 
-
-  definition anderson_ess :: "(\<mu> \<Rightarrow> \<sigma>) \<Rightarrow> \<mu> \<Rightarrow> \<sigma>" where 
-            "anderson_ess = (\<lambda>\<Phi>. \<lambda>x. (( (\<forall>(\<lambda>\<Psi>. ((\<box> (\<Psi> x )) m\<equiv>  (\<forall>(\<lambda>y. \<Phi> y m\<rightarrow> \<Psi> y))))))))" 
- 
-  definition fuhrmann_ess :: "(\<mu> \<Rightarrow> \<sigma>) \<Rightarrow> \<mu> \<Rightarrow> \<sigma>" where 
-            "fuhrmann_ess = (\<lambda>\<Phi>. \<lambda>x. (\<Phi> x m\<and> ( (\<forall>(\<lambda>\<Psi>. ((\<box> (\<Psi> x )) m\<equiv>  \<box>(\<forall>(\<lambda>y. \<Phi> y m\<rightarrow> \<Psi> y))))))))" 
-
- 
-            
-  theorem fitting_implies_fuhrmann: "[\<forall>(\<lambda>\<Phi>. \<forall>(\<lambda>x. fitting_ess \<Phi> x m\<rightarrow>  \<Phi> x)) ]"
-  by (metis Anderson_const.refl fitting_ess_def)
-  
-  text {* The two box definition of essence is not equivalent to the original definition
-          in Anderson's paper. *}
-  theorem fitting_ess_equiv_ess: "[\<forall>(\<lambda>\<Phi>. \<forall>(\<lambda>x. anderson_ess \<Phi> x m\<equiv> fitting_ess \<Phi> x)) ]"
-  nitpick[user_axioms] oops
-  
-            
+  definition ess :: "(\<mu> \<Rightarrow> \<sigma>) \<Rightarrow> \<mu> \<Rightarrow> \<sigma>" where 
+            "ess = (\<lambda>\<Phi>. \<lambda>x. (( (\<forall>(\<lambda>\<Psi>. ((\<box> (\<Psi> x )) m\<equiv>  \<box>(\<forall>(\<lambda>y. \<Phi> y m\<rightarrow> \<Psi> y))))))))" 
+       
   definition NE :: "\<mu> \<Rightarrow> \<sigma>" where 
-            "NE = (\<lambda>x. \<forall>(\<lambda>\<Phi>. anderson_ess \<Phi> x m\<rightarrow> (\<box> (\<exists>(\<lambda>y. \<Phi> y)))))"
+            "NE = (\<lambda>x. \<forall>(\<lambda>\<Phi>. ess \<Phi> x m\<rightarrow> (\<box> (\<exists>(\<lambda>y. \<Phi> y)))))"
 
   axiomatization where
-
---{* Fuhrmann also presents a slightly different axiom A1; Christoph: That was a mistake 
-     by Leon, I assume. I changed this from [\<forall>(\<lambda>\<Phi>. ( (P \<Phi>)) m\<rightarrow> m\<not> (P (\<lambda>x. m\<not> (\<Phi> x))))] 
-     to [\<forall>(\<lambda>\<Phi>. ( (P (\<lambda>x. m\<not> (\<Phi> x)))) m\<rightarrow> m\<not> (P \<Phi>))]. *}
-
-    A1:  "[\<forall>(\<lambda>\<Phi>. ( (P (\<lambda>x. m\<not> (\<Phi> x)))) m\<rightarrow> m\<not> (P \<Phi>))]" and
+    A1:  "[\<forall>(\<lambda>\<Phi>. ((P \<Phi>) m\<rightarrow> m\<not> (P (\<lambda>x. m\<not> (\<Phi> x))) )  )]"  and
     A2:  "[\<forall>(\<lambda>\<Phi>. \<forall>(\<lambda>\<Psi>. ( (P \<Phi>) m\<and> \<box> (\<forall>(\<lambda>x. \<Phi> x m\<rightarrow> \<Psi> x))) m\<rightarrow> P \<Psi>))]" and
     A3:  "[P G]" 
 
@@ -210,8 +125,8 @@ I also still need to read Anderson and Gettings (1996).
   corollary C1: "[\<diamond> (\<exists> G)]"
   by (metis A3 T1)
 
-  lemma T2_lem: "[\<forall>(\<lambda>x. \<forall>(\<lambda>\<Phi>. ((G x) m\<and> ( anderson_ess \<Phi> x)) m\<rightarrow> \<forall>(\<lambda>y. ((G y) m\<rightarrow> \<Phi> y))))]"
-  by (metis G_def Anderson_const.refl anderson_ess_def)
+  lemma T2_lem: "[\<forall>(\<lambda>x. \<forall>(\<lambda>\<Phi>. ((G x) m\<and> (ess \<Phi> x)) m\<rightarrow> \<forall>(\<lambda>y. ((G y) m\<rightarrow> \<Phi> y))))]"
+  by (metis G_def refl ess_def)
   
   theorem T3: "[\<box> (\<exists> G)]"
   by (metis  A3  G_def sym T1)
@@ -220,36 +135,47 @@ I also still need to read Anderson and Gettings (1996).
   by (metis refl T3)
   
 
-text {* The consistency of the entire theory is confirmed by Nitpick. *}
-   lemma True 
-   nitpick [satisfy, user_axioms, expect = genuine] oops
+  text {* The consistency of the entire theory is confirmed by Nitpick. *}
+  lemma True 
+  nitpick [satisfy, user_axioms, expect = genuine] oops
 
 
-section {* Modal Collapse *}  
- 
-  --{* Nitpick generates a counter-model with the same cardinalities used by Anderson. *}
-  lemma MC: "[\<forall>(\<lambda>\<Phi>.(\<Phi> m\<rightarrow> (\<box> \<Phi>)))]"
-  nitpick [user_axioms]
-  oops
+section {* Provability of A4 and A5 *}
 
-section {* Additional results: *}
-
-text{* As noted by Petr Hajek, A4 and A5 can be derived
-       from the other axioms and definitions. *}
+  text {* As noted by Petr Hajek, A4 and A5 can be derived
+          from the other axioms and definitions. *}
 
   theorem A4:  "[\<forall>(\<lambda>\<Phi>. P \<Phi> m\<rightarrow> \<box> (P \<Phi>))]" 
+  sledgehammer min [metis] (A3 trans sym C2 G_def)
   by (metis A3 G_def sym trans T3)
 
   theorem A5: "[P NE]"
   by (metis A2 A3 anderson_ess_def NE_def)
 
-
-text{* Fuhrmann remarks that these derivations depend on 
+  text{* Fuhrmann remarks that these derivations depend on 
        "meist stillschweigen gemachten Annahmen über die 
        Logik der zweiten Stufe, die Anderson jedoch nicht teilt." *}
 
---{* It should be checked whether the version formalized here is really Anderson's version. 
-     It could be a modification by Hajek presented by Fitting. *}
+
+section {* Immunity to Modal Collapse *}  
+ 
+  lemma MC: "[\<forall>(\<lambda>\<Phi>.(\<Phi> m\<rightarrow> (\<box> \<Phi>)))]"
+  nitpick [user_axioms]
+  oops
+
+
+section {* Fuhrmann's Alternative Definition of Essence *}
+
+  definition fuhrmann_ess :: "(\<mu> \<Rightarrow> \<sigma>) \<Rightarrow> \<mu> \<Rightarrow> \<sigma>" where 
+            "fuhrmann_ess = (\<lambda>\<Phi>. \<lambda>x. (\<Phi> x m\<and> ( (\<forall>(\<lambda>\<Psi>. ((\<box> (\<Psi> x )) m\<equiv>  \<box>(\<forall>(\<lambda>y. \<Phi> y m\<rightarrow> \<Psi> y))))))))" 
+            
+  lemma anderson_implies_fuhrmann_aux: "[\<forall>(\<lambda>\<Phi>. \<forall>(\<lambda>x. anderson_ess \<Phi> x m\<rightarrow>  \<Phi> x)) ]"
+  by (metis refl anderson_ess_def)
+  
+  theorem anderson_implies_fuhrmann: "[\<forall>(\<lambda>\<Phi>. \<forall> (\<lambda>x. ((anderson_ess \<Phi> x) m\<rightarrow> (fuhrmann_ess \<Phi> x)) )) ]"
+  -- {* sledgehammer min [remote_satallax] (refl anderson_ess_def fuhrmann_ess_def) *}
+  -- {* by (metis anderson_ess_def fuhrmann_ess_def refl) *}
+  oops
 
 
 
