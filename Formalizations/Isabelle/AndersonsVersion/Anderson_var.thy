@@ -84,8 +84,7 @@ section {* Anderson's Ontological Argument -- varying domain*}
   
   text {* For theorem T2, Satallax succeeds, but metis fails.*}
   theorem T2: "[\<forall>e(\<lambda>x. (G x) m\<rightarrow> (ess G x))]"
-  -- {* sledgehammer min [provers = remote_satallax metis] (A2 A3 refl sym trans C1 G_def NE_def P_def T1 T2_lem anderson_ess_def nonempty) *}
-  --{*by (metis A2 A3 refl sym trans C1 G_def NE_def P_def T1 T2_lem anderson_ess_def nonempty)*}
+  sledgehammer min [remote_satallax, timeout = 200] (A1 A2 A3 Anderson_var.refl Anderson_var.sym Anderson_var.trans C1 G_def NE_def T1 T2_lem ess_def nonempty)
   oops
  
   theorem T3: "[\<box> (\<exists>(\<lambda>x. (G x)))]"
@@ -112,6 +111,8 @@ section {* Provability of A4 and A5 *}
 
   theorem A5:  "[P NE]"
   by (metis A2 A3 ess_def NE_def)
+
+
 
 
 section {* Immunity to Modal Collapse *}  
