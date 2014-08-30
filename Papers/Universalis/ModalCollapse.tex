@@ -150,18 +150,18 @@ Canterbury, Descartes and Leibniz. Kurt G{\"o}del studied and further improved t
 \item[T1] Positive properties are possibly exemplified: 
   $$\hol{\allq \phi [P(\phi) \imp \pos \exq x \phi(x)]}$$ 
 \item[D1] A \emph{God-like} being possesses all positive properties: 
-  $$\hol{G(x) \biimp \forall \phi [P(\phi) \imp \phi(x)]}$$ 
+  $$\hol{G(x) \equiv \forall \phi [P(\phi) \imp \phi(x)]}$$ 
 \item[A3]  The property of being God-like is positive: 
   $$\hol{P(G)}$$
 \item[C\phantom{1}] Possibly, a God-like being exists: $$\hol{\pos \exq x G(x)}$$
 \item[A4]  Positive properties are necessarily positive: 
   $$\hol{\allq \phi [P(\phi) \imp \Box \; P(\phi)]}$$ 
-\item[D2] An \emph{essence} of an individual is a property possessed by it and necessarily implying any of its properties: $$\hol{\ess{\phi}{x} \biimp \phi(x) \wedge \allq
+\item[D2] An \emph{essence} of an individual is a property possessed by it and necessarily implying any of its properties: $$\hol{\ess{\phi}{x} \equiv \phi(x) \wedge \allq
   \psi (\psi(x) \imp \nec \allq y (\phi(y) \imp \psi(y)))}$$ 
 \item[T2]  Being God-like is an essence of any
   God-like being: $$\hol{\allq x [G(x) \imp \ess{G}{x}]}$$
 \item[D3] \emph{Necessary existence} of an individual is the necessary exemplification of all its essences: 
-  $$\hol{\NE(x) \biimp \allq \phi [\ess{\phi}{x} \imp \nec
+  $$\hol{\NE(x) \equiv \allq \phi [\ess{\phi}{x} \imp \nec
   \exq y \phi(y)]}$$
 \item[A5] Necessary existence is a positive property: $$\hol{P(\NE)}$$ 
 \item[T3] Necessarily, a God-like being exists: $$\hol{\nec \exq x G(x)}$$ 
@@ -242,22 +242,22 @@ the solutions proposed by Anderson and by Frode. The technique enabling this ana
   \imp \psi(x)]) \imp P(\psi)]}$$
 \item[T1] Positive properties are possibly exemplified: 
   $$\hol{\allq \phi [P(\phi) \imp \pos \exq x \phi(x)]}$$ 
-\item[A:D1] A \emph{God-like} being possesses all positive properties: 
-  $$\hol{G_A(x) \biimp \forall \phi [P(\phi) \biimp \nec \phi(x)]}$$ 
-\item[A3]  The property of being God-like is positive: 
-  $$\hol{P(G)}$$
+\item[A:D1] A \emph{God-like} being necessarily possesses those and only those properties that are positive: 
+  $$\hol{G_A(x) \equiv \forall \phi [P(\phi) \biimp \nec \phi(x)]}$$ 
+\item[A3']  The property of being God-like is positive: 
+  $$\hol{P(G_A)}$$
 \item[C\phantom{1}] Possibly, a God-like being exists: $$\hol{\pos \exq x G(x)}$$
 \item[A4]  Positive properties are necessarily positive: 
   $$\hol{\allq \phi [P(\phi) \imp \Box \; P(\phi)]}$$ 
-\item[A:D2] An \emph{essence} of an individual is a property possessed by it and necessarily implying any of its properties: $$\hol{\essA{\phi}{x} \biimp \allq
+\item[A:D2] An \emph{essence} of an individual is a property that necessarily implies those and only those properties that the individual has necessarily: $$\hol{\essA{\phi}{x} \equiv \allq
   \psi [\nec \psi(x) \biimp \nec \allq y (\phi(y) \imp \psi(y))]}$$ 
-\item[T2]  Being God-like is an essence of any
-  God-like being: $$\hol{\allq x [G(x) \imp \ess{G}{x}]}$$
-\item[D3] \emph{Necessary existence} of an individual is the necessary exemplification of all its essences: 
-  $$\hol{\NE(x) \biimp \allq \phi [\ess{\phi}{x} \imp \nec
+\item[T2']  Being God-like is an essence of any
+  God-like being: $$\hol{\allq x [G_A(x) \imp \essA{G_A}{x}]}$$
+\item[D3'] \emph{Necessary existence} of an individual is the necessary exemplification of all its essences: 
+  $$\hol{\NE_A(x) \equiv \allq \phi [\essA{\phi}{x} \imp \nec
   \exq y \phi(y)]}$$
-\item[A5] Necessary existence is a positive property: $$\hol{P(\NE)}$$ 
-\item[T3] Necessarily, a God-like being exists: $$\hol{\nec \exq x G(x)}$$ 
+\item[A5'] Necessary existence is a positive property: $$\hol{P(\NE_A)}$$ 
+\item[T3'] Necessarily, a God-like being exists: $$\hol{\nec \exq x G_A(x)}$$ 
 \end{itemize}
 \end{minipage}
 } \vskip-.5em
