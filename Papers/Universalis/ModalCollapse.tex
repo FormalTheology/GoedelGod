@@ -216,7 +216,7 @@ the solutions proposed by Anderson and by Frode. The technique enabling this ana
 
 \section{The Modal Collapse}
 
-A crucial step of the ontological argument is the claim that if God's existence is possible, then it is necessary. This is Lemma L2 in G\"odel's proof. In the modal square of opposition (Fig. \ref{ToDo}), this is an unusual situation in which the \textbf{I} corner implies and entails the \textbf{A} corner, for the particular case when $\phi$ is $\exq x G(x)$. G\"odel's proof shows that his axioms are strong enough to invert the direction of entailment for the particular $\phi$ at issue. The question is whether the axioms are then not too strong, also allowing the inverted entailment for arbitrary $\phi$. That's essentially the question asked by Sobel \cite{Sobel1987}; and his proof of the modal collapse (MC) answers it affirmatively. The modal collapse is a collapse of the modal square: it shows that assuming G\"odel's axioms, the subcontraries entail the contraries.
+A crucial step of the ontological argument is the claim that if God's existence is possible, then it is necessary. This is Lemma L2 in G\"odel's proof. In the modal square of opposition (Fig. \ref{ToDo}), this is an unusual situation in which the \textbf{I} corner implies and entails the \textbf{A} corner, for the particular case when $\phi$ is $\exq x G(x)$. G\"odel's proof shows that his axioms are strong enough to invert the direction of entailment for the particular $\phi$ at issue. The question is whether the axioms are then not too strong, also allowing the inverted entailment for arbitrary $\phi$. That is essentially the question asked by Sobel \cite{Sobel1987}; and his proof of the modal collapse (MC) answers it affirmatively. The modal collapse is a collapse of the modal square: it shows that, assuming G\"odel's axioms, the subcontraries entail the contraries.
 
 Various ontological...
 
@@ -224,13 +224,6 @@ ToDo: include figure of Modal Square of Opposition.
 
 ToDo: discuss what the arrows mean (entailment or implication?) in the modal square. This is not as obvious as in the non-modal square, because the deduction theorem does not hold for modal logics.
 
-ToDo: the following should always hold (check this in Isabelle!): 
-$$
-\allq \phi [\exq x G(x) \imp \phi] \imp [\phi \imp \nec \phi]
-$$
-$$
-\allq \phi [\exq x G(x) \imp \phi] \imp [\pos \phi \imp \nec \phi]
-$$
 
 \begin{figure}[t]
 \noindent \framebox[\columnwidth][r]{
@@ -239,7 +232,7 @@ $$
 \item[MC] Everything that is the case is so necessarily:
   $$\hol{\allq \phi [\phi \imp \nec \phi]}$$ 
 \item[MC'] Everything that is possible is necessary:
-  $$\hol{\allq \phi [\phi \imp \nec \phi]}$$ 
+  $$\hol{\allq \phi [\pos \phi \imp \nec \phi]}$$ 
 \item[MC''] Modalities collapse:
   $$\hol{\allq \phi [\phi \biimp \pos \phi \biimp \nec \phi]}$$
 \end{itemize}
