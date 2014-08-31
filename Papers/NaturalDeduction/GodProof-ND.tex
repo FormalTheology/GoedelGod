@@ -58,15 +58,15 @@ which deals with concepts of the highest abstractness; and this is also most hig
 
 \section{Introduction}
 
-Ontological arguments for the existence of God can be traced back at least to St. Anselm (1033-1109). His argument considered a maximally conceivable being, who must exist, because if it did not have the property of existence, then we could conceive of a greater being that, apart from the other properties, also has the property of existence. 
+Ontological arguments for the existence of God can be traced back at least to St. Anselm (1033-1109). His argument considered a greatest conceivable being, who must exist, because if it did not have the property of existence, then we could conceive of a greater being that, apart from the other properties, also has the property of existence. 
 
-A major critique of this argument is that we do not know whether the concept maximal conceivable being in fact designates anything or if it is inconsistent, like a round square \citep{fitting}[p.134].  
+A major critique of this argument is that we do not know whether the concept greatest conceivable being in fact designates anything or if it is inconsistent, like a round square \citep{fitting}[p.134].  
 %The question is if the argument is sound. 
-As Bertrand Russell pointed out, the definition of maximal allows us to define properties, like having boots, which the maximal being then also must have \citep{citation needed}. 
+As Bertrand Russell pointed out, the definition of greatest allows us to define properties, like having boots, which the greatest being then also must have \citep{citation needed}. 
 
 Kant argued against the ontological argument on the basis that existence is not an analytic property \citep{kant}. This means that existence cannot be contained in the definition of a concept, because it is generally synthetic. All that we can say is that if God exists, then God necessarily exists \citep{citation needed}.
 
-St. Anselm's argument was elaborated further by Descartes and Leibniz. Leibniz identified that establishing the possible existence of God is a critical missing step in St. Anselm's argument. To fill this gap, he argued that the properties of God, the perfections, are compatible. This implies that it is possible to have all perfections at once and therefore the existence of a maximal being with all these properties is possible. 
+St. Anselm's argument was elaborated further by Descartes and Leibniz. Leibniz identified that establishing the possible existence of God is a critical missing step in St. Anselm's argument. To fill this gap, he argued that the properties of God, the perfections, are compatible. This implies that it is possible to have all perfections at once and therefore the existence of a greatest being with all these properties is possible. 
 
 G\"odel studied Leibniz's work \citep{Adams} and brought his ontological argument to a modern form using a modal logic with higher-order quantification over properties. In this setting, he gave precise axioms describing the notion of \emph{positive} property and defined God as a being having all positive properties. 
 
@@ -83,7 +83,7 @@ The main criticism against G\"odel's ontological argument is the \emph{modal col
 
 % Another, possibly undesirable, consequence of the formalism is that there can only be one God, which is defined by the axioms. Namely, if one assumes that the theory contains the equality relation then a God has the property of being identical to itself. Since any other god-like being would have at least the same properties it shares the property of being identical to the one God. Thus, we have proved monotheism \citep{sobel2}[Ch. 4, section 3.3.2]. %\citep{fitting}[The proof is Exercise 7.1, p.163]. 
 
-The first contribution of this paper is a detailed formalization of Scott's version \cite{Scott} of G\"odel's ontological argument \cite{Goedel} (as shown in Section \ref{sec:scott}) in a natural deduction calculus (as defined in Section \ref{sec:calculus}). A natural deduction style \citep{gentzen,prawitz} was chosen mainly for three reasons. Firstly, presentations of G\"oedel's proof are typically either informal or formalized in other styles of calculi (e.g. Fitting's tableaux \cite{fitting} or Sobel's sentential modal calculus \cite{sobel2}). Therefore, a formalization in natural deduction is a valuable complement to the existing presentations. Secondly, it makes the ontological proof accessible to people who are familiarized with a natural deduction style. Finally, as natural deduction is the style used by proof assistants such as Coq \cite{coq} and Isabelle \cite{isabelle}, the natural deduction formalizations have been easily checked step-by-step in Coq \cite{coqformalizations}.
+The first contribution of this paper is a detailed formalization of Scott's version \cite{Scott} of G\"odel's ontological argument \cite{Goedel} (as shown in Section \ref{sec:scott}) in a natural deduction calculus (as defined in Section \ref{sec:calculus}). A natural deduction style \citep{gentzen,prawitz} was chosen mainly for three reasons. Firstly, presentations of G\"odel's proof are typically either informal or formalized in other styles of calculi (e.g. Fitting's tableaux \cite{fitting} or Sobel's sentential modal calculus \cite{sobel2}). Therefore, a formalization in natural deduction is a valuable complement to the existing presentations. Secondly, it makes the ontological proof accessible to people who are familiarized with a natural deduction style. Finally, as natural deduction is the style used by proof assistants such as Coq \cite{coq} and Isabelle \cite{isabelle}, the natural deduction formalizations have been easily checked step-by-step in Coq \cite{coqformalizations}.
 
 The main contribution of the paper, however, is the presentation of new proofs (also in natural deduction style) of the lemmas, theorems and corollaries in G\"odel's manuscript. In contrast to Scott's proofs \cite{Scott}, the proofs presented here are simpler and shorter, as discussed in Section \ref{sec:conclusion}.
 
@@ -100,6 +100,8 @@ $$
 $$
 where $\mu$ is the atomic type for individuals, $o$ is the atomic type for propositions and $\theta \imp \tau$ is the type for functions taking an argument of type $\theta$ and returning something of type $\tau$. `$\imp$' is assumed to be right associative.
 \end{definition}
+
+ToDo: decide which connectives and corresponding inference rules will be primitive.
 
 \begin{definition} \emph{Terms and formulas} are given by the following grammar:
 \begin{align*}
@@ -119,6 +121,8 @@ where $\mu$ is the atomic type for individuals, $o$ is the atomic type for propo
 \end{align*}
 where $p_\tau$ and $X_\tau$ range over, respectively, constants and variables of type $\tau$. Parenthesis conventions, infix notation for propositional connectives and binding notation for quantifiers are assumed. Furthermore, subscript types are omitted when they are clear from the context. Negation ($\neg_{o\imp o}$) and equivalence ($\biimp_{o\imp o\imp o}$) are defined by $\neg A\equiv A\imp \bot$ and $ (A\biimp B)\equiv (A\imp B)\wedge (B\imp A)$.
 \end{definition}
+
+ToDo: decide if rules for diamond should be added.
 
 
 The natural deduction calculus used here has standard rules for propositional connectives and quantifiers, as shown in Figures \ref{fig:PropositionalRules} and \ref{fig:QuantifierRules}. The extension to classical logic is achieved by adding a rule for double negation elimination, shown in Figure \ref{fig:Classical}. Finally, modal operators are handled by special rules that insert or remove formulas from boxes, as shown in Figure \ref{fig:NDK}. Apart from the use of labels and the dual rules for `$\pos$', these rules are essentially the modal rules from \cite{todo}. Beta-reduction is implicit; all rules are assumed modulo beta-reduction. A \emph{derivation} is a directed acyclic graph whose nodes are formulas and whose edges correspond to applications of the inference rules. A \emph{proof} of a formula $F$ is a derivation without open assumptions and having $F$ as root not inside any box. 
