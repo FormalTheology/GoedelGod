@@ -92,6 +92,14 @@ text {* Three kinds of Modal Collapse *}
   (* by metis *)
   oops
 
+  theorem test1 : "[\<forall>(\<lambda>\<psi>. \<forall>(\<lambda>\<Phi>. (\<Phi> m\<rightarrow> \<psi>)) m\<rightarrow> \<forall>(\<lambda>\<Phi>. ((\<diamond> \<Phi>) m\<rightarrow> \<psi>)))]"
+  sledgehammer [provers = remote_satallax remote_leo2, timeout = 30, strict]
+  oops
+
+  theorem test2 : "[\<forall>(\<lambda>\<psi>. \<forall>(\<lambda>\<Phi>. (\<Phi> m\<rightarrow> \<psi>)))] \<longrightarrow> [\<forall>(\<lambda>\<psi>. \<forall>(\<lambda>\<Phi>. ((\<diamond> \<Phi>) m\<rightarrow> \<psi>)))]"
+  sledgehammer [provers = remote_satallax remote_leo2, timeout = 30, strict]
+  oops
+
   (* with the help of symmetry, metis succeeds *)
   theorem with_sym_collapseCN_entails_collapsePN : 
           "sym \<longrightarrow> ([collapseCN] \<longrightarrow> [collapsePN])"
