@@ -57,7 +57,8 @@ section {* Modal Square *}
   theorem E_entails_O: "\<forall>\<Phi>. [m\<not> (\<diamond> \<Phi>)] \<longrightarrow> [m\<not> (\<box> \<Phi> m\<and> ExImport)]"
   by metis
 
-
+  theorem E_implies_O: "\<forall>\<Phi>. [(m\<not> (\<diamond> \<Phi>)) m\<rightarrow> (m\<not> (\<box> \<Phi> m\<and> ExImport))]"
+  by metis
 
 (*<*) 
 end
