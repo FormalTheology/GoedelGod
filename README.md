@@ -11,12 +11,11 @@ use three kinds of tools:
 
 * [Isabelle](https://isabelle.in.tum.de/)
 
-* Automated Theorem Provers (e.g. 
-[LEO-II](http://page.mi.fu-berlin.de/cbenzmueller/leo/) and 
-[Satallax](https://mathgate.info/cebrown/satallax/)) 
-for higher-order logic compatible with the 
+* Automated Theorem Provers compatible with the 
 [TPTP THF](http://www.cs.miami.edu/~tptp/TPTP/Proposals/THF.html) 
-format.
+format (e.g. 
+[LEO-II](http://page.mi.fu-berlin.de/cbenzmueller/leo/) and 
+[Satallax](https://mathgate.info/cebrown/satallax/)).
 
 In order to verify the Coq and Isabelle proofs, 
 you must install and use these tools. 
