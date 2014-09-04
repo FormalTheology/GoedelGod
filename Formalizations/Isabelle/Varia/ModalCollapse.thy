@@ -98,6 +98,7 @@ text {* Three kinds of Modal Collapse *}
 
   theorem test2 : "[\<forall>(\<lambda>\<psi>. \<forall>(\<lambda>\<Phi>. (\<Phi> m\<rightarrow> \<psi>)))] \<longrightarrow> [\<forall>(\<lambda>\<psi>. \<forall>(\<lambda>\<Phi>. ((\<diamond> \<Phi>) m\<rightarrow> \<psi>)))]"
   sledgehammer [provers = remote_satallax remote_leo2, timeout = 30, strict]
+  nitpick
   oops
 
   (* with the help of symmetry, metis succeeds *)
@@ -184,6 +185,70 @@ text {* An interesting question:
   theorem MC6: "\<forall>\<Phi>.\<forall>\<Psi>. (sym \<and> trans \<and> refl \<and> [cCN \<Phi>]) \<longrightarrow> [\<Psi> m\<rightarrow> \<Phi>] \<longrightarrow> [cCN \<Psi>]"
   nitpick [user_axioms]
   oops
+
+  theorem MC7: "\<forall>\<Phi>.\<forall>\<Psi>. (sym \<and> trans \<and> refl \<and> [cCN \<Phi>]) \<longrightarrow> [\<Phi> m\<rightarrow> \<Psi>] \<longrightarrow> [cCN \<Psi>]"
+  nitpick [user_axioms]
+  oops
+
+  theorem MC8: "\<forall>\<Phi>.\<forall>\<Psi>. (sym \<and> trans \<and> refl \<and> [cCN \<Phi>]) \<longrightarrow> ([\<Phi>] \<longrightarrow> [\<Psi>]) \<longrightarrow> [cCN \<Psi>]"
+  nitpick [user_axioms]
+  oops
+
+  theorem MC9: "\<forall>\<Phi>.\<forall>\<Psi>. (sym \<and> trans \<and> refl \<and> [cCN \<Phi>]) \<longrightarrow> ([\<Phi>] \<longleftrightarrow> [\<Psi>]) \<longrightarrow> [cCN \<Psi>]"
+  nitpick [user_axioms]
+  oops
+
+  theorem MC10: "\<forall>\<Phi>.\<forall>\<Psi>. (sym \<and> trans \<and> refl \<and> [cCN \<Phi>]) \<longrightarrow> [\<Phi> m\<rightarrow> (\<box> \<Psi>)] \<longrightarrow> [cCN \<Psi>]"
+  nitpick [user_axioms]
+  oops
+
+  theorem MC11: "\<exists>R. \<forall>\<Phi>.\<forall>\<Psi>. (sym \<and> trans \<and> refl \<and> [cCN \<Phi>]) \<longrightarrow> [(R \<Phi> \<Psi>)] \<longrightarrow> [cCN \<Psi>]"
+  (* sledgehammer [provers = remote_satallax remote_leo2] *)
+  oops
+
+  theorem MC12: "\<forall>\<Phi>.\<forall>\<Psi>. (sym \<and> trans \<and> refl \<and> [cCN \<Phi>]) \<longrightarrow> [\<Phi>] \<longrightarrow> [\<Phi> m\<rightarrow> \<Psi>] \<longrightarrow> [cCN \<Psi>]"
+  by metis
+
+  theorem MC13: "\<forall>\<Phi>.\<forall>\<Psi>. (sym \<and> trans \<and> refl) \<longrightarrow> [\<Phi>] \<longrightarrow> [\<Phi> m\<rightarrow> \<Psi>] \<longrightarrow> [cCN \<Psi>]"
+  by metis
+
+  theorem MC14: "\<forall>\<Phi>.\<forall>\<Psi>. (sym \<and> trans \<and> refl) \<longrightarrow> [\<Phi> m\<rightarrow> ((\<Phi> m\<rightarrow> \<Psi>) m\<rightarrow> (cCN \<Psi>))]"
+  nitpick
+  oops
+
+  theorem MC15: "\<forall>\<Phi>.\<forall>\<Psi>. (sym \<and> trans \<and> refl \<and> [cCN \<Phi>]) \<longrightarrow> [cCN (\<Phi> m\<rightarrow> \<Psi>)] \<longrightarrow> [cCN \<Psi>]"
+  nitpick
+  oops
+
+  theorem MC16: "\<forall>\<Phi>.\<forall>\<Psi>. (sym \<and> trans \<and> refl \<and> [cCN \<Phi>] \<and> [cCN \<Psi>]) \<longrightarrow> [cCN (\<Phi> m\<and> \<Psi>)]"
+  by metis
+
+  theorem MC17: "\<forall>\<Phi>.\<forall>\<Psi>. (sym \<and> trans \<and> refl \<and> [cCN \<Phi>] \<and> [cCN (\<Phi> m\<rightarrow> \<Psi>)]) \<longrightarrow> [cCN \<Psi>]"
+  nitpick
+  oops
+
+  theorem MC18: "\<forall>\<Phi>. (sym \<and> trans \<and> refl \<and> [cCN \<Phi>]) \<longrightarrow> [cCN (cCN \<Phi>)]"
+  by metis
+
+  theorem MC19: "\<forall>\<Phi>. [cCN \<Phi>] \<longrightarrow> [cCN (cCN \<Phi>)]"
+  by metis
+
+  theorem MC20: "\<forall>\<Phi>. [(cCN \<Phi>) m\<rightarrow> (cCN (cCN \<Phi>))]"
+  nitpick
+  oops
+
+  theorem MC21: "\<forall>\<Phi>. [\<Phi>] \<longrightarrow> [cCN \<Phi>]"
+  by metis
+
+  theorem MC22: "\<forall>\<Phi>. [cCN (cCN \<Phi>)] \<longrightarrow> [cCN \<Phi>]"
+  nitpick
+  oops
+
+  theorem MC23: "\<forall>\<Phi>.\<forall>\<Psi>. (sym \<and> trans \<and> refl \<and> [cCN \<Phi>]) \<longrightarrow> [cCN (\<Phi> m\<or> \<Psi>)]"
+  nitpick
+  oops
+ 
+
 
 
 section {* Miscellanea *} 
