@@ -42,9 +42,15 @@ Germany
 
 [Lifenet.de](http://www.livenet.de/themen/people/242181-kurt_goedels_gottesbeweis_ist_richtig.html)
 
+[Silicon.de](http://www.silicon.de/41589138/macbook-beweist-existenz-gottes/)
+
+[Scienceblogs](http://scienceblogs.de/astrodicticum-simplex/2013/09/11/mathematiker-beweisen-die-existenz-gottes-nicht-wirklich/)
+
 [Top ten of most read articles in 2013 in Telepolis](http://www.heise.de/tp/artikel/40/40674/1.html)
 
 [Zeit Online](http://blog.zeit.de/mathe/allgemein/gott-existenz-mathe/)
+
+[Mathematik.de](http://mathematik.de/ger/diverses/aktuelles/goedels_beweis_ist_logisch_korrekt.html)
 
 
 Austria
@@ -71,8 +77,6 @@ Austria
 [ORF](http://science.orf.at/stories/1741595) (this interview is part of a series with Brasilian scientists residing in Austria, motivated by the World Cup in Brazil. Therefore, an attempt is made to relate research topics to football.)
 
 [ORF Radio](http://oe1.orf.at/programm/376866) (audio version of the World Cup interview)
-
-
 
 
 Italy
@@ -144,6 +148,8 @@ India
 
 [India Today](ttp://indiatoday.intoday.in/story/apple-macbook-help-researchers-to-find-proof-of-god%60s-existence/1/320401.html)
 
+[andaikatacom](http://www.andaikata.com/dunia/membuktikan-keberadaan-tuhan-secara-ilmiah.html)
+
 
 Netherlands
 -----------
@@ -163,7 +169,6 @@ Czech Republik
 [PC ZOZNAM](http://pc.zoznam.sk/interview-christoph-benzmueller-potom-pocitac-dokazal-boh-existuje?page=1) (Interview English)
 
 [vybrali SMA](http://vybrali.sme.sk/c/166339)
-
 
 
 Indonesia
@@ -281,3 +286,10 @@ International
 [The Muslim Times](http://www.themuslimtimes.org/2013/10/uncategorized/computer-scientists-prove-mathematically-god-exists)
 
 [TulaTV](http://tulatv.com/2014/02/alemania-cientificos-ya-demostraron-la-existencia-de-dios-como-asi-lo-lograron/#)
+
+[aciprensa](https://www.aciprensa.com/noticias/cientificos-prueban-informaticamente-que-existe-dios-50505/)
+
+[catholic.org](http://www.catholic.org/news/international/americas/story.php?id=52920)
+
+[oximity](https://www.oximity.com/article/Independent-Confirmation-for-Göde-1)
+
