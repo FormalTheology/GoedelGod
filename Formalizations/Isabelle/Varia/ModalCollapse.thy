@@ -248,8 +248,16 @@ text {* An interesting question:
   nitpick
   oops
  
+  theorem MC24: "\<forall>\<Phi>.\<forall>\<Psi>. (sym \<and> trans \<and> refl \<and> [cCN \<Phi>]) \<longrightarrow> [\<box> (\<Psi> m\<rightarrow> \<Phi>)] \<longrightarrow> [cCN \<Psi>]"
+  nitpick [user_axioms]
+  oops
 
+  theorem MC25: "\<forall>\<Phi>.\<forall>\<Psi>. (sym \<and> trans \<and> refl \<and> [cCN (\<Phi> m\<and> \<Psi>)]) \<longrightarrow> [cCN (\<Phi>)]"
+  nitpick 
+  oops
 
+  theorem MC26: "\<forall>\<Phi>.\<forall>\<Psi>. (sym \<and> trans \<and> refl \<and> [cCN (\<Phi> m\<and> \<Psi>)] \<and> [\<Psi>]) \<longrightarrow> [cCN (\<Phi>)]"
+  by metis
 
 section {* Miscellanea *} 
 
