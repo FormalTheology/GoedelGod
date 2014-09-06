@@ -150,7 +150,7 @@ section {* Provability of A4 and A5 *}
   by (metis A3 G_def sym trans T3)
 
   theorem A5: "[P NE]"
-  by (metis A2 A3 anderson_ess_def NE_def)
+  by (metis A2 A3 ess_def NE_def)
 
   text{* Fuhrmann remarks that these derivations depend on 
        "meist stillschweigen gemachten Annahmen über die 
@@ -163,16 +163,15 @@ section {* Immunity to Modal Collapse *}
   nitpick [user_axioms]
   oops
 
-
 section {* Fuhrmann's Alternative Definition of Essence *}
 
   definition fuhrmann_ess :: "(\<mu> \<Rightarrow> \<sigma>) \<Rightarrow> \<mu> \<Rightarrow> \<sigma>" where 
             "fuhrmann_ess = (\<lambda>\<Phi>. \<lambda>x. (\<Phi> x m\<and> ( (\<forall>(\<lambda>\<Psi>. ((\<box> (\<Psi> x )) m\<equiv>  \<box>(\<forall>(\<lambda>y. \<Phi> y m\<rightarrow> \<Psi> y))))))))" 
             
-  lemma anderson_implies_fuhrmann_aux: "[\<forall>(\<lambda>\<Phi>. \<forall>(\<lambda>x. anderson_ess \<Phi> x m\<rightarrow>  \<Phi> x)) ]"
-  by (metis refl anderson_ess_def)
+  lemma anderson_implies_fuhrmann_aux: "[\<forall>(\<lambda>\<Phi>. \<forall>(\<lambda>x. ess \<Phi> x m\<rightarrow>  \<Phi> x)) ]"
+  by (metis refl ess_def)
   
-  theorem anderson_implies_fuhrmann: "[\<forall>(\<lambda>\<Phi>. \<forall> (\<lambda>x. ((anderson_ess \<Phi> x) m\<rightarrow> (fuhrmann_ess \<Phi> x)) )) ]"
+  theorem anderson_implies_fuhrmann: "[\<forall>(\<lambda>\<Phi>. \<forall> (\<lambda>x. ((ess \<Phi> x) m\<rightarrow> (fuhrmann_ess \<Phi> x)) )) ]"
   -- {* sledgehammer min [remote_satallax] (refl anderson_ess_def fuhrmann_ess_def) *}
   -- {* by (metis anderson_ess_def fuhrmann_ess_def refl) *}
   oops
