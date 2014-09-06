@@ -77,7 +77,7 @@ Germany
 
 \email{c.benzmueller@gmail.com}
 
-\thanks{This work was completed with the support of ToDo}
+%\thanks{This work was completed with the support of ToDo}
 
 
 %----------Author 3
@@ -109,9 +109,7 @@ Sec. 68T02 % Artificial Intelligence
 \begin{abstract}
 The \emph{modal collapse} that afflicts G\"odel's modal ontological 
 argument for God's existence is discussed from the perspective of the 
-modal square of opposition. Furthermore, a computer-assisted verification 
-of the claims that the emendations by Anderson and by Frode are immune to 
-the modal collapse is presented.
+modal square of opposition.
 \end{abstract}
 
 %%% ----------------------------------------------------------------------
@@ -173,23 +171,14 @@ Canterbury, Descartes and Leibniz. Kurt G{\"o}del studied and further improved t
 % distinguished from necessary truths.
 
 
-G\"{o}del defines God (see Fig.~\ref{fig1}) as a being who possesses all \emph{positive}
-properties.  He does not extensively discuss what positive properties
-are, but instead he states a few reasonable (but debatable) axioms
-that they should satisfy.  
+G\"{o}del defines God as a being who possesses all \emph{positive}
+properties and states a few reasonable (but debatable) axioms
+that such properties should satisfy.  
 The overall idea of G{\"o}del's proof is in the tradition of Anselm's
 argument, who defined God as some entity of which nothing greater can be
 conceived. Anselm argued that existence in the actual world would
-make such an assumed being even greater; hence, by definition God must
-exist. G{\"o}del's ontological argument is clearly related to this
-reasoning pattern. However, it also tries to fix some fundamental
-weaknesses in Anselm's work. For example, G{\"o}del explicitly proves
-that God's existence is possible, which has been a basic assumption for
-Anselm. Because of this, Anselm's argument has been
-criticized as incomplete by Leibniz. Leibniz claimed that the
-assumption should be derivable from the definition of God as a perfect
-being and from the notion of perfection.  G{\"o}del's proof 
-addresses this critique, and it also addresses Kant's objection that existence should not be treated as a predicate. 
+make such an assumed being even greater; hence, by definition, God must
+exist. However, for Anselm existence was treated as a predicate and the possibility of God's existence was assumed as granted. These issues were criticized by Kant and Leibniz, respectively, and succesfully addressed by G\"odel. 
 
 Nevertheless, G{\"o}del's work
 still leaves room for criticism. In particular, his axioms are so
@@ -199,11 +188,10 @@ everything that is the case is so necessarily.
 There has been an impressive body of recent and ongoing
 work (cf.~\cite{sobel2004logic,Fitting,anderson90:_some_emend_of_goedel_ontol_proof,AndersonGettings,ToDo:FrodeAndHajek,ContemporaryBibliography} and the references therein)
 proposing solutions for the modal collapse. 
-The goal of this paper is to present a computer-assisted analysis of 
-the solutions proposed by Anderson and by Frode. The technique enabling this analysis is the embedding of quantified modal logics into higher-order logics \cite{J23,B9,C36}, for which automated theorem provers exist \cite{ToDo:leo,sattalax,isabelle,coq}. This technique has already been succesfully employed in the verification and reconstruction of G\"odel's proof \cite{todo:all our previous papers}, and a detailed mathematical description of the technique is available in \cite{todo:ECAI}.
+The goal of this short note is merely to remark that the modal collapse is a collapse of the modal square of opposition.
 
 
-\section{The Modal Collapse}
+\section{The Collapse of the Modal Square}
 
 A crucial step of the ontological argument is the claim that if God's existence is possible, then it is necessary. This is Lemma L2 in G\"odel's proof. In the modal square of opposition (Fig. \ref{ToDo}), this is an unusual situation in which the \textbf{I} corner implies and entails the \textbf{A} corner, for the particular case when $\phi$ is $\exq x G(x)$. G\"odel's proof shows that his axioms are strong enough to invert the direction of entailment for the particular $\phi$ at issue. The question is whether the axioms are then not too strong, also allowing the inverted entailment for arbitrary $\phi$. That is essentially the question asked by Sobel \cite{Sobel1987}; and his proof of the modal collapse (MC) answers it affirmatively. The modal collapse is a collapse of the modal square: it shows that, assuming G\"odel's axioms, the subcontraries entail the contraries.
 
@@ -253,6 +241,8 @@ quantification over individuals and properties.
 controversies, care with parameters
 
 ToDo: Leibniz calculemus, Rushby, Zalta \cite{oppenheimera11,rushby13}
+
+The technique enabling this analysis is the embedding of quantified modal logics into higher-order logics \cite{J23,B9,C36}, for which automated theorem provers exist \cite{ToDo:leo,sattalax,isabelle,coq}. This technique has already been succesfully employed in the verification and reconstruction of G\"odel's proof \cite{todo:all our previous papers}, and a detailed mathematical description of the technique is available in \cite{todo:ECAI}.
 
 
 % \begin{defn}
