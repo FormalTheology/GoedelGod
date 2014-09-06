@@ -30,7 +30,8 @@ Other connectives can be introduced analogously. We exemplarily do this for @{te
 operators @{text "\<box>"} and @{text "\<diamond>"}  are introduced. Definitions could be used instead of 
 abbreviations. *}
 
-  abbreviation mnot :: "\<sigma> \<Rightarrow> \<sigma>" ("m\<not>") where "m\<not> \<phi> \<equiv> (\<lambda>w. \<not> \<phi> w)"    
+  abbreviation mnot :: "\<sigma> \<Rightarrow> \<sigma>" ("m\<not>") where "m\<not> \<phi> \<equiv> (\<lambda>w. \<not> \<phi> w)"  
+  abbreviation mequal :: "'a \<Rightarrow> 'a \<Rightarrow> \<sigma>" (infixr "m=" 51) where "x m= y \<equiv> (\<lambda>w. x = y)"   
   abbreviation mand :: "\<sigma> \<Rightarrow> \<sigma> \<Rightarrow> \<sigma>" (infixr "m\<and>" 51) where "\<phi> m\<and> \<psi> \<equiv> (\<lambda>w. \<phi> w \<and> \<psi> w)"   
   abbreviation mor :: "\<sigma> \<Rightarrow> \<sigma> \<Rightarrow> \<sigma>" (infixr "m\<or>" 50) where "\<phi> m\<or> \<psi> \<equiv> (\<lambda>w. \<phi> w \<or> \<psi> w)"   
   abbreviation mimplies :: "\<sigma> \<Rightarrow> \<sigma> \<Rightarrow> \<sigma>" (infixr "m\<rightarrow>" 49) where "\<phi> m\<rightarrow> \<psi> \<equiv> (\<lambda>w. \<phi> w \<longrightarrow> \<psi> w)"  
@@ -261,11 +262,34 @@ text {* An interesting question:
 
 section {* Miscellanea *} 
 
-  consts G :: "\<mu> \<Rightarrow> \<sigma>"
+  consts P :: "(\<mu> \<Rightarrow> \<sigma>) \<Rightarrow> \<sigma>"
+
+  definition G :: "\<mu> \<Rightarrow> \<sigma>" where "G = (\<lambda>x. \<forall>(\<lambda>\<Phi>. P \<Phi> m\<rightarrow> \<Phi> x))" 
 
   abbreviation L1 :: "\<sigma>" ("L1") where "L1 \<equiv> (cCN (\<exists>(\<lambda>x.(G x))))"
   abbreviation L2 :: "\<sigma>" ("L2") where "L2 \<equiv> (cPN (\<exists>(\<lambda>x.(G x))))"  
+  abbreviation MT :: "\<sigma>" ("MT") where "MT \<equiv> (\<forall>(\<lambda>x.\<forall>(\<lambda>y.((G x) m\<and> (G y) m\<rightarrow> x m= y ))))"
 
+
+  theorem MC27: "\<forall>\<psi>. [L1] \<longrightarrow> [(P \<psi>)] \<longrightarrow> [\<forall>(\<lambda>x. (cCN (\<psi> x)))]"
+  nitpick [user_axioms]
+  oops  
+
+  theorem MC28: "\<forall>\<psi>. (sym \<and> trans \<and> refl) \<longrightarrow> [L1] \<longrightarrow> [(P \<psi>)] \<longrightarrow> [\<forall>(\<lambda>x. (G x) m\<rightarrow> (cCN (\<psi> x)))]"
+  nitpick [user_axioms]
+  oops  
+
+  theorem MC28: "\<forall>\<psi>. (sym \<and> trans \<and> refl) \<longrightarrow> [L1] \<longrightarrow> [(P \<psi>)] \<longrightarrow> [\<forall>(\<lambda>x. (G x) m\<rightarrow> (cCN (\<psi> x)))]"
+  nitpick [user_axioms]
+  oops 
+
+  theorem MC28: "\<forall>\<psi>. (sym \<and> trans \<and> refl) \<longrightarrow> [L1] \<longrightarrow> [(P \<psi>)] \<longrightarrow> [\<forall>(\<lambda>x. (G x) m\<rightarrow> (cCN (\<psi> x)))]"
+  nitpick [user_axioms]
+  oops 
+
+  theorem MC28: "\<forall>\<psi>. (sym \<and> trans \<and> refl) \<longrightarrow> [L1] \<longrightarrow> [MT] \<longrightarrow> [\<forall>(\<lambda>x. ((G x) m\<and> (\<psi> x)) m\<rightarrow> (cCN (\<psi> x)))]"
+  nitpick [user_axioms]
+  oops 
 
 (*<*) 
 end
