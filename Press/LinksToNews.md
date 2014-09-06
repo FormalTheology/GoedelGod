@@ -246,6 +246,13 @@ Greece
 [BIO Magazine](http://www.biomagazine.gr/index.php/site/article/6/42/BIO%20Ethics/Scientists-Prove-God-Exists-An-Austrian-Math-Model-A-Macbook-And-Now-Artificial-Intelligence)
 
 
+Schweiz
+-------
+[Blick am Abend](http://www.skeptiker.ch/wp-content/uploads/2013/09/Blick-am-Abend-Gottesbeweis.jpg)
+
+[Skeptiker](http://www.skeptiker.ch/gott-am-computer-bewiesen/)
+
+
 International
 -------------
 
