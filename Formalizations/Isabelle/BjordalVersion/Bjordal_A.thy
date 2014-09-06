@@ -92,6 +92,34 @@ text {* For proving D1 we need reflexivity . *}
  (* sledgehammer [provers = remote_leo2 remote_satallax] *)
  by (metis refl P_def)
 
+
+
+  abbreviation f_collapse_contingent_to_necessary :: "\<sigma> \<Rightarrow> \<sigma>" ("cCN")
+         where "cCN \<Phi> \<equiv> \<Phi> m\<rightarrow> (\<box> \<Phi>)"
+
+  abbreviation f_collapse_possible_to_necessary :: "\<sigma> \<Rightarrow> \<sigma>" ("cPN") 
+         where "cPN \<Phi> \<equiv> (\<diamond> \<Phi>) m\<rightarrow> (\<box> \<Phi>)" 
+
+  abbreviation f_collapse :: "\<sigma> \<Rightarrow> \<sigma>" ("c") 
+         where "c \<Phi> \<equiv> (\<Phi> m\<equiv> (\<box> \<Phi>)) m\<and> ((\<box> \<Phi>) m\<equiv> (\<diamond> \<Phi>)) "
+
+  abbreviation collapseCN  :: "\<sigma>" ("collapseCN") where "collapseCN \<equiv> \<forall>(\<lambda>\<Phi>. (cCN \<Phi>))"
+  abbreviation collapsePN :: "\<sigma>" ("collapsePN") where "collapsePN \<equiv> \<forall>(\<lambda>\<Phi>. (cPN \<Phi>))"
+  abbreviation collapse :: "\<sigma>" ("collapse") where "collapse \<equiv> \<forall>(\<lambda>\<Phi>. (c \<Phi>))"
+
+  lemma MC1: "[\<forall>(\<lambda>\<phi>.\<forall>(\<lambda>x.(((P \<phi>) m\<and> (G x) ) m\<rightarrow> ((\<phi> x) m\<rightarrow> (\<box> (\<phi> x))))))]"
+  nitpick [user_axioms]
+  oops
+ 
+  lemma MC2: "[\<forall>(\<lambda>\<phi>.\<forall>(\<lambda>x.((G x) m\<rightarrow> ((\<phi> x) m\<rightarrow> (\<box> (\<phi> x))))))]"
+  nitpick [user_axioms]
+  oops
+
+  lemma MC3: "[\<forall>(\<lambda>\<phi>.\<forall>(\<lambda>x.((P \<phi>) m\<rightarrow> ((\<phi> x) m\<rightarrow> (\<box> (\<phi> x))))))]"
+  nitpick [user_axioms]
+  oops
+
+
 (*<*) 
 end
 (*>*) 
