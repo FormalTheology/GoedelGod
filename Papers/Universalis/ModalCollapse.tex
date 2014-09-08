@@ -191,9 +191,28 @@ proposing solutions for the modal collapse.
 The goal of this short note is merely to remark that the modal collapse is a collapse of the modal square of opposition.
 
 
-\section{The Collapse of the Modal Square}
+\section{A Collapse of the Modal Square}
 
-A crucial step of the ontological argument is the claim that if God's existence is possible, then it is necessary. This is Lemma L2 in G\"odel's proof. In the modal square of opposition (Fig. \ref{ToDo}), this is an unusual situation in which the \textbf{I} corner implies and entails the \textbf{A} corner, for the particular case when $\phi$ is $\exq x G(x)$. G\"odel's proof shows that his axioms are strong enough to invert the direction of entailment for the particular $\phi$ at issue. The question is whether the axioms are then not too strong, also allowing the inverted entailment for arbitrary $\phi$. That is essentially the question asked by Sobel \cite{Sobel1987}; and his proof of the modal collapse (MC) answers it affirmatively. The modal collapse is a collapse of the modal square: it shows that, assuming G\"odel's axioms, the subcontraries entail the contraries.
+A crucial step of most ontological arguments is the claim that 
+if God's existence is possible, then it is necessary. 
+This is Lemma L2 in G\"odel's proof. 
+In the modal square of opposition (Fig. \ref{ToDo}), 
+this is an unusual situation in which the \textbf{I} corner 
+must imply and entail the \textbf{A} corner, 
+in the particular case when $\phi$ is $\exq x G(x)$. 
+G\"odel's proof shows that his axioms are strong enough 
+to invert the direction of entailment for the sentence at issue. 
+The question, however, is whether the axioms are not too strong, 
+also allowing the inverted entailment for arbitrary $\phi$. 
+That is essentially the question asked by Sobel \cite{Sobel1987}; 
+and his proof of the modal collapse (MC) provides an affirmative 
+answer. It is possible to show that this form of the modal 
+collapse entails (in modal logic K) a collapse of the modal 
+square (MC'): the subcontraries entail (and even imply) the 
+contraries. Furthermore, in any modal logic where where the 
+axiom T holds (i.e. the accessibility relation is reflexive), 
+a total collapse of the modalities (MC'') occurs. 
+
 
 ToDo: include figure of Modal Square of Opposition.
 
@@ -207,7 +226,13 @@ ToDo: include figure of Modal Square of Opposition.
   $$\hol{\allq \phi [\phi \imp \nec \phi]}$$ 
 \item[MC'] Everything that is possible is necessary:
   $$\hol{\allq \phi [\pos \phi \imp \nec \phi]}$$ 
-\item[MC''] Modalities collapse:
+\item[T] Everything that is necessary is the case:
+  $$\hol{\allq \phi [\nec \phi \imp \phi]}$$ 
+\item[EI] (Modal Existential Import):
+  $$\hol{\pos \top}$$ 
+\item[AI] Everything that is necessary is possible:
+  $$\hol{\allq \phi [\nec \phi \imp \pos \phi]}$$ 
+\item[MC''] Modalities collapse completely:
   $$\hol{\allq \phi [\phi \biimp \pos \phi \biimp \nec \phi]}$$
 \end{itemize}
 \end{minipage}
