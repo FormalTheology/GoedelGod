@@ -188,7 +188,7 @@ everything that is the case is so necessarily.
 There has been an impressive body of recent and ongoing
 work (cf.~\cite{sobel2004logic,Fitting,anderson90:_some_emend_of_goedel_ontol_proof,AndersonGettings,ToDo:FrodeAndHajek,ContemporaryBibliography} and the references therein)
 proposing solutions for the modal collapse. 
-The goal of this short note is merely to remark that the modal collapse is a collapse of the modal square of opposition.
+The goal of this short note is to discuss the modal collapse from the point of view of the modal square of opposition.
 
 
 \section{A Collapse of the Modal Square}
@@ -196,7 +196,7 @@ The goal of this short note is merely to remark that the modal collapse is a col
 A crucial step of most ontological arguments is the claim that 
 if God's existence is possible, then it is necessary. 
 This is Lemma L2 in G\"odel's proof. 
-In the modal square of opposition (Fig. \ref{ToDo}), 
+In the modal square of opposition (Fig. \ref{fig:square}), 
 this is an unusual situation in which the \textbf{I} corner 
 must imply and entail the \textbf{A} corner, 
 in the particular case when $\phi$ is $\exq x G(x)$. 
@@ -208,10 +208,16 @@ That is essentially the question asked by Sobel \cite{Sobel1987};
 and his proof of the modal collapse (MC) provides an affirmative 
 answer. It is possible to show that this form of the modal 
 collapse entails (in modal logic K) a collapse of the modal 
-square (MC'): the subcontraries entail (and even imply) the 
-contraries. Furthermore, in any modal logic where where the 
-axiom T holds (i.e. the accessibility relation is reflexive), 
-a total collapse of the modalities (MC'') occurs. 
+square (MC'), causing the subcontraries to entail (and even imply) their respective contraries. Normally, as shown in Fig. \ref{fig:square} in the modal square of opposition, only the other direction of entailment holds: the contraries entail their subcontraries, assuming the \emph{modal existential import} ExImp.
+
+Furthermore, in any modal logic where the 
+axiom T holds (i.e. where the accessibility relation is reflexive), a total collapse of the modalities (MC'') occurs. In particular, under this stronger form of modal collapse, the contraries entail their subcontraries even without the existential import.
+
+\begin{figure}[t]
+\includegraphics[width=0.9\textwidth]{./SquarePics/ModalSquare.png}
+\caption{Modal Square of Opposition.}
+\label{fig:square}
+\end{figure}
 
 
 ToDo: include figure of Modal Square of Opposition.
@@ -228,7 +234,7 @@ ToDo: include figure of Modal Square of Opposition.
   $$\hol{\allq \phi [\pos \phi \imp \nec \phi]}$$ 
 \item[T] Everything that is necessary is the case:
   $$\hol{\allq \phi [\nec \phi \imp \phi]}$$ 
-\item[EI] (Modal Existential Import):
+\item[ExImp] (Modal Existential Import):
   $$\hol{\pos \top}$$ 
 \item[AI] Everything that is necessary is possible:
   $$\hol{\allq \phi [\nec \phi \imp \pos \phi]}$$ 
@@ -239,6 +245,38 @@ ToDo: include figure of Modal Square of Opposition.
 } \vskip-.5em
 \caption{Modal Collapse \cite{todo:Sobel1987,SobelBook}.\label{fig:collapse}} 
 \end{figure}
+
+\clearpage
+
+
+\begin{Huge}
+
+$$
+\nec \ \phi
+$$
+
+
+$$
+\pos \ \phi
+$$
+
+$$
+\neg \ \nec \ \phi
+$$
+
+$$
+\neg \ \pos \ \phi
+$$
+
+$$
+\pos \ \exists x \ G(x)
+$$
+
+$$
+\nec \ \exists x \ G(x)
+$$
+
+\end{Huge}
 
 \clearpage
 
