@@ -251,7 +251,7 @@ there are several variants (e.g. \cite{anderson,bjordal})
 that are known to be immune to the modal collapse. 
 This means there must be at least one proposition $\phi$ 
 such that $\phi \imp \nec \phi$ 
-(from now on abbreviated $\collapse{\phi}$) is not valid 
+(from now on abbreviated as $\collapse{\phi}$) is not valid 
 under the axioms and definitions used by the variant. 
 But if the variant is sufficiently similar to G\"odel's argument, 
 following the path deriving Lemmas \textbf{L1} and 
@@ -261,7 +261,8 @@ Therefore, one may wonder how strong is their immunity to
 the modal collapse: is there any other proposition $\phi$ 
 for which $\collapse{\phi}$ is also valid?
 
-For Anderson's emendation \cite{anderson}, for example, a form of the modal collapse (\textbf{A:MC}), restricted to positive properties applied to god-like beings, can be derived. The proof, under the modal logic \textbf{\emph{K}}, depends only on Anderson's alternative definition of god-like being (\textbf{A:D1}). This class of propositions for which the collapse occurs is tight: weaker restrictions (\textbf{A:MC1} and \textbf{A:MC2}), which could lead to larger classes, are counter-satisfiable.
+For Anderson's emendation \cite{anderson}, for example, a form of the modal collapse (\textbf{A:MC}), restricted to positive properties applied to god-like beings, can be derived. The proof, under the modal logic \textbf{\emph{K}}, depends only on Anderson's alternative definition of god-like being (\textbf{A:D1}). This class of propositions for which the collapse occurs is tight: weaker restrictions (\textbf{A:MC1} and \textbf{A:MC2}), which could lead to larger classes, are counter-satisfiable. These results hold under both constant and varying domain quantification, with possibilist and actualist quantifiers.
+
 
 \begin{figure}[t]
 \noindent \framebox[\columnwidth][r]{
@@ -337,11 +338,35 @@ Independently of the variant of the ontological argument under consideration, th
 
 \section{Final Remarks}
 
-All results announced in this note have been obtained experimentally using interactive and automated theorem provers and model finders \cite{ToDo:leo,sattalax,isabelle,coq,nitpick}. The source codes of the experiments, as well as the resulting proofs and counter-models, are available in \url{https://github.com/FormalTheology/GoedelGod/tree/master/Formalizations/Isabelle}.
+All results announced in this note have been obtained 
+experimentally using interactive and automated theorem provers 
+and model finders \cite{ToDo:leo,sattalax,isabelle,coq,nitpick}. 
+The source codes of the experiments, as well as the resulting 
+proofs and counter-models, are available in 
+\url{https://github.com/FormalTheology/GoedelGod/tree/master/Formalizations/Isabelle}.
 
-The technique enabling these experiments is the embedding of quantified modal logics into higher-order logics \cite{J23,B9,C36}, for which automated theorem provers exist. This technique has already been succesfully employed in the verification and reconstruction of G\"odel's proof \cite{todo:all our previous papers}, and a detailed mathematical description is available in \cite{todo:ECAI}.
+The technique enabling these experiments is the embedding of 
+quantified modal logics into higher-order logics 
+\cite{J23,B9,C36}, for which automated theorem provers exist. 
+This technique has already been successfully employed in the 
+verification and reconstruction of G\"odel's proof 
+\cite{todo:all our previous papers}, and a detailed 
+mathematical description is available in \cite{todo:ECAI}.
 
-The modal collapse is an interesting example of philosophical controversy and dispute, to which Leibniz's idea of a \emph{calculus ratiocinator} in the form of contemporary automated theorem provers can be applied. Current technology is increasingly ready to be embraced by those willing to practice computer-assisted theoretical philosophy \cite{oppenheimera11,rushby13}.
+The modal collapse is an interesting example of philosophical 
+controversy and dispute, to which we can apply Leibniz's idea 
+of a \emph{calculus ratiocinator} brought to reality in the 
+form of contemporary automated theorem provers. 
+A significant advantage provided by the use of computers is 
+that all conditions (e.g. modal logic, domain conditions, 
+semantics) under which the announced results hold must be 
+explicitly written in the source code. This reduces the need 
+for interpretation and the danger of misunderstandings. 
+Current technology is increasingly ready to be embraced by 
+those willing to practice computer-assisted theoretical 
+philosophy \cite{oppenheimera11,rushby13}.
+
+
 
 % Various slightly different versions of
 % axioms and definitions have been considered by G\"{o}del and by
@@ -361,84 +386,18 @@ The modal collapse is an interesting example of philosophical controversy and di
 
 % controversies, care with parameters
 
-% ToDo: Leibniz calculemus, Rushby, Zalta 
+
+\subsection*{Acknowledgment}
+
+We would like to thank Paul Weingartner, Andr\'{e} Fuhrmann and Melvin Fitting for several discussions about G\"odel's ontological argument.
+
+ToDo: who else?
+
+\subsection*{Note about authorship}
+
+Alphabetic order has been used for the authors' names. The extent and kind of contribution of each author cannot be inferred from the order.
 
 
-
-
-% \begin{defn}
-% This serves as environment for definitions. Note that the text
-% appears not in italics.
-% \end{defn}
-
-% \begin{equation}\label{testequation}
-% \text{This is a sample equation: } c^2=a^2+b^2
-% \end{equation}
-
-% \begin{thm}[Main Theorem]
-% In contrast to definitions, theorems appear typeset in italics as
-% it has become more or less standard in most textbooks and
-% monographs. Equations can be cited using the \verb+\eqref+ command which
-% automatically adds brackets: \verb+\eqref{testequation}+ results in \eqref{testequation}.
-% \end{thm}
-
-% \begin{proof}
-% A special environment is predefined: the \textit{proof} environment. Please use
-% \begin{verbatim}\begin{proof}\end{verbatim}
-% proof of the statement
-% \begin{verbatim}\end{proof}\end{verbatim}
-% for typesetting your proofs. The end-of-proof symbol $\Box$ will be added automatically.
-% \end{proof}
-
-% There are two known problems with the placement of the end-of-proof sign:
-
-% \begin{enumerate}
-%   \item if your proof ends with a\ \ s i n g l e\ \ displayed line, the end-of-proof sign would
-% be placed in the line below; if you want to avoid this, write your line in the form
-% \begin{verbatim}$$displayed math line \eqno\qedhere$$\end{verbatim}
-% which results in
-
-% \begin{proof}
-% $$displayed math line \eqno\qedhere$$
-% \end{proof}
-% \item if your proof ends with an aligned displayed environment, the command
-% \verb+\tag*{\qed}+ can be used to place the end-of-proof sign properly:
-% \begin{verbatim}
-% \begin{align*}
-% \alpha&=\beta+\gamma\\
-% &=\delta+\epsilon\tag*{\qed}
-% \end{align*}
-% \end{verbatim}
-% results in
-% \begin{align*}
-% \alpha&=\beta+\gamma\\
-% &=\delta+\epsilon\tag*{\qed}
-% \end{align*}
-% \end{enumerate}
-% Please try to avoid using the obsolete \verb+\eqnarray+ environment. This environment has several bugs
-% and has been replaced by the more flexible \AmS\ environments \verb+align, split, multline+.
-
-
-% \begin{rem}
-% Additional comments are being typeset without boldfaced entrance
-% word as they may be minor important.
-% \end{rem}
-
-% \begin{ex}
-% For some constructs, even no number is required.
-% \end{ex}
-
-% Displayed equations may be numbered like the following one:
-% \begin{equation}
-% \sqrt{1-\sin^2(x)}=|\cos(x)|.
-% \end{equation}
-
-
-
-% ------------------------------------------------------------------------
-
-% \subsection*{Acknowledgment}
-% Many thanks to ...
 
 \begin{thebibliography}{1}
 
