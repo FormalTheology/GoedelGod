@@ -127,36 +127,36 @@ Canterbury, Descartes and Leibniz. Kurt G{\"o}del studied and further improved t
 \noindent \framebox[\columnwidth][r]{
 \begin{minipage}{.94\columnwidth}\small
 \begin{itemize}
-\item[A1] Either a property or its negation is positive, but not
+\item[\textbf{A1}] Either a property or its negation is positive, but not
   both:
   $$\hol{\allq \varphi [P(\neg \varphi) \biimp \neg P(\varphi)]}$$ 
-\item[A2] A property necessarily implied by a
+\item[\textbf{A2}] A property necessarily implied by a
   positive property is positive:
   $$\hol{\allq \varphi \allq \psi [(P(\varphi) \wedge \nec \allq x [\varphi(x)
   \imp \psi(x)]) \imp P(\psi)]}$$
-\item[T1] Positive properties are possibly exemplified: 
+\item[\textbf{T1}] Positive properties are possibly exemplified: 
   $$\hol{\allq \varphi [P(\varphi) \imp \pos \exq x \varphi(x)]}$$ 
-\item[D1] A \emph{God-like} being possesses all positive properties: 
+\item[\textbf{D1}] A \emph{God-like} being possesses all positive properties: 
   $$\hol{G(x) \equiv \forall \varphi [P(\varphi) \imp \varphi(x)]}$$ 
-\item[A3]  The property of being God-like is positive: 
+\item[\textbf{A3}]  The property of being God-like is positive: 
   $$\hol{P(G)}$$
-\item[C\phantom{1}] Possibly, a God-like being exists: $$\hol{\pos \exq x G(x)}$$
-\item[A4]  Positive properties are necessarily positive: 
+\item[\textbf{C\phantom{1}}] Possibly, a God-like being exists: $$\hol{\pos \exq x G(x)}$$
+\item[\textbf{A4}]  Positive properties are necessarily positive: 
   $$\hol{\allq \varphi [P(\varphi) \imp \Box \; P(\varphi)]}$$ 
-\item[D2] An \emph{essence} of an individual is a property possessed by it and necessarily implying any of its properties: $$\hol{\ess{\varphi}{x} \equiv \varphi(x) \wedge \allq
+\item[\textbf{D2}] An \emph{essence} of an individual is a property possessed by it and necessarily implying any of its properties: $$\hol{\ess{\varphi}{x} \equiv \varphi(x) \wedge \allq
   \psi (\psi(x) \imp \nec \allq y (\varphi(y) \imp \psi(y)))}$$ 
-\item[T2]  Being God-like is an essence of any
+\item[\textbf{T2}]  Being God-like is an essence of any
   God-like being: $$\hol{\allq x [G(x) \imp \ess{G}{x}]}$$
-\item[D3] \emph{Necessary existence} of an individual is the necessary exemplification of all its essences: 
+\item[\textbf{D3}] \emph{Necessary existence} of an individual is the necessary exemplification of all its essences: 
   $$\hol{\NE(x) \equiv \allq \varphi [\ess{\varphi}{x} \imp \nec
   \exq y \varphi(y)]}$$
-\item[A5] Necessary existence is a positive property: $$\hol{P(\NE)}$$ 
-\item[L1] If a god-like being exists, then necessarily a god-like being exists: 
+\item[\textbf{A5}] Necessary existence is a positive property: $$\hol{P(\NE)}$$ 
+\item[\textbf{L1}] If a god-like being exists, then necessarily a god-like being exists: 
   $$\hol{\exq x G(x) \imp \nec \exq y G(y)}$$
-\item[L2] If possibly a god-like being exists, then necessarily a god-like being exists: 
+\item[\textbf{L2}] If possibly a god-like being exists, then necessarily a god-like being exists: 
   $$\hol{\pos \exq x G(x) \imp \nec \exq y G(y)} $$
 %
-\item[T3] Necessarily, a God-like being exists: $$\hol{\nec \exq x G(x)}$$ 
+\item[\textbf{T3}] Necessarily, a God-like being exists: $$\hol{\nec \exq x G(x)}$$ 
 \end{itemize}
 \end{minipage}
 } \vskip-.5em
@@ -195,7 +195,7 @@ The goal of this short note is to discuss the modal collapse from the point of v
 
 A crucial step of most ontological arguments is the claim that 
 if God's existence is possible, then it is necessary. 
-This is Lemma L2 in G\"odel's proof. 
+This is Lemma \textbf{L2} in G\"odel's proof. 
 In the modal square of opposition (Fig. \ref{fig:square}), 
 this is an unusual situation in which the \textbf{I} corner 
 must imply and entail the \textbf{A} corner, 
@@ -205,13 +205,13 @@ to invert the direction of entailment for the sentence at issue.
 The question, however, is whether the axioms are not too strong, 
 also allowing the inverted entailment for arbitrary $\phi$. 
 That is essentially the question asked by Sobel \cite{Sobel1987}; 
-and his proof of the modal collapse (MC) provides an affirmative 
+and his proof of the modal collapse (\textbf{MC}) provides an affirmative 
 answer. It is possible to show that this form of the modal 
-collapse entails (in modal logic K) a collapse of the modal 
-square (MC'), causing the subcontraries to entail (and even imply) their respective contraries. Normally, as shown in Fig. \ref{fig:square} in the modal square of opposition, only the other direction of entailment holds: the contraries entail their subcontraries, assuming the \emph{modal existential import} ExImp.
+collapse entails (in modal logic \textbf{\emph{K}}) a collapse of the modal 
+square (\textbf{MC'}), causing the subcontraries to entail (and even imply) their respective contraries. Normally, as shown in Fig. \ref{fig:square}, in the modal square of opposition only the other direction of entailment holds: the contraries entail their subcontraries, assuming the \emph{modal existential import} \textbf{ExImp}.
 
-Furthermore, in any modal logic where the 
-axiom T holds (i.e. where the accessibility relation is reflexive), a total collapse of the modalities (MC'') occurs. In particular, under this stronger form of modal collapse, the contraries entail their subcontraries even without the existential import.
+Moreover, in any modal logic where the 
+axiom \textbf{T} holds (i.e. where the accessibility relation is reflexive), a total collapse of the modalities (\textbf{MC''}) occurs. Interestingly, under this stronger form of modal collapse, the contraries entail their subcontraries even without the existential import.
 
 \begin{figure}[t]
 \includegraphics[width=0.9\textwidth]{./SquarePics/ModalSquare.png}
@@ -220,63 +220,36 @@ axiom T holds (i.e. where the accessibility relation is reflexive), a total coll
 \end{figure}
 
 
-ToDo: include figure of Modal Square of Opposition.
-
-
 
 \begin{figure}[t]
 \noindent \framebox[\columnwidth][r]{
 \begin{minipage}{.94\columnwidth}\small
 \begin{itemize}
-\item[MC] Everything that is the case is so necessarily:
+\item[\textbf{MC}] Everything that is the case is so necessarily:
   $$\hol{\allq \phi [\phi \imp \nec \phi]}$$ 
-\item[MC'] Everything that is possible is necessary:
+\item[\textbf{MC'}] Everything that is possible is necessary:
   $$\hol{\allq \phi [\pos \phi \imp \nec \phi]}$$ 
-\item[T] Everything that is necessary is the case:
+\item[\textbf{T}] Everything that is necessary is the case:
   $$\hol{\allq \phi [\nec \phi \imp \phi]}$$ 
-\item[ExImp] (Modal Existential Import):
+\item[\textbf{ExImp}] (Modal Existential Import):
   $$\hol{\pos \top}$$ 
-\item[AI] Everything that is necessary is possible:
+\item[\textbf{AI}] Everything that is necessary is possible:
   $$\hol{\allq \phi [\nec \phi \imp \pos \phi]}$$ 
-\item[MC''] Modalities collapse completely:
+\item[\textbf{MC''}] Modalities collapse completely:
   $$\hol{\allq \phi [\phi \biimp \pos \phi \biimp \nec \phi]}$$
 \end{itemize}
 \end{minipage}
 } \vskip-.5em
-\caption{Modal Collapse \cite{todo:Sobel1987,SobelBook}.\label{fig:collapse}} 
+\caption{Modal Collapse}
+\label{fig:collapse} 
 \end{figure}
 
-\clearpage
+\newcommand{\collapse}[1]{\mathit{collapse}(#1)}
 
+The 
 
-\begin{Huge}
+Let $collapse{\phi} \equiv \phi \imp \nec \phi$. It is known that  Variants of the ontological argument
 
-$$
-\nec \ \phi
-$$
-
-
-$$
-\pos \ \phi
-$$
-
-$$
-\neg \ \nec \ \phi
-$$
-
-$$
-\neg \ \pos \ \phi
-$$
-
-$$
-\pos \ \exists x \ G(x)
-$$
-
-$$
-\nec \ \exists x \ G(x)
-$$
-
-\end{Huge}
 
 \clearpage
 
