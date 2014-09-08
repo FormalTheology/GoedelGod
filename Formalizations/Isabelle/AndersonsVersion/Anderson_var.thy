@@ -125,7 +125,29 @@ section {* Immunity to Modal Collapse *}
   nitpick [user_axioms]
   oops
 
+  abbreviation f_collapse_contingent_to_necessary :: "\<sigma> \<Rightarrow> \<sigma>" ("cCN")
+         where "cCN \<Phi> \<equiv> \<Phi> m\<rightarrow> (\<box> \<Phi>)"
 
+  abbreviation f_collapse_possible_to_necessary :: "\<sigma> \<Rightarrow> \<sigma>" ("cPN") 
+         where "cPN \<Phi> \<equiv> (\<diamond> \<Phi>) m\<rightarrow> (\<box> \<Phi>)" 
+
+  abbreviation f_collapse :: "\<sigma> \<Rightarrow> \<sigma>" ("c") 
+         where "c \<Phi> \<equiv> (\<Phi> m\<equiv> (\<box> \<Phi>)) m\<and> ((\<box> \<Phi>) m\<equiv> (\<diamond> \<Phi>)) "
+
+  abbreviation collapseCN  :: "\<sigma>" ("collapseCN") where "collapseCN \<equiv> \<forall>(\<lambda>\<Phi>. (cCN \<Phi>))"
+  abbreviation collapsePN :: "\<sigma>" ("collapsePN") where "collapsePN \<equiv> \<forall>(\<lambda>\<Phi>. (cPN \<Phi>))"
+  abbreviation collapse :: "\<sigma>" ("collapse") where "collapse \<equiv> \<forall>(\<lambda>\<Phi>. (c \<Phi>))"
+
+  lemma MC1: "[\<forall>(\<lambda>\<phi>.\<forall>e(\<lambda>x.(((P \<phi>) m\<and> (G x) ) m\<rightarrow> ((\<phi> x) m\<rightarrow> (\<box> (\<phi> x))))))]"
+  by (metis G_def)
+ 
+  lemma MC2: "[\<forall>(\<lambda>\<phi>.\<forall>e(\<lambda>x.((G x) m\<rightarrow> ((\<phi> x) m\<rightarrow> (\<box> (\<phi> x))))))]"
+  nitpick [user_axioms]
+  oops
+
+  lemma MC3: "[\<forall>(\<lambda>\<phi>.\<forall>e(\<lambda>x.((P \<phi>) m\<rightarrow> ((\<phi> x) m\<rightarrow> (\<box> (\<phi> x))))))]"
+  nitpick [user_axioms]
+  oops
 
 
 section {* Fuhrmann's Alternative Definition of Essence *}
