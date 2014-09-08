@@ -226,17 +226,17 @@ axiom \textbf{T} holds (i.e. where the accessibility relation is reflexive), a t
 \begin{minipage}{.94\columnwidth}\small
 \begin{itemize}
 \item[\textbf{MC}] Everything that is the case is so necessarily:
-  $$\hol{\allq \phi [\phi \imp \nec \phi]}$$ 
+  $\hol{\allq \phi [\phi \imp \nec \phi]}$ \\
 \item[\textbf{MC'}] Everything that is possible is necessary:
-  $$\hol{\allq \phi [\pos \phi \imp \nec \phi]}$$ 
+  $\hol{\allq \phi [\pos \phi \imp \nec \phi]}$  \\
 \item[\textbf{T}] Everything that is necessary is the case:
-  $$\hol{\allq \phi [\nec \phi \imp \phi]}$$ 
+  $\hol{\allq \phi [\nec \phi \imp \phi]}$ \\
 \item[\textbf{ExImp}] (Modal Existential Import):
-  $$\hol{\pos \top}$$ 
+  $\hol{\pos \top}$ \\
 \item[\textbf{AI}] Everything that is necessary is possible:
-  $$\hol{\allq \phi [\nec \phi \imp \pos \phi]}$$ 
+  $\hol{\allq \phi [\nec \phi \imp \pos \phi]}$ \\
 \item[\textbf{MC''}] Modalities collapse completely:
-  $$\hol{\allq \phi [\phi \biimp \pos \phi \biimp \nec \phi]}$$
+  $\hol{\allq \phi [\phi \biimp \pos \phi \biimp \nec \phi]}$
 \end{itemize}
 \end{minipage}
 } \vskip-.5em
@@ -246,16 +246,98 @@ axiom \textbf{T} holds (i.e. where the accessibility relation is reflexive), a t
 
 \newcommand{\collapse}[1]{\mathit{collapse}(#1)}
 
-The 
+Although G\"odel's axioms lead to modal collapse, 
+there are several variants (e.g. \cite{anderson,bjordal}) 
+that are known to be immune to the modal collapse. 
+This means there must be at least one proposition $\phi$ 
+such that $\phi \imp \nec \phi$ 
+(from now on abbreviated $\collapse{\phi}$) is not valid 
+under the axioms and definitions used by the variant. 
+But if the variant is sufficiently similar to G\"odel's argument, 
+following the path deriving Lemmas \textbf{L1} and 
+\textbf{L2}, then 
+$\collapse{\exq x G(x)}$ must be valid. 
+Therefore, one may wonder how strong is their immunity to 
+the modal collapse: is there any other proposition $\phi$ 
+for which $\collapse{\phi}$ is also valid?
 
-Let $collapse{\phi} \equiv \phi \imp \nec \phi$. It is known that  Variants of the ontological argument
+For Anderson's emendation \cite{anderson}, for example, a form of the modal collapse (\textbf{A:MC}), restricted to positive properties applied to god-like beings, can be derived. The proof, under the modal logic \textbf{\emph{K}}, depends only on Anderson's alternative definition of god-like being (\textbf{A:D1}). This class of propositions for which the collapse occurs is tight: weaker restrictions (\textbf{A:MC1} and \textbf{A:MC2}), which could lead to larger classes, are counter-satisfiable.
+
+\begin{figure}[t]
+\noindent \framebox[\columnwidth][r]{
+\begin{minipage}{.94\columnwidth}\small
+\begin{itemize}
+% \item[A:A1] If a property is positive, its negation is not positive:
+%   $$\hol{\allq \varphi [P(\varphi) \imp \neg P(\neg \varphi)]}$$ 
+% \item[A2] A property necessarily implied by a
+%   positive property is positive:
+%   $$\hol{\allq \varphi \allq \psi [(P(\varphi) \wedge \nec \allq x [\varphi(x)
+%   \imp \psi(x)]) \imp P(\psi)]}$$
+% \item[T1] Positive properties are possibly exemplified: 
+%   $$\hol{\allq \varphi [P(\varphi) \imp \pos \exq x \varphi(x)]}$$ 
+\item[\textbf{A:D1}] A \emph{God-like} being necessarily possesses those and only those properties that are positive: 
+  $$\hol{G_A(x) \equiv \forall \varphi [P(\varphi) \biimp \nec \varphi(x)]}$$ 
+\item[\textbf{A:MC}] The modal collapse happens for any positive properties applied to any god-like being:
+  $$
+  \hol{\allq \varphi \allq x [(P(\varphi) \wedge G_A(x)) \imp \collapse{\varphi(x)}]}
+  $$
+\item[\textbf{A:MC1}] The modal collapse does \emph{not} happen for positive properties applied to arbitrary individuals (\emph{counter-satisfiable}):
+  $$
+  \hol{\allq \varphi \allq x [P(\varphi) \imp \collapse{\varphi(x)}]}
+  $$
+\item[\textbf{A:MC2}] The modal collapse does \emph{not} happen for an arbitrary properties applied to a god-like being (\emph{counter-satisfiable}):
+  $$
+  \hol{\allq \varphi \allq x [G_A(x) \imp \collapse{\varphi(x)}]}
+  $$
+% \item[A3']  The property of being God-like is positive: 
+%   $$\hol{P(G_A)}$$
+% \item[C\phantom{1}] Possibly, a God-like being exists: $$\hol{\pos \exq x G(x)}$$
+% \item[A4]  Positive properties are necessarily positive: 
+%   $$\hol{\allq \varphi [P(\varphi) \imp \Box \; P(\varphi)]}$$ 
+% \item[A:D2] An \emph{essence} of an individual is a property that necessarily implies those and only those properties that the individual has necessarily: $$\hol{\essA{\varphi}{x} \equiv \allq
+%   \psi [\nec \psi(x) \biimp \nec \allq y (\varphi(y) \imp \psi(y))]}$$ 
+% \item[T2']  Being God-like is an essence of any
+%   God-like being: $$\hol{\allq x [G_A(x) \imp \essA{G_A}{x}]}$$
+% \item[D3'] \emph{Necessary existence} of an individual is the necessary exemplification of all its essences: 
+%   $$\hol{\NE_A(x) \equiv \allq \varphi [\essA{\varphi}{x} \imp \nec
+%   \exq y \varphi(y)]}$$
+% \item[A5'] Necessary existence is a positive property: $$\hol{P(\NE_A)}$$ 
+% \item[L1'] If a god-like being exists, then necessarily a god-like being exists: 
+%   $$\hol{\exq x G_A(x) \imp \nec \exq y G_A(y)}$$
+% \item[L2'] If possibly a god-like being exists, then necessarily a god-like being exists: 
+%   $$\hol{\pos \exq x G_A(x) \imp \nec \exq y G_A(y)} $$
+% %
+% \item[T3'] Necessarily, a God-like being exists: $$\hol{\nec \exq x G_A(x)}$$ 
+\end{itemize}
+\end{minipage}
+} \vskip-.5em
+\caption{Restricted Collapse for Anderson's Emendation \cite{ToDo:Anderson}}
+\label{fig:anderson}
+\end{figure}
+
+
+ToDo: write a similar paragraph about Bjordal's alternative??
+
+
+Independently of the variant of the ontological argument under consideration, the following can be said about the class of collapsing propositions:
+\begin{enumerate}
+\item Valid propositions are collapsing: if $\phi$ is valid, then $\collapse{\phi}$ is valid.
+%
+\item The class of collapsing propositions is closed under logical equivalence: if $\collapse{\phi}$ is valid and $\phi \biimp \phi'$ is valid, then $\collapse{\phi'}$ is valid.
+%
+\item The class of collapsing propositions is not generally closed under equi-validity: even if $\collapse{\phi}$ is valid and $\phi$ and $\phi'$ are equi-valid, $\collapse{\phi'}$ may not be valid.
+%
+\item The class of collapsing propositions is not generally closed under implication: even if $\collapse{\phi}$ is valid and $\phi \imp \phi'$ is valid, $\collapse{\phi'}$ may not be valid.
+\end{enumerate}
 
 
 \clearpage
 
 
 
-\section{Conclusions}
+\section{Final Remarks}
+
+All results announced in this note have been obtained experimentally\footnote{The source code of the experiments are available in \url{https://github.com/FormalTheology/GoedelGod/tree/master/Formalizations/Isabelle}.} using interactive and automated theorem provers and model finders \cite{ToDo:leo,sattalax,isabelle,coq,nitpick}. 
 
 
 Various slightly different versions of
@@ -278,7 +360,7 @@ controversies, care with parameters
 
 ToDo: Leibniz calculemus, Rushby, Zalta \cite{oppenheimera11,rushby13}
 
-The technique enabling this analysis is the embedding of quantified modal logics into higher-order logics \cite{J23,B9,C36}, for which automated theorem provers exist \cite{ToDo:leo,sattalax,isabelle,coq}. This technique has already been succesfully employed in the verification and reconstruction of G\"odel's proof \cite{todo:all our previous papers}, and a detailed mathematical description of the technique is available in \cite{todo:ECAI}.
+The technique enabling this analysis is the embedding of quantified modal logics into higher-order logics \cite{J23,B9,C36}, for which automated theorem provers exist . This technique has already been succesfully employed in the verification and reconstruction of G\"odel's proof \cite{todo:all our previous papers}, and a detailed mathematical description of the technique is available in \cite{todo:ECAI}.
 
 
 % \begin{defn}
