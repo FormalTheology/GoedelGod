@@ -37,6 +37,9 @@ abbreviations. *}
   abbreviation mimplies :: "\<sigma> \<Rightarrow> \<sigma> \<Rightarrow> \<sigma>" (infixr "m\<rightarrow>" 49) where "\<phi> m\<rightarrow> \<psi> \<equiv> (\<lambda>w. \<phi> w \<longrightarrow> \<psi> w)"  
   abbreviation mbox :: "\<sigma> \<Rightarrow> \<sigma>" ("\<box>") where "\<box> \<phi> \<equiv> (\<lambda>w. \<forall>v.  w r v \<longrightarrow> \<phi> v)"
   abbreviation mdia :: "\<sigma> \<Rightarrow> \<sigma>" ("\<diamond>") where "\<diamond> \<phi> \<equiv> (\<lambda>w. \<exists>v. w r v \<and> \<phi> v)" 
+  abbreviation mforall :: "('a \<Rightarrow> \<sigma>) \<Rightarrow> \<sigma>" ("\<forall>") where "\<forall> \<Phi> \<equiv> (\<lambda>w. \<forall>x. \<Phi> x w)"   
+  abbreviation mexists :: "('a \<Rightarrow> \<sigma>) \<Rightarrow> \<sigma>" ("\<exists>") where "\<exists> \<Phi> \<equiv> (\<lambda>w. \<exists>x. \<Phi> x w)"
+
 
   abbreviation existential_import :: "\<sigma>" ("ExImport") where "ExImport \<equiv> \<diamond> (\<lambda>w. True)" 
 
@@ -59,6 +62,14 @@ section {* Modal Square *}
 
   theorem E_implies_O: "\<forall>\<Phi>. [(m\<not> (\<diamond> \<Phi>)) m\<rightarrow> (m\<not> (\<box> \<Phi> m\<and> ExImport))]"
   by metis
+
+section {* Misc *}
+
+  abbreviation T :: "\<sigma>" ("T") where "T \<equiv> \<forall>(\<lambda>\<Phi>. ((\<box> \<Phi>) m\<rightarrow> \<Phi>))" 
+
+  theorem ExImport_entails_T: "[ExImport] \<longrightarrow> [T]"
+  nitpick
+  oops
 
 (*<*) 
 end
