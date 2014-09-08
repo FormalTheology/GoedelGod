@@ -131,7 +131,7 @@ text {* It suffices to require reflexivity of the accesibility relation,
   (* apparently Leo2 and Satallax succeed, but metis fails. *)
   theorem with_refl_collapseCN_entails_collapse : 
           "refl \<longrightarrow>  ([collapseCN] \<longrightarrow> [collapse])"
-  sledgehammer [provers = remote_leo2 remote_satallax, verbose]
+  (* sledgehammer [provers = remote_leo2 remote_satallax, verbose] *)
   (* by metis *)
   oops
   
@@ -147,14 +147,14 @@ text {* Moreover, with reflexivity,
   (* Satallax succeeds, but now Leo2 times out. And Metis still fails. *)
   theorem with_refl_collapseCN_implies_collapse : 
           "refl \<longrightarrow>  ([collapseCN m\<rightarrow> collapse])"
-  sledgehammer [provers = remote_leo2 remote_satallax, verbose, timeout = 30]
+  (* sledgehammer [provers = remote_leo2 remote_satallax, verbose, timeout = 30] *)
   (* by metis *)
   oops
 
   (* now even with the help of symmetry Metis fails. Leo2 still times out. Satallax succeeds. *)
   theorem with_sym_refl_collapseCN_implies_collapse : 
           "(sym \<and> refl) \<longrightarrow> ([collapseCN m\<rightarrow> collapse])"
-  sledgehammer [provers = remote_leo2 remote_satallax]
+  (* sledgehammer [provers = remote_leo2 remote_satallax] *)
   (* by metis *)
   oops
 
@@ -178,6 +178,10 @@ text {* An interesting question:
 
   theorem MC4: "\<forall>\<Phi>.\<forall>\<Psi>. [cCN \<Phi>] \<longrightarrow> [\<Phi> m\<equiv> \<Psi>] \<longrightarrow> [cCN \<Psi>]"
   by metis
+
+  theorem MC4b: "\<forall>\<Phi>.\<forall>\<Psi>. [cCN \<Phi>] \<longrightarrow> ([\<Phi>] \<longleftrightarrow> [\<Psi>]) \<longrightarrow> [cCN \<Psi>]"
+  nitpick
+  oops
 
   theorem MC5: "\<forall>\<Phi>.\<forall>\<Psi>. [cPN \<Phi>] \<longrightarrow> [\<Phi> m\<rightarrow> \<Psi>] \<longrightarrow> [cPN \<Psi>]"
   nitpick [user_axioms]
