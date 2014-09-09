@@ -5,6 +5,8 @@
 
 \documentclass{birkjour}
 
+\usepackage[utf8]{inputenc}
+
 \usepackage{url}
 \usepackage{commands}
 %
@@ -121,7 +123,7 @@ modal square of opposition.
 Attempts to prove the
 existence (or non-existence) of God by means of abstract, ontological
 arguments are an old tradition in western philosophy, with contributions by several prominent philosophers, including St. Anselm of
-Canterbury, Descartes and Leibniz. Kurt G{\"o}del studied and further improved this argument, bringing it to a mathematically more precise form, as a chain of axioms, lemmas and theorems in a modal logic \cite{GoedelNotes,ScottNotes}, shown in Fig. \ref{fig:scott}.
+Canterbury, Descartes and Leibniz. Kurt G{\"o}del and Dana Scott studied and further improved this argument, bringing it to a mathematically more precise form, as a chain of axioms, lemmas and theorems in a second-order modal logic \cite{GoedelNotes,ScottNotes}, shown in Fig. \ref{fig:scott}.
 
 \begin{figure}[t]
 \noindent \framebox[\columnwidth][r]{
@@ -172,46 +174,66 @@ Canterbury, Descartes and Leibniz. Kurt G{\"o}del studied and further improved t
 
 
 G\"{o}del defines God as a being who possesses all \emph{positive}
-properties and states a few reasonable (but debatable) axioms
-that such properties should satisfy.  
-The overall idea of G{\"o}del's proof is in the tradition of Anselm's
-argument, who defined God as some entity of which nothing greater can be
-conceived. Anselm argued that existence in the actual world would
-make such an assumed being even greater; hence, by definition, God must
-exist. However, for Anselm existence was treated as a predicate and the possibility of God's existence was assumed as granted. These issues were criticized by Kant and Leibniz, respectively, and succesfully addressed by G\"odel. 
+properties and states a few reasonable (but debatable) axioms that
+such properties should satisfy.  The overall idea of G{\"o}del's proof
+is in the tradition of Anselm's argument, who defined God as some
+entity of which nothing greater can be conceived. Anselm argued that
+existence in the actual world would make such an assumed being even
+greater (more perfect); hence, by definition, God must exist. However,
+for Anselm existence was treated as a predicate and the possibility of
+God's existence was assumed as granted. These issues were criticized
+by Kant and Leibniz, respectively, and they were addressed in the work
+of G\"odel.\footnote{C.: I deleted "successfully", since I am still
+  not totally convinced yet about the existence as predicate issue in
+  G\"odel's work; I think we should not be conclusive at this point.}
 
-Nevertheless, G{\"o}del's work
-still leaves room for criticism. In particular, his axioms are so
-strong that they entail a \emph{modal collapse} 
-\cite{ToDo:sobel1987?,sobel2004logic}: 
-everything that is the case is so necessarily. 
-There has been an impressive body of recent and ongoing
-work (cf.~\cite{sobel2004logic,Fitting,anderson90:_some_emend_of_goedel_ontol_proof,AndersonGettings,ToDo:FrodeAndHajek,ContemporaryBibliography} and the references therein)
-proposing solutions for the modal collapse. 
-The goal of this short note is to discuss the modal collapse from the point of view of the modal square of opposition.
+Nevertheless, G{\"o}del's work still leaves room for criticism. In
+particular, his axioms are so strong that they entail a \emph{modal
+  collapse} \cite{Sobel1987,sobel2004logic}: everything that is the
+case is so necessarily.  There has been an impressive body of recent
+and ongoing work
+(cf.~\cite{sobel2004logic,Fitting,anderson90:_some_emend_of_goedel_ontol_proof,AndersonGettings,bjordal99,fuhrmann05:_exist_notwen,Hajek2002,Hajek2008,ContemporaryBibliography}
+and the references therein) proposing solutions for the modal
+collapse.  The goal of this contribution is to discuss the modal
+collapse from the point of view of the modal square of opposition.
 
 
 \section{A Collapse of the Modal Square}
 
-A crucial step of most ontological arguments is the claim that 
-if God's existence is possible, then it is necessary. 
-This is Lemma \textbf{L2} in G\"odel's proof. 
-In the modal square of opposition (Fig. \ref{fig:square}), 
-this is an unusual situation in which the \textbf{I} corner 
-must imply and entail the \textbf{A} corner, 
-in the particular case when $\phi$ is $\exq x G(x)$. 
-G\"odel's proof shows that his axioms are strong enough 
-to invert the direction of entailment for the sentence at issue. 
-The question, however, is whether the axioms are not too strong, 
-also allowing the inverted entailment for arbitrary $\phi$. 
-That is essentially the question asked by Sobel \cite{Sobel1987}; 
-and his proof of the modal collapse (\textbf{MC}) provides an affirmative 
-answer. It is possible to show that this form of the modal 
-collapse entails (in modal logic \textbf{\emph{K}}) a collapse of the modal 
-square (\textbf{MC'}), causing the subcontraries to entail (and even imply) their respective contraries. Normally, as shown in Fig. \ref{fig:square}, in the modal square of opposition only the other direction of entailment holds: the contraries entail their subcontraries, assuming the \emph{modal existential import} \textbf{ExImp}.
+A crucial step of most ontological arguments is the claim that if
+God's existence is possible, then it is necessary.  This is Lemma
+\textbf{L2} in G\"odel's proof.  In the modal square of opposition
+(Fig. \ref{fig:square}), this is an unusual situation in which the
+\textbf{I} corner must imply and entail the \textbf{A} corner, in the
+particular case when $\phi$ is $\exq x G(x)$.  G\"odel's proof shows
+that his axioms are indeed strong enough to invert the direction of
+entailment this choice of $\phi$.
+% for the sentence at issue.  
+This observation, however, immediately brings up the question whether
+the axioms are even strong enough to enable the inverted entailment
+for arbitrary sentences $\phi$.  That is essentially the question
+asked by Sobel \cite{Sobel1987}, and his proof of the modal collapse
+(\textbf{MC}, cf. Fig.~\ref{fig:collapse}) provides an affirmative answer. It is possible to show
+that this form of the modal collapse entails (in modal logic
+\textbf{\emph{K}}) a collapse of the modal square (\textbf{MC'}),
+causing the subcontraries to entail (and even imply) their respective
+contraries. Normally, as shown in Fig. \ref{fig:square}, in the modal
+square of opposition only the other direction of entailment holds: the
+contraries entail their subcontraries, assuming the \emph{modal
+  existential import} \textbf{ExImp}
+\cite{WhatToCiteHere}.\footnote{C.: We need a reference here; I am still
+  searching for good papers; this here is also interesting:
+  \url{http://www.tandfonline.com/doi/pdf/10.1080/01445340.2013.764962}}
 
-Moreover, in any modal logic where the 
-axiom \textbf{T} holds (i.e. where the accessibility relation is reflexive), a total collapse of the modalities (\textbf{MC''}) occurs. Interestingly, under this stronger form of modal collapse, the contraries entail their subcontraries even without the existential import.
+Moreover, in any modal logic where the axiom \textbf{T} holds
+(i.e. where the accessibility relation is reflexive), a total collapse
+of the modalities (\textbf{MC''}) occurs.\footnote{C.: I am a bit lost here. Do you want to
+  say that any logic that includes T strongly collapses? This would be 
+  odd. Where is the theorem in the Isabelle file(s) that proves this? Also: MC'' should
+  be stated more precisely, I mean like: $((\varphi \biimp \nec \varphi) \wedge (\nec \varphi
+  \biimp \pos \varphi))$.}  Interestingly, under this stronger form of modal
+  collapse, the contraries entail their subcontraries even without the
+  existential import.
 
 \begin{figure}[t]
 \includegraphics[width=0.9\textwidth]{./SquarePics/ModalSquare.png}
@@ -247,21 +269,21 @@ axiom \textbf{T} holds (i.e. where the accessibility relation is reflexive), a t
 \newcommand{\collapse}[1]{\mathit{collapse}(#1)}
 
 Although G\"odel's axioms lead to modal collapse, 
-there are several variants (e.g. \cite{anderson,bjordal}) 
-that are known to be immune to the modal collapse. 
+there are several variants (e.g. \cite{anderson90:_some_emend_of_goedel_ontol_proof,AndersonGettings,bjordal99}) 
+that are known to be immune to it. 
 This means there must be at least one proposition $\phi$ 
-such that $\phi \imp \nec \phi$ 
+such that the implication $\phi \imp \nec \phi$ 
 (from now on abbreviated as $\collapse{\phi}$) is not valid 
 under the axioms and definitions used by the variant. 
 But if the variant is sufficiently similar to G\"odel's argument, 
-following the path deriving Lemmas \textbf{L1} and 
+following the path deriving\footnote{C.: I don't know the phrase "path deriving", please check.} Lemmas \textbf{L1} and 
 \textbf{L2}, then 
 $\collapse{\exq x G(x)}$ must be valid. 
 Therefore, one may wonder how strong is their immunity to 
 the modal collapse: is there any other proposition $\phi$ 
 for which $\collapse{\phi}$ is also valid?
 
-For Anderson's emendation \cite{anderson}, for example, a form of the modal collapse (\textbf{A:MC}), restricted to positive properties applied to god-like beings, can be derived. The proof, under the modal logic \textbf{\emph{K}}, depends only on Anderson's alternative definition of god-like being (\textbf{A:D1}). This class of propositions for which the collapse occurs is tight: weaker restrictions (\textbf{A:MC1} and \textbf{A:MC2}), which could lead to larger classes, are counter-satisfiable. These results hold under both constant and varying domain quantification, with possibilist and actualist quantifiers.
+For Anderson's emendation \cite{anderson90:_some_emend_of_goedel_ontol_proof}, for example, a form of the modal collapse (\textbf{A:MC}), restricted to positive properties applied to god-like beings, can be derived. The proof, under the modal logic \textbf{\emph{K}}, depends only on Anderson's alternative definition of god-like being (\textbf{A:D1}). This class of propositions for which the collapse occurs is tight: weaker restrictions (\textbf{A:MC1} and \textbf{A:MC2}), which could lead to larger classes, are counter-satisfiable. These results hold under both constant and varying domain quantification, with possibilist and actualist quantifiers.
 
 
 \begin{figure}[t]
@@ -312,15 +334,17 @@ For Anderson's emendation \cite{anderson}, for example, a form of the modal coll
 \end{itemize}
 \end{minipage}
 } \vskip-.5em
-\caption{Restricted Collapse for Anderson's Emendation \cite{ToDo:Anderson}}
+\caption{Restricted Collapse for Anderson's Emendation \cite{anderson90:_some_emend_of_goedel_ontol_proof}}
 \label{fig:anderson}
 \end{figure}
 
 
-ToDo: write a similar paragraph about Bjordal's alternative??
+%ToDo: write a similar paragraph about Bjordal's alternative??
 
 
-Independently of the variant of the ontological argument under consideration, the following can be said about the class of collapsing propositions:
+Independently of the variant of the ontological argument under
+consideration, the following can be said about the class of collapsing
+propositions:
 \begin{enumerate}
 \item Valid propositions are collapsing: if $\phi$ is valid, then $\collapse{\phi}$ is valid.
 %
@@ -332,26 +356,30 @@ Independently of the variant of the ontological argument under consideration, th
 \end{enumerate}
 
 
-\clearpage
+%\clearpage
 
 
 
 \section{Final Remarks}
 
-All results announced in this note have been obtained 
-experimentally using interactive and automated theorem provers 
-and model finders \cite{ToDo:leo,sattalax,isabelle,coq,nitpick}. 
-The source codes of the experiments, as well as the resulting 
-proofs and counter-models, are available in 
-\url{https://github.com/FormalTheology/GoedelGod/tree/master/Formalizations/Isabelle}.
+All results announced in this note have been obtained experimentally
+using interactive and automated theorem provers and model finders
+\cite{LEO,Satallax,Isabelle,Coq,Nitpick}.  The source codes of the
+experiments, as well as the resulting proofs and counter-models, are
+available in
+\url{https://github.com/FormalTheology/GoedelGod/tree/master/Formalizations/Isabelle}.\footnote{Here
+  we should point to the exact files (and put them in a relatively
+  stable subdirectory?). We also should also use corresponding names in
+  these files, so that the reader easily finds the related 
+  parst. Right now this is still quite difficult.}
 
 The technique enabling these experiments is the embedding of 
 quantified modal logics into higher-order logics 
 \cite{J23,B9,C36}, for which automated theorem provers exist. 
 This technique has already been successfully employed in the 
 verification and reconstruction of G\"odel's proof 
-\cite{todo:all our previous papers}, and a detailed 
-mathematical description is available in \cite{todo:ECAI}.
+\cite{J28,J30,W50,J29}, and a detailed 
+mathematical description is available in \cite{C40}.
 
 The modal collapse is an interesting example of philosophical 
 controversy and dispute, to which we can apply Leibniz's idea 
@@ -360,11 +388,16 @@ form of contemporary automated theorem provers.
 A significant advantage provided by the use of computers is 
 that all conditions (e.g. modal logic, domain conditions, 
 semantics) under which the announced results hold must be 
-explicitly written in the source code. This reduces the need 
+explicitly specified in the source code. This reduces the need 
 for interpretation and the danger of misunderstandings. 
 Current technology is increasingly ready to be embraced by 
 those willing to practice computer-assisted theoretical 
 philosophy \cite{oppenheimera11,rushby13}.
+
+Ongoing and future work includes the study of modal collapse in
+further variants of the ontological argument, e.g.~\cite{bjordal99,fuhrmann05:_exist_notwen}.
+ 
+
 
 
 
@@ -395,164 +428,168 @@ ToDo: who else?
 
 \subsection*{Note about authorship}
 
-Alphabetic order has been used for the authors' names. The extent and kind of contribution of each author cannot be inferred from the order.
+Alphabetic order has been used for the authors' names. The extent and
+kind of contribution of each author cannot be inferred from the order.
+
+\bibliographystyle{plain}
+\bibliography{Bibliography}
 
 
+%\begin{thebibliography}{1}
 
-\begin{thebibliography}{1}
 
-\bibitem{Adams}
-R.M. Adams, `Introductory note to *1970', in {\em {Kurt G\"odel: Collected
-  Works Vol. 3: Unpubl. Essays and Letters}}, Oxford Univ. Press, (1995).
+% \bibitem{Adams}
+% R.M. Adams, `Introductory note to *1970', in {\em {Kurt G\"odel: Collected
+%   Works Vol. 3: Unpubl. Essays and Letters}}, Oxford Univ. Press, (1995).
 
-\bibitem{AndersonGettings}
-A.C. Anderson and M.~Gettings, `G\"odel ontological proof revisited', in {\em
-  {G\"odel'96: Logical Foundations of Mathematics, Computer Science, and
-  Physics: Lecture Notes in Logic 6}},  167--172, {Springer}, (1996).
+% \bibitem{AndersonGettings}
+% A.C. Anderson and M.~Gettings, `G\"odel ontological proof revisited', in {\em
+%   {G\"odel'96: Logical Foundations of Mathematics, Computer Science, and
+%   Physics: Lecture Notes in Logic 6}},  167--172, {Springer}, (1996).
 
-\bibitem{anderson90:_some_emend_of_goedel_ontol_proof}
-C.A. Anderson, `Some emendations of {G{\"o}del's} ontological proof', {\em
-  Faith and Philosophy}, {\bf 7}(3), (1990).
+% \bibitem{anderson90:_some_emend_of_goedel_ontol_proof}
+% C.A. Anderson, `Some emendations of {G{\"o}del's} ontological proof', {\em
+%   Faith and Philosophy}, {\bf 7}(3), (1990).
 
-\bibitem{Andrews:gmae72}
-P.B. Andrews, `General models and extensionality', {\em Journal of Symbolic
-  Logic}, {\bf 37}(2),  395--397, (1972).
+% \bibitem{Andrews:gmae72}
+% P.B. Andrews, `General models and extensionality', {\em Journal of Symbolic
+%   Logic}, {\bf 37}(2),  395--397, (1972).
 
-\bibitem{andrewsSEP}
-P.B. Andrews, `Church's type theory', in {\em The Stanford Encyclopedia of
-  Philosophy}, ed., E.N. Zalta, spring 2014 edn., (2014).
+% \bibitem{andrewsSEP}
+% P.B. Andrews, `Church's type theory', in {\em The Stanford Encyclopedia of
+%   Philosophy}, ed., E.N. Zalta, spring 2014 edn., (2014).
 
-\bibitem{C36}
-C.~Benzm{\"u}ller, `{HOL} based universal reasoning', in {\em Handbook of the
-  4th World Congress and School on Universal Logic}, ed., J.Y. Beziau~et al.,
-  pp. 232--233, Rio de Janeiro, Brazil, (2013).
+% \bibitem{C36}
+% C.~Benzm{\"u}ller, `{HOL} based universal reasoning', in {\em Handbook of the
+%   4th World Congress and School on Universal Logic}, ed., J.Y. Beziau~et al.,
+%   pp. 232--233, Rio de Janeiro, Brazil, (2013).
 
-\bibitem{B5}
-C.~Benzm{\"u}ller and D.~Miller, `Automation of higher-order logic', in {\em
-  Handbook of the History of Logic, Volume 9 --- Logic and Computation},
-  Elsevier, (2014).
-\newblock Forthcoming; preliminary version available at
-  {http://christoph-benzmueller.de/papers/B5.pdf}.
+% \bibitem{B5}
+% C.~Benzm{\"u}ller and D.~Miller, `Automation of higher-order logic', in {\em
+%   Handbook of the History of Logic, Volume 9 --- Logic and Computation},
+%   Elsevier, (2014).
+% \newblock Forthcoming; preliminary version available at
+%   {http://christoph-benzmueller.de/papers/B5.pdf}.
 
-\bibitem{C34}
-C.~Benzm{\"u}ller, J.~Otten, and Th. Raths, `Implementing and evaluating
-  provers for first-order modal logics', in {\em Proc. of the 20th European
-  Conference on Artificial Intelligence (ECAI)}, pp. 163--168, (2012).
+% \bibitem{C34}
+% C.~Benzm{\"u}ller, J.~Otten, and Th. Raths, `Implementing and evaluating
+%   provers for first-order modal logics', in {\em Proc. of the 20th European
+%   Conference on Artificial Intelligence (ECAI)}, pp. 163--168, (2012).
 
-\bibitem{B9}
-C.~Benzm{\"u}ller and L.C. Paulson, `Exploring properties of normal multimodal
-  logics in simple type theory with {LEO-II}', in {\em {Festschrift in Honor of
-  {Peter B. Andrews} on His 70th Birthday}}, ed., C.~Benzm{\"u}ller~et al.,
-  386--406, College Publications, (2008).
+% \bibitem{B9}
+% C.~Benzm{\"u}ller and L.C. Paulson, `Exploring properties of normal multimodal
+%   logics in simple type theory with {LEO-II}', in {\em {Festschrift in Honor of
+%   {Peter B. Andrews} on His 70th Birthday}}, ed., C.~Benzm{\"u}ller~et al.,
+%   386--406, College Publications, (2008).
 
-\bibitem{J23}
-C.~Benzm{\"u}ller and L.C. Paulson, `Quantified multimodal logics in simple
-  type theory', {\em Logica Universalis}, {\bf 7}(1),  7--20, (2013).
+% \bibitem{J23}
+% C.~Benzm{\"u}ller and L.C. Paulson, `Quantified multimodal logics in simple
+%   type theory', {\em Logica Universalis}, {\bf 7}(1),  7--20, (2013).
 
-\bibitem{LEO-II}
-C.~Benzm{\"u}ller, F.~Theiss, L.~Paulson, and A.~Fietzke, `{LEO-II} - a
-  cooperative automatic theorem prover for higher-order logic', in {\em
-  Proc.~of IJCAR 2008}, number 5195 in LNAI, pp. 162--170. Springer, (2008).
+% \bibitem{LEO-II}
+% C.~Benzm{\"u}ller, F.~Theiss, L.~Paulson, and A.~Fietzke, `{LEO-II} - a
+%   cooperative automatic theorem prover for higher-order logic', in {\em
+%   Proc.~of IJCAR 2008}, number 5195 in LNAI, pp. 162--170. Springer, (2008).
 
-\bibitem{J30}
-C.~Benzm{\"u}ller and B.~Woltzenlogel-Paleo, `Formalization, mechanization and
-  automation of {G{\"o}del's} proof of {God's} existence', {\em
-  arXiv:1308.4526}, (2013).
+% \bibitem{J30}
+% C.~Benzm{\"u}ller and B.~Woltzenlogel-Paleo, `Formalization, mechanization and
+%   automation of {G{\"o}del's} proof of {God's} existence', {\em
+%   arXiv:1308.4526}, (2013).
 
-\bibitem{J28}
-C.~Benzm\"uller and B.~Woltzenlogel-Paleo, `{G{\"o}del's God in Isabelle/HOL}',
-  {\em Archive of Formal Proofs}, (2013).
+% \bibitem{J28}
+% C.~Benzm\"uller and B.~Woltzenlogel-Paleo, `{G{\"o}del's God in Isabelle/HOL}',
+%   {\em Archive of Formal Proofs}, (2013).
 
-\bibitem{W50}
-C.~Benzm\"uller and B.~Woltzenlogel-Paleo, `G\"odel's {God} on the computer',
-  in {\em Proceedings of the 10th International Workshop on the Implementation
-  of Logics}, EPiC Series. EasyChair, (2013).
-\newblock Invited abstract.
+% \bibitem{W50}
+% C.~Benzm\"uller and B.~Woltzenlogel-Paleo, `G\"odel's {God} on the computer',
+%   in {\em Proceedings of the 10th International Workshop on the Implementation
+%   of Logics}, EPiC Series. EasyChair, (2013).
+% \newblock Invited abstract.
 
-\bibitem{Coq}
-Y.~Bertot and P.~Casteran, {\em {Interactive Theorem Proving and Program
-  Development}}, Springer, 2004.
+% \bibitem{Coq}
+% Y.~Bertot and P.~Casteran, {\em {Interactive Theorem Proving and Program
+%   Development}}, Springer, 2004.
 
-\bibitem{Nitpick}
-J.C. Blanchette and T.~Nipkow, `Nitpick: A counterexample generator for
-  higher-order logic based on a relational model finder', in {\em Proc. of ITP
-  2010}, number 6172 in LNCS, pp. 131--146. Springer, (2010).
+% \bibitem{Nitpick}
+% J.C. Blanchette and T.~Nipkow, `Nitpick: A counterexample generator for
+%   higher-order logic based on a relational model finder', in {\em Proc. of ITP
+%   2010}, number 6172 in LNCS, pp. 131--146. Springer, (2010).
 
-\bibitem{Satallax}
-C.E. Brown, `Satallax: An automated higher-order prover', in {\em Proc. of
-  IJCAR 2012}, number 7364 in LNAI, pp. 111 -- 117. Springer, (2012).
+% \bibitem{Satallax}
+% C.E. Brown, `Satallax: An automated higher-order prover', in {\em Proc. of
+%   IJCAR 2012}, number 7364 in LNAI, pp. 111 -- 117. Springer, (2012).
 
-\bibitem{ContemporaryBibliography}
-R.~Corazzon.
-\newblock Contemporary~bibliography~on~ontological~arguments: {\scriptsize
-  \url{http://www.ontology.co/biblio/ontological-proof-contemporary-biblio.htm}}.
+% \bibitem{ContemporaryBibliography}
+% R.~Corazzon.
+% \newblock Contemporary~bibliography~on~ontological~arguments: {\scriptsize
+%   \url{http://www.ontology.co/biblio/ontological-proof-contemporary-biblio.htm}}.
 
-\bibitem{Fitting}
-M.~Fitting, {\em Types, Tableaux and G\"odel's God}, Kluwer, 2002.
+% \bibitem{Fitting}
+% M.~Fitting, {\em Types, Tableaux and G\"odel's God}, Kluwer, 2002.
 
-\bibitem{fitting98}
-M.~Fitting and R.L. Mendelsohn, {\em First-Order Modal Logic}, volume 277 of
-  {\em Synthese Library}, Kluwer, 1998.
+% \bibitem{fitting98}
+% M.~Fitting and R.L. Mendelsohn, {\em First-Order Modal Logic}, volume 277 of
+%   {\em Synthese Library}, Kluwer, 1998.
 
-\bibitem{Gallin75}
-D.~Gallin, {\em Intensional and Higher-Order Modal Logic}, North-Holland, 1975.
+% \bibitem{Gallin75}
+% D.~Gallin, {\em Intensional and Higher-Order Modal Logic}, North-Holland, 1975.
 
-\bibitem{garbacz12:_prover_simpl_expal_away}
-P.~Garbacz, `{PROVER9's} simplifications explained away', {\em Australasian
-  Journal of Philosophy}, {\bf 90}(3),  585--592, (2012).
+% \bibitem{garbacz12:_prover_simpl_expal_away}
+% P.~Garbacz, `{PROVER9's} simplifications explained away', {\em Australasian
+%   Journal of Philosophy}, {\bf 90}(3),  585--592, (2012).
 
-\bibitem{GoedelNotes}
-K.~G\"odel, {\em Appx.A: Notes in Kurt G\"odel's Hand},  144--145.
-\newblock In  \cite{sobel2004logic}, 2004.
+% \bibitem{GoedelNotes}
+% K.~G\"odel, {\em Appx.A: Notes in Kurt G\"odel's Hand},  144--145.
+% \newblock In  \cite{sobel2004logic}, 2004.
 
-\bibitem{Henkin50}
-L.~Henkin, `Completeness in the theory of types', {\em Journal of Symbolic
-  Logic}, {\bf 15}(2),  81--91, (1950).
+% \bibitem{Henkin50}
+% L.~Henkin, `Completeness in the theory of types', {\em Journal of Symbolic
+%   Logic}, {\bf 15}(2),  81--91, (1950).
 
-\bibitem{homl}
-R.~Muskens, `{Higher Order Modal Logic}', in {\em Handbook of Modal Logic},
-  ed., P~Blackburn~et al.,  621--653, Elsevier, Dordrecht, (2006).
+% \bibitem{homl}
+% R.~Muskens, `{Higher Order Modal Logic}', in {\em Handbook of Modal Logic},
+%   ed., P~Blackburn~et al.,  621--653, Elsevier, Dordrecht, (2006).
 
-\bibitem{Isabelle}
-T.~Nipkow, L.C. Paulson, and M.~Wenzel, {\em {Isabelle/HOL: A Proof Assistant
-  for Higher-Order Logic}}, number 2283 in LNCS, Springer, 2002.
+% \bibitem{Isabelle}
+% T.~Nipkow, L.C. Paulson, and M.~Wenzel, {\em {Isabelle/HOL: A Proof Assistant
+%   for Higher-Order Logic}}, number 2283 in LNCS, Springer, 2002.
 
-\bibitem{oppenheimera11}
-P.E. Oppenheimer and E.N. Zalta, `A computationally-discovered simplification
-  of the ontological argument', {\em Australasian Journal of Philosophy}, {\bf
-  89}(2),  333--349, (2011).
+% \bibitem{oppenheimera11}
+% P.E. Oppenheimer and E.N. Zalta, `A computationally-discovered simplification
+%   of the ontological argument', {\em Australasian Journal of Philosophy}, {\bf
+%   89}(2),  333--349, (2011).
 
-\bibitem{rushby13}
-J.~Rushby, `The ontological argument in {PVS}', in {\em Proc.~of CAV Workshop
-  ``Fun With Formal Methods''}, St. Petersburg, Russia,, (2013).
+% \bibitem{rushby13}
+% J.~Rushby, `The ontological argument in {PVS}', in {\em Proc.~of CAV Workshop
+%   ``Fun With Formal Methods''}, St. Petersburg, Russia,, (2013).
 
-\bibitem{Schulz:AICOM-2002}
-S.~Schulz, `E -- a brainiac theorem prover', {\em {AI Communications}}, {\bf
-  15}(2),  111--126, (2002).
+% \bibitem{Schulz:AICOM-2002}
+% S.~Schulz, `E -- a brainiac theorem prover', {\em {AI Communications}}, {\bf
+%   15}(2),  111--126, (2002).
 
-\bibitem{ScottNotes}
-D.~Scott, {\em Appx.B: Notes in Dana Scott's Hand},  145--146.
-\newblock In  \cite{sobel2004logic}, 2004.
+% \bibitem{ScottNotes}
+% D.~Scott, {\em Appx.B: Notes in Dana Scott's Hand},  145--146.
+% \newblock In  \cite{sobel2004logic}, 2004.
 
-\bibitem{sobel2004logic}
-J.H. Sobel, {\em Logic and Theism: Arguments for and Against Beliefs in God},
-  Cambridge U. Press, 2004.
+% \bibitem{sobel2004logic}
+% J.H. Sobel, {\em Logic and Theism: Arguments for and Against Beliefs in God},
+%   Cambridge U. Press, 2004.
 
-\bibitem{sutcliffe2009tptp}
-G.~Sutcliffe, `The {TPTP} problem library and associated infrastructure', {\em
-  Journal of Automated Reasoning}, {\bf 43}(4),  337--362, (2009).
+% \bibitem{sutcliffe2009tptp}
+% G.~Sutcliffe, `The {TPTP} problem library and associated infrastructure', {\em
+%   Journal of Automated Reasoning}, {\bf 43}(4),  337--362, (2009).
 
-\bibitem{J22}
-G.~Sutcliffe and C.~Benzm{\"u}ller, `Automated reasoning in higher-order logic
-  using the {TPTP THF} infrastructure.', {\em Journal of Formalized Reasoning},
-  {\bf 3}(1),  1--27, (2010).
+% \bibitem{J22}
+% G.~Sutcliffe and C.~Benzm{\"u}ller, `Automated reasoning in higher-order logic
+%   using the {TPTP THF} infrastructure.', {\em Journal of Formalized Reasoning},
+%   {\bf 3}(1),  1--27, (2010).
 
-\bibitem{J29}
-B.~Woltzenlogel-Paleo and C.~Benzm{\"u}ller, `Automated verification and
-  reconstruction of {G\"odel's} proof of {God's} existence', {\em OCG J.},
-  (2013).
+% \bibitem{J29}
+% B.~Woltzenlogel-Paleo and C.~Benzm{\"u}ller, `Automated verification and
+%   reconstruction of {G\"odel's} proof of {God's} existence', {\em OCG J.},
+%   (2013).
 
-\end{thebibliography}
+%\end{thebibliography}
 
 
 % ------------------------------------------------------------------------
