@@ -226,14 +226,12 @@ contraries entail their subcontraries, assuming the \emph{modal
   \url{http://www.tandfonline.com/doi/pdf/10.1080/01445340.2013.764962}}
 
 Moreover, in any modal logic where the axiom \textbf{T} holds
-(i.e. where the accessibility relation is reflexive), a total collapse
-of the modalities (\textbf{MC''}) occurs.\footnote{C.: I am a bit lost here. Do you want to
-  say that any logic that includes T strongly collapses? This would be 
-  odd. Where is the theorem in the Isabelle file(s) that proves this? Also: MC'' should
-  be stated more precisely, I mean like: $((\varphi \biimp \nec \varphi) \wedge (\nec \varphi
-  \biimp \pos \varphi))$.}  Interestingly, under this stronger form of modal
-  collapse, the contraries entail their subcontraries even without the
-  existential import.
+(i.e. where the accessibility relation is reflexive), 
+even a total collapse of the modalities (\textbf{MC''}) 
+is entailed by \textbf{MC}.
+Interestingly, under this stronger form of modal
+collapse, the contraries entail their subcontraries even 
+without the existential import.
 
 \begin{figure}[t]
 \includegraphics[width=0.9\textwidth]{./SquarePics/ModalSquare.png}
@@ -258,7 +256,7 @@ of the modalities (\textbf{MC''}) occurs.\footnote{C.: I am a bit lost here. Do 
 \item[\textbf{AI}] Everything that is necessary is possible:
   $\hol{\allq \phi [\nec \phi \imp \pos \phi]}$ \\
 \item[\textbf{MC''}] Modalities collapse completely:
-  $\hol{\allq \phi [\phi \biimp \pos \phi \biimp \nec \phi]}$
+  $\hol{\allq \phi [(\phi \biimp \nec \phi) \wedge (\pos \phi \biimp \nec \phi)]}$
 \end{itemize}
 \end{minipage}
 } \vskip-.5em
