@@ -1,29 +1,24 @@
-Goedel's Ontological Proof in Isabelle/HOL
-==========================================
+Ontological Proofs in Isabelle/HOL
+=================================
 
 Authors: Christoph Benzmueller and Bruno Woltzenlogel-Paleo
 
+This directory contains formalizations of 
+Gödel's ontological argument in 
+[Isabelle/HOL](http://isabelle.in.tum.de/). 
+There are actually several variants of the ontological
+argument, and here they are organized in subdirectories
+named after the authors who proposed or discussed them
+(e.g. Scott, Anderson, Bjordal, ...).
 
-This directory contains a development of Goedel's ontological argument
-(and some further results) in Isabelle/HOL (http://isabelle.in.tum.de/).
+The subdirectory "Meta" contains general research results that
+are not specific to any variant. The subdirectory "Drafts" contains
+ongoing research that is still too preliminary.
 
-The two files originally presented here were:
-
-- GoedelGod.thy: A development of Goedel's ontological argument with
-  Sledgehammer (supported by LEO-II and Satallax) and Metis. Some
-  additional lammata are needed.
-
-- GoedelGodVarying.thy: The same as above, but this time for varying
-  domain quantification (for individuals)
-
-The files GoedelGod.thy and GoedelGodVarying.thy are meanwhile
-outdated and there are new Isabelle/HOL versions of the proof
-available in the subdirectory ScottsVersion. These new versions
-avoid the additional lemmata and they also study some additional aspects
-such as the modal collapse, monotheism, flawlessness, and positive and
-negative properties.
+All files in this directory are constantly being improved.
+If you do not find a file mentioned by one of our papers,
+please contact us.
 
 Best regards,
-   Christoph Benzmueller and Bruno Woltzenlogel-Paleo
 
-
+Christoph Benzmueller and Bruno Woltzenlogel Paleo
