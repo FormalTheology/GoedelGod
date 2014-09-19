@@ -52,6 +52,8 @@ Germany
 
 [Mathematik.de](http://mathematik.de/ger/diverses/aktuelles/goedels_beweis_ist_logisch_korrekt.html)
 
+[Zeit Magazin](./ZeitMagazinNr39_18Sep2014.pdf)
+
 
 Austria
 -------
