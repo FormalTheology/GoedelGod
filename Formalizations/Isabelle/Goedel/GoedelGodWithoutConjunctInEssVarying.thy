@@ -8,7 +8,7 @@ begin
 section {* Introduction *}
 
  text {* Dana Scott's version without the first conjunct in the definition of 
-         essence 
+         essence  is inconsistent. 
 *}
 
   typedecl i    -- "the type for possible worlds" 

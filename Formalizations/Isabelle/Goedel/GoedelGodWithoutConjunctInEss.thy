@@ -8,7 +8,7 @@ begin
 section {* Introduction *}
 
  text {* Dana Scott's version without the first conjunct in the definition of 
-         essence 
+         essence is inconsistent. 
 *}
 
 section {* An Embedding of QML KB in HOL *}
@@ -142,11 +142,11 @@ informally use the empty property to instantiate \<Phi> in the definition of NE.
 A5 can be replaced by a weaker assumption, namely that property P (positive) is exemplified. This 
 is illustrated by Lemma3 (Lemma3 has no other purpose here).*}
 
-  lemma  Lemma2: "[m\<not> (\<exists>(\<lambda>x. NE x))]"
+  lemma  Lemma2: "[m\<not> (\<exists> NE)]"
   -- {* sledgehammer [provers = remote\_leo2] *}
   by (metis A1a A2 A5 Lemma1 NE_def)
 
-  lemma  Lemma3: "[(\<exists>(\<lambda>\<Phi>. P \<Phi>)) m\<rightarrow> (m\<not> (\<exists>(\<lambda>x. NE x)))]"
+  lemma  Lemma3: "[(\<exists>(\<lambda>\<Phi>. P \<Phi>)) m\<rightarrow> (m\<not> (\<exists> NE))]"
   -- {* sledgehammer [provers = remote\_leo2] *}
   by (metis A1a A2 Lemma1 NE_def)
 
