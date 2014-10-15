@@ -5,10 +5,10 @@ call=./RemoteSOT.pl
 
 #proverlist='LEO-II---1.6.2 Satallax---2.7 Isabelle---2013 Nitrox---2013 agsyHOL---1.0 TPS---3.120601S1b'
 #proverlist='LEO-II---1.6.2 Satallax---2.7 Nitrox---2013'
-proverlist='LEO-II--- Satallax--- Nitrox--- '
+proverlist='TPS---3.120601S1b LEO-II--- Satallax--- Nitrox--- '
 #proverlist='LEO-II---1.6.2 Satallax-MaLeS---1.2 Nitrox---2013'
 
-timeout=60
+timeout=200
 
 suffix=$(date "+%Y-%m-%d--%H:%M:%S")
 resultsfile=RESULTS-$suffix
