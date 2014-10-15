@@ -1,0 +1,520 @@
+% ------------------------------------------------------------------------
+% bjourdoc.tex for birkjour.cls*******************************************
+% ------------------------------------------------------------------------
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\documentclass{birkjour}
+
+\usepackage{url}
+\usepackage{commands}
+%
+%
+% THEOREM Environments (Examples)-----------------------------------------
+%
+ \newtheorem{thm}{Theorem}[section]
+ \newtheorem{cor}[thm]{Corollary}
+ \newtheorem{lem}[thm]{Lemma}
+ \newtheorem{prop}[thm]{Proposition}
+ \theoremstyle{definition}
+ \newtheorem{defn}[thm]{Definition}
+ \theoremstyle{remark}
+ \newtheorem{rem}[thm]{Remark}
+ \newtheorem*{ex}{Example}
+ \numberwithin{equation}{section}
+
+\def\HOML{\entity{HOML}\xspace}
+\def\HOL{\entity{HOL}\xspace}
+
+
+\begin{document}
+
+%-------------------------------------------------------------------------
+% editorial commands: to be inserted by the editorial office
+%
+%\firstpage{1} \volume{228} \Copyrightyear{2004} \DOI{003-0001}
+%
+%
+%\seriesextra{Just an add-on}
+%\seriesextraline{This is the Concrete Title of this Book\br H.E. R and S.T.C. W, Eds.}
+%
+% for journals:
+%
+%\firstpage{1}
+%\issuenumber{1}
+%\Volumeandyear{1 (2004)}
+%\Copyrightyear{2004}
+%\DOI{003-xxxx-y}
+%\Signet
+%\commby{inhouse}
+%\submitted{March 14, 2003}
+%\received{March 16, 2000}
+%\revised{June 1, 2000}
+%\accepted{July 22, 2000}
+%
+%
+%
+%---------------------------------------------------------------------------
+%Insert here the title, affiliations and abstract:
+%
+
+
+\title[Modal Collapse]
+ {Computer-supported Analysis of Modern Variants of G\"odel's Ontological Argument}
+
+
+
+%----------AUTHOR 1
+\author[Benzm\"uller]{Christoph Benzm\"uller}
+
+\address{%
+Department of Mathematics and Computer Science\\
+Arnimallee 7 \\
+Room 115 \\
+14195 Berlin \\
+Germany
+}
+
+\email{c.benzmueller@gmail.com}
+
+\thanks{This work was completed with the support of ToDo}
+
+
+%----------Author 2
+\author[Weber]{\\ Leon Weber}
+\address{ 
+ToDo \\
+ToDo \\
+ToDo Berlin \\
+Germany
+}
+\email{leon.weber@fu-berlin.de}
+
+
+%----------Author 3
+\author[Woltzenlogel-Paleo]{\\ Bruno Woltzenlogel Paleo}
+\address{ 
+Favoritenstra{\ss}e 9 \\
+Room HA0402 \\
+1040 Wien \\
+Austria
+}
+\email{bruno.wp@gmail.com}
+
+
+
+
+%----------classification, keywords, date
+% \subjclass{
+% % Prim. 03A02;  % Philosophical aspects of logic and foundations
+% % Sec. 68T02 % Artificial Intelligence 
+% }
+
+%\keywords{Ontological Argument, Modal Collapse}
+
+\date{\today}
+%----------additions
+\dedicatory{ }
+%%% ----------------------------------------------------------------------
+
+% \begin{abstract}
+% The \emph{modal collapse} that afflicts G\"odel's modal ontological 
+% argument for God's existence is discussed from the perspective of the 
+% modal square of opposition. Furthermore, a computer-assisted verification 
+% of the claims that the emendations by Anderson and by Frode are immune to 
+% the modal collapse is presented.
+% \end{abstract}
+
+%%% ----------------------------------------------------------------------
+\maketitle
+%%% ----------------------------------------------------------------------
+%\tableofcontents
+%\section{Introduction}
+
+
+\section{The Modal Collapse}
+The axioms in G\"odel's ontological argument \cite{GoedelNotes,ScottNotes} imply what is
+called the modal collapse \cite{Sobel1987,SobelBook} (formula $\varphi \rightarrow \Box \varphi$
+holds for any formula $\varphi$ and not just for $\exists x. God(x)$
+as intended). This fact, which has recently been confirmed with
+higher-order automated theorem provers \cite{}, has led to strong
+criticism in the research community, and it has stimulated further
+adaptations of G\''odel's argument with the aim to remedy the situation
+\cite{}.
+
+In recent work we have formalized and automated the proposed adaptions
+of Anderson \cite{}, Bjordahl \cite{} and Fuhrmann \cite{}.
+
+\pagebreak
+
+ crucial step of the ontological argument is the claim that if God's existence is possible, then it is necessary. This is Lemma L2 in G\"odel's proof. In the modal square of opposition (Fig. \ref{ToDo}), this is an unusual situation in which the \textbf{I} corner implies and entails the \textbf{A} corner, for the particular case when $\phi$ is $\exq x G(x)$. G\"odel's proof shows that his axioms are strong enough to invert the direction of entailment for the particular $\phi$ at issue. The question is whether the axioms are then not too strong, also allowing the inverted entailment for arbitrary $\phi$. That is essentially the question asked by Sobel \cite{Sobel1987}; and his proof of the modal collapse (MC) answers it affirmatively. The modal collapse is a collapse of the modal square: it shows that, assuming G\"odel's axioms, the subcontraries entail the contraries.
+
+ToDo: include figure of Modal Square of Opposition.
+
+
+
+\begin{figure}[t]
+\noindent \framebox[\columnwidth][r]{
+\begin{minipage}{.94\columnwidth}\small
+\begin{itemize}
+\item[MC] Everything that is the case is so necessarily:
+  $$\hol{\allq \phi [\phi \imp \nec \phi]}$$ 
+\item[MC'] Everything that is possible is necessary:
+  $$\hol{\allq \phi [\pos \phi \imp \nec \phi]}$$ 
+\item[MC''] Modalities collapse:
+  $$\hol{\allq \phi [\phi \biimp \pos \phi \biimp \nec \phi]}$$
+\end{itemize}
+\end{minipage}
+} \vskip-.5em
+\caption{Modal Collapse \cite{todo:Sobel1987,SobelBook}.\label{fig:collapse}} 
+\end{figure}
+
+\clearpage
+
+\section{Anderson's Emendation}
+
+\begin{figure}[t]
+\noindent \framebox[\columnwidth][r]{
+\begin{minipage}{.94\columnwidth}\small
+\begin{itemize}
+\item[A:A1] If a property is positive, its negation is not positive:
+  $$\hol{\allq \varphi [P(\varphi) \imp \neg P(\neg \varphi)]}$$ 
+\item[A2] A property necessarily implied by a
+  positive property is positive:
+  $$\hol{\allq \varphi \allq \psi [(P(\varphi) \wedge \nec \allq x [\varphi(x)
+  \imp \psi(x)]) \imp P(\psi)]}$$
+\item[T1] Positive properties are possibly exemplified: 
+  $$\hol{\allq \varphi [P(\varphi) \imp \pos \exq x \varphi(x)]}$$ 
+\item[A:D1] A \emph{God-like} being necessarily possesses those and only those properties that are positive: 
+  $$\hol{G_A(x) \equiv \forall \varphi [P(\varphi) \biimp \nec \varphi(x)]}$$ 
+\item[A3']  The property of being God-like is positive: 
+  $$\hol{P(G_A)}$$
+\item[C\phantom{1}] Possibly, a God-like being exists: $$\hol{\pos \exq x G(x)}$$
+\item[A4]  Positive properties are necessarily positive: 
+  $$\hol{\allq \varphi [P(\varphi) \imp \Box \; P(\varphi)]}$$ 
+\item[A:D2] An \emph{essence} of an individual is a property that necessarily implies those and only those properties that the individual has necessarily: $$\hol{\essA{\varphi}{x} \equiv \allq
+  \psi [\nec \psi(x) \biimp \nec \allq y (\varphi(y) \imp \psi(y))]}$$ 
+\item[T2']  Being God-like is an essence of any
+  God-like being: $$\hol{\allq x [G_A(x) \imp \essA{G_A}{x}]}$$
+\item[D3'] \emph{Necessary existence} of an individual is the necessary exemplification of all its essences: 
+  $$\hol{\NE_A(x) \equiv \allq \varphi [\essA{\varphi}{x} \imp \nec
+  \exq y \varphi(y)]}$$
+\item[A5'] Necessary existence is a positive property: $$\hol{P(\NE_A)}$$ 
+\item[L1'] If a god-like being exists, then necessarily a god-like being exists: 
+  $$\hol{\exq x G_A(x) \imp \nec \exq y G_A(y)}$$
+\item[L2'] If possibly a god-like being exists, then necessarily a god-like being exists: 
+  $$\hol{\pos \exq x G_A(x) \imp \nec \exq y G_A(y)} $$
+%
+\item[T3'] Necessarily, a God-like being exists: $$\hol{\nec \exq x G_A(x)}$$ 
+\end{itemize}
+\end{minipage}
+} \vskip-.5em
+\caption{Anderson's Emendation \cite{ToDo:Anderson}.\label{fig:anderson}} 
+\end{figure}
+
+
+I have meanwhile added another file ``Anderson\_var\_partial.thy''. In this version the actualist e-Quantifier is used exclusively in the definition of NE and everywhere else ithe possibilist Quantifiers are used. It is still unclear to me, what is actually meant. Reading Anderson 1990, last sentence on p. 302, it could mean that ``Anderson\_var\_partial.thy'' is the correct version; but when reading AndersonGettings, then one could think that ``Anderson\_var.thy'' is meant. But ok we have now both versions. Interestingly in ``Anderson\_var\_partial.thy'' A5 is not inferable anymore, and this also holds for ``anderson\_implies\_fuhrmann". Nitpick finds countermodels.
+
+
+\clearpage
+
+\section{Frode's Alternative}
+
+\begin{figure}[t]
+\noindent \framebox[\columnwidth][r]{
+\begin{minipage}{.94\columnwidth}\small
+\begin{itemize}
+\item[A1] Either a property or its negation is positive, but not
+  both:
+  $$\hol{\allq \phi [P(\neg \phi) \biimp \neg P(\phi)]}$$ 
+\item[A2] A property necessarily implied by a
+  positive property is positive:
+  $$\hol{\allq \phi \allq \psi [(P(\phi) \wedge \nec \allq x [\phi(x)
+  \imp \psi(x)]) \imp P(\psi)]}$$
+\item[T1] Positive properties are possibly exemplified: 
+  $$\hol{\allq \phi [P(\phi) \imp \pos \exq x \phi(x)]}$$ 
+\item[D1] A \emph{God-like} being possesses all positive properties: 
+  $$\hol{G(x) \biimp \forall \phi [P(\phi) \imp \phi(x)]}$$ 
+\item[A3]  The property of being God-like is positive: 
+  $$\hol{P(G)}$$
+\item[C\phantom{1}] Possibly, a God-like being exists: $$\hol{\pos \exq x G(x)}$$
+\item[A4]  Positive properties are necessarily positive: 
+  $$\hol{\allq \phi [P(\phi) \imp \Box \; P(\phi)]}$$ 
+\item[D2] An \emph{essence} of an individual is a property possessed by it and necessarily implying any of its properties: $$\hol{\ess{\phi}{x} \biimp \phi(x) \wedge \allq
+  \psi (\psi(x) \imp \nec \allq y (\phi(y) \imp \psi(y)))}$$ 
+\item[T2]  Being God-like is an essence of any
+  God-like being: $$\hol{\allq x [G(x) \imp \ess{G}{x}]}$$
+\item[D3] \emph{Necessary existence} of an individual is the necessary exemplification of all its essences: 
+  $$\hol{\NE(x) \biimp \allq \phi [\ess{\phi}{x} \imp \nec
+  \exq y \phi(y)]}$$
+\item[A5] Necessary existence is a positive property: $$\hol{P(\NE)}$$ 
+\item[T3] Necessarily, a God-like being exists: $$\hol{\nec \exq x G(x)}$$ 
+\end{itemize}
+\end{minipage}
+} \vskip-.5em
+\caption{Frode's Alternative \cite{ToDo:Frode}.\label{fig:frode}} 
+\end{figure}
+
+\clearpage
+
+\section{Other Solutions}
+
+ToDo: Fitting
+
+
+\section{Conclusions}
+
+
+Various slightly different versions of
+axioms and definitions have been considered by G\"{o}del and by
+several philosophers who commented on his proof
+(cf.~\cite{sobel2004logic,anderson90:_some_emend_of_goedel_ontol_proof,AndersonGettings,Fitting,Adams,ContemporaryBibliography}).
+
+
+
+In theoretical philosophy, formal logical confrontations with such
+ontological arguments had been so far (mainly) limited to paper
+and pen.  Up to now, the use of computers was prevented, because the
+logics of the available theorem proving systems were not expressive
+enough to formalize the abstract concepts adequately. G{\"o}del's proof
+uses, for example, a complex higher-order modal logic (\HOML) to handle
+concepts such as \emph{possibility} and \emph{necessity} and to support
+quantification over individuals and properties.
+
+controversies, care with parameters
+
+ToDo: Leibniz calculemus, Rushby, Zalta \cite{oppenheimera11,rushby13}
+
+
+% \begin{defn}
+% This serves as environment for definitions. Note that the text
+% appears not in italics.
+% \end{defn}
+
+% \begin{equation}\label{testequation}
+% \text{This is a sample equation: } c^2=a^2+b^2
+% \end{equation}
+
+% \begin{thm}[Main Theorem]
+% In contrast to definitions, theorems appear typeset in italics as
+% it has become more or less standard in most textbooks and
+% monographs. Equations can be cited using the \verb+\eqref+ command which
+% automatically adds brackets: \verb+\eqref{testequation}+ results in \eqref{testequation}.
+% \end{thm}
+
+% \begin{proof}
+% A special environment is predefined: the \textit{proof} environment. Please use
+% \begin{verbatim}\begin{proof}\end{verbatim}
+% proof of the statement
+% \begin{verbatim}\end{proof}\end{verbatim}
+% for typesetting your proofs. The end-of-proof symbol $\Box$ will be added automatically.
+% \end{proof}
+
+% There are two known problems with the placement of the end-of-proof sign:
+
+% \begin{enumerate}
+%   \item if your proof ends with a\ \ s i n g l e\ \ displayed line, the end-of-proof sign would
+% be placed in the line below; if you want to avoid this, write your line in the form
+% \begin{verbatim}$$displayed math line \eqno\qedhere$$\end{verbatim}
+% which results in
+
+% \begin{proof}
+% $$displayed math line \eqno\qedhere$$
+% \end{proof}
+% \item if your proof ends with an aligned displayed environment, the command
+% \verb+\tag*{\qed}+ can be used to place the end-of-proof sign properly:
+% \begin{verbatim}
+% \begin{align*}
+% \alpha&=\beta+\gamma\\
+% &=\delta+\epsilon\tag*{\qed}
+% \end{align*}
+% \end{verbatim}
+% results in
+% \begin{align*}
+% \alpha&=\beta+\gamma\\
+% &=\delta+\epsilon\tag*{\qed}
+% \end{align*}
+% \end{enumerate}
+% Please try to avoid using the obsolete \verb+\eqnarray+ environment. This environment has several bugs
+% and has been replaced by the more flexible \AmS\ environments \verb+align, split, multline+.
+
+
+% \begin{rem}
+% Additional comments are being typeset without boldfaced entrance
+% word as they may be minor important.
+% \end{rem}
+
+% \begin{ex}
+% For some constructs, even no number is required.
+% \end{ex}
+
+% Displayed equations may be numbered like the following one:
+% \begin{equation}
+% \sqrt{1-\sin^2(x)}=|\cos(x)|.
+% \end{equation}
+
+
+
+% ------------------------------------------------------------------------
+
+% \subsection*{Acknowledgment}
+% Many thanks to ...
+
+\begin{thebibliography}{1}
+
+\bibitem{Adams}
+R.M. Adams, `Introductory note to *1970', in {\em {Kurt G\"odel: Collected
+  Works Vol. 3: Unpubl. Essays and Letters}}, Oxford Univ. Press, (1995).
+
+\bibitem{AndersonGettings}
+A.C. Anderson and M.~Gettings, `G\"odel ontological proof revisited', in {\em
+  {G\"odel'96: Logical Foundations of Mathematics, Computer Science, and
+  Physics: Lecture Notes in Logic 6}},  167--172, {Springer}, (1996).
+
+\bibitem{anderson90:_some_emend_of_goedel_ontol_proof}
+C.A. Anderson, `Some emendations of {G{\"o}del's} ontological proof', {\em
+  Faith and Philosophy}, {\bf 7}(3), (1990).
+
+\bibitem{Andrews:gmae72}
+P.B. Andrews, `General models and extensionality', {\em Journal of Symbolic
+  Logic}, {\bf 37}(2),  395--397, (1972).
+
+\bibitem{andrewsSEP}
+P.B. Andrews, `Church's type theory', in {\em The Stanford Encyclopedia of
+  Philosophy}, ed., E.N. Zalta, spring 2014 edn., (2014).
+
+\bibitem{C36}
+C.~Benzm{\"u}ller, `{HOL} based universal reasoning', in {\em Handbook of the
+  4th World Congress and School on Universal Logic}, ed., J.Y. Beziau~et al.,
+  pp. 232--233, Rio de Janeiro, Brazil, (2013).
+
+\bibitem{B5}
+C.~Benzm{\"u}ller and D.~Miller, `Automation of higher-order logic', in {\em
+  Handbook of the History of Logic, Volume 9 --- Logic and Computation},
+  Elsevier, (2014).
+\newblock Forthcoming; preliminary version available at
+  {http://christoph-benzmueller.de/papers/B5.pdf}.
+
+\bibitem{C34}
+C.~Benzm{\"u}ller, J.~Otten, and Th. Raths, `Implementing and evaluating
+  provers for first-order modal logics', in {\em Proc. of the 20th European
+  Conference on Artificial Intelligence (ECAI)}, pp. 163--168, (2012).
+
+\bibitem{B9}
+C.~Benzm{\"u}ller and L.C. Paulson, `Exploring properties of normal multimodal
+  logics in simple type theory with {LEO-II}', in {\em {Festschrift in Honor of
+  {Peter B. Andrews} on His 70th Birthday}}, ed., C.~Benzm{\"u}ller~et al.,
+  386--406, College Publications, (2008).
+
+\bibitem{J23}
+C.~Benzm{\"u}ller and L.C. Paulson, `Quantified multimodal logics in simple
+  type theory', {\em Logica Universalis}, {\bf 7}(1),  7--20, (2013).
+
+\bibitem{LEO-II}
+C.~Benzm{\"u}ller, F.~Theiss, L.~Paulson, and A.~Fietzke, `{LEO-II} - a
+  cooperative automatic theorem prover for higher-order logic', in {\em
+  Proc.~of IJCAR 2008}, number 5195 in LNAI, pp. 162--170. Springer, (2008).
+
+\bibitem{J30}
+C.~Benzm{\"u}ller and B.~Woltzenlogel-Paleo, `Formalization, mechanization and
+  automation of {G{\"o}del's} proof of {God's} existence', {\em
+  arXiv:1308.4526}, (2013).
+
+\bibitem{J28}
+C.~Benzm\"uller and B.~Woltzenlogel-Paleo, `{G{\"o}del's God in Isabelle/HOL}',
+  {\em Archive of Formal Proofs}, (2013).
+
+\bibitem{W50}
+C.~Benzm\"uller and B.~Woltzenlogel-Paleo, `G\"odel's {God} on the computer',
+  in {\em Proceedings of the 10th International Workshop on the Implementation
+  of Logics}, EPiC Series. EasyChair, (2013).
+\newblock Invited abstract.
+
+\bibitem{Coq}
+Y.~Bertot and P.~Casteran, {\em {Interactive Theorem Proving and Program
+  Development}}, Springer, 2004.
+
+\bibitem{Nitpick}
+J.C. Blanchette and T.~Nipkow, `Nitpick: A counterexample generator for
+  higher-order logic based on a relational model finder', in {\em Proc. of ITP
+  2010}, number 6172 in LNCS, pp. 131--146. Springer, (2010).
+
+\bibitem{Satallax}
+C.E. Brown, `Satallax: An automated higher-order prover', in {\em Proc. of
+  IJCAR 2012}, number 7364 in LNAI, pp. 111 -- 117. Springer, (2012).
+
+\bibitem{ContemporaryBibliography}
+R.~Corazzon.
+\newblock Contemporary~bibliography~on~ontological~arguments: {\scriptsize
+  \url{http://www.ontology.co/biblio/ontological-proof-contemporary-biblio.htm}}.
+
+\bibitem{Fitting}
+M.~Fitting, {\em Types, Tableaux and G\"odel's God}, Kluwer, 2002.
+
+\bibitem{fitting98}
+M.~Fitting and R.L. Mendelsohn, {\em First-Order Modal Logic}, volume 277 of
+  {\em Synthese Library}, Kluwer, 1998.
+
+\bibitem{Gallin75}
+D.~Gallin, {\em Intensional and Higher-Order Modal Logic}, North-Holland, 1975.
+
+\bibitem{garbacz12:_prover_simpl_expal_away}
+P.~Garbacz, `{PROVER9's} simplifications explained away', {\em Australasian
+  Journal of Philosophy}, {\bf 90}(3),  585--592, (2012).
+
+\bibitem{GoedelNotes}
+K.~G\"odel, {\em Appx.A: Notes in Kurt G\"odel's Hand},  144--145.
+\newblock In  \cite{sobel2004logic}, 2004.
+
+\bibitem{Henkin50}
+L.~Henkin, `Completeness in the theory of types', {\em Journal of Symbolic
+  Logic}, {\bf 15}(2),  81--91, (1950).
+
+\bibitem{homl}
+R.~Muskens, `{Higher Order Modal Logic}', in {\em Handbook of Modal Logic},
+  ed., P~Blackburn~et al.,  621--653, Elsevier, Dordrecht, (2006).
+
+\bibitem{Isabelle}
+T.~Nipkow, L.C. Paulson, and M.~Wenzel, {\em {Isabelle/HOL: A Proof Assistant
+  for Higher-Order Logic}}, number 2283 in LNCS, Springer, 2002.
+
+\bibitem{oppenheimera11}
+P.E. Oppenheimer and E.N. Zalta, `A computationally-discovered simplification
+  of the ontological argument', {\em Australasian Journal of Philosophy}, {\bf
+  89}(2),  333--349, (2011).
+
+\bibitem{rushby13}
+J.~Rushby, `The ontological argument in {PVS}', in {\em Proc.~of CAV Workshop
+  ``Fun With Formal Methods''}, St. Petersburg, Russia,, (2013).
+
+\bibitem{Schulz:AICOM-2002}
+S.~Schulz, `E -- a brainiac theorem prover', {\em {AI Communications}}, {\bf
+  15}(2),  111--126, (2002).
+
+\bibitem{ScottNotes}
+D.~Scott, {\em Appx.B: Notes in Dana Scott's Hand},  145--146.
+\newblock In  \cite{sobel2004logic}, 2004.
+
+\bibitem{sobel2004logic}
+J.H. Sobel, {\em Logic and Theism: Arguments for and Against Beliefs in God},
+  Cambridge U. Press, 2004.
+
+\bibitem{sutcliffe2009tptp}
+G.~Sutcliffe, `The {TPTP} problem library and associated infrastructure', {\em
+  Journal of Automated Reasoning}, {\bf 43}(4),  337--362, (2009).
+
+\bibitem{J22}
+G.~Sutcliffe and C.~Benzm{\"u}ller, `Automated reasoning in higher-order logic
+  using the {TPTP THF} infrastructure.', {\em Journal of Formalized Reasoning},
+  {\bf 3}(1),  1--27, (2010).
+
+\bibitem{J29}
+B.~Woltzenlogel-Paleo and C.~Benzm{\"u}ller, `Automated verification and
+  reconstruction of {G\"odel's} proof of {God's} existence', {\em OCG J.},
+  (2013).
+
+\end{thebibliography}
+
+
+% ------------------------------------------------------------------------
+\end{document}
+% ------------------------------------------------------------------------
