@@ -52,7 +52,9 @@ Germany
 
 [Mathematik.de](http://mathematik.de/ger/diverses/aktuelles/goedels_beweis_ist_logisch_korrekt.html)
 
-[Zeit Magazin](./ZeitMagazinNr39_18Sep2014.pdf)
+[Zeit Magazin (Printed Version)](./ZeitMagazinNr39_18Sep2014.pdf)
+
+[Zeit Magazin (Online Version)](http://www.zeit.de/zeit-magazin/2014/39/harald-martenstein-gott-journalismus)
 
 
 Austria
