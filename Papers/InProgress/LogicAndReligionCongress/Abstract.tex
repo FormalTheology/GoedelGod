@@ -64,7 +64,7 @@
 
 
 %----------AUTHOR 1
-\author[Benzm\"uller]{Christoph Benzm\"uller}
+\author[Benzm\"uller]{C. Benzm\"uller}
 
 \address{%
 Department of Mathematics and Computer Science\\
@@ -76,11 +76,12 @@ Germany
 
 \email{c.benzmueller@gmail.com}
 
-\thanks{This work was completed with the support of ToDo}
+\thanks{This work was supported by German National Research Foundation (DFG) under
+ grants BE 2501/9-1 and BE 2501/11-1 and by ????}
 
 
 %----------Author 2
-\author[Weber]{\\ Leon Weber}
+\author[Weber]{L. Weber}
 \address{ 
 ToDo \\
 ToDo \\
@@ -91,7 +92,7 @@ Germany
 
 
 %----------Author 3
-\author[Woltzenlogel-Paleo]{\\ Bruno Woltzenlogel Paleo}
+\author[Woltzenlogel-Paleo]{B. Woltzenlogel Paleo}
 \address{ 
 Favoritenstra{\ss}e 9 \\
 Room HA0402 \\
@@ -130,159 +131,98 @@ Austria
 %\tableofcontents
 %\section{Introduction}
 
+%\vspace*{-5em}
 
-\section{The Modal Collapse}
-The axioms in G\"odel's ontological argument \cite{GoedelNotes,ScottNotes} imply what is
-called the modal collapse \cite{Sobel1987,SobelBook} (formula $\varphi \rightarrow \Box \varphi$
+%\section{The Modal Collapse}
+The axioms in G\"odel's ontological argument
+\cite{GoedelNotes,ScottNotes} imply what is called the modal collapse
+\cite{Sobel1987,SobelBook} (formula $\varphi \rightarrow \Box \varphi$
 holds for any formula $\varphi$ and not just for $\exists x. God(x)$
 as intended). This fact, which has recently been confirmed with
-higher-order automated theorem provers \cite{}, has led to strong
-criticism in the research community, and it has stimulated further
-adaptations of G\''odel's argument with the aim to remedy the situation
-\cite{}.
+higher-order automated theorem provers \cite{J30,ECAI-2014}, has led
+to strong criticism of the argument, and it has therefore stimulated
+attempts to remedy the problem. Some authors, including Hajek
+\cite{Hajek_der_Mathematiker,Hajek_Magari_and_others}, suggest the use
+of cautious instead of full comprehension principles in order to
+escape the modal collapse. Others, including Anderson
+\cite{anderson90:_some_emend_of_goedel_ontol_proof,AndersonGettings}
+and Bjordahl \cite{}, have proposed  to adapt G\"odel's axioms (in
+particular, controversial axiom A1) and definitions.
 
-In recent work we have formalized and automated the proposed adaptions
-of Anderson \cite{}, Bjordahl \cite{} and Fuhrmann \cite{}.
+We have studied --- with computer-support --- the emendations proposed
+by Anderson and Bjordahl.  More precisely, we have formalized their
+emendations within the proof assistant Isabelle/HOL \cite{Isabelle},
+and we have then automated (different variations of) their
+emendations with the higher-order reasoners Leo-II \cite{}, Satallax
+\cite{} and Nitpick \cite{} available in Isabelle/HOL.\footnote{The
+  formalizations are available in the subdirectories \url{Anderson}
+  and \url{Bjordahl} at
+  \url{https://github.com/FormalTheology/GoedelGod/blob/master/Formalizations/Isabelle/}.}
+Our formalizations employ the embedding of higher-order modal logic
+(HOML) in classical higher-order logic (HOL) as introduced and
+employed in our previous work \cite{J30,ECAI-2014}. In this approach
+full comprehension is naturally ``built-in'' since the underlying HOL
+supports $\lambda$-abstraction. We summarize the main results of our
+experiments.
 
-\pagebreak
-
- crucial step of the ontological argument is the claim that if God's existence is possible, then it is necessary. This is Lemma L2 in G\"odel's proof. In the modal square of opposition (Fig. \ref{ToDo}), this is an unusual situation in which the \textbf{I} corner implies and entails the \textbf{A} corner, for the particular case when $\phi$ is $\exq x G(x)$. G\"odel's proof shows that his axioms are strong enough to invert the direction of entailment for the particular $\phi$ at issue. The question is whether the axioms are then not too strong, also allowing the inverted entailment for arbitrary $\phi$. That is essentially the question asked by Sobel \cite{Sobel1987}; and his proof of the modal collapse (MC) answers it affirmatively. The modal collapse is a collapse of the modal square: it shows that, assuming G\"odel's axioms, the subcontraries entail the contraries.
-
-ToDo: include figure of Modal Square of Opposition.
-
-
-
-\begin{figure}[t]
-\noindent \framebox[\columnwidth][r]{
-\begin{minipage}{.94\columnwidth}\small
+Anderson's emendation (cf. Appendix \ref{apx:Anderson}) has been
+verified for different domain conditions. These variations were
+motivated by different authors who commented on Anderson's work. Anderson himself \ldots
 \begin{itemize}
-\item[MC] Everything that is the case is so necessarily:
-  $$\hol{\allq \phi [\phi \imp \nec \phi]}$$ 
-\item[MC'] Everything that is possible is necessary:
-  $$\hol{\allq \phi [\pos \phi \imp \nec \phi]}$$ 
-\item[MC''] Modalities collapse:
-  $$\hol{\allq \phi [\phi \biimp \pos \phi \biimp \nec \phi]}$$
+\item Constant domain semantics \footnote{Cf. Isabelle/HOL source file
+    \url{Anderson/Anderson_constant_domain.thy}}, that is, the domains of
+  objects for all types (individuals, predicates, etc.) stays the same
+  in all worlds. We consider constant domain semantics as the standard
+  setting.
+\item Varying domain semantics\footnote{Cf. Isabelle/HOL source file \url{Anderson/Anderson_varying_domain.thy}} for the type of indivduals individuals
+  (and constant domain for all other types). Different authors have pointed out that 
+  Ande
+\item The foll
+and constant 
+has been verified for constant domain\footnote{Cf. Isabelle/HOL source file \url{Anderson/Anderson_const.thy}} and varying
+  domain semantics
+\item 
 \end{itemize}
-\end{minipage}
-} \vskip-.5em
-\caption{Modal Collapse \cite{todo:Sobel1987,SobelBook}.\label{fig:collapse}} 
-\end{figure}
-
-\clearpage
-
-\section{Anderson's Emendation}
-
-\begin{figure}[t]
-\noindent \framebox[\columnwidth][r]{
-\begin{minipage}{.94\columnwidth}\small
-\begin{itemize}
-\item[A:A1] If a property is positive, its negation is not positive:
-  $$\hol{\allq \varphi [P(\varphi) \imp \neg P(\neg \varphi)]}$$ 
-\item[A2] A property necessarily implied by a
-  positive property is positive:
-  $$\hol{\allq \varphi \allq \psi [(P(\varphi) \wedge \nec \allq x [\varphi(x)
-  \imp \psi(x)]) \imp P(\psi)]}$$
-\item[T1] Positive properties are possibly exemplified: 
-  $$\hol{\allq \varphi [P(\varphi) \imp \pos \exq x \varphi(x)]}$$ 
-\item[A:D1] A \emph{God-like} being necessarily possesses those and only those properties that are positive: 
-  $$\hol{G_A(x) \equiv \forall \varphi [P(\varphi) \biimp \nec \varphi(x)]}$$ 
-\item[A3']  The property of being God-like is positive: 
-  $$\hol{P(G_A)}$$
-\item[C\phantom{1}] Possibly, a God-like being exists: $$\hol{\pos \exq x G(x)}$$
-\item[A4]  Positive properties are necessarily positive: 
-  $$\hol{\allq \varphi [P(\varphi) \imp \Box \; P(\varphi)]}$$ 
-\item[A:D2] An \emph{essence} of an individual is a property that necessarily implies those and only those properties that the individual has necessarily: $$\hol{\essA{\varphi}{x} \equiv \allq
-  \psi [\nec \psi(x) \biimp \nec \allq y (\varphi(y) \imp \psi(y))]}$$ 
-\item[T2']  Being God-like is an essence of any
-  God-like being: $$\hol{\allq x [G_A(x) \imp \essA{G_A}{x}]}$$
-\item[D3'] \emph{Necessary existence} of an individual is the necessary exemplification of all its essences: 
-  $$\hol{\NE_A(x) \equiv \allq \varphi [\essA{\varphi}{x} \imp \nec
-  \exq y \varphi(y)]}$$
-\item[A5'] Necessary existence is a positive property: $$\hol{P(\NE_A)}$$ 
-\item[L1'] If a god-like being exists, then necessarily a god-like being exists: 
-  $$\hol{\exq x G_A(x) \imp \nec \exq y G_A(y)}$$
-\item[L2'] If possibly a god-like being exists, then necessarily a god-like being exists: 
-  $$\hol{\pos \exq x G_A(x) \imp \nec \exq y G_A(y)} $$
-%
-\item[T3'] Necessarily, a God-like being exists: $$\hol{\nec \exq x G_A(x)}$$ 
-\end{itemize}
-\end{minipage}
-} \vskip-.5em
-\caption{Anderson's Emendation \cite{ToDo:Anderson}.\label{fig:anderson}} 
-\end{figure}
 
 
-I have meanwhile added another file ``Anderson\_var\_partial.thy''. In this version the actualist e-Quantifier is used exclusively in the definition of NE and everywhere else ithe possibilist Quantifiers are used. It is still unclear to me, what is actually meant. Reading Anderson 1990, last sentence on p. 302, it could mean that ``Anderson\_var\_partial.thy'' is the correct version; but when reading AndersonGettings, then one could think that ``Anderson\_var.thy'' is meant. But ok we have now both versions. Interestingly in ``Anderson\_var\_partial.thy'' A5 is not inferable anymore, and this also holds for ``anderson\_implies\_fuhrmann". Nitpick finds countermodels.
-
-
-\clearpage
-
-\section{Frode's Alternative}
-
-\begin{figure}[t]
-\noindent \framebox[\columnwidth][r]{
-\begin{minipage}{.94\columnwidth}\small
-\begin{itemize}
-\item[A1] Either a property or its negation is positive, but not
-  both:
-  $$\hol{\allq \phi [P(\neg \phi) \biimp \neg P(\phi)]}$$ 
-\item[A2] A property necessarily implied by a
-  positive property is positive:
-  $$\hol{\allq \phi \allq \psi [(P(\phi) \wedge \nec \allq x [\phi(x)
-  \imp \psi(x)]) \imp P(\psi)]}$$
-\item[T1] Positive properties are possibly exemplified: 
-  $$\hol{\allq \phi [P(\phi) \imp \pos \exq x \phi(x)]}$$ 
-\item[D1] A \emph{God-like} being possesses all positive properties: 
-  $$\hol{G(x) \biimp \forall \phi [P(\phi) \imp \phi(x)]}$$ 
-\item[A3]  The property of being God-like is positive: 
-  $$\hol{P(G)}$$
-\item[C\phantom{1}] Possibly, a God-like being exists: $$\hol{\pos \exq x G(x)}$$
-\item[A4]  Positive properties are necessarily positive: 
-  $$\hol{\allq \phi [P(\phi) \imp \Box \; P(\phi)]}$$ 
-\item[D2] An \emph{essence} of an individual is a property possessed by it and necessarily implying any of its properties: $$\hol{\ess{\phi}{x} \biimp \phi(x) \wedge \allq
-  \psi (\psi(x) \imp \nec \allq y (\phi(y) \imp \psi(y)))}$$ 
-\item[T2]  Being God-like is an essence of any
-  God-like being: $$\hol{\allq x [G(x) \imp \ess{G}{x}]}$$
-\item[D3] \emph{Necessary existence} of an individual is the necessary exemplification of all its essences: 
-  $$\hol{\NE(x) \biimp \allq \phi [\ess{\phi}{x} \imp \nec
-  \exq y \phi(y)]}$$
-\item[A5] Necessary existence is a positive property: $$\hol{P(\NE)}$$ 
-\item[T3] Necessarily, a God-like being exists: $$\hol{\nec \exq x G(x)}$$ 
-\end{itemize}
-\end{minipage}
-} \vskip-.5em
-\caption{Frode's Alternative \cite{ToDo:Frode}.\label{fig:frode}} 
-\end{figure}
-
-\clearpage
-
-\section{Other Solutions}
-
-ToDo: Fitting
-
-
-\section{Conclusions}
-
-
-Various slightly different versions of
-axioms and definitions have been considered by G\"{o}del and by
-several philosophers who commented on his proof
-(cf.~\cite{sobel2004logic,anderson90:_some_emend_of_goedel_ontol_proof,AndersonGettings,Fitting,Adams,ContemporaryBibliography}).
+ that is, the following can be proved by the HOL-ATPs:
+ 
+G\"odel's and Scott's versions of the proof are not explicit about the
+particular comprehension principles they assume.  Some authors,
+including Hajek \cite{Hajek_der_Mathematiker,Hajek_Magari_and_others},
+have suggested to consider cautious conprehension principles in order
+to escape the modal collapse.
 
 
 
-In theoretical philosophy, formal logical confrontations with such
-ontological arguments had been so far (mainly) limited to paper
-and pen.  Up to now, the use of computers was prevented, because the
-logics of the available theorem proving systems were not expressive
-enough to formalize the abstract concepts adequately. G{\"o}del's proof
-uses, for example, a complex higher-order modal logic (\HOML) to handle
-concepts such as \emph{possibility} and \emph{necessity} and to support
-quantification over individuals and properties.
 
-controversies, care with parameters
+% \section{Other Solutions}
 
-ToDo: Leibniz calculemus, Rushby, Zalta \cite{oppenheimera11,rushby13}
+% ToDo: Fitting
+
+
+% \section{Conclusions}
+
+
+% Various slightly different versions of
+% axioms and definitions have been considered by G\"{o}del and by
+% several philosophers who commented on his proof
+% (cf.~\cite{sobel2004logic,anderson90:_some_emend_of_goedel_ontol_proof,AndersonGettings,Fitting,Adams,ContemporaryBibliography}).
+
+
+
+% In theoretical philosophy, formal logical confrontations with such
+% ontological arguments had been so far (mainly) limited to paper
+% and pen.  Up to now, the use of computers was prevented, because the
+% logics of the available theorem proving systems were not expressive
+% enough to formalize the abstract concepts adequately. G{\"o}del's proof
+% uses, for example, a complex higher-order modal logic (\HOML) to handle
+% concepts such as \emph{possibility} and \emph{necessity} and to support
+% quantification over individuals and properties.
+
+% controversies, care with parameters
+
+% ToDo: Leibniz calculemus, Rushby, Zalta \cite{oppenheimera11,rushby13}
 
 
 % \begin{defn}
@@ -513,6 +453,113 @@ B.~Woltzenlogel-Paleo and C.~Benzm{\"u}ller, `Automated verification and
   (2013).
 
 \end{thebibliography}
+
+\begin{appendix}
+
+% \begin{figure}[t]
+% \noindent \framebox[\columnwidth][r]{
+% \begin{minipage}{.94\columnwidth}\small
+% \begin{itemize}
+% \item[MC] Everything that is the case is so necessarily:
+%   $$\hol{\allq \phi [\phi \imp \nec \phi]}$$ 
+% \item[MC'] Everything that is possible is necessary:
+%   $$\hol{\allq \phi [\pos \phi \imp \nec \phi]}$$ 
+% \item[MC''] Modalities collapse:
+%   $$\hol{\allq \phi [\phi \biimp \pos \phi \biimp \nec \phi]}$$
+% \end{itemize}
+% \end{minipage}
+% } \vskip-.5em
+% \caption{Modal Collapse \cite{todo:Sobel1987,SobelBook}.\label{fig:collapse}} 
+% \end{figure}
+
+%\clearpage
+
+\section{Anderson's Emendation} \label{apx:Anderson}
+
+% \begin{figure}[t]
+% \noindent \framebox[\columnwidth][r]{
+% \begin{minipage}{.94\columnwidth}\small
+\begin{itemize}
+\item[A:A1] If a property is positive, its negation is not positive:
+  $$\hol{\allq \varphi [P(\varphi) \imp \neg P(\neg \varphi)]}$$ 
+\item[A2] A property necessarily implied by a
+  positive property is positive:
+  $$\hol{\allq \varphi \allq \psi [(P(\varphi) \wedge \nec \allq x [\varphi(x)
+  \imp \psi(x)]) \imp P(\psi)]}$$
+\item[T1] Positive properties are possibly exemplified: 
+  $$\hol{\allq \varphi [P(\varphi) \imp \pos \exq x \varphi(x)]}$$ 
+\item[A:D1] A \emph{God-like} being necessarily possesses those and only those properties that are positive: 
+  $$\hol{G_A(x) \equiv \forall \varphi [P(\varphi) \biimp \nec \varphi(x)]}$$ 
+\item[A3']  The property of being God-like is positive: 
+  $$\hol{P(G_A)}$$
+\item[C\phantom{1}] Possibly, a God-like being exists: $$\hol{\pos \exq x G(x)}$$
+\item[A4]  Positive properties are necessarily positive: 
+  $$\hol{\allq \varphi [P(\varphi) \imp \Box \; P(\varphi)]}$$ 
+\item[A:D2] An \emph{essence} of an individual is a property that necessarily implies those and only those properties that the individual has necessarily: $$\hol{\essA{\varphi}{x} \equiv \allq
+  \psi [\nec \psi(x) \biimp \nec \allq y (\varphi(y) \imp \psi(y))]}$$ 
+\item[T2']  Being God-like is an essence of any
+  God-like being: $$\hol{\allq x [G_A(x) \imp \essA{G_A}{x}]}$$
+\item[D3'] \emph{Necessary existence} of an individual is the necessary exemplification of all its essences: 
+  $$\hol{\NE_A(x) \equiv \allq \varphi [\essA{\varphi}{x} \imp \nec
+  \exq y \varphi(y)]}$$
+\item[A5'] Necessary existence is a positive property: $$\hol{P(\NE_A)}$$ 
+\item[L1'] If a god-like being exists, then necessarily a god-like being exists: 
+  $$\hol{\exq x G_A(x) \imp \nec \exq y G_A(y)}$$
+\item[L2'] If possibly a god-like being exists, then necessarily a god-like being exists: 
+  $$\hol{\pos \exq x G_A(x) \imp \nec \exq y G_A(y)} $$
+%
+\item[T3'] Necessarily, a God-like being exists: $$\hol{\nec \exq x G_A(x)}$$ 
+\end{itemize}
+% \end{minipage}
+% } \vskip-.5em
+% \caption{Anderson's Emendation \cite{ToDo:Anderson}.\label{fig:anderson}} 
+% \end{figure}
+
+
+% I have meanwhile added another file ``Anderson\_var\_partial.thy''. In this version the actualist e-Quantifier is used exclusively in the definition of NE and everywhere else ithe possibilist Quantifiers are used. It is still unclear to me, what is actually meant. Reading Anderson 1990, last sentence on p. 302, it could mean that ``Anderson\_var\_partial.thy'' is the correct version; but when reading AndersonGettings, then one could think that ``Anderson\_var.thy'' is meant. But ok we have now both versions. Interestingly in ``Anderson\_var\_partial.thy'' A5 is not inferable anymore, and this also holds for ``anderson\_implies\_fuhrmann". Nitpick finds countermodels.
+
+
+%\clearpage
+
+\section{Bjordahl's Alternative} \label{apx:Bjordahl}
+
+% \begin{figure}[t]
+% \noindent \framebox[\columnwidth][r]{
+% \begin{minipage}{.94\columnwidth}\small
+\begin{itemize}
+\item[A1] Either a property or its negation is positive, but not
+  both:
+  $$\hol{\allq \phi [P(\neg \phi) \biimp \neg P(\phi)]}$$ 
+\item[A2] A property necessarily implied by a
+  positive property is positive:
+  $$\hol{\allq \phi \allq \psi [(P(\phi) \wedge \nec \allq x [\phi(x)
+  \imp \psi(x)]) \imp P(\psi)]}$$
+\item[T1] Positive properties are possibly exemplified: 
+  $$\hol{\allq \phi [P(\phi) \imp \pos \exq x \phi(x)]}$$ 
+\item[D1] A \emph{God-like} being possesses all positive properties: 
+  $$\hol{G(x) \biimp \forall \phi [P(\phi) \imp \phi(x)]}$$ 
+\item[A3]  The property of being God-like is positive: 
+  $$\hol{P(G)}$$
+\item[C\phantom{1}] Possibly, a God-like being exists: $$\hol{\pos \exq x G(x)}$$
+\item[A4]  Positive properties are necessarily positive: 
+  $$\hol{\allq \phi [P(\phi) \imp \Box \; P(\phi)]}$$ 
+\item[D2] An \emph{essence} of an individual is a property possessed by it and necessarily implying any of its properties: $$\hol{\ess{\phi}{x} \biimp \phi(x) \wedge \allq
+  \psi (\psi(x) \imp \nec \allq y (\phi(y) \imp \psi(y)))}$$ 
+\item[T2]  Being God-like is an essence of any
+  God-like being: $$\hol{\allq x [G(x) \imp \ess{G}{x}]}$$
+\item[D3] \emph{Necessary existence} of an individual is the necessary exemplification of all its essences: 
+  $$\hol{\NE(x) \biimp \allq \phi [\ess{\phi}{x} \imp \nec
+  \exq y \phi(y)]}$$
+\item[A5] Necessary existence is a positive property: $$\hol{P(\NE)}$$ 
+\item[T3] Necessarily, a God-like being exists: $$\hol{\nec \exq x G(x)}$$ 
+\end{itemize}
+% \end{minipage}
+% } \vskip-.5em
+% \caption{Frode's Alternative \cite{ToDo:Frode}.\label{fig:frode}} 
+% \end{figure}
+
+%\clearpage
+\end{appendix}
 
 
 % ------------------------------------------------------------------------
