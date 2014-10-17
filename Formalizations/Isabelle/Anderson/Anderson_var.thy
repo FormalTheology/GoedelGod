@@ -73,10 +73,10 @@ section {* Anderson's Ontological Argument -- varying domain*}
     A2:  "[\<forall>(\<lambda>\<Phi>. \<forall>(\<lambda>\<Psi>. ( (P \<Phi>) m\<and> \<box> (\<forall>e(\<lambda>x. (\<Phi> x) m\<rightarrow> (\<Psi> x) ))) m\<rightarrow> (P \<Psi>)))]" and
     A3:  "[P G]" 
  
-  theorem T1: "[\<forall>(\<lambda>\<Phi>. (P \<Phi>) m\<rightarrow> \<diamond> (\<exists> \<Phi>))]"
+  theorem T1: "[\<forall>(\<lambda>\<Phi>. (P \<Phi>) m\<rightarrow> \<diamond> (\<exists>e \<Phi>))]"
   by (metis A1 A2)
         
-  corollary C1: "[\<diamond> (\<exists> G)]"
+  corollary C1: "[\<diamond> (\<exists>e G)]"
   by (metis A3 T1)
   
   lemma T2_lem: "[\<forall>e(\<lambda>x. \<forall>(\<lambda>\<Phi>. ((G x) m\<and> (ess \<Phi> x)) m\<rightarrow> \<forall>e(\<lambda>y. ((G y) m\<rightarrow> \<Phi> y))))]"
@@ -84,15 +84,17 @@ section {* Anderson's Ontological Argument -- varying domain*}
   
   text {* For theorem T2, Satallax succeeds, but metis fails.*}
   theorem T2: "[\<forall>e(\<lambda>x. (G x) m\<rightarrow> (ess G x))]"
-  sledgehammer min [remote_satallax, timeout = 200] (A1 A2 A3 Anderson_var.refl Anderson_var.sym Anderson_var.trans C1 G_def NE_def T1 T2_lem ess_def nonempty)
+  sledgehammer [remote_satallax remote_leo2, timeout = 200] 
+  (* sledgehammer min [remote_satallax, timeout = 200] (A1 A2 A3 Anderson_var.refl Anderson_var.sym Anderson_var.trans C1 G_def NE_def T1 T2_lem ess_def nonempty)  *)
   oops
  
-  theorem T3: "[\<box> (\<exists>(\<lambda>x. (G x)))]"
-  by (metis A3 G_def sym T1)
+  theorem T3: "[\<box> (\<exists>e(\<lambda>x. (G x)))]"
+  by (metis (lifting) A2 A3 Anderson_var.refl Anderson_var.sym G_def T1)
+  (* by (metis A3 G_def sym T1) *)
    
   --{* It is surprising that Metis finds a proof using "sym". 
        Typically, the proof of C2 uses "refl" instead. *}
-  corollary C2: "[\<exists>(\<lambda>x. (G x) )]"
+  corollary C2: "[\<exists>e(\<lambda>x. (G x) )]"
   -- {* by (metis refl T3) *} 
   by (metis sym C1 T3)
 
