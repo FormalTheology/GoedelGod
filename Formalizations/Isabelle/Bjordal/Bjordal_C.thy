@@ -91,7 +91,7 @@ text {* We prove necessarily God exists. *}
  theorem T3: "[\<box> (\<exists> G)]" 
  (* nitpick [user_axioms = true] *)
  (* sledgehammer [provers = remote_leo2 remote_satallax] *)
- by (metis Ax1 Ax2 Bjordal_C.sym MCP_def N_def P_def) 
+ by (metis Ax1 Ax2 sym MCP_def N_def P_def) 
 
 text {* Nitpick generates a countermodel to Modal Collapse. *}
 
