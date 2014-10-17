@@ -189,12 +189,14 @@ motivated by various comments on Anderson's work in the literature.
   domain quantifiers have been modeled by using an explicit
   ``Existence'' relation between indiviudals and worlds): we obtain
   the same results as  above
-\item Mixed variant\footnote{Cf. Isabelle/HOL source file
-    \url{Anderson/Anderson_mixed_domain.thy}} (varying domain
+\item Mixed variant\footnote{Cf. Isabelle/HOL source files
+    \url{Anderson/Anderson_mixed_domain_1/2.thy}} (varying domain
   quantifiers are used exclusively in the definitions of essence and
   NE; see the comments by Fitting): G\"odel's axioms A4 and A5 remain
   redundant (the former one in
-  logic K4B, the latter already in K).
+  logic K4B, the latter already in K). The situation changes when only
+  NE is modeled with a varying domain quantifier. Now, Nitpick reports
+  a countermodel. 
 \end{itemize}
  
 
