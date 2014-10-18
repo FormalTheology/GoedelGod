@@ -56,6 +56,8 @@ Germany
 
 [Zeit Magazin (Online Version)](http://www.zeit.de/zeit-magazin/2014/39/harald-martenstein-gott-journalismus)
 
+[Focus](http://www.focus.de/wissen/experten/heinz_oberhummer/gottesbeweis-per-computer-naturwissenschaft-und-religion-gehen-nicht-zusammen_id_3711166.html)
+
 
 Austria
 -------
