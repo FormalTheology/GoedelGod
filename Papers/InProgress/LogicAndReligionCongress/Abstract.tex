@@ -7,6 +7,9 @@
 
 \usepackage{url}
 \usepackage{commands}
+
+\usepackage[utf8]{inputenc}
+
 %
 %
 % THEOREM Environments (Examples)-----------------------------------------
@@ -58,7 +61,7 @@
 %
 
 
-\title[Modal Collapse]
+\title[Analysis of Modern Variants of G\"odel's Ontological Argument]
  {Computer-supported Analysis of Modern Variants of G\"odel's Ontological Argument}
 
 
@@ -67,14 +70,9 @@
 \author[Benzm\"uller]{C. Benzm\"uller}
 
 \address{%
-Department of Mathematics and Computer Science\\
-Arnimallee 7 \\
-Room 115 \\
-14195 Berlin \\
-Germany
+Dep.~of Mathematics and Computer Science, Freie Universit\"at Berlin, Germany
 }
-
-\email{c.benzmueller@gmail.com}
+\email{c.benzmueller@fu-berlin.com}
 
 \thanks{This work was supported by German National Research Foundation (DFG) under
  grants BE 2501/9-1 and BE 2501/11-1 and by ????}
@@ -83,10 +81,7 @@ Germany
 %----------Author 2
 \author[Weber]{L. Weber}
 \address{ 
-ToDo \\
-ToDo \\
-ToDo Berlin \\
-Germany
+Dep.~of Mathematics and Computer Science, Freie Universit\"at Berlin, Germany
 }
 \email{leon.weber@fu-berlin.de}
 
@@ -131,82 +126,114 @@ Austria
 %\tableofcontents
 %\section{Introduction}
 
-%\vspace*{-5em}
+\vspace*{-5em}
 
 %\section{The Modal Collapse}
-The axioms in G\"odel's ontological argument
-\cite{GoedelNotes,ScottNotes} imply what is called the modal collapse
+The axioms in G\"odel's ontological argument 
+\cite{GoedelNotes,ScottNotes} (cf. Appendix \ref{apx:Goedel}) imply what is called the modal collapse
 \cite{Sobel1987,SobelBook2004} (formula $\varphi \rightarrow \Box
 \varphi$, abbreviated as MC, holds for any formula $\varphi$ and not
 just for $\exists x. God(x)$ as intended). This fact, which has
 recently been confirmed with higher-order automated theorem provers
-\cite{J30,ECAI-2014}, has led to strong criticism of the argument, and
+\cite{C40,J30}, has led to strong criticism of the argument, and
 it has therefore stimulated attempts to remedy the problem. Some
 authors, including Hajek
-\cite{Hajek_der_Mathematiker,Hajek_Magari_and_others}, suggest the use
+\cite{Hajek_der_Mathematiker_2002,Hajek_Magari_and_others_1996}, suggest the use
 of cautious instead of full comprehension principles in order to
 escape the modal collapse. Others, including Anderson
 \cite{anderson90:_some_emend_of_goedel_ontol_proof,AndersonGettings}
-and Bjordahl \cite{Bjordahl}, have proposed to adapt G\"odel's axioms (in
-particular, controversial axiom A1) and definitions.
+and Bjordal \cite{bjordal99}, propose to slightly modify
+G\"odel's axioms and definitions.
 
 We have studied --- with computer-support --- the emendations proposed
-by Anderson and Bjordahl.  More precisely, we have formalized their
-emendations within the proof assistant Isabelle/HOL \cite{Isabelle},
-and we have then automated (different variations of) their emendations
-with the higher-order reasoners Leo-II \cite{C26}, Satallax
-\cite{brown2012satallax}, Metis \cite{Hurd03first-orderproof} and
-Nitpick \cite{BN10}; these systems are available in Isabelle/HOL.  Our
-formalizations\footnote{The formalizations are available in the
-  subdirectories \url{Anderson} and \url{Bjordahl} at
+by Anderson and Bjordal (thereby we have retained full comprehension).
+More precisely, we have formalized their emendations within the proof
+assistant Isabelle/HOL \cite{Isabelle}, and we have then automated
+(different variations of) their emendations with the higher-order
+reasoners Leo-II \cite{C26}, Satallax \cite{brown2012satallax}, Metis
+\cite{Hurd03first-orderproof} and Nitpick \cite{Nitpick}; these systems
+are available in Isabelle/HOL.  Our formalizations\footnote{The
+  formalizations are available in the subdirectories \url{Anderson}
+  and \url{Bjordal} at
   \url{https://github.com/FormalTheology/GoedelGod/blob/master/Formalizations/Isabelle/}.}
 employ the embedding of higher-order modal logic (HOML) in classical
-higher-order logic (HOL) as introduced and employed in our previous
-work \cite{J30,ECAI-2014}. In this approach full comprehension is
+higher-order logic (HOL) as introduced and employed in previous
+work \cite{C40,J30,J23}. In this approach full comprehension is
 naturally ``built-in'' since the underlying HOL supports
-$\lambda$-abstraction. The assumption of full comprehension, up to our
-understanding, is
-in-line with Anderson and Bjordahl (?).
+$\lambda$-abstraction.
 
 We summarize the main results of our experiments, and we start with
-Anderson's emendation (cf. Appendix \ref{apx:Anderson}), which we have
-analysed for different domain conditions. These variations were
-motivated by various comments on Anderson's work in the literature
-(maybe we should be more explicit).
+Anderson's emendation (cf. Appendix \ref{apx:Anderson}; @Bruno: I do
+not yet address T2', L1' and L2' below; we could eventually include those as well?),
+which we have analysed for different domain conditions. These
+variations were motivated by various comments on Anderson's work in
+the literature (@Bruno: maybe we should be more explicit about these
+comments).
 \begin{itemize}
 \item Constant domain semantics\footnote{Cf. Isabelle/HOL source file
     \url{Anderson/Anderson_constant_domain.thy}} (the individual
-  domains remain the same in all worlds): G\"odel's theorems C1, and
-  T3 can easily be automated (in logics K and KB, respectively) ,
+  domains remain unchanged for all worlds): G\"odel's theorems T1, C
+  and T3' can be quickly automated (in logics K and KB, respectively),
   G\"odel's axioms A4 and A5 are proven redundant (the former one in
-  logic K4B, the latter already in K); a trivial countermodel (two
-  worlds, one individual; this is simpler than
-          the countermodel with two individuals and two worlds
-          presented by Anderson, 1990) to MC generated by Nitpick (for all mentioned
-  logics); this model also proves consistency.
+  logic K4B and the latter one already in K). Moreover, a trivial
+  countermodel (consisting of two worlds and two individuals) to MC
+  generated by Nitpick (for all mentioned logics); this model also
+  proves consistency. 
 \item Varying domain semantics\footnote{Cf. Isabelle/HOL source file
     \url{Anderson/Anderson_varying_domain.thy}} (the domains for
   indivduals may vary from world to world, all other domains remain
-  constant; different authors have pointed out that varying domain
+  constant; various authors have pointed out that varying domain
   quantifiers should be used in Anderson's work; here we consistently
-  used varying domain for all individual quantifiers; the varying
-  domain quantifiers have been modeled by using an explicit
-  ``Existence'' relation between indiviudals and worlds): we obtain
-  the same results as  above
+  used varying domain for all individual quantifiers; the modeling of
+  the varying domain quantifiers employs an explicit ``Existence''
+  relation between indiviudals and worlds as guard): In this setting we obtain the
+  same results as above.
 \item Mixed variant\footnote{Cf. Isabelle/HOL source files
     \url{Anderson/Anderson_mixed_domain_1/2.thy}} (varying domain
-  quantifiers are used exclusively in the definitions of essence and
-  NE; see the comments by Fitting): G\"odel's axioms A4 and A5 remain
-  redundant (the former one in
-  logic K4B, the latter already in K). The situation changes when only
-  NE is modeled with a varying domain quantifier. Now, Nitpick reports
-  a countermodel. 
+  quantifiers are used only in the definitions of essence and NE;
+  cf.~Fitting comments to Anderson in
+  \cite{fitting02:_types_tableaus_god}): Also in this setting we
+  obtain the same results as above. However, if a varying domain
+  quantifier is used only in the definition of NE, then the
+  situation slightly changes. Now axiom A5 is no longer provable and
+  a countermodel is reported by Nitpick. The remaining results are as before.
+
+%   G\"odel's axioms A4 and A5
+%   remain redundant (the former one in logic K4B, the latter already in
+%   K). The situation changes when only NE is modeled with a varying
+%   domain quantifier. Now, Nitpick reports a countermodel.
 \end{itemize}
  
 
-Need to do Bjordahl \ldots.
+Our analysis of Bjordal emendation of G\"odel's argument (cf. Appendix \ref{apx:Bjordal}) has produced the following results:
+\begin{itemize}
+\item Constant domain semantics\footnote{Cf. Isabelle/HOL source files
+    \url{Bjordal/Bjordal_A/B/C_constant_domain.thy}}: G\"odel's axiom
+  A2, A3 can be quickly automatically derived in logic K from
+  Bjordal's definition B:D. A4 can be proved in logic T
+  (reflexivity). Proving G\"odel's D1 from B:D is possible in logic
+  K4. Vice versa, for the proof that B:D follows from D1, A2, A3 and
+  A4 the povers succeed already in logic K. Hence, Bjordal's lemma
+  B:L1 holds in logic S4. The provers also show that theorem T3
+  follows from B:D, B:A1 and B:A2 already in logic KB. Modal collapse
+  does not follow in Bjordal's setting as Nitpick demonstrates with a
+  countermodel (consisting of two worlds and one individual). @Bruno: we could eventually also
+  also say that for MC1 we need a bigger countermodel?
+\item Varying domain semantics\footnote{Cf. Isabelle/HOL source files
+    \url{Bjordal/Bjordal_A/B/C_varying_domain.thy}}: The results are
+  the same as above. 
+\item @Bruno: we could also check the mixed case her; but there doesn't seem to be strong reason for doing so.
+\end{itemize}
 
-
+Summary (what else can we say here, feel free to add): Using our approach, the formalization and (partly) automated
+analysis of different variants of Anderson's and Bjordal's emendations
+of G\"odel's ontological argument has been surprisingly
+straightforward. The provers confirmed the claimed results and in a
+few cases they have even contributed some novel insights. The
+weakening of the comprehension principles would clearly constitute
+another interesting parameter for further experiments. However, this
+seems hard to achieve in our approach, since full comprehension is
+naturally built-in.
 
 % \section{Other Solutions}
 
@@ -469,8 +496,9 @@ Need to do Bjordahl \ldots.
 
 %\end{thebibliography}
 
+\newpage
 \begin{appendix}
-
+\noindent @Bruno: I think we need more compact presentation of the proofs.
 % \begin{figure}[t]
 % \noindent \framebox[\columnwidth][r]{
 % \begin{minipage}{.94\columnwidth}\small
@@ -488,6 +516,44 @@ Need to do Bjordahl \ldots.
 % \end{figure}
 
 %\clearpage
+
+\small
+
+\section{Scott's version of G\"odel's ontological argment} \label{apx:Goedel} 
+\begin{itemize}
+\item[A1] Either a property or its negation is positive, but not
+  both:
+  $$\hol{\allq \varphi [P(\neg \varphi) \biimp \neg P(\varphi)]}$$ 
+\item[A2] A property necessarily implied by a
+  positive property is positive:
+  $$\hol{\allq \varphi \allq \psi [(P(\varphi) \wedge \nec \allq x [\varphi(x)
+  \imp \psi(x)]) \imp P(\psi)]}$$
+\item[T1] Positive properties are possibly exemplified: 
+  $$\hol{\allq \varphi [P(\varphi) \imp \pos \exq x \varphi(x)]}$$ 
+\item[D1] A \emph{God-like} being possesses all positive properties: 
+  $$\hol{G(x) \equiv \forall \varphi [P(\varphi) \imp \varphi(x)]}$$ 
+\item[A3]  The property of being God-like is positive: 
+  $$\hol{P(G)}$$
+\item[C\phantom{1}] Possibly, a God-like being exists: $$\hol{\pos \exq x G(x)}$$
+\item[A4]  Positive properties are necessarily positive: 
+  $$\hol{\allq \varphi [P(\varphi) \imp \Box \; P(\varphi)]}$$ 
+\item[D2] An \emph{essence} of an individual is a property possessed by it and necessarily implying any of its properties: $$\hol{\ess{\varphi}{x} \equiv \varphi(x) \wedge \allq
+  \psi (\psi(x) \imp \nec \allq y (\varphi(y) \imp \psi(y)))}$$ 
+\item[T2]  Being God-like is an essence of any
+  God-like being: $$\hol{\allq x [G(x) \imp \ess{G}{x}]}$$
+\item[D3] \emph{Necessary existence} of an individual is the necessary exemplification of all its essences: 
+  $$\hol{\NE(x) \equiv \allq \varphi [\ess{\varphi}{x} \imp \nec
+  \exq y \varphi(y)]}$$
+\item[A5] Necessary existence is a positive property: $$\hol{P(\NE)}$$ 
+\item[L1] If a god-like being exists, then necessarily a god-like being exists: 
+  $$\hol{\exq x G(x) \imp \nec \exq y G(y)}$$
+\item[L2] If possibly a god-like being exists, then necessarily a god-like being exists: 
+  $$\hol{\pos \exq x G(x) \imp \nec \exq y G(y)} $$
+%
+\item[T3] Necessarily, a God-like being exists: $$\hol{\nec \exq x G(x)}$$ 
+\end{itemize}
+
+
 
 \section{Anderson's Emendation} \label{apx:Anderson}
 
@@ -536,36 +602,27 @@ Need to do Bjordahl \ldots.
 
 %\clearpage
 
-\section{Bjordahl's Alternative} \label{apx:Bjordahl}
+\section{Bjordal's Alternative} \label{apx:Bjordal}
 
 % \begin{figure}[t]
 % \noindent \framebox[\columnwidth][r]{
 % \begin{minipage}{.94\columnwidth}\small
+In Bjordal's emendation $G$ (God-like) is taken as primitive and $P$ (Positive) is defined (cf. definition D).
 \begin{itemize}
-\item[A1] Either a property or its negation is positive, but not
-  both:
-  $$\hol{\allq \phi [P(\neg \phi) \biimp \neg P(\phi)]}$$ 
-\item[A2] A property necessarily implied by a
-  positive property is positive:
-  $$\hol{\allq \phi \allq \psi [(P(\phi) \wedge \nec \allq x [\phi(x)
-  \imp \psi(x)]) \imp P(\psi)]}$$
-\item[T1] Positive properties are possibly exemplified: 
-  $$\hol{\allq \phi [P(\phi) \imp \pos \exq x \phi(x)]}$$ 
-\item[D1] A \emph{God-like} being possesses all positive properties: 
-  $$\hol{G(x) \biimp \forall \phi [P(\phi) \imp \phi(x)]}$$ 
-\item[A3]  The property of being God-like is positive: 
-  $$\hol{P(G)}$$
-\item[C\phantom{1}] Possibly, a God-like being exists: $$\hol{\pos \exq x G(x)}$$
-\item[A4]  Positive properties are necessarily positive: 
-  $$\hol{\allq \phi [P(\phi) \imp \Box \; P(\phi)]}$$ 
-\item[D2] An \emph{essence} of an individual is a property possessed by it and necessarily implying any of its properties: $$\hol{\ess{\phi}{x} \biimp \phi(x) \wedge \allq
-  \psi (\psi(x) \imp \nec \allq y (\phi(y) \imp \psi(y)))}$$ 
-\item[T2]  Being God-like is an essence of any
-  God-like being: $$\hol{\allq x [G(x) \imp \ess{G}{x}]}$$
-\item[D3] \emph{Necessary existence} of an individual is the necessary exemplification of all its essences: 
-  $$\hol{\NE(x) \biimp \allq \phi [\ess{\phi}{x} \imp \nec
-  \exq y \phi(y)]}$$
-\item[A5] Necessary existence is a positive property: $$\hol{P(\NE)}$$ 
+\item[B:D] A formulas $\phi$ is positive iff it is necessarily the case
+  that anything which is God-like has the property $\phi$.
+  $$\hol{P(\phi) \equiv \nec \allq x (G(x) \imp \phi(x))}$$ 
+\item[B:L1] D is logically equivalent in S4 with the union of G\"odel's definition D1 and axioms A2, A3 and A4.
+  $$\hol{D \biimp D1 \wedge A2 \wedge A3 \wedge A4}$$
+  The proof splits into the two implication directions B:L1$^\rightarrow$ and B:L1$^\leftarrow$. B:L1$^\rightarrow$ can be further split into four single steps.
+\item[B:D2] $\phi$ is a maximal composite of object $x$'s positive properties iff $x$ has $\phi$ and $\phi$ is positive and all positive properties $\psi$ which $x$ has are such that is necessarily the case that all objects which have $\phi$ also have $\psi$.
+  $$\hol{MCP(\phi,x) \equiv (\phi(x) \wedge P(\phi)) \wedge \allq \psi ((\psi(x) \wedge P(\psi)) \imp \nec \allq y (\phi(y) \imp \psi(y)))}$$
+\item[B:D3] $x$ has the $N$-property iff x is such that if $\phi$ is a maximal composite of $x$'s positive properties then it is necessary that some object $y$ has the property $\phi$.
+  $$\hol{N(x) \equiv \allq \phi (MCP(\phi,x) \imp \nec \allq y \phi(y))}$$
+\item[B:A1] If a property is positive, its negation is not positive:
+  $$\hol{\allq \varphi [P(\varphi) \imp \neg P(\neg \varphi)]}$$ 
+\item[B:A2] The $N$-property is positive.
+ $$\hol{P(N)}$$
 \item[T3] Necessarily, a God-like being exists: $$\hol{\nec \exq x G(x)}$$ 
 \end{itemize}
 % \end{minipage}
