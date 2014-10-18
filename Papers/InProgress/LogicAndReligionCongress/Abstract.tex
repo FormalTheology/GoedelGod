@@ -136,7 +136,7 @@ Austria
 %\section{The Modal Collapse}
 The axioms in G\"odel's ontological argument
 \cite{GoedelNotes,ScottNotes} imply what is called the modal collapse
-\cite{Sobel1987,SobelBook} (formula $\varphi \rightarrow \Box
+\cite{Sobel1987,SobelBook2004} (formula $\varphi \rightarrow \Box
 \varphi$, abbreviated as MC, holds for any formula $\varphi$ and not
 just for $\exists x. God(x)$ as intended). This fact, which has
 recently been confirmed with higher-order automated theorem provers
@@ -147,30 +147,32 @@ authors, including Hajek
 of cautious instead of full comprehension principles in order to
 escape the modal collapse. Others, including Anderson
 \cite{anderson90:_some_emend_of_goedel_ontol_proof,AndersonGettings}
-and Bjordahl \cite{}, have proposed to adapt G\"odel's axioms (in
+and Bjordahl \cite{Bjordahl}, have proposed to adapt G\"odel's axioms (in
 particular, controversial axiom A1) and definitions.
 
 We have studied --- with computer-support --- the emendations proposed
 by Anderson and Bjordahl.  More precisely, we have formalized their
 emendations within the proof assistant Isabelle/HOL \cite{Isabelle},
 and we have then automated (different variations of) their emendations
-with the higher-order reasoners Leo-II \cite{}, Satallax \cite{},
-Metis \cite{} and Nitpick \cite{}; these systems are available in
-Isabelle/HOL.  Our formalizations\footnote{The formalizations are
-  available in the subdirectories \url{Anderson} and \url{Bjordahl} at
+with the higher-order reasoners Leo-II \cite{C26}, Satallax
+\cite{brown2012satallax}, Metis \cite{Hurd03first-orderproof} and
+Nitpick \cite{BN10}; these systems are available in Isabelle/HOL.  Our
+formalizations\footnote{The formalizations are available in the
+  subdirectories \url{Anderson} and \url{Bjordahl} at
   \url{https://github.com/FormalTheology/GoedelGod/blob/master/Formalizations/Isabelle/}.}
 employ the embedding of higher-order modal logic (HOML) in classical
 higher-order logic (HOL) as introduced and employed in our previous
 work \cite{J30,ECAI-2014}. In this approach full comprehension is
 naturally ``built-in'' since the underlying HOL supports
-$\lambda$-abstraction. The assumption of full comprehension seems
+$\lambda$-abstraction. The assumption of full comprehension, up to our
+understanding, is
 in-line with Anderson and Bjordahl (?).
 
 We summarize the main results of our experiments, and we start with
 Anderson's emendation (cf. Appendix \ref{apx:Anderson}), which we have
 analysed for different domain conditions. These variations were
 motivated by various comments on Anderson's work in the literature
-(maybe we should be more explicit). 
+(maybe we should be more explicit).
 \begin{itemize}
 \item Constant domain semantics\footnote{Cf. Isabelle/HOL source file
     \url{Anderson/Anderson_constant_domain.thy}} (the individual
@@ -217,7 +219,7 @@ Need to do Bjordahl \ldots.
 % Various slightly different versions of
 % axioms and definitions have been considered by G\"{o}del and by
 % several philosophers who commented on his proof
-% (cf.~\cite{sobel2004logic,anderson90:_some_emend_of_goedel_ontol_proof,AndersonGettings,Fitting,Adams,ContemporaryBibliography}).
+% (cf{sobel2004logic,anderson90:_some_emend_of_goedel_ontol_proof,AndersonGettings,Fitting,Adams,ContemporaryBibliography}).
 
 
 
@@ -309,160 +311,163 @@ Need to do Bjordahl \ldots.
 % \subsection*{Acknowledgment}
 % Many thanks to ...
 
-\begin{thebibliography}{1}
+\bibliographystyle{plain}
+\bibliography{Bibliography}
 
-\bibitem{Adams}
-R.M. Adams, `Introductory note to *1970', in {\em {Kurt G\"odel: Collected
-  Works Vol. 3: Unpubl. Essays and Letters}}, Oxford Univ. Press, (1995).
+% \begin{thebibliography}{1}
 
-\bibitem{AndersonGettings}
-A.C. Anderson and M.~Gettings, `G\"odel ontological proof revisited', in {\em
-  {G\"odel'96: Logical Foundations of Mathematics, Computer Science, and
-  Physics: Lecture Notes in Logic 6}},  167--172, {Springer}, (1996).
+% \bibitem{Adams}
+% R.M. Adams, `Introductory note to *1970', in {\em {Kurt G\"odel: Collected
+%   Works Vol. 3: Unpubl. Essays and Letters}}, Oxford Univ. Press, (1995).
 
-\bibitem{anderson90:_some_emend_of_goedel_ontol_proof}
-C.A. Anderson, `Some emendations of {G{\"o}del's} ontological proof', {\em
-  Faith and Philosophy}, {\bf 7}(3), (1990).
+% \bibitem{AndersonGettings}
+% A.C. Anderson and M.~Gettings, `G\"odel ontological proof revisited', in {\em
+%   {G\"odel'96: Logical Foundations of Mathematics, Computer Science, and
+%   Physics: Lecture Notes in Logic 6}},  167--172, {Springer}, (1996).
 
-\bibitem{Andrews:gmae72}
-P.B. Andrews, `General models and extensionality', {\em Journal of Symbolic
-  Logic}, {\bf 37}(2),  395--397, (1972).
+% \bibitem{anderson90:_some_emend_of_goedel_ontol_proof}
+% C.A. Anderson, `Some emendations of {G{\"o}del's} ontological proof', {\em
+%   Faith and Philosophy}, {\bf 7}(3), (1990).
 
-\bibitem{andrewsSEP}
-P.B. Andrews, `Church's type theory', in {\em The Stanford Encyclopedia of
-  Philosophy}, ed., E.N. Zalta, spring 2014 edn., (2014).
+% \bibitem{Andrews:gmae72}
+% P.B. Andrews, `General models and extensionality', {\em Journal of Symbolic
+%   Logic}, {\bf 37}(2),  395--397, (1972).
 
-\bibitem{C36}
-C.~Benzm{\"u}ller, `{HOL} based universal reasoning', in {\em Handbook of the
-  4th World Congress and School on Universal Logic}, ed., J.Y. Beziau~et al.,
-  pp. 232--233, Rio de Janeiro, Brazil, (2013).
+% \bibitem{andrewsSEP}
+% P.B. Andrews, `Church's type theory', in {\em The Stanford Encyclopedia of
+%   Philosophy}, ed., E.N. Zalta, spring 2014 edn., (2014).
 
-\bibitem{B5}
-C.~Benzm{\"u}ller and D.~Miller, `Automation of higher-order logic', in {\em
-  Handbook of the History of Logic, Volume 9 --- Logic and Computation},
-  Elsevier, (2014).
-\newblock Forthcoming; preliminary version available at
-  {http://christoph-benzmueller.de/papers/B5.pdf}.
+% \bibitem{C36}
+% C.~Benzm{\"u}ller, `{HOL} based universal reasoning', in {\em Handbook of the
+%   4th World Congress and School on Universal Logic}, ed., J.Y. Beziau~et al.,
+%   pp. 232--233, Rio de Janeiro, Brazil, (2013).
 
-\bibitem{C34}
-C.~Benzm{\"u}ller, J.~Otten, and Th. Raths, `Implementing and evaluating
-  provers for first-order modal logics', in {\em Proc. of the 20th European
-  Conference on Artificial Intelligence (ECAI)}, pp. 163--168, (2012).
+% \bibitem{B5}
+% C.~Benzm{\"u}ller and D.~Miller, `Automation of higher-order logic', in {\em
+%   Handbook of the History of Logic, Volume 9 --- Logic and Computation},
+%   Elsevier, (2014).
+% \newblock Forthcoming; preliminary version available at
+%   {http://christoph-benzmueller.de/papers/B5.pdf}.
 
-\bibitem{B9}
-C.~Benzm{\"u}ller and L.C. Paulson, `Exploring properties of normal multimodal
-  logics in simple type theory with {LEO-II}', in {\em {Festschrift in Honor of
-  {Peter B. Andrews} on His 70th Birthday}}, ed., C.~Benzm{\"u}ller~et al.,
-  386--406, College Publications, (2008).
+% \bibitem{C34}
+% C.~Benzm{\"u}ller, J.~Otten, and Th. Raths, `Implementing and evaluating
+%   provers for first-order modal logics', in {\em Proc. of the 20th European
+%   Conference on Artificial Intelligence (ECAI)}, pp. 163--168, (2012).
 
-\bibitem{J23}
-C.~Benzm{\"u}ller and L.C. Paulson, `Quantified multimodal logics in simple
-  type theory', {\em Logica Universalis}, {\bf 7}(1),  7--20, (2013).
+% \bibitem{B9}
+% C.~Benzm{\"u}ller and L.C. Paulson, `Exploring properties of normal multimodal
+%   logics in simple type theory with {LEO-II}', in {\em {Festschrift in Honor of
+%   {Peter B. Andrews} on His 70th Birthday}}, ed., C.~Benzm{\"u}ller~et al.,
+%   386--406, College Publications, (2008).
 
-\bibitem{LEO-II}
-C.~Benzm{\"u}ller, F.~Theiss, L.~Paulson, and A.~Fietzke, `{LEO-II} - a
-  cooperative automatic theorem prover for higher-order logic', in {\em
-  Proc.~of IJCAR 2008}, number 5195 in LNAI, pp. 162--170. Springer, (2008).
+% \bibitem{J23}
+% C.~Benzm{\"u}ller and L.C. Paulson, `Quantified multimodal logics in simple
+%   type theory', {\em Logica Universalis}, {\bf 7}(1),  7--20, (2013).
 
-\bibitem{J30}
-C.~Benzm{\"u}ller and B.~Woltzenlogel-Paleo, `Formalization, mechanization and
-  automation of {G{\"o}del's} proof of {God's} existence', {\em
-  arXiv:1308.4526}, (2013).
+% \bibitem{LEO-II}
+% C.~Benzm{\"u}ller, F.~Theiss, L.~Paulson, and A.~Fietzke, `{LEO-II} - a
+%   cooperative automatic theorem prover for higher-order logic', in {\em
+%   Proc.~of IJCAR 2008}, number 5195 in LNAI, pp. 162--170. Springer, (2008).
 
-\bibitem{J28}
-C.~Benzm\"uller and B.~Woltzenlogel-Paleo, `{G{\"o}del's God in Isabelle/HOL}',
-  {\em Archive of Formal Proofs}, (2013).
+% \bibitem{J30}
+% C.~Benzm{\"u}ller and B.~Woltzenlogel-Paleo, `Formalization, mechanization and
+%   automation of {G{\"o}del's} proof of {God's} existence', {\em
+%   arXiv:1308.4526}, (2013).
 
-\bibitem{W50}
-C.~Benzm\"uller and B.~Woltzenlogel-Paleo, `G\"odel's {God} on the computer',
-  in {\em Proceedings of the 10th International Workshop on the Implementation
-  of Logics}, EPiC Series. EasyChair, (2013).
-\newblock Invited abstract.
+% \bibitem{J28}
+% C.~Benzm\"uller and B.~Woltzenlogel-Paleo, `{G{\"o}del's God in Isabelle/HOL}',
+%   {\em Archive of Formal Proofs}, (2013).
 
-\bibitem{Coq}
-Y.~Bertot and P.~Casteran, {\em {Interactive Theorem Proving and Program
-  Development}}, Springer, 2004.
+% \bibitem{W50}
+% C.~Benzm\"uller and B.~Woltzenlogel-Paleo, `G\"odel's {God} on the computer',
+%   in {\em Proceedings of the 10th International Workshop on the Implementation
+%   of Logics}, EPiC Series. EasyChair, (2013).
+% \newblock Invited abstract.
 
-\bibitem{Nitpick}
-J.C. Blanchette and T.~Nipkow, `Nitpick: A counterexample generator for
-  higher-order logic based on a relational model finder', in {\em Proc. of ITP
-  2010}, number 6172 in LNCS, pp. 131--146. Springer, (2010).
+% \bibitem{Coq}
+% Y.~Bertot and P.~Casteran, {\em {Interactive Theorem Proving and Program
+%   Development}}, Springer, 2004.
 
-\bibitem{Satallax}
-C.E. Brown, `Satallax: An automated higher-order prover', in {\em Proc. of
-  IJCAR 2012}, number 7364 in LNAI, pp. 111 -- 117. Springer, (2012).
+% \bibitem{Nitpick}
+% J.C. Blanchette and T.~Nipkow, `Nitpick: A counterexample generator for
+%   higher-order logic based on a relational model finder', in {\em Proc. of ITP
+%   2010}, number 6172 in LNCS, pp. 131--146. Springer, (2010).
 
-\bibitem{ContemporaryBibliography}
-R.~Corazzon.
-\newblock Contemporary~bibliography~on~ontological~arguments: {\scriptsize
-  \url{http://www.ontology.co/biblio/ontological-proof-contemporary-biblio.htm}}.
+% \bibitem{Satallax}
+% C.E. Brown, `Satallax: An automated higher-order prover', in {\em Proc. of
+%   IJCAR 2012}, number 7364 in LNAI, pp. 111 -- 117. Springer, (2012).
 
-\bibitem{Fitting}
-M.~Fitting, {\em Types, Tableaux and G\"odel's God}, Kluwer, 2002.
+% \bibitem{ContemporaryBibliography}
+% R.~Corazzon.
+% \newblock Contemporary~bibliography~on~ontological~arguments: {\scriptsize
+%   \url{http://www.ontology.co/biblio/ontological-proof-contemporary-biblio.htm}}.
 
-\bibitem{fitting98}
-M.~Fitting and R.L. Mendelsohn, {\em First-Order Modal Logic}, volume 277 of
-  {\em Synthese Library}, Kluwer, 1998.
+% \bibitem{Fitting}
+% M.~Fitting, {\em Types, Tableaux and G\"odel's God}, Kluwer, 2002.
 
-\bibitem{Gallin75}
-D.~Gallin, {\em Intensional and Higher-Order Modal Logic}, North-Holland, 1975.
+% \bibitem{fitting98}
+% M.~Fitting and R.L. Mendelsohn, {\em First-Order Modal Logic}, volume 277 of
+%   {\em Synthese Library}, Kluwer, 1998.
 
-\bibitem{garbacz12:_prover_simpl_expal_away}
-P.~Garbacz, `{PROVER9's} simplifications explained away', {\em Australasian
-  Journal of Philosophy}, {\bf 90}(3),  585--592, (2012).
+% \bibitem{Gallin75}
+% D.~Gallin, {\em Intensional and Higher-Order Modal Logic}, North-Holland, 1975.
 
-\bibitem{GoedelNotes}
-K.~G\"odel, {\em Appx.A: Notes in Kurt G\"odel's Hand},  144--145.
-\newblock In  \cite{sobel2004logic}, 2004.
+% \bibitem{garbacz12:_prover_simpl_expal_away}
+% P.~Garbacz, `{PROVER9's} simplifications explained away', {\em Australasian
+%   Journal of Philosophy}, {\bf 90}(3),  585--592, (2012).
 
-\bibitem{Henkin50}
-L.~Henkin, `Completeness in the theory of types', {\em Journal of Symbolic
-  Logic}, {\bf 15}(2),  81--91, (1950).
+% \bibitem{GoedelNotes}
+% K.~G\"odel, {\em Appx.A: Notes in Kurt G\"odel's Hand},  144--145.
+% \newblock In  \cite{sobel2004logic}, 2004.
 
-\bibitem{homl}
-R.~Muskens, `{Higher Order Modal Logic}', in {\em Handbook of Modal Logic},
-  ed., P~Blackburn~et al.,  621--653, Elsevier, Dordrecht, (2006).
+% \bibitem{Henkin50}
+% L.~Henkin, `Completeness in the theory of types', {\em Journal of Symbolic
+%   Logic}, {\bf 15}(2),  81--91, (1950).
 
-\bibitem{Isabelle}
-T.~Nipkow, L.C. Paulson, and M.~Wenzel, {\em {Isabelle/HOL: A Proof Assistant
-  for Higher-Order Logic}}, number 2283 in LNCS, Springer, 2002.
+% \bibitem{homl}
+% R.~Muskens, `{Higher Order Modal Logic}', in {\em Handbook of Modal Logic},
+%   ed., P~Blackburn~et al.,  621--653, Elsevier, Dordrecht, (2006).
 
-\bibitem{oppenheimera11}
-P.E. Oppenheimer and E.N. Zalta, `A computationally-discovered simplification
-  of the ontological argument', {\em Australasian Journal of Philosophy}, {\bf
-  89}(2),  333--349, (2011).
+% \bibitem{Isabelle}
+% T.~Nipkow, L.C. Paulson, and M.~Wenzel, {\em {Isabelle/HOL: A Proof Assistant
+%   for Higher-Order Logic}}, number 2283 in LNCS, Springer, 2002.
 
-\bibitem{rushby13}
-J.~Rushby, `The ontological argument in {PVS}', in {\em Proc.~of CAV Workshop
-  ``Fun With Formal Methods''}, St. Petersburg, Russia,, (2013).
+% \bibitem{oppenheimera11}
+% P.E. Oppenheimer and E.N. Zalta, `A computationally-discovered simplification
+%   of the ontological argument', {\em Australasian Journal of Philosophy}, {\bf
+%   89}(2),  333--349, (2011).
 
-\bibitem{Schulz:AICOM-2002}
-S.~Schulz, `E -- a brainiac theorem prover', {\em {AI Communications}}, {\bf
-  15}(2),  111--126, (2002).
+% \bibitem{rushby13}
+% J.~Rushby, `The ontological argument in {PVS}', in {\em Proc.~of CAV Workshop
+%   ``Fun With Formal Methods''}, St. Petersburg, Russia,, (2013).
 
-\bibitem{ScottNotes}
-D.~Scott, {\em Appx.B: Notes in Dana Scott's Hand},  145--146.
-\newblock In  \cite{sobel2004logic}, 2004.
+% \bibitem{Schulz:AICOM-2002}
+% S.~Schulz, `E -- a brainiac theorem prover', {\em {AI Communications}}, {\bf
+%   15}(2),  111--126, (2002).
 
-\bibitem{sobel2004logic}
-J.H. Sobel, {\em Logic and Theism: Arguments for and Against Beliefs in God},
-  Cambridge U. Press, 2004.
+% \bibitem{ScottNotes}
+% D.~Scott, {\em Appx.B: Notes in Dana Scott's Hand},  145--146.
+% \newblock In  \cite{sobel2004logic}, 2004.
 
-\bibitem{sutcliffe2009tptp}
-G.~Sutcliffe, `The {TPTP} problem library and associated infrastructure', {\em
-  Journal of Automated Reasoning}, {\bf 43}(4),  337--362, (2009).
+% \bibitem{sobel2004logic}
+% J.H. Sobel, {\em Logic and Theism: Arguments for and Against Beliefs in God},
+%   Cambridge U. Press, 2004.
 
-\bibitem{J22}
-G.~Sutcliffe and C.~Benzm{\"u}ller, `Automated reasoning in higher-order logic
-  using the {TPTP THF} infrastructure.', {\em Journal of Formalized Reasoning},
-  {\bf 3}(1),  1--27, (2010).
+% \bibitem{sutcliffe2009tptp}
+% G.~Sutcliffe, `The {TPTP} problem library and associated infrastructure', {\em
+%   Journal of Automated Reasoning}, {\bf 43}(4),  337--362, (2009).
 
-\bibitem{J29}
-B.~Woltzenlogel-Paleo and C.~Benzm{\"u}ller, `Automated verification and
-  reconstruction of {G\"odel's} proof of {God's} existence', {\em OCG J.},
-  (2013).
+% \bibitem{J22}
+% G.~Sutcliffe and C.~Benzm{\"u}ller, `Automated reasoning in higher-order logic
+%   using the {TPTP THF} infrastructure.', {\em Journal of Formalized Reasoning},
+%   {\bf 3}(1),  1--27, (2010).
 
-\end{thebibliography}
+% \bibitem{J29}
+% B.~Woltzenlogel-Paleo and C.~Benzm{\"u}ller, `Automated verification and
+%   reconstruction of {G\"odel's} proof of {God's} existence', {\em OCG J.},
+%   (2013).
+
+%\end{thebibliography}
 
 \begin{appendix}
 
