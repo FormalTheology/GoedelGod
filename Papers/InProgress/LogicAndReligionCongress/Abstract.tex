@@ -7,6 +7,9 @@
 
 \usepackage{url}
 \usepackage{commands}
+\usepackage{xcolor}
+\usepackage{comment}
+
 
 \usepackage[utf8]{inputenc}
 
@@ -61,8 +64,9 @@
 %
 
 
-\title[Analysis of Modern Variants of G\"odel's Ontological Argument]
- {Computer-supported Analysis of Modern Variants of G\"odel's Ontological Argument}
+\title[Analysis of Emendations of G\"odel's Ontological Argument]
+ {Computer-Assisted Analysis of 
+ Emendations of G\"odel's Ontological Proof}
 
 
 
@@ -75,7 +79,7 @@ Dep.~of Mathematics and Computer Science, Freie Universit\"at Berlin, Germany
 \email{c.benzmueller@fu-berlin.com}
 
 \thanks{This work was supported by German National Research Foundation (DFG) under
- grants BE 2501/9-1 and BE 2501/11-1 and by ????}
+ grants BE 2501/9-1 and BE 2501/11-1.}
 
 
 %----------Author 2
@@ -89,10 +93,7 @@ Dep.~of Mathematics and Computer Science, Freie Universit\"at Berlin, Germany
 %----------Author 3
 \author[Woltzenlogel-Paleo]{B. Woltzenlogel Paleo}
 \address{ 
-Favoritenstra{\ss}e 9 \\
-Room HA0402 \\
-1040 Wien \\
-Austria
+Room HA0402, Favoritenstra{\ss}e 9, 1040 Wien, Austria
 }
 \email{bruno.wp@gmail.com}
 
@@ -130,100 +131,110 @@ Austria
 
 %\section{The Modal Collapse}
 The axioms in G\"odel's ontological argument 
-\cite{GoedelNotes,ScottNotes} (cf. Appendix \ref{apx:Goedel}) imply what is called the modal collapse
-\cite{Sobel1987,SobelBook2004} (formula $\varphi \rightarrow \Box
+\cite{GoedelNotes,ScottNotes} (cf. Appendix \ref{apx:Goedel}) entail what is called the \emph{modal collapse}
+\cite{Sobel1987,SobelBook2004}: the formula $\varphi \rightarrow \Box
 \varphi$, abbreviated as MC, holds for any formula $\varphi$ and not
-just for $\exists x. God(x)$ as intended). This fact, which has
+just for $\exists x. \mathit{God}(x)$ as intended. This fact, which has
 recently been confirmed with higher-order automated theorem provers
-\cite{C40,J30}, has led to strong criticism of the argument, and
-it has therefore stimulated attempts to remedy the problem. Some
-authors, including Hajek
-\cite{Hajek_der_Mathematiker_2002,Hajek_Magari_and_others_1996}, suggest the use
-of cautious instead of full comprehension principles in order to
-escape the modal collapse. Others, including Anderson
+\cite{C40,J30}, has led to strong criticism of the argument and stimulated attempts to remedy the problem. Hájek
+\cite{Hajek_der_Mathematiker_2002,Hajek_Magari_and_others_1996} proposed the use
+of cautious instead of full comprehension principles, and Fitting \cite{fitting02:_types_tableaus_god} suggested that greater care is necessary in the semantics of higher-order quantifiers in the presence of modalities. Others, such as
+Anderson
 \cite{anderson90:_some_emend_of_goedel_ontol_proof,AndersonGettings}
-and Bjordal \cite{bjordal99}, propose to slightly modify
-G\"odel's axioms and definitions.
-
-We have studied --- with computer-support --- the emendations proposed
-by Anderson and Bjordal (thereby we have retained full comprehension).
-More precisely, we have formalized their emendations within the proof
-assistant Isabelle/HOL \cite{Isabelle}, and we have then automated
-(different variations of) their emendations with the higher-order
+and Bjordal \cite{bjordal99}, proposed slight emendations of
+G\"odel's axioms and definitions. They require neither comprehension restrictions nor more complex semantics. Therefore, they are technically simpler to analyze with computer support. We have formalized them using the proof
+assistant Isabelle/HOL \cite{Isabelle} together with the automated higher-order
 reasoners Leo-II \cite{C26}, Satallax \cite{brown2012satallax}, Metis
-\cite{Hurd03first-orderproof} and Nitpick \cite{Nitpick}; these systems
-are available in Isabelle/HOL.  Our formalizations\footnote{The
+\cite{Hurd03first-orderproof}, and Nitpick \cite{Nitpick}.  
+Our formalizations\footnote{The
   formalizations are available in the subdirectories \url{Anderson}
   and \url{Bjordal} at
   \url{https://github.com/FormalTheology/GoedelGod/blob/master/Formalizations/Isabelle/}.}
 employ the embedding of higher-order modal logic (HOML) in classical
-higher-order logic (HOL) as introduced and employed in previous
-work \cite{C40,J30,J23}. In this approach full comprehension is
-naturally ``built-in'' since the underlying HOL supports
-$\lambda$-abstraction.
+higher-order logic (HOL) as introduced in previous
+work \cite{C40,J30,J23}. We explored the effect of different domain conditions
+ on the provability of lemmas, theorems and even axioms. This was motivated by a controversy between Hájek and Anderson regarding the redundancy of some axioms in Anderson's emendation. In \emph{constant domain semantics}, the individual domains are the same in all possible worlds. In \emph{varying domain semantics}, the domains may vary from world to world. This variation is technically encoded with the help of an existence relation expressing which individuals actually exist in each world. Quantifiers are then uniformly formalized as \emph{actualist quantifiers} (i.e. guarded by the existence relation). Our main results are summarized in the following sections.
 
-We summarize the main results of our experiments, and we start with
-Anderson's emendation (cf. Appendix \ref{apx:Anderson}; @Bruno: I do
-not yet address T2', L1' and L2' below; we could eventually include those as well?),
-which we have analysed for different domain conditions. These
-variations were motivated by various comments on Anderson's work in
-the literature (@Bruno: maybe we should be more explicit about these
-comments).
-\begin{itemize}
-\item Constant domain semantics\footnote{Cf. Isabelle/HOL source file
-    \url{Anderson/Anderson_constant_domain.thy}} (the individual
-  domains remain unchanged for all worlds): G\"odel's theorems T1, C
+
+
+\section{Anderson's Emendation (cf. Appendix \ref{apx:Anderson})}
+
+\BWP{Bruno: I do
+not yet address T2', L1' and L2' below; we could eventually include those as well?}
+
+\BWP{Bruno: maybe we should be more explicit about these
+comments}
+
+
+
+
+
+\paragraph{Constant domain semantics}
+%\footnote{Cf. Isabelle/HOL source file \url{Anderson/Anderson_constant_domain.thy}} 
+     G\"odel's theorems T1, C
   and T3' can be quickly automated (in logics K and KB, respectively),
   G\"odel's axioms A4 and A5 are proven redundant (the former one in
   logic K4B and the latter one already in K). Moreover, a trivial
   countermodel (consisting of two worlds and two individuals) to MC
   generated by Nitpick (for all mentioned logics); this model also
-  proves consistency. 
-\item Varying domain semantics\footnote{Cf. Isabelle/HOL source file
-    \url{Anderson/Anderson_varying_domain.thy}} (the domains for
-  indivduals may vary from world to world, all other domains remain
-  constant; various authors have pointed out that varying domain
-  quantifiers should be used in Anderson's work; here we consistently
-  used varying domain for all individual quantifiers; the modeling of
-  the varying domain quantifiers employs an explicit ``Existence''
-  relation between indiviudals and worlds as guard): In this setting we obtain the
+  shows the consistency of the axioms. 
+
+\paragraph{Varying domain semantics}
+%\footnote{Cf. Isabelle/HOL source file \url{Anderson/Anderson_varying_domain.thy}} 
+: In this setting we obtain the
   same results as above.
-\item Mixed variant\footnote{Cf. Isabelle/HOL source files
-    \url{Anderson/Anderson_mixed_domain_1/2.thy}} (varying domain
+
+\paragraph{Mixed variant}
+%\footnote{Cf. Isabelle/HOL source files \url{Anderson/Anderson_mixed_domain_1/2.thy}} 
+(varying domain
   quantifiers are used only in the definitions of essence and NE;
-  cf.~Fitting comments to Anderson in
+  cf.~Fitting's comments to Anderson in
   \cite{fitting02:_types_tableaus_god}): Also in this setting we
   obtain the same results as above. However, if a varying domain
   quantifier is used only in the definition of NE, then the
-  situation slightly changes. Now axiom A5 is no longer provable and
+  situation changes slightly. Now axiom A5 is no longer provable and
   a countermodel is reported by Nitpick. The remaining results are as before.
 
 %   G\"odel's axioms A4 and A5
 %   remain redundant (the former one in logic K4B, the latter already in
 %   K). The situation changes when only NE is modeled with a varying
 %   domain quantifier. Now, Nitpick reports a countermodel.
-\end{itemize}
- 
 
-Our analysis of Bjordal emendation of G\"odel's argument (cf. Appendix \ref{apx:Bjordal}) has produced the following results:
-\begin{itemize}
-\item Constant domain semantics\footnote{Cf. Isabelle/HOL source files
-    \url{Bjordal/Bjordal_A/B/C_constant_domain.thy}}: G\"odel's axiom
+ 
+\section{Bjordal's Emendation (cf. Appendix \ref{apx:Bjordal})}
+
+
+\paragraph{Constant domain semantics}
+%\footnote{Cf. Isabelle/HOL source files \url{Bjordal/Bjordal_A/B/C_constant_domain.thy}}: 
+    G\"odel's axiom
   A2, A3 can be quickly automatically derived in logic K from
   Bjordal's definition B:D. A4 can be proved in logic T
   (reflexivity). Proving G\"odel's D1 from B:D is possible in logic
-  K4. Vice versa, for the proof that B:D follows from D1, A2, A3 and
-  A4 the povers succeed already in logic K. Hence, Bjordal's lemma
+  K4. Conversely, the proof that B:D follows from D1, A2, A3 and
+  A4 is possible already in logic K. Hence, Bjordal's lemma
   B:L1 holds in logic S4. The provers also show that theorem T3
   follows from B:D, B:A1 and B:A2 already in logic KB. Modal collapse
   does not follow in Bjordal's setting as Nitpick demonstrates with a
-  countermodel (consisting of two worlds and one individual). @Bruno: we could eventually also
-  also say that for MC1 we need a bigger countermodel?
-\item Varying domain semantics\footnote{Cf. Isabelle/HOL source files
-    \url{Bjordal/Bjordal_A/B/C_varying_domain.thy}}: The results are
+  countermodel (consisting of two worlds and one individual). 
+
+  \BWP{@Bruno: we could eventually also
+  also say that for MC1 we need a bigger countermodel?}
+\paragraph{Varying domain semantics}
+%\footnote{Cf. Isabelle/HOL source files \url{Bjordal/Bjordal_A/B/C_varying_domain.thy}}
+: The results are
   the same as above. 
-\item @Bruno: we could also check the mixed case her; but there doesn't seem to be strong reason for doing so.
-\end{itemize}
+
+
+\section{Conclusions}
+
+Anderson's emendation (cf. Appendix \ref{apx:Anderson}; ,
+which we have analysed for different domain conditions. These
+variations were motivated by various comments on Anderson's work in
+the literature. 
+
+In this approach full comprehension is
+naturally ``built-in'' since the underlying HOL supports
+$\lambda$-abstraction.
 
 Summary (what else can we say here, feel free to add): Using our approach, the formalization and (partly) automated
 analysis of different variants of Anderson's and Bjordal's emendations

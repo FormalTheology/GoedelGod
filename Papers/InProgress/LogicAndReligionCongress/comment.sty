@@ -1,0 +1,11 @@
+\newif\ifcomments
+\commentstrue
+%\commentsfalse   % gobble comments, set for final version
+
+\ifcomments
+  \newcommand{\BWP}[1]{\marginpar{\color{blue}\footnotesize{#1}}}
+  \newenvironment{bwp}{\color{blue}}{}
+\else
+  \newcommand{\BWP}[1]{}
+  \newenvironment{bwp}{}{}  
+\fi
