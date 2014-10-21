@@ -1,17 +1,16 @@
-(*<*) 
 theory Anderson_mix
 imports Main QML_K_varying_domain
 
 begin
-(*>*)
 
-section {* Anderson's Ontological Argument (Mix) *}
+
+section {* Anderson's Ontological Argument (with Mixed Quantifiers) *}
 
 text {* Here we explore Anderson's remark, in footnote 14 of his 1990 article,
         that we ought to "take the existential quantifier in the definition of 
         necessary existence to be an [actualistic] e-quantifier [...] and so too 
         the quantifier in the conclusion of the argument. All other individual 
-        quantifiers may be taken to be [possibilistic] subsistential [...]"   *}
+        quantifiers may be taken to be [possibilistic] subsistential, [...]".   *}
 
   consts P :: "(\<mu> \<Rightarrow> \<sigma>) \<Rightarrow> \<sigma>"  
 
@@ -23,16 +22,19 @@ text {* Here we explore Anderson's remark, in footnote 14 of his 1990 article,
     A2:  "[\<forall>(\<lambda>\<Phi>. \<forall>(\<lambda>\<Psi>. ( (P \<Phi>) m\<and> \<box> (\<forall>(\<lambda>x. \<Phi> x m\<rightarrow> \<Psi> x))) m\<rightarrow> P \<Psi>))]" and
     A3:  "[P G]" 
 
+
 subsection {* Consistency *}
 
   lemma True 
   nitpick [satisfy, user_axioms, expect = genuine] oops
+
 
 subsection {* Provability of C1 *}
   
   corollary C1: "[\<diamond> (\<exists> G)]"
   (* sledgehammer [remote_satallax remote_leo2] *)
   by (metis A1 A2 A3)
+
 
 subsection {* Provability of A4 *}
 
@@ -52,7 +54,7 @@ text {* As claimed by HÃ¡jek (1996) and contrary to footnote 1 in Anderson-Getti
   by (metis A3 G_def sym trans AuxLemma1)
 
 
-subsection {* Consistency again (now with sym and trans) *}
+subsection {* Consistency (now with sym and trans) *}
 
   lemma True 
   nitpick [satisfy, user_axioms, expect = genuine] oops
@@ -75,40 +77,20 @@ text {* As claimed by Anderson-Gettings (1996) in footnote 1 and contrary to  HÃ
 
 subsection {* Immunity to Modal Collapse *}  
  
-  lemma MC: "[\<forall>(\<lambda>\<Phi>.(\<Phi> m\<rightarrow> (\<box> \<Phi>)))]"
+text {* As claimed by Anderson, the modal collapse is not provable. 
+        Nitpick finds a counter-model. *}
+
+  theorem MC: "[\<forall>(\<lambda>\<Phi>.(\<Phi> m\<rightarrow> (\<box> \<Phi>)))]"
   nitpick [user_axioms, expect = genuine]
   oops
 
 
-subsection {* The Main Lemmas and Theorems *}
+subsection {* Counter-Satisfiability of the Main Theorem *}
 
-text {* The following lemma, stated in Anderson's Appendix (1990) is  counter-satisfiable. *}
-
-  lemma Lemma: "[ \<forall>(\<lambda>x.((G x) m\<rightarrow> \<forall>(\<lambda>\<phi>.( (\<phi> x) m\<rightarrow> (P \<phi>)  ))  )) ]" 
-  nitpick [user_axioms, expect = genuine]
-  oops
-
-(* so far, the following lemmas and theorems from Anderson 1990's Appendix 
-   can neither be proven nor shown to be countersatisfiable. *)
-
-  theorem T2: "[ \<forall>(\<lambda>x.( (G x) m\<rightarrow> (ess G x)  )) ]"
-  nitpick [user_axioms, expect = genuine]
-  sledgehammer [provers = remote_leo2 remote_satallax, verbose] (A4 G_def ess_def)
-  sledgehammer [provers = remote_leo2 remote_satallax, verbose]
-  (* by (metis A4 G_def ess_def Lemma) *)  oops
-      
-(* A more fine-grained analysis of Anderson's proof of T2 
-   in page 6 of his 1990 article might be helpful to settle the open problem above. *)
-
-  axiomatization where T2Axiom : "[ \<forall>(\<lambda>x.( (G x) m\<rightarrow> (ess G x)  )) ]"
+text {* Unfortunately, with actualistic quantifiers only for NE and T3, 
+        T3 is not provable. Nitpick finds a counter-model. *}
 
   theorem T3: "[\<box> (\<exists>e G)]"
-  (* sledgehammer [remote_satallax remote_leo2] *)
-  by (metis A1 A2 A3 sym G_def T2Axiom)
+  nitpick [user_axioms] oops
 
-
-
-
-(*<*) 
 end
-(*>*) 
