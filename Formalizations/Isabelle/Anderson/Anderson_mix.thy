@@ -1,5 +1,5 @@
 theory Anderson_mix
-imports Main QML_K_varying_domain
+imports Main "../QML_var"
 
 begin
 

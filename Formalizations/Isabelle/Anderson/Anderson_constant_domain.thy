@@ -1,9 +1,9 @@
-(*<*) 
+
 theory Anderson_constant_domain
-imports Main QML_K_constant_domain
+imports Main "../QML"
 
 begin
-(*>*)
+
 
 section {* Anderson's Ontological Argument -- constant domain *}
 
@@ -78,7 +78,4 @@ subsection {* Immunity to Modal Collapse *}
   lemma MC: "[\<forall>(\<lambda>\<Phi>.(\<Phi> m\<rightarrow> (\<box> \<Phi>)))]"
   nitpick [user_axioms] oops
 
-
-(*<*) 
 end
-(*>*) 

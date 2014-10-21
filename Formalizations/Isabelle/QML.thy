@@ -1,11 +1,11 @@
-theory QML_K_constant_domain
+theory QML
 imports Main 
 
 begin
-section {* An Embedding of QML KB in HOL *}
+section {* An Embedding of QML in HOL *}
 
   typedecl i    -- "the type for possible worlds" 
-  typedecl \<mu>    -- "the type for indiviuals"      
+  typedecl \<mu>    -- "the type for individuals"      
 
   consts r :: "i \<Rightarrow> i \<Rightarrow> bool" (infixr "r" 70)    -- "accessibility relation r"   
 

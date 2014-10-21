@@ -1,9 +1,9 @@
-(*<*) 
+
 theory Anderson_varying_domain
-imports Main QML_K_varying_domain
+imports Main "../QML_var"
 
 begin
-(*>*)
+
 
 section {* Anderson's Ontological Argument -- varying domain (individuals) *}
 
@@ -65,10 +65,6 @@ subsection {* Provability of A4 and A5 *}
   theorem A5: "[P NE]"
   by (metis A2 A3 ess_def NE_def)
 
-  text{* Fuhrmann remarks that these derivations depend on 
-       "meist stillschweigen gemachten Annahmen über die 
-       Logik der zweiten Stufe, die Anderson jedoch nicht teilt." *}
-
 
 subsection {* Consistency again (now with sym and trans) *}
 
@@ -81,7 +77,4 @@ subsection {* Immunity to Modal Collapse *}
   nitpick [user_axioms] oops
 
 
-
-(*<*) 
 end
-(*>*) 
