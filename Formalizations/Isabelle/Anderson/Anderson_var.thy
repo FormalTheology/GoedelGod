@@ -1,5 +1,5 @@
 
-theory Anderson_varying_domain
+theory Anderson_var
 imports Main "../QML_var"
 
 begin

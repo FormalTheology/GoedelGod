@@ -1,5 +1,5 @@
 
-theory Anderson_constant_domain
+theory Anderson_const
 imports Main "../QML"
 
 begin
