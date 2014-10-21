@@ -116,70 +116,77 @@ Room HA0402, Favoritenstra{\ss}e 9, 1040 Wien, Austria
 %%% ----------------------------------------------------------------------
 
 % \begin{abstract}
-% The \emph{modal collapse} that afflicts G\"odel's modal ontological 
-% argument for God's existence is discussed from the perspective of the 
-% modal square of opposition. Furthermore, a computer-assisted verification 
-% of the claims that the emendations by Anderson and by Frode are immune to 
-% the modal collapse is presented.
 % \end{abstract}
 
 %%% ----------------------------------------------------------------------
 \maketitle
 %%% ----------------------------------------------------------------------
 %\tableofcontents
-%\section{Introduction}
 
-\vspace*{-5em}
 
-%\section{The Modal Collapse}
-\noindent
-The axioms in G\"odel's ontological argument 
-\cite{GoedelNotes,ScottNotes} (cf. Appendix \ref{apx:Goedel}) entail what is called the \emph{modal collapse}
+\noindent The axioms in G\"odel's ontological argument
+\cite{GoedelNotes,ScottNotes} (cf. Appendix \ref{apx:Goedel}) entail
+what is called \emph{modal collapse}
 \cite{Sobel1987,SobelBook2004}: the formula $\varphi \rightarrow \Box
 \varphi$, abbreviated as MC, holds for any formula $\varphi$ and not
-just for $\exists x. \mathit{God}(x)$ as intended. This fact, which has
-recently been confirmed with higher-order automated theorem provers
-\cite{C40,J30}, has led to strong criticism of the argument and stimulated attempts to remedy the problem. Hájek
-\cite{Hajek_der_Mathematiker_2002,Hajek_Magari_and_others_1996} proposed the use
-of cautious instead of full comprehension principles, and Fitting \cite{fitting02:_types_tableaus_god} suggested that greater care is necessary in the semantics of higher-order quantifiers in the presence of modalities. Others, such as
-Anderson
+just for $\exists x. \mathit{God}(x)$ as intended. This fact, which
+has recently been confirmed with higher-order automated theorem
+provers \cite{C40,J30}, has led to strong criticism of the argument
+and stimulated attempts to remedy the problem. Hájek
+\cite{Hajek_der_Mathematiker_2002,Hajek_Magari_and_others_1996}
+proposed the use of cautious instead of full comprehension principles,
+and Fitting \cite{fitting02:_types_tableaus_god} suggested that
+greater care is necessary in the semantics of higher-order quantifiers
+in the presence of modalities. Others, such as Anderson
 \cite{anderson90:_some_emend_of_goedel_ontol_proof,AndersonGettings}
-and Bjordal \cite{bjordal99}, proposed slight emendations of
-G\"odel's axioms and definitions. They require neither comprehension restrictions nor more complex semantics. Therefore, they are technically simpler to analyze with computer support. We have formalized them using the proof
-assistant Isabelle/HOL \cite{Isabelle} together with the automated higher-order
-reasoners Leo-II \cite{C26}, Satallax \cite{brown2012satallax}, Metis
-\cite{Hurd03first-orderproof}, and Nitpick \cite{Nitpick}.  
-Our formalizations\footnote{The
-  formalizations are available in the subdirectories \url{Anderson}
-  and \url{Bjordal} at
-  \url{https://github.com/FormalTheology/GoedelGod/blob/master/Formalizations/Isabelle/}.}
-employ the embedding of higher-order modal logic (HOML) in classical
-higher-order logic (HOL) as introduced in previous
-work \cite{C40,J30,J23}. We explored the effect of different domain conditions
- on the provability of lemmas, theorems and even axioms. This was motivated by a controversy between Hájek and Anderson regarding the redundancy of some axioms in Anderson's emendation. In \emph{constant domain semantics}, the individual domains are the same in all possible worlds. In \emph{varying domain semantics}, the domains may vary from world to world. This variation is technically encoded with the help of an existence relation expressing which individuals actually exist in each world. Quantifiers are then uniformly formalized as \emph{actualist quantifiers} (i.e. guarded by the existence relation). Our main results are summarized in the following sections.
+and Bjordal \cite{bjordal99}, proposed slight emendations of G\"odel's
+axioms and definitions. They require neither comprehension
+restrictions nor more complex semantics. Therefore, they are
+technically simpler to analyze with computer support. We have
+formalized them using the proof assistant Isabelle/HOL \cite{Isabelle}
+together with the automated higher-order reasoners Leo-II \cite{C26},
+Satallax \cite{brown2012satallax}, Metis 
+\cite{Hurd03first-orderproof}, and Nitpick \cite{Nitpick}.   Our
+formalizations\footnote{The   formalizations are available in the
+subdirectories \url{Anderson}   and \url{Bjordal} at   \url{https://gi
+thub.com/FormalTheology/GoedelGod/blob/master/Formalizations/Isabelle/
+}.} employ the embedding of higher-order modal logic (HOML) in
+classical higher-order logic (HOL) as introduced in previous work
+\cite{C40,J30,J23}. We explored the effect of different domain
+conditions  on the provability of lemmas, theorems and even axioms.
+This was motivated by a controversy between Hájek and Anderson
+regarding the redundancy of some axioms in Anderson's emendation. In
+\emph{constant domain semantics}, the individual domains are the same
+in all possible worlds. In \emph{varying domain semantics}, the
+domains may vary from world to world. This variation is technically
+encoded with the help of an existence relation expressing which
+individuals actually exist in each world. Quantifiers are then
+uniformly formalized as \emph{actualistic quantifiers} (i.e. guarded by
+the existence relation). Our main results are summarized in the
+following sections.
 
 
 \section{Anderson's Emendation (cf. Appendix \ref{apx:Anderson})}
 
-\BWP{Bruno: I do
-not yet address T2', L1' and L2' below; we could eventually include those as well?}
+%\BWP{Bruno: I do not yet address T2', L1' and L2' below; we could eventually include those as well?}
 
 For both \textbf{constant domain semantics} and \textbf{varying domain semantics}, the following results hold: 
 %
-G\"odel's theorems T1, C and T3' can be quickly automated (in logics \K and \KB, respectively); \BWP{3->2 respectively}
+the theorems T1, C and T3' can be quickly automated (in logics \K, \K and \KB, respectively);
 %
-G\"odel's axioms A4 and A5 are proven redundant (the former one in
-  logic \KFourB and the latter one already in \K).
+the axioms A4 and A5 are proven redundant (the former in
+logic \KFourB and the latter already in \K);
 %
-Moreover, a trivial countermodel (consisting of two worlds and 
-two individuals) to MC generated by Nitpick (for all mentioned logics); this model also shows the consistency of the axioms. 
+a trivial countermodel (consisting of two worlds and 
+two individuals) to MC generated by Nitpick (for all mentioned logics), which also shows the consistency of the axioms. 
+
+The redundancy of A4 and A5 is particularly controversial. Magari \cite{TODO} claimed that the redundancy occurs already with Gödel's original axioms and definitions. Hájek \cite{Hajek 1996 TODO} investigated this further and claimed that Magari's claim is invalid, but true under the assumption of an additional axiom (PEP). Moreover, Hájek \cite{Hajek 1996 TODO} claimed that the redundancy occurs for Anderson's emended axioms and definitions \cite{Anderson 1990}. Anderson and Gettings \cite{AG1996, footnote 1, page 1} rebutted Hájek's claim, arguing that it holds only under constant domain semantics, while the emended argument by Anderson ought to be taken under Cocchiarella's semantics \cite{Cocchiarella} (a particular kind of varying domain semantics). Hájek \cite{Hajek 2002, page 7} acknowledges this rebuttal, and apparently accepts it, as evidenced by his use of A4 and A5 in his new small emendation (replacing A:A1 and A2 by a new axiom H:A12) of Anderson's variant with varying domains \cite{Hajek 2002, section 4}. Nevertheless, he does show yet another emended version where A4 and A5 are redundant, but A3 is replaced by a stronger axiom additionally stating that the property of actual existence is positive \cite{Hajek 2002, section 5}. Our results show that Hájek was originally right, under both constant and varying domain semantics with no need to strengthen A3 (though this need might exist when H:A12 is used instead of A:A1 and A2). It should be noted, however, that \cite{Anderson, footnote 14} vaguely remarks that only the quantifiers in T3' and in A:D2  need to be interpreted as actualistic quantifiers, while other may be taken as possibilistic quantifiers. We have inv  mixed variant.
 
 ToDo: tell the story of the controversy here, and then link with the mixed variant. 
 
 
 
 \paragraph{Mixed variant}
-%\footnote{Cf. Isabelle/HOL source files \url{Anderson/Anderson_mixed_domain_1/2.thy}} 
 (varying domain
   quantifiers are used only in the definitions of essence and NE;
   cf.~Fitting's comments to Anderson in
@@ -237,287 +244,17 @@ another interesting parameter for further experiments. However, this
 seems hard to achieve in our approach, since full comprehension is
 naturally built-in.
 
-% \section{Other Solutions}
-
-% ToDo: Fitting
-
-
-% \section{Conclusions}
-
-
-% Various slightly different versions of
-% axioms and definitions have been considered by G\"{o}del and by
-% several philosophers who commented on his proof
-% (cf{sobel2004logic,anderson90:_some_emend_of_goedel_ontol_proof,AndersonGettings,Fitting,Adams,ContemporaryBibliography}).
-
-
-
-% In theoretical philosophy, formal logical confrontations with such
-% ontological arguments had been so far (mainly) limited to paper
-% and pen.  Up to now, the use of computers was prevented, because the
-% logics of the available theorem proving systems were not expressive
-% enough to formalize the abstract concepts adequately. G{\"o}del's proof
-% uses, for example, a complex higher-order modal logic (\HOML) to handle
-% concepts such as \emph{possibility} and \emph{necessity} and to support
-% quantification over individuals and properties.
-
-% controversies, care with parameters
-
-% ToDo: Leibniz calculemus, Rushby, Zalta \cite{oppenheimera11,rushby13}
-
-
-% \begin{defn}
-% This serves as environment for definitions. Note that the text
-% appears not in italics.
-% \end{defn}
-
-% \begin{equation}\label{testequation}
-% \text{This is a sample equation: } c^2=a^2+b^2
-% \end{equation}
-
-% \begin{thm}[Main Theorem]
-% In contrast to definitions, theorems appear typeset in italics as
-% it has become more or less standard in most textbooks and
-% monographs. Equations can be cited using the \verb+\eqref+ command which
-% automatically adds brackets: \verb+\eqref{testequation}+ results in \eqref{testequation}.
-% \end{thm}
-
-% \begin{proof}
-% A special environment is predefined: the \textit{proof} environment. Please use
-% \begin{verbatim}\begin{proof}\end{verbatim}
-% proof of the statement
-% \begin{verbatim}\end{proof}\end{verbatim}
-% for typesetting your proofs. The end-of-proof symbol $\Box$ will be added automatically.
-% \end{proof}
-
-% There are two known problems with the placement of the end-of-proof sign:
-
-% \begin{enumerate}
-%   \item if your proof ends with a\ \ s i n g l e\ \ displayed line, the end-of-proof sign would
-% be placed in the line below; if you want to avoid this, write your line in the form
-% \begin{verbatim}$$displayed math line \eqno\qedhere$$\end{verbatim}
-% which results in
-
-% \begin{proof}
-% $$displayed math line \eqno\qedhere$$
-% \end{proof}
-% \item if your proof ends with an aligned displayed environment, the command
-% \verb+\tag*{\qed}+ can be used to place the end-of-proof sign properly:
-% \begin{verbatim}
-% \begin{align*}
-% \alpha&=\beta+\gamma\\
-% &=\delta+\epsilon\tag*{\qed}
-% \end{align*}
-% \end{verbatim}
-% results in
-% \begin{align*}
-% \alpha&=\beta+\gamma\\
-% &=\delta+\epsilon\tag*{\qed}
-% \end{align*}
-% \end{enumerate}
-% Please try to avoid using the obsolete \verb+\eqnarray+ environment. This environment has several bugs
-% and has been replaced by the more flexible \AmS\ environments \verb+align, split, multline+.
-
-
-% \begin{rem}
-% Additional comments are being typeset without boldfaced entrance
-% word as they may be minor important.
-% \end{rem}
-
-% \begin{ex}
-% For some constructs, even no number is required.
-% \end{ex}
-
-% Displayed equations may be numbered like the following one:
-% \begin{equation}
-% \sqrt{1-\sin^2(x)}=|\cos(x)|.
-% \end{equation}
-
-
-
-% ------------------------------------------------------------------------
-
-% \subsection*{Acknowledgment}
-% Many thanks to ...
 
 \bibliographystyle{plain}
 \bibliography{Bibliography}
 
-% \begin{thebibliography}{1}
-
-% \bibitem{Adams}
-% R.M. Adams, `Introductory note to *1970', in {\em {Kurt G\"odel: Collected
-%   Works Vol. 3: Unpubl. Essays and Letters}}, Oxford Univ. Press, (1995).
-
-% \bibitem{AndersonGettings}
-% A.C. Anderson and M.~Gettings, `G\"odel ontological proof revisited', in {\em
-%   {G\"odel'96: Logical Foundations of Mathematics, Computer Science, and
-%   Physics: Lecture Notes in Logic 6}},  167--172, {Springer}, (1996).
-
-% \bibitem{anderson90:_some_emend_of_goedel_ontol_proof}
-% C.A. Anderson, `Some emendations of {G{\"o}del's} ontological proof', {\em
-%   Faith and Philosophy}, {\bf 7}(3), (1990).
-
-% \bibitem{Andrews:gmae72}
-% P.B. Andrews, `General models and extensionality', {\em Journal of Symbolic
-%   Logic}, {\bf 37}(2),  395--397, (1972).
-
-% \bibitem{andrewsSEP}
-% P.B. Andrews, `Church's type theory', in {\em The Stanford Encyclopedia of
-%   Philosophy}, ed., E.N. Zalta, spring 2014 edn., (2014).
-
-% \bibitem{C36}
-% C.~Benzm{\"u}ller, `{HOL} based universal reasoning', in {\em Handbook of the
-%   4th World Congress and School on Universal Logic}, ed., J.Y. Beziau~et al.,
-%   pp. 232--233, Rio de Janeiro, Brazil, (2013).
-
-% \bibitem{B5}
-% C.~Benzm{\"u}ller and D.~Miller, `Automation of higher-order logic', in {\em
-%   Handbook of the History of Logic, Volume 9 --- Logic and Computation},
-%   Elsevier, (2014).
-% \newblock Forthcoming; preliminary version available at
-%   {http://christoph-benzmueller.de/papers/B5.pdf}.
-
-% \bibitem{C34}
-% C.~Benzm{\"u}ller, J.~Otten, and Th. Raths, `Implementing and evaluating
-%   provers for first-order modal logics', in {\em Proc. of the 20th European
-%   Conference on Artificial Intelligence (ECAI)}, pp. 163--168, (2012).
-
-% \bibitem{B9}
-% C.~Benzm{\"u}ller and L.C. Paulson, `Exploring properties of normal multimodal
-%   logics in simple type theory with {LEO-II}', in {\em {Festschrift in Honor of
-%   {Peter B. Andrews} on His 70th Birthday}}, ed., C.~Benzm{\"u}ller~et al.,
-%   386--406, College Publications, (2008).
-
-% \bibitem{J23}
-% C.~Benzm{\"u}ller and L.C. Paulson, `Quantified multimodal logics in simple
-%   type theory', {\em Logica Universalis}, {\bf 7}(1),  7--20, (2013).
-
-% \bibitem{LEO-II}
-% C.~Benzm{\"u}ller, F.~Theiss, L.~Paulson, and A.~Fietzke, `{LEO-II} - a
-%   cooperative automatic theorem prover for higher-order logic', in {\em
-%   Proc.~of IJCAR 2008}, number 5195 in LNAI, pp. 162--170. Springer, (2008).
-
-% \bibitem{J30}
-% C.~Benzm{\"u}ller and B.~Woltzenlogel-Paleo, `Formalization, mechanization and
-%   automation of {G{\"o}del's} proof of {God's} existence', {\em
-%   arXiv:1308.4526}, (2013).
-
-% \bibitem{J28}
-% C.~Benzm\"uller and B.~Woltzenlogel-Paleo, `{G{\"o}del's God in Isabelle/HOL}',
-%   {\em Archive of Formal Proofs}, (2013).
-
-% \bibitem{W50}
-% C.~Benzm\"uller and B.~Woltzenlogel-Paleo, `G\"odel's {God} on the computer',
-%   in {\em Proceedings of the 10th International Workshop on the Implementation
-%   of Logics}, EPiC Series. EasyChair, (2013).
-% \newblock Invited abstract.
-
-% \bibitem{Coq}
-% Y.~Bertot and P.~Casteran, {\em {Interactive Theorem Proving and Program
-%   Development}}, Springer, 2004.
-
-% \bibitem{Nitpick}
-% J.C. Blanchette and T.~Nipkow, `Nitpick: A counterexample generator for
-%   higher-order logic based on a relational model finder', in {\em Proc. of ITP
-%   2010}, number 6172 in LNCS, pp. 131--146. Springer, (2010).
-
-% \bibitem{Satallax}
-% C.E. Brown, `Satallax: An automated higher-order prover', in {\em Proc. of
-%   IJCAR 2012}, number 7364 in LNAI, pp. 111 -- 117. Springer, (2012).
-
-% \bibitem{ContemporaryBibliography}
-% R.~Corazzon.
-% \newblock Contemporary~bibliography~on~ontological~arguments: {\scriptsize
-%   \url{http://www.ontology.co/biblio/ontological-proof-contemporary-biblio.htm}}.
-
-% \bibitem{Fitting}
-% M.~Fitting, {\em Types, Tableaux and G\"odel's God}, Kluwer, 2002.
-
-% \bibitem{fitting98}
-% M.~Fitting and R.L. Mendelsohn, {\em First-Order Modal Logic}, volume 277 of
-%   {\em Synthese Library}, Kluwer, 1998.
-
-% \bibitem{Gallin75}
-% D.~Gallin, {\em Intensional and Higher-Order Modal Logic}, North-Holland, 1975.
-
-% \bibitem{garbacz12:_prover_simpl_expal_away}
-% P.~Garbacz, `{PROVER9's} simplifications explained away', {\em Australasian
-%   Journal of Philosophy}, {\bf 90}(3),  585--592, (2012).
-
-% \bibitem{GoedelNotes}
-% K.~G\"odel, {\em Appx.A: Notes in Kurt G\"odel's Hand},  144--145.
-% \newblock In  \cite{sobel2004logic}, 2004.
-
-% \bibitem{Henkin50}
-% L.~Henkin, `Completeness in the theory of types', {\em Journal of Symbolic
-%   Logic}, {\bf 15}(2),  81--91, (1950).
-
-% \bibitem{homl}
-% R.~Muskens, `{Higher Order Modal Logic}', in {\em Handbook of Modal Logic},
-%   ed., P~Blackburn~et al.,  621--653, Elsevier, Dordrecht, (2006).
-
-% \bibitem{Isabelle}
-% T.~Nipkow, L.C. Paulson, and M.~Wenzel, {\em {Isabelle/HOL: A Proof Assistant
-%   for Higher-Order Logic}}, number 2283 in LNCS, Springer, 2002.
-
-% \bibitem{oppenheimera11}
-% P.E. Oppenheimer and E.N. Zalta, `A computationally-discovered simplification
-%   of the ontological argument', {\em Australasian Journal of Philosophy}, {\bf
-%   89}(2),  333--349, (2011).
-
-% \bibitem{rushby13}
-% J.~Rushby, `The ontological argument in {PVS}', in {\em Proc.~of CAV Workshop
-%   ``Fun With Formal Methods''}, St. Petersburg, Russia,, (2013).
-
-% \bibitem{Schulz:AICOM-2002}
-% S.~Schulz, `E -- a brainiac theorem prover', {\em {AI Communications}}, {\bf
-%   15}(2),  111--126, (2002).
-
-% \bibitem{ScottNotes}
-% D.~Scott, {\em Appx.B: Notes in Dana Scott's Hand},  145--146.
-% \newblock In  \cite{sobel2004logic}, 2004.
-
-% \bibitem{sobel2004logic}
-% J.H. Sobel, {\em Logic and Theism: Arguments for and Against Beliefs in God},
-%   Cambridge U. Press, 2004.
-
-% \bibitem{sutcliffe2009tptp}
-% G.~Sutcliffe, `The {TPTP} problem library and associated infrastructure', {\em
-%   Journal of Automated Reasoning}, {\bf 43}(4),  337--362, (2009).
-
-% \bibitem{J22}
-% G.~Sutcliffe and C.~Benzm{\"u}ller, `Automated reasoning in higher-order logic
-%   using the {TPTP THF} infrastructure.', {\em Journal of Formalized Reasoning},
-%   {\bf 3}(1),  1--27, (2010).
-
-% \bibitem{J29}
-% B.~Woltzenlogel-Paleo and C.~Benzm{\"u}ller, `Automated verification and
-%   reconstruction of {G\"odel's} proof of {God's} existence', {\em OCG J.},
-%   (2013).
-
-%\end{thebibliography}
 
 \newpage
 \begin{appendix}
-\noindent @Bruno: I think we need more compact presentation of the proofs.
-% \begin{figure}[t]
-% \noindent \framebox[\columnwidth][r]{
-% \begin{minipage}{.94\columnwidth}\small
-% \begin{itemize}
-% \item[MC] Everything that is the case is so necessarily:
-%   $$\hol{\allq \phi [\phi \imp \nec \phi]}$$ 
-% \item[MC'] Everything that is possible is necessary:
-%   $$\hol{\allq \phi [\pos \phi \imp \nec \phi]}$$ 
-% \item[MC''] Modalities collapse:
-%   $$\hol{\allq \phi [\phi \biimp \pos \phi \biimp \nec \phi]}$$
-% \end{itemize}
-% \end{minipage}
-% } \vskip-.5em
-% \caption{Modal Collapse \cite{todo:Sobel1987,SobelBook}.\label{fig:collapse}} 
-% \end{figure}
+\noindent 
 
-%\clearpage
+\BWP{I think we need more compact presentation of the proofs.}
+
 
 \small
 
