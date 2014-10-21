@@ -6,7 +6,7 @@ begin
 (*>*)
 
 section {* Anderson's Ontological Argument -- mixed domain (individuals); 
-          varying domain quantifier is used only in *}
+          varying domain quantifier is used only in NE and ess *}
 
   consts P :: "(\<mu> \<Rightarrow> \<sigma>) \<Rightarrow> \<sigma>"  
 
