@@ -151,7 +151,7 @@ subsection {* Immunity to Modal Collapse *}
 
 subsection {* Analysis of Pages 13 and 14 *}
 
-(* ToDo: Theorem 6 and Lemmas 6, 7, 8 and 9 deserve to be investigated *)
+(* ToDo: Theorem 6 and Lemmas 6, 7, 8 and 9 in Hajek 2002 deserve to be investigated *)
 
 
 
