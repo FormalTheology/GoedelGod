@@ -154,5 +154,33 @@ subsection {* Analysis of Pages 13 and 14 *}
 (* ToDo: Theorem 6 and Lemmas 6, 7, 8 and 9 deserve to be investigated *)
 
 
+ lemma L6: "[\<forall>(\<lambda>\<Phi>. P' \<Phi> m\<rightarrow> (\<box> (P' \<Phi>)))]"
+ by (metis A4)
+ 
+ consts g :: "\<mu>" 
+ axiomatization where for_simplicity: "[G g m\<and> eiw g]"
+
+
+ (* Satallax finds a proof *)
+ lemma L7: "[ess G g]"
+ (* sledgehammer [remote_satallax remote_leo2, verbose] (A12 A3 A5 Aux1 C1 G_def Hajek2002_Section5_Natural_var.sym Hajek2002_Section5_Natural_var.trans L1 L3 L6 NE_def P'_def T1 T3 ess_def for_simplicity nonempty) *)
+ oops
+
+ (* Satallax finds a proof *)
+ lemma L8: "[\<forall>(\<lambda>\<Phi>. \<forall>(\<lambda>\<Psi>. \<forall>(\<lambda>u. (ess \<Phi> u m\<and> (ess \<Psi> u)) m\<rightarrow> \<box>(\<forall>e(\<lambda>y. \<Phi> y m\<rightarrow> \<Psi> y)))))]"
+ (* sledgehammer min [remote_satallax, verbose] (A12 A3 A5 Aux1 C1 G_def Hajek2002_Section5_Natural_var.sym Hajek2002_Section5_Natural_var.trans L1 L3 L6 NE_def P'_def T1 T3 ess_def for_simplicity nonempty) *)
+ oops
+
+ (* Satallax finds a proof *)
+ corollary C1: "[\<forall>(\<lambda>\<Phi>. ess \<Phi> g m\<rightarrow> \<box>(\<forall>e(\<lambda>y. G y m\<rightarrow> \<Phi> y)))]"
+ (* sledgehammer min [remote_satallax, verbose] (A12 A3 A5 Aux1 C1 G_def Hajek2002_Section5_Natural_var.sym Hajek2002_Section5_Natural_var.trans L1 L3 L6 NE_def P'_def T1 T3 ess_def for_simplicity nonempty) *)
+ oops
+
+ lemma L9: "[P' NE]"
+ by (metis A5) 
+
+
+ theorem T6: "todo"
+ oops
 
 end
