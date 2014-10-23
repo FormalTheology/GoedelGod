@@ -6,9 +6,13 @@ begin
 
 section {* Hajek's Small Emendations *}
 
-text {* This is the theory called AOE'_0 in Section 5 of Hajek (2002)  *}
+text {* This is the theory called AOE'_0 in Definition 12 of Section 5 of Hajek (2002)  *}
 
   consts P :: "(\<mu> \<Rightarrow> \<sigma>) \<Rightarrow> \<sigma>"  
+
+text {* In item 2 of the summary in Page 14 of Hajek (2002),
+        a different definition for G is written. Here it is assumed that
+        this was a mistake. Definition 12 is assumed to be correct.  *}
 
   definition G :: "\<mu> \<Rightarrow> \<sigma>" where 
             "G = (\<lambda>x. \<forall>(\<lambda>\<Phi>. P \<Phi> m\<equiv>  ( (\<box> (\<Phi> x ))) ))" 
@@ -35,16 +39,20 @@ subsection {* Counter-Satisfiability of old A3 *}
 
 text {* The old A3 is not valid anymore. 
         This is counter-intuitive, because it shows that 
-        a conjunct of a compound positive property is not necessarily positive. *}
+        a conjunct of a compound positive property is not necessarily positive.
+        This contrasts with Hajek's claim that A12 and the new A3 
+        "give a rather pleasant emendation of Gödel's axioms". *}
 
   theorem OldA3:  "[P G]" 
   nitpick [user_axioms] oops
 
 
-subsection {* Counter-Satisfiability of A2 *}
+subsection {* Independence of A2 *}
 
   theorem A2: "[\<forall>(\<lambda>\<Phi>. \<forall>(\<lambda>\<Psi>. ( (P \<Phi>) m\<and> \<box> (\<forall>e(\<lambda>x. \<Phi> x m\<rightarrow> \<Psi> x))) m\<rightarrow> P \<Psi>))]"
-  nitpick [user_axioms, expect = genuine] oops
+  nitpick [user_axioms, expect = genuine]
+  nitpick [satisfy, user_axioms, expect = genuine]
+  oops
 
 
 subsection {* Provability of T1, C1 and T3 *}
