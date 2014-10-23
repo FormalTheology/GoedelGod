@@ -80,8 +80,6 @@ subsection {* Independence of A4 *}
   nitpick [user_axioms, expect = genuine, satisfy]
   oops
 
-
-
 text {* But A4 seems necessary to prove the interesting lemma L3 *}
 
   axiomatization where A4:  "[\<forall>(\<lambda>\<Phi>. P \<Phi> m\<rightarrow> \<box> (P \<Phi>))]" 
