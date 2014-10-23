@@ -55,6 +55,24 @@ text {* T1 and L1 appear as Lemmas 3.2 and 3.3 in Hajek 2002 *}
   lemma L1: "[\<forall>e(\<lambda>u.( (G u) m\<rightarrow> (\<box> (G u) ) ) ) ]"
   by (metis (erased, lifting) A3 G_def)
 
+
+subsection {* Provability of T3 *}
+
+  axiomatization where sym:   "x r y \<longrightarrow> y r x"
+
+(* Satallax succeeds, but Leo2 and Metis fail on the full list of facts.
+   Metis succeeds, but Satallax and Leo2 fail on the minimized list of facts. *)
+  
+  theorem T3: "[\<box> (\<exists>e G)]"
+  (* sledgehammer min [remote_satallax, verbose] (T1 L3 A3 A4 sym trans G_def) *)
+  (* sledgehammer min [remote_leo2, verbose] (T1 L3 A3 A4 sym trans G_def) *)
+  (* sledgehammer min [remote_satallax, verbose] (T1 A3 sym G_def) *)
+  (* sledgehammer min [remote_leo2, verbose] (T1 A3 sym G_def) *)
+  (* by (metis T1 L3 A3 A4 sym trans G_def) *)
+  by (metis T1 A3 G_def sym)
+
+text {* Interesting fact: A4 and A5 were not needed to prove T3 above! *}
+
 subsection {* Independence of A4 *}
  
   lemma A4:  "[\<forall>(\<lambda>\<Phi>. P \<Phi> m\<rightarrow> \<box> (P \<Phi>))]" 
@@ -62,34 +80,25 @@ subsection {* Independence of A4 *}
   nitpick [user_axioms, expect = genuine, satisfy]
   oops
 
-subsection {* Provability of T3 *}
+
+
+text {* But A4 seems necessary to prove the interesting lemma L3 *}
 
   axiomatization where A4:  "[\<forall>(\<lambda>\<Phi>. P \<Phi> m\<rightarrow> \<box> (P \<Phi>))]" 
 
-  axiomatization where 
-    trans: "((x r y) \<and> (y r z)) \<longrightarrow> (x r z)" and
-    sym:   "x r y \<longrightarrow> y r x"
+  axiomatization where trans: "((x r y) \<and> (y r z)) \<longrightarrow> (x r z)"
 
-text {* Lemma L3 appears as Lemma 3.4 in Hajek 2002 and Aux1 appears in the proof of L3 *}
+text {* Lemma L3 appears as Lemma 3.4 in Hajek 2002 and Aux1 appears in the proof of Lemma 3.4 *}
 
   lemma Aux1: "[\<forall>(\<lambda>\<Phi>. (P \<Phi>) m\<rightarrow> (\<forall>e(\<lambda>y.((G y) m\<rightarrow> (\<box>(\<Phi> y)) )) ) ) ]"
   by (metis G_def)
 
   lemma L3: "[\<forall>(\<lambda>\<Phi>. (P \<Phi>) m\<rightarrow> (\<box> (\<forall>e(\<lambda>y.((G y) m\<rightarrow> (\<Phi> y))) ) ) )]"
   (* sledgehammer min [remote_satallax] (Aux1 trans sym A4) *)
+  (* sledgehammer min [remote_satallax] (Aux1 trans sym) *)
+  (* sledgehammer min [remote_leo2] (Aux1 trans sym) *)
+  (* by (metis Aux1 trans sym) *)
   by (metis Aux1 trans sym A4)
-
-(* Satallax succeeds, but Metis fails *)
-  
-  theorem T3: "[\<box> (\<exists>e G)]"
-  (* sledgehammer min [remote_satallax, verbose] (T1 L3 A3 A4 sym trans G_def) *)
-  (* by (metis T1 L3 A3 A4 sym trans G_def) *)
-  sorry
-
-text {* Interesting fact: A5 was not needed to prove T3 above *}
-
-(* ToDo: Hajek (2002) has a step by step derivation of T3, with a few auxiliary lemmas.
-   Metis could succeed if given the auxiliary lemmas. *)
 
 
 subsection {* Consistency again (now with sym and trans) *}
@@ -116,6 +125,5 @@ subsection {* Independence of A5 *}
   nitpick [satisfy, user_axioms, expect = genuine]
   nitpick [user_axioms, expect = genuine]
   oops
-
 
 end
