@@ -1,3 +1,4 @@
+
 theory Hajek2002_Section5_Natural_var
 imports Main "../QML_var"
 
@@ -149,9 +150,6 @@ subsection {* Immunity to Modal Collapse *}
 
 
 subsection {* Analysis of Pages 13 and 14 *}
-
-theorem A3_e:  "[P (\<lambda>x. (G x m\<and> eiw x) ) ]"
-sledgehammer[provers = remote_leo2 remote_satallax, verbose]
 
 (* ToDo: Theorem 6 and Lemmas 6, 7, 8 and 9 in Hajek 2002 deserve to be investigated *)
 
