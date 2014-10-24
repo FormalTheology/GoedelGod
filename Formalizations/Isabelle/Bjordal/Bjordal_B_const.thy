@@ -1,5 +1,5 @@
 (*<*) 
-theory Bjordal_B_constant_domain
+theory Bjordal_B_const
 imports Main "../QML"
 
 begin

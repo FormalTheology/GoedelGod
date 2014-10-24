@@ -1,5 +1,5 @@
 (*<*) 
-theory Bjordal_C_varying_domain
+theory Bjordal_C_var
 imports Main "../QML_var"
 
 begin
