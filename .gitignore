@@ -35,6 +35,7 @@
 *.make
 *.temp
 *private*
+*.thy~
 RelatedMaterial/*
 Letters/*
 LiteratureCopyrighted/*
