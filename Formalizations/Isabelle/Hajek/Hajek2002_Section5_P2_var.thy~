@@ -1,3 +1,4 @@
+
 theory Hajek2002_Section5_Natural_var
 imports Main "../QML_var"
 
@@ -89,7 +90,9 @@ text {* Hájek writes P instead of the first occurrence of P' in his definition 
   nitpick [satisfy, user_axioms]
   oops
 
-  axiomatization where A4 : "[\<forall>(\<lambda>\<Phi>.((P' \<Phi>) m\<rightarrow> (\<box> (P' \<Phi>) )))]"
+  (* Is the positivity in the premise really "P'"? In Hajek 2002 p. 13 it says just "P" 
+    Otherwise Lemma 6 would be the same as Axiom 4. Am I missing something?*)
+  axiomatization where A4 : "[\<forall>(\<lambda>\<Phi>.((P \<Phi>) m\<rightarrow> (\<box> (P' \<Phi>) )))]" 
 
   axiomatization where trans: "((x r y) \<and> (y r z)) \<longrightarrow> (x r z)"
 
@@ -131,7 +134,7 @@ text {* However, the status of the new A5 is inconclusive.
   (* nitpick [user_axioms] *)
   (* nitpick [user_axioms, satisfy] *)
   (* sledgehammer [provers = metis remote_satallax remote_leo2, verbose] (A12 A3 A4 G_def P'_def ess_def NE_def sym trans) *)
-  oops
+   oops
 
   axiomatization where A5: "[P' NE]"
 
@@ -150,39 +153,38 @@ subsection {* Immunity to Modal Collapse *}
 
 subsection {* Analysis of Pages 13 and 14 *}
 
-theorem A3_e:  "[P (\<lambda>x. (G x m\<and> eiw x) ) ]"
-sledgehammer[provers = remote_leo2 remote_satallax, verbose]
 
 (* ToDo: Theorem 6 and Lemmas 6, 7, 8 and 9 in Hajek 2002 deserve to be investigated *)
+axiomatization where ref: "x r x" and euc: "(w r w \<and> w r u) \<longrightarrow> v r u"
 
 
- lemma L6: "[\<forall>(\<lambda>\<Phi>. P' \<Phi> m\<rightarrow> (\<box> (P' \<Phi>)))]"
- by (metis A4)
- 
- consts g :: "\<mu>" 
- axiomatization where for_simplicity: "[G g m\<and> eiw g]"
+lemma L6: "[\<forall>(\<lambda>\<Phi>.(P' \<Phi> m\<rightarrow> \<box>  (P' \<Phi>)))]"
+(* sledgehammer min [provers=remote_leo2, verbose, timeout = 60] (C1 G_def Hajek2002_Section5_Natural_var.sym Hajek2002_Section5_Natural_var.trans L1 T3 euc nonempty) *)
+(* leo2 finds a proof but metis fails *)
+(*by (metis G_def Hajek2002_Section5_Natural_var.sym Hajek2002_Section5_Natural_var.trans L1 T3 ext)*)
+oops
+
+axiomatization where L6: "[\<forall>(\<lambda>\<Phi>.(P' \<Phi> m\<rightarrow> \<box>  (P' \<Phi>)))]"
+
+lemma L7: "[\<forall>(\<lambda>x. G x m\<rightarrow> ess G x)]"
+(* sledgehammer[provers=remote_leo2 remote_satallax, verbose, timeout=3600] *)
+(* leo2 finds a proof but metis fails *)
+(* by (metis A5 G_def Hajek2002_Section5_Natural_var.trans L1 P'_def ess_def euc ext ref) *)
+oops
+axiomatization where L7:  "[\<forall>(\<lambda>x. G x m\<rightarrow> ess G x)]"
+
+lemma L8: "[\<forall>(\<lambda>\<Phi>. \<forall>(\<lambda>\<Psi>. \<forall>(\<lambda>x. ((ess \<Phi> x) m\<and> (ess \<Psi> x)) m\<rightarrow> \<box> (\<forall>e(\<lambda>y.(\<Phi> y m\<rightarrow> \<Psi> y))))))]"
+(* sledgehammer[provers=remote_leo2 remote_satallax, verbose, timeout = 3600] *)
+by (metis Hajek2002_Section5_Natural_var.sym Hajek2002_Section5_Natural_var.trans ess_def euc) 
 
 
- (* Satallax finds a proof *)
- lemma L7: "[ess G g]"
- (* sledgehammer [remote_satallax remote_leo2, verbose] (A12 A3 A5 Aux1 C1 G_def Hajek2002_Section5_Natural_var.sym Hajek2002_Section5_Natural_var.trans L1 L3 L6 NE_def P'_def T1 T3 ess_def for_simplicity nonempty) *)
- oops
-
- (* Satallax finds a proof *)
- lemma L8: "[\<forall>(\<lambda>\<Phi>. \<forall>(\<lambda>\<Psi>. \<forall>(\<lambda>u. (ess \<Phi> u m\<and> (ess \<Psi> u)) m\<rightarrow> \<box>(\<forall>e(\<lambda>y. \<Phi> y m\<rightarrow> \<Psi> y)))))]"
- (* sledgehammer min [remote_satallax, verbose] (A12 A3 A5 Aux1 C1 G_def Hajek2002_Section5_Natural_var.sym Hajek2002_Section5_Natural_var.trans L1 L3 L6 NE_def P'_def T1 T3 ess_def for_simplicity nonempty) *)
- oops
-
- (* Satallax finds a proof *)
- corollary C1: "[\<forall>(\<lambda>\<Phi>. ess \<Phi> g m\<rightarrow> \<box>(\<forall>e(\<lambda>y. G y m\<rightarrow> \<Phi> y)))]"
- (* sledgehammer min [remote_satallax, verbose] (A12 A3 A5 Aux1 C1 G_def Hajek2002_Section5_Natural_var.sym Hajek2002_Section5_Natural_var.trans L1 L3 L6 NE_def P'_def T1 T3 ess_def for_simplicity nonempty) *)
- oops
-
- lemma L9: "[P' NE]"
- by (metis A5) 
+lemma L9: "[P' NE]"
+(* this is simply A5, I am definitely missing something... *)
+by (metis A5)
 
 
- theorem T6: "todo"
- oops
+lemma True
+nitpick[satisfy, user_axioms, expect = genuine]
+oops
 
 end
