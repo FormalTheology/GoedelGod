@@ -5,15 +5,22 @@
 
 \documentclass{birkjour}
 
+\usepackage[utf8]{inputenc}
+
 \usepackage{xspace}
 \usepackage{url}
 \usepackage{commands}
 \usepackage{xcolor}
 \usepackage{comment}
 \usepackage{modallogics}
+\usepackage[backend=bibtex,sorting=ydnt,maxnames=999,maxcitenames=999,maxbibnames=999,natbib]{biblatex}
+\addbibresource[label=bibs]{Bibliography.bib}
 
 
-\usepackage[utf8]{inputenc}
+\newcommand{\AOE}{$\mathcal{AOE}$}
+\newcommand{\AOEH}{$\mathcal{AOE}'$}
+\newcommand{\AOEHH}{$\mathcal{AOE}'_0$}
+\newcommand{\AOEHHH}{$\mathcal{AOE}''$}
 
 %
 %
@@ -66,9 +73,9 @@
 %
 
 
-\title[Analysis of Emendations of G\"odel's Ontological Argument]
- {Computer-Assisted Analysis of 
- Emendations of G\"odel's Ontological Proof}
+\title[The Anderson-Hájek Ontological Controversy]
+{Computer-Assisted Analysis of the \\ 
+Anderson-Hájek Ontological Controversy}
 
 
 
@@ -124,36 +131,36 @@ Room HA0402, Favoritenstra{\ss}e 9, 1040 Wien, Austria
 %\tableofcontents
 
 
-\noindent The axioms in G\"odel's ontological argument
-\cite{GoedelNotes,ScottNotes} (cf. Appendix \ref{apx:Goedel}) entail
+\noindent The axioms in G\"odel's ontological proof
+\citep{GoedelNotes,ScottNotes} (cf. Appendix \ref{apx:Goedel}) entail
 what is called \emph{modal collapse}
-\cite{Sobel1987,SobelBook2004}: the formula $\varphi \rightarrow \Box
+\citep{Sobel1987,SobelBook2004}: the formula $\varphi \rightarrow \Box
 \varphi$, abbreviated as MC, holds for any formula $\varphi$ and not
 just for $\exists x. \mathit{God}(x)$ as intended. This fact, which
 has recently been confirmed with higher-order automated theorem
-provers \cite{C40,J30}, has led to strong criticism of the argument
-and stimulated attempts to remedy the problem. Hájek
-\cite{Hajek_der_Mathematiker_2002,Hajek_Magari_and_others_1996}
+provers \citep{C40,J30}, has led to strong criticism of the argument
+and stimulated attempts to remedy the problem.
+\citet{Hajek_Magari_and_others_1996,Hajek_der_Mathematiker_2001}
 proposed the use of cautious instead of full comprehension principles,
-and Fitting \cite{fitting02:_types_tableaus_god} suggested that
+and \citet{fitting02:_types_tableaus_god} suggested that
 greater care is necessary in the semantics of higher-order quantifiers
-in the presence of modalities. Others, such as Anderson
-\cite{anderson90:_some_emend_of_goedel_ontol_proof,AndersonGettings}
-and Bjordal \cite{bjordal99}, proposed slight emendations of G\"odel's
+in the presence of modalities. Others, such as
+\citet{anderson90:_some_emend_of_goedel_ontol_proof,AndersonGettings}, \citet{Hajek2002}
+and Bjordal \citet{bjordal99}, proposed slight emendations of G\"odel's
 axioms and definitions. They require neither comprehension
 restrictions nor more complex semantics. Therefore, they are
 technically simpler to analyze with computer support. We have
-formalized them using the proof assistant Isabelle/HOL \cite{Isabelle}
-together with the automated higher-order reasoners Leo-II \cite{C26},
-Satallax \cite{brown2012satallax}, Metis 
-\cite{Hurd03first-orderproof}, and Nitpick \cite{Nitpick}.   Our
+formalized them using the proof assistant Isabelle/HOL \citep{Isabelle}
+together with the automated higher-order reasoners Leo-II \citep{C26},
+Satallax \citep{brown2012satallax}, Metis 
+\citep{Hurd03first-orderproof}, and Nitpick \citep{Nitpick}.   Our
 formalizations\footnote{The   formalizations are available in the
-subdirectories \url{Anderson}   and \url{Bjordal} at   \url{https://gi
+subdirectories \url{Anderson}, \url{Hájek} and \url{Bjordal} at \url{gi
 thub.com/FormalTheology/GoedelGod/blob/master/Formalizations/Isabelle/
 }.} employ the embedding of higher-order modal logic (HOML) in
 classical higher-order logic (HOL) as introduced in previous work
-\cite{C40,J30,J23}. We explored the effect of different domain
-conditions  on the provability of lemmas, theorems and even axioms.
+\citep{C40,J30,J23}. We explored the effect of different domain
+conditions on the provability of lemmas, theorems and even axioms.
 This was motivated by a controversy between Hájek and Anderson
 regarding the redundancy of some axioms in Anderson's emendation. In
 \emph{constant domain semantics}, the individual domains are the same
@@ -162,25 +169,43 @@ domains may vary from world to world. This variation is technically
 encoded with the help of an existence relation expressing which
 individuals actually exist in each world. Quantifiers are then
 uniformly formalized as \emph{actualistic quantifiers} (i.e. guarded by
-the existence relation). Our main results are summarized in the
-following sections.
+the existence relation). Our main results are summarized here.
 
 
-\section{Anderson's Emendation (cf. Appendix \ref{apx:Anderson})}
+%\section{Anderson's Emendation (cf. Appendix \ref{apx:Anderson})}
 
-%\BWP{Bruno: I do not yet address T2', L1' and L2' below; we could eventually include those as well?}
 
-For both \textbf{constant domain semantics} and \textbf{varying domain semantics}, the following results hold: 
+For both \textbf{constant domain semantics} and \textbf{varying domain semantics}, the following results hold for \emph{Anderson's Emendation} (cf. Appendix \ref{apx:Anderson}): 
 %
 the theorems T1, C and T3' can be quickly automated (in logics \K, \K and \KB, respectively);
 %
-the axioms A4 and A5 are proven redundant (the former in
+the axioms A4 and A5 are proven redundant\footnote{
+  An axiom $A$ is redundant w.r.t. a set of axioms $S$ iff $A$ is entailed by $S$. 
+} (the former in
 logic \KFourB and the latter already in \K);
 %
 a trivial countermodel (consisting of two worlds and 
-two individuals) to MC generated by Nitpick (for all mentioned logics), which also shows the consistency of the axioms. 
+two individuals) for MC is generated by Nitpick (for all mentioned logics); all axioms and definitions are shown to be mutually consistent. 
 
-The redundancy of A4 and A5 is particularly controversial. Magari \cite{TODO} claimed that the redundancy occurs already with Gödel's original axioms and definitions. Hájek \cite{Hajek 1996 TODO} investigated this further and claimed that Magari's claim is invalid, but true under the assumption of an additional axiom (PEP). Moreover, Hájek \cite{Hajek 1996 TODO} claimed that the redundancy occurs for Anderson's emended axioms and definitions \cite{Anderson 1990}. Anderson and Gettings \cite{AG1996, footnote 1, page 1} rebutted Hájek's claim, arguing that it holds only under constant domain semantics, while the emended argument by Anderson ought to be taken under Cocchiarella's semantics \cite{Cocchiarella} (a varying domain semantics). Hájek \cite{Hajek 2002, page 7} acknowledges this rebuttal, and apparently accepts it, as evidenced by his use of A4 and A5 in his new small emendation (replacing A:A1 and A2 by a new axiom H:A12) of Anderson's variant with varying domains \cite{Hajek 2002, section 4}. Nevertheless, he does show yet another emended version where A4 and A5 are redundant, if A3 is replaced by a stronger axiom additionally stating that the property of actual existence is positive \cite{Hajek 2002, section 5}. Our results show that Hájek was originally right, under both constant and varying domain semantics with no need to strengthen A3 (though this need might exist when H:A12 is used instead of A:A1 and A2). It should be noted, however, that \cite{Anderson, footnote 14} vaguely remarks that only the quantifiers in T3' and in A:D2  need to be interpreted as actualistic quantifiers, while other may be taken as possibilistic quantifiers. We have inv  mixed variant.
+The redundancy of A4 and A5 is particularly controversial. Magari \cite{Magari1988} claimed that A4 and A5 are superfluous\footnote{
+  An axiom $A$ is superfluous w.r.t. a set of axioms $S$ iff T3 is entailed by $S \setminus \{ A \}$.
+}, arguing that T3 is true in all models of the other axioms and definitions by Gödel. \citet[p.~5-6]{Hajek_Magari_and_others_1996} investigated this further, refuted Magari's claim, but claimed that A4 and A5 are indeed superfluous under the assumption of an additional axiom (PEP, pointwise equality for positiveness), which Magari probably assumed silently. Moreover, Hájek \citet[p.~2]{Hajek_Magari_and_others_1996} cites his earlier work\footnote{Although \citep{Hajek_der_Mathematiker_2001} precedes \citep{Hajek_Magari_and_others_1996} in writing, it was published only 5 years later, in German.} \citep{Hajek_der_Mathematiker_2001}, where he claims (in Theorem 5.3) that for Anderson's emended theory \citep{anderson90:_some_emend_of_goedel_ontol_proof}, A4 and A5 are not only superfluous, but also redundant. \citet[footnote 1 in p.~1]{AG1996, footnote 1, page 1}, in a footnote, rebutted Hájek's claim, arguing that the redundancy of A4 and A5 holds only under constant domain semantics, while Anderson's emended theory ought to be taken under Cocchiarella's semantics \citep{Cocchiarella} (a varying domain semantics). Our results show that Hájek was originally right, under both constant and varying domain semantics.
+
+Nevertheless, \citet[p.~7]{Hajek2002} (in page 7) acknowledges Anderson's rebuttal, and apparently accepts it, as evidenced by  his use\footnote{
+  A4 and A5 are used by \citet[p.~11]{Hajek2002} (page 11) in the proofs of, respectively, Lemma 4 and Theorem 4.
+} 
+of A4 and A5, as well as varying domain semantics, in his new emendation (named \AOEH \citep[sec.~4]{Hajek2002}, cf. Appendix \ref{apx:Hajek1}), which replaces Anderson's A:A1 and A2 by a simpler axiom H:A12. Surprisingly, the computer-assisted formalization of \AOEH shows that A4 and A5 are superfluous (not needed for proving T3). Moreover, A4 and A5 are independent\footnote{
+  An axiom $A$ is \emph{independent} of a set of axioms $S$ iff there are models of $S$ where $A$ is true and other models of $S$ where $A$ if false. 
+} of the other axioms and definitions. Therefore, A4 and A5 are not redundant, despite their superfluousness. 
+
+Although, Hájek did not notice the superfluousness of A4 and A5 in his \AOEH, he did describe yet another emendation (his \AOEHH, cf. Appendix \ref{apx:Hajek2}) where A4 and A5 are superfluous (though no claim is made w.r.t. to their redundancy), if A3 is replaced by a stronger axiom (H:A3) additionally stating that the property of actual existence is positive \cite[sec.~5]{Hajek2002}. Formalization of \AOEHH shows that A4 is not only superflous, but also redundant. For A5, no conclusive results were achieved; neither a proof nor a countermodel could be automatically generated. Surprisingly, a countermodel for the weaker A3 was succesfully generated. This is somewhat unsatisfactory (for theistic goals), because it shows that \AOEHH does not entail the positiveness of being God-like.
+
+Nevertheless, \AOEHH is explicitly regarded by \citet[p.~12]{Hajek2002} (page 12) as just an intermediary step towards a more natural theory, based on a more sophisticated notion of positiveness. That is his final emendation (\AOEHHH, cf. \ref{apx:Hajek3}), which restores A3 and does use A4 and A5, albeit in a modified form (i.e. H:A4 and H:A5). The formalization of \AOEHHH shows that H:A4 is independent. The old A5 is independent as well, and both H:A4 and H:A5 are superfluous, but no conclusive results were achieved regarding independence or redundancy of H:A5.
+
+Additionally, Anderson's 14th footnote \citep[footnote 14]{anderson90:_some_emend_of_goedel_ontol_proof} remarks that only the quantifiers in T3' and in A:D2 need to be interpreted as actualistic quantifiers, while others may be taken as possibilistic quantifiers. Our computer-assisted study of this mixed variant shows that A4 is still redundant, but A5 becomes independent (hence not redundant). However, T3 becomes unprovable.
+
+
+
 
 ToDo: tell the story of the controversy here, and then link with the mixed variant. 
 
@@ -245,8 +270,10 @@ seems hard to achieve in our approach, since full comprehension is
 naturally built-in.
 
 
-\bibliographystyle{plain}
-\bibliography{Bibliography}
+%\bibliographystyle{plain}
+%\bibliography{Bibliography}
+
+\printbibliography
 
 
 \newpage
@@ -336,7 +363,131 @@ naturally built-in.
 % \end{figure}
 
 
-% I have meanwhile added another file ``Anderson\_var\_partial.thy''. In this version the actualist e-Quantifier is used exclusively in the definition of NE and everywhere else ithe possibilist Quantifiers are used. It is still unclear to me, what is actually meant. Reading Anderson 1990, last sentence on p. 302, it could mean that ``Anderson\_var\_partial.thy'' is the correct version; but when reading AndersonGettings, then one could think that ``Anderson\_var.thy'' is meant. But ok we have now both versions. Interestingly in ``Anderson\_var\_partial.thy'' A5 is not inferable anymore, and this also holds for ``anderson\_implies\_fuhrmann". Nitpick finds countermodels.
+\section{Hájek's First Emendation \AOEH} \label{apx:Hajek1}
+
+% \begin{figure}[t]
+% \noindent \framebox[\columnwidth][r]{
+% \begin{minipage}{.94\columnwidth}\small
+\begin{itemize}
+\item[A:A1] If a property is positive, its negation is not positive:
+  $$\hol{\allq \varphi [P(\varphi) \imp \neg P(\neg \varphi)]}$$ 
+\item[A2] A property necessarily implied by a
+  positive property is positive:
+  $$\hol{\allq \varphi \allq \psi [(P(\varphi) \wedge \nec \allq x [\varphi(x)
+  \imp \psi(x)]) \imp P(\psi)]}$$
+\item[T1] Positive properties are possibly exemplified: 
+  $$\hol{\allq \varphi [P(\varphi) \imp \pos \exq x \varphi(x)]}$$ 
+\item[A:D1] A \emph{God-like} being necessarily possesses those and only those properties that are positive: 
+  $$\hol{G_A(x) \equiv \forall \varphi [P(\varphi) \biimp \nec \varphi(x)]}$$ 
+\item[A3']  The property of being God-like is positive: 
+  $$\hol{P(G_A)}$$
+\item[C\phantom{1}] Possibly, a God-like being exists: $$\hol{\pos \exq x G(x)}$$
+\item[A4]  Positive properties are necessarily positive: 
+  $$\hol{\allq \varphi [P(\varphi) \imp \Box \; P(\varphi)]}$$ 
+\item[A:D2] An \emph{essence} of an individual is a property that necessarily implies those and only those properties that the individual has necessarily: $$\hol{\essA{\varphi}{x} \equiv \allq
+  \psi [\nec \psi(x) \biimp \nec \allq y (\varphi(y) \imp \psi(y))]}$$ 
+\item[T2']  Being God-like is an essence of any
+  God-like being: $$\hol{\allq x [G_A(x) \imp \essA{G_A}{x}]}$$
+\item[D3'] \emph{Necessary existence} of an individual is the necessary exemplification of all its essences: 
+  $$\hol{\NE_A(x) \equiv \allq \varphi [\essA{\varphi}{x} \imp \nec
+  \exq y \varphi(y)]}$$
+\item[A5'] Necessary existence is a positive property: $$\hol{P(\NE_A)}$$ 
+\item[L1'] If a god-like being exists, then necessarily a god-like being exists: 
+  $$\hol{\exq x G_A(x) \imp \nec \exq y G_A(y)}$$
+\item[L2'] If possibly a god-like being exists, then necessarily a god-like being exists: 
+  $$\hol{\pos \exq x G_A(x) \imp \nec \exq y G_A(y)} $$
+%
+\item[T3'] Necessarily, a God-like being exists: $$\hol{\nec \exq x G_A(x)}$$ 
+\end{itemize}
+% \end{minipage}
+% } \vskip-.5em
+% \caption{Anderson's Emendation \cite{ToDo:Anderson}.\label{fig:anderson}} 
+% \end{figure}
+
+
+\section{Hájek's Second Emendation \AOEHH} \label{apx:Hajek2}
+
+% \begin{figure}[t]
+% \noindent \framebox[\columnwidth][r]{
+% \begin{minipage}{.94\columnwidth}\small
+\begin{itemize}
+\item[A:A1] If a property is positive, its negation is not positive:
+  $$\hol{\allq \varphi [P(\varphi) \imp \neg P(\neg \varphi)]}$$ 
+\item[A2] A property necessarily implied by a
+  positive property is positive:
+  $$\hol{\allq \varphi \allq \psi [(P(\varphi) \wedge \nec \allq x [\varphi(x)
+  \imp \psi(x)]) \imp P(\psi)]}$$
+\item[T1] Positive properties are possibly exemplified: 
+  $$\hol{\allq \varphi [P(\varphi) \imp \pos \exq x \varphi(x)]}$$ 
+\item[A:D1] A \emph{God-like} being necessarily possesses those and only those properties that are positive: 
+  $$\hol{G_A(x) \equiv \forall \varphi [P(\varphi) \biimp \nec \varphi(x)]}$$ 
+\item[A3']  The property of being God-like is positive: 
+  $$\hol{P(G_A)}$$
+\item[C\phantom{1}] Possibly, a God-like being exists: $$\hol{\pos \exq x G(x)}$$
+\item[A4]  Positive properties are necessarily positive: 
+  $$\hol{\allq \varphi [P(\varphi) \imp \Box \; P(\varphi)]}$$ 
+\item[A:D2] An \emph{essence} of an individual is a property that necessarily implies those and only those properties that the individual has necessarily: $$\hol{\essA{\varphi}{x} \equiv \allq
+  \psi [\nec \psi(x) \biimp \nec \allq y (\varphi(y) \imp \psi(y))]}$$ 
+\item[T2']  Being God-like is an essence of any
+  God-like being: $$\hol{\allq x [G_A(x) \imp \essA{G_A}{x}]}$$
+\item[D3'] \emph{Necessary existence} of an individual is the necessary exemplification of all its essences: 
+  $$\hol{\NE_A(x) \equiv \allq \varphi [\essA{\varphi}{x} \imp \nec
+  \exq y \varphi(y)]}$$
+\item[A5'] Necessary existence is a positive property: $$\hol{P(\NE_A)}$$ 
+\item[L1'] If a god-like being exists, then necessarily a god-like being exists: 
+  $$\hol{\exq x G_A(x) \imp \nec \exq y G_A(y)}$$
+\item[L2'] If possibly a god-like being exists, then necessarily a god-like being exists: 
+  $$\hol{\pos \exq x G_A(x) \imp \nec \exq y G_A(y)} $$
+%
+\item[T3'] Necessarily, a God-like being exists: $$\hol{\nec \exq x G_A(x)}$$ 
+\end{itemize}
+% \end{minipage}
+% } \vskip-.5em
+% \caption{Anderson's Emendation \cite{ToDo:Anderson}.\label{fig:anderson}} 
+% \end{figure}
+
+
+\section{Hájek's Third Emendation \AOEHHH} \label{apx:Hajek3}
+
+% \begin{figure}[t]
+% \noindent \framebox[\columnwidth][r]{
+% \begin{minipage}{.94\columnwidth}\small
+\begin{itemize}
+\item[A:A1] If a property is positive, its negation is not positive:
+  $$\hol{\allq \varphi [P(\varphi) \imp \neg P(\neg \varphi)]}$$ 
+\item[A2] A property necessarily implied by a
+  positive property is positive:
+  $$\hol{\allq \varphi \allq \psi [(P(\varphi) \wedge \nec \allq x [\varphi(x)
+  \imp \psi(x)]) \imp P(\psi)]}$$
+\item[T1] Positive properties are possibly exemplified: 
+  $$\hol{\allq \varphi [P(\varphi) \imp \pos \exq x \varphi(x)]}$$ 
+\item[A:D1] A \emph{God-like} being necessarily possesses those and only those properties that are positive: 
+  $$\hol{G_A(x) \equiv \forall \varphi [P(\varphi) \biimp \nec \varphi(x)]}$$ 
+\item[A3']  The property of being God-like is positive: 
+  $$\hol{P(G_A)}$$
+\item[C\phantom{1}] Possibly, a God-like being exists: $$\hol{\pos \exq x G(x)}$$
+\item[A4]  Positive properties are necessarily positive: 
+  $$\hol{\allq \varphi [P(\varphi) \imp \Box \; P(\varphi)]}$$ 
+\item[A:D2] An \emph{essence} of an individual is a property that necessarily implies those and only those properties that the individual has necessarily: $$\hol{\essA{\varphi}{x} \equiv \allq
+  \psi [\nec \psi(x) \biimp \nec \allq y (\varphi(y) \imp \psi(y))]}$$ 
+\item[T2']  Being God-like is an essence of any
+  God-like being: $$\hol{\allq x [G_A(x) \imp \essA{G_A}{x}]}$$
+\item[D3'] \emph{Necessary existence} of an individual is the necessary exemplification of all its essences: 
+  $$\hol{\NE_A(x) \equiv \allq \varphi [\essA{\varphi}{x} \imp \nec
+  \exq y \varphi(y)]}$$
+\item[A5'] Necessary existence is a positive property: $$\hol{P(\NE_A)}$$ 
+\item[L1'] If a god-like being exists, then necessarily a god-like being exists: 
+  $$\hol{\exq x G_A(x) \imp \nec \exq y G_A(y)}$$
+\item[L2'] If possibly a god-like being exists, then necessarily a god-like being exists: 
+  $$\hol{\pos \exq x G_A(x) \imp \nec \exq y G_A(y)} $$
+%
+\item[T3'] Necessarily, a God-like being exists: $$\hol{\nec \exq x G_A(x)}$$ 
+\end{itemize}
+% \end{minipage}
+% } \vskip-.5em
+% \caption{Anderson's Emendation \cite{ToDo:Anderson}.\label{fig:anderson}} 
+% \end{figure}
+
 
 
 %\clearpage
