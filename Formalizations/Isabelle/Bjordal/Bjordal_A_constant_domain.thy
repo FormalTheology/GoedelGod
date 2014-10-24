@@ -1,6 +1,6 @@
 (*<*) 
 theory Bjordal_A_constant_domain
-imports Main QML_K_constant_domain
+imports Main "../QML"
 
 begin
 (*>*)
