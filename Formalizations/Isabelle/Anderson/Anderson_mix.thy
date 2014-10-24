@@ -60,7 +60,7 @@ subsection {* Consistency (now with sym and trans) *}
   nitpick [satisfy, user_axioms, expect = genuine] oops
 
 
-subsection {* Countersatisfiability of A5 *}
+subsection {* Independence of A5 *}
 
 text {* As claimed by Anderson-Gettings (1996) in footnote 1 and contrary to  HÃ¡jek's claim,
         A5 is not redundant. Nitpick finds a counter-model. *}
@@ -72,7 +72,8 @@ text {* As claimed by Anderson-Gettings (1996) in footnote 1 and contrary to  HÃ
             "NE = (\<lambda>x. \<forall>(\<lambda>\<Phi>. ess \<Phi> x m\<rightarrow> (\<box> (\<exists>e(\<lambda>y. \<Phi> y)))))"
 
   theorem A5: "[P NE]"
-  nitpick [user_axioms] oops
+  nitpick [user_axioms] 
+  nitpick [user_axioms, satisfy] oops
 
 
 subsection {* Immunity to Modal Collapse *}  
