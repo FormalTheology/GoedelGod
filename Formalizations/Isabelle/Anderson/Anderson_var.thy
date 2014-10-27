@@ -76,5 +76,10 @@ subsection {* Immunity to Modal Collapse *}
   lemma MC: "[\<forall>(\<lambda>\<Phi>.(\<Phi> m\<rightarrow> (\<box> \<Phi>)))]"
   nitpick [user_axioms] oops
 
+subsection {* Varia *}
+
+lemma HAJEK: "[P ( \<lambda>x. (G x m\<and> eiw x))]"
+by (metis A2 A3 A5)
+
 
 end
