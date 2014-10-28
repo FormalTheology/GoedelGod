@@ -42,10 +42,12 @@ text {* For proving A4 we need transitivity. *}
  (* sledgehammer [provers = remote_leo2 remote_satallax] *)
  by (metis trans P_def)
 
-text {* For proving D1 we need reflexivity . *}
+text {* We add reflexivity and symmetry (logic S5) and get a countermodel to D1. 
+This is, of course, also a counterexamble in logics K, KB, S4. *}
 
  axiomatization where 
-  refl: "x r x" 
+  refl: "x r x" and
+  sym:  "x r y \<longrightarrow> y r x"
 
  theorem D1: "G = (\<lambda>x. \<forall>(\<lambda>\<Phi>. P \<Phi> m\<rightarrow> \<Phi> x))"
  nitpick [user_axioms] oops

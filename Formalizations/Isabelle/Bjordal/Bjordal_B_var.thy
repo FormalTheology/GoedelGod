@@ -41,7 +41,7 @@ D is implied. *}
  (* sledgehammer [provers = remote_leo2 remote_satallax] *)
  by (metis A4 G_def) 
 
- theorem D: "P = (\<lambda>\<Phi>. \<box>(\<forall>e(\<lambda>x. G x m\<rightarrow> \<Phi> x)))"
+ theorem D1: "P = (\<lambda>\<Phi>. \<box>(\<forall>e(\<lambda>x. G x m\<rightarrow> \<Phi> x)))"
  (* sledgehammer [provers = remote_leo2 remote_satallax] *)
  by (metis Case1 Case2) 
 
