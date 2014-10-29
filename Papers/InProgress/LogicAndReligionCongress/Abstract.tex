@@ -321,35 +321,39 @@ fruitfully adopted in larger scale by philosophers.
 % \noindent \framebox[\columnwidth][r]{
 % \begin{minipage}{.94\columnwidth}\small
 \begin{itemize}
-\item[A:A1] If a property is positive, its negation is not positive:
-  $$\hol{\allq \varphi [P(\varphi) \imp \neg P(\neg \varphi)]}$$ 
-\item[A2] A property necessarily implied by a
-  positive property is positive:
+\item[H:A12] The negation of a property necessarily implied by a
+  positive property is not positive:
   $$\hol{\allq \varphi \allq \psi [(P(\varphi) \wedge \nec \allq x [\varphi(x)
-  \imp \psi(x)]) \imp P(\psi)]}$$
-\item[T1] Positive properties are possibly exemplified: 
-  $$\hol{\allq \varphi [P(\varphi) \imp \pos \exq x \varphi(x)]}$$ 
-\item[A:D1] A \emph{God-like} being necessarily possesses those and only those properties that are positive: 
-  $$\hol{G_A(x) \equiv \forall \varphi [P(\varphi) \biimp \nec \varphi(x)]}$$ 
+  \imp \psi(x)]) \imp \neg P(\neg \psi)]}$$
+\item[H:D1] A \emph{God-like} being necessarily possesses those and only those properties that are necessarily implied by a positive property: 
+  $$\hol{G_H(x) \equiv \forall \varphi [\nec \varphi(x) \biimp \exq \psi[P(\psi) \wedge \nec \allq x [\psi(x)  \imp \varphi(x))]]}$$ 
 \item[A3']  The property of being God-like is positive: 
-  $$\hol{P(G_A)}$$
-\item[C\phantom{1}] Possibly, a God-like being exists: $$\hol{\pos \exq x G(x)}$$
+  $$\hol{P(G_H)}$$
 \item[A4]  Positive properties are necessarily positive: 
   $$\hol{\allq \varphi [P(\varphi) \imp \Box \; P(\varphi)]}$$ 
 \item[A:D2] An \emph{essence} of an individual is a property that necessarily implies those and only those properties that the individual has necessarily: $$\hol{\essA{\varphi}{x} \equiv \allq
   \psi [\nec \psi(x) \biimp \nec \allq y (\varphi(y) \imp \psi(y))]}$$ 
-\item[T2']  Being God-like is an essence of any
-  God-like being: $$\hol{\allq x [G_A(x) \imp \essA{G_A}{x}]}$$
 \item[D3'] \emph{Necessary existence} of an individual is the necessary exemplification of all its essences: 
   $$\hol{\NE_A(x) \equiv \allq \varphi [\essA{\varphi}{x} \imp \nec
-  \exq y \varphi(y)]}$$
+  \exq y [\varphi(y)]]}$$
 \item[A5'] Necessary existence is a positive property: $$\hol{P(\NE_A)}$$ 
-\item[L1'] If a god-like being exists, then necessarily a god-like being exists: 
-  $$\hol{\exq x G_A(x) \imp \nec \exq y G_A(y)}$$
-\item[L2'] If possibly a god-like being exists, then necessarily a god-like being exists: 
-  $$\hol{\pos \exq x G_A(x) \imp \nec \exq y G_A(y)} $$
-%
-\item[T3'] Necessarily, a God-like being exists: $$\hol{\nec \exq x G_A(x)}$$ 
+
+\item[L3] 
+  \begin{itemize}
+  \item[(1)] The negation of a positive property is not positive:
+$$\hol{\allq \varphi[P(\varphi) \imp \neg P(\neg \varphi)] }$$
+  \item[(2)] Positive properties are possibly exemplified:
+$$\hol{\allq \varphi[P(\varphi) \imp \pos \exq x \varphi(x)] }$$
+  \item[(3)] If a god-like being exists, then necessarily a god-like being exists:
+$$\hol{\allq x[G_H(x) \imp \nec G_H(x)))] }$$  
+  \item[(4)] All positive properties are necessarily implied by the property of being god-like:
+$$\hol{\allq \varphi[P(\varphi) \imp \nec \allq x[G_H(x) \imp \varphi(x)]] }$$
+  \end{itemize}
+\item[L4]  Being God-like is an essence of any
+  God-like being: $$\hol{\allq x [G_H(x) \imp \ess{G_H}{x}]}$$
+
+\item[T3'] Necessarily, a God-like being exists: $$\hol{\nec \exq x G_H(x)}$$
+% 
 \end{itemize}
 % \end{minipage}
 % } \vskip-.5em
@@ -358,89 +362,57 @@ fruitfully adopted in larger scale by philosophers.
 
 
 \section{Hájek's Second Emendation \AOEHH} \label{apx:Hajek2}
-
 % \begin{figure}[t]
 % \noindent \framebox[\columnwidth][r]{
 % \begin{minipage}{.94\columnwidth}\small
 \begin{itemize}
-\item[A:A1] If a property is positive, its negation is not positive:
-  $$\hol{\allq \varphi [P(\varphi) \imp \neg P(\neg \varphi)]}$$ 
-\item[A2] A property necessarily implied by a
-  positive property is positive:
+\item[H:A12] The negation of a property necessarily implied by a
+  positive property is not positive:
   $$\hol{\allq \varphi \allq \psi [(P(\varphi) \wedge \nec \allq x [\varphi(x)
-  \imp \psi(x)]) \imp P(\psi)]}$$
-\item[T1] Positive properties are possibly exemplified: 
-  $$\hol{\allq \varphi [P(\varphi) \imp \pos \exq x \varphi(x)]}$$ 
+  \imp \psi(x)]) \imp \neg P(\neg \psi)]}$$
 \item[A:D1] A \emph{God-like} being necessarily possesses those and only those properties that are positive: 
   $$\hol{G_A(x) \equiv \forall \varphi [P(\varphi) \biimp \nec \varphi(x)]}$$ 
-\item[A3']  The property of being God-like is positive: 
-  $$\hol{P(G_A)}$$
-\item[C\phantom{1}] Possibly, a God-like being exists: $$\hol{\pos \exq x G(x)}$$
-\item[A4]  Positive properties are necessarily positive: 
-  $$\hol{\allq \varphi [P(\varphi) \imp \Box \; P(\varphi)]}$$ 
-\item[A:D2] An \emph{essence} of an individual is a property that necessarily implies those and only those properties that the individual has necessarily: $$\hol{\essA{\varphi}{x} \equiv \allq
-  \psi [\nec \psi(x) \biimp \nec \allq y (\varphi(y) \imp \psi(y))]}$$ 
-\item[T2']  Being God-like is an essence of any
-  God-like being: $$\hol{\allq x [G_A(x) \imp \essA{G_A}{x}]}$$
-\item[D3'] \emph{Necessary existence} of an individual is the necessary exemplification of all its essences: 
-  $$\hol{\NE_A(x) \equiv \allq \varphi [\essA{\varphi}{x} \imp \nec
-  \exq y \varphi(y)]}$$
-\item[A5'] Necessary existence is a positive property: $$\hol{P(\NE_A)}$$ 
-\item[L1'] If a god-like being exists, then necessarily a god-like being exists: 
-  $$\hol{\exq x G_A(x) \imp \nec \exq y G_A(y)}$$
-\item[L2'] If possibly a god-like being exists, then necessarily a god-like being exists: 
-  $$\hol{\pos \exq x G_A(x) \imp \nec \exq y G_A(y)} $$
-%
-\item[T3'] Necessarily, a God-like being exists: $$\hol{\nec \exq x G_A(x)}$$ 
+\item[H:A3]  The property of being God-like and existing actually is positive: 
+  $$\hol{P(G_A \wedge E)}$$
+\item[T3'] Necessarily, a God-like being exists: $$\hol{\nec \exq x G_A(x)}$$
+% 
 \end{itemize}
 % \end{minipage}
 % } \vskip-.5em
 % \caption{Anderson's Emendation \cite{ToDo:Anderson}.\label{fig:anderson}} 
 % \end{figure}
+
 
 
 \section{Hájek's Third Emendation \AOEHHH} \label{apx:Hajek3}
-
 % \begin{figure}[t]
 % \noindent \framebox[\columnwidth][r]{
 % \begin{minipage}{.94\columnwidth}\small
 \begin{itemize}
-\item[A:A1] If a property is positive, its negation is not positive:
-  $$\hol{\allq \varphi [P(\varphi) \imp \neg P(\neg \varphi)]}$$ 
-\item[A2] A property necessarily implied by a
-  positive property is positive:
+\item[H:A12] The negation of a property necessarily implied by a
+  positive property is not positive:
   $$\hol{\allq \varphi \allq \psi [(P(\varphi) \wedge \nec \allq x [\varphi(x)
-  \imp \psi(x)]) \imp P(\psi)]}$$
-\item[T1] Positive properties are possibly exemplified: 
-  $$\hol{\allq \varphi [P(\varphi) \imp \pos \exq x \varphi(x)]}$$ 
-\item[A:D1] A \emph{God-like} being necessarily possesses those and only those properties that are positive: 
-  $$\hol{G_A(x) \equiv \forall \varphi [P(\varphi) \biimp \nec \varphi(x)]}$$ 
+  \imp \psi(x)]) \imp \neg P(\neg \psi)]}$$
+\item[H:D1] A \emph{God-like} being necessarily possesses those and only those properties that are necessarily implied by a positive property: 
+  $$\hol{G_H(x) \equiv \forall \varphi [\nec \varphi(x) \biimp \exq \psi[P(\psi) \wedge \nec \allq x [\psi(x)  \imp \varphi(x))]]}$$ 
+\item[D4]  A property is positive\textsuperscript{\#} iff it is necessarily implied by a positive property: 
+  $$\hol{P^\#(\varphi) \equiv \exq \psi[P(\psi) \wedge \nec \allq x[\psi(x) \imp \varphi(x)]]}$$
 \item[A3']  The property of being God-like is positive: 
-  $$\hol{P(G_A)}$$
-\item[C\phantom{1}] Possibly, a God-like being exists: $$\hol{\pos \exq x G(x)}$$
-\item[A4]  Positive properties are necessarily positive: 
-  $$\hol{\allq \varphi [P(\varphi) \imp \Box \; P(\varphi)]}$$ 
+  $$\hol{P(G_H)}$$
+\item[H:A4]  Positive\textsuperscript{\#} properties are necessarily positive\textsuperscript{\#}: 
+  $$\hol{\allq \varphi [P^\#(\varphi) \imp \Box \; P^\#(\varphi)]}$$ 
 \item[A:D2] An \emph{essence} of an individual is a property that necessarily implies those and only those properties that the individual has necessarily: $$\hol{\essA{\varphi}{x} \equiv \allq
   \psi [\nec \psi(x) \biimp \nec \allq y (\varphi(y) \imp \psi(y))]}$$ 
-\item[T2']  Being God-like is an essence of any
-  God-like being: $$\hol{\allq x [G_A(x) \imp \essA{G_A}{x}]}$$
 \item[D3'] \emph{Necessary existence} of an individual is the necessary exemplification of all its essences: 
   $$\hol{\NE_A(x) \equiv \allq \varphi [\essA{\varphi}{x} \imp \nec
-  \exq y \varphi(y)]}$$
-\item[A5'] Necessary existence is a positive property: $$\hol{P(\NE_A)}$$ 
-\item[L1'] If a god-like being exists, then necessarily a god-like being exists: 
-  $$\hol{\exq x G_A(x) \imp \nec \exq y G_A(y)}$$
-\item[L2'] If possibly a god-like being exists, then necessarily a god-like being exists: 
-  $$\hol{\pos \exq x G_A(x) \imp \nec \exq y G_A(y)} $$
-%
-\item[T3'] Necessarily, a God-like being exists: $$\hol{\nec \exq x G_A(x)}$$ 
+  \exq y [\varphi(y)]]}$$
+\item[H:A5] Necessary existence is a positive\textsuperscript{\#} property: $$\hol{P^\#(\NE_A)}$$ 
+% 
 \end{itemize}
 % \end{minipage}
 % } \vskip-.5em
 % \caption{Anderson's Emendation \cite{ToDo:Anderson}.\label{fig:anderson}} 
 % \end{figure}
-
-
 
 %\clearpage
 
