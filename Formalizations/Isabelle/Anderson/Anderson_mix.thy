@@ -94,4 +94,14 @@ text {* Unfortunately, with actualistic quantifiers only for NE and T3,
   theorem T3: "[\<box> (\<exists>e G)]"
   nitpick [user_axioms] oops
 
+  lemma PEP: "[\<forall>(\<lambda>\<Phi>. \<forall>(\<lambda>\<Psi>. (P \<Phi> m\<and> (\<lambda>x. (\<Phi> = \<Psi>))) m\<rightarrow> P \<Psi>))]"
+  (* sledgehammer [remote_satallax remote_leo2] *)
+  (* nitpick *)
+  by metis
+
+  lemma PEP_Leibniz: "[\<forall>(\<lambda>\<Phi>. \<forall>(\<lambda>\<Psi>. (P \<Phi> m\<and> \<forall>(\<lambda>Q. Q \<Phi> m\<rightarrow> Q \<Psi>)) m\<rightarrow> P \<Psi>))]"
+  (* sledgehammer [remote_satallax remote_leo2] *)
+  (* nitpick *)
+  by metis
+
 end

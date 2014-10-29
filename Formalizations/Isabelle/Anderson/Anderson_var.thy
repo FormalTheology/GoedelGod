@@ -82,4 +82,19 @@ lemma HAJEK: "[P ( \<lambda>x. (G x m\<and> eiw x))]"
 by (metis A2 A3 A5)
 
 
+  lemma PEP: "[\<forall>(\<lambda>\<Phi>. \<forall>(\<lambda>\<Psi>. (P \<Phi> m\<and> (\<lambda>x. (\<Phi> = \<Psi>))) m\<rightarrow> P \<Psi>))]"
+  (* sledgehammer [remote_satallax remote_leo2] *)
+  (* nitpick *)
+  by metis
+
+  lemma PEP_Leibniz: "[\<forall>(\<lambda>\<Phi>. \<forall>(\<lambda>\<Psi>. (P \<Phi> m\<and> \<forall>(\<lambda>Q. Q \<Phi> m\<rightarrow> Q \<Psi>)) m\<rightarrow> P \<Psi>))]"
+  (* sledgehammer [remote_satallax remote_leo2] *)
+  (* nitpick *)
+  by metis
+
+  lemma weak_congruence: "[\<forall>(\<lambda>\<Phi>. \<forall>(\<lambda>\<Psi>. (P \<Phi> m\<and> \<box>(\<lambda>x. (\<Phi> = \<Psi>))) m\<rightarrow> P \<Psi>))]"
+  (* sledgehammer [remote_satallax remote_leo2] *)
+  by (metis A2) 
+
+
 end
