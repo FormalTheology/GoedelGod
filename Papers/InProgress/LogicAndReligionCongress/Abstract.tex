@@ -7,6 +7,7 @@
 
 \usepackage[utf8]{inputenc}
 
+\usepackage{amsmath}
 \usepackage{xspace}
 \usepackage{url}
 \usepackage{commands}
@@ -21,6 +22,8 @@
 \newcommand{\AOEH}{$\mathcal{AOE}'$}
 \newcommand{\AOEHH}{$\mathcal{AOE}'_0$}
 \newcommand{\AOEHHH}{$\mathcal{AOE}''$}
+
+
 
 %
 %
@@ -210,11 +213,12 @@ Nevertheless, \AOEHH\ is explicitly regarded by \citet[p.~12]{Hajek2002} as just
 Additionally, Anderson \citep[footnote 14]{anderson90:_some_emend_of_goedel_ontol_proof} remarks that only the quantifiers in T3' and in A:D2 need to be interpreted as actualistic quantifiers, while others may be taken as possibilistic quantifiers. Our computer-assisted study of this mixed variant shows that A4 is still redundant, but A5 becomes independent (hence not redundant). Unfortunately, a countermodel for T3 can then be found.
 
 The controversy over the superfluousness of A4 and A5 indicates a trend to reduce the ontological argument to its bare essentials. In this regard, 
-already \citet[p.~7]{anderson90:_some_emend_of_goedel_ontol_proof} indicates that, by taking a notion of \emph{defective} as primitive and defining the notion of \emph{positive} upon it, axioms A:A1, A2 and A4 become derivable. These claims have been confirmed by the automated theorem provers (in logic \KFourB). Within the same trend, the alternative proposed by \citet{bjordal99} (cf. Appendix \ref{apx:Bjordal}) achieves a high level of minimality. He takes the property of being God-like as a primitive and defines (B:D1) the positive properties as those properties necessarily possessed by every God-like being. He then briefly indicates (B:L1) that B:D1 is logically equivalent, under modal logic \SFour, to the conjunction of D1, A2, A3 and A4. This has been confirmed in the computer-assisted formalization: A2 and A3 can be quickly automatically derived in logic \K. A4 can be proved in logic \KT (i.e. assuming reflexivity of the accessibility relation). For constant domain semantics, proving D1 is possible in logic \KFour, whereas for varying domain semantics, a counter model can be found even in logic \SFive. Conversely, the proof that B:D1 is entailed by D1, A2, A3 and A4 is possible already in logic \K. The provers also show that theorem T3 follows from B:D1, B:D2, B:D3, A:A1 and A5 already in logic \KB. Bjordal's last paragraph briefly mentions Hájek's ideas about the superfluousness of A5 and claims that it is possible, with (unclear) additional modifications of the definitions, to eliminate A5 from his theory as well. Without any additional modification, the automated reasoners show that A5 is actually not superfluous. All these results, with the exception of the aforementioned countermodel for D1, hold for both constant and varying domain semantics.
+already \citet[p.~7]{anderson90:_some_emend_of_goedel_ontol_proof} indicates that, by taking a notion of \emph{defective} as primitive and defining the notion of \emph{positive} upon it, axioms A:A1, A2 and A4 become derivable. These claims have been confirmed by the automated theorem provers (in logic \KFourB). Within the same trend, the alternative proposed by \citet{bjordal99} (cf. Appendix \ref{apx:Bjordal}) achieves a high level of minimality. He takes the property of being God-like as a primitive and defines (B:D1) the positive properties as those properties necessarily possessed by every God-like being. He then briefly indicates (B:L1) that B:D1 is logically equivalent, under modal logic \SFour, to the conjunction of D1', A2', A3' and A4'. This has been confirmed in the computer-assisted formalization: A2' and A3' can be quickly automatically derived in logic \K. A4' can be proved in logic \KT (i.e. assuming reflexivity of the accessibility relation). For constant domain semantics, proving D1 is possible in logic \KFour, whereas for varying domain semantics, a counter model can be found even in logic \SFive. Conversely, the proof that B:D1 is entailed by D1', A2', A3' and A4' is possible already in logic \K. The provers also show that theorem T3' follows from B:D1, B:D2, B:D3, A:A1' and A5' already in logic \KB. Bjordal's last paragraph briefly mentions Hájek's ideas about the superfluousness of A5' and claims that it is possible, with (unclear) additional modifications of the definitions, to eliminate A5' from his theory as well. Without any additional modification, the automated reasoners show that A5' is actually not superfluous. All these results, with the exception of the aforementioned countermodel for D1', hold for both constant and varying domain semantics.
 
 Using our approach, the formalization and (partly) automated
 analysis of several variants of G\"odel's ontological argument has been surprisingly
-straightforward. The provers not only confirmed many claimed results, but also exposed a few mistakes and novel insights in a long standing controversy. 
+straightforward. The provers not only confirmed many claimed results, 
+but also exposed a few mistakes and novel insights in a long standing controversy. 
 We believe the technology employed in this work is ready to be 
 fruitfully adopted in larger scale by philosophers.
 
@@ -418,28 +422,30 @@ $$\hol{\allq \varphi[P(\varphi) \imp \nec \allq x[G_H(x) \imp \varphi(x)]] }$$
 
 \section{Bjordal's Alternative} \label{apx:Bjordal}
 
+
+
+
 \framebox[\columnwidth][r]{
 \begin{minipage}{.94\columnwidth}\small
-$G$ (God-like) is taken as primitive and $P$ (Positive) is defined (cf. definition D).
+$G_B$ (God-like) is taken as primitive and $P_B$ (Positive) is defined.
 
-\medskip
+\bigskip
 
 \begin{itemize}
-\item[B:D1] A formulas $\phi$ is positive iff it is necessarily the case
-  that anything which is God-like has the property $\phi$.
-  $$\hol{P(\phi) \equiv \nec \allq x (G(x) \imp \phi(x))}$$ 
-\item[B:L1] D is logically equivalent in S4 with the union of G\"odel's definition D1 and axioms A2, A3 and A4.
-  $$\hol{D \biimp D1 \wedge A2 \wedge A3 \wedge A4}$$
-  The proof splits into the two implication directions B:L1$^\rightarrow$ and B:L1$^\leftarrow$. B:L1$^\rightarrow$ can be further split into four single steps.
-\item[B:D2] $\phi$ is a maximal composite of object $x$'s positive properties iff $x$ has $\phi$ and $\phi$ is positive and all positive properties $\psi$ which $x$ has are such that is necessarily the case that all objects which have $\phi$ also have $\psi$.
-  $$\hol{MCP(\phi,x) \equiv (\phi(x) \wedge P(\phi)) \wedge \allq \psi ((\psi(x) \wedge P(\psi)) \imp \nec \allq y (\phi(y) \imp \psi(y)))}$$
-\item[B:D3] $x$ has the $N$-property iff x is such that if $\phi$ is a maximal composite of $x$'s positive properties then it is necessary that some object $y$ has the property $\phi$.
-  $$\hol{N(x) \equiv \allq \phi (MCP(\phi,x) \imp \nec \allq y \phi(y))}$$
-\item[A:A1] If a property is positive, its negation is not positive:
-  $$\hol{\allq \varphi [P(\varphi) \imp \neg P(\neg \varphi)]}$$ 
-\item[A5'] The $N$-property is positive.
- $$\hol{P(N)}$$
-\item[T3'] Necessarily, a God-like being exists: $$\hol{\nec \exq x G(x)}$$ 
+\item[B:D1] A property is positive iff it is necessarily possessed by every God-like being.
+  $$\hol{P_B(\phi) \equiv \nec \allq x (G_B(x) \imp \phi(x))}$$ 
+\item[B:L1] B:D1 is logically equivalent in \SFour with the union of D1' and axioms A2', A3' and A4'.
+  $$\hol{\textrm{B:D1} \biimp \textrm{D1'} \wedge \textrm{A2'} \wedge \textrm{A3'} \wedge \textrm{A4'} }$$
+%  The proof splits into the two implication directions B:L1$^\rightarrow$ and B:L1$^\leftarrow$. B:L1$^\rightarrow$ can be further split into four single steps.
+\item[B:D2] a \emph{maximal composite} of an individual's positive properties is a positive property possessed by the individual and necessarily implying every positive property possessed by the individual.
+  $$\hol{\MCP(\phi,x) \equiv (\phi(x) \wedge P_B(\phi)) \wedge \allq \psi ((\psi(x) \wedge P_B(\psi)) \imp \nec \allq y (\phi(y) \imp \psi(y)))}$$
+\item[B:D3] \emph{Necessary existence} of an individual is the necessary exemplification of all its maximal composites.
+  $$\hol{\NE_B(x) \equiv \allq \phi (\MCP(\phi,x) \imp \nec \exq y \phi(y))}$$
+\item[A:A1'] If a property is positive, its negation is not positive:
+  $$\hol{\allq \varphi [P_B(\varphi) \imp \neg P_B(\neg \varphi)]}$$ 
+\item[A5'] Necessary existence is a positive property.
+ $$\hol{P_B(\NE_B)}$$
+\item[T3'] Necessarily, a God-like being exists: $$\hol{\nec \exq x G_B(x)}$$ 
 \end{itemize}
 \end{minipage}
 } %\vskip-.5em
