@@ -38,8 +38,8 @@ text {* We introduce Bjordal's definitions MCP and N. *}
 text {* We postulate Bjordal's axioms Ax1 and Ax2. *}
 
  axiomatization where
-  Ax1: "[\<forall>(\<lambda>\<Phi>. P \<Phi> m\<rightarrow> m\<not> (P (\<lambda>x. m\<not> (\<Phi> x))))]" and
-  Ax2: "[P N]"
+  A1: "[\<forall>(\<lambda>\<Phi>. P \<Phi> m\<rightarrow> m\<not> (P (\<lambda>x. m\<not> (\<Phi> x))))]" and
+  A5: "[P N]"
 
 text {* We add axiom B (symmetry). *}
 
@@ -48,11 +48,11 @@ text {* We add axiom B (symmetry). *}
 text {* We prove possibly God exists and necessarily God exists. *}
  
  corollary C1: "[\<diamond> (\<exists>e G)]"  
- by (metis Ax1 P_def)
+ by (metis A1 P_def)
 
  theorem T3: "[\<box> (\<exists>e G)]" 
  (* sledgehammer [provers = remote_leo2 remote_satallax] *)
- by (metis Ax1 Ax2 sym MCP_def N_def P_def) 
+ by (metis A1 A5 sym MCP_def N_def P_def) 
 
 text {* Nitpick generates a countermodel to Modal Collapse. *}
 
