@@ -133,9 +133,17 @@ Leo2 and metis. *}
 text {* Lemma1 shows that the empty property is an essential property of each individual (if
 the first conjunct in the definition of ess is omitted). *}
 
-  lemma Lemma1: "[\<forall>(\<lambda>x.((\<lambda>y.\<lambda>w.\<not> (y = y)) ess x))]"
+
+  lemma Lemma1: "[\<forall>(\<lambda>x.((\<lambda>y.\<lambda>w. False) ess x))]"
   -- {* sledgehammer [provers = remote\_leo2] *}
   by (metis ess_def)
+
+
+(* an alternative would be
+  lemma Lemma1: "[\<forall>(\<lambda>x.((\<lambda>y.\<lambda>w. \<not> (y = y) ) ess x))]"
+  -- {* sledgehammer [provers = remote\_leo2] *}
+  by (metis ess_def)
+*)
 
 text {* Lemma2 shows (using Lemma1) that NE becomes empty, i.e. NE is not exemplified. Too see this
 informally use the empty property to instantiate \<Phi> in the definition of NE. Actually,
