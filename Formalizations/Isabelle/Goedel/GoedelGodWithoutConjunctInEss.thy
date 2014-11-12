@@ -154,10 +154,10 @@ is illustrated by Lemma3 (Lemma3 has no other purpose here).*}
   -- {* sledgehammer [provers = remote\_leo2] *}
   by (metis A1a A2 A5 Lemma1 NE_def)
 
-  lemma  Lemma3: "[(\<exists>(\<lambda>\<Phi>. P \<Phi>)) m\<rightarrow> (m\<not> (\<exists> NE))]"
+  lemma  Lemma3: "[(\<exists> P) m\<rightarrow> (m\<not> (\<exists> NE))]"
   -- {* sledgehammer [provers = remote\_leo2] *}
   by (metis A1a A2 Lemma1 NE_def)
-
+  
 text {* Now the inconsistency easily follows from Lemma2 T1 A5. *}
   lemma False
   -- {* sledgehammer [provers = remote\_leo2] *}
