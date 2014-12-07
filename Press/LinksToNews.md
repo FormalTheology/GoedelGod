@@ -42,6 +42,8 @@ Germany
 
 [Lifenet.de](http://www.livenet.de/themen/people/242181-kurt_goedels_gottesbeweis_ist_richtig.html)
 
+[Pro Medienmagazin](http://www.pro-medienmagazin.de/nachrichten/detailansicht/aktuell/gott-mathematisch-bewiesen-79752/)
+
 [Silicon.de](http://www.silicon.de/41589138/macbook-beweist-existenz-gottes/)
 
 [Scienceblogs](http://scienceblogs.de/astrodicticum-simplex/2013/09/11/mathematiker-beweisen-die-existenz-gottes-nicht-wirklich/)
