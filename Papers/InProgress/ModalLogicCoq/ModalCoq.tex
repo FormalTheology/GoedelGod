@@ -1,0 +1,706 @@
+\documentclass{llncs}
+\pagestyle{plain}
+
+\usepackage{fancybox} % Must be before "fancyvrb"
+\usepackage[utf8]{inputenc}
+\usepackage{url,amsmath,amssymb,fancyvrb,color}
+\usepackage{proof}
+\usepackage{xspace}
+
+\usepackage{calculi}
+
+\newcommand{\imp}{\rightarrow}
+\newcommand{\biimp}{\leftrightarrow}
+\newcommand{\all}{\forall}
+\newcommand{\ex}{\exists}
+\newcommand{\seq}{\vdash}
+\newcommand{\nec}{\Box} % necessarily
+\newcommand{\pos}{\Diamond} % possibly
+
+\newcommand{\red}[1]{\textcolor[rgb]{1,0,0}{#1}}
+\newcommand{\blue}[1]{\textcolor[rgb]{0,0,1}{#1}}
+\newcommand{\brown}[1]{\textcolor[rgb]{0.8,0.6,0.4}{#1}}
+
+\newcommand{\Parameter}{\red{Parameter}}
+\newcommand{\Ltac}{\red{Ltac}}
+\newcommand{\Axiom}{\red{Axiom}}
+\newcommand{\Lemma}{\red{Lemma}}
+\newcommand{\Theorem}{\red{Theorem}}
+\newcommand{\Definition}{\red{Definition}}
+\newcommand{\Notation}{\blue{Notation}}
+\newcommand{\Prop}{\blue{Prop}}
+\newcommand{\Type}{\blue{Type}}
+\newcommand{\llet}{\blue{let}}
+\newcommand{\match}{\blue{match}}
+\newcommand{\with}{\blue{with}}
+\newcommand{\eend}{\blue{end}}
+\newcommand{\iin}{\blue{in}}
+\newcommand{\as}{\blue{as}}
+\newcommand{\Require}{\blue{Require}}
+\newcommand{\Import}{\blue{Import}}
+\newcommand{\fforall}{\blue{forall}}
+\newcommand{\fun}{\blue{fun}}
+\newcommand{\Proof}{\blue{Proof}}
+\newcommand{\Qed}{\blue{Qed}}
+\newcommand{\Hint}{\blue{Hint}}
+\newcommand{\com}[1]{\brown{#1}}
+\newcommand{\bslash}{\symbol{92}}
+
+
+\newcommand{\Coq}{\texttt{Coq}\xspace}
+\newcommand{\Isabelle}{\texttt{Isabelle}\xspace}
+
+
+\title{
+Modal Logics in the Coq Proof Assistant
+}
+
+\author{
+  Christoph Benzm\"{u}ller\inst{1}\thanks{This work has been supported by the German Research Foundation (DFG) under grant BE2501/9-1.} 
+  \and 
+  Bruno Woltzenlogel Paleo\inst{2}
+}
+
+\authorrunning{C.\~Benzm\"{u}ller \and B.\~Woltzenlogel Paleo}
+
+
+\institute{
+  Dahlem Center for Intelligent Systems, Freie Universit\"{a}t Berlin, Germany\\
+  \email{c.benzmueller@gmail.com}
+  \and 
+  Theory and Logic Group, Vienna University of Technology, Austria \\
+  \email{bruno@logic.at}
+}
+
+\begin{document}
+
+\maketitle
+
+\begin{abstract} 
+This paper describes an embedding of higher-order modal
+logics in the \Coq proof assistant. {\Coq}'s capabilities are thus extended in a
+minimalistic manner, which is nevertheless sufficient for the formalization
+of significant modal proofs. The elegance and convenience of this approach, 
+from a user perspective, are illustrated here with the successful formalization of Gödel's ontological argument. 
+\end{abstract}
+
+
+
+\section{Introduction}
+
+Modal logics extend the usual formal logic language with modal operators ($\Box$ and $\Diamond$) and are characterized by the \emph{necessitation rule}, according to which $\Box A$ is a theorem if $A$ is a theorem, although $A \imp \Box A$ is not necessarily a theorem. Various informal concepts, such as \emph{necessity and possibility}, \emph{knowledge and belief}, \emph and \emph{temporal globality and eventuality}, have been formalized with the help of modal operators. Therefore, modal logics \cite{ModalLogic} are well-established for a wide variety of application domains, ranging from philosophy \cite{ToDo} to formal software verification \cite{ToDo:TLAPlus}.
+
+However, general automated reasoning support for modal logics is still not as well-developed as for classical logics. Current deduction tools for modal logics are often limited to propositional, quantifier-free, fragments \cite{ToDo:SeeBjornsProposal} or tailored to particular modal logics and their applications \cite{ToDo:StephanMerz}. Recently, first-order automated deduction techniques based on tableaux, sequent calculi and connection calculi have been generalized to cope with modalities directly and a few new provers have been implemented \cite{JensOtten}. 
+
+Another recently explored possibility \cite{J23,B9,J22} is the embedding of first-order and higher-order modal logics into classical higher-order logics, for which existing higher-order automated theorem provers \cite{ToDo:Leo,Satallax} exist.
+Embedding is flexible, because various modal logics can be easily supported by adding their characteristic axioms. Furthermore, it is relatively simple to implement, because it does not require any modification in the source code of the higher-order prover. The prover can be used as is, and only the input files provided to the prover must be especially encoded. Furthermore, the efficacy and efficiency of the embedding approach has been confirmed in philosophically interesting benchmarks \cite{FormalTheologyRepository}. These qualities make embedding a convenient approach for \emph{fully automated} reasoning.
+
+However, one may wonder whether the embedding approach is adequate for \emph{interactive} reasoning, when the user proves theorems by interacting with a proof assistant. The main goal of this paper is to answer this question positively. The \Coq proof assistant was chosen because of the authors' greater familiarity with the tactic language of this system.
+
+One major initial concern was whether the embedding could be a disturbance to the user.
+Fortunately, by using \Coq's \texttt{Ltac} tactic language, we were able to  define intuitive new tactics that hide the technical details of the embedding from the user. The resulting infra-structure for modal reasoning within \Coq (as described in Section \ref{sec:modal}) provides a user experience where modalities can be handled transparently and straightforwardly. Therefore, a user with basic knowledge of modal logics and \Coq's tactics should be able to use (and extend) our implementation with no excessive overhead. 
+
+In order to illustrate the use of the implemented embedding, we show here the formalization of Scott's version \cite{Scott} of Gödel's ontological argument for God's existence (in Section \ref{sec:proof}). This proof was chosen mainly for two reasons. Firstly, it requires not only modal operators, but also higher-order quantification. Therefore, it is beyond reach for specialized propositional and first-order theorem provers. Secondly, this argument addresses an ancient problem in Philosophy and Metaphysics, which has nevertheless received a lot of attention in the last 15 years, because of the discovery of the modal collapse \cite{ToDo}. This proof lies in the center of a vast and largely unexplored application domain for automated and interactive theorem provers. 
+
+The simpler ontological argument of Anselm has been automatically verified with \texttt{PVS} by Rushby \cite{Rushby} and with first-order theorem by Oppenheimer and Zalta \cite{Zalta}. Gödel's argument was automatically verified in our previous work on embedding-based fully automated modal theorem proving \cite{ArXiv,AFP}. But this paper presents the first fully interactive and detailed formalization of this proof in a proof assistant.
+
+
+
+\section{Modal Logic in Coq}
+\label{sec:modal}
+
+A crucial aspect of modal logics \cite{ModalLogic} is that the so-called \emph{necessitation rule} allows $\Box A$ to be derived if $A$ is a theorem, but $A \imp \Box A$ is not necessarily a theorem. Naive attempts to define the modal operators $\Box$ and $\Diamond$ may easily be unsound in this respect. To avoid this issue, the \emph{possible world semantics} of modal logics can be explicitly embedded into higher-order logics \cite{J23,B9}. 
+
+The embedding is related to labeling techniques
+\cite{Labels}. However, the expressiveness of higher-order logic is
+exploited here to encode the labels within the logic language itself. To this aim, a type for worlds must be declared and modal propositions should be not of type \texttt{Prop} but of a lifted type \texttt{o} that depends on possible worlds: 
+
+\newcommand{\verbsize}{\small}
+
+\begin{small}
+\begin{Verbatim}[commandchars=\\\{\},fontsize=\verbsize]
+\Parameter i: \Type. \com{(* Type for worlds *)}
+\Parameter u: \Type. \com{(* Type for individuals *)}
+\Definition o := i -> \Prop. \com{(* Type of modal propositions *)}
+\end{Verbatim}
+\end{small}
+
+\noindent
+Possible worlds are connected by an accessibility relation, 
+which can be represented in \Coq by a parameter \texttt{r}, as follows:
+
+\begin{small}
+\begin{Verbatim}[commandchars=\\\{\},fontsize=\verbsize]
+\Parameter r: i -> i -> \Prop. \com{(* Accessibility relation for worlds *)}
+\end{Verbatim}
+\end{small}
+
+
+\noindent
+All modal connectives are simply lifted versions of the usual logical connectives. Notations are used to allow the modal connectives to be used as similarly as possible as the usual connectives. The prefix ``\texttt{m}'' is used to distinguish the modal connectives: if $\odot$ is a connective on type \text{Prop}, $\texttt{m}\odot$ is a connective on the lifted type $\texttt{o}$ of modal propositions.  
+
+\begin{Verbatim}[commandchars=\\\{\},fontsize=\verbsize]
+\Definition mequal (x y: u) := \fun w: i => x = y.
+\Notation "x m= y" := (mequal x y) (at level 99, right associativity).
+
+\Definition mnot (p: o)(w: i) := ~ (p w).
+\Notation "m~  p" := (mnot p) (at level 74, right associativity).
+
+\Definition mand (p q:o)(w: i) := (p w) /\bslash (q w).
+\Notation "p m/\bslash q" := (mand p q) (at level 79, right associativity).
+
+\Definition mor (p q:o)(w: i) := (p w) \bslash\slash (q w).
+\Notation "p m\bslash\slash q" := (mor p q) (at level 79, right associativity).
+
+\Definition mimplies (p q:o)(w:i) := (p w) -> (q w).
+\Notation "p m-> q" := (mimplies p q) (at level 99, right associativity).
+
+\Definition mequiv (p q:o)(w:i) := (p w) <-> (q w).
+\Notation "p m<-> q" := (mequiv p q) (at level 99, right associativity).
+\end{Verbatim}
+
+\noindent
+Likewise, modal quantifiers are lifted versions of the usual quantifiers.
+
+\begin{Verbatim}[commandchars=\\\{\},fontsize=\verbsize]
+\Definition A {t: Type}(p: t -> o) := \fun w => \fforall x, p x w.
+\Notation "'mforall'  x , p" := (A (fun x => p))
+  (at level 200, x ident, right associativity) : type_scope.
+\Notation "'mforall' x : t , p" := (A (\fun x:t => p))
+  (at level 200, x ident, right associativity, 
+    format "'[' 'mforall' '/ '  x  :  t , '/ '  p ']'")
+  : type_scope.
+
+\Definition E {t: Type}(p: t -> o) := \fun w => exists x, p x w.
+\Notation "'mexists' x , p" := (E (\fun x => p))
+  (at level 200, x ident, right associativity) : type_scope.
+\Notation "'mexists' x : t , p" := (E (\fun x:t => p))
+  (at level 200, x ident, right associativity, 
+    format "'[' 'mexists' '/ '  x  :  t , '/ '  p ']'")
+  : type_scope.
+\end{Verbatim}
+
+\noindent
+The modal operators $\Diamond$ (\emph{possibly}) and $\Box$ (\emph{necessarily}) are defined accordingly to their meanings in the possible world semantics.
+
+\begin{Verbatim}[commandchars=\\\{\},fontsize=\verbsize]
+\Definition box (p: o) := \fun w => \fforall w1, (r w w1) -> (p w1).
+\Definition dia (p: o) := \fun w => exists w1, (r w w1) /\bslash (p w1).
+\end{Verbatim}
+
+
+\newcommand{\s}{\qquad}
+
+\begin{calculus}
+{propositional rules}
+{fig:PropositionalRules}
+
+\vspace{1em}
+
+\s\s
+\infer[\bot_E]{A}{ \bot }
+\s
+\infer[\imp_I]{A \imp B}{ B }
+\s
+\infer[\imp_I^n]{A \imp B}{ \infer*{B}{\infer[n]{A}{}} }
+\s
+\infer[\imp_E]{B}{A & A \imp B}
+
+\vspace{2em}
+
+\s\s
+\infer[\wedge_I]{A \wedge B}{A & B}
+\s\s
+\infer[\wedge_{E_1}]{A}{A \wedge B}
+\s\s
+\infer[\wedge_{E_2}]{B}{A \wedge B}
+
+% \vspace{2em}
+
+% \s\s
+% \infer[\vee_E]{C}{A \vee B & \infer*{C}{\infer{A}{}} & \infer*{C}{\infer{B}{}}}
+% \s\s
+% \infer[\vee_{I_1}]{A \vee B}{A}
+% \s\s
+% \infer[\vee_{I_2}]{A \vee B}{B}
+
+\vspace{1em}
+\end{calculus}
+
+\begin{calculus}
+{double negation elimination}
+{fig:Classical}
+\infer[\neg\neg_E]{A}{ \neg\neg A }
+\end{calculus}
+
+
+\begin{calculus}
+{quantifier rules}
+{fig:QuantifierRules}
+
+\vspace{1em}
+
+\s
+\infer[\all_I]{\all x_{\tau}. A[x]}{ A[\alpha] }
+\s
+\infer[\all_E]{A[t]}{ \all x_{\tau}. A[x] }
+\s\s
+\infer[\ex_I]{\ex x_{\tau}. A[x]}{ A[t] }
+\s
+\infer[\ex_E]{A[\beta]}{ \ex x_{\tau}. A[x] }
+
+\vspace{1em}
+
+\begin{center}
+\textbf{eigen-variable conditions:} \\
+if $\rho$ is a $\all_I$ inference eliminating a variable $\alpha$, then any occurrence of $\alpha$ in the proof should be an ancestor of the occurrence of $\alpha$ eliminated by $\rho$; \\
+if $\rho$ is a $\ex_E$ inference introducing a variable $\beta$, then any occurrence of $\beta$ in the proof should be a descendant of the occurrence of $\beta$ introduced by $\rho$.
+\end{center}
+
+\vspace{1em}
+
+\end{calculus}
+
+
+
+\begin{calculus}
+{Rules for Modal Operators}
+{fig:NDK}
+
+\vspace{1em}
+
+\s\s\s\s
+\infer[\nec_I]{\nec A}{\omega: \fbox{\infer*{A}{}} }
+\s\s\s\s
+\infer[\nec_E]{w: \fbox{ \infer*{}{A} } }{\nec A}
+
+\vspace{2em}
+
+\s\s\s\s
+\infer[\pos_I]{\pos A}{w: \fbox{\infer*{A}{}} }
+\s\s\s\s\s
+\infer[\pos_E]{\omega: \fbox{ \infer*{}{A} } }{\pos A}
+
+\vspace{1em}
+
+\begin{center}
+\textbf{eigen-box condition:}\\ 
+$\omega$ must be a fresh name for a box. \\
+\vspace{0.5em}
+\textbf{boxed assumption condition:} \\
+assumptions should be discharged within the box where they are made.
+\end{center}
+
+\vspace{1em}
+
+\end{calculus}
+
+
+\noindent
+To maximally preserve user intuition in interactive modal logic theorem
+proving, the embedding via the possible world semantics should be as
+transparent as possible to the user. Fortunately, basic Coq tactics
+such as \texttt{intro}, \texttt{apply} and \texttt{split} automatically
+unfold the modal definitions. They can thus be used with modal
+connectives and quantifiers just as they are used with the usual
+connectives and quantifiers.  For the modal operators, however, the
+following simple tactics have been implemented, in order to allow the
+user to work with the concepts of \emph{necessity} and
+\emph{possibility} without having to unfold the definitions of modal
+operators and think in terms of possible worlds.
+
+\begin{Verbatim}[commandchars=\\\{\},fontsize=\verbsize]
+\Ltac box_i := \llet w := fresh "w" \iin \llet R := fresh "R" 
+               \iin (intro w at top; intro R at top).
+
+\Ltac box_elim H w1 H1 := \match type of H \with 
+      ((box ?p) ?w) => cut (p w1); 
+                       [intros H1 | (apply (H w1); try assumption)] \eend.
+
+\Ltac box_e H H1:= \match goal \with | [ |- (_ ?w) ] => box_elim H w H1 \eend.
+
+\Ltac dia_e H := \llet w := fresh "w" \iin \llet R := fresh "R" \iin 
+                (destruct H \as [w [R H]]; move w at top; move R at top).
+
+\Ltac dia_i w := (exists w; split; [assumption | idtac]).
+\end{Verbatim}
+
+\noindent
+Validity of a modal proposition is validity of its grounding on any world. A non-intrusive notation and a tactic that grounds the proposition to an arbitrary world are provided.
+
+\begin{Verbatim}[commandchars=\\\{\},fontsize=\verbsize]
+\Definition V (p: o) := \fforall w, p w.
+\Notation "[ p ]" := (V p).
+\Ltac mv := \match goal \with [|- (V _)] => intro \eend.
+\end{Verbatim}
+
+\noindent
+The following lemmas are quite convenient. The first is a kind of modus ponens applicable to formulas under the scope of a modal operator. The second allows pushing negations inside modalities.
+
+\begin{Verbatim}[commandchars=\\\{\},fontsize=\verbsize]
+\Lemma mp_dia: 
+  [mforall p, mforall q, (dia p) m-> (box (p m-> q)) m-> (dia q)].
+\Proof. mv. 
+intros p q H1 H2. dia_e H1. dia_i w0. box_e H2 H3. apply H3. exact H1. 
+\Qed.
+
+\Lemma not_dia_box_not: [mforall p, (m~ (dia p)) m-> (box (m~ p))].
+\Proof. mv. 
+intro p. intro H. box_i. intro H2. apply H. dia_i w0. exact H2. 
+\Qed.
+\end{Verbatim}
+
+\noindent
+The most well-known modal logics can be distinguished by their acceptance of the following reachability axioms. \textbf{S5} is the modal logic that accepts all three.
+
+\begin{Verbatim}[commandchars=\\\{\},fontsize=\verbsize]
+\Axiom reflexivity: \fforall w, r w w.
+\Axiom transitivity: \fforall w1 w2 w3, (r w1 w2) -> (r w2 w3) -> (r w1 w3).
+\Axiom symmetry: \fforall w1 w2, (r w1 w2) -> (r w2 w1).
+\end{Verbatim}
+
+\noindent
+Modal logic ``axioms'' can be derived from the reachability axioms.
+
+\begin{Verbatim}[commandchars=\\\{\},fontsize=\verbsize]
+\Theorem K: 
+  [ mforall p, mforall q, (box (p m-> q)) m-> (box p) m-> (box q) ].
+\Proof. mv. 
+intros p q H1 H2. box_i. box_e H1 H3. apply H3. box_e H2 H4. exact H4. 
+\Qed.
+
+\Theorem T: [ mforall p, (box p) m-> p ].
+\Proof. mv. 
+intro p. intro H. box_e H H1. exact H1. apply reflexivity. 
+\Qed.
+\end{Verbatim}
+
+\noindent
+In strong modal logics, such as S5, iterations of modal operators can be collapsed. This is a controversial principle used in G\"odel's and Scott's versions of the proof.
+
+\begin{Verbatim}[commandchars=\\\{\},fontsize=\verbsize]
+\Theorem dia_box_to_box: [ mforall p, (dia (box p)) m-> (box p) ].
+\Proof. mv. 
+intros p H1. dia_e H1. box_i. box_e H1 H2. exact H2. eapply transitivity. 
+  apply symmetry. exact R. 
+  exact R0.
+\Qed.
+\end{Verbatim}
+
+
+\section{G\"odel's Proof of God's Existence}
+\label{sec:proof}
+
+Attempts to prove the existence (or non-existence) of God by means of
+abstract ontological arguments are an old tradition in philosophy and
+theology.  
+G\"{o}del's proof \cite{Goedel1970,GoedelNotes} is a modern culmination of
+this tradition, following particularly the footsteps of Leibniz.
+Various slightly different versions of axioms and definitions have
+been considered by G\"{o}del and by several philosophers who commented
+on his proof
+(cf. \cite{sobel2004logic,AndersonGettings,Fitting,Adams,ContemporaryBibliography}). The formalization shown in this section aims at
+being as similar as possible to Dana Scott's version of the proof \cite{ScottNotes}. The formulation and numbering of axioms, definitions and theorems is the same as in Scott's notes. Even the Coq proof scripts follow all the steps in Scott's notes. Scott's assertions are emphasized with comments. In contrast to the formalization in Isabelle \cite{AFP}, where automation via Metis \cite{Hurd03first-orderproof} and Sledgehammer \cite{Sledgehammer} using tools such as Nitpick \cite{Nitpick}, LEO-II \cite{LEO-II} and Satallax \cite{Satallax} has been successfully employed, the formalization in Coq used no automation. This was a deliberate choice, mainly because it allowed a qualitative evaluation of the convenience of the possible world semantic embedding approach for \emph{interactive} theorem proving. Moreover, in order to formalize precisely Scott's version and not another automatically found version, automation would have to be heavily limited anyway. Furthermore, the deliberate preference for simple tactics (mostly \emph{intro}, \emph{apply} and the modal tactics described in the previous section) results in proof scripts that could be read as natural deduction proofs. This hopefully makes the formalization more accessible to those who are not experts in Coq's tactics but are nevertheless interested in G\"odel's proof.
+
+
+\begin{Verbatim}[commandchars=\\\{\},fontsize=\verbsize]
+\Require \Import Coq.Logic.Classical Coq.Logic.Classical_Pred_Type Modal.
+
+\Ltac proof_by_contradiction H := apply NNPP; intro H.
+
+\com{(* Constant predicate that distinguishes positive properties *)}
+\Parameter Positive: (u -> o) -> o.
+
+\com{(* Axiom A1:} 
+\com{   either a property or its negation is positive, but not both *)}
+\Axiom axiom1a : 
+  [ mforall p, (Positive (\fun x: u => m~(p x))) m-> (m~ (Positive p)) ].
+
+\Axiom axiom1b : 
+  [ mforall p, (m~ (Positive p)) m-> (Positive (\fun x: u => m~ (p x))) ].
+
+\com{(* Axiom A2: }
+\com{   a property necessarily implied by a positive property is positive *)}
+\Axiom axiom2: [ mforall p, mforall q, 
+  Positive p m/\bslash (box (mforall x, (p x) m-> (q x) )) m-> Positive q ].
+
+\com{(* Theorem T1: positive properties are possibly exemplified *)}
+\Theorem theorem1: [ mforall p, (Positive p) m-> dia (mexists x, p x) ].
+\Proof. mv.
+intro p. intro H1. proof_by_contradiction H2. apply not_dia_box_not in H2.
+assert (H3: ((box (mforall x, m~ (p x))) w)). \com{(* Scott *)}
+  box_i. intro x. assert (H4: ((m~ (mexists x : u, p x)) w0)).
+    box_e H2 G2. exact G2.
+    clear H2 R H1 w. intro H5. apply H4. exists x. exact H5.
+  assert (H6: ((box (mforall x, (p x) m-> m~ (x m= x))) w)). \com{(* Scott *)}   
+    box_i. intro x. intros H7 H8. box_elim H3 w0 G3. eapply G3. exact H7.
+    assert (H9: ((Positive (fun x => m~ (x m= x))) w)). \com{(* Scott *)}
+      apply (axiom2 w p (fun x => m~ (x m= x))). split.
+        exact H1.
+        exact H6.
+      assert (H10: ((box (mforall x, (p x) m-> (x m= x))) w)). \com{(* Scott *)}
+        box_i. intros x H11. reflexivity.
+        assert (H11 : ((Positive (fun x => (x m= x))) w)). \com{(* Scott *)}
+          apply (axiom2 w p (fun x => x m= x )). split.
+            exact H1.
+            exact H10.
+          apply axiom1a in H9. contradiction.
+\Qed.
+
+\com{(* Definition D1: }
+\com{   God: a God-like being possesses all positive properties *)}
+\Definition G(x: u) := mforall p, (Positive p) m-> (p x).
+
+\com{(* Axiom A3: the property of being God-like is positive *)}
+\Axiom axiom3: [ Positive G ].
+
+\com{(* Corollary C1: possibly, God exists *)}
+\Theorem corollary1: [ dia (mexists x, G x) ]. 
+\Proof. mv. apply theorem1. apply axiom3. \Qed.
+
+\com{(* Axiom A4: positive properties are necessarily positive *)}
+\Axiom axiom4: [ mforall p, (Positive p) m-> box (Positive p) ].
+
+\com{(* Definition D2: }
+\com{   essence: an essence of an individual is a property possessed by it} 
+\com{   and necessarily implying any of its properties *)}
+\Definition Essence(p: u -> o)(x: u) := 
+    (p x) m/\bslash mforall q, ((q x) m-> box (mforall y, (p y) m-> (q y))).
+\Notation "p 'ess' x" := (Essence p x) (at level 69).
+
+\com{(* Theorem T2: being God-like is an essence of any God-like being *)}
+\Theorem theorem2: [ mforall x, (G x) m-> (G ess x) ].
+\Proof. mv. intro g. intro H1. unfold Essence. split.
+  exact H1.
+  intro q. intro H2. assert (H3: ((Positive q) w)).
+    proof_by_contradiction H4. unfold G in H1. apply axiom1b in H4. 
+    apply H1 in H4. contradiction. 
+    
+    cut (box (Positive q) w). \com{(* Scott *)}
+      apply K. box_i. intro H5. intro y. intro H6. 
+      unfold G in H6. apply (H6 q). exact H5.
+
+      apply axiom4. exact H3.
+\Qed.
+
+\com{(* Definition D3: }
+\com{   necessary existence: necessary existence of an individual }
+\com{   is the necessary exemplification of all its essences *)}
+\Definition NE(x: u) := mforall p, (p ess x) m-> box (mexists y, (p y)).
+
+\com{(* Axiom A5: necessary existence is a positive property *)}
+\Axiom axiom5: [ Positive NE ].
+
+\Lemma lemma1: [ (mexists z, (G z)) m-> box (mexists x, (G x)) ].
+\Proof. mv. 
+intro H1. destruct H1 as [g H2]. cut ((G ess g) w). \com{(* Scott *)}
+  assert (H3: (NE g w)).       \com{(* Scott *)}
+    unfold G in H2. apply (H2 NE). apply axiom5.
+    unfold NE in H3. apply H3.
+  apply theorem2. exact H2.
+\Qed.
+
+\Lemma lemma2: [ dia (mexists z, (G z)) m-> box (mexists x, (G x)) ].
+\Proof. mv. 
+intro H. cut (dia (box (mexists x, G x)) w).  \com{(* Scott *)}
+  apply dia_box_to_box.
+  apply (mp_dia w (mexists z, G z)).
+    exact H.
+    box_i. apply lemma1.
+\Qed.
+
+\com{(* Theorem T3: necessarily, a God exists *)}
+\Theorem theorem3: [ box (mexists x, (G x)) ].
+\Proof. mv. apply lemma2. apply corollary1. \Qed.
+
+\com{(* Corollary C2: There exists a god *)}
+\Theorem corollary2: [ mexists x, (G x) ].
+\Proof. mv. apply T. apply theorem3. \Qed.
+\end{Verbatim}
+
+
+\section{Conclusions}
+\label{sec:conclusions}
+
+The successful formalization of Scott's version of G\"odel's proof of
+God's existence indicates that the \emph{embedding} of modal logics
+into higher-order logics via the \emph{possible world semantics} is a
+viable approach for interactive theorem proving within modal logics.
+The minimalistic implementation of the embedding (Section
+\ref{sec:modal}) takes special care to hide the underlying possible
+world machinery from the user.  An inspection of the proof scripts in
+Section \ref{sec:proof} shows that this goal has been achieved. The
+user does not have to explicitly bother about worlds and their mutual
+reachability; the provided tactics for modalities do the job for him/her.
+Moreover, for subgoals that do not involve modalities, the user has all the
+usual interactive tactics at his/her disposal.
+%The implementation of hints to allow automation tactics to fully cope with the embedding remains for future work. Nevertheless, at this stage a tactic such as \texttt{firstorder} is able to prove all lemmas and theorems in Section \ref{sec:modal} fully automatically. 
+
+
+HOL Light, Isabelle
+
+
+The theological implications of the verified correctness of this proof
+certainly depend on a critical discussion of the underlying concepts,
+definitions and axioms, which is beyond the scope of this paper. 
+%What
+%can be said though is that our work presents further evidence that
+%theism is at least not (obviously) irrational. 
+Clearly, the application of theorem proving technology to the domain of
+theoretical philosophy can --- as already pictured by Leibniz ---
+be very fruitful for both areas. In fact, new results of
+philosophical interest have been obtained by our
+work~\cite{arXiv}. Moreover a first, basic infrastructure for
+interactive and automated reasoning in higher-order modal logics has
+been created and will be further improved in the future.
+
+
+\paragraph{Acknowledgements:} we thanks Cedric Auger and Laurent Th\'ery, for their answers to our questions about Ltac in the Coq-Club mailing-list. 
+
+%\footnotesize
+\bibliographystyle{plain}
+%\bibliography{Bibliography}
+\begin{thebibliography}{10}
+
+\bibitem{Adams}
+R.M.~Adams.
+\newblock Introductory note to *1970.
+\newblock In {\em {Kurt G\"odel: Collected Works Vol. 3: Unpublished Essays and
+  Letters}}. Oxford University Press, 1995.
+
+\bibitem{AndersonGettings}
+A.C.~Anderson and M.~Gettings.
+\newblock G\"odel ontological proof revisited.
+\newblock In {\em {G\"odel'96: Logical Foundations of Mathematics, Computer
+  Science, and Physics: Lecture Notes in Logic 6}}. {Springer}, 1996.
+
+\bibitem{B9}
+C.~Benzm{\"u}ller and L.C.~Paulson.
+\newblock Exploring properties of normal multimodal logics in simple type
+  theory with {LEO-II}.
+\newblock In {\em {Festschrift in Honor of {Peter B. Andrews} on His 70th
+  Birthday}}, pages 386--406. College Publications.
+
+\bibitem{J23}
+C.~Benzm{\"u}ller and L.C.~Paulson.
+\newblock Quantified multimodal logics in simple type theory.
+\newblock {\em Logica Universalis (Special Issue on Multimodal Logics)},
+  7(1):7--20, 2013.
+
+\bibitem{LEO-II}
+C.~Benzm{\"u}ller, F.~Theiss, L.~Paulson, and A.~Fietzke.
+\newblock {LEO-II} - a cooperative automatic theorem prover for higher-order
+  logic.
+\newblock In {\em Proc. of IJCAR 2008}, volume 5195 of {\em LNAI}, pages
+  162--170. Springer, 2008.
+
+\bibitem{arXiv}
+C.~Benzm{\"u}ller and B.~Woltzenlogel Paleo,
+\newblock Formalization, Mechanization and Automation of G{\"o}del's Proof of God's Existence.
+\newblock {\em {arXiv}}:1308.4526, 2013.
+
+\bibitem{AFP}
+C.~Benzm{\"u}ller and B.~Woltzenlogel Paleo,
+\newblock G{\"o}del's God in Isabelle/HOL. 
+\newblock {\em Archive of Formal Proofs}, 2013.
+
+\bibitem{Coq}
+Y.~Bertot and P.~Casteran.
+\newblock {\em {Interactive Theorem Proving and Program Development}}.
+\newblock Springer, 2004.
+
+\bibitem{ModalLogic}
+P.~Blackburn, J.v.~Benthem, and F.~Wolter (eds.), \newblock {\em {Handbook of Modal Logic}}. Elsevier, 2006.
+
+\bibitem{Sledgehammer}
+J.C.~Blanchette, S.~B\"ohme, and L.C.~Paulson.
+\newblock Extending {Sledgehammer} with {SMT} solvers.
+\newblock {\em Journal of Automated Reasoning}, 51(1):109--128, 2013.
+
+\bibitem{Nitpick}
+J.C.~Blanchette and T.~Nipkow.
+\newblock Nitpick: A counterexample generator for higher-order logic based on a
+  relational model finder.
+\newblock In {\em Proc. of ITP 2010}, no.~6172 in LNCS, pages 131--146.
+  Springer, 2010.
+
+\bibitem{Zalta}
+P.E.~Oppenheimera and E.N.~Zalta.
+\newblock A Computationally-Discovered Simplification of the Ontological Argument.
+\newblock {\em Australasian Journal of Philosophy}, 89(2):333-349, 2011.
+
+\bibitem{Satallax}
+C.E.~Brown.
+\newblock Satallax: An automated higher-order prover.
+\newblock In {\em Proc. of IJCAR 2012}, number 7364 in LNAI, pages 111 -- 117.
+  Springer, 2012.
+
+\bibitem{ContemporaryBibliography}
+R.~Corazzon.
+\newblock Contemporary bibligraphy on the ontological proof
+  (\url{http://www.ontology.co/biblio/ontological-proof-contemporary-biblio.htm}).
+
+\bibitem{Fitting}
+M.~Fitting.
+\newblock {\em {Types, Tableaux and G\"odel's God}}.
+\newblock Kluver Academic Press, 2002.
+
+\bibitem{Labels}
+D.M.~Gabbay. {\em Labelled Deductive Systems}. Clarendon Press, 1996.
+
+\bibitem{Goedel1970}
+K.~G\"odel.
+\newblock Ontological proof.
+\newblock In {\em {Kurt G\"odel: Collected Works Vol. 3: Unpublished Essays and
+  Letters}}. Oxford University Press, 1970.
+
+\bibitem{GoedelNotes}
+K.~G\"odel.
+\newblock {\em Appendix A. Notes in Kurt G\"odel's Hand}, pages 144--145.
+\newblock In  \cite{sobel2004logic}, 2004.
+
+\bibitem{Hazen}
+A.P.~Hazen.
+\newblock On g\"odel's ontological proof.
+\newblock {\em Australasian Journal of Philosophy}, 76:361--377, 1998.
+
+\bibitem{Hurd03first-orderproof}
+J.~Hurd.
+\newblock First-order proof tactics in higher-order logic theorem provers.
+\newblock In {\em Design and Application of Strategies/Tactics in Higher Order
+  Logics, NASA Tech. Rep. NASA/CP-2003-212448}, 2003.
+
+\bibitem{Isabelle}
+T.~Nipkow, L.C. Paulson, and M.~Wenzel.
+\newblock {\em {Isabelle/HOL: A Proof Assistant for Higher-Order Logic}}.
+\newblock Number 2283 in LNCS. Springer, 2002.
+
+\bibitem{Rushby}
+J.~Rushby.
+\newblock The Ontological Argument in PVS. 
+\newblock In {\em Proc.~of CAV Workshop ``Fun With Formal Methods''}, St. Petersburg, Russia, 2013.
+
+\bibitem{ScottNotes}
+D.~Scott.
+\newblock {\em Appendix B. Notes in Dana Scott's Hand}, pages 145--146.
+\newblock In  \cite{sobel2004logic}, 2004.
+
+\bibitem{sobel2004logic}
+J.H.~Sobel.
+\newblock {\em Logic and Theism: Arguments for and Against Beliefs in God}.
+\newblock Cambridge U. Press, 2004.
+
+\bibitem{J22}
+G.~Sutcliffe and C.~Benzm{\"u}ller.
+\newblock Automated reasoning in higher-order logic using the {TPTP THF}
+  infrastructure.
+\newblock {\em Journal of Formalized Reasoning}, 3(1):1--27, 2010.
+
+\bibitem{FormalTheologyRepository}
+B.~Woltzenlogel Paleo and C.~Benzm\"uller.
+\newblock Formal theology repository
+  (\url{https://github.com/FormalTheology/GoedelGod}).
+\end{thebibliography}
+
+
+\end{document}
