@@ -174,14 +174,23 @@ of this proof in a proof assistant.
 
 
 
-\section{Modal Logic in Coq}
+\section{The Embedding of Modal Logics in Coq}
 \label{sec:modal}
 
-A crucial aspect of modal logics \cite{ModalLogic} is that the so-called \emph{necessitation rule} allows $\Box A$ to be derived if $A$ is a theorem, but $A \imp \Box A$ is not necessarily a theorem. Naive attempts to define the modal operators $\Box$ and $\Diamond$ may easily be unsound in this respect. To avoid this issue, the \emph{possible world semantics} of modal logics can be explicitly embedded into higher-order logics \cite{J23,B9}. 
+A crucial aspect of modal logics \cite{ModalLogic} is that the so-
+called \emph{necessitation rule} allows $\Box A$ to be derived if $A$
+is a theorem, but $A \imp \Box A$ is not necessarily a theorem. Naive
+attempts to define the modal operators $\Box$ and $\Diamond$ may
+easily be unsound in this respect. To avoid this issue, the
+\emph{possible world semantics} of modal logics can be explicitly
+embedded into higher-order logics \cite{J23,B9}.
 
-The embedding is related to labeling techniques
-\cite{Labels}. However, the expressiveness of higher-order logic is
-exploited here to encode the labels within the logic language itself. To this aim, a type for worlds must be declared and modal propositions should be not of type \texttt{Prop} but of a lifted type \texttt{o} that depends on possible worlds: 
+The embedding is related to labeling techniques \cite{Labels}.
+However, the expressiveness of higher-order logic is exploited here to
+encode the labels within the logical language. To this aim, a type for
+worlds must be declared and modal propositions should be not of type
+\texttt{Prop} but of a lifted type \texttt{o} that depends on possible
+worlds:
 
 \newcommand{\verbsize}{\small}
 
@@ -204,11 +213,17 @@ which can be represented in \Coq by a parameter \texttt{r}, as follows:
 \end{small}
 
 
-\noindent
-All modal connectives are simply lifted versions of the usual logical connectives. Notations are used to allow the modal connectives to be used as similarly as possible as the usual connectives. The prefix ``\texttt{m}'' is used to distinguish the modal connectives: if $\odot$ is a connective on type \text{Prop}, $\texttt{m}\odot$ is a connective on the lifted type $\texttt{o}$ of modal propositions.  
+\noindent 
+All modal connectives are simply lifted versions of the
+usual logical connectives. Notations are used to allow the modal
+connectives to be used as similarly as possible as the usual
+connectives. The prefix ``\texttt{m}'' is used to distinguish the
+modal connectives: if $\odot$ is a connective on type \text{Prop},
+$\texttt{m}\odot$ is a connective on the lifted type $\texttt{o}$ of
+modal propositions.
 
 \begin{Verbatim}[commandchars=\\\{\},fontsize=\verbsize]
-\Definition mequal (x y: u) := \fun w: i => x = y.
+\Definition mequal (x y: u)(w: i) := x = y.
 \Notation "x m= y" := (mequal x y) (at level 99, right associativity).
 
 \Definition mnot (p: o)(w: i) := ~ (p w).
@@ -227,19 +242,31 @@ All modal connectives are simply lifted versions of the usual logical connective
 \Notation "p m<-> q" := (mequiv p q) (at level 99, right associativity).
 \end{Verbatim}
 
-\noindent
-Likewise, modal quantifiers are lifted versions of the usual quantifiers.
+\noindent 
+Likewise, modal quantifiers are lifted versions of the usual
+quantifiers. \Coq's type system with dependent types is particularly
+helpful here. The modal quantifiers \texttt{A} and \texttt{E} are
+defined as depending on a type \texttt{t}. Therefore, they can
+quantify over variables of any type. Moreover, the curly brackets
+indicate that \texttt{t} is an implicit argument that can be inferred
+by \Coq's type inference mechanism. This allows notations\footnote{The
+keyword \texttt{\fun} indicates a lambda abstraction: \texttt{\fun \ x
+=> p} (or \texttt{\fun \ x:t => p}) denotes the function 
+$\lambda x:t.p$, which takes an argument $x$ (of type $t$) and returns $p$.}
+(i.e. \texttt{mforall} and \texttt{mexists}) that mimic the notations
+for \Coq's usual quantifiers (i.e. \texttt{forall} and
+\texttt{exists}).
 
 \begin{Verbatim}[commandchars=\\\{\},fontsize=\verbsize]
-\Definition A {t: Type}(p: t -> o) := \fun w => \fforall x, p x w.
-\Notation "'mforall'  x , p" := (A (fun x => p))
+\Definition A \{t: Type\}(p: t -> o)(w: i) := \fforall x, p x w.
+\Notation "'mforall'  x , p" := (A (\fun x => p))
   (at level 200, x ident, right associativity) : type_scope.
 \Notation "'mforall' x : t , p" := (A (\fun x:t => p))
   (at level 200, x ident, right associativity, 
     format "'[' 'mforall' '/ '  x  :  t , '/ '  p ']'")
   : type_scope.
 
-\Definition E {t: Type}(p: t -> o) := \fun w => exists x, p x w.
+\Definition E \{t: Type\}(p: t -> o)(w: i) := exists x, p x w.
 \Notation "'mexists' x , p" := (E (\fun x => p))
   (at level 200, x ident, right associativity) : type_scope.
 \Notation "'mexists' x : t , p" := (E (\fun x:t => p))
@@ -248,8 +275,12 @@ Likewise, modal quantifiers are lifted versions of the usual quantifiers.
   : type_scope.
 \end{Verbatim}
 
-\noindent
-The modal operators $\Diamond$ (\emph{possibly}) and $\Box$ (\emph{necessarily}) are defined accordingly to their meanings in the possible world semantics.
+\noindent 
+The modal operators $\Diamond$ (\emph{possibly}) and $\Box$
+(\emph{necessarily}) are defined accordingly to their meanings in the
+possible world semantics. $\nec p$ holds at a world $w$ iff $p$ holds
+in every world $w_1$ reachable from $w$. $\pos p$ holds at world $w$
+iff $p$ holds in some world $w_1$ reachable from $w$.
 
 \begin{Verbatim}[commandchars=\\\{\},fontsize=\verbsize]
 \Definition box (p: o) := \fun w => \fforall w1, (r w w1) -> (p w1).
