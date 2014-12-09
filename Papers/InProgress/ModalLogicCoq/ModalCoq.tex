@@ -288,11 +288,53 @@ iff $p$ holds in some world $w_1$ reachable from $w$.
 \end{Verbatim}
 
 
+\noindent
+A modal proposition is valid iff it holds in every possible world. 
+This notion of modal validity is encoded by the following defined predicate:
+
+\begin{Verbatim}[commandchars=\\\{\},fontsize=\verbsize]
+\Definition V (p: o) := \fforall w, p w.
+\end{Verbatim}
+
+\noindent 
+To prove a modal proposition \texttt{p} (of type \texttt{o})
+within \Coq, the proposition \texttt{(V p)} (of type \texttt{Prop})
+should be proved instead. To increase the transparency of the
+embedding to the user, the following notation is provided, allowing
+\texttt{[ p ]} to be written instead of \texttt{(V p)}.
+
+\begin{Verbatim}[commandchars=\\\{\},fontsize=\verbsize]
+\Notation "[ p ]" := (V p).
+\end{Verbatim}
+
+
+
+\section{Tactics for Modalities}
+
+Interactive theorem proving in \Coq is usually done with tactics,
+imperative commands that reduce the theorem to be proven (i.e. the
+goal) to simpler subgoals, in a bottom-up manner. The simplest tactics
+can be regarded as rules of a natural deduction calculus\footnote{The
+underlying proof system of \Coq (the Calculus of Inductive
+Constructions \cite{Paulin}) is actually more sophisticated and
+minimalistic than the calculus shown in Figure
+\ref{fig:NaturalDeduction}. But the calculus shown here suffices for
+the purposes of this paper.} (e.g. as those shown in Figure
+\ref{fig:NaturalDeduction}).  For example: the \texttt{intro} tactic
+can be used to apply the introduction rules for implication and for
+the universal quantifier; the \texttt{apply} tactic corresponds to the
+elimination rules for implication and for the universal quantifier;
+\texttt{split} performs conjunction introduction; \texttt{exists} can
+be used for existential quantifier introduction and \texttt{destruct}
+for its elimination.
+
+
 \newcommand{\s}{\qquad}
 
 \begin{calculus}
-{propositional rules}
-{fig:PropositionalRules}
+{An arbitrary natural deduction calculus}
+{fig:NaturalDeduction}
+\begin{small}
 
 \vspace{1em}
 
@@ -307,6 +349,8 @@ iff $p$ holds in some world $w_1$ reachable from $w$.
 
 \vspace{2em}
 
+\s
+\infer[\neg\neg_E]{A}{ \neg\neg A }
 \s\s
 \infer[\wedge_I]{A \wedge B}{A & B}
 \s\s
@@ -314,52 +358,132 @@ iff $p$ holds in some world $w_1$ reachable from $w$.
 \s\s
 \infer[\wedge_{E_2}]{B}{A \wedge B}
 
-% \vspace{2em}
+\vspace{2em}
 
-% \s\s
-% \infer[\vee_E]{C}{A \vee B & \infer*{C}{\infer{A}{}} & \infer*{C}{\infer{B}{}}}
-% \s\s
-% \infer[\vee_{I_1}]{A \vee B}{A}
-% \s\s
-% \infer[\vee_{I_2}]{A \vee B}{B}
-
-\vspace{1em}
-\end{calculus}
-
-\begin{calculus}
-{double negation elimination}
-{fig:Classical}
-\infer[\neg\neg_E]{A}{ \neg\neg A }
-\end{calculus}
-
-
-\begin{calculus}
-{quantifier rules}
-{fig:QuantifierRules}
-
-\vspace{1em}
-
-\s
-\infer[\all_I]{\all x_{\tau}. A[x]}{ A[\alpha] }
-\s
-\infer[\all_E]{A[t]}{ \all x_{\tau}. A[x] }
 \s\s
-\infer[\ex_I]{\ex x_{\tau}. A[x]}{ A[t] }
-\s
-\infer[\ex_E]{A[\beta]}{ \ex x_{\tau}. A[x] }
+\infer[\vee_E]{C}{A \vee B & \infer*{C}{\infer{A}{}} & \infer*{C}{\infer{B}{}}}
+\s\s
+\infer[\vee_{I_1}]{A \vee B}{A}
+\s\s
+\infer[\vee_{I_2}]{A \vee B}{B}
+
+\vspace{2em}
+
+%\begin{scriptsize}
+
+\s\s\s
+\infer[\all_I]{\all x_{\tau}. A[x]}{ A[\alpha] } 
+\s\s
+\infer[\all_E]{A[t]}{ \all x_{\tau}. A[x] }
 
 \vspace{1em}
+
+\s\s\s
+\infer[\ex_I]{\ex x_{\tau}. A[x]}{ A[t] }
+\s\s
+\infer[\ex_E]{C}{ \ex x_{\tau}. A[x] & \infer*{C}{A[\alpha]} }
+
+%\end{scriptsize}
+
+\vspace{2em}
 
 \begin{center}
-\textbf{eigen-variable conditions:} \\
-if $\rho$ is a $\all_I$ inference eliminating a variable $\alpha$, then any occurrence of $\alpha$ in the proof should be an ancestor of the occurrence of $\alpha$ eliminated by $\rho$; \\
-if $\rho$ is a $\ex_E$ inference introducing a variable $\beta$, then any occurrence of $\beta$ in the proof should be a descendant of the occurrence of $\beta$ introduced by $\rho$.
+$\alpha$ must respect the usual \emph{eigen-variable conditions}.
 \end{center}
 
-\vspace{1em}
+\end{small}
 
+\vspace{1em}
 \end{calculus}
 
+
+To maximally preserve user intuition in interactive modal logic
+theorem proving, the embedding via the possible world semantics should
+be as transparent as possible to the user. Fortunately, the basic Coq
+tactics described above automatically unfold the shallowest modal
+definition in the goal.  Therefore, they can be used with modal
+connectives and quantifiers just as they are used with the usual
+connectives and quantifiers. The situation for the new modal
+operators, on the other hand, is not as simple, unfortunately.
+
+Since the modal operators are, in our embedding, essentially just
+abbreviations for quantifiers guarded by reachability conditions, the
+typical tactics for quantifiers can be used, in principle.  However,
+this exposes the user to the technicalities of the embedding,
+requiring him to deal with possible worlds and their reachability
+explicitly. In order to obtain transparency also for the modal
+operators, we have implemented a few specialized tactics using \Coq's
+Ltac language.
+
+When applied to a goal of the form \texttt{((box p) w0)}, the tactic
+\texttt{box\_i} will introduce a fresh new world \texttt{w} and then
+introduce the assumption that \texttt{w} is reachable from
+\texttt{w0}. The new goal will be \texttt{(p w)}.
+
+\begin{Verbatim}[commandchars=\\\{\},fontsize=\verbsize]
+\Ltac box_i := \llet w := fresh "w" \iin \llet R := fresh "R" 
+               \iin (intro w at top; intro R at top).
+\end{Verbatim}
+
+\noindent 
+If the hypothesis \texttt{H} is of the form \texttt{((box p)
+w0)} and the goal is of the form \texttt{(q w)}, the tactic
+\texttt{box\_e H H1} creates a new hypothesis \texttt{H1: (p w)}. The
+tactic \texttt{box\_elim H w1 H1} is an auxiliary tactic for
+\texttt{box\_e}. It creates a new hypothesis \texttt{H1: (p w1)}, for
+any given world \texttt{w1}, not necessarily the goal's world
+\texttt{w}. It is also responsible for automatically trying (by
+\texttt{assumption}) to solve the reachability guard conditions,
+releasing the user from this burden.
+
+\begin{Verbatim}[commandchars=\\\{\},fontsize=\verbsize]
+\Ltac box_elim H w1 H1 := \match type of H \with 
+      ((box ?p) ?w) => cut (p w1); 
+                       [intros H1 | (apply (H w1); try assumption)] \eend.
+\end{Verbatim}
+
+\begin{Verbatim}[commandchars=\\\{\},fontsize=\verbsize]
+\Ltac box_e H H1:= \match goal \with | [ |- (_ ?w) ] => box_elim H w H1 \eend.
+\end{Verbatim}
+
+\noindent 
+If the hypothesis \texttt{H} is of the form \texttt{((dia p)
+w0)}, the tactic \texttt{dia\_e H} generates a new hypothesis
+\texttt{H: (p w)} for a fresh new world \texttt{w} reachable from
+\texttt{w0}.
+
+\begin{Verbatim}[commandchars=\\\{\},fontsize=\verbsize]
+\Ltac dia_e H := \llet w := fresh "w" \iin \llet R := fresh "R" \iin 
+                (destruct H \as [w [R H]]; move w at top; move R at top).
+\end{Verbatim}
+
+\noindent
+The tactic \texttt{dia\_i w} transforms a goal of the form 
+\texttt{((dia p) w0)} into the simpler goal \texttt{(p w)} 
+and automatically tries to solve the guard condition that 
+\texttt{w} must be reachable from \texttt{w0}.
+
+\begin{Verbatim}[commandchars=\\\{\},fontsize=\verbsize]
+\Ltac dia_i w := (exists w; split; [assumption | idtac]).
+\end{Verbatim}
+
+\noindent If the new modal tactics above are regarded from a natural
+deduction point of view, they give rise to the inference
+rules\footnote{The natural deduction calculus with the rules from
+Figures \ref{fig:NaturalDeduction} and \ref{fig:NDK} is sound and
+complete relatively to the calculus of Figure
+\ref{fig:NaturalDeduction} extended with a necessitation rule and the
+modal axiom K \cite{ToDo:UnpublishedPaperInGithub}. Therefore,
+assuming that the calculus from \ref{fig:NaturalDeduction} is sound
+and Henkin-complete for classical higher-order logic, the additional
+modal rules in Figure \ref{fig:NDK} make it sound and Henkin-complete
+for modal higher-order logic \textbf{K}.} shown in Figure
+\ref{fig:NDK}. The labels that name boxes in those inference rules are
+precisely the worlds that annotate goals and hypotheses in \Coq with
+the modal embedding. A hypothesis of the form \texttt{(p w)}, where
+\texttt{p} is a modal proposition of type \texttt{o} and \texttt{w} is
+a world of type \texttt{i} indicates that \texttt{p} is an assumption
+created inside a box with name \texttt{w}.
 
 
 \begin{calculus}
@@ -387,54 +511,31 @@ if $\rho$ is a $\ex_E$ inference introducing a variable $\beta$, then any occurr
 $\omega$ must be a fresh name for a box. \\
 \vspace{0.5em}
 \textbf{boxed assumption condition:} \\
-assumptions should be discharged within the box where they are made.
+assumptions should be discharged within the box where they are created.
 \end{center}
 
 \vspace{1em}
-
 \end{calculus}
 
 
-\noindent
-To maximally preserve user intuition in interactive modal logic theorem
-proving, the embedding via the possible world semantics should be as
-transparent as possible to the user. Fortunately, basic Coq tactics
-such as \texttt{intro}, \texttt{apply} and \texttt{split} automatically
-unfold the modal definitions. They can thus be used with modal
-connectives and quantifiers just as they are used with the usual
-connectives and quantifiers.  For the modal operators, however, the
-following simple tactics have been implemented, in order to allow the
-user to work with the concepts of \emph{necessity} and
-\emph{possibility} without having to unfold the definitions of modal
-operators and think in terms of possible worlds.
+Finally, our implementation also provides the tactic \texttt{mv},
+standing for \emph{modal validity}, which replaces a goal of the form
+\texttt{[ p ]} (or equivalently \texttt{(V p)}) by a goal of the form
+\texttt{(p w)} for a fresh arbitrary world \texttt{w}.
 
 \begin{Verbatim}[commandchars=\\\{\},fontsize=\verbsize]
-\Ltac box_i := \llet w := fresh "w" \iin \llet R := fresh "R" 
-               \iin (intro w at top; intro R at top).
-
-\Ltac box_elim H w1 H1 := \match type of H \with 
-      ((box ?p) ?w) => cut (p w1); 
-                       [intros H1 | (apply (H w1); try assumption)] \eend.
-
-\Ltac box_e H H1:= \match goal \with | [ |- (_ ?w) ] => box_elim H w H1 \eend.
-
-\Ltac dia_e H := \llet w := fresh "w" \iin \llet R := fresh "R" \iin 
-                (destruct H \as [w [R H]]; move w at top; move R at top).
-
-\Ltac dia_i w := (exists w; split; [assumption | idtac]).
-\end{Verbatim}
-
-\noindent
-Validity of a modal proposition is validity of its grounding on any world. A non-intrusive notation and a tactic that grounds the proposition to an arbitrary world are provided.
-
-\begin{Verbatim}[commandchars=\\\{\},fontsize=\verbsize]
-\Definition V (p: o) := \fforall w, p w.
-\Notation "[ p ]" := (V p).
 \Ltac mv := \match goal \with [|- (V _)] => intro \eend.
 \end{Verbatim}
 
-\noindent
-The following lemmas are quite convenient. The first is a kind of modus ponens applicable to formulas under the scope of a modal operator. The second allows pushing negations inside modalities.
+
+
+\section{Convenient Modal Lemmas}
+
+
+\noindent 
+The following lemmas are quite convenient. The first is a
+kind of modus ponens applicable to formulas under the scope of a modal
+operator. The second allows pushing negations inside modalities.
 
 \begin{Verbatim}[commandchars=\\\{\},fontsize=\verbsize]
 \Lemma mp_dia: 
