@@ -103,17 +103,17 @@ philosophy \cite{ToDo} to formal software verification
 \cite{ToDo:TLAPlus}.
 
 However, general automated reasoning support for modal logics is still
-not as well-developed as for classical logics. Current deduction tools
+not as well-developed as for classical logics. Deduction tools
 for modal logics are often limited to propositional, quantifier-free,
 fragments \cite{ToDo:SeeBjornsProposal} or tailored to particular
-modal logics and their applications \cite{ToDo:StephanMerz}. Recently,
+modal logics and their applications \cite{ToDo:StephanMerz}; 
 first-order automated deduction techniques based on tableaux, sequent
-calculi and connection calculi have been generalized to cope with
-modalities directly and a few new provers have been implemented
-\cite{JensOtten}.
+calculi and connection calculi have only recently been generalized 
+and implemented in a few new provers able to directly cope with
+modalities \cite{JensOtten}.
 
 Another recently explored possibility \cite{J23,B9,J22} is the
-embedding of first-order and higher-order modal logics into classical
+embedding of first-order and even higher-order modal logics into classical
 higher-order logics, for which existing higher-order automated theorem
 provers \cite{ToDo:Leo,Satallax} exist.  Embedding is flexible,
 because various modal logics can be easily supported by adding their
@@ -132,14 +132,17 @@ reasoning.
 
 However, one may wonder whether the embedding approach is adequate
 also for \emph{interactive} reasoning, when the user proves theorems
-by interacting with a proof assistant. The main goal of this paper is
-to study this question. Our answer is positive. The \Coq proof
-assistant was chosen because of the authors' greater familiarity with
-the tactic language of this system.
+by interacting with a proof assistant such as \Coq\footnote{The \Coq
+proof assistant was chosen merely because of the authors' greater
+familiarity with the tactic language of this system. Nevertheless, the
+techniques presented and discussed here are likely to be useful for
+other proof assistants, such as \texttt{Isabelle} \cite{Isabelle} or
+\texttt{HOL-Light} \cite{HOLLight}, as well.}. The main goal of this
+paper is to study this question. Our answer is positive.
 
 One major initial concern was whether the embedding could be a
 disturbance to the user. Fortunately, by using \Coq's \texttt{Ltac}
-tactic language, we were able to  define intuitive new tactics that
+tactic language, we were able to define intuitive new tactics that
 hide the technical details of the embedding from the user. The
 resulting infra-structure for modal reasoning within \Coq (as
 described in Section \ref{sec:modal}) provides a user experience where
@@ -153,7 +156,7 @@ here the formalization of Scott's version \cite{Scott} of Gödel's
 ontological argument for God's existence (in Section \ref{sec:proof}).
 This proof was chosen mainly for two reasons. Firstly, it requires not
 only modal operators, but also higher-order quantification. Therefore,
-it is beyond reach of specialized propositional and first-order
+it is beyond the reach of specialized propositional and first-order
 (modal) theorem provers. Secondly, this argument addresses an ancient
 problem in Philosophy and Metaphysics, which has nevertheless received
 a lot of attention in the last 15 years, because of the discovery of
