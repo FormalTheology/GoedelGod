@@ -76,21 +76,41 @@ Modal Logics in the Coq Proof Assistant
 
 \maketitle
 
-\begin{abstract} 
-This paper describes an embedding of higher-order modal
-logics in the \Coq proof assistant. {\Coq}'s capabilities are thus extended in a
-minimalistic manner, which is nevertheless sufficient for the formalization
-of significant modal proofs. The elegance, flexibility and convenience of this approach, 
-from a user perspective, are illustrated here with the successful formalization of Gödel's ontological argument. 
+\begin{abstract}  
+This paper describes an embedding of higher-order
+modal logics in the \Coq proof assistant. {\Coq}'s capabilities are
+thus extended in a minimalistic manner, which is nevertheless
+sufficient for the formalization of significant modal proofs. The
+elegance, flexibility and convenience of this approach, from a user
+perspective, are illustrated here with the successful formalization of
+Gödel's ontological argument.  
 \end{abstract}
 
 
 
 \section{Introduction}
 
-Modal logics extend the usual formal logic language with modal operators ($\Box$ and $\Diamond$) and are characterized by the \emph{necessitation rule}, according to which $\Box A$ is a theorem if $A$ is a theorem, although $A \imp \Box A$ is not necessarily a theorem. Various informal concepts, such as \emph{necessity and possibility}, \emph{knowledge and belief}, \emph and \emph{temporal globality and eventuality}, have been formalized with the help of modal operators. Therefore, modal logics \cite{ModalLogic} are well-established for a wide variety of application domains, ranging from philosophy \cite{ToDo} to formal software verification \cite{ToDo:TLAPlus}.
+Modal logics extend the usual formal logic language with modal
+operators ($\Box$ and $\Diamond$) and are characterized by the
+\emph{necessitation rule}, according to which $\Box A$ is a theorem if
+$A$ is a theorem, although $A \imp \Box A$ is not necessarily a
+theorem. Various informal concepts, such as \emph{necessity and
+possibility}, \emph{knowledge and belief}, \emph and \emph{temporal
+globality and eventuality}, have been formalized with the help of
+modal operators. Therefore, modal logics \cite{ModalLogic} are well-
+established for a wide variety of application domains, ranging from
+philosophy \cite{ToDo} to formal software verification
+\cite{ToDo:TLAPlus}.
 
-However, general automated reasoning support for modal logics is still not as well-developed as for classical logics. Current deduction tools for modal logics are often limited to propositional, quantifier-free, fragments \cite{ToDo:SeeBjornsProposal} or tailored to particular modal logics and their applications \cite{ToDo:StephanMerz}. Recently, first-order automated deduction techniques based on tableaux, sequent calculi and connection calculi have been generalized to cope with modalities directly and a few new provers have been implemented \cite{JensOtten}. 
+However, general automated reasoning support for modal logics is still
+not as well-developed as for classical logics. Current deduction tools
+for modal logics are often limited to propositional, quantifier-free,
+fragments \cite{ToDo:SeeBjornsProposal} or tailored to particular
+modal logics and their applications \cite{ToDo:StephanMerz}. Recently,
+first-order automated deduction techniques based on tableaux, sequent
+calculi and connection calculi have been generalized to cope with
+modalities directly and a few new provers have been implemented
+\cite{JensOtten}.
 
 Another recently explored possibility \cite{J23,B9,J22} is the
 embedding of first-order and higher-order modal logics into classical
@@ -113,22 +133,41 @@ reasoning.
 However, one may wonder whether the embedding approach is adequate
 also for \emph{interactive} reasoning, when the user proves theorems
 by interacting with a proof assistant. The main goal of this paper is
-to strudy this question. Our answer is positive. The \Coq proof
+to study this question. Our answer is positive. The \Coq proof
 assistant was chosen because of the authors' greater familiarity with
 the tactic language of this system.
 
-One major initial concern was whether the embedding could be a disturbance to the user.
-Fortunately, by using \Coq's \texttt{Ltac} tactic language, we were able to  define intuitive new tactics that hide the technical details of the embedding from the user. The resulting infra-structure for modal reasoning within \Coq (as described in Section \ref{sec:modal}) provides a user experience where modalities can be handled transparently and straightforwardly. Therefore, a user with basic knowledge of modal logics and \Coq's tactics should be able to use (and extend) our implementation with no excessive overhead. 
+One major initial concern was whether the embedding could be a
+disturbance to the user. Fortunately, by using \Coq's \texttt{Ltac}
+tactic language, we were able to  define intuitive new tactics that
+hide the technical details of the embedding from the user. The
+resulting infra-structure for modal reasoning within \Coq (as
+described in Section \ref{sec:modal}) provides a user experience where
+modalities can be handled transparently and straightforwardly.
+Therefore, a user with basic knowledge of modal logics and \Coq's
+tactics should be able to use (and extend) our implementation with no
+excessive overhead.
 
 In order to illustrate the use of the implemented embedding, we show
 here the formalization of Scott's version \cite{Scott} of Gödel's
-ontological argument for God's existence (in Section
-\ref{sec:proof}). This proof was chosen mainly for two
-reasons. Firstly, it requires not only modal operators, but also
-higher-order quantification. Therefore, it is beyond reach of
-specialized propositional and first-order (modal) theorem provers. Secondly, this argument addresses an ancient problem in Philosophy and Metaphysics, which has nevertheless received a lot of attention in the last 15 years, because of the discovery of the modal collapse \cite{ToDo}. This proof lies in the center of a vast and largely unexplored application domain for automated and interactive theorem provers. 
+ontological argument for God's existence (in Section \ref{sec:proof}).
+This proof was chosen mainly for two reasons. Firstly, it requires not
+only modal operators, but also higher-order quantification. Therefore,
+it is beyond reach of specialized propositional and first-order
+(modal) theorem provers. Secondly, this argument addresses an ancient
+problem in Philosophy and Metaphysics, which has nevertheless received
+a lot of attention in the last 15 years, because of the discovery of
+the modal collapse \cite{ToDo}. This proof lies in the center of a
+vast and largely unexplored application domain for automated and
+interactive theorem provers.
 
-The simpler ontological argument of Anselm has been automatically verified with \texttt{PVS} by Rushby \cite{Rushby} and with first-order theorem by Oppenheimer and Zalta \cite{Zalta}. Gödel's argument was automatically verified in our previous work on embedding-based fully automated modal theorem proving \cite{ArXiv,AFP}. But this paper presents the first fully interactive and detailed formalization of this proof in a proof assistant.
+The simpler ontological argument of Anselm has been automatically
+verified with \texttt{PVS} by Rushby \cite{Rushby} and with first-
+order theorem provers by Oppenheimer and Zalta \cite{Zalta}. Gödel's
+argument was automatically verified in our previous work on embedding-
+based fully automated modal theorem proving \cite{ArXiv,AFP}. But this
+paper presents the first fully interactive and detailed formalization
+of this proof in a proof assistant.
 
 
 
