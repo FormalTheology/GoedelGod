@@ -21,7 +21,7 @@ Parameter r: i -> i -> Prop.
 (*Definition mequal {A: Type}(x y: A) := fun w: i => x = y.
 Notation "x m= y" := (mequal x y) (at level 99, right associativity). *)
 
-Definition mequal (x y: u) := fun w: i => x = y.
+Definition mequal (x y: u)(w: i) := x = y.
 Notation "x m= y" := (mequal x y) (at level 99, right associativity).
 
 Definition mnot (p: o)(w: i) := ~ (p w).
@@ -42,7 +42,7 @@ Notation "p m<-> q" := (mequiv p q) (at level 99, right associativity).
 
 (* Modal quantifiers *)
 
-Definition A {t: Type}(p: t -> o) := fun w => forall x, p x w.
+Definition A {t: Type}(p: t -> o)(w: i) := forall x, p x w.
 Notation "'mforall'  x , p" := (A (fun x => p))
   (at level 200, x ident, right associativity) : type_scope.
 Notation "'mforall' x : t , p" := (A (fun x:t => p))
@@ -51,7 +51,7 @@ Notation "'mforall' x : t , p" := (A (fun x:t => p))
   : type_scope.
 
 
-Definition E {t: Type}(p: t -> o) := fun w => exists x, p x w.
+Definition E {t: Type}(p: t -> o)(w: i) := exists x, p x w.
 Notation "'mexists' x , p" := (E (fun x => p))
   (at level 200, x ident, right associativity) : type_scope.
 Notation "'mexists' x : t , p" := (E (fun x:t => p))
