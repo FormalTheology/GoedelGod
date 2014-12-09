@@ -3,7 +3,7 @@
 
 \usepackage{fancybox} % Must be before "fancyvrb"
 \usepackage[utf8]{inputenc}
-\usepackage{url,amsmath,amssymb,fancyvrb,color}
+\usepackage{url,amsmath,amssymb,fancyvrb,color,graphicx}
 \usepackage{proof}
 \usepackage{xspace}
 
@@ -529,13 +529,12 @@ standing for \emph{modal validity}, which replaces a goal of the form
 
 
 
-\section{Convenient Modal Lemmas}
+\section{Two Simple Modal Lemmas}
 
-
-\noindent 
-The following lemmas are quite convenient. The first is a
-kind of modus ponens applicable to formulas under the scope of a modal
-operator. The second allows pushing negations inside modalities.
+In order to illustrate the tactics described above, 
+we show \Coq proofs for two simple but useful modal lemmas. 
+The first lemma is a kind of modus ponens with formulas 
+under the scope of modal operators. 
 
 \begin{Verbatim}[commandchars=\\\{\},fontsize=\verbsize]
 \Lemma mp_dia: 
@@ -543,12 +542,67 @@ operator. The second allows pushing negations inside modalities.
 \Proof. mv. 
 intros p q H1 H2. dia_e H1. dia_i w0. box_e H2 H3. apply H3. exact H1. 
 \Qed.
+\end{Verbatim}
 
+% \[
+% \infer[\all_I,\all_I]{w: \all p. \all q.  \pos p \imp (\nec (p \imp q)) \imp \pos q}{
+%   \infer[\imp_I^1,\imp_I^2]{w: \pos p \imp (\nec (p \imp q)) \imp (\pos q)}{
+%     \infer[\pos_I]{w: \pos q}{
+%       \infer[\imp_E]{w_0: q}{
+%         \infer[\pos_E]{w_0: p}{ 
+%           \infer[1]{w: \pos p}{}
+%         } 
+%         & 
+%         \infer[\nec_E]{w_0: p \imp q}{
+%           \infer[2]{w: \nec (p \imp q)}{}
+%         }
+%       }
+%     }
+%   }
+% }
+% \]
+
+% \newcommand{\down}[1]{\begin{array}{c}\phantom{p} \\ #1 \end{array} }
+% \newcommand{\up}[1]{\begin{array}{c}#1 \\ \phantom{p} \end{array} }
+
+% \[
+% \infer[\all_I,\all_I]{\all p. \all q.  \pos p \imp (\nec (p \imp q)) \imp \pos q}{
+%   \infer[\imp_I^1,\imp_I^2]{\pos p \imp (\nec (p \imp q)) \imp (\pos q)}{
+%     \infer[\pos_I]{\pos q}{
+%       \infer[\imp_E]{\up{q}}{
+%         \infer[\pos_E]{\down{p} }{ 
+%           \infer[1]{\pos p}{}
+%         } 
+%         & 
+%         \infer[\nec_E]{ \down{p \imp q} }{
+%           \infer[2]{\nec (p \imp q)}{}
+%         }
+%       }
+%     }
+%   }
+% }
+% \]
+
+\begin{figure}
+\centering
+\label{fig:mp_dia}
+\includegraphics[width=0.5\textwidth]{ND-(mp_dia).png}
+\caption{Natural deduction proof of \texttt{mp\_dia}}
+\end{figure}
+
+\noindent
+The second lemma allows negations to be pushed inside modalities.
+
+\begin{Verbatim}[commandchars=\\\{\},fontsize=\verbsize]
 \Lemma not_dia_box_not: [mforall p, (m~ (dia p)) m-> (box (m~ p))].
 \Proof. mv. 
 intro p. intro H. box_i. intro H2. apply H. dia_i w0. exact H2. 
 \Qed.
 \end{Verbatim}
+
+
+\section{Modal Logics beyond K}
+
 
 \noindent
 The most well-known modal logics can be distinguished by their acceptance of the following reachability axioms. \textbf{S5} is the modal logic that accepts all three.
@@ -738,6 +792,8 @@ usual interactive tactics at his/her disposal.
 
 
 HOL Light, Isabelle
+
+todo: automation, firstorder
 
 
 The theological implications of the verified correctness of this proof
