@@ -6,6 +6,7 @@
 \usepackage{url,amsmath,amssymb,fancyvrb,color,graphicx}
 \usepackage{proof}
 \usepackage{xspace}
+\usepackage{float}
 
 \usepackage{calculi}
 
@@ -90,7 +91,7 @@ Gödel's ontological argument.
 
 \section{Introduction}
 
-Modal logics extend the usual formal logic language with modal
+Modal logics extend usual formal logic languages by adding modal
 operators ($\Box$ and $\Diamond$) and are characterized by the
 \emph{necessitation rule}, according to which $\Box A$ is a theorem if
 $A$ is a theorem, although $A \imp \Box A$ is not necessarily a
@@ -145,7 +146,7 @@ disturbance to the user. Fortunately, by using \Coq's \texttt{Ltac}
 tactic language, we were able to define intuitive new tactics that
 hide the technical details of the embedding from the user. The
 resulting infra-structure for modal reasoning within \Coq (as
-described in Section \ref{sec:modal}) provides a user experience where
+described in Section \ref{sec:Embedding}) provides a user experience where
 modalities can be handled transparently and straightforwardly.
 Therefore, a user with basic knowledge of modal logics and \Coq's
 tactics should be able to use (and extend) our implementation with no
@@ -175,7 +176,7 @@ of this proof in a proof assistant.
 
 
 \section{The Embedding of Modal Logics in Coq}
-\label{sec:modal}
+\label{sec:Embedding}
 
 A crucial aspect of modal logics \cite{ModalLogic} is that the so-
 called \emph{necessitation rule} allows $\Box A$ to be derived if $A$
@@ -310,6 +311,7 @@ embedding to the user, the following notation is provided, allowing
 
 
 \section{Tactics for Modalities}
+\label{sec:Tactics}
 
 Interactive theorem proving in \Coq is usually done with tactics,
 imperative commands that reduce the theorem to be proven (i.e. the
@@ -391,12 +393,16 @@ for its elimination.
 $\alpha$ must respect the usual \emph{eigen-variable conditions}.
 \end{center}
 
+\begin{center}
+$\neg A$ is an abbreviation for $A \imp \bot$.
+\end{center}
+
 \end{small}
 
 \vspace{1em}
 \end{calculus}
 
-
+\noindent
 To maximally preserve user intuition in interactive modal logic
 theorem proving, the embedding via the possible world semantics should
 be as transparent as possible to the user. Fortunately, the basic Coq
@@ -501,14 +507,17 @@ created inside a box with name \texttt{w}.
 
 \s\s\s\s
 \infer[\pos_I]{\pos A}{w: \fbox{\infer*{A}{}} }
-\s\s\s\s\s
+\s\s\s\s
 \infer[\pos_E]{\omega: \fbox{ \infer*{}{A} } }{\pos A}
 
 \vspace{1em}
 
 \begin{center}
 \textbf{eigen-box condition:}\\ 
-$\omega$ must be a fresh name for a box. \\
+$\nec_I$ and $\pos_E$ are \emph{strong} modal rules: \\
+$\omega$ must be a fresh name for the box they access \\ 
+(in analogy to the eigen-variable condition for strong quantifier rules). \\
+Every box must be accessed by \emph{exactly one} strong modal inference. \\
 \vspace{0.5em}
 \textbf{boxed assumption condition:} \\
 assumptions should be discharged within the box where they are created.
@@ -530,10 +539,11 @@ standing for \emph{modal validity}, which replaces a goal of the form
 
 
 \section{Two Simple Modal Lemmas}
+\label{sec:SimpleExamples}
 
 In order to illustrate the tactics described above, 
 we show \Coq proofs for two simple but useful modal lemmas. 
-The first lemma is a kind of modus ponens with formulas 
+The first lemma resembles modus ponens, but with formulas 
 under the scope of modal operators. 
 
 \begin{Verbatim}[commandchars=\\\{\},fontsize=\verbsize]
