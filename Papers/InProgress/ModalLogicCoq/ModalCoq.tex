@@ -53,7 +53,7 @@
 
 
 \title{
-Modal Logics in the Coq Proof Assistant
+(Interacting with)? \\ Modal Logics in the Coq Proof Assistant
 }
 
 \author{
@@ -66,11 +66,13 @@ Modal Logics in the Coq Proof Assistant
 
 
 \institute{
-  Dahlem Center for Intelligent Systems, Freie Universit\"{a}t Berlin, Germany\\
-  \email{c.benzmueller@gmail.com}
+  % Dept. of Mathematics and Computer Science, 
+  Freie Universit\"{a}t Berlin, Germany,  %\\
+  \email{c.benzmueller@fu-berlin.de}
   \and 
-  Theory and Logic Group, Vienna University of Technology, Austria \\
-  \email{bruno@logic.at}
+  % Theory and Logic Group, 
+  Vienna University of Technology, Austria, %\\
+   \email{bruno@logic.at}
 }
 
 \begin{document}
@@ -78,13 +80,13 @@ Modal Logics in the Coq Proof Assistant
 \maketitle
 
 \begin{abstract}  
-This paper describes an embedding of higher-order
-modal logics in the \Coq proof assistant. {\Coq}'s capabilities are
-thus extended in a minimalistic manner, which is nevertheless
-sufficient for the formalization of significant modal proofs. The
-elegance, flexibility and convenience of this approach, from a user
-perspective, are illustrated here with the successful formalization of
-Gödel's ontological argument.  
+  This paper describes an embedding of higher-order modal logics in
+  the \Coq proof assistant. {\Coq}'s capabilities are extended in a
+  minimalistic manner, which is nevertheless sufficient for the
+  formalization of significant, non-trivial modal logic proofs. The
+  elegance, flexibility and convenience of this approach, from a user
+  perspective, are illustrated here with the successful formalization
+  of Gödel's ontological argument.
 \end{abstract}
 
 
@@ -101,7 +103,8 @@ globality and eventuality}, have been formalized with the help of
 modal operators. Therefore, modal logics \cite{ModalLogic} are well-
 established for a wide variety of application domains, ranging from
 philosophy \cite{ToDo} to formal software verification
-\cite{ToDo:TLAPlus}.
+\cite{ToDo:TLAPlus}.\footnote{ChrisToBruno: \cite{ModalLogic} should
+  suffice as reference, applications are addressed in Part 4.}
 
 However, general automated reasoning support for modal logics is still
 not as well-developed as for classical logics. Deduction tools
@@ -116,7 +119,7 @@ modalities \cite{JensOtten}.
 Another recently explored possibility \cite{J23,B9,J22} is the
 embedding of first-order and even higher-order modal logics into classical
 higher-order logics, for which existing higher-order automated theorem
-provers \cite{ToDo:Leo,Satallax} exist.  Embedding is flexible,
+provers \cite{LEO-II,Satallax} exist.  Embedding is flexible,
 because various modal logics can be easily supported by adding their
 characteristic axioms.  The embedding approach can also be easily
 adapted to support multiple modalities, and it is possible to replace
@@ -141,6 +144,7 @@ other proof assistants, such as \texttt{Isabelle} \cite{Isabelle} or
 \texttt{HOL-Light} \cite{HOLLight}, as well.}. The main goal of this
 paper is to study this question. Our answer is positive.
 
+
 One major initial concern was whether the embedding could be a
 disturbance to the user. Fortunately, by using \Coq's \texttt{Ltac}
 tactic language, we were able to define intuitive new tactics that
@@ -152,8 +156,14 @@ Therefore, a user with basic knowledge of modal logics and \Coq's
 tactics should be able to use (and extend) our implementation with no
 excessive overhead.
 
+Propositional and quantified modal logics have applications in various
+fields, including, for example, verification, agent technologies,
+artificial intelligence, computational linguistics, and computational
+philosophy. Our contribution may thus serve as a starting point for
+many interesting further projects.
+
 In order to illustrate the use of the implemented embedding, we show
-here the formalization of Scott's version \cite{Scott} of Gödel's
+here the formalization of Scott's version \cite{ScottNotes} of Gödel's
 ontological argument for God's existence (in Section \ref{sec:proof}).
 This proof was chosen mainly for two reasons. Firstly, it requires not
 only modal operators, but also higher-order quantification. Therefore,
@@ -169,10 +179,15 @@ The simpler ontological argument of Anselm has been automatically
 verified with \texttt{PVS} by Rushby \cite{Rushby} and with first-
 order theorem provers by Oppenheimer and Zalta \cite{Zalta}. Gödel's
 argument was automatically verified in our previous work on embedding-
-based fully automated modal theorem proving \cite{ArXiv,AFP}. But this
+based fully automated modal theorem proving \cite{arXiv,AFP}. This
 paper presents the first fully interactive and detailed formalization
-of this proof in a proof assistant.
-
+of this proof in a proof assistant. Hence we here reveal the proof
+structure on a cognitively adequate level of
+detail. Such detailed proof structure has been hidden in our
+other papers on the subject due to the use of automated theorem
+provers. In comparison to \cite{Rushby,Zalta}, however, our
+contribution stands out with its surprising technical 
+simplicity and elegance. 
 
 
 \section{The Embedding of Modal Logics in Coq}
@@ -321,7 +336,10 @@ underlying proof system of \Coq (the Calculus of Inductive
 Constructions \cite{Paulin}) is actually more sophisticated and
 minimalistic than the calculus shown in Figure
 \ref{fig:NaturalDeduction}. But the calculus shown here suffices for
-the purposes of this paper.} (e.g. as those shown in Figure
+the purposes of this paper.} \footnote{ChrisToBruno: We need to briefly address here
+    the fact that this calculus is classical while Coq pure is
+    constructive; one or two sentences should be fine.} 
+(e.g. as those shown in Figure
 \ref{fig:NaturalDeduction}).  For example: the \texttt{intro} tactic
 can be used to apply the introduction rules for implication and for
 the universal quantifier; the \texttt{apply} tactic corresponds to the
@@ -334,7 +352,7 @@ for its elimination.
 \newcommand{\s}{\qquad}
 
 \begin{calculus}
-{An arbitrary natural deduction calculus}
+{A (classical)  The natural deduction calculus}
 {fig:NaturalDeduction}
 \begin{small}
 
@@ -419,7 +437,7 @@ this exposes the user to the technicalities of the embedding,
 requiring him to deal with possible worlds and their reachability
 explicitly. In order to obtain transparency also for the modal
 operators, we have implemented a few specialized tactics using \Coq's
-Ltac language.
+Ltac language. We present these tactics next.
 
 When applied to a goal of the form \texttt{((box p) w0)}, the tactic
 \texttt{box\_i} will introduce a fresh new world \texttt{w} and then
@@ -714,37 +732,37 @@ formalization of Gödel's ontological argument.
 
 Attempts to prove the existence (or non-existence) of God by means of
 abstract ontological arguments are an old tradition in philosophy and
-theology. G\"{o}del's proof \cite{Goedel1970,GoedelNotes} is a
-modern culmination of this tradition, following particularly the
-footsteps of Leibniz. Various slightly different versions of axioms
-and definitions have been considered by G\"{o}del and by several
-philosophers who commented on his proof (cf. 
+theology. G\"{o}del's proof \cite{Goedel1970,GoedelNotes} is a modern
+culmination of this tradition, following particularly the footsteps of
+Leibniz. Various slightly different versions of axioms and definitions
+have been considered by G\"{o}del and by several philosophers who
+commented on his proof (cf.
 \cite{sobel2004logic,AndersonGettings,Fitting,Adams,ContemporaryBibliography}).
-The formalization shown in this section aims at being as similar as
+The formalization shown in this Section aims at being as similar as
 possible to Dana Scott's version of the proof \cite{ScottNotes}. The
 formulation and numbering of axioms, definitions and theorems is the
-same as in Scott's notes. Even the \Coq proof scripts follow all the
-steps in Scott's notes. Scott's assertions are emphasized with
-comments. In contrast to the formalization in \Isabelle \cite{AFP},
-where automation via \texttt{Metis} \cite{Hurd03first-orderproof} and
-\texttt{Sledgehammer} \cite{Sledgehammer} using tools such as
-\texttt{Nitpick} \cite{Nitpick}, \texttt{LEO-II} \cite{LEO-II} and
-\texttt{Satallax} \cite{Satallax} has been successfully employed, the
-formalization in \Coq used no automation. This was a deliberate
-choice, mainly because it allowed a qualitative evaluation of the
-convenience of the possible world semantic embedding approach for
-\emph{interactive} theorem proving. Moreover, in order to formalize
-precisely Scott's version and not another automatically found version,
-automation would have to be heavily limited anyway. Furthermore, the
-deliberate preference for simple tactics (mostly \emph{intro},
-\emph{apply} and the modal tactics described in Section
-\ref{sec:Tactics}) results in proof scripts that closely correspond to
-natural deduction proofs. This hopefully makes the formalization more
-accessible to those who are not experts in \Coq's tactics but are
-nevertheless interested in G\"odel's proof.
+same as in Scott's notes. Even the \Coq proof scripts follow precisely
+all the steps in Scott's notes. Scott's assertions are emphasized
+below with comments. In contrast to the formalization in \Isabelle
+\cite{AFP}, where automation via \texttt{Metis}
+\cite{Hurd03first-orderproof} and \texttt{Sledgehammer}
+\cite{Sledgehammer} using tools such as \texttt{Nitpick}
+\cite{Nitpick}, \texttt{LEO-II} \cite{LEO-II} and \texttt{Satallax}
+\cite{Satallax} has been successfully employed, the formalization in
+\Coq used no automation. This was a deliberate choice, mainly because
+it allowed a qualitative evaluation of the convenience of the
+embedding approach for \emph{interactive} theorem proving. Moreover,
+in order to formalize precisely Scott's version and not another
+automatically found version, automation would have to be heavily
+limited anyway. Furthermore, the deliberate preference for simple
+tactics (mostly \emph{intro}, \emph{apply} and the modal tactics
+described in Section \ref{sec:Tactics}) results in proof scripts that
+closely correspond to natural deduction proofs. This hopefully makes
+the formalization more accessible to those who are not experts in
+\Coq's tactics but are nevertheless interested in G\"odel's proof.
 
 Gödel's proof requires \Coq's classical logic libraries as well as the
-\texttt{Modal} library developed by us and described in sections
+\texttt{Modal} library developed by us and described in Sections
 \ref{sec:Embedding} and \ref{sec:Tactics}.
 
 \begin{Verbatim}[commandchars=\\\{\},fontsize=\verbsize]
@@ -898,11 +916,12 @@ intro H. cut (dia (box (mexists x, G x)) w).  \com{(* Scott *)}
 \label{sec:conclusions}
 
 The successful formalization of Scott's version of  G\"odel's
-ontological argument indicates that the \emph{embedding} of  modal
+ontological argument indicates that the \emph{embedding} of
+higher-order modal
 logics into higher-order logics via the \emph{possible world
 semantics} is a viable approach for fully interactive theorem proving
-within modal logics. Our lightweight implementation of the embedding
-(described in sections \ref{sec:Embedding} and \ref{sec:Tactics})
+within (even non-trivial) modal logics. Our lightweight implementation of the embedding
+(described in Sections \ref{sec:Embedding} and \ref{sec:Tactics})
 takes special care to hide the underlying possible world machinery
 from the user. An inspection of the proof scripts in Section
 \ref{sec:proof} shows that this goal has been achieved. The user does
@@ -913,25 +932,30 @@ user has all the usual interactive tactics at his/her disposal.
 
 Although fully automated (as opposed to interactive) theorem proving
 is beyond the scope of this paper, it is worth mentioning that all
-lemmas and theorems in sections \ref{sec:Embedding},
+lemmas and theorems in Sections \ref{sec:Embedding},
 \ref{sec:SimpleExamples} and \ref{sec:BeyondK} could have been proven
 automatically using \Coq's \texttt{firstorder} tactic. The
 implementation of hints to allow \Coq's automatic tactics to take full
 advantage of the embedding and the modal axioms still remains for
-future work.
+future work. 
 
 The theological implications of the verified correctness of Gödel's
 proof certainly depend on a critical discussion of the underlying
 concepts, definitions and axioms, which is beyond the scope of this
 paper.  Clearly, the application of theorem proving technology to the
 domain of theoretical philosophy can --- as already pictured by
-Leibniz --- be very fruitful for both areas. We hope that the
-infrastructure  that we have implemented for interactive and automated
-reasoning in higher-order modal logics will be useful outside
-philosophy as well.
+Leibniz --- be very fruitful for both areas. 
+
+The infrastructure that we have implemented for interactive and
+automated reasoning in higher-order modal logics will clearly be
+useful also outside philosophy; the range of potential applications is
+in fact 
+very wide.
 
 
-\paragraph{Acknowledgements:} we thank Cedric Auger and Laurent Théry, 
+
+
+\paragraph{Acknowledgements:} We thank Cedric Auger and Laurent Théry, 
 for their answers to our questions about Ltac in the Coq-Club mailing-list. 
 
 %\footnotesize
@@ -950,6 +974,12 @@ A.C.~Anderson and M.~Gettings.
 \newblock G\"odel ontological proof revisited.
 \newblock In {\em {G\"odel'96: Logical Foundations of Mathematics, Computer
   Science, and Physics: Lecture Notes in Logic 6}}. {Springer}, 1996.
+
+\bibitem{JensOtten}
+C.~Benzm{\"u}lller, J. Otten, and Th. Raths.
+\newblock Implementing and Evaluating Provers for First-order Modal
+Logics. 
+\newblock In {\em ECAI 2012}, pages 163-168. IOS Press, 2012.
 
 \bibitem{B9}
 C.~Benzm{\"u}ller and L.C.~Paulson.
