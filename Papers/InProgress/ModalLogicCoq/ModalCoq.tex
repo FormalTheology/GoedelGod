@@ -897,42 +897,42 @@ intro H. cut (dia (box (mexists x, G x)) w).  \com{(* Scott *)}
 \section{Conclusions}
 \label{sec:conclusions}
 
-The successful formalization of Scott's version of G\"odel's proof of
-God's existence indicates that the \emph{embedding} of modal logics
-into higher-order logics via the \emph{possible world semantics} is a
-viable approach for interactive theorem proving within modal logics.
-The minimalistic implementation of the embedding (Section
-\ref{sec:modal}) takes special care to hide the underlying possible
-world machinery from the user.  An inspection of the proof scripts in
-Section \ref{sec:proof} shows that this goal has been achieved. The
-user does not have to explicitly bother about worlds and their mutual
-reachability; the provided tactics for modalities do the job for him/her.
-Moreover, for subgoals that do not involve modalities, the user has all the
-usual interactive tactics at his/her disposal.
-%The implementation of hints to allow automation tactics to fully cope with the embedding remains for future work. Nevertheless, at this stage a tactic such as \texttt{firstorder} is able to prove all lemmas and theorems in Section \ref{sec:modal} fully automatically. 
+The successful formalization of Scott's version of  G\"odel's
+ontological argument indicates that the \emph{embedding} of  modal
+logics into higher-order logics via the \emph{possible world
+semantics} is a viable approach for fully interactive theorem proving
+within modal logics. Our lightweight implementation of the embedding
+(described in sections \ref{sec:Embedding} and \ref{sec:Tactics})
+takes special care to hide the underlying possible world machinery
+from the user. An inspection of the proof scripts in Section
+\ref{sec:proof} shows that this goal has been achieved. The user does
+not have to explicitly bother about worlds and their mutual
+reachability; the provided tactics for modalities do the job for
+him/her. Moreover, for subgoals that do not involve modalities, the
+user has all the usual interactive tactics at his/her disposal.
+
+Although fully automated (as opposed to interactive) theorem proving
+is beyond the scope of this paper, it is worth mentioning that all
+lemmas and theorems in sections \ref{sec:Embedding},
+\ref{sec:SimpleExamples} and \ref{sec:BeyondK} could have been proven
+automatically using \Coq's \texttt{firstorder} tactic. The
+implementation of hints to allow \Coq's automatic tactics to take full
+advantage of the embedding and the modal axioms still remains for
+future work.
+
+The theological implications of the verified correctness of Gödel's
+proof certainly depend on a critical discussion of the underlying
+concepts, definitions and axioms, which is beyond the scope of this
+paper.  Clearly, the application of theorem proving technology to the
+domain of theoretical philosophy can --- as already pictured by
+Leibniz --- be very fruitful for both areas. We hope that the
+infrastructure  that we have implemented for interactive and automated
+reasoning in higher-order modal logics will be useful outside
+philosophy as well.
 
 
-HOL Light, Isabelle
-
-todo: automation, firstorder
-
-
-The theological implications of the verified correctness of this proof
-certainly depend on a critical discussion of the underlying concepts,
-definitions and axioms, which is beyond the scope of this paper. 
-%What
-%can be said though is that our work presents further evidence that
-%theism is at least not (obviously) irrational. 
-Clearly, the application of theorem proving technology to the domain of
-theoretical philosophy can --- as already pictured by Leibniz ---
-be very fruitful for both areas. In fact, new results of
-philosophical interest have been obtained by our
-work~\cite{arXiv}. Moreover a first, basic infrastructure for
-interactive and automated reasoning in higher-order modal logics has
-been created and will be further improved in the future.
-
-
-\paragraph{Acknowledgements:} we thanks Cedric Auger and Laurent Th\'ery, for their answers to our questions about Ltac in the Coq-Club mailing-list. 
+\paragraph{Acknowledgements:} we thank Cedric Auger and Laurent Théry, 
+for their answers to our questions about Ltac in the Coq-Club mailing-list. 
 
 %\footnotesize
 \bibliographystyle{plain}
