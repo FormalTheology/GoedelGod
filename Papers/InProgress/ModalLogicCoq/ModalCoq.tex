@@ -593,7 +593,20 @@ intros p q H1 H2. dia_e H1. dia_i w0. box_e H2 H3. apply H3. exact H1.
 % }
 % \]
 
-\begin{figure}
+\noindent 
+The proof of this lemma is displayed as a natural deduction
+proof in  Figure \ref{fig:mp_dia}. As expected, \Coq's basic tactics
+(e.g. \texttt{intros} and \texttt{apply}) work without modification.
+The \texttt{intros p q H1 H2} tactic application corresponds to the
+universal quantifier  and implication introduction inferences in the
+bottom of the proof.  The \texttt{apply H3} tactic application
+corresponds to the implication  elimination inference. The $\pos_E$,
+$\pos_I$ and $\nec_E$ inferences correspond, respectively, to the
+\texttt{dia\_e H1},  \texttt{dia\_i w0} and \texttt{box\_e H2 H3}
+tactic applications.  The internal box named $w_0$ is accessed by
+exactly one strong  modal inference, namely $\pos_E$.
+
+\begin{figure}[H]
 \centering
 \label{fig:mp_dia}
 \includegraphics[width=0.5\textwidth]{ND-(mp_dia).png}
@@ -601,7 +614,35 @@ intros p q H1 H2. dia_e H1. dia_i w0. box_e H2 H3. apply H3. exact H1.
 \end{figure}
 
 \noindent
-The second lemma allows negations to be pushed inside modalities.
+The same lemma could be proved without the new modal tactics, as shown below.
+But this is clearly disadvantageous, for several reasons: 
+the proof script becomes longer;
+the definitions of modal operators must be unfolded, 
+either explicitly (as done below) or implicitly in the user's mind; 
+tactic applications dealing with modal operators cannot be easily distinguished
+from tactic applications dealing with quantifiers; and  
+hypotheses about the reachability of worlds (e.g. \texttt{R1} below) 
+must be handled explicitly. In summary, without the modal tactics, 
+a convenient and intuitive correspondence between proof scripts and 
+modal natural deduction proofs would be missing.
+
+\begin{Verbatim}[commandchars=\\\{\},fontsize=\verbsize]
+\Lemma mp_dia_alternative: 
+  [mforall p, mforall q, (dia p) m-> (box (p m-> q)) m-> (dia q)].
+\Proof. mv. 
+intros p q H1 H2. unfold dia. unfold dia in H1. unfold box in H2.
+destruct H1 as [w0 [R1 H1]]. exists w0. split.
+  exact R1.
+  apply H2.
+    exact R1.
+    exact H1.
+\Qed.
+\end{Verbatim}
+
+
+\noindent
+The second useful lemma allows negations to be pushed inside modalities, 
+and again the modal tactics allow this to be proved conveniently and elegantly.
 
 \begin{Verbatim}[commandchars=\\\{\},fontsize=\verbsize]
 \Lemma not_dia_box_not: [mforall p, (m~ (dia p)) m-> (box (m~ p))].
