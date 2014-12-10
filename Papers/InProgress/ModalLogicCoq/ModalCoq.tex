@@ -704,29 +704,80 @@ intros p H1. dia_e H1. box_i. box_e H1 H2. exact H2. eapply transitivity.
 \end{Verbatim}
 
 
-\section{G\"odel's Proof of God's Existence}
+\section{G\"odel's Ontological Argument for God's Existence}
 \label{sec:proof}
+
+In order to demonstrate the efficacy and convenience of the modal
+embedding approach not only for proving simple lemmas and theorems,
+but also for larger developments, we include here a full and detailed
+formalization of Gödel's ontological argument.
 
 Attempts to prove the existence (or non-existence) of God by means of
 abstract ontological arguments are an old tradition in philosophy and
-theology.  
-G\"{o}del's proof \cite{Goedel1970,GoedelNotes} is a modern culmination of
-this tradition, following particularly the footsteps of Leibniz.
-Various slightly different versions of axioms and definitions have
-been considered by G\"{o}del and by several philosophers who commented
-on his proof
-(cf. \cite{sobel2004logic,AndersonGettings,Fitting,Adams,ContemporaryBibliography}). The formalization shown in this section aims at
-being as similar as possible to Dana Scott's version of the proof \cite{ScottNotes}. The formulation and numbering of axioms, definitions and theorems is the same as in Scott's notes. Even the Coq proof scripts follow all the steps in Scott's notes. Scott's assertions are emphasized with comments. In contrast to the formalization in Isabelle \cite{AFP}, where automation via Metis \cite{Hurd03first-orderproof} and Sledgehammer \cite{Sledgehammer} using tools such as Nitpick \cite{Nitpick}, LEO-II \cite{LEO-II} and Satallax \cite{Satallax} has been successfully employed, the formalization in Coq used no automation. This was a deliberate choice, mainly because it allowed a qualitative evaluation of the convenience of the possible world semantic embedding approach for \emph{interactive} theorem proving. Moreover, in order to formalize precisely Scott's version and not another automatically found version, automation would have to be heavily limited anyway. Furthermore, the deliberate preference for simple tactics (mostly \emph{intro}, \emph{apply} and the modal tactics described in the previous section) results in proof scripts that could be read as natural deduction proofs. This hopefully makes the formalization more accessible to those who are not experts in Coq's tactics but are nevertheless interested in G\"odel's proof.
+theology. G\"{o}del's proof \cite{Goedel1970,GoedelNotes} is a
+modern culmination of this tradition, following particularly the
+footsteps of Leibniz. Various slightly different versions of axioms
+and definitions have been considered by G\"{o}del and by several
+philosophers who commented on his proof (cf. 
+\cite{sobel2004logic,AndersonGettings,Fitting,Adams,ContemporaryBibliography}).
+The formalization shown in this section aims at being as similar as
+possible to Dana Scott's version of the proof \cite{ScottNotes}. The
+formulation and numbering of axioms, definitions and theorems is the
+same as in Scott's notes. Even the \Coq proof scripts follow all the
+steps in Scott's notes. Scott's assertions are emphasized with
+comments. In contrast to the formalization in \Isabelle \cite{AFP},
+where automation via \texttt{Metis} \cite{Hurd03first-orderproof} and
+\texttt{Sledgehammer} \cite{Sledgehammer} using tools such as
+\texttt{Nitpick} \cite{Nitpick}, \texttt{LEO-II} \cite{LEO-II} and
+\texttt{Satallax} \cite{Satallax} has been successfully employed, the
+formalization in \Coq used no automation. This was a deliberate
+choice, mainly because it allowed a qualitative evaluation of the
+convenience of the possible world semantic embedding approach for
+\emph{interactive} theorem proving. Moreover, in order to formalize
+precisely Scott's version and not another automatically found version,
+automation would have to be heavily limited anyway. Furthermore, the
+deliberate preference for simple tactics (mostly \emph{intro},
+\emph{apply} and the modal tactics described in Section
+\ref{sec:Tactics}) results in proof scripts that closely correspond to
+natural deduction proofs. This hopefully makes the formalization more
+accessible to those who are not experts in \Coq's tactics but are
+nevertheless interested in G\"odel's proof.
 
+Gödel's proof requires \Coq's classical logic libraries as well as the
+\texttt{Modal} library developed by us and described in sections
+\ref{sec:Embedding} and \ref{sec:Tactics}.
 
 \begin{Verbatim}[commandchars=\\\{\},fontsize=\verbsize]
 \Require \Import Coq.Logic.Classical Coq.Logic.Classical_Pred_Type Modal.
+\end{Verbatim}
 
+\noindent 
+In Scott's notes, classicality occurs in uses of the
+principle of proof by contradiction. Therefore, in order to clearly
+indicate where classical logic is needed in the proof scripts, a
+simple tactic that simulates proof by contradiction can be created:
+
+\begin{Verbatim}[commandchars=\\\{\},fontsize=\verbsize]
 \Ltac proof_by_contradiction H := apply NNPP; intro H.
+\end{Verbatim}
 
+
+\noindent
+Gödel's theory has a single higher-order constant, \texttt{Positive}, 
+which ought to hold for properties considered \emph{positive} in a moral sense.
+
+\begin{Verbatim}[commandchars=\\\{\},fontsize=\verbsize]
 \com{(* Constant predicate that distinguishes positive properties *)}
 \Parameter Positive: (u -> o) -> o.
+\end{Verbatim}
 
+\noindent
+Five axioms are stated by Gödel to characterize positivity. 
+The first three axioms are needed to establish the first theorem and 
+its corollary stating the possibility of God's existence, 
+with God defined as a being possessing all positive properties.
+
+\begin{Verbatim}[commandchars=\\\{\},fontsize=\verbsize]
 \com{(* Axiom A1:} 
 \com{   either a property or its negation is positive, but not both *)}
 \Axiom axiom1a : 
@@ -773,7 +824,15 @@ assert (H3: ((box (mforall x, m~ (p x))) w)). \com{(* Scott *)}
 \com{(* Corollary C1: possibly, God exists *)}
 \Theorem corollary1: [ dia (mexists x, G x) ]. 
 \Proof. mv. apply theorem1. apply axiom3. \Qed.
+\end{Verbatim}
 
+\noindent 
+The second part of the proof consists in showing that if
+God's existence is possible then it must be necessary
+(\texttt{lemma2}), for which the \textbf{S5} principle
+\texttt{dia\_box\_to\_box} is used.
+
+\begin{Verbatim}[commandchars=\\\{\},fontsize=\verbsize]
 \com{(* Axiom A4: positive properties are necessarily positive *)}
 \Axiom axiom4: [ mforall p, (Positive p) m-> box (Positive p) ].
 
