@@ -653,19 +653,12 @@ intro p. intro H. box_i. intro H2. apply H. dia_i w0. exact H2.
 
 
 \section{Modal Logics beyond K}
+\label{sec:BeyondK}
 
-
-\noindent
-The most well-known modal logics can be distinguished by their acceptance of the following reachability axioms. \textbf{S5} is the modal logic that accepts all three.
-
-\begin{Verbatim}[commandchars=\\\{\},fontsize=\verbsize]
-\Axiom reflexivity: \fforall w, r w w.
-\Axiom transitivity: \fforall w1 w2 w3, (r w1 w2) -> (r w2 w3) -> (r w1 w3).
-\Axiom symmetry: \fforall w1 w2, (r w1 w2) -> (r w2 w1).
-\end{Verbatim}
-
-\noindent
-Modal logic ``axioms'' can be derived from the reachability axioms.
+The embedding described in Section \ref{sec:Embedding} and the 
+new tactics described in Section \ref{sec:Tactics} allow convenient 
+interactive reasoning for modal logic \textbf{K} within \Coq. 
+The axiom K is easily derivable:
 
 \begin{Verbatim}[commandchars=\\\{\},fontsize=\verbsize]
 \Theorem K: 
@@ -673,7 +666,25 @@ Modal logic ``axioms'' can be derived from the reachability axioms.
 \Proof. mv. 
 intros p q H1 H2. box_i. box_e H1 H3. apply H3. box_e H2 H4. exact H4. 
 \Qed.
+\end{Verbatim}
 
+\noindent
+For other modal logics beyond \textbf{K}, their frame conditions constraining 
+the reachability relation must be stated as \Coq axioms.
+
+\begin{Verbatim}[commandchars=\\\{\},fontsize=\verbsize]
+\Axiom reflexivity: \fforall w, r w w.
+
+\Axiom transitivity: \fforall w1 w2 w3, (r w1 w2) -> (r w2 w3) -> (r w1 w3).
+
+\Axiom symmetry: \fforall w1 w2, (r w1 w2) -> (r w2 w1).
+\end{Verbatim}
+
+\noindent
+Hilbert-style modal logic axioms, such as for example T, 
+can be easily derived from their corresponding frame conditions:
+
+\begin{Verbatim}[commandchars=\\\{\},fontsize=\verbsize]
 \Theorem T: [ mforall p, (box p) m-> p ].
 \Proof. mv. 
 intro p. intro H. box_e H H1. exact H1. apply reflexivity. 
@@ -681,7 +692,7 @@ intro p. intro H. box_e H H1. exact H1. apply reflexivity.
 \end{Verbatim}
 
 \noindent
-In strong modal logics, such as S5, iterations of modal operators can be collapsed. This is a controversial principle used in G\"odel's and Scott's versions of the proof.
+In strong modal logics, such as S5 (which enforces all three frame conditions specified above), iterations of modal operators can be collapsed. This is a controversial principle used in G\"odel's proof shown in Section \ref{sec:proof}.
 
 \begin{Verbatim}[commandchars=\\\{\},fontsize=\verbsize]
 \Theorem dia_box_to_box: [ mforall p, (dia (box p)) m-> (box p) ].
