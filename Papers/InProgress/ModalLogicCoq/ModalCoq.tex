@@ -53,11 +53,12 @@
 
 
 \title{
-(Interacting with)? \\ Modal Logics in the Coq Proof Assistant
+Interacting with Modal Logics \\
+in the Coq Proof Assistant
 }
 
 \author{
-  Christoph Benzm\"{u}ller\inst{1}\thanks{This work has been supported by the German Research Foundation (DFG) under grant BE2501/9-1.} 
+  Christoph Benzm\"{u}ller\inst{1}\thanks{Supported by the German Research Foundation (DFG) under grant BE2501/9-1.} 
   \and 
   Bruno Woltzenlogel Paleo\inst{2}
 }
@@ -93,20 +94,17 @@
 
 \section{Introduction}
 
-Modal logics extend usual formal logic languages by adding modal
+Modal logics \cite{ModalLogic} extend usual formal logic languages by adding modal
 operators ($\Box$ and $\Diamond$) and are characterized by the
 \emph{necessitation rule}, according to which $\Box A$ is a theorem if
-$A$ is a theorem, although $A \imp \Box A$ is not necessarily a
-theorem. Various informal concepts, such as \emph{necessity and
-possibility}, \emph{knowledge and belief}, \emph and \emph{temporal
-globality and eventuality}, have been formalized with the help of
-modal operators. Therefore, modal logics \cite{ModalLogic} are well-
-established for a wide variety of application domains, ranging from
-philosophy \cite{ToDo} to formal software verification
-\cite{ToDo:TLAPlus}.\footnote{ChrisToBruno: \cite{ModalLogic} should
-  suffice as reference, applications are addressed in Part 4.}
+$A$ is a theorem, even though $A \imp \Box A$ is not necessarily a
+theorem. Various notions, such as \emph{necessity and
+possibility}, \emph{obligation and permission}, 
+\emph{knowledge and belief}, \emph and \emph{temporal
+globality and eventuality}, which are ubiquitous in various application domains,
+have been formalized with the help of modal operators.
 
-However, general automated reasoning support for modal logics is still
+Nevertheless, general automated reasoning support for modal logics is still
 not as well-developed as for classical logics. Deduction tools
 for modal logics are often limited to propositional, quantifier-free,
 fragments \cite{ToDo:SeeBjornsProposal} or tailored to particular
@@ -116,15 +114,13 @@ calculi and connection calculi have only recently been generalized
 and implemented in a few new provers able to directly cope with
 modalities \cite{JensOtten}.
 
-Another recently explored possibility \cite{J23,B9,J22} is the
+Another recently explored possibility is the
 embedding of first-order and even higher-order modal logics into classical
-higher-order logics, for which existing higher-order automated theorem
-provers \cite{LEO-II,Satallax} exist.  Embedding is flexible,
-because various modal logics can be easily supported by adding their
-characteristic axioms.  The embedding approach can also be easily
-adapted to support multiple modalities, and it is possible to replace
-constant domain quantifiers by varying or cumulative domain
-quantifiers.  Moreover, the approach is relatively simple to
+higher-order logics \cite{J23,B9,J22}, 
+for which existing higher-order automated theorem
+provers \cite{LEO-II,Satallax} exist. The embedding approach is flexible,
+because various modal logics (even with multiple modalities or varying/cumulative domain quantifiers) can be easily supported by stating their
+characteristic axioms. Moreover, the approach is relatively simple to
 implement, because it does not require any modification in the source
 code of the higher-order prover. The prover can be used as is, and
 only the input files provided to the prover must be especially
@@ -141,9 +137,8 @@ proof assistant was chosen merely because of the authors' greater
 familiarity with the tactic language of this system. Nevertheless, the
 techniques presented and discussed here are likely to be useful for
 other proof assistants, such as \texttt{Isabelle} \cite{Isabelle} or
-\texttt{HOL-Light} \cite{HOLLight}, as well.}. The main goal of this
-paper is to study this question. Our answer is positive.
-
+\texttt{HOL-Light} \cite{HOLLight}, as well.}. The main goal and novelty
+of this paper is to study this question. Our answer is positive.
 
 One major initial concern was whether the embedding could be a
 disturbance to the user. Fortunately, by using \Coq's \texttt{Ltac}
@@ -155,12 +150,6 @@ modalities can be handled transparently and straightforwardly.
 Therefore, a user with basic knowledge of modal logics and \Coq's
 tactics should be able to use (and extend) our implementation with no
 excessive overhead.
-
-Propositional and quantified modal logics have applications in various
-fields, including, for example, verification, agent technologies,
-artificial intelligence, computational linguistics, and computational
-philosophy. Our contribution may thus serve as a starting point for
-many interesting further projects.
 
 In order to illustrate the use of the implemented embedding, we show
 here the formalization of Scott's version \cite{ScottNotes} of Gödel's
@@ -176,8 +165,8 @@ vast and largely unexplored application domain for automated and
 interactive theorem provers.
 
 The simpler ontological argument of Anselm has been automatically
-verified with \texttt{PVS} by Rushby \cite{Rushby} and with first-
-order theorem provers by Oppenheimer and Zalta \cite{Zalta}. Gödel's
+verified with \texttt{PVS} by Rushby \cite{Rushby} and with 
+first-order theorem provers by Oppenheimer and Zalta \cite{Zalta}. Gödel's
 argument was automatically verified in our previous work on embedding-
 based fully automated modal theorem proving \cite{arXiv,AFP}. This
 paper presents the first fully interactive and detailed formalization
@@ -189,21 +178,29 @@ provers. In comparison to \cite{Rushby,Zalta}, however, our
 contribution stands out with its surprising technical 
 simplicity and elegance. 
 
+In addition to philosophy, propositional and quantified modal logics 
+have (potential) applications in various other fields as well, including, for instance, 
+verification, artificial intelligence
+agent technologies, law and linguistics. \marginpar{BrunoToChris: Do we need citations for these applications?} 
+Therefore, the main contribution described in this paper -- convenient techniques for leveraging a powerful proof assistant such as \Coq for interactive reasoning for modal logics -- may serve as a starting point for
+many interesting projects.
+
 
 \section{The Embedding of Modal Logics in Coq}
 \label{sec:Embedding}
 
-A crucial aspect of modal logics \cite{ModalLogic} is that the so-
-called \emph{necessitation rule} allows $\Box A$ to be derived if $A$
+A crucial aspect of modal logics \cite{ModalLogic} is that the 
+so-called \emph{necessitation rule} allows $\Box A$ to be derived if $A$
 is a theorem, but $A \imp \Box A$ is not necessarily a theorem. Naive
 attempts to define the modal operators $\Box$ and $\Diamond$ may
 easily be unsound in this respect. To avoid this issue, the
 \emph{possible world semantics} of modal logics can be explicitly
 embedded into higher-order logics \cite{J23,B9}.
 
-The embedding is related to labeling techniques \cite{Labels}.
-However, the expressiveness of higher-order logic is exploited here to
-encode the labels within the logical language. To this aim, a type for
+The embedding technique described in this section is 
+related to labeling techniques \cite{Labels}.
+However, the expressiveness of higher-order logic can be exploited in order to
+encode the labels within the logical language itself. To this aim, a type for
 worlds must be declared and modal propositions should be not of type
 \texttt{Prop} but of a lifted type \texttt{o} that depends on possible
 worlds:
@@ -333,12 +330,10 @@ imperative commands that reduce the theorem to be proven (i.e. the
 goal) to simpler subgoals, in a bottom-up manner. The simplest tactics
 can be regarded as rules of a natural deduction calculus\footnote{The
 underlying proof system of \Coq (the Calculus of Inductive
-Constructions \cite{Paulin}) is actually more sophisticated and
+Constructions (CIC) \cite{Paulin}) is actually more sophisticated and
 minimalistic than the calculus shown in Figure
 \ref{fig:NaturalDeduction}. But the calculus shown here suffices for
-the purposes of this paper.} \footnote{ChrisToBruno: We need to briefly address here
-    the fact that this calculus is classical while Coq pure is
-    constructive; one or two sentences should be fine.} 
+the purposes of this paper. This calculus is classical, because of the double negation elimination rule. Although CIC is intuitionistic, it can be made classical by importing \Coq's classical library, which adds the axiom of the \emph{excluded middle} and the double negation elimination lemma.}
 (e.g. as those shown in Figure
 \ref{fig:NaturalDeduction}).  For example: the \texttt{intro} tactic
 can be used to apply the introduction rules for implication and for
@@ -436,8 +431,8 @@ typical tactics for quantifiers can be used, in principle.  However,
 this exposes the user to the technicalities of the embedding,
 requiring him to deal with possible worlds and their reachability
 explicitly. In order to obtain transparency also for the modal
-operators, we have implemented a few specialized tactics using \Coq's
-Ltac language. We present these tactics next.
+operators, we have implemented specialized tactics using \Coq's
+Ltac language. These tactics are among our main contributions and they are described in the remainder of this section.
 
 When applied to a goal of the form \texttt{((box p) w0)}, the tactic
 \texttt{box\_i} will introduce a fresh new world \texttt{w} and then
@@ -544,7 +539,7 @@ assumptions should be discharged within the box where they are created.
 \vspace{1em}
 \end{calculus}
 
-
+\noindent
 Finally, our implementation also provides the tactic \texttt{mv},
 standing for \emph{modal validity}, which replaces a goal of the form
 \texttt{[ p ]} (or equivalently \texttt{(V p)}) by a goal of the form
@@ -687,8 +682,8 @@ intros p q H1 H2. box_i. box_e H1 H3. apply H3. box_e H2 H4. exact H4.
 \end{Verbatim}
 
 \noindent
-For other modal logics beyond \textbf{K}, their frame conditions constraining 
-the reachability relation must be stated as \Coq axioms.
+For other modal logics beyond \textbf{K}, their frame conditions, which constrain 
+the reachability relation, must be stated as \Coq axioms.
 
 \begin{Verbatim}[commandchars=\\\{\},fontsize=\verbsize]
 \Axiom reflexivity: \fforall w, r w w.
@@ -710,7 +705,7 @@ intro p. intro H. box_e H H1. exact H1. apply reflexivity.
 \end{Verbatim}
 
 \noindent
-In strong modal logics, such as S5 (which enforces all three frame conditions specified above), iterations of modal operators can be collapsed. This is a controversial principle used in G\"odel's proof shown in Section \ref{sec:proof}.
+In a strong modal logic such as \textbf{S5} (which requires all three frame conditions specified above), sequences of modal operators can be collapsed to a single modal operator. One such collapsing principle is specified and proven below. By applying it iteratively, any sequence $\pos \ldots \pos \nec p$ could be collapsed to $\nec p$.
 
 \begin{Verbatim}[commandchars=\\\{\},fontsize=\verbsize]
 \Theorem dia_box_to_box: [ mforall p, (dia (box p)) m-> (box p) ].
@@ -847,7 +842,7 @@ assert (H3: ((box (mforall x, m~ (p x))) w)). \com{(* Scott *)}
 \noindent 
 The second part of the proof consists in showing that if
 God's existence is possible then it must be necessary
-(\texttt{lemma2}), for which the \textbf{S5} principle
+(\texttt{lemma2}), for which the controversial \textbf{S5} principle
 \texttt{dia\_box\_to\_box} is used.
 
 \begin{Verbatim}[commandchars=\\\{\},fontsize=\verbsize]
