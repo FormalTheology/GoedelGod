@@ -747,12 +747,12 @@ below with comments. In contrast to the formalization in \Isabelle
 \Coq used no automation. This was a deliberate choice, mainly because
 it allowed a qualitative evaluation of the convenience of the
 embedding approach for \emph{interactive} theorem proving. Moreover,
-in order to formalize precisely Scott's version and not another
-automatically found version, automation would have to be heavily
+in order to formalize exactly Scott's version and not some arbitrary 
+version found automatically, automation would have to be heavily
 limited anyway. Furthermore, the deliberate preference for simple
 tactics (mostly \emph{intro}, \emph{apply} and the modal tactics
 described in Section \ref{sec:Tactics}) results in proof scripts that
-closely correspond to natural deduction proofs. This hopefully makes
+closely correspond to common natural deduction proofs. This hopefully makes
 the formalization more accessible to those who are not experts in
 \Coq's tactics but are nevertheless interested in G\"odel's proof.
 
@@ -766,9 +766,9 @@ Gödel's proof requires \Coq's classical logic libraries as well as the
 
 \noindent 
 In Scott's notes, classicality occurs in uses of the
-principle of proof by contradiction. Therefore, in order to clearly
+principle of proof by contradiction. In order to clearly
 indicate where classical logic is needed in the proof scripts, a
-simple tactic that simulates proof by contradiction can be created:
+simple tactic that simulates proof by contradiction was created:
 
 \begin{Verbatim}[commandchars=\\\{\},fontsize=\verbsize]
 \Ltac proof_by_contradiction H := apply NNPP; intro H.
@@ -785,10 +785,11 @@ which ought to hold for properties considered \emph{positive} in a moral sense.
 \end{Verbatim}
 
 \noindent
-Five axioms are stated by Gödel to characterize positivity. 
-The first three axioms are needed to establish the first theorem and 
-its corollary stating the possibility of God's existence, 
-with God defined as a being possessing all positive properties.
+God is defined as a being possessing all positive properties, and
+five axioms are stated to characterize positivity. 
+The first part of the proof culminates in \texttt{corollary1} and establishes
+that God's existence is possible.
+
 
 \begin{Verbatim}[commandchars=\\\{\},fontsize=\verbsize]
 \com{(* Axiom A1:} 
@@ -842,7 +843,7 @@ assert (H3: ((box (mforall x, m~ (p x))) w)). \com{(* Scott *)}
 \noindent 
 The second part of the proof consists in showing that if
 God's existence is possible then it must be necessary
-(\texttt{lemma2}), for which the controversial \textbf{S5} principle
+(\texttt{lemma2}). The controversial \textbf{S5} principle
 \texttt{dia\_box\_to\_box} is used.
 
 \begin{Verbatim}[commandchars=\\\{\},fontsize=\verbsize]
@@ -915,7 +916,7 @@ ontological argument indicates that the \emph{embedding} of
 higher-order modal
 logics into higher-order logics via the \emph{possible world
 semantics} is a viable approach for fully interactive theorem proving
-within (even non-trivial) modal logics. Our lightweight implementation of the embedding
+within modal logics. Our lightweight implementation of the embedding
 (described in Sections \ref{sec:Embedding} and \ref{sec:Tactics})
 takes special care to hide the underlying possible world machinery
 from the user. An inspection of the proof scripts in Section
@@ -944,10 +945,7 @@ Leibniz --- be very fruitful for both areas.
 The infrastructure that we have implemented for interactive and
 automated reasoning in higher-order modal logics will clearly be
 useful also outside philosophy; the range of potential applications is
-in fact 
-very wide.
-
-
+in fact very wide. 
 
 
 \paragraph{Acknowledgements:} We thank Cedric Auger and Laurent Théry, 
