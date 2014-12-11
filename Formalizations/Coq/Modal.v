@@ -175,6 +175,7 @@ Qed.
 
 Theorem B: [ mforall p, (p m-> (box (dia p))) ].
 Proof.
+(* firstorder using . *) (* This could solve the goal automatically *)
 mv.
 intro p.
 intro H.
