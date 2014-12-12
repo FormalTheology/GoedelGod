@@ -107,7 +107,7 @@ have been formalized with the help of modal operators.
 Nevertheless, general automated reasoning support for modal logics is still
 not as well-developed as for classical logics. Deduction tools
 for modal logics are often limited to propositional, quantifier-free,
-fragments \cite{ToDo:SeeBjornsProposal} or tailored to particular
+fragments \cite{CoLoSS1,CoLoSS2,ConditionalTableaux,COOL,ModalProvers} or tailored to particular
 modal logics and their applications \cite{ToDo:StephanMerz}; 
 first-order automated deduction techniques based on tableaux, sequent
 calculi and connection calculi have only recently been generalized 
@@ -137,7 +137,7 @@ proof assistant was chosen merely because of the authors' greater
 familiarity with the tactic language of this system. Nevertheless, the
 techniques presented and discussed here are likely to be useful for
 other proof assistants, such as \texttt{Isabelle} \cite{Isabelle} or
-\texttt{HOL-Light} \cite{HOLLight}, as well.}. The main goal and novelty
+\texttt{HOL-Light} \cite{HOLLight}, as well.} \cite{Coq}. The main goal and novelty
 of this paper is to study this question. Our answer is positive.
 
 One major initial concern was whether the embedding could be a
@@ -917,7 +917,8 @@ higher-order modal
 logics into higher-order logics via the \emph{possible world
 semantics} is a viable approach for fully interactive theorem proving
 within modal logics. Our lightweight implementation of the embedding
-(described in Sections \ref{sec:Embedding} and \ref{sec:Tactics})
+(available in \cite{FormalTheologyRepository} and described 
+in Sections \ref{sec:Embedding} and \ref{sec:Tactics})
 takes special care to hide the underlying possible world machinery
 from the user. An inspection of the proof scripts in Section
 \ref{sec:proof} shows that this goal has been achieved. The user does
@@ -951,156 +952,9 @@ in fact very wide.
 \paragraph{Acknowledgements:} We thank Cedric Auger and Laurent Théry, 
 for their answers to our questions about Ltac in the Coq-Club mailing-list. 
 
-%\footnotesize
+
 \bibliographystyle{plain}
-%\bibliography{Bibliography}
-\begin{thebibliography}{10}
-
-\bibitem{Adams}
-R.M.~Adams.
-\newblock Introductory note to *1970.
-\newblock In {\em {Kurt G\"odel: Collected Works Vol. 3: Unpublished Essays and
-  Letters}}. Oxford University Press, 1995.
-
-\bibitem{AndersonGettings}
-A.C.~Anderson and M.~Gettings.
-\newblock G\"odel ontological proof revisited.
-\newblock In {\em {G\"odel'96: Logical Foundations of Mathematics, Computer
-  Science, and Physics: Lecture Notes in Logic 6}}. {Springer}, 1996.
-
-\bibitem{JensOtten}
-C.~Benzm{\"u}lller, J. Otten, and Th. Raths.
-\newblock Implementing and Evaluating Provers for First-order Modal
-Logics. 
-\newblock In {\em ECAI 2012}, pages 163-168. IOS Press, 2012.
-
-\bibitem{B9}
-C.~Benzm{\"u}ller and L.C.~Paulson.
-\newblock Exploring properties of normal multimodal logics in simple type
-  theory with {LEO-II}.
-\newblock In {\em {Festschrift in Honor of {Peter B. Andrews} on His 70th
-  Birthday}}, pages 386--406. College Publications.
-
-\bibitem{J23}
-C.~Benzm{\"u}ller and L.C.~Paulson.
-\newblock Quantified multimodal logics in simple type theory.
-\newblock {\em Logica Universalis (Special Issue on Multimodal Logics)},
-  7(1):7--20, 2013.
-
-\bibitem{LEO-II}
-C.~Benzm{\"u}ller, F.~Theiss, L.~Paulson, and A.~Fietzke.
-\newblock {LEO-II} - a cooperative automatic theorem prover for higher-order
-  logic.
-\newblock In {\em Proc. of IJCAR 2008}, volume 5195 of {\em LNAI}, pages
-  162--170. Springer, 2008.
-
-\bibitem{arXiv}
-C.~Benzm{\"u}ller and B.~Woltzenlogel Paleo,
-\newblock Formalization, Mechanization and Automation of G{\"o}del's Proof of God's Existence.
-\newblock {\em {arXiv}}:1308.4526, 2013.
-
-\bibitem{AFP}
-C.~Benzm{\"u}ller and B.~Woltzenlogel Paleo,
-\newblock G{\"o}del's God in Isabelle/HOL. 
-\newblock {\em Archive of Formal Proofs}, 2013.
-
-\bibitem{Coq}
-Y.~Bertot and P.~Casteran.
-\newblock {\em {Interactive Theorem Proving and Program Development}}.
-\newblock Springer, 2004.
-
-\bibitem{ModalLogic}
-P.~Blackburn, J.v.~Benthem, and F.~Wolter (eds.), \newblock {\em {Handbook of Modal Logic}}. Elsevier, 2006.
-
-\bibitem{Sledgehammer}
-J.C.~Blanchette, S.~B\"ohme, and L.C.~Paulson.
-\newblock Extending {Sledgehammer} with {SMT} solvers.
-\newblock {\em Journal of Automated Reasoning}, 51(1):109--128, 2013.
-
-\bibitem{Nitpick}
-J.C.~Blanchette and T.~Nipkow.
-\newblock Nitpick: A counterexample generator for higher-order logic based on a
-  relational model finder.
-\newblock In {\em Proc. of ITP 2010}, no.~6172 in LNCS, pages 131--146.
-  Springer, 2010.
-
-\bibitem{Zalta}
-P.E.~Oppenheimera and E.N.~Zalta.
-\newblock A Computationally-Discovered Simplification of the Ontological Argument.
-\newblock {\em Australasian Journal of Philosophy}, 89(2):333-349, 2011.
-
-\bibitem{Satallax}
-C.E.~Brown.
-\newblock Satallax: An automated higher-order prover.
-\newblock In {\em Proc. of IJCAR 2012}, number 7364 in LNAI, pages 111 -- 117.
-  Springer, 2012.
-
-\bibitem{ContemporaryBibliography}
-R.~Corazzon.
-\newblock Contemporary bibligraphy on the ontological proof
-  (\url{http://www.ontology.co/biblio/ontological-proof-contemporary-biblio.htm}).
-
-\bibitem{Fitting}
-M.~Fitting.
-\newblock {\em {Types, Tableaux and G\"odel's God}}.
-\newblock Kluver Academic Press, 2002.
-
-\bibitem{Labels}
-D.M.~Gabbay. {\em Labelled Deductive Systems}. Clarendon Press, 1996.
-
-\bibitem{Goedel1970}
-K.~G\"odel.
-\newblock Ontological proof.
-\newblock In {\em {Kurt G\"odel: Collected Works Vol. 3: Unpublished Essays and
-  Letters}}. Oxford University Press, 1970.
-
-\bibitem{GoedelNotes}
-K.~G\"odel.
-\newblock {\em Appendix A. Notes in Kurt G\"odel's Hand}, pages 144--145.
-\newblock In  \cite{sobel2004logic}, 2004.
-
-\bibitem{Hazen}
-A.P.~Hazen.
-\newblock On g\"odel's ontological proof.
-\newblock {\em Australasian Journal of Philosophy}, 76:361--377, 1998.
-
-\bibitem{Hurd03first-orderproof}
-J.~Hurd.
-\newblock First-order proof tactics in higher-order logic theorem provers.
-\newblock In {\em Design and Application of Strategies/Tactics in Higher Order
-  Logics, NASA Tech. Rep. NASA/CP-2003-212448}, 2003.
-
-\bibitem{Isabelle}
-T.~Nipkow, L.C. Paulson, and M.~Wenzel.
-\newblock {\em {Isabelle/HOL: A Proof Assistant for Higher-Order Logic}}.
-\newblock Number 2283 in LNCS. Springer, 2002.
-
-\bibitem{Rushby}
-J.~Rushby.
-\newblock The Ontological Argument in PVS. 
-\newblock In {\em Proc.~of CAV Workshop ``Fun With Formal Methods''}, St. Petersburg, Russia, 2013.
-
-\bibitem{ScottNotes}
-D.~Scott.
-\newblock {\em Appendix B. Notes in Dana Scott's Hand}, pages 145--146.
-\newblock In  \cite{sobel2004logic}, 2004.
-
-\bibitem{sobel2004logic}
-J.H.~Sobel.
-\newblock {\em Logic and Theism: Arguments for and Against Beliefs in God}.
-\newblock Cambridge U. Press, 2004.
-
-\bibitem{J22}
-G.~Sutcliffe and C.~Benzm{\"u}ller.
-\newblock Automated reasoning in higher-order logic using the {TPTP THF}
-  infrastructure.
-\newblock {\em Journal of Formalized Reasoning}, 3(1):1--27, 2010.
-
-\bibitem{FormalTheologyRepository}
-B.~Woltzenlogel Paleo and C.~Benzm\"uller.
-\newblock Formal theology repository
-  (\url{https://github.com/FormalTheology/GoedelGod}).
-\end{thebibliography}
+\bibliography{Bibliography}
 
 
 \end{document}
