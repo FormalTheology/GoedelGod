@@ -107,8 +107,8 @@ have been formalized with the help of modal operators.
 Nevertheless, general automated reasoning support for modal logics is still
 not as well-developed as for classical logics. Deduction tools
 for modal logics are often limited to propositional, quantifier-free,
-fragments \cite{CoLoSS1,CoLoSS2,ConditionalTableaux,COOL,ModalProvers} or tailored to particular
-modal logics and their applications \cite{ToDo:StephanMerz}; 
+fragments or tailored to particular
+modal logics and their applications \cite{CoLoSS1,CoLoSS2,ConditionalTableaux,COOL,ModalProvers,Coalescing}; 
 first-order automated deduction techniques based on tableaux, sequent
 calculi and connection calculi have only recently been generalized 
 and implemented in a few new provers able to directly cope with
@@ -160,7 +160,7 @@ it is beyond the reach of specialized propositional and first-order
 (modal) theorem provers. Secondly, this argument addresses an ancient
 problem in Philosophy and Metaphysics, which has nevertheless received
 a lot of attention in the last 15 years, because of the discovery of
-the modal collapse \cite{ToDo}. This proof lies in the center of a
+the modal collapse \cite{Sobel}. This proof lies in the center of a
 vast and largely unexplored application domain for automated and
 interactive theorem provers.
 
@@ -492,11 +492,11 @@ rules\footnote{The natural deduction calculus with the rules from
 Figures \ref{fig:NaturalDeduction} and \ref{fig:NDK} is sound and
 complete relatively to the calculus of Figure
 \ref{fig:NaturalDeduction} extended with a necessitation rule and the
-modal axiom K \cite{ToDo:UnpublishedPaperInGithub}. Therefore,
+modal axiom K \cite{ModalND}. Therefore,
 assuming that the calculus from \ref{fig:NaturalDeduction} is sound
-and Henkin-complete for classical higher-order logic, the additional
-modal rules in Figure \ref{fig:NDK} make it sound and Henkin-complete
-for modal higher-order logic \textbf{K}.} shown in Figure
+and Henkin-complete for classical higher-order logic \cite{NDHenkinCompleteness}, 
+the additional modal rules in Figure \ref{fig:NDK} make it sound and 
+Henkin-complete for modal higher-order logic \textbf{K}.} shown in Figure
 \ref{fig:NDK}. The labels that name boxes in those inference rules are
 precisely the worlds that annotate goals and hypotheses in \Coq with
 the modal embedding. A hypothesis of the form \texttt{(p w)}, where
