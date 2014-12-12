@@ -141,7 +141,7 @@ is illustrated by Lemma3 (Lemma3 has no other purpose here).*}
   -- {* sledgehammer [provers = remote\_leo2] *}
   by (metis A1a A2 A5 Lemma1 NE_def)
 
-  lemma  Lemma3: "[(\<exists>(\<lambda>\<Phi>. P \<Phi>)) m\<rightarrow> (m\<not> (\<exists>i NE))]"
+  lemma  Lemma3: "[(\<exists> P) m\<rightarrow> (m\<not> (\<exists>i NE))]"
   -- {* sledgehammer [provers = remote\_leo2] *}
   by (metis A1a A2 Lemma1 NE_def)
 
