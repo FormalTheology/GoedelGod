@@ -107,7 +107,7 @@ have been formalized with the help of modal operators.
 Nevertheless, general automated reasoning support for modal logics is still
 not as well-developed as for classical logics. Deduction tools
 for modal logics are often limited to propositional, quantifier-free,
-fragments \cite{ToDo:SeeBjornsProposal} or tailored to particular
+fragments \cite{CoLoSS1,CoLoSS2,ConditionalTableaux,COOL,ModalProvers} or tailored to particular
 modal logics and their applications \cite{ToDo:StephanMerz}; 
 first-order automated deduction techniques based on tableaux, sequent
 calculi and connection calculi have only recently been generalized 
@@ -137,7 +137,11 @@ proof assistant was chosen merely because of the authors' greater
 familiarity with the tactic language of this system. Nevertheless, the
 techniques presented and discussed here are likely to be useful for
 other proof assistants, such as \texttt{Isabelle} \cite{Isabelle} or
+<<<<<<< HEAD
 \texttt{HOL Light} \cite{HOLLight}.}. The main goal and novelty
+=======
+\texttt{HOL-Light} \cite{HOLLight}, as well.} \cite{Coq}. The main goal and novelty
+>>>>>>> 94d2d75d5913c7c9b11f92a9d91913bee6af43f4
 of this paper is to study this question. Our answer is positive.
 
 One major initial concern was whether the embedding could be a
@@ -918,7 +922,8 @@ higher-order modal
 logics into higher-order logics via the \emph{possible world
 semantics} is a viable approach for fully interactive theorem proving
 within modal logics. Our lightweight implementation of the embedding
-(described in Sections \ref{sec:Embedding} and \ref{sec:Tactics})
+(available in \cite{FormalTheologyRepository} and described 
+in Sections \ref{sec:Embedding} and \ref{sec:Tactics})
 takes special care to hide the underlying possible world machinery
 from the user. An inspection of the proof scripts in Section
 \ref{sec:proof} shows that this goal has been achieved. The user does
@@ -952,8 +957,9 @@ in fact very wide.
 \paragraph{Acknowledgements:} We thank Cedric Auger and Laurent Th\'ery, 
 for their answers to our questions about Ltac in the Coq-Club mailing-list. 
 
-%\footnotesize
+
 \bibliographystyle{plain}
+<<<<<<< HEAD
 %\bibliography{Bibliography}
 \begin{thebibliography}{10}
 
@@ -1125,6 +1131,9 @@ B.~Woltzenlogel Paleo and C.~Benzm\"uller.
 \newblock Formal theology repository
   (\url{https://github.com/FormalTheology/GoedelGod}).
 \end{thebibliography}
+=======
+\bibliography{Bibliography}
+>>>>>>> 94d2d75d5913c7c9b11f92a9d91913bee6af43f4
 
 
 \end{document}
