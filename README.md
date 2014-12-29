@@ -35,11 +35,11 @@ executes our remote call script on many of the available files.
 Scientific Publications
 -----------------------
 
-Peer-reviewed scientific publications describing and explaining the
-formalizations can be found in the [Papers Folder](https://github.com/
-FormalTheology/GoedelGod/blob/master/Papers/). If you would like to
-cite these papers, you can use the bibligraphical information
-available in our [bibtex file](https://github.com/FormalTheology/Goede
-lGod/blob/master/Papers/Papers.bib).
+Have a look on our [Papers](https://github.com/FormalTheology/GoedelGod/tree/master/Papers/). 
+There are short invited abstracts as well as full-length peer-
+reviewed scientific publications describing and explaining
+the formalizations. 
+If you would like to cite these papers, you may use the bibligraphical
+information available in our [bibtex file](https://github.com/FormalTheology/GoedelGod/tree/master/Papers/Papers.bib).
 
 
