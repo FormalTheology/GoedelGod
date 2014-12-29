@@ -4,6 +4,11 @@ Computer-Assisted Theoretical Philosophy
 This repository contains 
 computer-assisted formalizations 
 of ontological proofs. 
+
+
+Formalizations
+--------------
+
 The [formalizations](https://github.com/FormalTheology/GoedelGod/tree/master/Formalizations) 
 use three kinds of tools:
 
@@ -25,3 +30,16 @@ or use our [remote call script](https://github.com/FormalTheology/GoedelGod/blob
 which will call provers installed remotely in a server in Miami. 
 The [ECAI script](https://github.com/FormalTheology/GoedelGod/blob/master/Formalizations/THF/Run_ECAI2014_Experiments.sh) 
 executes our remote call script on many of the available files.
+
+
+Scientific Publications
+-----------------------
+
+Peer-reviewed scientific publications describing and explaining the
+formalizations can be found in the [Papers Folder](https://github.com/
+FormalTheology/GoedelGod/blob/master/Papers/). If you would like to
+cite these papers, you can use the bibligraphical information
+available in our [bibtex file](https://github.com/FormalTheology/Goede
+lGod/blob/master/Papers/Papers.bib).
+
+
