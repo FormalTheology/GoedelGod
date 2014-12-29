@@ -43,3 +43,32 @@ If you would like to cite these papers, you may use the bibligraphical
 information available in our [bibtex file](https://github.com/FormalTheology/GoedelGod/tree/master/Papers/Papers.bib).
 
 
+What do these proofs prove exactly?
+-----------------------------------
+
+In formal logic, every proof is a rigorous derivation of a theorem
+from a set of assumed axioms, using strict and mathematically well-
+defined inference rules. In any theory (independently of whether it
+is about physical objects, such as atoms or planets, or about
+metaphysical notions, such as gods), the axioms are always assumed
+without proof. Therefore, they are open for critical debate (including
+empirical considerations). What formal logic and the automated
+reasoning systems based on it guarantee is that if you accept the
+axioms and the inference rules, then you can safely accept the proven
+theorems. Nothing else.
+
+Logic is at the very heart of the scientific method, which
+consists of formulating theories (i.e. sets of axioms), using them for
+obtaining predictions (i.e. theorems) and revising them when
+necessary. 
+
+
+Why are we doing this?
+----------------------
+
+These proofs require special kinds of formal logics known as *higher-order modal logics*. They are called *modal* because they allow reasoning with modal adverbs such as *necessarily* and *possibly*. And they are called *higher-order* because they allow reasoning not only about objects, but also about properties of objects.
+
+Before we started working on these proofs, there was no automated reasoning technology capable of dealing with such logics. Therefore, the formalisation of these proofs seemed like a challenging goal to motivate the development of this technology, which is potentially useful outside philosophy as well.
+
+Moreover, we hope that the media attention gathered by this work will bring a higher level of awareness of formal logic to the general public. 
+
