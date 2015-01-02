@@ -217,21 +217,25 @@ if $\rho$ is a $\ex_E$ inference introducing a variable $\beta$, then any occurr
 \s\s\s\s
 \infer[\nec_E]{w: \fbox{ \infer*{}{A} } }{\nec A}
 
-% \vspace{2em}
+\vspace{2em}
 
-% \s\s\s\s
-% \infer[\pos_I]{\pos A}{w: \fbox{\infer*{A}{}} }
-% \s\s\s\s\s
-% \infer[\pos_E]{\omega: \fbox{ \infer*{}{A} } }{\pos A}
+\s\s\s\s
+\infer[\pos_I]{\pos A}{w: \fbox{\infer*{A}{}} }
+\s\s\s\s
+\infer[\pos_E]{\omega: \fbox{ \infer*{}{A} } }{\pos A}
 
 \vspace{1em}
 
+
 \begin{center}
 \textbf{eigen-box condition:}\\ 
-$\omega$ must be a fresh name for a box. \\
+$\nec_I$ and $\pos_E$ are \emph{strong} modal rules: \\
+$\omega$ must be a fresh name for the box they access \\ 
+(in analogy to the eigen-variable condition for strong quantifier rules). \\
+Every box must be accessed by \emph{exactly one} strong modal inference. \\
 \vspace{0.5em}
 \textbf{boxed assumption condition:} \\
-assumptions should be discharged within the box where they are made.
+assumptions should be discharged within the box where they are created.
 \end{center}
 
 \vspace{1em}
@@ -247,12 +251,8 @@ The calculus having only the rules shown in Figures \ref{fig:PropositionalRules}
 
 \subsection{Suitability for Rigid Higher-Order Modal Logic K}
 
-Adding the modal rules results in a calculus that is suitable for the basic normal modal logic K.
+Adding the modal rules results in a calculus that is suitable for the basic normal modal logic \textbf{K}.
 In other words, {\NDK} is sound and complete relative to {\ND} extended with axiom K ($\nec(A\imp B)\imp (\nec A\imp \nec B)$) and the necessitation rule (which establishes that $\nec A$ is a theorem if $A$ is a theorem).
-
-The straightforward combinations of the quantifier rules of {\ND} either with the modal rules of {\NDK} or with axiom K and the necessitation rule are suitable for a higher-order modal logic where constants and variables are \emph{rigid}. From the point of view of a \emph{possible worlds} semantics, rigidity means that their interpretation is independent of the world in which they are being interpreted. Rigidity is silently assumed by most works investigating the ontological argument, and is explicitly assumed here. Nevertheless, it should be noted that its adequacy has already been contested \cite{fitting}.
-
-ToDo: Talk about constant domains and varying domains, mention Conchiarella's semantics and Anderson's footnote 14.
 
 
 \begin{theorem}
@@ -353,7 +353,14 @@ For $n > 1$, the translation is a straightforward generalization:
 
 \end{proof}
 
+Without the restriction that every box must be accessed by exactly one strong modal inference, the calculus would be unsound for the modal logic \textbf{K}, because the formula $\all \psi. (\nec \psi \imp \pos \psi)$ would be derivable although it is not valid in \textbf{K}.
 
+ToDo: show example of unsound derivation.
+
+
+The straightforward combinations of the quantifier rules of {\ND} either with the modal rules of {\NDK} or with axiom K and the necessitation rule are suitable for a higher-order modal logic where constants and variables are \emph{rigid}. From the point of view of a \emph{possible worlds} semantics, rigidity means that their interpretation is independent of the world in which they are being interpreted. Rigidity is silently assumed by most works investigating the ontological argument, and is explicitly assumed here. Nevertheless, it should be noted that its adequacy has already been contested \cite{fitting}.
+
+ToDo: Talk about constant domains and varying domains, mention Conchiarella's semantics and Anderson's footnote 14.
 
 
 
