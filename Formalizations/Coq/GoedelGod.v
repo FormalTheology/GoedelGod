@@ -190,7 +190,7 @@ cut (dia (box (mexists x, G x)) w).
   apply dia_box_to_box.
   cut (dia (mexists x, G x) w).
     intro H1.
-    apply (modus_ponens_inside_dia w (mexists z, G z)).
+    apply (mp_dia w (mexists z, G z)).
     exact H1.
      
     
