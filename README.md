@@ -43,8 +43,11 @@ If you would like to cite these papers, you may use the bibligraphical
 information available in our [bibtex file](https://github.com/FormalTheology/GoedelGod/tree/master/Papers/Papers.bib).
 
 
-What do these proofs prove exactly?
------------------------------------
+Frequently Asked Questions
+--------------------------
+
+
+** What do these proofs prove exactly? **
 
 In formal logic, every proof is a rigorous derivation of a theorem
 from a set of assumed axioms, using strict and mathematically well-
@@ -63,8 +66,13 @@ obtaining predictions (i.e. theorems) and revising them when
 necessary. 
 
 
-Why are we doing this?
-----------------------
+** Is the "god" of ontological proofs the same "god" of common religions? **
+
+
+** Isn't it impossible to prove god's existence by pure reason? **
+
+
+** How is this useful? **
 
 These proofs require special kinds of formal logics known as *higher-order modal logics*. They are called *modal* because they allow reasoning with modal adverbs such as *necessarily* and *possibly*. And they are called *higher-order* because they allow reasoning not only about objects, but also about properties of objects.
 
