@@ -108,7 +108,9 @@ Nevertheless, general automated reasoning support for modal logics is still
 not as well-developed as for classical logics. Deduction tools
 for modal logics are often limited to propositional, quantifier-free,
 fragments or tailored to particular
-modal logics and their applications \cite{CoLoSS1,CoLoSS2,ConditionalTableaux,COOL,ModalProvers,Coalescing}; 
+modal logics and their applications 
+%\cite{CoLoSS1,CoLoSS2,ConditionalTableaux,COOL,ModalProvers,Coalescing}; 
+\cite{ModalProvers}; 
 first-order automated deduction techniques based on tableaux, sequent
 calculi and connection calculi have only recently been generalized 
 and implemented in a few new provers able to directly cope with
@@ -116,7 +118,7 @@ modalities \cite{JensOtten}.
 
 Another recently explored possibility is the embedding of first-order
 and even higher-order modal logics into classical higher-order logics
-\cite{J23,B9,J22}, for which existing higher-order automated theorem
+\cite{J23,B9}, for which existing higher-order automated theorem
 provers \cite{LEO-II,Satallax} exist. The embedding approach is
 flexible, because various modal logics (even with multiple modalities
 or varying/cumulative domain quantifiers) can be easily supported by
@@ -726,12 +728,16 @@ formalization of G\"odel's ontological argument.
 
 Attempts to prove the existence (or non-existence) of God by means of
 abstract ontological arguments are an old tradition in philosophy and
-theology. G\"{o}del's proof \cite{Goedel1970,GoedelNotes} is a modern
+theology. G\"{o}del's proof 
+%\cite{Goedel1970,GoedelNotes} 
+\cite{Goedel1970} 
+is a modern
 culmination of this tradition, following particularly the footsteps of
 Leibniz. Various slightly different versions of axioms and definitions
 have been considered by G\"{o}del and by several philosophers who
 commented on his proof (cf.
-\cite{sobel2004logic,AndersonGettings,Fitting,Adams,ContemporaryBibliography}).
+%\cite{sobel2004logic,AndersonGettings,Fitting,Adams,ContemporaryBibliography}).
+\cite{sobel2004logic,Fitting,ContemporaryBibliography}).
 The formalization shown in this Section aims at being as similar as
 possible to Dana Scott's version of the proof \cite{ScottNotes}. The
 formulation and numbering of axioms, definitions and theorems is the
@@ -739,9 +745,10 @@ same as in Scott's notes. Even the \Coq proof scripts follow precisely
 all the steps in Scott's notes. Scott's assertions are emphasized
 below with comments. In contrast to the formalization in \Isabelle
 \cite{AFP}, where automation via \texttt{Metis}
-\cite{Hurd03first-orderproof} and \texttt{Sledgehammer}
-\cite{Sledgehammer} using tools such as \texttt{Nitpick}
-\cite{Nitpick}, \texttt{LEO-II} \cite{LEO-II} and \texttt{Satallax}
+%\cite{Hurd03first-orderproof} 
+and \texttt{Sledgehammer}
+%\cite{Sledgehammer} 
+using tools such \texttt{LEO-II} \cite{LEO-II} and \texttt{Satallax}
 \cite{Satallax} has been successfully employed, the formalization in
 \Coq used no automation. This was a deliberate choice, mainly because
 it allowed a qualitative evaluation of the convenience of the
@@ -947,7 +954,7 @@ domain of theoretical philosophy can --- as already pictured by
 Leibniz --- be very fruitful for both areas. 
 
 The infrastructure that we have implemented for interactive and
-automated reasoning in higher-order modal logics will clearly be
+automated reasoning in higher-order modal logics is clearly
 useful also outside philosophy; the range of potential applications is very wide. 
 
 
@@ -955,6 +962,7 @@ useful also outside philosophy; the range of potential applications is very wide
 for their answers to our questions about Ltac in the Coq-Club mailing-list. 
 
 
+\footnotesize
 \bibliographystyle{plain}
 \bibliography{Bibliography}
 
