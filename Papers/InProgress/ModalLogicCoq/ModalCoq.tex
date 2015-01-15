@@ -133,11 +133,11 @@ reasoning.
 However, one may wonder whether the embedding approach is adequate
 also for \emph{interactive} reasoning, when the user proves theorems
 by interacting with a proof assistant such as \Coq\footnote{The \Coq
-proof assistant was chosen merely because of the authors' greater
+proof assistant was chosen because of the authors' greater
 familiarity with the tactic language of this system. Nevertheless, the
-techniques presented and discussed here are likely to be useful for
-other proof assistants, such as \texttt{Isabelle} \cite{Isabelle} or
-\texttt{HOL Light} \cite{HOLLight}.}. The main goal and novelty
+techniques presented here are likely to be useful for
+other proof assistants (e.g \texttt{Isabelle} \cite{Isabelle},
+\texttt{HOL-Light} \cite{HOLLight}).}. The main goal and novelty
 of this paper is to study this question. Our answer is positive.
 
 One major initial concern was whether the embedding could be a
@@ -145,7 +145,7 @@ disturbance to the user. Fortunately, by using \Coq's \texttt{Ltac}
 tactic language, we were able to define intuitive new tactics that
 hide the technical details of the embedding from the user. The
 resulting infra-structure for modal reasoning within \Coq (as
-described in Section \ref{sec:Embedding}) provides a user experience where
+described in Sections \ref{sec:Embedding} and \ref{sec:Tactics}) provides a user experience where
 modalities can be handled transparently and straightforwardly.
 Therefore, a user with basic knowledge of modal logics and \Coq's
 tactics should be able to use (and extend) our implementation with no
@@ -164,22 +164,24 @@ the modal collapse \cite{Sobel,sobel2004logic}. This proof lies in the center of
 vast and largely unexplored application domain for automated and
 interactive theorem provers.
 
-The simpler ontological argument of Anselm has been automatically
+The ontological argument of Anselm has been automatically
 verified with \texttt{PVS} by Rushby \cite{Rushby} and with 
-first-order theorem provers by Oppenheimer and Zalta \cite{Zalta}. G\"odel's
-argument was automatically verified in our previous work on embedding-
-based fully automated modal theorem proving \cite{arXiv,AFP}. This
-paper presents the first fully interactive and detailed formalization
-of this proof in a proof assistant. Hence we here reveal the proof
-structure on a cognitively adequate level of
-detail. Such detailed proof structure has been hidden in our
-other papers on the subject due to the use of automated theorem
-provers. In comparison to \cite{Rushby,Zalta}, however, our
+first-order theorem provers by Oppenheimer and Zalta \cite{Zalta}. 
+In comparison, our
 contribution stands out with its surprising technical 
-simplicity and elegance. 
+simplicity and elegance, despite the greater complexity
+of G\"odel's argument. 
+
+G\"odel's argument was automatically verified in our previous work on fully automated modal theorem proving based on embedding \cite{arXiv,AFP}. 
+This paper presents the first fully interactive and detailed formalization
+of this proof in a proof assistant. The proof
+structure, which has been hidden in our
+other papers on the subject due to the use of automated theorem
+provers, is revealed here on a cognitively adequate level of
+detail. 
 
 In addition to philosophy, propositional and quantified modal logics 
-have (potential) applications in various other fields as well, including, for instance, 
+have (potential) applications in various other fields, including, for instance, 
 verification, artificial intelligence
 agent technologies, law and linguistics (cf.~\cite{ModalLogic} and the references therein).
 Therefore, the main contribution described in this paper -- convenient techniques for leveraging a powerful proof assistant such as \Coq for interactive reasoning for modal logics -- may serve as a starting point for
