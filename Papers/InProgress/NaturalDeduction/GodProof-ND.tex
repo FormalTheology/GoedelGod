@@ -362,6 +362,38 @@ The straightforward combinations of the quantifier rules of {\ND} either with th
 
 ToDo: Talk about constant domains and varying domains, mention Conchiarella's semantics and Anderson's footnote 14.
 
+\section{A distribution principle and axiom B}
+
+To prove G\"odel's ontological proof in natural deduction we will prove that a distribution principle is derivable and state Brouwer's reduction theorem. 
+
+\begin{lemma}\label{DP}
+The distribution principle 
+$$\nec (A\imp B)\imp(\pos A\imp \pos B)$$
+is provable in our system K of modal logic. 
+\end{lemma}
+
+\begin{proof}\hfill
+
+\begin{small}
+\begin{prooftree}
+\AXC{$ $} \dashedLine\RightLabel{2}
+\UIC{$\nec (A\imp B)$}\RightLabel{$\nec_E$}
+\UIC{$\omega: A\imp B$}
+\AXC{$ $} \dashedLine\RightLabel{1}
+\UIC{$\pos A$}\RightLabel{$\pos_E$}
+\UIC{$\omega: A$}\RightLabel{$\imp_E$}
+\BIC{$\omega: B$} \RightLabel{$\pos_I$}
+\UIC{$\pos B$}\RightLabel{$\imp_I^1$}
+\UIC{$\pos A\imp \pos B$}\RightLabel{$\imp_I^2$}
+\UIC{$\nec (A\imp B)\imp(\pos A\imp \pos B)$}
+\end{prooftree}
+\end{small}
+
+\end{proof}
+
+Brouwer's reduction theorem is a version of axiom B for modal logic and a property that enforces symmetry as a geometric property for the frame of a Kripke sematics for modal logic. \citep{negri}
+%See the following for a discussion about axiom B: http://plato.stanford.edu/entries/logic-modal/
+
 
 
 \section{Scott's Proof in Natural Deduction}
@@ -392,59 +424,79 @@ $$
 $$
 \end{axiom}
 
-
 \section{New Proof}
-
 \setcounter{axiom}{0}
 \setcounter{lemma}{0}
 \setcounter{theorem}{0}
 \setcounter{corollary}{0}
-
-
 \subsection{Possibly, God Exists}
-
-
-
 \begin{axiom}
 \label{A1}
 Either a property or its negation is positive, but not both:
+Axiom schema, for all $\varphi$:
 $$
-\all \varphi. [P(\neg \varphi) \biimp \neg P(\varphi)]
+P(\neg \varphi) \biimp \neg P(\varphi)
 $$
 \end{axiom}
-
 \begin{axiom}
 \label{A2}
 A property necessarily implied by a positive property is positive:
+Axiom schema, for all $\varphi$ and $\psi$: 
 $$
-\all \varphi. \all \psi.[(P(\varphi) \wedge \nec \all x.[\varphi(x) \imp \psi(x)]) \imp P(\psi)]
+(P(\varphi) \wedge \nec \all x.[\varphi(x) \imp \psi(x)]) \imp P(\psi)
 $$
 \end{axiom}
-
-
 \begin{theorem}
 \label{T1}
 Positive properties are possibly exemplified:
+Axiom schema, for all $\varphi$:
 $$
-\all \varphi. [P(\varphi) \imp \pos \ex x.\varphi(x)]
+P(\varphi) \imp \pos \ex x.\varphi(x)
 $$
 \end{theorem}
 \begin{proof} \hfill
-\begin{prooftree}
-        \AXC{Axiom \ref{A2}} \dashedLine
-        \UIC{$ \all \varphi. \all \psi.[(P(\varphi) \wedge \nec \all x.[\varphi(x) \imp \psi(x)]) \imp P(\psi)]$} \RightLabel{$\all_E$}
-        \UIC{$ \all \psi.[(P(\rho) \wedge \nec \all x.[\rho(x) \imp \psi(x)]) \imp P(\psi)]$} \RightLabel{$\all_E$}
-        \UIC{$(P(\rho) \wedge \nec \all x.[\rho(x) \imp \neg \rho(x)]) \imp P(\neg \rho)$} \doubleLine
-        \UIC{$(P(\rho) \wedge \nec \all x.[\neg \rho(x)]) \imp P(\neg \rho)$}
-                        \AXC{Axiom \ref{A1}} \dashedLine
-                        \UIC{$\all \varphi.[ P(\neg \varphi) \biimp \neg P(\varphi) ]$} \RightLabel{$\all_E$}
-                        \UIC{$ P(\neg \rho) \biimp \neg P(\rho) $} \doubleLine
-                 \BIC{$ (P(\rho) \wedge \nec \all x.[\neg \rho(x)]) \imp \neg P(\rho) $} \doubleLine
-                 \UIC{$ P(\rho) \imp \pos \ex x.\rho(x) $} \RightLabel{$\all_I$}
-                 \UIC{$\all \varphi.[ P(\varphi) \imp \pos \ex x.\varphi(x) ] $}
-\end{prooftree}
-\end{proof}
 
+\begin{prooftree}
+
+
+\AXC{$[P(\rho)]^3$} 
+\AXC{$[\nec \neg \ex x.\rho(x) ]^2$} \RightLabel{$\nec_E$}
+\UIC{$\neg \ex x.\rho(x) $} 
+\AXC{$[\rho(x)]^1$} \RightLabel{$\ex_I$}
+\UIC{$\ex x.\rho(x) $} \RightLabel{$\imp_E$}
+\BIC{$ \bot $}\RightLabel{$\imp_I, 1$}
+\UIC{$ \neg \rho(x) $} \RightLabel{$\imp_I$}
+\UIC{$ \rho(x) \imp \neg \rho(x) $} \RightLabel{$\all_I$}
+\UIC{$ \all x.(\rho(x) \imp \neg \rho(x)) $}  \RightLabel{$\nec_I$}
+\UIC{$ \nec \all x.(\rho(x) \imp \neg \rho(x)) $}\RightLabel{$\wedge_I$}
+\BIC{$ P(\rho) \wedge \nec \all x.[\rho(x) \imp \neg \rho(x)]$}
+\AXC{Axiom \ref{A2} for $\rho$ and $\neg\rho$} \dashedLine
+\UIC{$(P(\rho) \wedge \nec \all x.[\rho(x) \imp \neg \rho(x)]) \imp P(\neg \rho)$} \RightLabel{$\imp_E$}
+\BIC{$P(\neg \rho)$} \RightLabel{$\imp_E$}
+\end{prooftree}
+
+
+
+
+
+\begin{prooftree}
+\AXC{$ $} \dashedLine
+\UIC{$P(\neg \rho)$} \RightLabel{$\imp_E$}
+\AXC{Half of axiom \ref{A1}} \dashedLine
+\UIC{$ P(\neg \rho) \imp \neg P(\rho) $}  \RightLabel{$\imp_E$}
+\BIC{$\neg P(\rho) $} 
+\AXC{$[P(\rho)]^3$} 
+\BIC{$\bot$} \RightLabel{$\imp_I, 2$}
+\UIC{$ \neg \nec \neg \ex x.\rho(x)$} \dashedLine \RightLabel{definition of $\pos$}
+\UIC{$ \pos \ex x.\rho(x)$}  \RightLabel{$\imp_I, 3$}
+\UIC{$ P(\rho) \imp \pos \ex x.\rho(x) $} 
+
+\end{prooftree}
+
+
+
+
+\end{proof}
 \begin{definition}
 \label{D1}
 A \emph{God-like} being possesses all positive properties:
@@ -453,6 +505,7 @@ G(x) \biimp \forall \varphi. [P(\varphi) \to \varphi(x)]
 $$
 \end{definition}
 
+
 \begin{axiom}
 \label{A3}
 The property of being God-like is positive:
@@ -460,7 +513,6 @@ $$
 P(G)
 $$
 \end{axiom}
-
 \begin{corollary}
 \label{C1}
 Possibly, God exists:
@@ -472,23 +524,13 @@ $$
 \begin{prooftree}
 \AXC{Axiom \ref{A3}} \dashedLine
 \UIC{$P(G)$}
-                 \AXC{Theorem \ref{T1}} \dashedLine
-                 \UIC{$\all \varphi.[ P(\varphi) \imp \pos \ex x.\varphi(x) ]$} \RightLabel{$\all_E $}
-                 \UIC{$ P(G) \imp \pos \ex x.G(x) $} \RightLabel{$\imp_E$}
-    \BIC{$\pos \ex x. G(x)$}
+\AXC{Theorem \ref{T1} for G} \dashedLine
+\UIC{$ P(G) \imp \pos \ex x.G(x) $} \RightLabel{$\imp_E$}
+\BIC{$\pos \ex x. G(x)$}
 \end{prooftree}
 \end{proof}
 
-
-\subsection{Being God is an essence of any God}
-
-\begin{axiom}
-\label{A4}
-Positive properties are necessarily positive:
-$$
-\all \varphi.[P(\varphi) \to \Box \; P(\varphi)]
-$$
-\end{axiom}
+\subsection{If God exists, then God necessarily exists}
 
 \begin{definition}
 \label{D2}
@@ -499,98 +541,6 @@ $$
 \end{definition}
 
 
-\begin{theorem}
-\label{T2}
-Being God-like is an essence of any God-like being:
-$$
-\all y.[G(y) \imp \ess{G}{y}]
-$$
-\end{theorem}
-\begin{proof}
-Let the following derivation with the open assumption $G(x)$ be $\Pi_1[G(x)]$:
-
-\begin{prooftree}
-\AXC{$ \neg P(\psi)^1$}
-       \AXC{Axiom \ref{A1}} \dashedLine
-       \UIC{$\forall \varphi.(\neg P(\varphi)\imp P(\neg\varphi))$}\RightLabel{$\all_E$}
-       \UIC{$\neg P(\psi)\imp P(\neg\psi)$}\RightLabel{$\imp_E$}
- \BIC{$P(\neg\psi)$}\RightLabel{}
-                   \AXC{$G(x)$} \dottedLine\RightLabel{D\ref{D1}}
-                 \UIC{$\forall \varphi .(P(\varphi)\imp \varphi(x))$}\RightLabel{$\forall_E$}
-                      \UIC{$P(\neg \psi)\imp \neg \psi(x)$}\RightLabel{$\imp_E$}
-           \BIC{$ \neg \psi(x)$}\RightLabel{$\imp_E$}
-            \AXC{$ \psi(x)^2$} \RightLabel{$\imp_E$}
-             \BIC{$\bot $}\RightLabel{$\imp_I^1$}
-             \UIC{$\neg \neg P(\psi)$}\RightLabel{$\neg\neg_E$}
-              \UIC{$ P(\psi)$}\RightLabel{$\imp_I^2$}
-              \UIC{$ \psi(x)\imp P(\psi)$}
-\end{prooftree}
-
-
-\noindent
-Let the following derivation with the open assumption $G(x)$ be $\Pi_2[G(x)]$:
-\begin{prooftree}
-       \AXC{$\psi(x)^3$}
-                     \AXC{$\Pi_1[G(x)] $} \dashedLine
-                \UIC{$\psi(x)\imp P(\psi)$}\RightLabel{$\imp_E$}
-                       \BIC{$P(\psi)$}
-                 \AXC{Axiom \ref{A4}} \dashedLine
-                \UIC{$\all \varphi .(P(\varphi)\imp \Box P(\varphi))$}\RightLabel{$\all_E$}
-                 \UIC{$P(\psi)\imp \Box P(\psi)$}\RightLabel{$\imp_E$}
-           \BIC{$\Box P(\psi)$}\RightLabel{$\imp_I^3$}
-           \UIC{$\psi(x)\imp\Box P(\psi)$}
-\end{prooftree}
-
-\noindent
-Let the following derivation without open assumptions be $\Pi_3$:
-
-\begin{prooftree}
-       \AXC{$P(\psi)^4$}
-                     \AXC{$G(x)^5$} \dottedLine\RightLabel{D\ref{D1}}
-                \UIC{$\all\varphi .(P(\varphi)\imp \varphi(x))$}\RightLabel{$\all_E$}
-                \UIC{$P(\psi)\imp \psi(x)$}\RightLabel{$\imp_E$}
-                       \BIC{$\psi(x)$}\RightLabel{$\imp_I^5$}
-                       \UIC{$G(x)\imp \psi(x)$}\RightLabel{$\all_I$}
-                \UIC{$\all x .(G(x)\imp \psi(x))$} \RightLabel{$\imp_I^4$}
-                \UIC{$P(\psi)\imp \forall x .(G(x)\imp \psi(x))$}
-\end{prooftree}
-
-\noindent
-Let the following derivation with the open assumption $G(x)$ be $\Pi_4[G(x)]$:
-\begin{prooftree}
-       \AXC{$\psi(x)^6 $} \RightLabel{}
-                     \AXC{$\Pi_2$} \dashedLine
-                \UIC{$\psi(x)\imp\Box P(\psi)$}\RightLabel{$\imp_E$}
-                \BIC{$\Box P(\psi)$}
-                         \AXC{$\Box P(\psi)^7 $}\RightLabel{$\Box_E$}
-                               \UIC{$P(\psi)$}
-                                \AXC{$\Pi_3$} \dashedLine\RightLabel{}
-                                       \UIC{$P(\psi)\imp \all x .(G(x)\imp \psi(x))$}\RightLabel{$\imp_E$}
-                               \BIC{$\all x .(G(x)\imp \psi(x))$}\RightLabel{$\Box_I$}
-                        \UIC{$\Box \all x .(G(x)\imp \psi(x))$} \RightLabel{$\imp_I^7$}
-                        \UIC{$\Box P(\psi)\imp \Box \all x .(G(x)\imp \psi(x))$} \RightLabel{$\imp_E$}
-                  \BIC{$\Box \all x .(G(x)\imp \psi(x))$}\RightLabel{$\imp_I^6$}
-           \UIC{$\psi(x)\imp\Box \all x .(G(x)\imp \psi(x))$}
-\end{prooftree}
-
-
-\noindent
-The use of the necessitation rule above is correct, because the only open assumption $\Box P(\psi)$ is boxed. In the derivation of Theorem \ref{T2} below, the assumption $G(x)$ in the subderivation $\Pi_4[G(x)^8]$ is discharged by the rule labeled $8$.
-
-\begin{prooftree}
-       \AXC{$G(x)^8 $} \RightLabel{}
-                     \AXC{$\Pi_4[G(x)^8]$} \dashedLine
-                \UIC{$\psi(x)\imp\Box \all x .(G(x)\imp \psi(x))$}\RightLabel{$\all_I$}
-                \UIC{$\all \psi .(\psi(x)\imp\Box \all x .(G(x)\imp \psi(x)))$}\RightLabel{$\wedge_I$}
-                \BIC{$G(x)\wedge \forall \psi .(\psi(x)\imp\Box \all x .(G(x)\imp \psi(x)))$}\dottedLine\RightLabel{D\ref{D2}}
-                               \UIC{$\ess{G}{x}$} \RightLabel{$\imp_I^8$}
-                        \UIC{$G(x)\imp \ess{G}{x}$} \RightLabel{$\all_I$}
-                         \UIC{$\all y.[G(y) \imp \ess{G}{y}]$}
-\end{prooftree}
-\end{proof}
-
-\subsection{If God's existence is possible, it is necessary}
-
 \begin{definition}
 \label{D3}
 \emph{Necessary existence} of an individual is the necessary exemplification of all its essences:
@@ -598,7 +548,6 @@ $$
 E(x) \biimp \all \varphi.[\ess{\varphi}{x} \imp \nec \ex y.\varphi(y)]
 $$
 \end{definition}
-
 \begin{axiom}
 \label{A5}
 Necessary existence is a positive property:
@@ -606,7 +555,6 @@ $$
 P(E)
 $$
 \end{axiom}
-
 \begin{lemma}
 \label{L1}
 If there is a God, then necessarily there exists a God:
@@ -614,6 +562,10 @@ $$
 \ex z. G(z) \imp \nec \ex x. G(x)
 $$
 \end{lemma}
+
+
+
+
 \begin{proof} \hfill
 \begin{prooftree}
 \AXC{$ $} \RightLabel{1}
@@ -621,121 +573,89 @@ $$
 \UIC{$G(g)$}
 \end{prooftree}
 
+
 \begin{prooftree}
-\AXC{$ $} \dashedLine
-\UIC{$G(g)$}
-        \AXC{Theorem \ref{T2}} \dashedLine
-        \UIC{$\all y.[G(y) \imp \ess{G}{y}]$}\RightLabel{$\all_E$}
-        \UIC{$G(g) \imp \ess{G}{g}$}\RightLabel{$\imp_E$}
-    \BIC{$\ess{G}{g}$}
-                \AXC{Axiom \ref{A5}} \dashedLine
-                \UIC{$P(E)$}
-                        \AXC{$ $} \dashedLine
-                        \UIC{$G(g)$} \dottedLine \RightLabel{D\ref{D1}}
-                        \UIC{$\all \varphi.[P(\varphi) \imp \varphi(g)]$}\RightLabel{$\all_E$}
-                        \UIC{$P(E) \imp E(g)$}\RightLabel{$\imp_E$}
-                     \BIC{$E(g)$} \dottedLine\RightLabel{D\ref{D3}}
-                     \UIC{$ \all \varphi.[\ess{\varphi}{g} \imp \nec \ex x.\varphi(x)] $}\RightLabel{$\all_E$}
-                     \UIC{$ \ess{G}{g} \imp \nec \ex x. G(x) $}\RightLabel{$\imp_E$}
-        \BIC{$\nec \ex x. G(x)$} \RightLabel{$\imp_I^1$}
-        \UIC{$\ex z. G(z) \imp \nec \ex x. G(x)$}
+
+
+\AXC{$ $} \RightLabel{2}
+\UIC{$\neg P(\psi)$} 
+\AXC{Axiom \ref{A1}} \dashedLine
+\UIC{$\neg P(\psi) \imp P(\neg \psi)$}\RightLabel{$\imp_E$}
+\BIC{$P(\neg \psi)$}
+\AXC{$G(g)$}  \dashedLine \RightLabel{D\ref{D1}}
+\UIC{$\forall \varphi.(P(\varphi) \imp \varphi(g))$}\RightLabel{$\forall_E$}
+\UIC{$P(\neg \psi) \imp \neg \psi(g)$}\RightLabel{$\imp_E$}
+\BIC{$\neg \psi(g)$}
+\AXC{$ $} \RightLabel{4}
+\UIC{$\psi(g)$} \RightLabel{$\imp_E$}
+\BIC{$\bot$}\RightLabel{$\imp_I^2$}
+\UIC{$\neg\neg P(\psi)$}\RightLabel{$\neg\neg_E$}
+\UIC{$P(\psi)$}
+\end{prooftree}
+
+\begin{prooftree}
+\AXC{$P(\psi)$}
+\AXC{$ $} \RightLabel{3}
+\UIC{$G(y)$}  \dashedLine \RightLabel{D\ref{D1}}
+\UIC{$\forall \varphi.(P(\varphi) \imp \varphi(g))$}\RightLabel{$\forall_E$}
+\UIC{$P(\psi) \imp \psi(y)$}\RightLabel{$\imp_E$}
+\BIC{$\psi(y)$} \RightLabel{$\imp_I^3$}
+\UIC{$G(y) \imp \psi(y)$}\RightLabel{$\forall_I$}
+\UIC{$\forall y.(G(y) \imp \psi(y))$}\RightLabel{$\nec_I$}
+\UIC{$\nec \forall y.(G(y) \imp \psi(y))$}\RightLabel{$\imp_I^4$}
+\UIC{$\psi(g) \imp \nec \forall y.(G(y) \imp \psi(y))$}\RightLabel{$\forall_I$}
+\UIC{$\forall \psi.(\psi(g) \imp \nec \forall y.(G(y) \imp \psi(y)))$}\RightLabel{$\wedge_I$}
+\AXC{$G(g)$}  
+\BIC{$G(g) \wedge \forall \psi.(\psi(g) \imp \nec \forall y.(G(y) \imp \psi(y)))$}\dashedLine \RightLabel{D\ref{D2}}
+\UIC{$\ess{G}{g}$}
+\AXC{Axiom \ref{A5}} \dashedLine
+\UIC{$P(E)$}\dottedLine \RightLabel{D\ref{D3}}
+\AXC{$G(g)$}\dashedLine \RightLabel{D\ref{D1}}
+\UIC{$\forall \varphi.(P(\varphi) \imp \varphi(g))$}\RightLabel{$\forall_E$}
+\UIC{$P(E) \imp E(g)$}\RightLabel{$\imp_E$}
+\BIC{$E(g)$}\dottedLine \RightLabel{D\ref{D3}}
+\UIC{$ \all \varphi.[\ess{\varphi}{g} \imp \nec \ex x.\varphi(x)] $}\RightLabel{$\all_E$}
+\UIC{$ \ess{G}{g} \imp \nec \ex x. G(x) $}\RightLabel{$\imp_E$}
+\BIC{$\nec \ex x. G(x)$} \RightLabel{$\imp_I^1$}
+\UIC{$\ex z. G(z) \imp \nec \ex x. G(x)$}
 \end{prooftree}
 \end{proof}
 
-
-\subsection{God exists}
+\subsection{God necessarily exists}
 
 ToDo: this is proven in a way that is slightly different from G\"odel's 1970.
-
-
 \begin{theorem}
 \label{T4}
-God exists:
-$$
-\ex x. G(x)
-$$
-\end{theorem}
-
-
-\noindent
-\textbf{Formal proof:}
-
-\begin{small}
-\begin{prooftree}
-\AXC{$ $} \RightLabel{1}
-\UIC{$\nec\neg\nec \ex x. G(x)$}\RightLabel{$\nec_E$, axiom T}
-\UIC{$\neg\nec \ex x. G(x)$}
-\AXC{ Lemma \ref{L1} } \dashedLine
-\UIC{$\neg\nec \ex x. G(x) \imp \neg\ex x. G(x)$}\RightLabel{$\imp_E$}
- \BIC{$ \neg\ex x. G(x)$} \RightLabel{$\nec_I$}
-\UIC{$\nec \neg\ex x. G(x)$} \dottedLine
-\UIC{$\neg \pos\ex x. G(x)$}
-\end{prooftree}
-\end{small}
-
-\begin{small}
-\begin{prooftree}
-\AXC{$ $}\dashedLine
-\UIC{$\neg \pos\ex x. G(x)$}
-\AXC{ Corollary \ref{C1}} \dashedLine
-\UIC{$ \pos\ex x. G(x)$} \RightLabel{$\imp_E$}
- \BIC{$ \bot$} \RightLabel{$\imp_I^1$}
- \UIC{$\neg\nec\neg\nec \ex x. G(x)$} \dottedLine
- \UIC{$\neg\nec\pos \neg \ex x. G(x)$}
-\AXC{ Axiom B} \dashedLine
-\UIC{$ \neg \ex x. G(x)\imp\nec\pos \neg \ex x. G(x)$} \doubleLine
-\UIC{$ \neg\nec\pos \neg \ex x. G(x)\imp \neg \neg \ex x. G(x)$} \RightLabel{$\imp_E$}
- \BIC{$ \neg \neg \ex x. G(x)$}\RightLabel{$ \neg \neg$ E}
- \UIC{$ \ex x. G(x)$}
-\end{prooftree}
-\end{small}
-
-Note that the last step is classical and we do not prove the existential statement by providing an object for which the statement holds.
-This proof makes section \ref{GodsE} superflous and the use of axiom "M" unnecessary.
-
-The system used contains the $\nec_E$-rule with the restriction that we have a $\nec_I$ below it. This is equivalent to modal sytem K that contains axiom K and necessitation rule N. We aslo use axiom B ($ A\imp\nec\pos A$). No other modal axioms are needed.
-
-\subsection{Necessarily, God exists}
-
-We can also prove that god exists necessarily in our system by simply introducing box on a theorem by rule N in modal sytem K. So we get:
-
-
-\begin{corollary}
-\label{T3}
-Necessarily, God exists:
+God necessarily exists:
 $$
 \nec \ex x. G(x)
 $$
-\end{corollary}
+\end{theorem}
+\begin{proof}
 
-
-
-
-\subsection{God exists}\label{GodsE}
-This section is superfluous.
-
-\begin{axiom}[M]
-\label{M} What is necessary is the case:
-$$
-\all \varphi. [\nec \varphi \imp \varphi]
-$$
-\end{axiom}
-
-\begin{corollary}
-\label{C2}
-There exists a God:
-$$
-\ex x. G(x)
-$$
-\end{corollary}
-\begin{proof}\hfill
+\begin{small}
 \begin{prooftree}
-\AXC{Theorem \ref{T3}} \dashedLine
-\UIC{$ \nec \ex x. G(x)$}
-        \AXC{$ \all \varphi. [\nec \varphi \imp \varphi]$}
-        \UIC{$\nec \ex x. G(x) \imp \ex x. G(x)$}
-    \BIC{$\ex x. G(x)$}
+\AXC{ Distribution principle \ref{DP} } \dashedLine
+\UIC{$\nec [\ex x. G(x)\imp \nec \ex x. G(x)]\imp [\pos \ex x. G(x)\imp \pos\nec \ex x. G(x)]$}
+\AXC{ Lemma \ref{L1} } \dashedLine
+\UIC{$\ex x. G(x)\imp \nec \ex x. G(x)$}\RightLabel{$\nec_I$}
+\UIC{$\nec[\ex x. G(x)\imp \nec \ex x. G(x)]$}\RightLabel{$\imp_E$}
+\BIC{$\pos \ex x. G(x)\imp \pos\nec \ex x. G(x)$}
 \end{prooftree}
+\end{small}
+\begin{small}
+\begin{prooftree}
+\AXC{$[\pos \ex x. G(x)\imp \pos\nec \ex x. G(x)]$}
+\AXC{ Theorem \ref{T1} } \dashedLine
+\UIC{$\pos \ex x. G(x)$}\RightLabel{$\imp_E$}
+\BIC{$\pos\nec \ex x. G(x)$}
+\AXC{ Brouwer's reduction theorem \ref{***} } \dashedLine
+\UIC{$\pos\nec \ex x. G(x) \imp \ex x. G(x)$}\RightLabel{$\imp_E$}
+\BIC{$ \ex x. G(x)$} \RightLabel{$\nec_I$}
+\UIC{$\nec \ex x. G(x)$} 
+\end{prooftree}
+\end{small}
+
 \end{proof}
 
 
@@ -824,6 +744,8 @@ Hajek (magari and others) on non-provability of ex x. G(x) in KD45.
 
 \begin{thebibliography}{9}
 
+\bibitem[{\itshape Anderson (1990)}]{and90}
+Anderson, C. A. 1990. {\itshape Some Emendations of G\"odel's Ontological Proof}. Faith and Philosophy, Vol. 7, Issue 3, pp. 291-303. 
 
 \bibitem[{\itshape Anderson \& Gettings(1996)}]{and}
 Anderson, C. A.\& Gettings, M. 1996.  {\itshape G\"odel's ontological proof revisited}. In: edited by Hajek P. {\itshape G\"odel '96},  Springer. 
@@ -834,6 +756,9 @@ Fitting, M. 2002.  {\itshape Types, Tableaus, and G\"odel's God}, Kluwer Academi
 
 \bibitem[{\itshape Kant(1781)}]{kant}
 Kant, I.  original 1781.   {\itshape Critique of Pure Reason}, J. M. Dent \& Sons LTD, edition from 1959.
+
+\bibitem[{\itshape Negri (2005)}]{negri}
+Negri, S. 2005. {\itshape Proof analysis in modal logic}. J. Philosophical Logic, vol. 34, pp. 507--544. 
 
 \bibitem[{\itshape Sobel(1987)}]{sobel}
 Sobel, J. H. 1987. {\itshape G\"odel's Ontological Proof}. In: edited by J. J. Thompson. {\itshape On being and saying : essays for Richard Cartwright},  MIT Press. 
