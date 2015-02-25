@@ -82,7 +82,7 @@ in the Coq Proof Assistant
 
 \begin{abstract}  
   This paper describes an embedding of higher-order modal logics in
-  the \Coq proof assistant. {\Coq}'s capabilities are extended in a
+  the \Coq proof assistant. {\Coq}'s capabilities are used to implement modal logics in a
   minimalistic manner, which is nevertheless sufficient for the
   formalization of significant, non-trivial modal logic proofs. The
   elegance, flexibility and convenience of this approach, from a user
@@ -126,9 +126,8 @@ stating their characteristic axioms. Moreover, the approach is
 relatively simple to implement, because it does not require any
 modification in the source code of the higher-order prover. The prover
 can be used as is, and only the input files provided to the prover
-must be especially encoded. Furthermore, the efficacy and efficiency
-of the embedding approach has been confirmed in philosophically
-relevant benchmarks \cite{FormalTheologyRepository}. These qualities
+must be specially encoded (using lifted versions of connectives and logical constants instead of the usual ones). Furthermore, the efficacy and efficiency
+of the embedding approach has been confirmed in benchmarks stemming from philosophy \cite{FormalTheologyRepository}. These qualities
 make embedding a convenient approach for \emph{fully automated}
 reasoning.
 
@@ -233,7 +232,7 @@ which can be represented in \Coq by a parameter \texttt{r}, as follows:
 \noindent 
 All modal connectives are simply lifted versions of the
 usual logical connectives. Notations are used to allow the modal
-connectives to be used as similarly as possible as the usual
+connectives to be used as similarly as possible to the usual
 connectives. The prefix ``\texttt{m}'' is used to distinguish the
 modal connectives: if $\odot$ is a connective on type \text{Prop},
 $\texttt{m}\odot$ is a connective on the lifted type $\texttt{o}$ of
@@ -420,7 +419,7 @@ Rules for $\alpha\beta\eta$-equality and axioms (or rules) for extensionality ar
 %\vspace{1em}
 \end{calculus}
 
-\noindent
+%\noindent
 To maximally preserve user intuition in interactive modal logic
 theorem proving, the embedding via the possible world semantics should
 be as transparent as possible to the user. Fortunately, the basic Coq
@@ -492,15 +491,22 @@ and automatically tries to solve the guard condition that
 \end{Verbatim}
 
 \noindent If the new modal tactics above are regarded from a natural
-deduction point of view, they give rise to the inference
-rules\footnote{The ND calculus with the rules from
-Figures \ref{fig:NaturalDeduction} and \ref{fig:NDK} is sound and
-complete relatively to the calculus of Figure
-\ref{fig:NaturalDeduction} extended with a necessitation rule and the
-modal axiom K \cite{ModalND}. Starting from a sound and Henkin-complete ND calculus for classical higher-order logic (cf. Figure~\ref{fig:NaturalDeduction}), the additional
-modal rules in Figure \ref{fig:NDK} make it sound and Henkin-complete
-for modal higher-order logic \textbf{K}.} shown in Figure
-\ref{fig:NDK}. The labels that name boxes in those inference rules are
+deduction point of view, they correspond to the inference
+rules shown in Figure
+\ref{fig:NDK}. Because of this correspondence and the Henkin-completeness of the modal natural deduction calculus\footnote{
+  The ND calculus with the rules from
+  Figures \ref{fig:NaturalDeduction} and \ref{fig:NDK} is sound and
+  complete relatively to the calculus of Figure
+  \ref{fig:NaturalDeduction} extended with a necessitation rule and the
+  modal axiom K \cite{ModalND}. Starting from a sound and 
+  Henkin-complete ND calculus for classical higher-order logic 
+  (cf. Figure~\ref{fig:NaturalDeduction}), the additional
+  modal rules in Figure \ref{fig:NDK} make it sound and Henkin-complete
+  for the rigid higher-order modal logic \textbf{K}.}, 
+the tactics allow the user to prove any valid modal formula without having 
+to unfold the definitions of the modal operators.
+
+The labels that name boxes in the inference rules of Figure \ref{fig:NDK} are
 precisely the worlds that annotate goals and hypotheses in \Coq with
 the modal embedding. A hypothesis of the form \texttt{(p w)}, where
 \texttt{p} is a modal proposition of type \texttt{o} and \texttt{w} is
@@ -520,9 +526,9 @@ created inside a box with name \texttt{w}.
 \infer[\nec_E]{w: \fbox{ \infer*{}{A} } }{\nec A}
 %\vspace{2em}
 \s
-\infer[\pos_I]{\pos A}{w: \fbox{\infer*{A}{}} }
-\s
 \infer[\pos_E]{\omega: \fbox{ \infer*{}{A} } }{\pos A}
+\s
+\infer[\pos_I]{\pos A}{w: \fbox{\infer*{A}{}} }
 
 
 \vspace{1em}
@@ -724,7 +730,7 @@ intros p H1. dia_e H1. box_i. box_e H1 H2. exact H2. eapply transitivity.
 In order to demonstrate the efficacy and convenience of the modal
 embedding approach not only for proving simple lemmas and theorems,
 but also for larger developments, we include here a full and detailed
-formalization of G\"odel's ontological argument.
+formalization of G\"odel's ontological argument. which has been verified in Coq 8.4pl5.
 
 Attempts to prove the existence (or non-existence) of God by means of
 abstract ontological arguments are an old tradition in philosophy and
@@ -946,12 +952,12 @@ implementation of hints to allow \Coq's automatic tactics to take full
 advantage of the embedding and the modal axioms still remains for
 future work. 
 
-The theological implications of the verified correctness of G\"odel's
-proof certainly depend on a critical discussion of the underlying
-concepts, definitions and axioms, which is beyond the scope of this
-paper.  Clearly, the application of theorem proving technology to the
-domain of theoretical philosophy can --- as already pictured by
-Leibniz --- be very fruitful for both areas. 
+%The theological implications of the verified correctness of G\"odel's
+% proof certainly depend on a critical discussion of the underlying
+% concepts, definitions and axioms, which is beyond the scope of this
+% paper.  Clearly, the application of theorem proving technology to the
+% domain of theoretical philosophy can --- as already pictured by
+% Leibniz --- be very fruitful for both areas. 
 
 The infrastructure that we have implemented for interactive and
 automated reasoning in higher-order modal logics is clearly
