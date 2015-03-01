@@ -31,12 +31,11 @@
 
 
 \begin{abstract}
-  We have applied an elegant and flexible  logic embeddings
+  We have applied an elegant and flexible  logic embedding
   approach to verify and automate a prominent philosophical argument:
   the ontological argument for the existence of God. In our ongoing
   computer-assisted study, higher-order automated reasoning tools have
-  made some interesting observations, some of which were unknown so
-  far.
+  made some interesting observations, some of which were previously unknown.
 \end{abstract}
 
 %   Our work attests the maturity of contemporary interactive and
@@ -64,7 +63,7 @@ successfully applied to automate object-level and meta-level reasoning
 for a range of logics and logic combinations with off-the-shelf HOL
 theorem provers. This also includes quantified modal logics (QML)
 \cite{J23} and quantified conditional logics (QCL) \cite{C37}.  For
-many of the embedded logics few or none automated theorem provers did
+many of the embedded logics few or no automated theorem provers did
 exist before. HOL is exploited in this approach to encode the
 semantics of the logics to be embedded, for example, Kripke semantics
 for QMLs \cite{fitting98} or selection function semantics for QCLs
@@ -76,7 +75,7 @@ for the modeling and implementation of non-classical proof systems. In
 our embeddings approach such labels are instead encoded in the HOL
 logic. 
 
-The embeddings approach is flexible, because various modal logics (even
+The embedding approach is flexible, because various modal logics (even
 with multiple modalities or a mix of varying/cumulative domain
 quantifiers) can be easily supported by stating their characteristic
 axioms. Moreover, it is relatively simple to implement, because it
@@ -98,8 +97,8 @@ exemplarily provided in Fig.~\ref{fig1}.\footnote{Some Notes on THF, which is a 
                    \texttt{\^{}[X:\$i>\$o]:![W:\$i]:(A@W)}; comments begin with
                    \texttt{\%}.} The given set of axioms turns
 any TPTP THF compliant HOL-ATP in a reasoning tool for second-order modal logic. A
-Henkin-style semantics is thereby assumed for both sides, the side of HOL and
-for second-order modal logic.
+Henkin-style semantics is thereby assumed for both logics: HOL and
+second-order modal logic.
 
 
 \begin{figure}[h]
@@ -132,7 +131,7 @@ for second-order modal logic.
                  individuals  (\texttt{mall\_indset}) are introduced in 
                  lines 7-18. 
                  Validity of lifted modal formulas is
-                 defined in an obvious ways (lines 20-21). Symmetry
+                 defined in the standard way (lines 20-21). Symmetry
                  of accessibility relation $r$ is postulated in lines
                  23-26. Hence, second-order KB is realized here; 
                  for logic K the symmetry axiom can be dropped.
@@ -149,13 +148,14 @@ for second-order modal logic.
                  }
 \end{figure}
 
-In recent work \cite{C40,J28} we have applied the embeddings approach
+In recent work \cite{C40,J28} we have applied the embedding approach
 to verify and automate a philosophical argument that has fascinated
-philosophers and theologists for about 1000 years: the ontological
+philosophers and theologians for about 1000 years: the ontological
 argument for the existence of God~\cite{sobel2004logic}. We have
-thereby concentrated on G\"odel's \cite{GoedelNotes}, respectively
-Scott's \cite{ScottNotes}, modern version of this argument, which
-employs a second-order modal logic (S5), for which, until now, no
+thereby concentrated on G\"odel's \cite{GoedelNotes} 
+modern version of this argument and on
+Scott's \cite{ScottNotes} modification, which
+employ a second-order modal logic (S5) for which, until now, no
 theorem provers were available.  In our computer-assisted study of the
 argument, the HOL provers LEO-II \cite{C26}, Satallax \cite{Satallax}
 and Nitpick \cite{Nitpick} have made some interesting observations,
@@ -167,24 +167,24 @@ theology.
 We briefly summarize some of these observations: Nitpick confirms that
 Scott's axioms are consistent, while LEO-II and Satallax demonstrate that
 Gödel's original, slightly different axioms are inconsistent. As far
-as we are aware of, this is a new result. As experiments with LEO-II
+as we are aware, this is a new result. As experiments with LEO-II
 revealed, the problem lies in a subtle difference in the definitions
 of the predicate \textit{essence} (characterizing the essential
-properties of an entity) between Gödel and Scott. In several philosophy papers, however, this
+properties of an entity) between Gödel and Scott. In several philosophy papers\marginpar{citation needed? weaken the "several" claim?}, however, this
 difference has been commented as a simple cosmetic change.  Moreover,
 instead of using modal logic S5, 
 LEO-II and Satallax can prove the final theorem (that is,
 $\square \exists x . G(x)$, necessarily there exists God) already for
 modal logic KB.  This is highly relevant since several philosophers
-have criticized G{\"o}del's argument for the use of logic S5.  Axiom
+have criticized G{\"o}del's argument for the use of logic S5\marginpar{citation needed? weaken the "several" claim?}.  Axiom
 B (symmetry), however, cannot be dropped, which in turn is confirmed by Nitpick.
-LEO-II and Stallax can also show that G{\"o}del's and Scott's axioms
+LEO-II and Satallax can also show that G{\"o}del's and Scott's axioms
 imply what is called the modal collapse: $\phi\supset\Box\phi$. This
-formula expresses that contingent truth implies necessary truth (which
+expresses that contingent truth implies necessary truth (which
 can even be interpreted as an argument against free will;
-cf.~\cite{sobel2004logic}). The modal collapse is probably the most
-fundamental criticism put forward against G{\"o}del's resp. Scott's
-versions of the argument. Further theorems that can be shown by LEO-II
+cf.~\cite{sobel2004logic}) and is probably the most
+fundamental criticism put forward against G{\"o}del's and Scott's
+versions of the argument. Other theorems that can be shown by LEO-II
 and Satallax include flawlessness of God and monotheism. 
 
 % \item The axioms and definitions from Fig.~\ref{fig1} are consistent (cf.~CO in Fig.~\ref{fig2}). 
@@ -234,33 +234,35 @@ Ongoing and future work concentrates on the systematic study of
 G\"odel's and Scott's proofs. We have also begun to study more recent
 variants of the argument
 \cite{anderson90:_some_emend_of_goedel_ontol_proof,AndersonGettings,bjordal99,fuhrmann05:_exist_notwen,fitting02:_types_tableaus_god,Hajek2002,Hajek2008},
-which claim to remedy some fundamental problem of G\"odel's and
-Scott's proofs, in particular, the modal collapse.  One interesting
+which claim to remedy some fundamental problems of G\"odel's and
+Scott's proofs, especially the modal collapse.  One interesting
 and very encouraging observation from these studies is, that the
-argumentation granularity as typically applied in these philosophy
-papers obviously already matches very well with the automation capabilities of our
-HOL-ATPs. The provides good evidence for the potential relevance of our
-approach (not only) wrt. other similar applications in metaphysics.
+argumentation granularity typical of these philosophy
+papers is already within reach of the capabilities 
+of our higher-order automated theorem provers.
+This provides good evidence for the potential 
+relevance of the embedding approach (not only) w.r.t. 
+other similar applications in metaphysics.
 
 
 The long-term goal
-is to work out a landscape of the detailled logic parameters (e.g.,
+is to methodically determine the range of logical parameters (e.g.,
 constant vs. varying domains, rigid vs. non-rigid terms, logics KB vs.
-S4 vs.  S5, etc.) under which the proposed variants of the modern
+S4 vs. S5, etc.) under which the proposed variants of the modern
 ontological argument hold or fail.
 
 There is little related work~\cite{oppenheimera11,rushby13}, and this
 focuses solely on the comparably simpler, original ontological
 argument by Anselm of Canterbury.  These works do not achieve the
 close correspondence between the original formulations and the formal
-encodings that can be found in our approach and they do also not reach
-the same of degree of proof automation.
+encodings that can be found in our approach and they also do not reach
+the same degree of proof automation.
 
 Our work attests the maturity of contemporary interactive and
 automated deduction tools for HOL and
 demonstrates the elegance and practical relevance of the
 embeddings-based approach. Most importantly, our work opens new
-perspectives towards a computational metaphysics.
+perspectives towards computational metaphysics.
 
 
 
