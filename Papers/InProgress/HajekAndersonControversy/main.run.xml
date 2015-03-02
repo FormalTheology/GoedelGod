@@ -41,16 +41,16 @@
   >
 ]>
 <requests version="1.0">
-  <internal package="biblatex" priority="9" active="1">
+  <internal package="biblatex" priority="9" active="0">
     <generic>latex</generic>
     <provides type="dynamic">
-      <file>Abstract.aux</file>
-      <file>Abstract-blx.bib</file>
+      <file>main.bcf</file>
     </provides>
     <requires type="dynamic">
-      <file>Abstract.bbl</file>
+      <file>main.bbl</file>
     </requires>
     <requires type="static">
+      <file>blx-dm.def</file>
       <file>blx-compat.def</file>
       <file>biblatex.def</file>
       <file>blx-natbib.def</file>
@@ -61,31 +61,26 @@
       <file>english.lbx</file>
     </requires>
   </internal>
-  <external package="biblatex" priority="5" active="1">
-    <generic>bibtex</generic>
+  <external package="biblatex" priority="5" active="0">
+    <generic>biber</generic>
     <cmdline>
-      <binary>bibtex</binary>
-      <option>-min-crossrefs 2</option>
-      <infile>Abstract</infile>
+      <binary>biber</binary>
+      <infile>main</infile>
     </cmdline>
     <input>
-      <file>Abstract.aux</file>
+      <file>main.bcf</file>
     </input>
     <output>
-      <file>Abstract.bbl</file>
+      <file>main.bbl</file>
     </output>
     <provides type="dynamic">
-      <file>Abstract.bbl</file>
+      <file>main.bbl</file>
     </provides>
     <requires type="dynamic">
-      <file>Abstract.aux</file>
-      <file>Abstract-blx.bib</file>
+      <file>main.bcf</file>
     </requires>
     <requires type="editable">
       <file>Bibliography.bib</file>
-    </requires>
-    <requires type="static">
-      <file>biblatex.bst</file>
     </requires>
   </external>
 </requests>

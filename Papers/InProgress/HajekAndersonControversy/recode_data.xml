@@ -1,0 +1,896 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?oxygen RNGSchema="../../../data/schemata/texmap.rnc" type="compact"?>
+<?xml-stylesheet type="text/xsl" href="../../../data/texmap.xsl"?>
+<texmap>
+  <maps type="accents" set="base,full">
+    <map><from>`</from><to hex="300">̀</to></map>
+    <map><from>'</from><to hex="301">́</to></map>
+    <map><from>^</from><to hex="302">̂</to></map>
+    <map><from>~</from><to hex="303">̃</to></map>
+    <map><from>=</from><to hex="304">̄</to></map>
+    <map><from>.</from><to hex="307">̇</to></map>
+    <map><from>"</from><to hex="308">̈</to></map>
+  </maps>
+  <maps type="letters" set="base,full">
+    <map><from>AA</from>                               <to hex="C5">Å</to></map>
+    <map><from>AE</from>                               <to hex="C6">Æ</to></map>
+    <map><from>DH</from>                               <to hex="D0">Ð</to></map>
+    <map><from>O</from>                                <to hex="D8">Ø</to></map>
+    <map><from>Thorn</from>                            <to hex="DE">Þ</to></map>
+    <map><from preferred="1">TH</from>                 <to hex="DE">Þ</to></map>
+    <map><from>ss</from>                               <to hex="DF">ß</to></map>
+    <map><from>aa</from>                               <to hex="E5">å</to></map>
+    <map><from>ae</from>                               <to hex="E6">æ</to></map>
+    <map><from>dh</from>                               <to hex="F0">ð</to></map>
+    <map><from>o</from>                                <to hex="F8">ø</to></map>
+    <map><from>textthorn</from>                        <to hex="FE">þ</to></map>
+    <map><from>textthornvari</from>                    <to hex="FE">þ</to></map>
+    <map><from>textthornvarii</from>                   <to hex="FE">þ</to></map>
+    <map><from>textthornvariii</from>                  <to hex="FE">þ</to></map>
+    <map><from>textthornvariv</from>                   <to hex="FE">þ</to></map>
+    <map><from preferred="1">th</from>                 <to hex="FE">þ</to></map>
+    <map><from>DJ</from>                               <to hex="110">Đ</to></map>
+    <map><from preferred="1">dj</from>                 <to hex="111">đ</to></map>
+    <map><from>textcrd</from>                          <to hex="111">đ</to></map>
+    <map><from>textHbar</from>                         <to hex="126">Ħ</to></map>
+    <map><from>textcrh</from>                          <to hex="127">ħ</to></map>
+    <map><from preferred="1">texthbar</from>           <to hex="127">ħ</to></map>
+    <map><from>i</from>                                <to hex="131">ı</to></map>
+    <map><from>j</from>                                <to hex="237">ȷ</to></map>
+    <map><from>IJ</from>                               <to hex="132">Ĳ</to></map>
+    <map><from>ij</from>                               <to hex="133">ĳ</to></map>
+    <map><from>textkra</from>                          <to hex="138">ĸ</to></map>
+    <map><from>L</from>                                <to hex="141">Ł</to></map>
+    <map><from>textbarl</from>                         <to hex="142">ł</to></map>
+    <map><from preferred="1">l</from>                  <to hex="142">ł</to></map>
+    <map><from>NG</from>                               <to hex="14A">Ŋ</to></map>
+    <map><from>ng</from>                               <to hex="14B">ŋ</to></map>
+    <map><from>OE</from>                               <to hex="152">Œ</to></map>
+    <map><from>oe</from>                               <to hex="153">œ</to></map>
+    <map><from>textTbar</from>                         <to hex="166">Ŧ</to></map>
+    <map><from preferred="1">textTstroke</from>        <to hex="166">Ŧ</to></map>
+    <map><from>texttbar</from>                         <to hex="167">ŧ</to></map>
+    <map><from preferred="1">texttstroke</from>        <to hex="167">ŧ</to></map>
+    <map><from>textcrb</from>                          <to hex="180">ƀ</to></map>
+    <map><from>textBhook</from>                        <to hex="181">Ɓ</to></map>
+    <map><from>textOopen</from>                        <to hex="186">Ɔ</to></map>
+    <map><from>textChook</from>                        <to hex="187">Ƈ</to></map>
+    <map><from>textchook</from>                        <to hex="188">ƈ</to></map>
+    <map><from preferred="1">texthtc</from>            <to hex="188">ƈ</to></map>
+    <map><from>textDafrican</from>                     <to hex="189">Ɖ</to></map>
+    <map><from>textDhook</from>                        <to hex="18A">Ɗ</to></map>
+    <map><from>textEreversed</from>                    <to hex="18E">Ǝ</to></map>
+    <map><from>textEopen</from>                        <to hex="190">Ɛ</to></map>
+    <map><from>textFhook</from>                        <to hex="191">Ƒ</to></map>
+    <map><from>textflorin</from>                       <to hex="192">ƒ</to></map>
+    <map><from>textGammaafrican</from>                 <to hex="194">Ɣ</to></map>
+    <map><from>texthvlig</from>                        <to hex="195">ƕ</to></map>
+    <map><from preferred="1">hv</from>                 <to hex="195">ƕ</to></map>
+    <map><from>textIotaafrican</from>                  <to hex="196">Ɩ</to></map>
+    <map><from>textKhook</from>                        <to hex="198">Ƙ</to></map>
+    <map><from>textkhook</from>                        <to hex="199">ƙ</to></map>
+    <map><from preferred="1">texthtk</from>            <to hex="199">ƙ</to></map>
+    <map><from>textcrlambda</from>                     <to hex="19B">ƛ</to></map>
+    <map><from>textNhookleft</from>                    <to hex="19D">Ɲ</to></map>
+    <map><from>OHORN</from>                            <to hex="1A0">Ơ</to></map>
+    <map><from>ohorn</from>                            <to hex="1A1">ơ</to></map>
+    <map><from>textPhook</from>                        <to hex="1A4">Ƥ</to></map>
+    <map><from>textphook</from>                        <to hex="1A5">ƥ</to></map>
+    <map><from preferred="1">texthtp</from>            <to hex="1A5">ƥ</to></map>
+    <map><from>textEsh</from>                          <to hex="1A9">Ʃ</to></map>
+    <map><from preferred="1">ESH</from>                <to hex="1A9">Ʃ</to></map>
+    <map><from>textlooptoprevesh</from>                <to hex="1AA">ƪ</to></map>
+    <map><from>textpalhookbelow</from>                 <to hex="1AB">ƫ</to></map>
+    <map><from>textThook</from>                        <to hex="1AC">Ƭ</to></map>
+    <map><from>textthook</from>                        <to hex="1AD">ƭ</to></map>
+    <map><from preferred="1">texthtt</from>            <to hex="1AD">ƭ</to></map>
+    <map><from>textTretroflexhook</from>               <to hex="1AE">Ʈ</to></map>
+    <map><from>UHORN</from>                            <to hex="1AF">Ư</to></map>
+    <map><from>uhorn</from>                            <to hex="1B0">ư</to></map>
+    <map><from>textVhook</from>                        <to hex="1B2">Ʋ</to></map>
+    <map><from>textYhook</from>                        <to hex="1B3">Ƴ</to></map>
+    <map><from>textyhook</from>                        <to hex="1B4">ƴ</to></map>
+    <map><from>textEzh</from>                          <to hex="1B7">Ʒ</to></map>
+    <map><from>texteturned</from>                      <to hex="1DD">ǝ</to></map>
+    <map><from>textturna</from>                        <to hex="250">ɐ</to></map>
+    <map><from>textscripta</from>                      <to hex="251">ɑ</to></map>
+    <map><from>textturnscripta</from>                  <to hex="252">ɒ</to></map>
+    <map><from>textbhook</from>                        <to hex="253">ɓ</to></map>
+    <map><from preferred="1">texthtb</from>            <to hex="253">ɓ</to></map>
+    <map><from>textoopen</from>                        <to hex="254">ɔ</to></map>
+    <map><from preferred="1">textopeno</from>          <to hex="254">ɔ</to></map>
+    <map><from>textctc</from>                          <to hex="255">ɕ</to></map>
+    <map><from>textdtail</from>                        <to hex="256">ɖ</to></map>
+    <map><from preferred="1">textrtaild</from>         <to hex="256">ɖ</to></map>
+    <map><from>textdhook</from>                        <to hex="257">ɗ</to></map>
+    <map><from preferred="1">texthtd</from>            <to hex="257">ɗ</to></map>
+    <map><from>textreve</from>                         <to hex="258">ɘ</to></map>
+    <map><from>textschwa</from>                        <to hex="259">ə</to></map>
+    <map><from>textrhookschwa</from>                   <to hex="25A">ɚ</to></map>
+    <map><from>texteopen</from>                        <to hex="25B">ɛ</to></map>
+    <map><from preferred="1">textepsilon</from>        <to hex="25B">ɛ</to></map>
+    <map><from>textrevepsilon</from>                   <to hex="25C">ɜ</to></map>
+    <map><from>textrhookrevepsilon</from>              <to hex="25D">ɝ</to></map>
+    <map><from>textcloserevepsilon</from>              <to hex="25E">ɞ</to></map>
+    <map><from>textbardotlessj</from>                  <to hex="25F">ɟ</to></map>
+    <map><from>texthtg</from>                          <to hex="260">ɠ</to></map>
+    <map><from>textscriptg</from>                      <to hex="261">ɡ</to></map>
+    <map><from>textscg</from>                          <to hex="262">ɢ</to></map>
+    <map><from>textgammalatinsmall</from>              <to hex="263">ɣ</to></map>
+    <map><from preferred="1">textgamma</from>          <to hex="263">ɣ</to></map>
+    <map><from>textramshorns</from>                    <to hex="264">ɤ</to></map>
+    <map><from>textturnh</from>                        <to hex="265">ɥ</to></map>
+    <map><from>texthth</from>                          <to hex="266">ɦ</to></map>
+    <map><from>texththeng</from>                       <to hex="267">ɧ</to></map>
+    <map><from>textbari</from>                         <to hex="268">ɨ</to></map>
+    <map><from>textiotalatin</from>                    <to hex="269">ɩ</to></map>
+    <map><from preferred="1">textiota</from>           <to hex="269">ɩ</to></map>
+    <map><from>textsci</from>                          <to hex="26A">ɪ</to></map>
+    <map><from>textltilde</from>                       <to hex="26B">ɫ</to></map>
+    <map><from>textbeltl</from>                        <to hex="26C">ɬ</to></map>
+    <map><from>textrtaill</from>                       <to hex="26D">ɭ</to></map>
+    <map><from>textlyoghlig</from>                     <to hex="26E">ɮ</to></map>
+    <map><from>textturnm</from>                        <to hex="26F">ɯ</to></map>
+    <map><from>textturnmrleg</from>                    <to hex="270">ɰ</to></map>
+    <map><from>textltailm</from>                       <to hex="271">ɱ</to></map>
+    <map><from>textltailn</from>                       <to hex="272">ɲ</to></map>
+    <map><from preferred="1">textnhookleft</from>      <to hex="272">ɲ</to></map>
+    <map><from>textrtailn</from>                       <to hex="273">ɳ</to></map>
+    <map><from>textscn</from>                          <to hex="274">ɴ</to></map>
+    <map><from>textbaro</from>                         <to hex="275">ɵ</to></map>
+    <map><from>textscoelig</from>                      <to hex="276">ɶ</to></map>
+    <map><from>textcloseomega</from>                   <to hex="277">ɷ</to></map>
+    <map><from>textphi</from>                          <to hex="278">ɸ</to></map>
+    <map><from>textturnr</from>                        <to hex="279">ɹ</to></map>
+    <map><from>textturnlonglegr</from>                 <to hex="27A">ɺ</to></map>
+    <map><from>textturnrrtail</from>                   <to hex="27B">ɻ</to></map>
+    <map><from>textlonglegr</from>                     <to hex="27C">ɼ</to></map>
+    <map><from>textrtailr</from>                       <to hex="27D">ɽ</to></map>
+    <map><from>textfishhookr</from>                    <to hex="27E">ɾ</to></map>
+    <map><from>textlhti</from>                         <to hex="27F">ɿ</to></map>
+    <map><from>textscr</from>                          <to hex="280">ʀ</to></map>
+    <map><from>textinvscr</from>                       <to hex="281">ʁ</to></map>
+    <map><from>textrtails</from>                       <to hex="282">ʂ</to></map>
+    <map><from>textesh</from>                          <to hex="283">ʃ</to></map>
+    <map><from>texthtbardotlessj</from>                <to hex="284">ʄ</to></map>
+    <map><from>textraisevibyi</from>                   <to hex="285">ʅ</to></map>
+    <map><from>textctesh</from>                        <to hex="286">ʆ</to></map>
+    <map><from>textturnt</from>                        <to hex="287">ʇ</to></map>
+    <map><from>textrtailt</from>                       <to hex="288">ʈ</to></map>
+    <map><from preferred="1">texttretroflexhook</from> <to hex="288">ʈ</to></map>
+    <map><from>textbaru</from>                         <to hex="289">ʉ</to></map>
+    <map><from>textupsilon</from>                      <to hex="28A">ʊ</to></map>
+    <map><from>textscriptv</from>                      <to hex="28B">ʋ</to></map>
+    <map><from preferred="1">textvhook</from>          <to hex="28B">ʋ</to></map>
+    <map><from>textturnv</from>                        <to hex="28C">ʌ</to></map>
+    <map><from>textturnw</from>                        <to hex="28D">ʍ</to></map>
+    <map><from>textturny</from>                        <to hex="28E">ʎ</to></map>
+    <map><from>textscy</from>                          <to hex="28F">ʏ</to></map>
+    <map><from>textrtailz</from>                       <to hex="290">ʐ</to></map>
+    <map><from>textctz</from>                          <to hex="291">ʑ</to></map>
+    <map><from>textezh</from>                          <to hex="292">ʒ</to></map>
+    <map><from preferred="1">textyogh</from>           <to hex="292">ʒ</to></map>
+    <map><from>textctyogh</from>                       <to hex="293">ʓ</to></map>
+    <map><from>textglotstop</from>                     <to hex="294">ʔ</to></map>
+    <map><from>textrevglotstop</from>                  <to hex="295">ʕ</to></map>
+    <map><from>textinvglotstop</from>                  <to hex="296">ʖ</to></map>
+    <map><from>textstretchc</from>                     <to hex="297">ʗ</to></map>
+    <map><from>textbullseye</from>                     <to hex="298">ʘ</to></map>
+    <map><from>textscb</from>                          <to hex="299">ʙ</to></map>
+    <map><from>textcloseepsilon</from>                 <to hex="29A">ʚ</to></map>
+    <map><from>texthtscg</from>                        <to hex="29B">ʛ</to></map>
+    <map><from>textsch</from>                          <to hex="29C">ʜ</to></map>
+    <map><from>textctj</from>                          <to hex="29D">ʝ</to></map>
+    <map><from>textturnk</from>                        <to hex="29E">ʞ</to></map>
+    <map><from>textscl</from>                          <to hex="29F">ʟ</to></map>
+    <map><from>texthtq</from>                          <to hex="2A0">ʠ</to></map>
+    <map><from>textbarglotstop</from>                  <to hex="2A1">ʡ</to></map>
+    <map><from>textbarrevglotstop</from>               <to hex="2A2">ʢ</to></map>
+    <map><from>textdzlig</from>                        <to hex="2A3">ʣ</to></map>
+    <map><from>textdyoghlig</from>                     <to hex="2A4">ʤ</to></map>
+    <map><from>textdctzlig</from>                      <to hex="2A5">ʥ</to></map>
+    <map><from>texttslig</from>                        <to hex="2A6">ʦ</to></map>
+    <map><from>textteshlig</from>                      <to hex="2A7">ʧ</to></map>
+    <map><from preferred="1">texttesh</from>           <to hex="2A7">ʧ</to></map>
+    <map><from>texttctclig</from>                      <to hex="2A8">ʨ</to></map>
+    <map><from>hamza</from>                            <to hex="2BE">ʾ</to></map>
+    <map><from>ain</from>                              <to hex="2BF">ʿ</to></map>
+    <map><from preferred="1">ayn</from>                <to hex="2BF">ʿ</to></map>
+    <map><from>textprimstress</from>                   <to hex="2C8">ˈ</to></map>
+    <map><from>textlengthmark</from>                   <to hex="2D0">ː</to></map>
+  </maps>
+  <maps type="diacritics" set="base,full">
+    <map><from>r</from>                          <to hex="30A">̊</to></map>
+    <map><from>H</from>                          <to hex="30B">̋</to></map>
+    <map><from>u</from>                          <to hex="306">̆</to></map>
+    <map><from>v</from>                          <to hex="30C">̌</to></map>
+    <map><from>G</from>                          <to hex="30F">̏</to></map>
+    <map><from>M</from>                          <to hex="322">̢</to></map>
+    <map><from>d</from>                          <to hex="323">̣</to></map>
+    <map><from>c</from>                          <to hex="327">̧</to></map>
+    <map><from>k</from>                          <to hex="328">̨</to></map>
+    <map><from>b</from>                          <to hex="331">̱</to></map>
+    <map><from>B</from>                          <to hex="335">̵</to></map>
+    <map><from>t</from>                          <to hex="311">̑</to></map>
+    <map><from>textvbaraccent</from>             <to hex="30D">̍</to></map>
+    <map><from>textdoublevbaraccent</from>       <to hex="30E">̎</to></map>
+    <map><from>textdotbreve</from>               <to hex="310">̐</to></map>
+    <map><from>textturncommaabove</from>         <to hex="312">̒</to></map>
+    <map><from>textcommaabove</from>             <to hex="313">̓</to></map>
+    <map><from>textrevcommaabove</from>          <to hex="314">̔</to></map>
+    <map><from>textcommaabover</from>            <to hex="315">̕</to></map>
+    <map><from>textsubgrave</from>               <to hex="316">̖</to></map>
+    <map><from>textsubacute</from>               <to hex="317">̗</to></map>
+    <map><from>textadvancing</from>              <to hex="318">̘</to></map>
+    <map><from>textretracting</from>             <to hex="319">̙</to></map>
+    <map><from>textlangleabove</from>            <to hex="31A">̚</to></map>
+    <map><from>textrighthorn</from>              <to hex="31B">̛</to></map>
+    <map><from>textsublhalfring</from>           <to hex="31C">̜</to></map>
+    <map><from>textraising</from>                <to hex="31D">̝</to></map>
+    <map><from>textlowering</from>               <to hex="31E">̞</to></map>
+    <map><from>textsubplus</from>                <to hex="31F">̟</to></map>
+    <map><from>textsubbar</from>                 <to hex="320">̠</to></map>
+    <map><from preferred="1">textsubminus</from> <to hex="320">̠</to></map>
+    <map><from>textpalhookbelow</from>           <to hex="321">̡</to></map>
+    <map><from>textsubumlaut</from>              <to hex="324">̤</to></map>
+    <map><from>textsubring</from>                <to hex="325">̥</to></map>
+    <map><from>textcommabelow</from>             <to hex="326">̦</to></map>
+    <map><from>textsyllabic</from>               <to hex="329">̩</to></map>
+    <map><from>textsubbridge</from>              <to hex="32A">̪</to></map>
+    <map><from>textsubw</from>                   <to hex="32B">̫</to></map>
+    <map><from>textsubwedge</from>               <to hex="32C">̬</to></map>
+    <map><from>textsubcircnum</from>             <to hex="32D">̭</to></map>
+    <map><from>textsubbreve</from>               <to hex="32E">̮</to></map>
+    <map><from preferred="1">textundertie</from> <to hex="32E">̮</to></map>
+    <map><from>textsubarch</from>                <to hex="32F">̯</to></map>
+    <map><from>textsubtilde</from>               <to hex="330">̰</to></map>
+    <map><from>subdoublebar</from>               <to hex="333">̳</to></map>
+    <map><from>textsuperimposetilde</from>       <to hex="334">̴</to></map>
+    <map><from>textlstrokethru</from>            <to hex="336">̶</to></map>
+    <map><from>textsstrikethru</from>            <to hex="337">̷</to></map>
+    <map><from>textlstrikethru</from>            <to hex="338"≯</to></map>
+    <map><from>textsubrhalfring</from>           <to hex="339">̹</to></map>
+    <map><from>textinvsubbridge</from>           <to hex="33A">̺</to></map>
+    <map><from>textsubsquare</from>              <to hex="33B">̻</to></map>
+    <map><from>textseagull</from>                <to hex="33C">̼</to></map>
+    <map><from>textovercross</from>              <to hex="33D">̽</to></map>
+    <map><from>overbridge</from>                 <to hex="346">͆</to></map>
+    <map><from>subdoublebar</from>               <to hex="347">͇</to></map>
+    <map><from>subdoublevert</from>              <to hex="348">͈</to></map>
+    <map><from>subcorner</from>                  <to hex="349">͉</to></map>
+    <map><from>crtilde</from>                    <to hex="34A">͊</to></map>
+    <map><from preferred="1">textoverw</from>    <to hex="34A">͊</to></map>
+    <map><from>dottedtilde</from>                <to hex="34B">͋</to></map>
+    <map><from>doubletilde</from>                <to hex="34C">͌</to></map>
+    <map><from>spreadlips</from>                 <to hex="34D">͍</to></map>
+    <map><from>whistle</from>                    <to hex="34E">͎</to></map>
+    <map><from>textrightarrowhead</from>         <to hex="350">͐</to></map>
+    <map><from>textlefthalfring</from>           <to hex="351">͑</to></map>
+    <map><from>sublptr</from>                    <to hex="354">͔</to></map>
+    <map><from>subrptr</from>                    <to hex="355">͕</to></map>
+    <map><from>textrightuparrowhead</from>       <to hex="356">͖</to></map>
+    <map><from>textrighthalfring</from>          <to hex="357">͗</to></map>
+    <map><from>textdoublebreve</from>            <to hex="35D">͝</to></map>
+    <map><from>textdoublemacron</from>           <to hex="35E">͞</to></map>
+    <map><from>textdoublemacronbelow</from>      <to hex="35F">͟</to></map>
+    <map><from>textdoubletilde</from>            <to hex="360">͠</to></map>
+    <map><from>texttoptiebar</from>              <to hex="361">͡</to></map>
+    <map><from>sliding</from>                    <to hex="362">͢</to></map>
+  </maps>
+  <maps type="punctuation" set="base,full">
+    <map><from raw="1">-</from>                 <to hex="2010">‐</to></map>
+    <map><from raw="1">-</from>                 <to hex="2011">‑</to></map>
+    <map><from>textendash</from>                <to hex="2012">‒</to></map>
+    <map><from preferred="1" raw="1">--</from>  <to hex="2012">‒</to></map>
+    <map><from>textendash</from>                <to hex="2013">–</to></map>
+    <map><from preferred="1" raw="1">--</from>  <to hex="2013">–</to></map>
+    <map><from>textemdash</from>                <to hex="2014">—</to></map>
+    <map><from preferred="1" raw="1">---</from> <to hex="2014">—</to></map>
+    <map><from>textquoteleft</from>             <to hex="2018">‘</to></map>
+    <map><from>textquoteright</from>            <to hex="2019">’</to></map>
+    <map><from>quotesinglbase</from>            <to hex="201A">‚</to></map>
+    <map><from>textquotedblleft</from>          <to hex="201C">“</to></map>
+    <map><from>textquotedblright</from>         <to hex="201D">”</to></map>
+    <map><from>quotedblbase</from>              <to hex="201E">„</to></map>
+    <map><from>dag</from>                       <to hex="2020">†</to></map>
+    <map><from>ddag</from>                      <to hex="2021">‡</to></map>
+    <map><from>textbullet</from>                <to hex="2022">•</to></map>
+    <map><from>dots</from>                      <to hex="2026">…</to></map>
+    <map><from>textperthousand</from>           <to hex="2030">‰</to></map>
+    <map><from>textpertenthousand</from>        <to hex="2031">‱</to></map>
+    <map><from>guilsinglleft</from>             <to hex="2039">‹</to></map>
+    <map><from>guilsinglright</from>            <to hex="203A">›</to></map>
+    <map><from>textreferencemark</from>         <to hex="203B">※</to></map>
+    <map><from>textinterrobang</from>           <to hex="203D">‽</to></map>
+    <map><from>textoverline</from>              <to hex="203E">‾</to></map>
+    <map><from>langle</from>                    <to hex="27E8">⟨</to></map>
+    <map><from>rangle</from>                    <to hex="27E9">⟩</to></map>
+  </maps>
+  <maps type="symbols" set ="base,full">
+    <map><from>textquotedbl</from>                     <to hex="22">"</to></map>
+    <map><from>textdollar</from>                       <to hex="24">$</to></map>
+    <map><from>textpercent</from>                      <to hex="25">%</to></map>
+    <map><from>textampersand</from>                    <to hex="26">&amp;</to></map>
+    <map><from>textquotesingle</from>                  <to hex="27">'</to></map>
+    <map><from>textasteriskcentered</from>             <to hex="2A">*</to></map>
+    <map><from>textless</from>                         <to hex="3C">&lt;</to></map>
+    <map><from>textequals</from>                       <to hex="3D">=</to></map>
+    <map><from>textgreater</from>                      <to hex="3E">&gt;</to></map>
+    <map><from>textbackslash</from>                    <to hex="5C">\</to></map>
+    <map><from>textasciicircum</from>                  <to hex="5E">^</to></map>
+    <map><from>textunderscore</from>                   <to hex="5F">_</to></map>
+    <map><from>textasciigrave</from>                   <to hex="60">`</to></map>
+    <map><from>textbraceleft</from>                    <to hex="7B">{</to></map>
+    <map><from>textbar</from>                          <to hex="7C">|</to></map>
+    <map><from>textbraceright</from>                   <to hex="7D">}</to></map>
+    <map><from>textasciitilde</from>                   <to hex="7E">~</to></map>
+    <map><from>nobreakspace</from>                     <to hex="A0"> </to></map>
+    <map><from>textexclamdown</from>                   <to hex="A1">¡</to></map>
+    <map><from>textcent</from>                         <to hex="A2">¢</to></map>
+    <map><from>textsterling</from>                     <to hex="A3">£</to></map>
+    <map><from preferred="1">pounds</from>             <to hex="A3">£</to></map>
+    <map><from>textcurrency</from>                     <to hex="A4">¤</to></map>
+    <map><from>textyen</from>                          <to hex="A5">¥</to></map>
+    <map><from>textbrokenbar</from>                    <to hex="A6">¦</to></map>
+    <map><from>textsection</from>                      <to hex="A7">§</to></map>
+    <map><from preferred="1">S</from>                  <to hex="A7">§</to></map>
+    <map><from>textasciidieresis</from>                <to hex="A8">¨</to></map>
+    <map><from>textcopyright</from>                    <to hex="A9">©</to></map>
+    <map><from preferred='1'>copyright</from>          <to hex="A9">©</to></map>
+    <map><from>textordfeminine</from>                  <to hex="AA">ª</to></map>
+    <map><from>guillemotleft</from>                    <to hex="AB">«</to></map>
+    <map><from>textminus</from>                        <to hex="2212">−</to></map>
+    <map><from>textregistered</from>                   <to hex="AE">®</to></map>
+    <map><from>textasciimacron</from>                  <to hex="AF">¯</to></map>
+    <map><from>textdegree</from>                       <to hex="B0">°</to></map>
+    <map><from>texttwosuperior</from>                  <to hex="B2">²</to></map>
+    <map><from>textthreesuperior</from>                <to hex="B3">³</to></map>
+    <map><from>textasciiacute</from>                   <to hex="B4">´</to></map>
+    <map><from>textparagraph</from>                    <to hex="B6">¶</to></map>
+    <map><from preferred="1">P</from>                  <to hex="B6">¶</to></map>
+    <map><from>textcentereddot</from>                  <to hex="B7">·</to></map>
+    <map><from preferred="1">textperiodcentered</from> <to hex="B7">·</to></map>
+    <map><from>textasciicedilla</from>                 <to hex="B8">¸</to></map>
+    <map><from>textonesuperior</from>                  <to hex="B9">¹</to></map>
+    <map><from>textordmasculine</from>                 <to hex="BA">º</to></map>
+    <map><from>guillemotright</from>                   <to hex="BB">»</to></map>
+    <map><from>textonequarter</from>                   <to hex="BC">¼</to></map>
+    <map><from>textonehalf</from>                      <to hex="BD">½</to></map>
+    <map><from>textthreequarters</from>                <to hex="BE">¾</to></map>
+    <map><from>textquestiondown</from>                 <to hex="BF">¿</to></map>
+  </maps>
+  <maps type="symbols" set ="full">
+    <map><from>textg</from>               <to hex="67">g</to></map>
+    <map><from>textdiv</from>             <to hex="F7">÷</to></map>
+    <map><from preferred="1">div</from>   <to hex="F7">÷</to></map>
+    <map><from>texttimes</from>           <to hex="D7">×</to></map>
+    <map><from preferred="1">times</from> <to hex="D7">×</to></map>
+    <map><from>textmu</from>              <to hex="B5">µ</to></map>
+    <map><from preferred="1">mu</from>    <to hex="B5">µ</to></map>
+    <map><from>textpm</from>              <to hex="B1">±</to></map>
+    <map><from preferred="1">pm</from>    <to hex="B1">±</to></map>
+    <map><from>textlogicalnot</from>      <to hex="AC">¬</to></map>
+    <map><from preferred="1">lnot</from>  <to hex="AC">¬</to></map>
+    <map><from>textcolonmonetary</from>   <to hex="20A1">₡</to></map>
+    <map><from>textlira</from>            <to hex="20A4">₤</to></map>
+    <map><from>textnaira</from>           <to hex="20A6">₦</to></map>
+    <map><from>textwon</from>             <to hex="20A9">₩</to></map>
+    <map><from>textdong</from>            <to hex="20AB">₫</to></map>
+    <map><from preferred="1">euro</from>  <to hex="20AC">€</to></map>
+    <map><from>texteuro</from>            <to hex="20AC">€</to></map>
+    <map><from>textnumero</from>          <to hex="2116">№</to></map>
+    <map><from>texttrademark</from>       <to hex="2122">™</to></map>
+    <map><from>leftarrow</from>           <to hex="2190">←</to></map>
+    <map><from>uparrow</from>             <to hex="2191">↑</to></map>
+    <map><from>rightarrow</from>          <to hex="2192">→</to></map>
+    <map><from>downarrow</from>           <to hex="2193">↓</to></map>
+    <map><from>leftrightarrow</from>      <to hex="2194">↔</to></map>
+    <map><from>updownarrow</from>         <to hex="2195">↕</to></map>
+    <map><from>leadsto</from>             <to hex="219D">↝</to></map>
+    <map><from>rightleftharpoons</from>   <to hex="21CC">⇌</to></map>
+    <map><from>Rightarrow</from>          <to hex="21D2">⇒</to></map>
+    <map><from>Leftrightarrow</from>      <to hex="21D4">⇔</to></map>
+    <map><from>forall</from>              <to hex="2200">∀</to></map>
+    <map><from>complement</from>          <to hex="2201">∁</to></map>
+    <map><from>partial</from>             <to hex="2202">∂</to></map>
+    <map><from>exists</from>              <to hex="2203">∃</to></map>
+    <map><from>nexists</from>             <to hex="2204">∄</to></map>
+    <map><from>set</from>                 <to hex="2205">∅</to></map>
+    <map><from>Delta</from>               <to hex="2206">∆</to></map>
+    <map><from>nabla</from>               <to hex="2207">∇</to></map>
+    <map><from>in</from>                  <to hex="2208">∈</to></map>
+    <map><from>notin</from>               <to hex="2209">∉</to></map>
+    <map><from>ni</from>                  <to hex="220B">∋</to></map>
+    <map><from>prod</from>                <to hex="220F">∏</to></map>
+    <map><from>coprod</from>              <to hex="2210">∐</to></map>
+    <map><from>sum</from>                 <to hex="2211">∑</to></map>
+    <map><from>mp</from>                  <to hex="2213">∓</to></map>
+    <map><from>dotplus</from>             <to hex="2214">∔</to></map>
+    <map><from>setminus</from>            <to hex="2216">∖</to></map>
+    <map><from>ast</from>                 <to hex="2217">∗</to></map>
+    <map><from>circ</from>                <to hex="2218">∘</to></map>
+    <map><from>bullet</from>              <to hex="2219">∙</to></map>
+    <map><from>surd</from>                <to hex="221A">√</to></map>
+    <map><from>propto</from>              <to hex="221D">∝</to></map>
+    <map><from>infty</from>               <to hex="221E">∞</to></map>
+    <map><from>angle</from>               <to hex="2220">∠</to></map>
+    <map><from>measuredangle</from>       <to hex="2221">∡</to></map>
+    <map><from>sphericalangle</from>      <to hex="2222">∢</to></map>
+    <map><from>mid</from>                 <to hex="2223">∣</to></map>
+    <map><from>nmid</from>                <to hex="2224">∤</to></map>
+    <map><from>parallel</from>            <to hex="2225">∥</to></map>
+    <map><from>nparallel</from>           <to hex="2226">∦</to></map>
+    <map><from>wedge</from>               <to hex="2227">∧</to></map>
+    <map><from>vee</from>                 <to hex="2228">∨</to></map>
+    <map><from>cap</from>                 <to hex="2229">∩</to></map>
+    <map><from>cup</from>                 <to hex="222A">∪</to></map>
+    <map><from>int</from>                 <to hex="222B">∫</to></map>
+    <map><from>iint</from>                <to hex="222C">∬</to></map>
+    <map><from>iiint</from>               <to hex="222D">∭</to></map>
+    <map><from>oint</from>                <to hex="222E">∮</to></map>
+    <map><from>therefore</from>           <to hex="2234">∴</to></map>
+    <map><from>because</from>             <to hex="2235">∵</to></map>
+    <map><from>sim</from>                 <to hex="223C">∼</to></map>
+    <map><from>backsim</from>             <to hex="223D">∽</to></map>
+    <map><from>wr</from>                  <to hex="2240">≀</to></map>
+    <map><from>nsim</from>                <to hex="2241">≁</to></map>
+    <map><from>simeq</from>               <to hex="2243">≃</to></map>
+    <map><from>cong</from>                <to hex="2245">≅</to></map>
+    <map><from>ncong</from>               <to hex="2247">≇</to></map>
+    <map><from>approx</from>              <to hex="2248">≈</to></map>
+    <map><from>approxeq</from>            <to hex="224A">≊</to></map>
+    <map><from>asymp</from>               <to hex="224D">≍</to></map>
+    <map><from>Bumpeq</from>              <to hex="224E">≎</to></map>
+    <map><from>bumpeq</from>              <to hex="224F">≏</to></map>
+    <map><from>doteq</from>               <to hex="2250">≐</to></map>
+    <map><from>doteqdot</from>            <to hex="2251">≑</to></map>
+    <map><from>fallingdotseq</from>       <to hex="2252">≒</to></map>
+    <map><from>risingdotseq</from>        <to hex="2253">≓</to></map>
+    <map><from>eqcirc</from>              <to hex="2256">≖</to></map>
+    <map><from>circeq</from>              <to hex="2257">≗</to></map>
+    <map><from>triangleq</from>           <to hex="225C">≜</to></map>
+    <map><from>neq</from>                 <to hex="2260">≠</to></map>
+    <map><from>equiv</from>               <to hex="2261">≡</to></map>
+    <map><from>leq</from>                 <to hex="2264">≤</to></map>
+    <map><from>geq</from>                 <to hex="2265">≥</to></map>
+    <map><from>leqq</from>                <to hex="2266">≦</to></map>
+    <map><from>geqq</from>                <to hex="2267">≧</to></map>
+    <map><from>lneqq</from>               <to hex="2268">≨</to></map>
+    <map><from>gneqq</from>               <to hex="2269">≩</to></map>
+    <map><from>ll</from>                  <to hex="226A">≪</to></map>
+    <map><from>gg</from>                  <to hex="226B">≫</to></map>
+    <map><from>between</from>             <to hex="226C">≬</to></map>
+    <map><from>nless</from>               <to hex="226E">≮</to></map>
+    <map><from>ngtr</from>                <to hex="226F">≯</to></map>
+    <map><from>nleq</from>                <to hex="2270">≰</to></map>
+    <map><from>ngeq</from>                <to hex="2271">≱</to></map>
+    <map><from>lesssim</from>             <to hex="2272">≲</to></map>
+    <map><from>gtrsim</from>              <to hex="2273">≳</to></map>
+    <map><from>lessgtr</from>             <to hex="2276">≶</to></map>
+    <map><from>gtrless</from>             <to hex="2277">≷</to></map>
+    <map><from>prec</from>                <to hex="227A">≺</to></map>
+    <map><from>succ</from>                <to hex="227B">≻</to></map>
+    <map><from>preccurlyeq</from>         <to hex="227C">≼</to></map>
+    <map><from>succcurlyeq</from>         <to hex="227D">≽</to></map>
+    <map><from>precsim</from>             <to hex="227E">≾</to></map>
+    <map><from>succsim</from>             <to hex="227F">≿</to></map>
+    <map><from>nprec</from>               <to hex="2280">⊀</to></map>
+    <map><from>nsucc</from>               <to hex="2281">⊁</to></map>
+    <map><from>subset</from>              <to hex="2282">⊂</to></map>
+    <map><from>supset</from>              <to hex="2283">⊃</to></map>
+    <map><from>subseteq</from>            <to hex="2286">⊆</to></map>
+    <map><from>supseteq</from>            <to hex="2287">⊇</to></map>
+    <map><from>nsubseteq</from>           <to hex="2288">⊈</to></map>
+    <map><from>nsupseteq</from>           <to hex="2289">⊉</to></map>
+    <map><from>subsetneq</from>           <to hex="228A">⊊</to></map>
+    <map><from>supsetneq</from>           <to hex="228B">⊋</to></map>
+    <map><from>uplus</from>               <to hex="228E">⊎</to></map>
+    <map><from>sqsubset</from>            <to hex="228F">⊏</to></map>
+    <map><from>sqsupset</from>            <to hex="2290">⊐</to></map>
+    <map><from>sqsubseteq</from>          <to hex="2291">⊑</to></map>
+    <map><from>sqsupseteq</from>          <to hex="2292">⊒</to></map>
+    <map><from>sqcap</from>               <to hex="2293">⊓</to></map>
+    <map><from>sqcup</from>               <to hex="2294">⊔</to></map>
+    <map><from>oplus</from>               <to hex="2295">⊕</to></map>
+    <map><from>ominus</from>              <to hex="2296">⊖</to></map>
+    <map><from>otimes</from>              <to hex="2297">⊗</to></map>
+    <map><from>oslash</from>              <to hex="2298">⊘</to></map>
+    <map><from>odot</from>                <to hex="2299">⊙</to></map>
+    <map><from>circledcirc</from>         <to hex="229A">⊚</to></map>
+    <map><from>circledast</from>          <to hex="229B">⊛</to></map>
+    <map><from>circleddash</from>         <to hex="229D">⊝</to></map>
+    <map><from>boxplus</from>             <to hex="229E">⊞</to></map>
+    <map><from>boxminus</from>            <to hex="229F">⊟</to></map>
+    <map><from>boxtimes</from>            <to hex="22A0">⊠</to></map>
+    <map><from>boxdot</from>              <to hex="22A1">⊡</to></map>
+    <map><from>vdash</from>               <to hex="22A2">⊢</to></map>
+    <map><from>dashv</from>               <to hex="22A3">⊣</to></map>
+    <map><from>top</from>                 <to hex="22A4">⊤</to></map>
+    <map><from>bot</from>                 <to hex="22A5">⊥</to></map>
+    <map><from>Vdash</from>               <to hex="22A9">⊩</to></map>
+    <map><from>Vvdash</from>              <to hex="22AA">⊪</to></map>
+    <map><from>nVdash</from>              <to hex="22AE">⊮</to></map>
+    <map><from>lhd</from>                 <to hex="22B2">⊲</to></map>
+    <map><from>rhd</from>                 <to hex="22B3">⊳</to></map>
+    <map><from>unlhd</from>               <to hex="22B4">⊴</to></map>
+    <map><from>unrhd</from>               <to hex="22B5">⊵</to></map>
+    <map><from>multimap</from>            <to hex="22B8">⊸</to></map>
+    <map><from>intercal</from>            <to hex="22BA">⊺</to></map>
+    <map><from>veebar</from>              <to hex="22BB">⊻</to></map>
+    <map><from>barwedge</from>            <to hex="22BC">⊼</to></map>
+    <map><from>bigwedge</from>            <to hex="22C0">⋀</to></map>
+    <map><from>bigvee</from>              <to hex="22C1">⋁</to></map>
+    <map><from>bigcap</from>              <to hex="22C2">⋂</to></map>
+    <map><from>bigcup</from>              <to hex="22C3">⋃</to></map>
+    <map><from>diamond</from>             <to hex="22C4">⋄</to></map>
+    <map><from>cdot</from>                <to hex="22C5">⋅</to></map>
+    <map><from>star</from>                <to hex="22C6">⋆</to></map>
+    <map><from>divideontimes</from>       <to hex="22C7">⋇</to></map>
+    <map><from>bowtie</from>              <to hex="22C8">⋈</to></map>
+    <map><from>ltimes</from>              <to hex="22C9">⋉</to></map>
+    <map><from>rtimes</from>              <to hex="22CA">⋊</to></map>
+    <map><from>leftthreetimes</from>      <to hex="22CB">⋋</to></map>
+    <map><from>rightthreetimes</from>     <to hex="22CC">⋌</to></map>
+    <map><from>backsimeq</from>           <to hex="22CD">⋍</to></map>
+    <map><from>curlyvee</from>            <to hex="22CE">⋎</to></map>
+    <map><from>curlywedge</from>          <to hex="22CF">⋏</to></map>
+    <map><from>Subset</from>              <to hex="22D0">⋐</to></map>
+    <map><from>Supset</from>              <to hex="22D1">⋑</to></map>
+    <map><from>Cap</from>                 <to hex="22D2">⋒</to></map>
+    <map><from>Cup</from>                 <to hex="22D3">⋓</to></map>
+    <map><from>pitchfork</from>           <to hex="22D4">⋔</to></map>
+    <map><from>lessdot</from>             <to hex="22D6">⋖</to></map>
+    <map><from>gtrdot</from>              <to hex="22D7">⋗</to></map>
+    <map><from>lll</from>                 <to hex="22D8">⋘</to></map>
+    <map><from>ggg</from>                 <to hex="22D9">⋙</to></map>
+    <map><from>lesseqgtr</from>           <to hex="22DA">⋚</to></map>
+    <map><from>gtreqless</from>           <to hex="22DB">⋛</to></map>
+    <map><from>curlyeqprec</from>         <to hex="22DE">⋞</to></map>
+    <map><from>curlyeqsucc</from>         <to hex="22DF">⋟</to></map>
+    <map><from>lnsim</from>               <to hex="22E6">⋦</to></map>
+    <map><from>gnsim</from>               <to hex="22E7">⋧</to></map>
+    <map><from>precnsim</from>            <to hex="22E8">⋨</to></map>
+    <map><from>succnsim</from>            <to hex="22E9">⋩</to></map>
+    <map><from>ntriangleleft</from>       <to hex="22EA">⋪</to></map>
+    <map><from>ntriangleright</from>      <to hex="22EB">⋫</to></map>
+    <map><from>ntrianglelefteq</from>     <to hex="22EC">⋬</to></map>
+    <map><from>ntrianglerighteq</from>    <to hex="22ED">⋭</to></map>
+    <map><from>vdots</from>               <to hex="22EE">⋮</to></map>
+    <map><from>cdots</from>               <to hex="22EF">⋯</to></map>
+    <map><from>ddots</from>               <to hex="22F1">⋱</to></map>
+    <map><from>lceil</from>               <to hex="2308">⌈</to></map>
+    <map><from>rceil</from>               <to hex="2309">⌉</to></map>
+    <map><from>lfloor</from>              <to hex="230A">⌊</to></map>
+    <map><from>rfloor</from>              <to hex="230B">⌋</to></map>
+    <map><from>Box</from>                 <to hex="25A1">□</to></map>
+    <map><from>spadesuit</from>           <to hex="2660">♠</to></map>
+    <map><from>heartsuit</from>           <to hex="2661">♡</to></map>
+    <map><from>diamondsuit</from>         <to hex="2662">♢</to></map>
+    <map><from>clubsuit</from>            <to hex="2663">♣</to></map>
+    <map><from>flat</from>                <to hex="266D">♭</to></map>
+    <map><from>natural</from>             <to hex="266E">♮</to></map>
+    <map><from>sharp</from>               <to hex="266F">♯</to></map>
+    <map><from>tone5</from>               <to hex="2E5">˥</to></map>
+    <map><from>tone4</from>               <to hex="2E6">˦</to></map>
+    <map><from>tone3</from>               <to hex="2E7">˧</to></map>
+    <map><from>tone2</from>               <to hex="2E8">˨</to></map>
+    <map><from>tone1</from>               <to hex="2E9">˩</to></map>
+  </maps>
+  <maps type="negatedsymbols" set="full">
+    <map><from>asymp</from>       <to hex="226D">≭</to></map>
+    <map><from>lesssim</from>     <to hex="2274">≴</to></map>
+    <map><from>gtrsim</from>      <to hex="2275">≵</to></map>
+    <map><from>subset</from>      <to hex="2284">⊄</to></map>
+    <map><from>supset</from>      <to hex="2285">⊅</to></map>
+    <map><from>ni</from>          <to hex="220C">∌</to></map>
+    <map><from>simeq</from>       <to hex="2244">≄</to></map>
+    <map><from>approx</from>      <to hex="2249">≉</to></map>
+    <map><from>equiv</from>       <to hex="2262">≢</to></map>
+    <map><from>preccurlyeq</from> <to hex="22E0">⋠</to></map>
+    <map><from>succcurlyeq</from> <to hex="22E1">⋡</to></map>
+    <map><from>sqsubseteq</from>  <to hex="22E2">⋢</to></map>
+    <map><from>sqsupseteq</from>  <to hex="22E3">⋣</to></map>
+  </maps>
+  <maps type="superscripts" set="full">
+    <map><from>0</from>  <to hex="2070">⁰</to></map>
+    <map><from>i</from>  <to hex="2071">ⁱ</to></map>
+    <map><from>4</from>  <to hex="2074">⁴</to></map>
+    <map><from>5</from>  <to hex="2075">⁵</to></map>
+    <map><from>6</from>  <to hex="2076">⁶</to></map>
+    <map><from>7</from>  <to hex="2077">⁷</to></map>
+    <map><from>8</from>  <to hex="2078">⁸</to></map>
+    <map><from>9</from>  <to hex="2079">⁹</to></map>
+    <map><from>+</from>  <to hex="207A">⁺</to></map>
+    <map><from>-</from>  <to hex="207B">⁻</to></map>
+    <map><from>=</from>  <to hex="207C">⁼</to></map>
+    <map><from>(</from>  <to hex="207D">⁽</to></map>
+    <map><from>)</from>  <to hex="207E">⁾</to></map>
+    <map><from>n</from>  <to hex="207F">ⁿ</to></map>
+    <map><from>SM</from> <to hex="2120">℠</to></map>
+    <map><from>h</from>  <to hex="2B0">ʰ</to></map>
+    <map><from>j</from>  <to hex="2B2">ʲ</to></map>
+    <map><from>r</from>  <to hex="2B3">ʳ</to></map>
+    <map><from>w</from>  <to hex="2B7">ʷ</to></map>
+    <map><from>y</from>  <to hex="2B8">ʸ</to></map>
+  </maps>
+ <maps type="cmdsuperscripts" set="full">
+    <map><from>texthth</from>        <to hex="2B1">ʱ</to></map>
+    <map><from>textturnr</from>      <to hex="2B4">ʴ</to></map>
+    <map><from>textturnrrtail</from> <to hex="2B5">ʵ</to></map>
+    <map><from>textinvscr</from>     <to hex="2B6">ʶ</to></map>
+ </maps>
+ <maps type="dings" set="full">
+    <map><from>21</from> <to hex="2701">✁</to></map>
+    <map><from>22</from> <to hex="2702">✂</to></map>
+    <map><from>23</from> <to hex="2703">✃</to></map>
+    <map><from>24</from> <to hex="2704">✄</to></map>
+    <map><from>25</from> <to hex="260E">☎</to></map>
+    <map><from>26</from> <to hex="2706">✆</to></map>
+    <map><from>27</from> <to hex="2707">✇</to></map>
+    <map><from>28</from> <to hex="2708">✈</to></map>
+    <map><from>29</from> <to hex="2709">✉</to></map>
+    <map><from>2A</from> <to hex="261B">☛</to></map>
+    <map><from>2B</from> <to hex="261E">☞</to></map>
+    <map><from>2C</from> <to hex="270C">✌</to></map>
+    <map><from>2D</from> <to hex="270D">✍</to></map>
+    <map><from>2E</from> <to hex="270E">✎</to></map>
+    <map><from>2F</from> <to hex="270F">✏</to></map>
+    <map><from>30</from> <to hex="2710">✐</to></map>
+    <map><from>31</from> <to hex="2711">✑</to></map>
+    <map><from>32</from> <to hex="2712">✒</to></map>
+    <map><from>33</from> <to hex="2713">✓</to></map>
+    <map><from>34</from> <to hex="2714">✔</to></map>
+    <map><from>35</from> <to hex="2715">✕</to></map>
+    <map><from>36</from> <to hex="2716">✖</to></map>
+    <map><from>37</from> <to hex="2717">✗</to></map>
+    <map><from>38</from> <to hex="2718">✘</to></map>
+    <map><from>39</from> <to hex="2719">✙</to></map>
+    <map><from>3A</from> <to hex="271A">✚</to></map>
+    <map><from>3B</from> <to hex="271B">✛</to></map>
+    <map><from>3C</from> <to hex="271C">✜</to></map>
+    <map><from>3D</from> <to hex="271D">✝</to></map>
+    <map><from>3E</from> <to hex="271E">✞</to></map>
+    <map><from>3F</from> <to hex="271F">✟</to></map>
+    <map><from>40</from> <to hex="2720">✠</to></map>
+    <map><from>41</from> <to hex="2721">✡</to></map>
+    <map><from>42</from> <to hex="2722">✢</to></map>
+    <map><from>43</from> <to hex="2723">✣</to></map>
+    <map><from>44</from> <to hex="2724">✤</to></map>
+    <map><from>45</from> <to hex="2725">✥</to></map>
+    <map><from>46</from> <to hex="2726">✦</to></map>
+    <map><from>47</from> <to hex="2727">✧</to></map>
+    <map><from>48</from> <to hex="2605">★</to></map>
+    <map><from>49</from> <to hex="2729">✩</to></map>
+    <map><from>4A</from> <to hex="272A">✪</to></map>
+    <map><from>4B</from> <to hex="272B">✫</to></map>
+    <map><from>4C</from> <to hex="272C">✬</to></map>
+    <map><from>4D</from> <to hex="272D">✭</to></map>
+    <map><from>4E</from> <to hex="272E">✮</to></map>
+    <map><from>4F</from> <to hex="272F">✯</to></map>
+    <map><from>50</from> <to hex="2730">✰</to></map>
+    <map><from>51</from> <to hex="2731">✱</to></map>
+    <map><from>52</from> <to hex="2732">✲</to></map>
+    <map><from>53</from> <to hex="2733">✳</to></map>
+    <map><from>54</from> <to hex="2734">✴</to></map>
+    <map><from>55</from> <to hex="2735">✵</to></map>
+    <map><from>56</from> <to hex="2736">✶</to></map>
+    <map><from>57</from> <to hex="2737">✷</to></map>
+    <map><from>58</from> <to hex="2738">✸</to></map>
+    <map><from>59</from> <to hex="2739">✹</to></map>
+    <map><from>5A</from> <to hex="273A">✺</to></map>
+    <map><from>5B</from> <to hex="273B">✻</to></map>
+    <map><from>5C</from> <to hex="273C">✼</to></map>
+    <map><from>5D</from> <to hex="273D">✽</to></map>
+    <map><from>5E</from> <to hex="273E">✾</to></map>
+    <map><from>5F</from> <to hex="273F">✿</to></map>
+    <map><from>60</from> <to hex="2740">❀</to></map>
+    <map><from>61</from> <to hex="2741">❁</to></map>
+    <map><from>62</from> <to hex="2742">❂</to></map>
+    <map><from>63</from> <to hex="2743">❃</to></map>
+    <map><from>64</from> <to hex="2744">❄</to></map>
+    <map><from>65</from> <to hex="2745">❅</to></map>
+    <map><from>66</from> <to hex="2746">❆</to></map>
+    <map><from>67</from> <to hex="2747">❇</to></map>
+    <map><from>68</from> <to hex="2748">❈</to></map>
+    <map><from>69</from> <to hex="2749">❉</to></map>
+    <map><from>6A</from> <to hex="274A">❊</to></map>
+    <map><from>6B</from> <to hex="274B">❋</to></map>
+    <map><from>6C</from> <to hex="25CF">●</to></map>
+    <map><from>6D</from> <to hex="274D">❍</to></map>
+    <map><from>6E</from> <to hex="25A0">■</to></map>
+    <map><from>6F</from> <to hex="274F">❏</to></map>
+    <map><from>70</from> <to hex="2750">❐</to></map>
+    <map><from>71</from> <to hex="2751">❑</to></map>
+    <map><from>72</from> <to hex="2752">❒</to></map>
+    <map><from>73</from> <to hex="25B2">▲</to></map>
+    <map><from>74</from> <to hex="25BC">▼</to></map>
+    <map><from>75</from> <to hex="25C6">◆</to></map>
+    <map><from>76</from> <to hex="2756">❖</to></map>
+    <map><from>77</from> <to hex="25D7">◗</to></map>
+    <map><from>78</from> <to hex="2758">❘</to></map>
+    <map><from>79</from> <to hex="2759">❙</to></map>
+    <map><from>7A</from> <to hex="275A">❚</to></map>
+    <map><from>7B</from> <to hex="275B">❛</to></map>
+    <map><from>7C</from> <to hex="275C">❜</to></map>
+    <map><from>7D</from> <to hex="275D">❝</to></map>
+    <map><from>7E</from> <to hex="275E">❞</to></map>
+    <map><from>A1</from> <to hex="2761">❡</to></map>
+    <map><from>A2</from> <to hex="2762">❢</to></map>
+    <map><from>A3</from> <to hex="2763">❣</to></map>
+    <map><from>A4</from> <to hex="2764">❤</to></map>
+    <map><from>A5</from> <to hex="2765">❥</to></map>
+    <map><from>A6</from> <to hex="2766">❦</to></map>
+    <map><from>A7</from> <to hex="2767">❧</to></map>
+    <map><from>A9</from> <to hex="2666">♦</to></map>
+    <map><from>AA</from> <to hex="2665">♥</to></map>
+    <map><from>AC</from> <to hex="2460">①</to></map>
+    <map><from>AD</from> <to hex="2461">②</to></map>
+    <map><from>AE</from> <to hex="2462">③</to></map>
+    <map><from>AF</from> <to hex="2463">④</to></map>
+    <map><from>B0</from> <to hex="2464">⑤</to></map>
+    <map><from>B1</from> <to hex="2465">⑥</to></map>
+    <map><from>B2</from> <to hex="2466">⑦</to></map>
+    <map><from>B3</from> <to hex="2467">⑧</to></map>
+    <map><from>B4</from> <to hex="2468">⑨</to></map>
+    <map><from>B5</from> <to hex="2469">⑩</to></map>
+    <map><from>B6</from> <to hex="2776">❶</to></map>
+    <map><from>B7</from> <to hex="2777">❷</to></map>
+    <map><from>B8</from> <to hex="2778">❸</to></map>
+    <map><from>B9</from> <to hex="2779">❹</to></map>
+    <map><from>BA</from> <to hex="277A">❺</to></map>
+    <map><from>BB</from> <to hex="277B">❻</to></map>
+    <map><from>BC</from> <to hex="277C">❼</to></map>
+    <map><from>BD</from> <to hex="277D">❽</to></map>
+    <map><from>BE</from> <to hex="277E">❾</to></map>
+    <map><from>BF</from> <to hex="277F">❿</to></map>
+    <map><from>C0</from> <to hex="2780">➀</to></map>
+    <map><from>C1</from> <to hex="2781">➁</to></map>
+    <map><from>C2</from> <to hex="2782">➂</to></map>
+    <map><from>C3</from> <to hex="2783">➃</to></map>
+    <map><from>C4</from> <to hex="2784">➄</to></map>
+    <map><from>C5</from> <to hex="2785">➅</to></map>
+    <map><from>C6</from> <to hex="2786">➆</to></map>
+    <map><from>C7</from> <to hex="2787">➇</to></map>
+    <map><from>C8</from> <to hex="2788">➈</to></map>
+    <map><from>C9</from> <to hex="2789">➉</to></map>
+    <map><from>CA</from> <to hex="278A">➊</to></map>
+    <map><from>CB</from> <to hex="278B">➋</to></map>
+    <map><from>CC</from> <to hex="278C">➌</to></map>
+    <map><from>CD</from> <to hex="278D">➍</to></map>
+    <map><from>CE</from> <to hex="278E">➎</to></map>
+    <map><from>CF</from> <to hex="278F">➏</to></map>
+    <map><from>D0</from> <to hex="2790">➐</to></map>
+    <map><from>D1</from> <to hex="2791">➑</to></map>
+    <map><from>D2</from> <to hex="2792">➒</to></map>
+    <map><from>D3</from> <to hex="2793">➓</to></map>
+    <map><from>D4</from> <to hex="2794">➔</to></map>
+    <map><from>D6</from> <to hex="2194">↔</to></map>
+    <map><from>D7</from> <to hex="2195">↕</to></map>
+    <map><from>D8</from> <to hex="2798">➘</to></map>
+    <map><from>D9</from> <to hex="2799">➙</to></map>
+    <map><from>DA</from> <to hex="279A">➚</to></map>
+    <map><from>DB</from> <to hex="279B">➛</to></map>
+    <map><from>DC</from> <to hex="279C">➜</to></map>
+    <map><from>DD</from> <to hex="279D">➝</to></map>
+    <map><from>DE</from> <to hex="279E">➞</to></map>
+    <map><from>DF</from> <to hex="279F">➟</to></map>
+    <map><from>E0</from> <to hex="27A0">➠</to></map>
+    <map><from>E1</from> <to hex="27A1">➡</to></map>
+    <map><from>E2</from> <to hex="27A2">➢</to></map>
+    <map><from>E3</from> <to hex="27A3">➣</to></map>
+    <map><from>E4</from> <to hex="27A4">➤</to></map>
+    <map><from>E5</from> <to hex="27A5">➥</to></map>
+    <map><from>E6</from> <to hex="27A6">➦</to></map>
+    <map><from>E7</from> <to hex="27A7">➧</to></map>
+    <map><from>E8</from> <to hex="27A8">➨</to></map>
+    <map><from>E9</from> <to hex="27A9">➩</to></map>
+    <map><from>EA</from> <to hex="27AA">➪</to></map>
+    <map><from>EB</from> <to hex="27AB">➫</to></map>
+    <map><from>EC</from> <to hex="27AC">➬</to></map>
+    <map><from>ED</from> <to hex="27AD">➭</to></map>
+    <map><from>EE</from> <to hex="27AE">➮</to></map>
+    <map><from>EF</from> <to hex="27AF">➯</to></map>
+    <map><from>F1</from> <to hex="27B1">➱</to></map>
+    <map><from>F2</from> <to hex="27B2">➲</to></map>
+    <map><from>F3</from> <to hex="27B3">➳</to></map>
+    <map><from>F4</from> <to hex="27B4">➴</to></map>
+    <map><from>F5</from> <to hex="27B5">➵</to></map>
+    <map><from>F6</from> <to hex="27B6">➶</to></map>
+    <map><from>F7</from> <to hex="27B7">➷</to></map>
+    <map><from>F8</from> <to hex="27B8">➸</to></map>
+    <map><from>F9</from> <to hex="27B9">➹</to></map>
+    <map><from>FA</from> <to hex="27BA">➺</to></map>
+    <map><from>FB</from> <to hex="27BB">➻</to></map>
+    <map><from>FC</from> <to hex="27BC">➼</to></map>
+    <map><from>FD</from> <to hex="27BD">➽</to></map>
+    <map><from>FE</from> <to hex="27BE">➾</to></map>
+  </maps>
+  <maps type="greek" set="full">
+    <map><from>alpha</from>      <to hex="3B1">α</to></map>
+    <map><from>beta</from>       <to hex="3B2">β</to></map>
+    <map><from>gamma</from>      <to hex="3B3">γ</to></map>
+    <map><from>delta</from>      <to hex="3B4">δ</to></map>
+    <map><from>varepsilon</from> <to hex="3B5">ε</to></map>
+    <map><from>zeta</from>       <to hex="3B6">ζ</to></map>
+    <map><from>eta</from>        <to hex="3B7">η</to></map>
+    <map><from>vartheta</from>   <to hex="3B8">θ</to></map>
+    <map><from>iota</from>       <to hex="3B9">ι</to></map>
+    <map><from>kappa</from>      <to hex="3BA">κ</to></map>
+    <map><from>lambda</from>     <to hex="3BB">λ</to></map>
+    <map><from>mu</from>         <to hex="3BC">μ</to></map>
+    <map><from>nu</from>         <to hex="3BD">ν</to></map>
+    <map><from>xi</from>         <to hex="3BE">ξ</to></map>
+    <map><from>omicron</from>    <to hex="3BF">ο</to></map>
+    <map><from>pi</from>         <to hex="3C0">π</to></map>
+    <map><from>varrho</from>     <to hex="3C1">ρ</to></map>
+    <map><from>varsigma</from>   <to hex="3C2">ς</to></map>
+    <map><from>sigma</from>      <to hex="3C3">σ</to></map>
+    <map><from>tau</from>        <to hex="3C4">τ</to></map>
+    <map><from>upsilon</from>    <to hex="3C5">υ</to></map>
+    <map><from>varphi</from>     <to hex="3C6">φ</to></map>
+    <map><from>chi</from>        <to hex="3C7">χ</to></map>
+    <map><from>psi</from>        <to hex="3C8">ψ</to></map>
+    <map><from>omega</from>      <to hex="3C9">ω</to></map>
+    <map><from>Alpha</from>      <to hex="391">Α</to></map>
+    <map><from>Beta</from>       <to hex="392">Β</to></map>
+    <map><from>Gamma</from>      <to hex="393">Γ</to></map>
+    <map><from>Delta</from>      <to hex="394">Δ</to></map>
+    <map><from>Epsilon</from>    <to hex="395">Ε</to></map>
+    <map><from>Zeta</from>       <to hex="396">Ζ</to></map>
+    <map><from>Eta</from>        <to hex="397">Η</to></map>
+    <map><from>Theta</from>      <to hex="398">Θ</to></map>
+    <map><from>Iota</from>       <to hex="399">Ι</to></map>
+    <map><from>Kappa</from>      <to hex="39A">Κ</to></map>
+    <map><from>Lambda</from>     <to hex="39B">Λ</to></map>
+    <map><from>Mu</from>         <to hex="39C">Μ</to></map>
+    <map><from>Nu</from>         <to hex="39D">Ν</to></map>
+    <map><from>Xi</from>         <to hex="39E">Ξ</to></map>
+    <map><from>Omicron</from>    <to hex="39F">Ο</to></map>
+    <map><from>Pi</from>         <to hex="3A0">Π</to></map>
+    <map><from>Rho</from>        <to hex="3A1">Ρ</to></map>
+    <map><from>Sigma</from>      <to hex="3A3">Σ</to></map>
+    <map><from>Tau</from>        <to hex="3A4">Τ</to></map>
+    <map><from>Upsilon</from>    <to hex="3A5">Υ</to></map>
+    <map><from>Phi</from>        <to hex="3A6">Φ</to></map>
+    <map><from>Chi</from>        <to hex="3A7">Χ</to></map>
+    <map><from>Psi</from>        <to hex="3A8">Ψ</to></map>
+    <map><from>Omega</from>      <to hex="3A9">Ω</to></map>
+  </maps>
+  <encode_exclude>
+    <char>"</char>
+    <char>#</char>
+    <char>$</char>
+    <char>%</char>
+    <char>&amp;</char>
+    <char>'</char>
+    <char>*</char>
+    <char>&lt;</char>
+    <char>=</char>
+    <char>&gt;</char>
+    <char>[</char>
+    <char>]</char>
+    <char>\</char>
+    <char>^</char>
+    <char>_</char>
+    <char>`</char>
+    <char>g</char>
+    <char>{</char>
+    <char>|</char>
+    <char>}</char>
+    <char>~</char>
+    <char> </char>
+    <char>£</char>
+    <char>±</char>
+    <char>¶</char>
+  </encode_exclude>
+</texmap>
+<!--
+    Copyright 2009-2014 François Charette and Philip Kime, all rights reserved.
+    
+    This code is free software.  You can redistribute it and/or
+    modify it under the terms of the Artistic License 2.0.
+
+    This program is distributed in the hope that it will be useful,
+    but without any warranty; without even the implied warranty of
+    merchantability or fitness for a particular purpose.
+-->
