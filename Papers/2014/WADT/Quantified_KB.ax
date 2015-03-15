@@ -22,6 +22,7 @@ thf(mvalid,definition,(v = (^[A:$i>$o]:![W:$i]:(A@W)))).
 \textcolor{gray}{%----Properties of accessibility relations: symmetry}
 thf(msymmetric_type,type,(msymmetric:($i>$i>$o)>$o)).
 thf(msymmetric,definition,(
+thf(msymmetric,definition,(
     msymmetric = (^[R:$i>$i>$o]:![S:$i,T:$i]:((R@S@T)=>(R@T@S))))).
 \textcolor{gray}{%----Here we work with logic KB, i.e., we postulate symmetry for r}
 thf(sym,axiom,(msymmetric@r)).
