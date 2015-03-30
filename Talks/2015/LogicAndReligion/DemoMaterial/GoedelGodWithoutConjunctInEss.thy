@@ -10,9 +10,6 @@ begin
 -- {* Positive properties are possibly exemplified. *}
   theorem T1: "[\<forall>(\<lambda>\<Phi>. P \<Phi> m\<rightarrow> \<diamond> (\<exists> \<Phi>))]"                                     by (metis A1a A2)
 
--- {* Necessary existence is possibly exemplified. *}
-  corollary c: "[\<diamond> (\<exists> NE)]"                                                   sledgehammer
-
 -- {* Necessarily, the empty property is an essence of every individual. *}
   lemma Lemma1: "[\<box> (\<forall>(\<lambda>x.((\<lambda>y.\<lambda>w. False) ess x)))]"                         by (metis ess_def)
 
