@@ -1,0 +1,2988 @@
+\documentclass[9pt,mathserif,unknownkeysallowed,xcolor=dvipsnames]{beamer}
+%\documentclass[9pt,mathserif,handout]{beamer}
+
+
+
+\usetheme{default}
+%\usecolortheme{seagull}
+%\usecolortheme{rose}
+%\usecolortheme{beaver}
+%\usecolortheme{orchid}
+%\usecolortheme{sidebartab}
+\usefonttheme[onlylarge]{structurebold}
+\setbeamerfont*{frametitle}{size=\normalsize,series=\bfseries}
+\setbeamertemplate{navigation symbols}{}%remove navigation symbols 
+%\setbeamertemplate{section in head/foot shaded}[default][30]
+%\setbeamertemplate{subsection in head/foot shaded}[default][20]  
+\setbeamertemplate{headline}[text line]%
+{\parbox{1.063\textwidth}{\ \hfill \raisebox{-1.2\height}[0pt][0pt]{{\includegraphics[width=2.2cm]{FULogo-RGB}}}}}
+% {\parbox{1.063\textwidth}{\flushright 
+% \raisebox{-1.2\height}{\includegraphics[width=2.5cm]{/Users/christophbenzmuellerimac/chris/trunk/tex/sty/FU/FULogo-RGB}}\\  
+% \raisebox{-1.2\height}[0pt][0pt]{\includegraphics[width=.7cm]{logoPotsdam}}}}
+\setbeamertemplate{footline}
+{
+\begin{beamercolorbox}[wd=\textwidth,ht=3ex,dp=1.5ex,center,leftskip=2em,rightskip=2em]%
+{title in head/foot} 
+C. Benzmüller, 2015\,-----\,\insertshorttitle \hfill \insertframenumber
+\end{beamercolorbox}
+}
+\setbeamercovered{transparent}
+
+
+%\usepackage{etex}
+\usepackage[english]{babel}
+\usepackage[latin1]{inputenc}
+\usepackage{times}
+\usepackage[T1]{fontenc}
+%\usepackage{verbatim}
+\usepackage{colortbl}
+%\usepackage{array}
+
+%\usepackage{amsmath}
+%\usepackage{amssymb}
+\usepackage{amsfonts}
+\usepackage{pxfonts}
+\usepackage{amsthm}
+\usepackage{graphicx}
+\usepackage{stmaryrd}
+%\usepackage{latexsym}
+
+
+\usepackage{bussproofs}
+\usepackage{proof}
+
+\usepackage{fancybox}
+\usepackage{fancyvrb}
+
+%\usepackage{pstricks,vscolors}
+\usepackage{etex}
+
+\usepackage{pgf,pgfarrows,pgfnodes}
+
+%\usepackage[final]{movie15}
+\usepackage{multimedia}
+
+% \usepackage{tikz}
+% \usepackage{pgfgantt}
+% \usepackage{chronology}
+
+
+%\usepackage{rotating}
+
+% Sequent Calculus Proof Settings
+\EnableBpAbbreviations
+\def\fCenter{\mbox{\ $\vdash$\ }}
+
+\usepackage{calculi}
+
+% Logical symbols
+\newcommand{\imp}{\rightarrow}
+\newcommand{\biimp}{\leftrightarrow}
+\newcommand{\allq}{\forall}
+\newcommand{\all}{\forall}
+\newcommand{\exq}{\exists}
+\newcommand{\ex}{\exists}
+\newcommand{\seq}{\vdash}
+\newcommand{\nec}{\Box} % necessarily
+\newcommand{\pos}{\Diamond} % possibly
+
+
+\newcommand{\ess}[2]{#1 \ \mathit{ess} \ #2}
+\newcommand{\NE}{NE}
+
+\newcommand{\s}{\qquad}
+
+
+  \newcommand{\chriscite}[1]{\small \textcolor{gray}{[#1]}}
+
+\def\modal#1{\boldsymbol{#1}}
+\def\mfalse{\modal\bot}
+\def\mtrue{\modal\top}
+\def\mnot{\modal\neg\,}
+\def\mor{\,\modal\vee\,}
+\def\mand{\,\modal\wedge\,}
+\def\mimpl{\,\modal\supset\,}
+\def\miff{\,\modal\Leftrightarrow\,}
+\def\mball#1{\modal\Box_{#1}\,}
+\def\mdexi#1{\modal\Diamond_{#1}\,}
+\def\mall#1{\modal{\forall}{#1}\lambdot\,}
+\def\mallprop#1{\modal{\forall^{p}}{#1}\lambdot\,}
+\def\mallind#1{\modal{\forall^{\mu}}{#1}\lambdot\,}
+\def\mexi#1{\modal{\exists}{#1}\lambdot\,}
+\def\mpi{\modal{\Pi}\,}
+\def\mvalid{\modal{\texttt{valid}}} 
+
+\def\typearrow{\shortrightarrow}
+\def\worldtype{\iota}
+\def\indtype{\mu}
+
+
+\def\lambdot{\rule{0.6mm}{0.6mm}\hspace{0.4ex}} 
+%\def\all#1{\forall #1\lambdot}
+%\def\exi#1{\exists #1\lambdot}
+%\def\lam#1{\lambda #1\lambdot}
+
+
+\newcommand\entity[1]{\text{\textrm{#1}}}
+\def\QHL{\entity{QHL}}
+\def\QML{\entity{HOML}}
+\def\NOM{\entity{NOM}}
+\def\SVAR{\entity{SVAR}}
+\def\CON{\entity{CON}}
+\def\FVAR{\entity{FVAR}}
+%\def\IC{\entity{IC}}
+\def\FSYM{\entity{FSYM}}
+\def\RSYM{\entity{RSYM}}
+\def\QHLSTT{\entity{QHLSTT}}
+\def\QMLSTT{\entity{QMLSTT}}
+\def\IV{\entity{IV}}
+\def\PV{\entity{PV}}
+\def\SYM{\entity{SYM}}
+\def\IVSTT{\entity{IVSTT}}
+\def\PVSTT{\entity{PVSTT}}
+\def\SYMSTT{\entity{SYMSTT}}
+\def\SSTT{\entity{SSTT}}
+\def\AR{\entity{AR}}
+\def\STT{\entity{STT}\xspace}
+
+\def\QKPIm{\entity{QK}\pi^-\xspace}
+\def\QKPI{\entity{QK}\pi\xspace}
+\def\QKPIp{\entity{QK}\pi^+\xspace}
+\def\QSFPIm{\entity{QS5}\pi^-\xspace}
+\def\QSFPI{\entity{QS5}\pi\xspace}
+\def\QSFPIp{\entity{QS5}\pi^+\xspace}
+
+\def\stt{\entity{STT}\xspace}
+\def\tt{\entity{STT}}
+\def\lm{\entity{MM}\xspace}
+\def\ipl{\entity{IPL}\xspace}
+\def\HOML{\entity{HOML}\xspace}
+\def\HOL{\entity{HOL}\xspace}
+
+\def\worldtype{\mu}
+\def\indtype{\iota}
+\def\mutype{\mu}
+\def\boola{\omicron}
+\def\boolb{\hat{\omicron}}
+
+\def\ar{\shortrightarrow}
+
+\newcommand\hol[1]{\boldsymbol{#1}}
+\newcommand\lift[1]{\lceil #1 \rceil}
+\newcommand\llift[1]{\dot{#1}}
+
+\usepackage{xparse}
+
+\NewDocumentCommand{\framecolorbox}{oommm}
+ {% #1 = width (optional)
+  % #2 = inner alignment (optional)
+  % #3 = frame color
+  % #4 = background color
+  % #5 = text
+  \IfValueTF{#1}
+   {%
+    \IfValueTF{#2}
+     {\fcolorbox{#3}{#4}{\makebox[#1][#2]{#5}}}
+     {\fcolorbox{#3}{#4}{\makebox[#1]{#5}}}%
+   }
+   {\fcolorbox{#3}{#4}{#5}}%
+ }
+
+\newenvironment{transitionframe}[2]
+{
+\begin{frame}{} \Large
+\centering
+\colorbox{#2}{\includegraphics[height=.6\textheight]{#1}}
+\vfill
+}
+{
+
+\end{frame}
+}
+
+\newenvironment{changemargin}[2]{% 
+  \begin{list}{}{% 
+    \setlength{\topsep}{0pt}% 
+    \setlength{\leftmargin}{#1}% 
+    \setlength{\rightmargin}{#2}% 
+    \setlength{\listparindent}{\parindent}% 
+    \setlength{\itemindent}{\parindent}% 
+    \setlength{\parsep}{\parskip}% 
+  }% 
+\item[]
+}{\end{list}} 
+
+
+\setlength{\fboxsep}{3pt}%
+\setlength{\fboxrule}{2pt}%
+
+
+\title[Towards Computational Metaphysics]
+{
+Findings from a Computer-supported Analysis of Variants of Gödel's
+Ontological Proof\\[-1.5em]}
+
+\author{\textbf{Christoph Benzm\"{u}ller}\thanks{
+   Supported by DFG Heisenberg Fellowship  BE 2501/9-1}, Freie
+ Universität Berlin\\ {jww: Bruno Woltzenlogel-Paleo, TU Vienna \& ANU Sydney}} 
+
+%\institute{jww Bruno Woltzenlogel-Paleo}
+
+%\date[10.02.2015]{February 10, 2015}
+\date{}
+
+\begin{document}
+
+
+% \begin{frame}{Towards Computational Metaphysics}{Techniques and Tools for
+% Knowledge Representation and Reasoning in Expressive Ontologies \\ Christoph Benzm\"{u}ller, Freie Universität Berlin}
+% \includemovie[autopause,autoplay,autoresume,poster=/Users/cbenzmueller/chris/trunk/tex/talks/2015-TV/Movie1.pdf]{9cm}{6cm}{/Users/cbenzmueller/chris/trunk/tex/talks/2015-TV/Movie1.mov}
+% \end{frame}
+
+\begin{frame}\centering
+  \titlepage 
+\vskip-1.5cm
+\colorbox{black!50}{
+\movie[height=4cm,width=8cm,loop]{\includegraphics[height=4cm,width=8cm]{../2015-TV/Movie1.pdf}}{../2015-TV/Movie1.mov}
+%\includemovie[autopause,autoplay,autoresume,poster=/Users/cbenzmueller/chris/trunk/tex/talks/2015-TV/Movie1.pdf]{8cm}{4cm}{/Users/cbenzmueller/chris/trunk/tex/talks/2015-TV/Movie1.mov}
+}
+%\colorbox{gray}{\includegraphics[height=2.5cm]{Images/Books/buch7.jpg} }
+%\hfill
+%\colorbox{gray}{\includegraphics[height=2.5cm]{Images/ND.png}}
+%\hfill \begin{footnotesize}A gift to \textbf{Priest Edvaldo} and his church in Piracicaba, Brazil\end{footnotesize}
+\end{frame}
+
+
+\begin{frame}{Vision of Leibniz (1646--1716): \textit{Calculemus!}}
+\begin{changemargin}{-.5cm}{-.5cm}
+\begin{minipage}{4cm}
+\includegraphics[width=4cm]{../2014-LogInf/Images/Varia/Leibniz.png} 
+
+\vspace*{1em}
+\color{gray}\footnotesize
+If controversies were to arise, there would be no more need of
+disputation between two philosophers than between two
+accountants. For it would suffice to take their pencils in their
+hands, to sit down to their slates, and to say to each other \ldots :
+Let us calculate. \\ \phantom{bla} \, \hfill (Translation by Russell)
+\end{minipage} \hfill
+\begin{minipage}{7cm} \small
+Quo facto, quando orientur controversiae, non magis disputatione opus erit inter
+duos philosophos, quam inter duos Computistas. Sufficiet enim calamos in
+manus sumere sedereque ad abacos, et sibi mutuo \ldots dicere: calculemus.
+\hfill (Leibniz, 1684)
+\vspace*{1em}
+
+\includegraphics[width=7cm,height=5cm]{../2014-LogInf/Images/Varia/Dispute1.jpg}
+
+\vspace*{1em}
+Required: \\
+\, \hfil \textbf{characteristica universalis} and  \textbf{calculus ratiocinator}
+\end{minipage}
+\end{changemargin}
+\end{frame}
+
+
+\begin{frame}{Our Contribution: Towards a Computational Metaphysics}
+\large
+\begin{block}{Ontological argument for the existence of God}\end{block}
+\vfill
+\begin{block}{Focus on G\"odel's modern version in higher-order modal logic}\end{block}
+\vfill
+\begin{block}{Automation with provers for higher-order classical logic (HOL)}
+\begin{itemize}
+\item confirmation of known results
+\item detection of novel results (by HOL-ATPs)
+\item varying logic settings
+\item HOL as a universal metalogic via logic embeddings \\ (characteristica universalis?)
+\end{itemize}
+\end{block}
+\end{frame}
+
+
+
+% \begin{frame}{Introduction -- Ontological Argument}\large
+% %Ontological argument: Conclude that God exists from premises by pure, a priori reasoning.
+% \begin{block}{Def: Ontological Argument}
+% \begin{itemize}
+% \item deductive argument 
+% \item for the existence of God 
+% \item starting from premises, which are justified by pure reasoning,
+% i.e. they do not depend on observation of the world.
+% \end{itemize}
+% \end{block}
+
+% \vfill \pause
+% \begin{block}{Existence of God: different types of arguments/proofs}
+% \begin{itemize}
+% \item[---]a posteriori (use experience/observation in the world)
+%   \begin{itemize}
+%   \item[------]teleological
+%   \item[------]cosmological
+%   \item[------]moral
+%   \item[------] \ldots
+%   \end{itemize}  
+% \item[---]a priori (based on pure reasoning, independent)
+%   \begin{itemize}
+%   \item[------]\textcolor{Blue}{ontological argument}
+%     \begin{itemize}
+%     \item[------]definitional 
+%     \item[------]modal 
+%     \item[------] \ldots
+%     \end{itemize}
+%   \item[------]other a priori arguments
+%   \end{itemize}
+% \end{itemize}
+% \end{block}
+% \end{frame}
+
+
+
+\begin{frame}{A Long History}{\textcolor{Blue}{pros} and \textcolor{red}{cons}} \Large
+\begin{changemargin}{-.2cm}{0cm}
+\hskip-.5em
+\ldots\rotatebox[origin = bl,width = 0mm]{65}{\textcolor{Blue}{Anselm v. C.}} \hskip-2.3em
+          \rotatebox[origin = bl]{65}{\textcolor{red}{Gaunilo}} \hskip-1.3em
+\ldots  \rotatebox[origin = bl]{65}{\textcolor{red}{Th. Aquinas}}  \hskip-2.3em
+\ldots\ldots   \rotatebox[origin = bl]{65}{\textcolor{Blue}{Descartes}} \hskip-1.7em
+               \rotatebox[origin = bl]{65}{\textcolor{Blue}{Spinoza}} \hskip-1.3em
+               \rotatebox[origin = bl]{65}{\textcolor{Blue}{Leibniz}}  \hskip-1.2em
+\ldots  \rotatebox[origin = bl]{65}{\textcolor{red}{Hume}}  \hskip-1em
+          \rotatebox[origin = bl]{65}{\textcolor{red}{Kant}}  \hskip-.8em
+\ldots  \rotatebox[origin = bl]{65}{\textcolor{Blue}{Hegel}}  \hskip-1.3em
+\ldots  \rotatebox[origin = bl]{65}{\textcolor{red}{Frege}}  \hskip-1.3em
+\ldots  \rotatebox[origin = bl]{65}{\textcolor{Blue}{Hartshorne}} \hskip-1.9em
+          \rotatebox[origin = bl]{65}{\textcolor{Blue}{Malcolm}}  \hskip-1.4em
+          \rotatebox[origin = bl]{65}{\textcolor{red}{Lewis}}  \hskip-1em
+          \rotatebox[origin = bl]{65}{\textcolor{Blue}{Plantinga}}  \hskip-1.6em
+          \rotatebox[origin = bl]{65}{\textcolor{Blue}{G\"odel}}   \hskip-1.2em
+\ldots \\[1em]
+
+
+\onslide<2->
+{
+\vfill
+Anselm's notion of God (Proslogion, 1078):\\
+\,\hfill \textbf{``God is that, than which nothing greater can be
+  conceived.''} \\[1em]
+}
+
+\onslide<3->
+{
+G\"odel's notion of God:\\
+\,\hfill \textbf{``A God-like being possesses all `positive'
+  properties.''} \\[1em]
+}
+
+\onslide<2->
+{
+To show by logical reasoning: \\
+\,\hfill \textbf{``\alt<3>{Necessarily God exists.}{God exists.}''} \\
+\,\hfill \alt<3>{${\nec} \exq x G(x)$}{$\exq x G(x)$}\\[1em]
+}
+\end{changemargin}
+\end{frame}
+
+
+
+
+
+
+
+\begin{frame}{Different Interests in Ontological Arguments} \Large
+
+\begin{itemize}
+\item \textcolor{Blue}{Philosophical:} Boundaries of Metaphysics \& Epistemology
+ %  \begin{itemize}
+ %  \item We specify a metaphysical concept (God), 
+ %  \item but we want to draw
+ %      a conclusion for the real world. % \\[1em]
+ % % \item Necessary Existence: metaphysical NE vs. logical NE  vs. modal NE 
+   \\[2em]
+ % \end{itemize} 
+\item \textcolor{Blue}{Theistic:} Successful argument could convince
+  atheists? \\[2em]
+\item \textcolor{red}{Ours:} Can computers (theorem provers) be used \ldots
+  \begin{itemize}
+  \item \ldots to formalize the definitions, axioms and theorems?
+  \item \ldots to verify the arguments step-by-step?
+  \item \ldots to fully automate (sub-)arguments? \\[2em]
+  \end{itemize}
+  % \textcolor{red}{\emph{``Computer-assisted Theoretical Philosophy''}}\\[1em]
+  %                                      remember Leibniz' dictum --- \emph{Calculemus!}
+\end{itemize}
+\end{frame}
+
+
+
+% \begin{frame}{The Ontological Proof Today}
+% \vskip1em
+% % \emph{\huge Wohl eine jede Philosophie kreist um den ontologischen
+% %   Gottesbeweis} \\[1.5em]
+% % (Adorno, Negative Dialektik, 1966)
+% % \vfill
+% \begin{center}
+
+% \hfill
+% \includegraphics[height=2cm]{../2014-LogInf/Images/Books/buch3.jpg} \hfill
+% \includegraphics[height=2cm]{../2014-LogInf/Images/Books/buch2.jpg} \hfill 
+% \includegraphics[height=2cm]{../2014-LogInf/Images/Books/buch4.jpg} \hfill
+% \hfill
+
+% \vspace{0.5 cm}
+
+% \hfill
+% \includegraphics[height=2cm]{../2014-LogInf/Images/Books/buch7.jpg} \hfill
+% \includegraphics[height=2cm]{../2014-LogInf/Images/Books/buch5.jpg} \hfill
+% \includegraphics[height=2cm]{../2014-LogInf/Images/Books/buch6.jpg} \hfill
+% \includegraphics[height=2cm]{../2014-LogInf/Images/Books/buch1.jpg} \hfill
+% \hfill
+
+% \vspace{0.5 cm}
+
+% \hfill
+% \includegraphics[height=2cm]{../2014-LogInf/Images/Books/buch8.jpg} \hfill
+% \includegraphics[height=2cm]{../2014-LogInf/Images/Books/buch9.jpg} \hfill
+% \includegraphics[height=2cm]{../2014-LogInf/Images/Books/buch10.jpg} \hfill
+% \includegraphics[height=2cm]{../2014-LogInf/Images/Books/buch11.jpg} \hfill
+% \hfill
+
+% \end{center}
+% See also our collection of recent papers: \\ {\small \url{https://github.com/FormalTheology/GoedelGod/tree/master/Literature}}
+% \end{frame}
+
+
+
+\def\scottproofsimple{
+\resizebox{\textwidth}{!}{
+\begin{minipage}{12cm}%\small
+\begin{itemize}
+\item[Axiom A1] Either a property or its negation is positive, but not
+  both: \hfill 
+  ${\alt<0>{\textcolor{red}{\allq \phi}}{\allq \phi} [P(\neg \phi) \biimp \neg P(\phi)]}$ 
+\item[Axiom A2] A property necessarily implied by a
+  positive property is positive:  \phantom{bla bla bla bla bla bla bla}  \hfill 
+  ${\alt<0>{\textcolor{red}{\allq \phi \allq \psi}}{\allq \phi \allq \psi} [(P(\phi) \wedge \alt<0>{\textcolor{red}{\nec}}{\nec} \allq x [\phi(x)
+  \imp \psi(x)]) \imp P(\psi)]}$ 
+\item[\textcolor{Green}{Thm. T1}] \textcolor{Green}{Positive properties are possibly exemplified:} \hfill \textcolor{Green}{${\alt<0>{\textcolor{red}{\allq \phi}}{\allq \phi} [P(\phi) \imp \alt<0>{\textcolor{red}{\pos}}{\pos}  \exq x \phi(x)]}$}
+\item[Def. D1] A \emph{God-like} being possesses all positive properties: \hfill
+  ${G(x) \biimp \alt<0>{\textcolor{red}{\allq \phi}}{\allq \phi} [P(\phi) \imp \phi(x)]}$ 
+\item[Axiom A3]  The property of being God-like is positive: \hfill   ${P(G)}$ 
+\item[\textcolor{Green}{Cor. C\phantom{1}}] \textcolor{Green}{Possibly, God exists:}\hfill \textcolor{Green}{${\alt<0>{\textcolor{red}{\pos}}{\pos} \exq x G(x)}$}
+\item[Axiom A4]  Positive properties are necessarily positive: \hfill 
+  ${\alt<0>{\textcolor{red}{\allq \phi}}{\allq \phi} [P(\phi) \imp \alt<0>{\textcolor{red}{\nec}}{\nec} P(\phi)]}$ 
+\item[Def. D2] An \emph{essence} of an individual is a property possessed by it and necessarily implying any of its properties: \hfill ${\ess{\phi}{x} \biimp \alt<0>{\textcolor{red}{\phi(x)\,\wedge\,}}{\phi(x)\,\wedge\,}\alt<0>{\textcolor{red}{\allq \psi}}{\allq \psi} (\psi(x) \imp \alt<0>{\textcolor{red}{\nec}}{\nec} \allq y (\phi(y) \imp \psi(y)))}$ 
+\item[\textcolor{Green}{Thm. T2}]  \textcolor{Green}{Being God-like is an essence of any
+  God-like being:}  \hfill \textcolor{Green}{${\allq x [G(x) \imp \ess{G}{x}]}$}
+\item[Def. D3] \emph{Necessary existence} of an individual~is the necessary exemplification of all its essences: 
+  \phantom{b} \hfill ${\NE(x) \biimp \alt<0>{\textcolor{red}{\allq \phi}}{\allq \phi} [\ess{\phi}{x} \imp \alt<0>{\textcolor{red}{\nec}}{\nec}  \exq y \phi(y)]}$
+\item[Axiom A5] Necessary existence is a positive property: \hfill ${P(\NE)}$ 
+\item[\textcolor{Green}{Thm. T3}] \textcolor{Green}{Necessarily, God exists:} \hfill \textcolor{Green}{${\alt<0>{\textcolor{red}{\nec}}{\nec} \exq x G(x)}$}
+\end{itemize}
+\end{minipage}
+}}
+
+
+\usebackgroundtemplate{
+  \vbox to \paperheight{\vfil\hbox to \paperwidth{\hfil
+      \includegraphics[width=12.5cm]{../2014-LogInf/Images/Manuscript.png} 
+      \hfil}\vfil}
+}
+\begin{frame}{G\"odel's Manuscript: 1930's, 1941, 1946-1955, 1970}
+\end{frame}
+\usebackgroundtemplate{}
+
+
+\begin{frame}{Scott's Version of G\"odel's Axioms, Definitions and
+    Theorems}
+\begin{changemargin}{-.2cm}{-.5cm}
+\begin{pgfpicture}{0cm}{0cm}{11cm}{11cm}
+\pgfsetlinewidth{5\pgflinewidth} 
+%\pgfsetendarrow{\pgfarrowto}
+%\pgfsetstartarrow{\pgfarrowto}
+%\pgfnodecircle{Node1}[stroke]{\pgfxy(0,9.5)}{0.25cm}
+\pgfnodebox{Node0}[virtual]{\pgfxy(6,7.5)}{\begin{minipage}{11.5cm} \scottproofsimple\end{minipage}}{.2cm}{.2cm}
+\end{pgfpicture}
+\end{changemargin}
+\end{frame}
+
+\begin{frame}{Scott's Version of G\"odel's Axioms, Definitions and
+    Theorems}
+\begin{changemargin}{-.2cm}{-.5cm}
+\begin{pgfpicture}{0cm}{0cm}{11cm}{11cm}
+\pgfsetlinewidth{4\pgflinewidth} 
+%\pgfsetendarrow{\pgfarrowto}
+%\pgfsetstartarrow{\pgfarrowto}
+%\pgfnodecircle{Node1}[stroke]{\pgfxy(0,9.5)}{0.25cm}
+\pgfnodebox{Node0}[virtual]{\pgfxy(6,7.5)}{\begin{minipage}{11.5cm} \scottproofsimple\end{minipage}}{.2cm}{.2cm}
+\pgfnodebox{Node1}[stroke]{\pgfxy(7.2,6.6)}{\phantom{B}}{.4cm}{.2cm}
+\pgfnodebox{Node2}[virtual]{\pgfxy(7,3.5)}{
+\framecolorbox[8.5cm][s]{Blue}{Blue!20}{
+\begin{minipage}{8cm}\color{black} 
+\vskip1em
+\begin{center} Difference to G\"odel (who omits this conjunct) \end{center}
+\phantom{bla}
+\end{minipage}
+}}{0pt}{0pt}
+\pgfnodeconncurve{Node1}{Node2}{300}{120}{1cm}{1cm}
+\end{pgfpicture}
+\end{changemargin}
+\end{frame}
+
+
+
+\begin{frame}{Scott's Version of G\"odel's Axioms, Definitions and
+    Theorems}
+\begin{changemargin}{-.2cm}{-.5cm}
+\begin{pgfpicture}{0cm}{0cm}{11cm}{11cm}
+\pgfsetlinewidth{4\pgflinewidth} 
+%\pgfsetendarrow{\pgfarrowto}
+%\pgfsetstartarrow{\pgfarrowto}
+%\pgfnodecircle{Node1}[stroke]{\pgfxy(0,9.5)}{0.25cm}
+\pgfnodebox{Node0}[virtual]{\pgfxy(6,7.5)}{\begin{minipage}{11.5cm} \scottproofsimple\end{minipage}}{.2cm}{.2cm}
+\pgfnodebox{Node1}[stroke]{\pgfxy(8.2,9.8)}{\phantom{B}}{.15cm}{.15cm}
+\pgfnodebox{Node2}[stroke]{\pgfxy(10.6,7.9)}{\phantom{B}}{.15cm}{.15cm}
+\pgfnodebox{NodeX}[virtual]{\pgfxy(7,3.5)}{
+\framecolorbox[8.5cm][s]{Blue}{Blue!20}{
+\begin{minipage}{8cm}\color{black} 
+\vskip1em
+\begin{center} Modal operators are used \end{center}
+\phantom{bla}
+\end{minipage}
+}}{0pt}{0pt}
+\pgfnodeconncurve{Node1}{NodeX}{270}{120}{1cm}{1cm}
+\pgfnodeconncurve{Node2}{NodeX}{270}{110}{1cm}{1cm}
+\end{pgfpicture}
+\end{changemargin}
+\end{frame}
+
+
+
+
+\begin{frame}{Scott's Version of G\"odel's Axioms, Definitions and
+    Theorems}
+\begin{changemargin}{-.2cm}{-.5cm}
+\begin{pgfpicture}{0cm}{0cm}{11cm}{11cm}
+\pgfsetlinewidth{4\pgflinewidth} 
+%\pgfsetendarrow{\pgfarrowto}
+%\pgfsetstartarrow{\pgfarrowto}
+%\pgfnodecircle{Node1}[stroke]{\pgfxy(0,9.5)}{0.25cm}
+\pgfnodebox{Node0}[virtual]{\pgfxy(6,7.5)}{\begin{minipage}{11.5cm} \scottproofsimple\end{minipage}}{.2cm}{.2cm}
+\pgfnodebox{Node1}[stroke]{\pgfxy(6.55,9.8)}{\phantom{B}}{.4cm}{.15cm}
+\pgfnodebox{Node2}[stroke]{\pgfxy(9.65,8.8)}{\phantom{B}}{.15cm}{.15cm}
+\pgfnodebox{NodeX}[virtual]{\pgfxy(7,3.5)}{
+\framecolorbox[8.5cm][s]{Blue}{Blue!20}{
+\begin{minipage}{8cm}\color{black} 
+\vskip1em
+\begin{center} second-order quantifiers \end{center}
+\phantom{bla}
+\end{minipage}
+}}{0pt}{0pt}
+\pgfnodeconncurve{Node1}{NodeX}{180}{120}{1cm}{1cm}
+\pgfnodeconncurve{Node2}{NodeX}{270}{110}{1cm}{1cm}
+\end{pgfpicture}
+\end{changemargin}
+\end{frame}
+
+
+
+
+% \usebackgroundtemplate{}
+% \begin{frame}{Scott's Version of G\"odel's Axioms, Definitions and Theorems}
+% \scottproof
+% \end{frame}
+
+
+
+
+
+\newcommand{\phantomCOne}{
+\begin{prooftree}
+\AXC{$\phantom{\textbf{A3}}$} \noLine
+\UIC{$\phantom{P(G)}$}
+		\AXC{$\phantom{\textbf{A2}}$} \noLine
+		\UIC{$\phantom{\all \varphi. \all \psi.[(P(\varphi) \wedge \nec \all x.[\varphi(x) \imp \psi(x)]) \imp P(\psi)]}$}
+					\AXC{$\phantom{\textbf{A1a}}$} \noLine
+					\UIC{$\phantom{\all \varphi. [P(\neg \varphi) \imp \neg P(\varphi)]}$} \noLine
+				\BIC{$\phantom{\textbf{T1: } \all \varphi. [P(\varphi) \imp \pos \ex x.\varphi(x)]}$} \noLine
+	\BIC{$\phantom{\textbf{C: } \pos \ex z. G(z)}$}
+\end{prooftree}
+}
+
+\newcommand{\phantomTTwo}{
+\begin{prooftree}
+						\AXC{$\phantom{\textbf{A1b}}$} \noLine
+						\UIC{$\phantom{\all \varphi. [\neg P(\varphi) \imp P(\neg \varphi)]}$}
+								\AXC{$\phantom{\textbf{A4}}$} \noLine
+								\UIC{$\phantom{ \all \varphi.[P(\varphi) \to \Box \; P(\varphi)]} $} \noLine
+							\BIC{$\phantom{\textbf{T2: } \all y.[G(y) \imp \ess{G}{y}]}$}
+									\AXC{$\phantom{\textbf{A5}}$} \noLine
+									\UIC{$ \phantom{P(NE)} $} \noLine
+								\BIC{$\phantom{\textbf{L1: } \ex z. G(z) \imp \nec \ex x. G(x)}$} \noLine
+								\UIC{$\phantom{\pos \ex z. G(z) \imp \pos \nec \ex x. G(x)}$}
+										\AXC{$\phantom{\textbf{S5}}$} \noLine
+ 										\UIC{$\phantom{\all \xi.[\pos \nec \xi \imp \nec \xi]}$} \noLine	
+									\BIC{$\phantom{\textbf{L2: } \pos \ex z. G(z) \imp \nec \ex x. G(x)}$}
+\end{prooftree}
+}
+
+\newcommand{\phantomDOne}{
+$$
+\phantom{
+\textbf{D1: } G(x) \equiv \forall \varphi. [P(\varphi) \to \varphi(x)]}
+$$
+}
+
+\newcommand{\DOne}{
+$$
+\textbf{D1: } G(x) \equiv \forall \varphi. [P(\varphi) \to \varphi(x)]
+$$
+}
+
+\newcommand{\phantomDTwo}{
+$$
+\phantom{
+\textbf{D2: } \ess{\varphi}{x} \equiv \varphi(x) \wedge \all \psi. (\psi(x) \imp \nec \all x. (\varphi(x) \imp \psi(x)))
+}
+$$
+}
+
+\newcommand{\DTwo}{
+$$
+\textbf{D2: } \ess{\varphi}{x} \equiv \textcolor{Blue}{\varphi(x)} \wedge \all \psi. (\psi(x) \imp \nec \all x. (\varphi(x) \imp \psi(x)))
+$$
+}
+
+
+\newcommand{\phantomDThree}{
+$$
+\phantom{
+\textbf{D3: } NE(x) \equiv \all \varphi.[\ess{\varphi}{x} \imp \nec \ex y.\varphi(y)]
+}
+$$
+}
+
+\newcommand{\DThree}{
+$$
+\textbf{D3: } NE(x) \equiv \all \varphi.[\ess{\varphi}{x} \imp \nec \ex y.\varphi(y)]
+$$
+}
+
+
+
+
+
+
+
+
+% \begin{frame}{Proof Overview}
+% Side result:
+% \begin{itemize}
+% \item new natural deduction calculus
+% \item for higher-order modal logic
+% \end{itemize}
+% \end{frame}
+
+% \begin{frame}{Proof Overview}
+% GÃƒÂ¶del proves God's necessary existence by first 
+% proving that, if God's existence is at all possible, 
+% then it must be necessary (Lemma L2). This idea is 
+% already present in St. Anselm's and Descartes' 
+% arguments. \\[1em]
+
+% Leibniz argued that these arguments are 
+% incomplete because they assumed the possibility of 
+% God's existence (Corollary C1) without any proof. 
+% For Leibniz, this should be derivable from the 
+% definition of God as a perfect being and from the 
+% notion of perfection. This idea can be clearly 
+% recognized in GÃƒÂ¶del's proof: from axioms A1 and A2, 
+% one can derive that, for any positive property, 
+% the existence of a being having this property is 
+% possible (Theorem T1). \\[1em]
+
+% As God is defined as a being 
+% who possesses all positive properties, the property 
+% of being God-like must be, by axiom A3, a positive 
+% property as well.  C1 then follows trivially from T1.  \\[1em]
+
+% The hardest lemmas in GÃƒÂ¶del's
+% proof are T2 and L2.  For that, GÃƒÂ¶del had to formulate a non-trivial
+% definition of "essence", in order not only to derive T2 from A1 and A4
+% but also to state an arguably acceptable axiom A5 allowing the
+% derivation of L2 from T2 and other axioms from the modal logic S5.
+% \end{frame}
+
+
+
+\begin{transitionframe}{../2014-LangeNachtFUBerlin/Images/Transitions/ComputerCross}{black}%$
+  \centering
+\textbf{How to automate Higher-Order Modal Logic?}
+%\\ into Higher-Order Logic}
+%\textbf{Embedding Higher-Order Modal Logic \\ into Higher-Order Logic}
+\end{transitionframe}
+
+\begin{frame}{Embedding HOML in HOL} \large
+
+  \hskip-1em Challenge: \hfill No provers for \emph{Higher-order Modal
+    Logic\/} (\textcolor{red}{HOML}) \\[1em]
+
+\hskip-1em Our solution: \hfill \textbf{Embedding in \emph{Higher-order Classical
+  Logic\/} (\textcolor{Blue}{HOL})} \\
+\, \hfill Then use existing \textcolor{Blue}{HOL} theorem provers for reasoning in \textcolor{red}{HOML} \\
+\,\hfill {\small [Benzm\"ullerPaulson, Logica Universalis, 2013]}
+\\[2em]
+
+\hskip-1em Assumption:  
+\,\hfill Henkin semantics for both HOL and HOML \\[2em]
+
+\hskip-1em Previous empirical findings:  \\[.5em]
+\,\hfill Embedding of  \emph{First-order Modal Logic} in HOL works well 
+
+\,\hfill {\small [Benzm\"ullerOttenRaths, ECAI, 2012]} \\
+\,\hfill {\small [Benzm\"uller, LPAR, 2013]} \\[2em]
+\end{frame}
+
+
+
+
+% \begin{frame}[t]{Classical Higher-Order Logic  (HOL)} \large
+% Simple Types \hfill $\alpha ::=  {o} \mid {\iota}
+% \mid \textcolor{gray}{\mu} \mid {\alpha_1 \typearrow \alpha_2}$
+% \\[1em]
+% \textcolor{Blue}{\text{HOL}} \\[-3.2em]
+%  \begin{align*}
+%             \textcolor{Blue}{s},\textcolor{Blue}{t} ::=  & \textcolor{Blue}{C_{\alpha}} \mid \textcolor{Blue}{x_{\alpha}} \mid \textcolor{Blue}{(\lambda x_{\alpha}s_{\beta})_{\alpha \typearrow \beta}} \mid 
+%             \textcolor{Blue}{(s_{\alpha \typearrow \beta}\, t_\alpha)_{\beta}} \mid \\
+%             & \textcolor{Blue}{(\neg_{o \typearrow o}\;s_{o})_o} \mid \textcolor{Blue}{(s_o \vee_{o\typearrow o \typearrow o} t_o)_o}
+%             \mid \textcolor{Blue}{(\forall_{(\alpha \typearrow o)\typearrow o}\; s_{\alpha
+%               \typearrow o})_o}  \\[-1em]
+%           \end{align*}
+% \, \hfill \textcolor{gray}{(note:~binder~notation~\textcolor{Blue}{$\forall x_\alpha
+%             t_o$}~as~syntactic~sugar~for~\textcolor{Blue}{$\forall_{(\alpha
+%               \typearrow o)\typearrow o} \lambda x_\alpha t_o$})} \\[2em]
+
+% \pause
+% HOL with Henkin semantics is (meanwhile) well understood \\
+% \quad Origin, foundation for maths \hfill  \chriscite{Church,JSymbLog,1940} \\
+% \quad Henkin semantics \hfill \chriscite{Henkin,JSymb.Log,1950} \\
+%   \hfill \chriscite{Andrews, JSymbLog,1971,1972} \\
+% \quad Extensionality/Intensionality   \hfill \chriscite{Benzm\"ullerEtAl,JSymbLog,2004} \\
+% \, \hfill \chriscite{Muskens,JSymbLog,2007} \\[.5em]
+
+% \pause
+% Sound and complete provers do exists \\[.5em]
+%   \quad interactive: \hfill Isabelle/HOL, HOL4, Hol Light, Coq/HOL, PVS,
+%   \ldots \\[.5em]
+%   \quad automated: \hfill TPS, LEO-II, Satallax, Nitpick, Isabelle/HOL, \ldots \\
+
+% \end{frame}
+
+
+
+
+
+
+% \begin{frame}{Embedding HOML in HOL} \large
+% \begin{changemargin}{-.5cm}{0cm}
+
+% \textcolor{red}{HOML} \hfill
+% $\begin{array}{lll}\textcolor{red}{\varphi,\psi} & ::= &
+%   \textcolor{red}{\ldots}  \mid \textcolor{red}{\neg
+%     \varphi} \mid \textcolor{red}{\varphi \wedge \psi} \mid
+%   \textcolor{red}{\varphi \imp \psi}  \mid \textcolor{red}{\Box
+%     \varphi} \mid \textcolor{red}{\Diamond \varphi}  \mid
+%   \textcolor{red}{\forall {x_\gamma}\, \varphi} \mid
+%   \textcolor{red}{\exists {x_\gamma}\, \varphi} 
+% %\mid \textcolor{red}{\forall {P}\, \varphi} 
+% \end{array}$ \\[1em]
+
+
+% \begin{itemize}
+% \item Kripke style semantics (possible world semantics)\\
+% $\begin{array}{lcl} 
+% \onslide<1->{   \parbox[b]{2.5cm}{$M,g,s  \models  \textcolor{red}{ \neg \textcolor{black}{\varphi}}$}     & \text{ iff } &  \text{not } M,g,s \models {\varphi} \\}
+% \onslide<1->{   M,g,s  \models  \textcolor{red}{
+%     \textcolor{black}{\varphi} \wedge \textcolor{black}{\psi}}    &
+%   \text{ iff } &  M,g,s \models {\varphi} \text{ and } M,g,s \models
+%   {\psi} \\}
+% \ldots \\
+% \onslide<1->{   M,g,s  \models  \textcolor{red}{ \Box} \varphi & \text{ iff } &  M,g,u \models {\varphi} \text{ for all } u \text{ with } {\textcolor{red}{ r}(s,u)} \\}
+% \ldots \\
+% \onslide<1->{ M,g,s  \models  \textcolor{red}{ \forall} {x_\gamma}\,  \varphi
+%   & \text{ iff } &  M,[d/x]g,s \models \varphi \text{ for all } d\in D_\gamma
+%   \\}
+% \ldots \\
+%  \end{array}
+% $
+% \vspace*{1em}
+% \item[] 
+% \, \hfill \chriscite{Benzm{\"u}llerWoltzenlogelPaleo, ECAI, 2014}\\
+% \, \hfill \chriscite{Muskens, HandbookOfModalLogic, 2006}\\
+% \end{itemize}
+
+
+% \end{changemargin}
+% \end{frame}
+
+
+\begin{frame}{Embedding HOML in HOL}\large
+\begin{changemargin}{-.5cm}{0cm}
+
+\textcolor{red}{HOML} \hfill
+$\begin{array}{lll}\textcolor{red}{\varphi,\psi} & ::= &
+  \textcolor{red}{\ldots}  \mid \textcolor{red}{\neg
+    \varphi} \mid \textcolor{red}{\varphi \wedge \psi} \mid
+  \textcolor{red}{\varphi \imp \psi}  \mid \textcolor{red}{\Box
+    \varphi} \mid \textcolor{red}{\Diamond \varphi}  \mid
+ \textcolor{red}{\forall {x_\gamma}\, \varphi} \mid
+  \textcolor{red}{\exists {x_\gamma}\, \varphi} 
+%\mid \textcolor{red}{\forall {P}\, \varphi} 
+\end{array}$ \\[1em]
+\textcolor{Blue}{HOL}\hfill 
+$\begin{array}{lll}
+\textcolor{Blue}{s,t} & ::= & \textcolor{Blue}{C}  \mid
+\textcolor{Blue}{x \mid \lambda{x} s} \mid \textcolor{Blue}{s\, t}
+\mid \textcolor{Blue}{\neg s} \mid \textcolor{Blue}{s \vee t} \mid
+\textcolor{Blue}{\forall {x}\, t} 
+\end{array}$ \\[1em]
+
+\pause
+
+\textcolor{red}{HOML} in \textcolor{Blue}{HOL}: \quad \textcolor{red}{HOML}
+formulas $\textcolor{red}{\varphi}$ are mapped to
+\textcolor{Blue}{HOL} predicates $\textcolor{red}{\varphi_{\worldtype\typearrow o}}$
+
+\begin{center}
+\fcolorbox{Blue}{white}{
+$\begin{array}{lcl} 
+    \textcolor{red}{\mnot} & = & \textcolor{Blue}{
+      \lambda{\varphi_{\worldtype\typearrow o}}\lambda{w_\worldtype}\neg \varphi w} \\ 
+    \textcolor{red}{\mand} & = & \textcolor{Blue}{ 
+      \lambda{\varphi_{\worldtype\typearrow o}}
+      \lambda{\psi_{\worldtype\typearrow o}} \lambda{w_\worldtype}
+      (\varphi w \wedge \psi w)} \\ 
+    \textcolor{red}{\imp} & = & \textcolor{Blue}{ 
+      \lambda{\varphi_{\worldtype\typearrow o}}
+      \lambda{\psi_{\worldtype\typearrow o}} \lambda{w_\worldtype}
+      (\neg \varphi w \vee \psi w)} \\ 
+    \textcolor{red}{\forall} & = & \textcolor{Blue}{ 
+      \lambda{h_{\gamma\typearrow(\worldtype \typearrow o)}}
+      \lambda{w_\worldtype} \forall {d_\gamma} \, h d w} \\
+    \textcolor{red}{\exists} & = & \textcolor{Blue}{ 
+      \lambda{h_{\gamma\typearrow(\worldtype \typearrow o)}}
+      \lambda{w_\worldtype} \exists {d_\gamma} \, h d w} \\
+    \\
+    \alt<0>{\textcolor{Blue}{ 
+      \forall {\varphi_{\worldtype\typearrow o}} \forall
+      {w_\worldtype} [\ \ (\textcolor{red}{\Box} \varphi) w}& \equiv & \textcolor{Blue}{ 
+      \forall {u_\worldtype}\, (\neg r w u \vee
+      \varphi u)\ \ ]}}{\textcolor{red}{\Box} & = & \textcolor{Blue}{ 
+      \lambda{\varphi_{\worldtype\typearrow o}} \lambda{w_\worldtype}
+      \forall {u_\worldtype}\, (\neg r w u \vee
+      \varphi u)}} \\ 
+    \textcolor{red}{\Diamond} & = & \textcolor{Blue}{ 
+      \lambda{\varphi_{\worldtype\typearrow o}} \lambda{w_\worldtype}
+      \exists {u_\worldtype}\, (r w u \wedge
+      \varphi u)} \\ 
+    \\
+    \text{\textcolor{brown}{valid}} & = & \textcolor{Blue}{
+        \lambda{\varphi_{\worldtype\typearrow o}} \all{w_\worldtype}
+        \varphi w}
+\end{array}$
+}  \quad \textcolor{Blue}{Ax} \alt<0>{}{{\footnotesize (polymorphic over $\gamma$)}}
+\vskip1em
+\end{center}
+
+\pause
+
+\quad The equations in \textcolor{Blue}{Ax} are given as axioms to the \textcolor{Blue}{HOL} provers! \\
+
+\end{changemargin}
+\end{frame}
+
+
+\begin{frame}{Embedding HOML in HOL} \large
+
+\hskip-1em Example \\[.5em]
+
+ \textcolor{red}{HOML} formula  \hfill \textcolor{red}{$\Diamond \exists x G(x)$}
+
+\pause 
+
+ \textcolor{red}{HOML} formula in \textcolor{Blue}{HOL}  \hfill $\text{\textcolor{brown}{valid}}\, \textcolor{red}{(\Diamond \exists x G(x))_{\worldtype\typearrow o}}$
+
+\pause
+
+expansion, $\beta\eta$-conversion \hfill $\textcolor{Blue}{\forall
+  w_\worldtype\textcolor{red}{(\Diamond \exists x
+    G(x))_{\worldtype\typearrow o}}\, w}$ 
+
+\pause
+
+expansion, $\beta\eta$-conversion \hfill $\textcolor{Blue}{\forall
+  w_\worldtype \exists {u_\worldtype} (r w u \wedge
+      \textcolor{red}{(\exists x G(x))_{\worldtype\typearrow o}} u)}$ 
+
+% expansion, $\beta\eta$-conversion \hfill $\textcolor{Blue}{\forall
+%   w_\worldtype \exists {u_\worldtype} (r w u \wedge
+%       \exists x \textcolor{red}{G(x)_{\worldtype\typearrow o}} u)}$ 
+
+\pause
+
+expansion, $\beta\eta$-conversion \hfill $\textcolor{Blue}{\forall
+  w_\worldtype \exists {u_\worldtype} (r w u \wedge
+      \exists x G x u)}$ \\[1em]
+
+%\pause
+\hskip-1em Expansion: \hfill user or prover may flexibly choose
+expansion depth 
+
+\pause
+\vfill
+\begin{block}{What are we doing?}
+\vskip.5em
+In order to prove that $\textcolor{red}{\varphi}$ is valid in \textcolor{red}{HOML}, \\
+--> we instead prove that 
+$\text{\textcolor{brown}{valid}}\,
+\textcolor{red}{\varphi_{\worldtype\typearrow o}}$ can be derived
+from \textcolor{Blue}{Ax} in \textcolor{Blue}{HOL}. \\[1em]
+
+This can be done with interactive or automated \textcolor{Blue}{HOL} theorem provers.
+\end{block}
+\pause
+\vfill
+% \pause
+% \hskip-1em For the experts: \hfill soundness and completeness wrt Henkin semantics
+\end{frame}
+
+
+
+\begin{frame}[t]{Propositional Quantification}\large
+% Propositional Quantification \chriscite{Fitting, J.Symb.Log., 2002}
+
+% \quad \ldots
+
+% \quad $ M,g,s  \models  \textcolor{red}{\forall} {p}\,  \varphi  \quad \text{ iff } \quad  M,[v/p]g,s \models \varphi \text{ for all } v\in P $\\
+% %\qquad {\small \textcolor{gray}{($P$ is a non-empty collection of sets of worlds, it includes atom sets)}}
+
+% \vspace*{1em}
+% %\pause
+
+% Embedding in HOL %\chriscite{Benzm\"ullerPaulson'13}
+
+% \quad \ldots 
+
+% \quad $\textcolor{red}{\forall\quad}  = \quad
+% \textcolor{Blue}{\lam{h_{{(\worldtype \typearrow
+%         o)}\typearrow(\worldtype \typearrow o)}} \lam{s_\worldtype}
+%   \forall {v_{(\worldtype \typearrow o)}} \, h v s}$ % \hfill $\textcolor{gray}{(\forall{\varphi} \psi \text{ stands for } \forall \lambda{\varphi} \psi)}$
+
+% \vspace*{1em}
+% \pause
+
+\vfill
+Modal logic axioms (here B) \hfill Semantical condition (here sym)
+
+\quad $\textcolor{red}{\text{\textcolor{brown}{valid}}\ \forall
+  \varphi (\varphi \imp \Box \Diamond \varphi)}$ \hfill
+$\textcolor{Blue}{\forall x \forall y\exists y (r x y \imp r y x)}$
+
+\vspace*{1em}
+%\pause
+
+Bridge rules \hfill Semantical condition
+
+\quad $\textcolor{red}{\text{\textcolor{brown}{valid}}\ \forall\varphi (\Box_{r} \varphi \imp \Box_{s} \varphi)}$ \hfill $\textcolor{Blue}{\forall x \forall y (r x y \imp s x y)}$ 
+
+%\pause
+\vfill
+\colorbox{yellow!20}{We get a wide range of modal logics and combinations
+  for free!}
+
+\, \hfill \chriscite{Benzm\"ullerPaulson, LogicaUniversalis, 2013} \\
+\end{frame}
+
+\def\chriscitebuf#1{}
+\begin{frame}[t]
+  \frametitle{Embeddings in HOL --- Theoretical Results} 
+
+\begin{block}{Soundness and Completeness \onslide*<1>{(and Cut-elimination)}}
+\qquad
+  $\models^{\textcolor{red}{L}} {\textcolor{red}{\varphi}} \quad
+  \text{iff}\quad \text{\textcolor{Blue}{Ax}} \models^{{\textcolor{Blue}{HOL}}}_{{\text{\tiny \textcolor{Blue}{Henkin}}}}
+  \textcolor{brown}{valid}\, {\textcolor{red}{\varphi_{\worldtype\typearrow o}}} \quad
+  {\onslide*<1>{ ( \text{iff} \quad  \text{\textcolor{Blue}{Ax}} \vdash^{\text{{\textcolor{Blue}{HOL}}}}_{{\textcolor{Blue}{\text{cut-free}}}}
+      \textcolor{brown}{valid}\, {\textcolor{red}{\varphi_{\worldtype\typearrow o}}} ) }}$
+\end{block}
+%\small
+\vfill
+Logic {\textcolor{red}{L}}:
+\begin{itemize}
+\item {\textcolor{red}{Higher-order  Modal Logics}} \hfill
+  \chriscitebuf{Benzm{\"u}llerWoltezenlogelPaleo, ECAI, 2014}\\
+
+\item {\textcolor{red}{First-order  Multimodal Logics}} \hfill
+  \chriscitebuf{Benzm{\"u}llerPaulson, LogicaUniversalis, 2013}\\
+\item {\textcolor{red}{Propositional Multimodal Logics} \hfill \chriscitebuf{Benzm{\"u}llerPaulson, Log.J.IGPL, 2010}}\\
+
+\item {\textcolor{red}{Quantified Conditional Logics} \hfill
+  \chriscitebuf{Benzm{\"u}ller, IJCAI, 2013}}  \\
+\item {\textcolor{red}{Propositional Conditional Logics} \hfill
+  \chriscitebuf{Benzm{\"u}llerEtAl., AMAI, 2012}} \\
+
+\item {\textcolor{red}{Intuitionistic Logics}  \hfill \chriscitebuf{Benzm{\"u}llerPaulson, Log.J.IGPL, 2010}} \\
+
+\item {\textcolor{red}{Access Control Logics}  \hfill \chriscitebuf{Benzm{\"u}ller, IFIP SEC, 2009}} \\
+
+\item {\textcolor{red}{Logic Combinations}  \hfill \chriscitebuf{Benzm{\"u}ller, AMAI, 2011}} \\[.5cm]
+
+%\item {\textcolor{red}{Ontologies: SUMO, DOLCE, OWL-full}}
+
+\item \ldots more is on the way \ldots\ including: 
+\begin{itemize}
+   \item \textcolor{red}{Description Logics}
+   \item \textcolor{red}{Nominal Logics}
+   \item \textcolor{red}{Multivalued Logics (SIXTEEN)}
+   \item \textcolor{red}{Logics based on Neighborhood Semantics}
+   \item \textcolor{red}{(Mathematical) Fuzzy Logics}
+\end{itemize}
+
+\end{itemize}
+\end{frame}
+
+
+% \begin{frame}{Cut-free Calculi for HOL: History}
+% \begin{itemize}
+%  \item Takeuti (1953): defined GLC (generalized logical calculus) by extending Gentzen's LK; conjectured cut-elimination for GLC%; showed that this conjecture proved the consistency of analysis (second-order arithmetic).
+%   \item Sch\"utte (1960): simplified verion GLC; gave a semantic characterization Takeuti's conjecture. 
+%   \item Tait (1966): proved Sch\"utte's conjecture.
+%   \item Takahashi (1967), Prawitz (1968): proved higher-order versions of the conjecture.
+%   \item Girard (1971): Takeuti's conjecture as a consequence of strong normalization for System F.
+%   \item Andrews (1971): Completeness of resolution in elementary type theory with abstract consistency technique.
+%   \item Takeuti (1975): Henkin complete cut-free sequent calculus with extensionality.
+%   \item Benzm\"uller et al. (2004, 2009), Brown (2004), and Brown and
+%     Smolka (2010): Various complete cut-free calculi with/without
+%     extensionality, use of abstract consistency technique
+% \end{itemize}
+% \end{frame}
+
+
+% \begin{frame}{Cut-free sequent calculus for HOL}
+% \begin{changemargin}{-.5cm}{-2cm}
+% \includegraphics[width=12cm]{../2014-LogInf/Images/Varia/HOLCutFreeSequentCalculus.png}
+% \end{changemargin}
+% \end{frame}
+
+
+
+\begin{transitionframe}{../2014-LogInf/Images/Transitions/GodComputerC}{black}
+\textbf{
+\quad Automated and Interactive Theorem Provers for \textcolor{Blue}{HOL}
+}
+\end{transitionframe}
+
+
+
+
+
+
+\begin{frame}{Automated Theorem Provers and Model Finders for HOL}
+\includegraphics[width=1.05\textwidth]{../2014-LogInf/Images/HOLProversGrab}
+\end{frame}
+
+
+
+
+
+% \begin{frame}
+%   \frametitle{EU Project THFTPTP: An Infrastructure for HOL-ATP}
+% \begin{block}{Results of the EU Project THFTPTP (2006/2007)}
+% \begin{itemize}
+% \item Collaboration with Geoff Sutcliffe, Chad Brown and others
+% \item Results
+% \begin{itemize}
+% \item THF0 syntax for HOL
+% \item Online access to provers
+% \item Library with example problems (e.g. entire TPS library) and results
+% \item Ontology and syntax for proof results
+% \item International CASC competition for HOL-ATP
+% \item Various tools 
+% \end{itemize}
+% \end{itemize}
+% \end{block}
+% \vfill
+% Improved availability and robustness of HOL-ATPs: \\
+% \qquad TPS, LEO-II, Isabelle, Satallax, Refute, Nitpick, agsyHOL, coqATP \\
+% \qquad Online access: \url{http://www.tptp.org/cgi-bin/SystemOnTPTP}
+% \vfill
+% \, \hfill   {\tiny \chriscite{SutcliffeBenzm{\"u}ller, J.~Formalized Reasoning, 2010}}\\
+% \, \hfill   {\tiny \chriscite{Benzm{\"u}llerRabeSutcliffe, IJCAR, 2008}}
+% \end{frame}
+
+
+
+% \begin{frame}{Proof Automation and Consistency Checking} 
+% \colorbox{gray}{\includegraphics[width=\textwidth]{../2014-LogInf/Images/Demos/DemoGrap}} 
+% Provers can be called remotely in Miami --- no local installation needed!
+% \vfill
+% Download our experiments from \url{https://github.com/FormalTheology/GoedelGod/tree/master/Formalizations/THF}
+% \end{frame}
+
+
+\begin{frame}{Proof Automation with LEO-II} 
+%\colorbox{gray}{\includegraphics[width=\textwidth]{../2014-LogInf/Images/Demos/DemoGrap}} 
+%\colorbox{gray}{\includegraphics[width=\textwidth]{../2015-TV/Movie1.pdf}} 
+\movie[height=6cm,width=10cm,loop]{\includegraphics[height=6cm,width=10cm]{../2015-TV/Movie1.pdf}}{../2015-TV/Movie1.mov}
+\vfill 
+Provers can be called remotely in Miami --- no local installation needed!
+\vfill
+Download our experiments from \\
+{\footnotesize \url{https://github.com/FormalTheology/GoedelGod/tree/master/Formalizations/THF}}
+\end{frame}
+
+
+
+
+
+% \begin{transitionframe}{../2014-LogInf/Images/Transitions/PaganReligions(CC-BY-SA)}{white} \Large \centering
+% \quad Automation and Verification in \textsc{Isabelle/HOL} \\
+% \quad Interactive Verification in \textsc{Coq} \\[2em]
+% \end{transitionframe}
+
+
+\begin{frame}{Gödel's God in Isabelle/HOL} \centering
+\vskip1em
+\begin{changemargin}{-0.5cm}{-.5cm}
+\colorbox{gray}{
+\movie[height=7cm,width=10.5cm,start=49s,duration=40s,loop]{\includegraphics[height=7cm,width=10.5cm]{../2014-LogInf/Images/IsabelleGrab}}{../2015-TV/Movie2.mov}
+%\includemovie[autopause,autoplay,autoresume,poster=/Users/cbenzmueller/chris/trunk/tex/talks/2015-TV/Movie1.pdf]{8cm}{4cm}{/Users/cbenzmueller/chris/trunk/tex/talks/2015-TV/Movie1.mov}
+}
+%colorbox{gray}{\includegraphics[width=\textwidth]{../2014-LogInf/Images/IsabelleGrab}}
+\vskip.3em
+\noindent See verifiable Isabelle/HOL document (Archive of Formal Proofs) at: \url{http://afp.sourceforge.net/entries/GoedelGod.shtml} 
+\end{changemargin}
+\end{frame}
+
+% \begin{frame}{Interaction and Automation in Proof Assistant \textsc{Isabelle/HOL}} \large \centering
+% \colorbox{gray}{\includegraphics[width=.8\textwidth]{../2014-LogInf/Images/Demos/IsabelleDemoGrab}}\vfill
+% See verifiable Isabelle/HOL document (Archive of Formal Proofs) at: \url{http://afp.sourceforge.net/entries/GoedelGod.shtml}
+% \end{frame}
+
+
+
+
+% \begin{frame}{Automation \& Verification in Proof Assistant \textsc{Isabelle/HOL}} \large
+% Isabelle/HOL   (Cambridge University/TU Munich)
+% \begin{itemize}
+% \item HOL instance of the generic \textsc{Isabelle} proof assistant
+% \item User interaction and proof automation 
+% \item Automation is supported by \textsc{Sledgehammer} tool
+% \item Verification of the proofs in \textsc{Isabelle/HOL}'s small proof kernel
+% \end{itemize}
+% \vfill
+% What we did?
+% \begin{itemize}
+% \item Proof automation of G\"odel's proof script (Scott's version)
+% \item \textsc{Sledgehammer} makes calls to remote THF provers in Miami
+% \item These calls the suggest respective calls to the \textsc{Metis} prover
+% \item \textsc{Metis} proofs are verified in \textsc{Isabelle/HOL}'s proof kernel
+% \end{itemize}
+% \vfill
+% \begin{center}
+% --- see the handout (generated from the Isabelle source file) ---
+% \end{center}
+% \end{frame}
+
+
+
+\begin{frame}{Gödel's God in \textsc{Coq}} \large \centering
+\colorbox{gray}{\includegraphics[width=1\textwidth]{../2014-LogInf/Images/Demos/CoqDemo.png}}
+\vfill
+See verifiable Coq document at: \\
+{\footnotesize \url{https://github.com/FormalTheology/GoedelGod/tree/master/Formalizations/Coq}}
+\end{frame}
+
+
+% \begin{frame}{(Interim) Culmination of two decades of related own research}
+% %Formal Methods \hfill \textcolor{gray}{(Diploma 1995)} \\[2cm]
+
+% \begin{itemize} 
+% \item Theory of classical higher-order logic (HOL) \hfill \textcolor{gray}{(since 1995)} 
+% \item Automation of  HOL / own LEO  provers  \hfill \textcolor{gray}{(since 1998)} 
+
+% \item Integration of interactive and automated theorem proving \, \hfill \textcolor{gray}{(since 1999)} 
+
+% \item International TPTP infrastructure for HOL 
+% \, \hfill \textcolor{gray}{(since 2006)} 
+
+% \item HOL as a universal logic via semantic embeddings
+%  \, \hfill \textcolor{gray}{(since 2008)} 
+
+% \item \textbf{Application in Philosophy: Ontological Argument} 
+% \, \hfill  \textcolor{gray}{(since 2013)} \\
+%      (jww Bruno Woltzenlogel-Paleo)
+% \end{itemize}
+% \vskip1em
+% \textcolor{gray}{\textit{\ldots\ success story (despite strong
+%     criticism/opposition on the way!)\ \ldots}}
+
+% \textcolor{gray}{\textit{\ldots\ huge media attention\ \ldots}}
+% \vfill
+
+% \end{frame}
+
+
+% \begin{frame}{Results}
+% \begin{changemargin}{-0.8cm}{-1.1cm}
+% \includegraphics[width=12.4cm]{../2014-LogInf/Images/Results.png}
+% \end{changemargin}
+% \end{frame}
+
+
+\begin{transitionframe}{../2014-LogInf/Images/Transitions/NietzscheGod3}{black}
+\textbf{Findings from our study \\ \chriscite{Benzm\"ullerWoltzenlogelPaleo, ECAI, 2014}}
+\end{transitionframe}
+
+
+\usebackgroundtemplate{
+  \vbox to \paperheight{\vfil\hbox to \paperwidth{\hfil
+      \includegraphics[width=11.5cm]{../2014-LogInf/Images/Results.png} 
+      \hfil}\vfil}
+}
+%\usebackgroundtemplate{\includegraphics[width=\paperwidth]{../2014-LogInf/Images/Results.png}}
+%\pgfsetlinewidth{10\pgflinewidth} 
+%\pgfsetlinecolor{Blue} 
+
+\begin{frame}{Main Findings \chriscitebuf{Benzm\"ullerWoltzenlogelPaleo, ECAI, 2014}}
+
+\end{frame}
+
+\begin{frame}{Main Findings \chriscitebuf{Benzm\"ullerWoltzenlogelPaleo, ECAI, 2014}}
+\begin{changemargin}{-.2cm}{-.5cm}
+\begin{pgfpicture}{0cm}{0cm}{11cm}{11cm}
+\pgfsetlinewidth{5\pgflinewidth} 
+\pgfsetendarrow{\pgfarrowto}
+%\pgfsetstartarrow{\pgfarrowto}
+%\pgfnodecircle{Node1}[stroke]{\pgfxy(0,9.5)}{0.25cm}
+\pgfnodebox{Node1}[stroke]{\pgfxy(5.6,8)}{\phantom{Bla}}{5.6cm}{2.1cm}
+\end{pgfpicture}
+\end{changemargin}
+\end{frame}
+
+\setbeamercovered{invisible}
+
+\begin{frame}{Main Findings \chriscitebuf{Benzm\"ullerWoltzenlogelPaleo, ECAI, 2014}}
+\begin{changemargin}{-.2cm}{-.5cm}
+\begin{pgfpicture}{0cm}{0cm}{11cm}{11cm}
+\pgfsetlinewidth{5\pgflinewidth} 
+\pgfsetendarrow{\pgfarrowto}
+%\pgfsetstartarrow{\pgfarrowto}
+%\pgfnodecircle{Node1}[stroke]{\pgfxy(0,9.5)}{0.25cm}
+\pgfnodebox{Node1}[stroke]{\pgfxy(5.6,9.45)}{\phantom{Bla}}{5.6cm}{.2cm}
+\pgfnodebox{Node2}[virtual]{\pgfxy(7,5)}{
+\framecolorbox[8.5cm][s]{Green}{green!20}{
+\begin{minipage}{8cm}\color{black} \bf
+%\vskip1em
+\underline{Automating Scott's proof script} \\[1em]
+{T1: "Positive properties are possibly exemplified"}
+proved by LEO-II and Satallax 
+\begin{itemize}
+\item  in logic: K 
+\item  from axioms:
+  \begin{itemize} 
+  \item A1 and A2
+  \item \onslide<1->{\color{black} A1($\supset$) and A2}
+  \end{itemize}
+\item notion of quantification
+  \begin{itemize} 
+  \item possibilist quantifiers (constant dom.)
+  \item actualist quantifiers for individuals (varying dom.)
+  \end{itemize}
+\end{itemize}
+\vspace*{1em}
+\end{minipage}
+}}{2pt}{2pt}
+\pgfnodeconncurve{Node1}{Node2}{180}{180}{1cm}{2cm}
+\end{pgfpicture}
+\end{changemargin}
+\end{frame}
+
+\begin{frame}{Main Findings \chriscitebuf{Benzm\"ullerWoltzenlogelPaleo, ECAI, 2014}}
+\begin{changemargin}{-.2cm}{-.5cm}
+\begin{pgfpicture}{0cm}{0cm}{11cm}{11cm}
+\pgfsetlinewidth{5\pgflinewidth} 
+\pgfsetendarrow{\pgfarrowto}
+%\pgfsetstartarrow{\pgfarrowto}
+%\pgfnodecircle{Node1}[stroke]{\pgfxy(0,9.5)}{0.25cm}
+\pgfnodebox{Node1}[stroke]{\pgfxy(5.6,8.5)}{\phantom{Bla}}{5.6cm}{.2cm}
+\pgfnodebox{Node2}[virtual]{\pgfxy(7,5)}{
+\framecolorbox[8.5cm][s]{Green}{green!20}{
+\begin{minipage}{8cm}\color{black} \bf
+%\vskip1em
+\underline{Automating Scott's proof script} \\[1em]
+C: "Possibly, God exists'' \\
+proved by LEO-II and Satallax 
+\begin{itemize}
+\item  in logic: K 
+\item  from assumptions:
+  \begin{itemize} 
+  \item T1, D1, A3
+  \item A1, A2, D1, A3
+  \end{itemize}
+\item for domain conditions: 
+  \begin{itemize} 
+  \item possibilist quantifiers (constant dom.)
+  \item actualist quantifiers for individuals (varying dom.)
+  \end{itemize}
+\end{itemize}
+\vspace*{1em}
+\end{minipage}
+}}{2pt}{2pt}
+\pgfnodeconncurve{Node1}{Node2}{180}{180}{1cm}{2cm}
+\end{pgfpicture}
+\end{changemargin}
+\end{frame}
+
+
+\begin{frame}{Main Findings \chriscitebuf{Benzm\"ullerWoltzenlogelPaleo, ECAI, 2014}}
+\begin{changemargin}{-.2cm}{-.5cm}
+\begin{pgfpicture}{0cm}{0cm}{11cm}{11cm}
+\pgfsetlinewidth{5\pgflinewidth} 
+\pgfsetendarrow{\pgfarrowto}
+%\pgfsetstartarrow{\pgfarrowto}
+%\pgfnodecircle{Node1}[stroke]{\pgfxy(0,9.5)}{0.25cm}
+\pgfnodebox{Node1}[stroke]{\pgfxy(5.6,7.6)}{\phantom{Bla}}{5.6cm}{.2cm}
+\pgfnodebox{Node2}[virtual]{\pgfxy(7,5)}{
+\framecolorbox[8.5cm][s]{Green}{green!20}{
+\begin{minipage}{8cm}\color{black} \bf
+%\vskip1em
+\underline{Automating Scott's proof script} \\[1em]
+T2: "Being God-like is an ess. of any God-like being'' \\
+proved by LEO-II and Satallax 
+\begin{itemize}
+\item  in logic: K 
+\item  from assumptions:
+  \begin{itemize} 
+  \item A1, D1, A4, D2
+  \item A1, A2, D1, A3, A4, D2
+  \end{itemize}
+\item for domain conditions: 
+  \begin{itemize} 
+  \item possibilist quantifiers (constant dom.)
+  \item actualist quantifiers for individuals (varying dom.)
+  \end{itemize}
+\end{itemize}
+\vspace*{1em}
+\end{minipage}
+}}{2pt}{2pt}
+\pgfnodeconncurve{Node1}{Node2}{180}{180}{1cm}{2cm}
+\end{pgfpicture}
+\end{changemargin}
+\end{frame}
+
+
+
+\begin{frame}{Main Findings \chriscitebuf{Benzm\"ullerWoltzenlogelPaleo, ECAI, 2014}}
+\begin{changemargin}{-.2cm}{-.5cm}
+\begin{pgfpicture}{0cm}{0cm}{11cm}{11cm}
+\pgfsetlinewidth{5\pgflinewidth} 
+\pgfsetendarrow{\pgfarrowto}
+%\pgfsetstartarrow{\pgfarrowto}
+%\pgfnodecircle{Node1}[stroke]{\pgfxy(0,9.5)}{0.25cm}
+\pgfnodebox{Node1}[stroke]{\pgfxy(5.6,6.6)}{\phantom{Bla}}{5.6cm}{.2cm}
+\pgfnodebox{Node2}[virtual]{\pgfxy(7,5)}{
+\framecolorbox[8.5cm][s]{Green}{green!20}{
+\begin{minipage}{8cm}\color{black} \bf
+%\vskip1em
+\underline{Automating Scott's proof script} \\[1em]
+T3: "Necessarily, God exists'' \\
+proved by LEO-II and Satallax 
+\begin{itemize}
+\item  in logic: {\color{Blue} KB}
+\item  from assumptions:
+  \begin{itemize} 
+  \item D1, C, T2, D3, A5
+%  \item A1, A2, D1, A3, A4, D2
+  \end{itemize}
+\item for domain conditions: 
+   \begin{itemize} 
+  \item possibilist quantifiers (constant dom.)
+  \item actualist quantifiers for individuals (varying dom.)
+  \end{itemize}
+\end{itemize}
+For logic {\color{red} K} we got a {\color{red} countermodel} by Nitpick
+\vspace*{1em}
+\end{minipage}
+}}{2pt}{2pt}
+\pgfnodeconncurve{Node1}{Node2}{180}{180}{1cm}{2cm}
+\end{pgfpicture}
+\end{changemargin}
+\end{frame}
+
+
+
+
+\begin{frame}{Main Findings \chriscitebuf{Benzm\"ullerWoltzenlogelPaleo, ECAI, 2014}}
+\begin{changemargin}{-.2cm}{-.5cm}
+\begin{pgfpicture}{0cm}{0cm}{11cm}{11cm}
+\pgfsetlinewidth{5\pgflinewidth} 
+\pgfsetendarrow{\pgfarrowto}
+%\pgfsetstartarrow{\pgfarrowto}
+%\pgfnodecircle{Node1}[stroke]{\pgfxy(0,9.5)}{0.25cm}
+\pgfnodebox{Node1}[stroke]{\pgfxy(5.6,8)}{\phantom{Bla}}{5.6cm}{2.1cm}
+\pgfnodebox{Node2}[virtual]{\pgfxy(7,5)}{
+\framecolorbox[8.5cm][s]{Green}{green!20}{
+\begin{minipage}{8cm}\color{black} \bf
+%\vskip1em
+\underline{Automating Scott's proof script} \\[1em]
+Summary
+\begin{itemize}
+\item  proof verified and automated 
+\item  {\color{Blue} KB} is sufficient  (critisized logic {\color{red} S5 not needed!}) 
+\item  {\color{Blue} possibilist and actualist
+    quantifiers (individuals)}
+\item  {\color{Blue} exact dependencies} determined experimentally
+\item  ATPs have found {\color{Blue} alternative proofs} \\
+  \quad e.g. self-identity $\lambda x (x = x)$ is not needed 
+\end{itemize}
+\vspace*{1em}
+\end{minipage}
+}}{2pt}{2pt}
+\pgfnodeconncurve{Node1}{Node2}{180}{180}{1cm}{2cm}
+\end{pgfpicture}
+\end{changemargin}
+\end{frame}
+
+
+
+
+\begin{frame}{Main Findings \chriscitebuf{Benzm\"ullerWoltzenlogelPaleo, ECAI, 2014}}
+\begin{changemargin}{-.2cm}{-.5cm}
+\begin{pgfpicture}{0cm}{0cm}{11cm}{11cm}
+\pgfsetlinewidth{5\pgflinewidth} 
+\pgfsetendarrow{\pgfarrowto}
+%\pgfsetstartarrow{\pgfarrowto}
+%\pgfnodecircle{Node1}[stroke]{\pgfxy(0,9.5)}{0.25cm}
+\pgfnodebox{Node1}[stroke]{\pgfxy(5.6,3.7)}{\phantom{Bla}}{5.6cm}{.4cm}
+\pgfnodebox{Node2}[virtual]{\pgfxy(7,8)}{
+\framecolorbox[8.5cm][s]{Green}{green!20}{
+\begin{minipage}{8cm}\color{black} \bf
+%\vskip1em
+\underline{Consistency check: G\"odel vs. Scott} \\
+\begin{itemize}
+\item Scott's assumptions are consistent; \\ shown by Nitpick
+\item G\"odel's assumptions are \textcolor{red}{inconsistent}; \\ shown by LEO-II
+  \textcolor{red}{(new philosophical result!)} 
+\end{itemize}
+\vspace*{1em}
+\end{minipage}
+}}{2pt}{2pt}
+\pgfnodeconncurve{Node1}{Node2}{180}{180}{1cm}{2cm}
+\end{pgfpicture}
+\end{changemargin}
+\end{frame}
+
+
+
+% \begin{frame}{Main Findings \chriscitebuf{Benzm\"ullerWoltzenlogelPaleo, ECAI, 2014}}
+% \begin{changemargin}{-.2cm}{-.5cm}
+% \begin{pgfpicture}{0cm}{0cm}{11cm}{11cm}
+% \pgfsetlinewidth{5\pgflinewidth} 
+% \pgfsetendarrow{\pgfarrowto}
+% %\pgfsetstartarrow{\pgfarrowto}
+% %\pgfnodecircle{Node1}[stroke]{\pgfxy(0,9.5)}{0.25cm}
+% \pgfnodebox{Node1}[stroke]{\pgfxy(5.6,3.7)}{\phantom{Bla}}{5.6cm}{.4cm}
+% \pgfnodebox{Node2}[virtual]{\pgfxy(7,5)}{
+% \framecolorbox[8.5cm][s]{red}{red!20}{
+% \begin{minipage}{8cm} \bf
+% \underline{Argument for inconsistency (from LEO-II's proof)} \\
+% \begin{itemize}
+% \item[L1] $\emptyset$ is essence of any entity: \hfill 
+%   ${\allq x} [\ess{(\lambda{y}\lambda{w}\bot)}{x}]$ \\
+% by D2 (ess)
+% \item[L2] $\NE$ is not exemplified: \hfill $\mnot \exq x
+%   \NE(x)$ \\
+% by A1a, A2, A5, L1 and D2 (ess)
+% \item[$\Rightarrow$] Inconsistency:\hfill $\bot$ \\
+% by L2, T1 and A5 
+% \end{itemize}
+% \vspace*{1em}
+% \end{minipage}
+% }}{2pt}{2pt}
+% \pgfnodeconncurve{Node1}{Node2}{180}{180}{1cm}{2cm}
+% \end{pgfpicture}
+% \end{changemargin}
+% \end{frame}
+
+
+
+\begin{frame}{Main Findings \chriscitebuf{Benzm\"ullerWoltzenlogelPaleo, ECAI, 2014}}
+\begin{changemargin}{-.2cm}{-.5cm}
+\begin{pgfpicture}{0cm}{0cm}{11cm}{11cm}
+\pgfsetlinewidth{5\pgflinewidth} 
+\pgfsetendarrow{\pgfarrowto}
+%\pgfsetstartarrow{\pgfarrowto}
+%\pgfnodecircle{Node1}[stroke]{\pgfxy(0,9.5)}{0.25cm}
+\pgfnodebox{Node1}[stroke]{\pgfxy(5.6,4.85)}{\phantom{Bla}}{5.6cm}{.4cm}
+\pgfnodebox{Node2}[virtual]{\pgfxy(7,8)}{
+\framecolorbox[8.5cm][s]{yellow}{yellow!20}{
+\begin{minipage}{8cm}\color{black} \bf
+%\vskip1em
+\underline{Further Results} \\
+\begin{itemize}
+\item Monotheism holds
+\item God is flawless
+\end{itemize}
+\vspace*{1em}
+\end{minipage}
+}}{2pt}{2pt}
+\pgfnodeconncurve{Node1}{Node2}{180}{180}{1cm}{2cm}
+\end{pgfpicture}
+\end{changemargin}
+\end{frame}
+
+
+
+\begin{frame}{Main Findings \chriscitebuf{Benzm\"ullerWoltzenlogelPaleo, ECAI, 2014}}
+\begin{changemargin}{-.2cm}{-.5cm}
+\begin{pgfpicture}{0cm}{0cm}{11cm}{11cm}
+\pgfsetlinewidth{5\pgflinewidth} 
+\pgfsetendarrow{\pgfarrowto}
+%\pgfsetstartarrow{\pgfarrowto}
+%\pgfnodecircle{Node1}[stroke]{\pgfxy(0,9.5)}{0.25cm}
+\pgfnodebox{Node1}[stroke]{\pgfxy(5.6,5.55)}{\phantom{Bla}}{5.6cm}{.2cm}
+\pgfnodebox{Node2}[virtual]{\pgfxy(7,8.5)}{
+\framecolorbox[8.5cm][s]{yellow}{yellow!20}{
+\begin{minipage}{8cm}\color{black} \bf
+%\vskip.5em
+\underline{Modal Collapse} 
+\vskip.5em
+{\large \[ {\color{red} \allq \varphi ( \varphi \mimpl \Box \varphi ) } \]}
+\begin{itemize}
+\item proved by LEO-II and Satallax
+\item for possibilist and actualist quantification (ind.) \\[1em]
+\end{itemize}
+Main critique on G\"odel's ontological proof:
+\begin{itemize}
+\item there are no contingent truths
+\item everything is determined / no free will
+%\item why using modal logic in the first place?
+\end{itemize}
+\vspace*{.5em}
+\end{minipage}
+}}{2pt}{2pt}
+\pgfnodeconncurve{Node1}{Node2}{180}{180}{1cm}{2cm}
+\end{pgfpicture}
+\end{changemargin}
+\end{frame}
+
+
+\begin{frame}{Main Findings \chriscitebuf{Benzm\"ullerWoltzenlogelPaleo, ECAI, 2014}}
+\end{frame}
+
+\usebackgroundtemplate{}
+
+
+\begin{frame}{Inconsistency: Proof by LEO-II}
+\begin{changemargin}{-.5cm}{-1cm}
+\colorbox{gray!20}{
+\includegraphics[width=11.5cm,height=8cm]{./DemoMaterial/LeoProof.png}
+}
+\end{changemargin}
+\end{frame}
+
+\begin{frame}{Inconsistency: Reconstruction of Informal Argument}
+\begin{flushright}
+\begin{minipage}{10cm}%\small
+\begin{itemize}
+\item[Axiom A1a] \hfill 
+  ${\allq \phi} [P(\neg \phi) \imp \neg P(\phi)]$ 
+\item[Axiom A2] \hfill 
+  ${\allq \phi \allq \psi} [(P(\phi) \wedge \alt<0>{\textcolor{red}{\nec}}{\nec} \allq x [\phi(x)
+  \imp \psi(x)]) \imp P(\psi)]$ 
+\item[Def. D2$^*$] \hfill ${\ess{\phi}{x} \biimp {\allq \psi} (\psi(x) \imp {\nec} \allq y (\phi(y) \imp \psi(y)))}$ 
+\item[Def. D3] 
+   \hfill ${\NE(x) \biimp \alt<0>{\textcolor{red}{\allq \phi}}{\allq \phi} [\ess{\phi}{x} \imp \alt<0>{\textcolor{red}{\nec}}{\nec}  \exq y \phi(y)]}$
+\item[Axiom A5] \hfill ${P(\NE)}$ \\[2em]
+
+\pause
+\item[\textcolor{Green}{Theorem 1}] Positive Properties are possibly
+  exemplified. \hfill ${\allq \phi} [P(\phi) \imp {\pos}  \exq x
+  \phi(x)]$ 
+\item[\textcolor{Green}{Corollary}] Necessary existence is possibly
+  exemplified. \hfill $\pos \exq x  \NE(x)$ \\[2em]
+
+\pause
+\item[\textcolor{Green}{Lemma 1}] The empty property is an essence of
+  every entity. \hfill $\allq x\,(\ess{\emptyset}{x})$
+\item[\textcolor{Green}{Lemma 2}] Exemplification of necessary
+  existence is impossible. \hfill  $\neg \pos \exists x\, \NE(x)$ \\[2em]
+
+\pause
+\item[]  \textcolor{Green}{Inconsistency} \hfill $\bot$
+\end{itemize}
+\end{minipage}
+\end{flushright}
+\end{frame}
+
+
+\begin{frame}{Inconsistency: Verification in Isabelle/HOL}
+\begin{changemargin}{-.5cm}{-1cm}
+\includegraphics[width=12cm,height=8.5cm]{./DemoMaterial/GoedelGodWithoutConjunctInEss.png}
+\end{changemargin}
+\end{frame}
+
+
+\def\scottproof{
+\resizebox{\textwidth}{!}{
+\begin{minipage}{12cm}%\small
+\begin{itemize}
+\item[Axiom A1] Either a property or its negation is positive, but not
+  both: \hfill 
+  ${\alt<3>{\textcolor{red}{\allq \phi}}{\allq \phi} [P(\neg \phi) \biimp \neg P(\phi)]}$ 
+\item[Axiom A2] A property necessarily implied by a
+  positive property is positive:  \phantom{bla bla bla bla bla bla bla}  \hfill 
+  ${\alt<3>{\textcolor{red}{\allq \phi \allq \psi}}{\allq \phi \allq \psi} [(P(\phi) \wedge \alt<2>{\textcolor{red}{\nec}}{\nec} \allq x [\phi(x)
+  \imp \psi(x)]) \imp P(\psi)]}$ 
+\item[\textcolor{Green}{Thm. T1}] \textcolor{Green}{Positive properties are possibly exemplified:} \hfill \textcolor{Green}{${\alt<3>{\textcolor{red}{\allq \phi}}{\allq \phi} [P(\phi) \imp \alt<2>{\textcolor{red}{\pos}}{\pos}  \exq x \phi(x)]}$}
+\item[Def. D1] A \emph{God-like} being possesses all positive properties: \hfill
+  ${G(x) \biimp \alt<3>{\textcolor{red}{\allq \phi}}{\allq \phi} [P(\phi) \imp \phi(x)]}$ 
+\item[Axiom A3]  The property of being God-like is positive: \hfill   ${P(G)}$ 
+\item[\textcolor{Green}{Cor. C\phantom{1}}] \textcolor{Green}{Possibly, God exists:}\hfill \textcolor{Green}{${\alt<2>{\textcolor{red}{\pos}}{\pos} \exq x G(x)}$}
+\item[Axiom A4]  Positive properties are necessarily positive: \hfill 
+  ${\alt<3>{\textcolor{red}{\allq \phi}}{\allq \phi} [P(\phi) \imp \alt<2>{\textcolor{red}{\nec}}{\nec} P(\phi)]}$ 
+\item[Def. D2] An \emph{essence} of an individual is a property possessed by it and necessarily implying any of its properties: \hfill ${\ess{\phi}{x} \biimp \alt<4>{\textcolor{red}{\phi(x)\,\wedge\,}}{\phi(x)\,\wedge\,}\alt<3>{\textcolor{red}{\allq \psi}}{\allq \psi} (\psi(x) \imp \alt<2>{\textcolor{red}{\nec}}{\nec} \allq y (\phi(y) \imp \psi(y)))}$ 
+\item[\textcolor{Green}{Thm. T2}]  \textcolor{Green}{Being God-like is an essence of any
+  God-like being:}  \hfill \textcolor{Green}{${\allq x [G(x) \imp \ess{G}{x}]}$}
+\item[Def. D3] \emph{Necessary existence} of an individual~is the necessary exemplification of all its essences: 
+  \phantom{b} \hfill ${\NE(x) \biimp \alt<3>{\textcolor{red}{\allq \phi}}{\allq \phi} [\ess{\phi}{x} \imp \alt<2>{\textcolor{red}{\nec}}{\nec}  \exq y \phi(y)]}$
+\item[Axiom A5] Necessary existence is a positive property: \hfill ${P(\NE)}$ 
+\item[\textcolor{Green}{Thm. T3}] \textcolor{Green}{Necessarily, God exists:} \hfill \textcolor{Green}{${\alt<2>{\textcolor{red}{\nec}}{\nec} \exq x G(x)}$}
+\end{itemize}
+\end{minipage}
+}}
+
+
+
+\usebackgroundtemplate{
+  \vbox to \paperheight{\vfil\hbox to \paperwidth{\hfil
+      \includegraphics[width=12.5cm]{../2014-LogInf/Images/Manuscript.png} 
+      \hfil}\vfil}
+}
+
+\begin{frame}{G\"odel's Manuscript: 1930's, 1941, 1946-1955, 1970}
+\end{frame}
+
+
+\begin{frame}{G\"odel's Manuscript: 1930's, 1941, 1946-1955, 1970}
+\bigskip
+%\begin{changemargin}{-1.2cm}{-1.2cm}
+%\includegraphics[width=13cm]{../2014-LogInf/Images/Manuscript.png}
+\begin{pgfpicture}{0cm}{0cm}{11cm}{11cm}
+\pgfsetlinewidth{3\pgflinewidth} 
+\pgfsetendarrow{\pgfarrowto}
+%\pgfsetstartarrow{\pgfarrowto}
+%\pgfnodecircle{Node1}[stroke]{\pgfxy(0,9.5)}{0.25cm}
+\pgfnodebox{Node1a}[stroke]{\pgfxy(3.8,9.55)}{\phantom{Bla}}{.8cm}{.2cm}
+\pgfnodebox{Node1b}[stroke]{\pgfxy(8.5,9.45)}{\phantom{Bla}}{2cm}{.2cm}
+\pgfnodebox{Node1c}[stroke]{\pgfxy(1.6,8.75)}{\phantom{Bla}}{2cm}{.2cm}
+\pgfnodebox{Node1d}[stroke]{\pgfxy(.4,6.15)}{\phantom{Bla}}{.7cm}{.12cm}
+\pgfnodebox{Node1e}[stroke]{\pgfxy(1.2,6.55)}{\phantom{Bla}}{1.7cm}{.12cm}
+\pgfnodebox{Node2}[virtual]{\pgfxy(8,4.3)}{
+\framecolorbox[6.8cm][s]{red}{red!20}{
+\begin{minipage}{6.5cm}\color{black} \bf
+%\vskip1em
+\underline{Inconsistency} \hfill Scott\\[1em]
+{
+$\allq \phi [P(\neg \phi) \imp \neg P(\phi)]$ \hfill A1a\\
+$\allq \phi \allq \psi [(P(\phi) \wedge {\nec} \allq x [\phi(x)
+  \imp \psi(x)]) \imp P(\psi)]$ \hfill A2\\
+${\ess{\phi}{x} \biimp {\allq \psi} (\psi(x) \imp {\nec} \allq y (\phi(y) \imp \psi(y)))}$ \hfill  D2$^*$\\
+${\NE(x) \biimp \allq \phi [\ess{\phi}{x} \imp \nec  \exq y \phi(y)]}$
+\hfill  D3\\ 
+${P(\NE)}$ \hfill A5\\
+} 
+\end{minipage}
+}}{2pt}{2pt}
+\pgfnodeconncurve{Node1a}{Node2}{0}{180}{1cm}{1cm}
+\pgfnodeconncurve{Node1b}{Node2}{180}{180}{.8cm}{.7cm}
+\pgfnodeconncurve{Node1c}{Node2}{0}{180}{1cm}{1cm}
+\pgfnodeconncurve{Node1d}{Node2}{0}{180}{1cm}{1cm}
+\pgfnodeconncurve{Node1e}{Node2}{0}{180}{1cm}{1cm}
+\end{pgfpicture}
+%\end{changemargin}
+\end{frame}
+
+
+
+\usebackgroundtemplate{}
+
+
+
+
+\def\gg{\cellcolor{green!50}{y}}
+\def\rr{\cellcolor{red!50}{n}}
+\def\oo{\cellcolor{yellow!20}{{\footnotesize \textcolor{gray}{obsolete}}}}
+
+\begin{frame}{Varying Logic Settings: Results of Experiments} % \small
+\begin{changemargin}{-.75cm}{-.5cm}
+\colorbox{yellow!20}{
+\begin{tabular}[c]{r|cc|cc|cc}
+Gödel's version & \multicolumn{2}{c|}{K} & \multicolumn{2}{c|}{KB} & \multicolumn{2}{c}{S5} \\ 
+ & constant &  varying     & constant &  varying       & constant &  varying \\ \hline
+Consistency &  \rr{} & \rr{} & \rr{} & \rr{} & \rr{} & \rr{} \\
+T1 & \oo & \oo & \oo & \oo & \oo & \oo \\
+C & \oo & \oo & \oo & \oo & \oo & \oo \\
+T2 & \oo & \oo & \oo & \oo & \oo & \oo \\
+T3 & \oo & \oo & \oo & \oo & \oo & \oo \\
+Flawless God & \oo & \oo & \oo & \oo & \oo & \oo \\
+Monotheism & \oo & \oo & \oo & \oo & \oo & \oo \\
+Modal Collapse & \oo & \oo & \oo & \oo & \oo & \oo \\
+\end{tabular}
+}
+\end{changemargin}
+\vfill
+\begin{block}{Further details on our logic setting}
+\begin{itemize}
+\item Henkin semantics  
+\item full comprehension
+\item rigid constant symbols
+% \item extensionality (HOL)
+\end{itemize}
+\end{block}
+\vfill
+\begin{block}{Question: \hfill Why is inconsistency reported in philosophy papers?}
+\end{block}
+\end{frame}
+
+
+\begin{frame}{Varying Logic Settings: Results of Experiments}% \small
+\begin{changemargin}{-.75cm}{-.5cm}
+\colorbox{yellow!20}{
+\begin{tabular}[c]{r|cc|cc|cc}
+Scott's version & \multicolumn{2}{c|}{K} & \multicolumn{2}{c|}{KB} & \multicolumn{2}{c}{S5} \\ 
+ & constant &  varying     & constant &  varying       & constant &  varying \\ \hline
+Consistency &  \gg{} & \gg{} & \gg{} & \gg{} & \gg{} & \gg{} \\
+T1 & \gg{} & \gg{} & \gg{} & \gg{} & \gg{} & \gg{} \\
+C & \gg{} & \gg{} & \gg{} & \gg{} & \gg{} & \gg{} \\
+T2 & \gg{} & \gg{} & \gg{} & \gg{} & \gg{} & \gg{} \\
+T3 & \rr{} & \rr{} & \gg{} & \gg{} & \gg{} & \gg{} \\
+Flawless God & \gg{} & \gg{} & \gg{} & \gg{} & \gg{} & \gg{} \\
+Monotheism & \gg{} & \gg{} & \gg{} & \gg{} & \gg{} & \gg{} \\
+Modal Collapse & \gg{} & \gg{} & \gg{} & \gg{} & \gg{} & \gg{} \\
+\end{tabular}
+}
+\vfill
+\begin{block}{Further details on our logic setting}
+\begin{itemize}
+\item Henkin semantics  
+\item full comprehension
+\item rigid constant symbols
+% \item extensionality (HOL)
+\end{itemize}
+\end{block}
+\end{changemargin}
+\end{frame}
+
+
+% \begin{frame}{Avoiding the Modal Collapse: Recent work (only partly published)}
+% \begin{changemargin}{-.5cm}{-.5cm}
+% \begin{block}{Variants of G\"odel's argument avoiding the modal collapse}
+% \begin{itemize}
+% \item{} [A. Anderson, \textbf{Some emendations of G\"odel's ontological
+%   proof}, 1990] 
+% \item{} [A. Anderson and M. Gettings, \textbf{G\"odel's
+%     Ontological Proof Revisited}, 1996] 
+% \item{} [P. Hajek, \textbf{Magari and others on G\"odel's ontological proof}, 1996]
+% \item{} [P. Hajek, \textbf{Der Mathematiker und die Frage der
+%     Existenz Gottes}, 2001]
+% \item{} [P. Hajek, \textbf{A New Small Emendation of G\"odel's
+%     Ontological Proof}, 2002]
+% \item{} [F. Bjordal, \textbf{Understanding G\"odel's Ontological Argument},
+%   1998] 
+% \end{itemize}
+% \end{block}
+% \vfill
+% \begin{block}{Very recent achievements \hfill \textcolor{red}{See next
+%       talk by Bruno Woltzenlogel-P.}}
+% \begin{itemize}
+% \item{} Formalization and automation of above variants (for logic variations)
+% \item{} Confirmation of claims, detection of mistakes, alternative Proofs
+% \end{itemize}
+% \end{block}
+% \vfill
+% \begin{block}{Ongoing and future work}
+% \begin{itemize}
+% \item{} [M. Fitting, \textbf{Types, Tableaux and G\"odel's God}, 2002] 
+% \item{} \ldots 
+% \item{} see \url{https://github.com/FormalTheology/GoedelGod/Literature}
+% \end{itemize}
+% \end{block}
+% \end{changemargin}
+% \end{frame}
+
+
+\usebackgroundtemplate{
+\vbox to \paperheight{\vfil\hbox to \paperwidth{\hfil
+    \begin{minipage}{12cm}
+    \includegraphics[width=4cm]{./DemoMaterial/Anderson90.png}
+    \includegraphics[width=4cm]{./DemoMaterial/AndersonGettings96.png}
+    \includegraphics[width=4cm]{./DemoMaterial/Hajek96.png} \\[1em]
+    \includegraphics[width=4cm]{./DemoMaterial/Hajek01.png}
+    \includegraphics[width=4cm]{./DemoMaterial/Hajek02.png}
+    \includegraphics[width=4cm]{./DemoMaterial/Bjordal98.png}
+   \end{minipage}
+      \hfil}\vfil}
+}
+
+\begin{frame}{Avoiding the Modal Collapse: Some Emendations}
+%\begin{changemargin}{-.5cm}{-.5cm}
+\begin{pgfpicture}{0cm}{0cm}{11cm}{11cm}
+\pgfsetlinewidth{3\pgflinewidth} 
+\pgfsetendarrow{\pgfarrowto}
+%\pgfsetstartarrow{\pgfarrowto}
+%\pgfnodecircle{Node1}[stroke]{\pgfxy(0,9.5)}{0.25cm}
+\pgfnodebox{Node1a}[stroke]{\pgfxy(1.3,8.5)}{\phantom{Bla}}{1.5cm}{.4cm}
+\pgfnodebox{Node1b}[stroke]{\pgfxy(5,9)}{\phantom{Bla}}{1.5cm}{.2cm}
+\pgfnodebox{Node1c}[stroke]{\pgfxy(9.3,9.3)}{\phantom{Bla}}{1.7cm}{.4cm}
+\pgfnodebox{Node1d}[stroke]{\pgfxy(1.3,6)}{\phantom{Bla}}{1.7cm}{.2cm}
+\pgfnodebox{Node1e}[stroke]{\pgfxy(5.3,6.4)}{\phantom{Bla}}{1.6cm}{.2cm}
+\pgfnodebox{Node2}[virtual]{\pgfxy(7,3.2)}{
+\framecolorbox[7.5cm][s]{Green}{green!20}{
+ \begin{minipage}{7cm} \centering
+   Computer-supported  Clarification of Controversy\\
+   \textcolor{red}{See next
+      talk by Bruno Woltzenlogel-Paleo}
+  \end{minipage}}}{2pt}{2pt}
+\pgfnodeconncurve{Node1a}{Node2}{270}{90}{1cm}{2cm}
+\pgfnodeconncurve{Node1b}{Node2}{270}{90}{1cm}{2cm}
+\pgfnodeconncurve{Node1c}{Node2}{270}{90}{1cm}{2cm}
+\pgfnodeconncurve{Node1d}{Node2}{270}{90}{1cm}{2cm}
+\pgfnodeconncurve{Node1e}{Node2}{270}{90}{1cm}{2cm}
+\end{pgfpicture}
+%\end{changemargin}
+\end{frame}
+
+\usebackgroundtemplate{}
+
+
+\begin{frame}{Personal Statement}
+%Formal Methods \hfill \textcolor{gray}{(Diploma 1995)} \\[2cm]
+\begin{block}{(Interim) Culmination of two decades of related own research}
+\begin{itemize} 
+\item Theory of classical higher-order logic (HOL) \hfill \textcolor{gray}{(since 1995)} 
+\item Automation of  HOL / own LEO  provers  \hfill \textcolor{gray}{(since 1998)} 
+
+\item Integration of interactive and automated theorem proving \, \hfill \textcolor{gray}{(since 1999)} 
+
+\item International TPTP infrastructure for HOL 
+\, \hfill \textcolor{gray}{(since 2006)} 
+
+\item HOL as a universal logic via semantic embeddings
+ \, \hfill \textcolor{gray}{(since 2008)} 
+
+\item jww Bruno Woltzenlogel-Paleo:\\
+  \textbf{Application in Metaphysics: Ontological Argument}  \, \hfill  \textcolor{gray}{(since 2013)} 
+\end{itemize}
+\vskip1em
+\textcolor{gray}{\textit{\ldots\ success story (despite strong
+    criticism/opposition on the way!)\ \ldots}}
+
+\textcolor{gray}{\textit{\ldots\ huge media attention\ \ldots}}
+\end{block}
+\vfill
+\begin{block}{(Interim) Personal ``Fazit''}
+I am not fully convinced yet by the ontological argument. \\
+However, it seems to me that 
+\textbf{the believe in a (God-like) supreme being is at least not necessarily irrational}.
+\end{block}
+\end{frame}
+
+
+\begin{frame}{Conclusion}
+\begin{block}{Overall Achievements}
+\begin{itemize}
+\item significant contribution towards a \textbf{Computational Metaphysics}
+\item \textbf{novel results} contributed by \textbf{by HOL-ATPs}
+% \item \textbf{systematic study} of a prominent philosophical argument
+% \item \textbf{HOL} very fruitfully exploited as a \textbf{universal
+% metalogic}
+\item infrastructure can be adapted for \textbf{other logics and logic
+    combinations}
+\item \textbf{our technology is sufficiently mature} for use by philosophers
+\end{itemize}
+\end{block}
+\vfill
+
+\begin{block}{Relevance (wrt foundations and applications)}
+\begin{itemize}
+\item Philosophy, AI, Computer Science, Computational Linguistics, Maths
+\end{itemize}
+\end{block}
+\vfill
+
+\begin{block}{Little related work: only for Anselm's simpler argument}
+\begin{itemize}
+\item first-order ATP \textsc{PROVER9} \hfill{\small [OppenheimerZalta, 2011]}
+\item interactive proof assistant \textsc{PVS}  \hfill{\small [Rushby, 2013]}
+%\item see also the Computational Metaphysics Project at Stanford University
+\end{itemize}
+\end{block}
+
+% \vfill
+% \begin{block}{Ongoing and future work \hfill \textcolor{red}{See next talk by Bruno Woltzenlogel-P.}}
+% \begin{itemize}
+% \item continuation of systematic study of the ontological argument 
+% \item further studies in \textbf{Computational Metaphysics}
+% \end{itemize}
+% \end{block}
+\end{frame}
+
+\end{document}
+
+% \begin{frame}{Future Work}
+% \begin{block}{Ongoing/Planned Activities:} \begin{itemize}
+%    \item Germany: DFG funded Leo-III Project
+%    \item Germany: DFG Heisenberg Grant (2nd Phase):  \\
+%      \, \hfill Studien zur Computationalen Metaphysik
+%    \item USA: Invitation to Stanford University (Philosophy, Zalta): \\
+%      \, \hfill      Towards Computational Metaphysics
+
+%    \item Australia: Research grant proposal with B. Woltzenlogel-Paleo (ANU):  \\
+%      \, \hfill Automated Reasoning for Higher-Order Modal Logics
+%   \end{itemize}
+% \end{block}
+% \vfill
+% \begin{block}{Future:} 
+% Automation of combinations of $\left \{
+% \begin{tabular}{l}
+%  \text{(Higher-order) Multimodal Logics} \\
+%  \text{(Higher-order) Conditional Logics} \\
+%  \text{(Higher-order) Security Logics}   \\
+%  \text{(Higher-order) Nominal Logics} \\
+%  \text{(Higher-order) Multivalued Logics} \\
+%  \text{\ldots}
+% \end{tabular}
+% \right \} 
+% $
+% \end{block}
+% \end{frame}
+
+\begin{frame}{Gödel's God in Isabelle/HOL} \centering
+\vskip1em
+\begin{changemargin}{-0.5cm}{-.5cm}
+\colorbox{gray}{
+\movie[height=7cm,width=10.5cm,loop]{\includegraphics[height=7cm,width=10.5cm]{../2014-LogInf/Images/IsabelleGrab}}{../2015-TV/Movie2.mov}
+%\includemovie[autopause,autoplay,autoresume,poster=/Users/cbenzmueller/chris/trunk/tex/talks/2015-TV/Movie1.pdf]{8cm}{4cm}{/Users/cbenzmueller/chris/trunk/tex/talks/2015-TV/Movie1.mov}
+}
+%colorbox{gray}{\includegraphics[width=\textwidth]{../2014-LogInf/Images/IsabelleGrab}}
+
+\noindent See verifiable Isabelle/HOL document (Archive of Formal Proofs) at: \url{http://afp.sourceforge.net/entries/GoedelGod.shtml} 
+\end{changemargin}
+\end{frame}
+
+
+\begin{frame}{} \small
+\vskip1em
+\begin{minipage}{.56\textwidth} 
+\onslide*<1-2>{
+\onslide*<1>{\colorbox{gray}{\includegraphics[width=\textwidth]{../2014-LogInf/Images/News/spiegel1}}}
+\onslide*<2>{\colorbox{gray}{\includegraphics[width=\textwidth]{../2014-LogInf/Images/News/spiegel2}}}
+\vskip1em
+Germany \\
+- Telepolis \& Heise \\
+- Spiegel Online \\
+- FAZ \\
+- Die Welt \\
+- Berliner Morgenpost \\
+- Hamburger Abendpost \\
+- \ldots \\
+}
+\onslide*<3>{\colorbox{gray}{\includegraphics[width=\textwidth]{../2014-LogInf/Images/News/welt}}}
+\end{minipage} \hfill
+%
+\begin{minipage}{.3\textwidth}
+Austria \\
+- Die Presse \\
+- Wiener Zeitung \\
+- ORF \\
+- \ldots \\
+
+Italy \\
+- Repubblica \\
+- Ilsussidario \\
+- \ldots \\
+
+% Russia \\
+% - \ldots \\
+
+India \\
+- DNA India \\
+- Delhi Daily News \\
+- India Today \\
+- \ldots \\
+
+US \\
+- ABC News \\
+- \ldots \\
+
+International \\
+- Spiegel International \\
+- Yahoo Finance \\
+% - CNET \\
+- United Press Intl. \\
+- \ldots \\
+\end{minipage}
+\end{frame}
+
+\begin{frame} \large
+\colorbox{gray}{\includegraphics[width=\textwidth]{../2014-LogInf/Images/News/MacBookGrab}} 
+% \pause
+% \vfill
+% Are we in contact with Steve Jobs? \hfill No \\[2em]
+% Do you really need a MacBook to obtain the results? \hfill No \\[2em]
+% Did Apple send us some money? \hfill No \\
+% \, \hfill (but maybe they should)
+\vfill
+%\pause
+\normalsize
+See more serious and funny news links at \\ 
+\textbf{\url{https://github.com/FormalTheology/GoedelGod/tree/master/Press}}
+\end{frame}
+
+
+
+
+
+% \begin{frame}{Yes, we are in  Contact with Philosophers and Theologians \ldots} \centering
+% \includegraphics[width=.45\textwidth]{../2014-LogInf/Images/Square.png}
+% \hfill
+% \includegraphics[width=.5\textheight]{../2014-LogInf/Images/PhotoMitBasti.pdf}
+% \end{frame}
+
+\begin{frame}
+  %\frametitle{Very ,,lean'' Theorem Prover in HOL (here: logic KB)} \centering
+\vfill
+% \begin{center}
+% {\includegraphics[height=.85\textheight]{thf}}
+% \end{center}
+%\begin{minipage}{.92\textwidth}
+               \VerbatimInput[frame=single,%
+               commandchars=\\\{\},%
+               fontfamily=courier,fontseries=b,%
+               fontsize=\footnotesize,%
+               rulecolor=\color{green},%
+               fillcolor=\color{yellow},%
+               formatcom=\color{Blue},%
+               framerule=0pt,%
+               framesep=0pt,numbers=left]%
+               {../2014-LogInf/Quantified_KB.ax}
+%               {Axioms_annotated.ax}
+%            \textcolor{Blue}{\bf\VerbatimInput[fontsize=\tiny]{Axioms.ax}}
+%         \end{minipage}
+\vfill
+\end{frame}
+
+
+
+
+
+
+\end{document}
+
+\begin{frame}[t]{Algebraic/Axiomatic Specification Viewpoint}\large
+\textcolor{Blue}{HOL} \hfill \textcolor{gray}{e.g. assume an algebraic / categorical characterization} \\[1em]
+
+\textcolor{red}{HOML} example formula: \hfill 
+$\textcolor{red}{(\Box\Diamond (\Box \varphi \mimpl \Box \Diamond\varphi)) \mimpl  (\Box \varphi \mimpl \Box \Diamond
+\varphi)}$\\[1em]
+
+\pause
+
+\textcolor{red}{HOML} in \textcolor{Blue}{HOL}:  \hfill 
+$\textcolor{brown}{valid}\ \textcolor{red}{(\Box\Diamond (\Box \varphi \mimpl \Box \Diamond
+\varphi)) \mimpl  (\Box \varphi \mimpl \Box \Diamond\varphi)}$\\
+\quad Signature \\[-2.5em]
+\qquad
+\begin{align*}
+\textcolor{red}{\varphi},\textcolor{red}{\psi} & \textcolor{Blue}{\ : \mu \ar o} \\
+\textcolor{red}{\Box},\textcolor{red}{\Diamond} & \textcolor{Blue}{\ :  (\mu \ar o) \ar (\mu \ar o)} \\
+\textcolor{red}{\mimpl} & \textcolor{Blue}{\ :  (\mu \ar o) \ar (\mu \ar o) \ar (\mu \ar o)} \\
+\textcolor{brown}{\text{valid}} & \textcolor{Blue}{\ :   (\mu \ar o)
+  \ar o}  \\
+\textcolor{Blue}{r} & \textcolor{Blue}{\ :  \mu \ar \mu \ar o} \\
+\end{align*} 
+
+\pause
+\quad Axiomatization (relative to \textcolor{red}{HOL}) \\[-1.5em]
+\textcolor{Blue}{
+\begin{align*}
+\forall s\, (\textcolor{brown}{valid}\ s) & \equiv \forall w \,
+(s w) \\
+\forall s \forall t \forall w\, ((s\ \textcolor{red}{\mimpl}\
+t) w) & \equiv ((s w) \Rightarrow
+(t w)) \\
+\forall s \forall w\, ((\textcolor{red}{\Diamond} s) w) & \equiv
+\exists v \, (r w  v) \wedge (s v) \\
+\onslide*<3>{\forall s \forall w\, ((\textcolor{red}{\Box} s) w) & \equiv
+\forall v \, (r w v) \Rightarrow (s v) \\}
+\onslide*<4>{\textcolor{red}{\Box} & =  
+      \lambda{s} \lambda{w} \forall {u}\, (\neg r w u \vee s u)} \\
+\onslide*<3-4>{\phantom{\textcolor{red}{\Box}} & \phantom{ = 
+      \lambda{s} \lambda{w}
+      \forall {u}\, (\neg r w u \vee
+      s u)}}
+\end{align*}
+}
+% \\[1em]
+% \quad (note also the correspondence to algebraic semantics of HOML) \\
+\end{frame}
+
+\end{document}
+
+
+\begin{frame}[t]{G\"odel's God as THF TPI Script}\tiny 
+\verbatiminput{../2014-LogInf/Images/Varia/verb1.txt}
+
+\onslide*<2->{
+\vskip-40em\hfill{\small \textcolor{red}{\Huge $\swarrow$}\colorbox{yellow}{\begin{minipage}[b]{7cm}\centering\phantom{.}\vskip.3em A (lean) QML prover in HOL \vskip.1em\phantom{.}\end{minipage}}}
+}
+\end{frame}
+
+\begin{frame}[t]{G\"odel's God as THF TPI Script}\tiny 
+\verbatiminput{../2014-LogInf/Images/Varia/verb2.txt}
+
+\onslide*<2>{
+\vskip-39em\hfill{\small \textcolor{red}{\Huge $\nwarrow$}\colorbox{yellow}{\begin{minipage}[t]{7cm}\centering\phantom{.}\vskip.3em Axiom B (symmetry) \vskip.1em\phantom{.}\end{minipage}}}
+}
+
+\onslide*<3>{
+\vskip-32em\hfill{\small \textcolor{red}{\Huge $\nwarrow$}\colorbox{yellow}{\begin{minipage}[t]{7cm}\centering\phantom{.}\vskip.3em Signature \vskip.1em\phantom{.}\end{minipage}}}
+}
+
+\onslide*<4>{
+\vskip-34em\hfill{\small \textcolor{red}{\Huge
+    $\swarrow$}\colorbox{yellow}{\begin{minipage}[b]{7cm}\centering\phantom{.}\vskip.3em
+      Definitions D1-D3 and Axiom A1(a/b) \vskip.1em\phantom{.}\end{minipage}}}
+}
+\end{frame}
+
+
+\begin{frame}[t]{G\"odel's God as THF TPI Script}\tiny
+\verbatiminput{../2014-LogInf/Images/Varia/verb3.txt}
+\onslide*<1>{
+\vskip-27em\hfill{\small \phantom{.}}
+}
+
+\onslide*<2>{
+\vskip-24em\hfill{\small \textcolor{red}{\Huge
+    $\nwarrow$}\colorbox{yellow}{\begin{minipage}[t]{7cm}\centering\phantom{.}\vskip.3em
+     Axioms A2-A5 \vskip.1em\phantom{.}\end{minipage}}}
+}
+
+\onslide*<3>{
+\vskip-22em\hfill{\small \textcolor{red}{\Huge
+    $\swarrow$}\colorbox{yellow}{\begin{minipage}[b]{7cm}\centering\phantom{.}\vskip.3em
+     Start checking consistency (asynchronously, Nitpick) \vskip.1em\phantom{.}\end{minipage}}}
+}
+
+\onslide*<4>{
+\vskip-15em\hfill{\small \textcolor{red}{\Huge
+    $\swarrow$}\colorbox{yellow}{\begin{minipage}[b]{7cm}\centering\phantom{.}\vskip.3em
+     Start checking consistency (asynchronously, LEO-II) \\ G\"odel's original definition of D2 \vskip.1em\phantom{.}\end{minipage}}}
+}
+\end{frame}
+
+\begin{frame}[shrink]{G\"odel's God as THF TPI Script}\tiny 
+\verbatiminput{../2014-LogInf/Images/Varia/verb4.txt}
+\onslide*<1>{
+\vskip-27em\hfill{\small \phantom{.}}
+}
+
+\onslide*<2>{
+\vskip-25em\hfill{\small \textcolor{red}{\Huge
+    $\nwarrow$}\colorbox{yellow}{\begin{minipage}[t]{7cm}\centering\phantom{.}\vskip.3em
+     Proving: T1 is a theorem (LEO-II)\vskip.1em\phantom{.}\end{minipage}}}
+}
+
+\onslide*<3>{
+\vskip-26em\hfill{\small \textcolor{red}{\Huge
+    $\swarrow$}\colorbox{yellow}{\begin{minipage}[b]{7cm}\centering\phantom{.}\vskip.3em
+     Proving: C is a theorem (LEO-II) \vskip.1em\phantom{.}\end{minipage}}}
+}
+\end{frame}
+
+\begin{frame}[shrink]{G\"odel's God as THF TPI Script}\tiny 
+\verbatiminput{../2014-LogInf/Images/Varia/verb5.txt}
+\onslide*<1>{
+\vskip-27em\hfill{\small \phantom{.}}
+}
+
+\onslide*<2>{
+\vskip-28em\hfill{\small \textcolor{red}{\Huge
+    $\nwarrow$}\colorbox{yellow}{\begin{minipage}[t]{7cm}\centering\phantom{.}\vskip.3em
+     Proving: T2 is a theorem  (LEO-II) \vskip.1em\phantom{.}\end{minipage}}}
+}
+
+\onslide*<3>{
+\vskip-30em\hfill{\small \textcolor{red}{\Huge
+    $\swarrow$}\colorbox{yellow}{\begin{minipage}[b]{7cm}\centering\phantom{.}\vskip.3em
+     Proving: T3 is a theorem  (LEO-II) \vskip.1em\phantom{.}\end{minipage}}}
+}
+\end{frame}
+
+\begin{frame}[shrink]{G\"odel's God as THF TPI Script}\tiny 
+\verbatiminput{../2014-LogInf/Images/Varia/verb6.txt}
+\onslide*<1>{
+\vskip-27em\hfill{\small \phantom{.}}
+}
+
+\onslide*<2>{
+\vskip-15em\hfill{\small \textcolor{red}{\Huge
+    $\nwarrow$}\colorbox{yellow}{\begin{minipage}[t]{7cm}\centering\phantom{.}\vskip.3em
+     Proving: C2 is a theorem  (LEO-II) \vskip.1em\phantom{.}\end{minipage}}}
+}
+
+\onslide*<3>{
+\vskip-18em\hfill{\small \textcolor{red}{\Huge
+    $\swarrow$}\colorbox{yellow}{\begin{minipage}[b]{7cm}\centering\phantom{.}\vskip.3em
+     Checking: Axioms are consistent (Nitpick)\vskip.1em\phantom{.}\end{minipage}}}
+}
+\end{frame}
+
+\begin{frame}[shrink]{G\"odel's God as THF TPI Script}\tiny 
+\verbatiminput{../2014-LogInf/Images/Varia/verb7.txt}
+\onslide*<1>{
+\vskip-27em\hfill{\small \phantom{.}}
+}
+
+\onslide*<2>{
+\vskip-23em\hfill{\small \textcolor{red}{\Huge
+    $\nwarrow$}\colorbox{yellow}{\begin{minipage}[t]{7cm}\centering\phantom{.}\vskip.3em
+     Checking: G\"odel's original axioms are inconsistent (LEO-II) \vskip.1em\phantom{.}\end{minipage}}}
+}
+
+\onslide*<3>{
+\vskip-26em\hfill{\small \textcolor{red}{\Huge
+    $\swarrow$}\colorbox{yellow}{\begin{minipage}[b]{7cm}\centering\phantom{.}\vskip.3em
+     Start checking modal collapse (asynchronously, LEO-II) \vskip.1em\phantom{.}\end{minipage}}}
+}
+
+\onslide*<4>{
+\vskip-15em\hfill{\small \textcolor{red}{\Huge
+    $\swarrow$}\colorbox{yellow}{\begin{minipage}[b]{7cm}\centering\phantom{.}\vskip.3em
+     Start checking 'flawlessness' of God (LEO-II)\vskip.1em\phantom{.}\end{minipage}}}
+}
+\end{frame}
+
+\begin{frame}[shrink]{G\"odel's God as THF TPI Script}\tiny 
+\verbatiminput{../2014-LogInf/Images/Varia/verb9.txt}
+\onslide*<1>{
+\vskip-27em\hfill{\small \phantom{.}}
+}
+
+\onslide*<2>{
+\vskip-18em\hfill{\small \textcolor{red}{\Huge
+    $\nwarrow$}\colorbox{yellow}{\begin{minipage}[t]{7cm}\centering\phantom{.}\vskip.3em
+     Checking: modal collapse holds (LEO-II)\vskip.1em\phantom{.}\end{minipage}}}
+}
+
+\onslide*<3>{
+\vskip-20em\hfill{\small \textcolor{red}{\Huge
+    $\swarrow$}\colorbox{yellow}{\begin{minipage}[b]{7cm}\centering\phantom{.}\vskip.3em
+     Checking: 'flawlessness' of God (LEO-II)\vskip.1em\phantom{.}\end{minipage}}}
+}
+\end{frame}
+
+
+\begin{frame}[shrink]{G\"odel's God as THF TPI Script}\tiny 
+\verbatiminput{../2014-LogInf/Images/Varia/verb10.txt}
+\onslide*<1>{
+\vskip-27em\hfill{\small \phantom{.}}
+}
+
+\onslide*<2>{
+\vskip-5em\hfill{\small \textcolor{red}{\Huge
+    $\nwarrow$}\colorbox{yellow}{\begin{minipage}[t]{7cm}\centering\phantom{.}\vskip.3em
+     Proving:Monotheism (TPS) \vskip.1em\phantom{.}\end{minipage}}}
+}
+
+\end{frame}
+
+
+
+
+\begin{frame}{This talk}\large
+(1) What is the Ontological Argument (for the existence of God)? \\[1cm]
+
+(2) How did we succeed in formalizing and automating it? \\[1cm]
+
+(3) What are the main findings of our study? Anything new?\\[1cm]
+
+\textcolor{gray}{Conclusion and ongoing/future projects}
+\end{frame}
+
+
+
+
+
+% \input{talk-part-2.tex}
+
+% \input{talk-part-3.tex}
+
+% \input{talk-part-4.tex}
+
+% \input{talk-part-5.tex}
+
+% \input{talk-part-6.tex}
+
+% \input{talk-part-7.tex}
+
+
+
+\begin{frame}[shrink]{Proof Overview}
+
+$$
+\textbf{D1: } G(x) \equiv \forall \varphi. [P(\varphi) \to \varphi(x)]
+$$
+
+$$
+\textbf{D2: } \ess{\varphi}{x} \equiv \varphi(x) \wedge \all \psi. (\psi(x) \imp \nec \all x. (\varphi(x) \imp \psi(x)))
+$$
+
+$$
+\textbf{D3: } NE(x) \equiv \all \varphi.[\ess{\varphi}{x} \imp \nec \ex y.\varphi(y)]
+$$
+
+\begin{prooftree}
+\AXC{$\textbf{A3}$} \dashedLine
+\UIC{$P(G)$}
+		\AXC{$\textbf{A2}$} \dashedLine
+		\UIC{$\all \varphi. \all \psi.[(P(\varphi) \wedge \nec \all x.[\varphi(x) \imp \psi(x)]) \imp P(\psi)]$}
+					\AXC{$\textbf{A1a}$} \dashedLine
+					\UIC{$\all \varphi. [P(\neg \varphi) \imp \neg P(\varphi)]$} \doubleLine
+				\BIC{$\textbf{T1: } \all \varphi. [P(\varphi) \imp \pos \ex x.\varphi(x)]$} \doubleLine
+	\BIC{$\textbf{C: } \pos \ex z. G(z)$}
+\end{prooftree}
+
+
+
+
+
+\begin{prooftree}
+						\AXC{$\textbf{A1b}$} \dashedLine
+						\UIC{$\all \varphi. [\neg P(\varphi) \imp P(\neg \varphi)]$}
+								\AXC{$\textbf{A4}$} \dashedLine
+								\UIC{$ \all \varphi.[P(\varphi) \to \Box \; P(\varphi)] $} \doubleLine
+							\BIC{$\textbf{T2: } \all y.[G(y) \imp \ess{G}{y}]$}
+									\AXC{$\textbf{A5}$} \dashedLine
+									\UIC{$ P(NE) $} \doubleLine
+								\BIC{$\textbf{L1: } \ex z. G(z) \imp \nec \ex x. G(x)$} \doubleLine
+								\UIC{$\pos \ex z. G(z) \imp \pos \nec \ex x. G(x)$}
+										\AXC{$\textbf{S5}$} \dashedLine
+ 										\UIC{$ \all \xi.[\pos \nec \xi \imp \nec \xi]$} \doubleLine	
+									\BIC{$\textbf{L2: } \pos \ex z. G(z) \imp \nec \ex x. G(x)$}
+\end{prooftree}
+
+\begin{prooftree}
+\AXC{$\textbf{C: } \pos \ex z. G(z)$}
+		\AXC{$\textbf{L2: } \pos \ex z. G(z) \imp \nec \ex x. G(x)$} \doubleLine
+	\BIC{$\textbf{T3: } \nec \ex x. G(x) $}
+\end{prooftree}
+
+\end{frame}
+
+
+
+
+\begin{frame}[shrink]{Proof Overview}
+
+\phantomDOne
+
+\phantomDTwo
+
+\phantomDThree
+
+\phantomCOne
+
+\phantomTTwo
+
+\begin{prooftree}
+\AXC{$\phantom{\textbf{C: } \pos \ex z. G(z)}$}
+		\AXC{$\phantom{\textbf{L2: } \pos \ex z. G(z) \imp \nec \ex x. G(x)}$} \noLine
+	\BIC{$\textbf{T3: } \nec \ex x. G(x) $}
+\end{prooftree}
+
+\end{frame}
+
+
+\begin{frame}[shrink]{Proof Overview}
+
+\phantomDOne
+
+\phantomDTwo
+
+\phantomDThree
+
+\phantomCOne
+
+\phantomTTwo
+
+\begin{prooftree}
+\AXC{$\textbf{C: } \pos \ex z. G(z)$}
+		\AXC{$\phantom{\textbf{L2: } \pos \ex z. G(z) \imp \nec \ex x. G(x)}$}
+	\BIC{$\textbf{T3: } \nec \ex x. G(x) $}
+\end{prooftree}
+
+\end{frame}
+
+\newcommand{\TThree}{
+\begin{prooftree}
+\AXC{$\textbf{C: } \pos \ex z. G(z)$}
+		\AXC{$\textbf{L2: } \pos \ex z. G(z) \imp \nec \ex x. G(x)$}
+	\BIC{$\textbf{T3: } \nec \ex x. G(x) $}
+\end{prooftree}	
+}
+
+
+\begin{frame}[shrink]{Proof Overview}
+
+\phantomDOne
+
+\phantomDTwo
+
+\phantomDThree
+
+\phantomCOne
+
+\phantomTTwo
+
+\TThree
+
+\end{frame}
+
+\begin{frame}[shrink]{Proof Overview}
+
+\phantomDOne
+
+\phantomDTwo
+
+\phantomDThree
+
+\phantomCOne
+
+\begin{prooftree}
+						\AXC{$\phantom{\textbf{A1b}}$} \noLine
+						\UIC{$\phantom{\all \varphi. [\neg P(\varphi) \imp P(\neg \varphi)]}$}
+								\AXC{$\phantom{\textbf{A4}}$} \noLine
+								\UIC{$\phantom{ \all \varphi.[P(\varphi) \to \Box \; P(\varphi)]} $} \noLine
+							\BIC{$\phantom{\textbf{T2: } \all y.[G(y) \imp \ess{G}{y}]}$}
+									\AXC{$\phantom{\textbf{A5}}$} \noLine
+									\UIC{$ \phantom{P(NE)} $} \noLine
+								\BIC{$\phantom{\textbf{L1: } \ex z. G(z) \imp \nec \ex x. G(x)}$} \noLine
+								\UIC{$\phantom{\pos \ex z. G(z) \imp \pos \nec \ex x. G(x)}$}
+										\AXC{$\phantom{\textbf{S5}}$} \noLine
+ 										\UIC{$\phantom{\all \xi.[\pos \nec \xi \imp \nec \xi]}$} \noLine	
+									\BIC{$\textbf{L2: } \pos \ex z. G(z) \imp \nec \ex x. G(x)$}
+\end{prooftree}
+
+\TThree
+
+\end{frame}
+
+
+\begin{frame}[shrink]{Proof Overview}
+
+\phantomDOne
+
+\phantomDTwo
+
+\phantomDThree
+
+\phantomCOne
+
+\begin{prooftree}
+						\AXC{$\phantom{\textbf{A1b}}$} \noLine
+						\UIC{$\phantom{\all \varphi. [\neg P(\varphi) \imp P(\neg \varphi)]}$}
+								\AXC{$\phantom{\textbf{A4}}$} \noLine
+								\UIC{$\phantom{ \all \varphi.[P(\varphi) \to \Box \; P(\varphi)]} $} \noLine
+							\BIC{$\phantom{\textbf{T2: } \all y.[G(y) \imp \ess{G}{y}]}$}
+									\AXC{$\phantom{\textbf{A5}}$} \noLine
+									\UIC{$ \phantom{P(NE)} $} \noLine
+								\BIC{$\phantom{\textbf{L1: } \ex z. G(z) \imp \nec \ex x. G(x)}$} \noLine
+								\UIC{$\phantom{\pos \ex z. G(z) \imp \pos \nec \ex x. G(x)}$}
+										\AXC{$\textbf{S5}$} \dashedLine
+ 										\UIC{$\all \xi.[\pos \nec \xi \imp \nec \xi]$} 	
+									\BIC{$\textbf{L2: } \pos \ex z. G(z) \imp \nec \ex x. G(x)$}
+\end{prooftree}
+
+\TThree
+
+\end{frame}
+
+
+
+
+\begin{frame}[shrink]{Proof Overview}
+
+\phantomDOne
+
+\phantomDTwo
+
+\phantomDThree
+
+\phantomCOne
+
+\begin{prooftree}
+						\AXC{$\phantom{\textbf{A1b}}$} \noLine
+						\UIC{$\phantom{\all \varphi. [\neg P(\varphi) \imp P(\neg \varphi)]}$}
+								\AXC{$\phantom{\textbf{A4}}$} \noLine
+								\UIC{$\phantom{ \all \varphi.[P(\varphi) \to \Box \; P(\varphi)]} $} \noLine
+							\BIC{$\phantom{\textbf{T2: } \all y.[G(y) \imp \ess{G}{y}]}$}
+									\AXC{$\phantom{\textbf{A5}}$} \noLine
+									\UIC{$ \phantom{P(NE)} $} \noLine
+								\BIC{$\phantom{\textbf{L1: } \ex z. G(z) \imp \nec \ex x. G(x)}$} \noLine
+								\UIC{$\pos \ex z. G(z) \imp \pos \nec \ex x. G(x)$}
+										\AXC{$\textbf{S5}$} \dashedLine
+ 										\UIC{$\all \xi.[\pos \nec \xi \imp \nec \xi]$} 	
+									\BIC{$\textbf{L2: } \pos \ex z. G(z) \imp \nec \ex x. G(x)$}
+\end{prooftree}
+
+\TThree
+
+\end{frame}
+
+
+
+
+\begin{frame}[shrink]{Proof Overview}
+
+\phantomDOne
+
+\phantomDTwo
+
+\phantomDThree
+
+\phantomCOne
+
+\begin{prooftree}
+						\AXC{$\phantom{\textbf{A1b}}$} \noLine
+						\UIC{$\phantom{\all \varphi. [\neg P(\varphi) \imp P(\neg \varphi)]}$}
+								\AXC{$\phantom{\textbf{A4}}$} \noLine
+								\UIC{$\phantom{ \all \varphi.[P(\varphi) \to \Box \; P(\varphi)]} $} \noLine
+							\BIC{$\phantom{\textbf{T2: } \all y.[G(y) \imp \ess{G}{y}]}$}
+									\AXC{$\phantom{\textbf{A5}}$} \noLine
+									\UIC{$ \phantom{P(NE)} $} \noLine
+								\BIC{$\textbf{L1: } \ex z. G(z) \imp \nec \ex x. G(x)$} 
+								\UIC{$\pos \ex z. G(z) \imp \pos \nec \ex x. G(x)$}
+										\AXC{$\textbf{S5}$} \dashedLine
+ 										\UIC{$\all \xi.[\pos \nec \xi \imp \nec \xi]$} 	
+									\BIC{$\textbf{L2: } \pos \ex z. G(z) \imp \nec \ex x. G(x)$}
+\end{prooftree}
+
+\TThree
+
+\end{frame}
+
+
+
+\begin{frame}[shrink]{Proof Overview}
+
+\DOne
+
+\phantomDTwo
+
+\phantomDThree
+
+\phantomCOne
+
+\begin{prooftree}
+						\AXC{$\phantom{\textbf{A1b}}$} \noLine
+						\UIC{$\phantom{\all \varphi. [\neg P(\varphi) \imp P(\neg \varphi)]}$}
+								\AXC{$\phantom{\textbf{A4}}$} \noLine
+								\UIC{$\phantom{ \all \varphi.[P(\varphi) \to \Box \; P(\varphi)]} $} \noLine
+							\BIC{$\phantom{\textbf{T2: } \all y.[G(y) \imp \ess{G}{y}]}$}
+									\AXC{$\phantom{\textbf{A5}}$} \noLine
+									\UIC{$ \phantom{P(NE)} $} \noLine
+								\BIC{$\textbf{L1: } \ex z. G(z) \imp \nec \ex x. G(x)$} 
+								\UIC{$\pos \ex z. G(z) \imp \pos \nec \ex x. G(x)$}
+										\AXC{$\textbf{S5}$} \dashedLine
+ 										\UIC{$\all \xi.[\pos \nec \xi \imp \nec \xi]$} 	
+									\BIC{$\textbf{L2: } \pos \ex z. G(z) \imp \nec \ex x. G(x)$}
+\end{prooftree}
+
+\TThree
+
+\end{frame}
+
+
+\begin{frame}[shrink]{Proof Overview}
+
+\DOne
+
+\phantomDTwo
+
+\qquad
+\alert{$\textbf{D3*: } NE(x) \equiv \nec \ex y. G(y)$} \only<2>{(cheating!)}
+
+\phantomCOne
+
+\begin{prooftree}
+						\AXC{$\phantom{\textbf{A1b}}$} \noLine
+						\UIC{$\phantom{\all \varphi. [\neg P(\varphi) \imp P(\neg \varphi)]}$}
+								\AXC{$\phantom{\textbf{A4}}$} \noLine
+								\UIC{$\phantom{ \all \varphi.[P(\varphi) \to \Box \; P(\varphi)]} $} \noLine
+							\BIC{$\phantom{\textbf{T2: } \all y.[G(y) \imp \ess{G}{y}]}$}
+									\AXC{$\phantom{\textbf{A5}}$} \noLine
+									\UIC{$ P(NE) $}
+								\BIC{$\textbf{L1: } \ex z. G(z) \imp \nec \ex x. G(x)$} 
+								\UIC{$\pos \ex z. G(z) \imp \pos \nec \ex x. G(x)$}
+										\AXC{$\textbf{S5}$} \dashedLine
+ 										\UIC{$\all \xi.[\pos \nec \xi \imp \nec \xi]$} 	
+									\BIC{$\textbf{L2: } \pos \ex z. G(z) \imp \nec \ex x. G(x)$}
+\end{prooftree}
+
+\TThree
+
+\end{frame}
+
+
+\begin{frame}[shrink]{Proof Overview}
+
+\DOne
+
+\phantomDTwo
+
+\qquad
+\alert{$\textbf{D3*: } NE(x) \equiv \nec \ex y. G(y)$}
+\qquad\qquad
+$\textbf{D3: } NE(x) \equiv \all \varphi.[\ess{\varphi}{x} \imp \nec \ex y.\varphi(y)]$
+\phantomCOne
+
+\begin{prooftree}
+						\AXC{$\phantom{\textbf{A1b}}$} \noLine
+						\UIC{$\phantom{\all \varphi. [\neg P(\varphi) \imp P(\neg \varphi)]}$}
+								\AXC{$\phantom{\textbf{A4}}$} \noLine
+								\UIC{$\phantom{ \all \varphi.[P(\varphi) \to \Box \; P(\varphi)]} $} \noLine
+							\BIC{$\textbf{T2: } \all y.[G(y) \imp \ess{G}{y}]$}
+									\AXC{$\phantom{\textbf{A5}}$} \noLine
+									\UIC{$ P(NE) $}
+								\BIC{$\textbf{L1: } \ex z. G(z) \imp \nec \ex x. G(x)$} 
+								\UIC{$\pos \ex z. G(z) \imp \pos \nec \ex x. G(x)$}
+										\AXC{$\textbf{S5}$} \dashedLine
+ 										\UIC{$\all \xi.[\pos \nec \xi \imp \nec \xi]$} 	
+									\BIC{$\textbf{L2: } \pos \ex z. G(z) \imp \nec \ex x. G(x)$}
+\end{prooftree}
+
+\TThree
+
+\end{frame}
+
+
+\begin{frame}[shrink]{Proof Overview}
+
+\DOne
+
+\phantomDTwo
+
+\qquad
+\alert{$\textbf{D3*: } NE(x) \equiv \nec \ex y. G(y)$}
+\qquad\qquad
+$\textbf{D3: } NE(x) \equiv \all \varphi.[\ess{\varphi}{x} \imp \nec \ex y.\varphi(y)]$
+\phantomCOne
+
+\begin{prooftree}
+						\AXC{$\phantom{\textbf{A1b}}$} \noLine
+						\UIC{$\phantom{\all \varphi. [\neg P(\varphi) \imp P(\neg \varphi)]}$}
+								\AXC{$\phantom{\textbf{A4}}$} \noLine
+								\UIC{$\phantom{ \all \varphi.[P(\varphi) \to \Box \; P(\varphi)]} $} \noLine
+							\BIC{$\textbf{T2: } \all y.[G(y) \imp \ess{G}{y}]$}
+									\AXC{$\textbf{A5}$} \dashedLine
+									\UIC{$ P(NE) $}
+								\BIC{$\textbf{L1: } \ex z. G(z) \imp \nec \ex x. G(x)$} 
+								\UIC{$\pos \ex z. G(z) \imp \pos \nec \ex x. G(x)$}
+										\AXC{$\textbf{S5}$} \dashedLine
+ 										\UIC{$\all \xi.[\pos \nec \xi \imp \nec \xi]$} 	
+									\BIC{$\textbf{L2: } \pos \ex z. G(z) \imp \nec \ex x. G(x)$}
+\end{prooftree}
+
+\TThree
+
+\end{frame}
+
+
+
+\begin{frame}[shrink]{Proof Overview}
+
+\DOne
+
+\phantomDTwo
+
+\qquad
+\alert{$\textbf{D3*: } NE(x) \equiv \nec \ex y. G(y)$}
+\qquad\qquad
+$\textbf{D3: } NE(x) \equiv \all \varphi.[\ess{\varphi}{x} \imp \nec \ex y.\varphi(y)]$
+\phantomCOne
+
+\begin{prooftree}
+						\AXC{$\phantom{\textbf{A1b}}$} \noLine
+						\UIC{$\phantom{\all \varphi. [\neg P(\varphi) \imp P(\neg \varphi)]}$}
+								\AXC{$\phantom{\textbf{A4}}$} \noLine
+								\UIC{$\phantom{ \all \varphi.[P(\varphi) \to \Box \; P(\varphi)]} $} \noLine
+							\BIC{$\textbf{T2: } \all y.[G(y) \imp \ess{G}{y}]$}
+									\AXC{$\textbf{A5}$} \dashedLine
+									\UIC{$ P(NE) $}
+								\BIC{$\textbf{L1: } \ex z. G(z) \imp \nec \ex x. G(x)$} 
+								\UIC{$\pos \ex z. G(z) \imp \pos \nec \ex x. G(x)$}
+										\AXC{$\textbf{S5}$} \dashedLine
+ 										\UIC{$\all \xi.[\pos \nec \xi \imp \nec \xi]$} 	
+									\BIC{$\textbf{L2: } \pos \ex z. G(z) \imp \nec \ex x. G(x)$}
+\end{prooftree}
+
+\TThree
+
+\end{frame}
+
+
+\newcommand{\LTwo}{
+\begin{prooftree}
+						\AXC{$\textbf{A1b}$} \dashedLine
+						\UIC{$\all \varphi. [\neg P(\varphi) \imp P(\neg \varphi)]$}
+								\AXC{$\textbf{A4}$} \dashedLine
+								\UIC{$ \all \varphi.[P(\varphi) \to \Box \; P(\varphi)] $} 
+							\BIC{$\textbf{T2: } \all y.[G(y) \imp \ess{G}{y}]$}
+									\AXC{$\textbf{A5}$} \dashedLine
+									\UIC{$ P(NE) $}
+								\BIC{$\textbf{L1: } \ex z. G(z) \imp \nec \ex x. G(x)$} 
+								\UIC{$\pos \ex z. G(z) \imp \pos \nec \ex x. G(x)$}
+										\AXC{$\textbf{S5}$} \dashedLine
+ 										\UIC{$\all \xi.[\pos \nec \xi \imp \nec \xi]$} 	
+									\BIC{$\textbf{L2: } \pos \ex z. G(z) \imp \nec \ex x. G(x)$}
+\end{prooftree}
+}
+
+
+\begin{frame}[shrink]{Proof Overview}
+
+\DOne
+
+\DTwo
+
+\qquad
+\alert{$\textbf{D3*: } NE(x) \equiv \nec \ex y. G(y)$}
+\qquad\qquad
+$\textbf{D3: } NE(x) \equiv \all \varphi.[\ess{\varphi}{x} \imp \nec \ex y.\varphi(y)]$
+
+\phantomCOne
+
+\LTwo
+
+\TThree
+
+\end{frame}
+
+
+\begin{frame}[shrink]{Proof Overview}
+
+\DOne
+
+\DTwo
+
+\qquad
+\alert{$\textbf{D3*: } NE(x) \equiv \nec \ex y. G(y)$}
+\qquad\qquad
+$\textbf{D3: } NE(x) \equiv \all \varphi.[\ess{\varphi}{x} \imp \nec \ex y.\varphi(y)]$
+
+\begin{prooftree}
+\AXC{$\phantom{\textbf{A3}}$} \noLine
+\UIC{$\phantom{P(G)}$}
+		\AXC{$\phantom{\textbf{A2}}$} \noLine
+		\UIC{$\phantom{\all \varphi. \all \psi.[(P(\varphi) \wedge \nec \all x.[\varphi(x) \imp \psi(x)]) \imp P(\psi)]}$}
+					\AXC{$\phantom{\textbf{A1a}}$} \noLine
+					\UIC{$\phantom{\all \varphi. [P(\neg \varphi) \imp \neg P(\varphi)]}$} \noLine
+				\BIC{$\phantom{\textbf{T1: } \all \varphi. [P(\varphi) \imp \pos \ex x.\varphi(x)]}$} \noLine
+	\BIC{$\textbf{C: } \pos \ex z. G(z)$}
+\end{prooftree}
+
+\LTwo
+
+\TThree
+
+\end{frame}
+
+
+\begin{frame}[shrink]{Proof Overview}
+
+\DOne
+
+\DTwo
+
+\qquad
+\alert{$\textbf{D3*: } NE(x) \equiv \nec \ex y. G(y)$}
+\qquad\qquad
+$\textbf{D3: } NE(x) \equiv \all \varphi.[\ess{\varphi}{x} \imp \nec \ex y.\varphi(y)]$
+
+\begin{prooftree}
+\AXC{$\phantom{\textbf{A3}}$} \noLine
+\UIC{$P(G)$}
+		\AXC{$\phantom{\textbf{A2}}$} \noLine
+		\UIC{$\phantom{\all \varphi. \all \psi.[(P(\varphi) \wedge \nec \all x.[\varphi(x) \imp \psi(x)]) \imp P(\psi)]}$}
+					\AXC{$\phantom{\textbf{A1a}}$} \noLine
+					\UIC{$\phantom{\all \varphi. [P(\neg \varphi) \imp \neg P(\varphi)]}$} \noLine
+				\BIC{$\phantom{\textbf{T1: } \all \varphi. [P(\varphi) \imp \pos \ex x.\varphi(x)]}$} 
+	\BIC{$\textbf{C: } \pos \ex z. G(z)$}
+\end{prooftree}
+
+\LTwo
+
+\TThree
+
+\end{frame}
+
+
+\begin{frame}[shrink]{Proof Overview}
+
+\DOne
+
+\DTwo
+
+\qquad
+\alert{$\textbf{D3*: } NE(x) \equiv \nec \ex y. G(y)$}
+\qquad\qquad
+$\textbf{D3: } NE(x) \equiv \all \varphi.[\ess{\varphi}{x} \imp \nec \ex y.\varphi(y)]$
+
+\begin{prooftree}
+\AXC{$\textbf{A3}$} \dashedLine
+\UIC{$P(G)$}
+		\AXC{$\phantom{\textbf{A2}}$} \noLine
+		\UIC{$\phantom{\all \varphi. \all \psi.[(P(\varphi) \wedge \nec \all x.[\varphi(x) \imp \psi(x)]) \imp P(\psi)]}$}
+					\AXC{$\phantom{\textbf{A1a}}$} \noLine
+					\UIC{$\phantom{\all \varphi. [P(\neg \varphi) \imp \neg P(\varphi)]}$} \noLine
+				\BIC{$\phantom{\textbf{T1: } \all \varphi. [P(\varphi) \imp \pos \ex x.\varphi(x)]}$} 
+	\BIC{$\textbf{C: } \pos \ex z. G(z)$}
+\end{prooftree}
+
+\LTwo
+
+\TThree
+
+\end{frame}
+
+
+
+\begin{frame}[shrink]{Proof Overview}
+
+\DOne
+
+\DTwo
+
+\qquad
+\alert{$\textbf{D3*: } NE(x) \equiv \nec \ex y. G(y)$}
+\qquad\qquad
+$\textbf{D3: } NE(x) \equiv \all \varphi.[\ess{\varphi}{x} \imp \nec \ex y.\varphi(y)]$
+
+\begin{prooftree}
+\AXC{$\textbf{A3}$} \dashedLine
+\UIC{$P(G)$}
+		\AXC{$\phantom{\textbf{A2}}$} \noLine
+		\UIC{$\phantom{\all \varphi. \all \psi.[(P(\varphi) \wedge \nec \all x.[\varphi(x) \imp \psi(x)]) \imp P(\psi)]}$}
+					\AXC{$\phantom{\textbf{A1a}}$} \noLine
+					\UIC{$\phantom{\all \varphi. [P(\neg \varphi) \imp \neg P(\varphi)]}$} \noLine
+				\BIC{$\textbf{T1: } \all \varphi. [P(\varphi) \imp \pos \ex x.\varphi(x)]$} 
+	\BIC{$\textbf{C: } \pos \ex z. G(z)$}
+\end{prooftree}
+
+\LTwo
+
+\TThree
+
+\end{frame}
+
+
+
+\begin{frame}[shrink]{Proof Overview}
+
+\DOne
+
+\DTwo
+
+\qquad
+\alert{$\textbf{D3*: } NE(x) \equiv \nec \ex y. G(y)$}
+\qquad\qquad
+$\textbf{D3: } NE(x) \equiv \all \varphi.[\ess{\varphi}{x} \imp \nec \ex y.\varphi(y)]$
+
+\begin{prooftree}
+\AXC{$\textbf{A3}$} \dashedLine
+\UIC{$P(G)$}
+		\AXC{$\textbf{A2}$} \dashedLine
+		\UIC{$\all \varphi. \all \psi.[(P(\varphi) \wedge \nec \all x.[\varphi(x) \imp \psi(x)]) \imp P(\psi)]$}
+					\AXC{$\textbf{A1a}$} \dashedLine
+					\UIC{$\all \varphi. [P(\neg \varphi) \imp \neg P(\varphi)]$}
+				\BIC{$\textbf{T1: } \all \varphi. [P(\varphi) \imp \pos \ex x.\varphi(x)]$} 
+	\BIC{$\textbf{C: } \pos \ex z. G(z)$}
+\end{prooftree}
+
+\LTwo
+
+\TThree
+
+\end{frame}
+
+
+\begin{frame}[shrink]{Proof Overview}
+
+$$
+\textbf{D1: } G(x) \equiv \forall \varphi. [P(\varphi) \to \varphi(x)]
+$$
+
+$$
+\textbf{D2: } \ess{\varphi}{x} \equiv \varphi(x) \wedge \all \psi. (\psi(x) \imp \nec \all x. (\varphi(x) \imp \psi(x)))
+$$
+
+$$
+\textbf{D3: } NE(x) \equiv \all \varphi.[\ess{\varphi}{x} \imp \nec \ex y.\varphi(y)]
+$$
+
+\begin{prooftree}
+\AXC{$\textbf{A3}$} \dashedLine
+\UIC{$P(G)$}
+		\AXC{$\textbf{A2}$} \dashedLine
+		\UIC{$\all \varphi. \all \psi.[(P(\varphi) \wedge \nec \all x.[\varphi(x) \imp \psi(x)]) \imp P(\psi)]$}
+					\AXC{$\textbf{A1a}$} \dashedLine
+					\UIC{$\all \varphi. [P(\neg \varphi) \imp \neg P(\varphi)]$} \doubleLine
+				\BIC{$\textbf{T1: } \all \varphi. [P(\varphi) \imp \pos \ex x.\varphi(x)]$} \doubleLine
+	\BIC{$\textbf{C: } \pos \ex z. G(z)$}
+\end{prooftree}
+
+
+
+
+
+\begin{prooftree}
+						\AXC{$\textbf{A1b}$} \dashedLine
+						\UIC{$\all \varphi. [\neg P(\varphi) \imp P(\neg \varphi)]$}
+								\AXC{$\textbf{A4}$} \dashedLine
+								\UIC{$ \all \varphi.[P(\varphi) \to \Box \; P(\varphi)] $} \doubleLine
+							\BIC{$\textbf{T2: } \all y.[G(y) \imp \ess{G}{y}]$}
+									\AXC{$\textbf{A5}$} \dashedLine
+									\UIC{$ P(NE) $} \doubleLine
+								\BIC{$\textbf{L1: } \ex z. G(z) \imp \nec \ex x. G(x)$} \doubleLine
+								\UIC{$\pos \ex z. G(z) \imp \pos \nec \ex x. G(x)$}
+										\AXC{$\textbf{S5}$} \dashedLine
+ 										\UIC{$ \all \xi.[\pos \nec \xi \imp \nec \xi]$} \doubleLine	
+									\BIC{$\textbf{L2: } \pos \ex z. G(z) \imp \nec \ex x. G(x)$}
+\end{prooftree}
+
+\begin{prooftree}
+\AXC{$\textbf{C: } \pos \ex z. G(z)$}
+		\AXC{$\textbf{L2: } \pos \ex z. G(z) \imp \nec \ex x. G(x)$} \doubleLine
+	\BIC{$\textbf{T3: } \nec \ex x. G(x) $}
+\end{prooftree}
+
+\end{frame}
+
+
+
+
+\end{document}
