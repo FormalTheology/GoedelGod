@@ -18,8 +18,5 @@ begin
 
 -- {* Now the inconsistency easily follows A1a A2 A5 and Lemma2. *}
   lemma False                                                           by (metis T1 A5 Lemma2) 
-
--- {* A5 could be weakened: P is exemplified.*}
-  lemma Lemma3: "[(\<exists> P) m\<rightarrow> (m\<not> (\<exists> NE))]"                       by (metis A1a A2 Lemma1 NE_def)
 end   
  
