@@ -1803,14 +1803,14 @@ ${P(\NE)}$ \hfill A5\\
 \begin{tabular}[c]{r|cc|cc|cc}
 Gödel's version & \multicolumn{2}{c|}{K} & \multicolumn{2}{c|}{KB} & \multicolumn{2}{c}{S5} \\ 
  & constant &  varying     & constant &  varying       & constant &  varying \\ \hline
-Consistency &  \rr{} & \rr{} & \rr{} & \rr{} & \rr{} & \rr{} \\
-T1 & \oo & \oo & \oo & \oo & \oo & \oo \\
-C & \oo & \oo & \oo & \oo & \oo & \oo \\
-T2 & \oo & \oo & \oo & \oo & \oo & \oo \\
-T3 & \oo & \oo & \oo & \oo & \oo & \oo \\
+\textcolor{Green}{Consistency} &  \rr{} & \rr{} & \rr{} & \rr{} & \rr{} & \rr{} \\
+\textcolor{Green}{T1} & \oo & \oo & \oo & \oo & \oo & \oo \\
+\textcolor{Green}{C} & \oo & \oo & \oo & \oo & \oo & \oo \\
+\textcolor{Green}{T2} & \oo & \oo & \oo & \oo & \oo & \oo \\
+\textcolor{Green}{T3} & \oo & \oo & \oo & \oo & \oo & \oo \\
 Flawless God & \oo & \oo & \oo & \oo & \oo & \oo \\
 Monotheism & \oo & \oo & \oo & \oo & \oo & \oo \\
-Modal Collapse & \oo & \oo & \oo & \oo & \oo & \oo \\
+\textcolor{Red}{Modal Collapse} & \oo & \oo & \oo & \oo & \oo & \oo \\
 \end{tabular}
 }
 \end{changemargin}
@@ -1835,14 +1835,14 @@ Modal Collapse & \oo & \oo & \oo & \oo & \oo & \oo \\
 \begin{tabular}[c]{r|cc|cc|cc}
 Scott's version & \multicolumn{2}{c|}{K} & \multicolumn{2}{c|}{KB} & \multicolumn{2}{c}{S5} \\ 
  & constant &  varying     & constant &  varying       & constant &  varying \\ \hline
-Consistency &  \gg{} & \gg{} & \gg{} & \gg{} & \gg{} & \gg{} \\
-T1 & \gg{} & \gg{} & \gg{} & \gg{} & \gg{} & \gg{} \\
-C & \gg{} & \gg{} & \gg{} & \gg{} & \gg{} & \gg{} \\
-T2 & \gg{} & \gg{} & \gg{} & \gg{} & \gg{} & \gg{} \\
-T3 & \rr{} & \rr{} & \gg{} & \gg{} & \gg{} & \gg{} \\
+\textcolor{Green}{Consistency} &  \gg{} & \gg{} & \gg{} & \gg{} & \gg{} & \gg{} \\
+\textcolor{Green}{T1} & \gg{} & \gg{} & \gg{} & \gg{} & \gg{} & \gg{} \\
+\textcolor{Green}{C} & \gg{} & \gg{} & \gg{} & \gg{} & \gg{} & \gg{} \\
+\textcolor{Green}{T2} & \gg{} & \gg{} & \gg{} & \gg{} & \gg{} & \gg{} \\
+\textcolor{Green}{T3} & \rr{} & \rr{} & \gg{} & \gg{} & \gg{} & \gg{} \\
 Flawless God & \gg{} & \gg{} & \gg{} & \gg{} & \gg{} & \gg{} \\
 Monotheism & \gg{} & \gg{} & \gg{} & \gg{} & \gg{} & \gg{} \\
-Modal Collapse & \gg{} & \gg{} & \gg{} & \gg{} & \gg{} & \gg{} \\
+\textcolor{Red}{Modal Collapse} & \gg{} & \gg{} & \gg{} & \gg{} & \gg{} & \gg{} \\
 \end{tabular}
 }
 \vfill
@@ -1898,6 +1898,7 @@ Modal Collapse & \gg{} & \gg{} & \gg{} & \gg{} & \gg{} & \gg{} \\
 \usebackgroundtemplate{
 \vbox to \paperheight{\vfil\hbox to \paperwidth{\hfil
     \begin{minipage}{12cm}
+    \vskip-1cm
     \includegraphics[width=4cm]{./DemoMaterial/Anderson90.png}
     \includegraphics[width=4cm]{./DemoMaterial/AndersonGettings96.png}
     \includegraphics[width=4cm]{./DemoMaterial/Hajek96.png} \\[1em]
@@ -1909,7 +1910,11 @@ Modal Collapse & \gg{} & \gg{} & \gg{} & \gg{} & \gg{} & \gg{} \\
 }
 
 \begin{frame}{Avoiding the Modal Collapse: Some Emendations}
+\end{frame}
+
+\begin{frame}{Avoiding the Modal Collapse: Some Emendations}
 %\begin{changemargin}{-.5cm}{-.5cm}
+\vskip-.5cm
 \begin{pgfpicture}{0cm}{0cm}{11cm}{11cm}
 \pgfsetlinewidth{3\pgflinewidth} 
 \pgfsetendarrow{\pgfarrowto}
@@ -1920,11 +1925,11 @@ Modal Collapse & \gg{} & \gg{} & \gg{} & \gg{} & \gg{} & \gg{} \\
 \pgfnodebox{Node1c}[stroke]{\pgfxy(9.3,9.3)}{\phantom{Bla}}{1.7cm}{.4cm}
 \pgfnodebox{Node1d}[stroke]{\pgfxy(1.3,6)}{\phantom{Bla}}{1.7cm}{.2cm}
 \pgfnodebox{Node1e}[stroke]{\pgfxy(5.3,6.4)}{\phantom{Bla}}{1.6cm}{.2cm}
-\pgfnodebox{Node2}[virtual]{\pgfxy(7,3.2)}{
+\pgfnodebox{Node2}[virtual]{\pgfxy(7,2.8)}{
 \framecolorbox[7.5cm][s]{Green}{green!20}{
  \begin{minipage}{7cm} \centering
    Computer-supported  Clarification of Controversy\\
-   \textcolor{red}{See next
+   \textcolor{red}{see next
       talk by Bruno Woltzenlogel-Paleo}
   \end{minipage}}}{2pt}{2pt}
 \pgfnodeconncurve{Node1a}{Node2}{270}{90}{1cm}{2cm}
@@ -1965,9 +1970,9 @@ Modal Collapse & \gg{} & \gg{} & \gg{} & \gg{} & \gg{} & \gg{} \\
 \end{block}
 \vfill
 \begin{block}{(Interim) Own standpoint}
-I am not fully convinced yet by the ontological argument. \\
+I am not fully convinced (yet) by the ontological argument. \\[.5cm]
 However, it seems to me that 
-\textbf{the believe in a (God-like) supreme being is at least not necessarily irrational}.
+\textbf{the believe in a (God-like) supreme being is at least not necessarily irrational/inconsistent}.
 \end{block}
 \end{frame}
 
@@ -2006,6 +2011,7 @@ However, it seems to me that
 \begin{block}{Ongoing/Future work \hfill \textcolor{red}{See next talk by Bruno Woltzenlogel-P.}}
 \begin{itemize}
 \item Landscape of verified/falsified ontological arguments
+\item You may consider to contribute: \url{https://github.com/FormalTheology/GoedelGod.git}
 \end{itemize}
 \end{block}
 \end{frame}
