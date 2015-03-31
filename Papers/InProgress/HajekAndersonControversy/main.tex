@@ -182,7 +182,7 @@ For both \textbf{constant domain semantics} and \textbf{varying domain
 semantics}, the following results hold for \emph{Anderson's
 Emendation} (cf. Appendix \ref{apx:Anderson}): T1, C
 and T3' can be quickly automated (in logics \K, \K and \KB,
-respectively); the axioms A4 and A5 are proven redundant\footnote{
+respectively); the axioms A4 and A5' are proven redundant\footnote{
 An axiom $A$ is redundant w.r.t. a set of axioms $S$ iff $A$ is
 entailed by $S$.  } (the former in logic \KFourB and the latter
 already in \K); a trivial countermodel (with two worlds and  two
@@ -279,7 +279,7 @@ modal logic \SFour, to the conjunction of D1', A2', A3' and A4'. This
 has been confirmed in the computer-assisted formalization: A2' and A3'
 can be quickly automatically derived in logic \K. A4' can be proved in
 logic \KT (i.e. assuming reflexivity of the accessibility relation).
-For constant domain semantics, proving D1 is possible in logic \KFour,
+For constant domain semantics, proving D1' is possible in logic \KFour,
 whereas for varying domain semantics, a counter model can be found
 even in logic \SFive. Conversely, the proof that B:D1 is entailed by
 D1', A2', A3' and A4' is possible already in logic \K. The provers
@@ -532,6 +532,27 @@ $G_B$ (God-like) is taken as primitive and $P_B$ (Positive) is defined.
 } %\vskip-.5em
 
 \vskip 8em
+
+\section{Summary}
+
+\newcommand{\R}{Red.}
+\newcommand{\S}{Sup.}
+\newcommand{\P}{Prov.}
+\newcommand{\CS}{Countersat.}
+\newcommand{\U}{--}
+
+\begin{tabular}{lccc}
+Proof               & A4 & H:A4 & A5 & A5' & H:A5 & T3 & T3'  &  MC \\
+\hline
+Scott (const)       & 
+Scott (var)
+Anderson (const)    &     &      
+Anderson (var)      
+\AOE
+\AOEH
+\AOEHH
+\AOEHHH
+\end{tabular}
 
 
 \end{appendix}
