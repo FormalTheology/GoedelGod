@@ -291,8 +291,8 @@ Required: \\
 \vfill
 \begin{block}{Automation with provers for higher-order classical logic (HOL)}
 \begin{itemize}
-\item confirmation of known results
-\item detection of novel results (by HOL-ATPs)
+\item verification (or falsification) of known results
+\item some novel results (by HOL-ATPs)
 \item varying logic settings
 \item HOL as a universal metalogic via logic embeddings \\ (characteristica universalis?)
 \end{itemize}
@@ -359,7 +359,7 @@ Required: \\
 \ldots \\[1em]
 
 
-\onslide<2->
+\onslide<1->
 {
 \vfill
 Anselm's notion of God (Proslogion, 1078):\\
@@ -367,16 +367,16 @@ Anselm's notion of God (Proslogion, 1078):\\
   conceived.''} \\[1em]
 }
 
-\onslide<3->
+\onslide<2->
 {
 G\"odel's notion of God:\\
 \,\hfill \textbf{``A God-like being possesses all `positive'
   properties.''} \\[1em]
 }
 
-\onslide<2->
+\onslide<1->
 {
-To show by logical reasoning: \\
+To show by logical, deductive reasoning: \\
 \,\hfill \textbf{``\alt<3>{Necessarily God exists.}{God exists.}''} \\
 \,\hfill \alt<3>{${\nec} \exq x G(x)$}{$\exq x G(x)$}\\[1em]
 }
@@ -406,7 +406,8 @@ To show by logical reasoning: \\
   \begin{itemize}
   \item \ldots to formalize the definitions, axioms and theorems?
   \item \ldots to verify the arguments step-by-step?
-  \item \ldots to fully automate (sub-)arguments? \\[2em]
+  \item \ldots to automate (sub-)arguments? 
+  \item \ldots to generate new knowledge?
   \end{itemize}
   % \textcolor{red}{\emph{``Computer-assisted Theoretical Philosophy''}}\\[1em]
   %                                      remember Leibniz' dictum --- \emph{Calculemus!}
@@ -959,7 +960,7 @@ This can be done with interactive or automated \textcolor{Blue}{HOL} theorem pro
 
 
 
-\begin{frame}[t]{Propositional Quantification}\large
+\begin{frame}[t]{Modal Logics beyond K}\large
 % Propositional Quantification \chriscite{Fitting, J.Symb.Log., 2002}
 
 % \quad \ldots
@@ -983,7 +984,7 @@ This can be done with interactive or automated \textcolor{Blue}{HOL} theorem pro
 % \pause
 
 \vfill
-Modal logic axioms \hfill Semantical condition 
+Modal logic axioms \hfill Semantical conditions \\[.5cm]
 
 M:\quad $\textcolor{red}{\text{\textcolor{brown}{valid}}\ \forall
   \varphi (\Box \varphi \imp \varphi)}$ \hfill
@@ -1005,19 +1006,18 @@ $\textcolor{Blue}{\forall x \forall y \forall z (r x y \wedge r y z
   \varphi (\Diamond\varphi \imp \Box \Diamond \varphi)}$ \hfill
 $\textcolor{Blue}{\forall x \forall y \forall z (r x y \wedge r x z
   \imp r y   z)}$
-\vspace*{3em}
 %\pause
 
-Bridge rules (multimodal logics)\hfill Semantical condition
+% Bridge rules (multimodal logics)\hfill Semantical condition
 
-\quad $\textcolor{red}{\text{\textcolor{brown}{valid}}\ \forall\varphi (\Box_{r} \varphi \imp \Box_{s} \varphi)}$ \hfill $\textcolor{Blue}{\forall x \forall y (r x y \imp s x y)}$ 
+% \quad $\textcolor{red}{\text{\textcolor{brown}{valid}}\ \forall\varphi (\Box_{r} \varphi \imp \Box_{s} \varphi)}$ \hfill $\textcolor{Blue}{\forall x \forall y (r x y \imp s x y)}$ 
 
 %\pause
-\vfill
-\colorbox{yellow!20}{We get a wide range of modal logics and combinations
-  for free!}
+% \vfill
+% \colorbox{yellow!20}{We get a wide range of modal logics and combinations
+%   for free!}
 
-\, \hfill \chriscite{Benzm\"ullerPaulson, LogicaUniversalis, 2013} \\
+%\, \hfill \chriscite{Benzm\"ullerPaulson, LogicaUniversalis, 2013} \\
 \end{frame}
 
 
@@ -1333,7 +1333,7 @@ See verifiable Coq document at: \\
 proved by LEO-II and Satallax 
 \begin{itemize}
 \item  in logic: K 
-\item  from axioms:
+\item  from assumptions:
   \begin{itemize} 
   \item A1 and A2
   \item \onslide<1->{\color{black} A1($\supset$) and A2}
@@ -1372,7 +1372,7 @@ proved by LEO-II and Satallax
 \item  from assumptions:
   \begin{itemize} 
   \item T1, D1, A3
-  \item A1, A2, D1, A3
+%  \item A1, A2, D1, A3
   \end{itemize}
 \item for domain conditions: 
   \begin{itemize} 
@@ -1409,7 +1409,7 @@ proved by LEO-II and Satallax
 \item  from assumptions:
   \begin{itemize} 
   \item A1, D1, A4, D2
-  \item A1, A2, D1, A3, A4, D2
+%  \item A1, A2, D1, A3, A4, D2
   \end{itemize}
 \item for domain conditions: 
   \begin{itemize} 
@@ -1660,7 +1660,8 @@ Main critique on G\"odel's ontological proof:
 \end{changemargin}
 \end{frame}
 
-\begin{frame}{Inconsistency: Reconstruction of Informal Argument}
+\begin{frame}{Inconsistency (KB): Reconstruction of Informal Argument}
+\textcolor{gray}{(special thanks to Chad Brown for a fruitful discussion)} \\[1em]
 \begin{flushright}
 \begin{minipage}{10cm}%\small
 \begin{itemize}
@@ -1669,37 +1670,53 @@ Main critique on G\"odel's ontological proof:
 \item[Axiom A2] \hfill 
   ${\allq \phi \allq \psi} [(P(\phi) \wedge \alt<0>{\textcolor{red}{\nec}}{\nec} \allq x [\phi(x)
   \imp \psi(x)]) \imp P(\psi)]$ 
-\item[Def. D2$^*$] \hfill ${\ess{\phi}{x} \biimp {\allq \psi} (\psi(x) \imp {\nec} \allq y (\phi(y) \imp \psi(y)))}$ 
-\item[Def. D3] 
-   \hfill ${\NE(x) \biimp \alt<0>{\textcolor{red}{\allq \phi}}{\allq \phi} [\ess{\phi}{x} \imp \alt<0>{\textcolor{red}{\nec}}{\nec}  \exq y \phi(y)]}$
-\item[Axiom A5] \hfill ${P(\NE)}$ \\[2em]
-
 \pause
 \item[\textcolor{Green}{Theorem 1}] Positive Properties are possibly
   exemplified. \hfill ${\allq \phi} [P(\phi) \imp {\pos}  \exq x
   \phi(x)]$ \\
-\,\hfill by \textcolor{Blue}{A1($\supset$), A2}\\[2em]
+\,\hfill by \textcolor{Blue}{A1($\supset$), A2} \\[.5cm]
+\pause
+\item[Def. D2$^*$] \hfill ${\ess{\phi}{x} \biimp {\allq \psi} (\psi(x)
+    \imp {\nec} \allq y (\phi(y) \imp \psi(y)))}$ 
+\pause
+\item[\textcolor{Green}{Lemma 1}] The empty property is an essence of
+  every entity. \hfill $\allq x\,(\ess{\emptyset}{x})$ \\
+\,\hfill by \textcolor{Blue}{D2$^*$} \\[.5cm]
+\pause
+\item[Def. D3] 
+   \hfill ${\NE(x) \biimp \alt<0>{\textcolor{red}{\allq \phi}}{\allq
+       \phi} [\ess{\phi}{x} \imp \alt<0>{\textcolor{red}{\nec}}{\nec}
+     \exq y \phi(y)]}$
+\item[Axiom B]  \hfill $\forall
+  \varphi (\varphi \imp \Box \Diamond \varphi)$ \quad \textcolor{gray}{(resp.
+$\forall x \forall y (r x y \imp r y x)$)}
+\pause
+ \item[\textcolor{Green}{Lemma 2}] Exemplification of necessary
+   existence is not possible. \hfill  $\neg \pos \exists x\, \NE(x)$
+   \\
+\, \hfill by \textcolor{Blue}{B, D3, Lemma1} \\[.5cm]
+ \pause
+\item[Axiom A5] \hfill ${P(\NE)}$ 
+
+
 % \item[\textcolor{Green}{Corollary}] Necessary existence is possibly
 %   exemplified. \hfill $\pos \exq x  \NE(x)$ \\[2em]
 
 \pause
-\item[\textcolor{Green}{Lemma 1}] The empty property is an essence of
-  every entity. \hfill $\allq x\,(\ess{\emptyset}{x})$ \\
-\,\hfill by \textcolor{Blue}{D2$^*$} \\[2em]
-% \item[\textcolor{Green}{Lemma 2}] Exemplification of necessary
-%   existence is impossible. \hfill  $\neg \pos \exists x\, \NE(x)$ 
-%  \\[2em]
-
-\pause
 \item[]  \textcolor{Green}{Inconsistency} \hfill $\bot$ \\
-\,\hfill by \textcolor{Blue}{A5, Lemma1, D3, T1} \\[2em]
+\,\hfill by \textcolor{Blue}{A5, T1, Lemma2} \\[.5cm]
 \end{itemize}
 \end{minipage}
 \end{flushright}
 \end{frame}
 
+\begin{frame}{Inconsistency (KB): Verification in Isabelle/HOL}
+\begin{changemargin}{-.5cm}{-1cm}
+\includegraphics[width=12cm,height=8.5cm]{./DemoMaterial/GoedelGodWithoutConjunctInEss_KB.png}
+\end{changemargin}
+\end{frame}
 
-\begin{frame}{Inconsistency: Verification in Isabelle/HOL}
+\begin{frame}{Inconsistency (K): Verification in Isabelle/HOL}
 \begin{changemargin}{-.5cm}{-1cm}
 \includegraphics[width=12cm,height=8.5cm]{./DemoMaterial/GoedelGodWithoutConjunctInEss.png}
 \end{changemargin}
@@ -1793,8 +1810,8 @@ ${P(\NE)}$ \hfill A5\\
 
 
 
-\def\gg{\cellcolor{green!50}{y}}
-\def\rr{\cellcolor{red!50}{n}}
+\def\gg{\cellcolor{green!50}{\textcolor{Green}{\checkmark}}}
+\def\rr{\cellcolor{red!50}{\textcolor{Red}{$\times$}}}
 \def\oo{\cellcolor{yellow!20}{{\footnotesize \textcolor{gray}{obsolete}}}}
 
 \begin{frame}{Varying Logic Settings: Results of Experiments} % \small
@@ -1824,7 +1841,9 @@ Monotheism & \oo & \oo & \oo & \oo & \oo & \oo \\
 \end{itemize}
 \end{block}
 \vfill
-\begin{block}{Question: \hfill Why is inconsistency not reported in philosophy papers?}
+\begin{block}{Question: \hfill Has this inconsistency be reported
+    before?}
+\, \hfill If not, then LEO-II deserves (part of) the credit!
 \end{block}
 \end{frame}
 
@@ -1944,38 +1963,6 @@ Monotheism & \gg{} & \gg{} & \gg{} & \gg{} & \gg{} & \gg{} \\
 \usebackgroundtemplate{}
 
 
-\begin{frame}{Personal Statement}
-%Formal Methods \hfill \textcolor{gray}{(Diploma 1995)} \\[2cm]
-\begin{block}{(Interim) Culmination of two decades of related own research}
-\begin{itemize} 
-\item Theory of classical higher-order logic (HOL) \hfill \textcolor{gray}{(since 1995)} 
-\item Automation of  HOL / own LEO  provers  \hfill \textcolor{gray}{(since 1998)} 
-
-\item Integration of interactive and automated theorem proving \, \hfill \textcolor{gray}{(since 1999)} 
-
-\item International TPTP infrastructure for HOL 
-\, \hfill \textcolor{gray}{(since 2006)} 
-
-\item HOL as a universal logic via semantic embeddings
- \, \hfill \textcolor{gray}{(since 2008)} 
-
-\item jww Bruno Woltzenlogel-Paleo:\\
-  \textbf{Application in Metaphysics: Ontological Argument}  \, \hfill  \textcolor{gray}{(since 2013)} 
-\end{itemize}
-\vskip1em
-\textcolor{gray}{\textit{\ldots\ success story (despite strong
-    criticism/opposition on the way!)\ \ldots}}
-
-\textcolor{gray}{\textit{\ldots\ huge media attention\ \ldots}}
-\end{block}
-\vfill
-\begin{block}{(Interim) Own standpoint}
-I am not fully convinced (yet) by the ontological argument. \\[.5cm]
-However, it seems to me that 
-\textbf{the believe in a (God-like) supreme being is at least not necessarily irrational/inconsistent}.
-\end{block}
-\end{frame}
-
 
 \begin{frame}{Conclusion}
 \begin{block}{Overall Achievements}
@@ -2015,6 +2002,40 @@ However, it seems to me that
 \end{itemize}
 \end{block}
 \end{frame}
+
+
+\begin{frame}{Personal Statement}
+%Formal Methods \hfill \textcolor{gray}{(Diploma 1995)} \\[2cm]
+\begin{block}{(Interim) Culmination of two decades of related own research}
+\begin{itemize} 
+\item Theory of classical higher-order logic (HOL) \hfill \textcolor{gray}{(since 1995)} 
+\item Automation of  HOL / own LEO  provers  \hfill \textcolor{gray}{(since 1998)} 
+
+\item Integration of interactive and automated theorem proving \, \hfill \textcolor{gray}{(since 1999)} 
+
+\item International TPTP infrastructure for HOL 
+\, \hfill \textcolor{gray}{(since 2006)} 
+
+\item HOL as a universal logic via semantic embeddings
+ \, \hfill \textcolor{gray}{(since 2008)} 
+
+\item jww Bruno Woltzenlogel-Paleo:\\
+  \textbf{Application in Metaphysics: Ontological Argument}  \, \hfill  \textcolor{gray}{(since 2013)} 
+\end{itemize}
+\vskip1em
+\textcolor{gray}{\textit{\ldots\ success story (despite strong
+    criticism/opposition on the way!)\ \ldots}}
+
+\textcolor{gray}{\textit{\ldots\ huge media attention\ \ldots}}
+\end{block}
+\vfill
+\begin{block}{(Interim) Own standpoint}
+I am not fully convinced (yet) by the ontological argument. \\[.5cm]
+However, it seems to me that 
+\textbf{the believe in a (God-like) supreme being is at least not necessarily irrational/inconsistent}.
+\end{block}
+\end{frame}
+
 
 \end{document}
 
