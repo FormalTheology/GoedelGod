@@ -602,7 +602,7 @@ To show by logical reasoning: \\
 \UIC{$\phantom{P(G)}$}
 		\AXC{$\phantom{\textbf{A2}}$} \noLine
 		\UIC{$\phantom{\all \varphi. \all \psi.[(P(\varphi) \wedge \nec \all x.[\varphi(x) \imp \psi(x)]) \imp P(\psi)]}$}
-					\AXC{$\phantom{\textbf{A1a}}$} \noLine
+					\AXC{$\phantom{\textbf{A1($\supset$)}}$} \noLine
 					\UIC{$\phantom{\all \varphi. [P(\neg \varphi) \imp \neg P(\varphi)]}$} \noLine
 				\BIC{$\phantom{\textbf{T1: } \all \varphi. [P(\varphi) \imp \pos \ex x.\varphi(x)]}$} \noLine
 	\BIC{$\phantom{\textbf{C: } \pos \ex z. G(z)}$}
@@ -727,14 +727,14 @@ $$
   \hskip-1em Challenge: \hfill No provers for \emph{Higher-order Modal
     Logic\/} (\textcolor{red}{HOML}) \\[1em]
 
-\hskip-1em Our solution: \hfill \textbf{Embedding in \emph{Higher-order Classical
-  Logic\/} (\textcolor{Blue}{HOL})} \\
+\hskip-1em Our solution: \hfill Embedding in \textbf{$\stackrel{\text{\normalsize Church's Simple Type Theory}}{\text{Higher-order Classical Logic}}$ (\textcolor{Blue}{HOL})} \\
+%\,\hfill \textbf{Church's Simple Type Theory (\phantom{HOL})} \\
 \, \hfill Then use existing \textcolor{Blue}{HOL} theorem provers for reasoning in \textcolor{red}{HOML} \\
 \,\hfill {\small [Benzm\"ullerPaulson, Logica Universalis, 2013]}
 \\[2em]
 
 \hskip-1em Assumption:  
-\,\hfill Henkin semantics for both HOL and HOML \\[2em]
+\,\hfill Henkin semantics for both HOML and HOL \\[2em]
 
 \hskip-1em Previous empirical findings:  \\[.5em]
 \,\hfill Embedding of  \emph{First-order Modal Logic} in HOL works well 
@@ -841,17 +841,20 @@ $\begin{array}{lll}\textcolor{red}{\varphi,\psi} & ::= &
 \end{array}$ \\[1em]
 \textcolor{Blue}{HOL}\hfill 
 $\begin{array}{lll}
-\textcolor{Blue}{s,t} & ::= & \textcolor{Blue}{C}  \mid
-\textcolor{Blue}{x \mid \lambda{x} s} \mid \textcolor{Blue}{s\, t}
-\mid \textcolor{Blue}{\neg s} \mid \textcolor{Blue}{s \vee t} \mid
-\textcolor{Blue}{\forall {x}\, t} 
+\textcolor{Blue}{s,t} & ::= & \textcolor{Blue}{C_\alpha}  \mid
+\textcolor{Blue}{x_\alpha \mid (\lambda{x_\alpha} s_\beta)_{\alpha\typearrow\beta}} \mid \textcolor{Blue}{(s_{\alpha\typearrow\beta}\, t_\alpha)_\beta}
+\mid \textcolor{Blue}{\neg s_o} \mid \textcolor{Blue}{s_o \vee t_o} \mid
+\textcolor{Blue}{\forall {x_\alpha}\, t_o} 
 \end{array}$ \\[1em]
 
 \pause
 
 \textcolor{red}{HOML} in \textcolor{Blue}{HOL}: \quad \textcolor{red}{HOML}
 formulas $\textcolor{red}{\varphi}$ are mapped to
-\textcolor{Blue}{HOL} predicates $\textcolor{red}{\varphi_{\worldtype\typearrow o}}$
+\textcolor{Blue}{HOL} predicates
+$\textcolor{red}{\varphi_{\worldtype\typearrow o}}$\\
+\qquad \qquad \qquad \qquad (explicit representation of labelled
+formulas) \\[1em]
 
 \begin{center}
 \fcolorbox{Blue}{white}{
@@ -865,14 +868,13 @@ $\begin{array}{lcl}
     \textcolor{red}{\imp} & = & \textcolor{Blue}{ 
       \lambda{\varphi_{\worldtype\typearrow o}}
       \lambda{\psi_{\worldtype\typearrow o}} \lambda{w_\worldtype}
-      (\neg \varphi w \vee \psi w)} \\ 
+      (\neg \varphi w \vee \psi w)} \\[.5em] 
     \textcolor{red}{\forall} & = & \textcolor{Blue}{ 
       \lambda{h_{\gamma\typearrow(\worldtype \typearrow o)}}
       \lambda{w_\worldtype} \forall {d_\gamma} \, h d w} \\
     \textcolor{red}{\exists} & = & \textcolor{Blue}{ 
       \lambda{h_{\gamma\typearrow(\worldtype \typearrow o)}}
-      \lambda{w_\worldtype} \exists {d_\gamma} \, h d w} \\
-    \\
+      \lambda{w_\worldtype} \exists {d_\gamma} \, h d w} \\[.5em]
     \alt<0>{\textcolor{Blue}{ 
       \forall {\varphi_{\worldtype\typearrow o}} \forall
       {w_\worldtype} [\ \ (\textcolor{red}{\Box} \varphi) w}& \equiv & \textcolor{Blue}{ 
@@ -884,8 +886,7 @@ $\begin{array}{lcl}
     \textcolor{red}{\Diamond} & = & \textcolor{Blue}{ 
       \lambda{\varphi_{\worldtype\typearrow o}} \lambda{w_\worldtype}
       \exists {u_\worldtype}\, (r w u \wedge
-      \varphi u)} \\ 
-    \\
+      \varphi u)} \\[.5em] 
     \text{\textcolor{brown}{valid}} & = & \textcolor{Blue}{
         \lambda{\varphi_{\worldtype\typearrow o}} \all{w_\worldtype}
         \varphi w}
@@ -982,16 +983,32 @@ This can be done with interactive or automated \textcolor{Blue}{HOL} theorem pro
 % \pause
 
 \vfill
-Modal logic axioms (here B) \hfill Semantical condition (here sym)
+Modal logic axioms \hfill Semantical condition 
 
-\quad $\textcolor{red}{\text{\textcolor{brown}{valid}}\ \forall
+M:\quad $\textcolor{red}{\text{\textcolor{brown}{valid}}\ \forall
+  \varphi (\Box \varphi \imp \varphi)}$ \hfill
+$\textcolor{Blue}{\forall x (r x y)}$
+
+B:\quad $\textcolor{red}{\text{\textcolor{brown}{valid}}\ \forall
   \varphi (\varphi \imp \Box \Diamond \varphi)}$ \hfill
-$\textcolor{Blue}{\forall x \forall y\exists y (r x y \imp r y x)}$
+$\textcolor{Blue}{\forall x \forall y (r x y \imp r y x)}$
 
-\vspace*{1em}
+D:\quad $\textcolor{red}{\text{\textcolor{brown}{valid}}\ \forall
+  \varphi (\Box \varphi \imp \Diamond \varphi)}$ \hfill $\textcolor{Blue}{\forall{x} \exists{y} (r x y)}$
+
+4:\quad $\textcolor{red}{\text{\textcolor{brown}{valid}}\ \forall
+  \varphi (\Box\varphi \imp \Box \Box \varphi)}$ \hfill
+$\textcolor{Blue}{\forall x \forall y \forall z (r x y \wedge r y z
+  \imp r x z)}$
+
+5:\quad $\textcolor{red}{\text{\textcolor{brown}{valid}}\ \forall
+  \varphi (\Diamond\varphi \imp \Box \Diamond \varphi)}$ \hfill
+$\textcolor{Blue}{\forall x \forall y \forall z (r x y \wedge r x z
+  \imp r y   z)}$
+\vspace*{3em}
 %\pause
 
-Bridge rules \hfill Semantical condition
+Bridge rules (multimodal logics)\hfill Semantical condition
 
 \quad $\textcolor{red}{\text{\textcolor{brown}{valid}}\ \forall\varphi (\Box_{r} \varphi \imp \Box_{s} \varphi)}$ \hfill $\textcolor{Blue}{\forall x \forall y (r x y \imp s x y)}$ 
 
@@ -1001,6 +1018,33 @@ Bridge rules \hfill Semantical condition
   for free!}
 
 \, \hfill \chriscite{Benzm\"ullerPaulson, LogicaUniversalis, 2013} \\
+\end{frame}
+
+
+\begin{frame}{Possibilist Quantification --- Varying Domains for Individuals}
+$\textcolor{red}{\forall^{\phantom{va}}}  = \textcolor{Blue}{ 
+      \lambda{h_{\gamma\typearrow(\worldtype \typearrow o)}}
+      \lambda{w_\worldtype} \forall {d_\gamma} \, h d w}$\\
+\quad becomes \\
+$\textcolor{red}{\forall^{va}}  = \textcolor{Blue}{ 
+      \lambda{h_{\gamma\typearrow(\worldtype \typearrow o)}}
+      \lambda{w_\worldtype} \forall {d_\gamma} \, (\textbf{ExInW} d w \imp
+      h d w)}$
+\vskip2em
+where \textbf{\textcolor{Blue}{ExInW}} is an existence predicate.
+\vskip3em
+Additional axioms:
+\vskip1em
+\begin{itemize}
+\item domains are non-empty \hfill \textcolor{Blue}{$\forall{w_\worldtype}\exists{x_\mu}
+\textbf{exInW} x w$}\\[1em]
+
+\item denotation (constants \& functions) \hfill \textcolor{Blue}{$\forall{w_\worldtype}\textbf{exInW} c w$} \\
+\, \hfill  \textcolor{Blue}{$\forall{w_\worldtype} (\textbf{exInW} {t^1} w
+\wedge \ldots \wedge  \textbf{exInW} {t^n} w \supset \textbf{exInW}{(f\,t^1\ldots t^n)} w)$}\\[1em]
+
+\item cumulative domains \hfill \textcolor{Blue}{$\forall{x}\forall{v}\forall{w}  (\textbf{exInW} x v \wedge r v w \supset \textbf{exInW} x w)$}
+\end{itemize}
 \end{frame}
 
 \def\chriscitebuf#1{}
@@ -1503,7 +1547,7 @@ Summary
 % by D2 (ess)
 % \item[L2] $\NE$ is not exemplified: \hfill $\mnot \exq x
 %   \NE(x)$ \\
-% by A1a, A2, A5, L1 and D2 (ess)
+% by A1($\supset$), A2, A5, L1 and D2 (ess)
 % \item[$\Rightarrow$] Inconsistency:\hfill $\bot$ \\
 % by L2, T1 and A5 
 % \end{itemize}
@@ -1579,6 +1623,30 @@ Main critique on G\"odel's ontological proof:
 
 
 \begin{frame}{Main Findings \chriscitebuf{Benzm\"ullerWoltzenlogelPaleo, ECAI, 2014}}
+\begin{changemargin}{-.2cm}{-.5cm}
+\begin{pgfpicture}{0cm}{0cm}{11cm}{11cm}
+\pgfsetlinewidth{5\pgflinewidth} 
+\pgfsetendarrow{\pgfarrowto}
+%\pgfsetstartarrow{\pgfarrowto}
+%\pgfnodecircle{Node1}[stroke]{\pgfxy(0,9.5)}{0.25cm}
+\pgfnodebox{Node1}[stroke]{\pgfxy(9.7,6.4)}{\phantom{Bla}}{1.3cm}{3.4cm}
+\pgfnodebox{Node2}[virtual]{\pgfxy(3,4.5)}{
+\framecolorbox[6cm][s]{red}{Red!20}{
+\begin{minipage}{5.7cm}\color{black} \bf
+%\vskip.5em
+\underline{Observation} 
+\vskip.5em
+\begin{itemize}
+\item good  performance of ATPs
+\item excellent match between argumentation granularity in papers and
+  the reasoning strength of the ATPs
+\end{itemize}
+\vspace*{.5em}
+\end{minipage}
+}}{2pt}{2pt}
+\pgfnodeconncurve{Node1}{Node2}{180}{90}{1cm}{2cm}
+\end{pgfpicture}
+\end{changemargin}
 \end{frame}
 
 \usebackgroundtemplate{}
@@ -1596,7 +1664,7 @@ Main critique on G\"odel's ontological proof:
 \begin{flushright}
 \begin{minipage}{10cm}%\small
 \begin{itemize}
-\item[Axiom A1a] \hfill 
+\item[Axiom A1($\supset$)] \hfill 
   ${\allq \phi} [P(\neg \phi) \imp \neg P(\phi)]$ 
 \item[Axiom A2] \hfill 
   ${\allq \phi \allq \psi} [(P(\phi) \wedge \alt<0>{\textcolor{red}{\nec}}{\nec} \allq x [\phi(x)
@@ -1695,7 +1763,7 @@ Main critique on G\"odel's ontological proof:
 %\vskip1em
 \underline{Inconsistency} \hfill Scott\\[1em]
 {
-$\allq \phi [P(\neg \phi) \imp \neg P(\phi)]$ \hfill A1a\\
+$\allq \phi [P(\neg \phi) \imp \neg P(\phi)]$ \hfill A1($\supset$)\\
 $\allq \phi \allq \psi [(P(\phi) \wedge {\nec} \allq x [\phi(x)
   \imp \psi(x)]) \imp P(\psi)]$ \hfill A2\\
 ${\ess{\phi}{x} \biimp {\allq \psi} (\psi(x) \imp {\nec} \allq y (\phi(y) \imp \psi(y)))}$ \hfill  D2$^*$\\
@@ -1892,7 +1960,7 @@ Modal Collapse & \gg{} & \gg{} & \gg{} & \gg{} & \gg{} & \gg{} \\
 \textcolor{gray}{\textit{\ldots\ huge media attention\ \ldots}}
 \end{block}
 \vfill
-\begin{block}{(Interim) Personal ``Fazit''}
+\begin{block}{(Interim) Own standpoint}
 I am not fully convinced yet by the ontological argument. \\
 However, it seems to me that 
 \textbf{the believe in a (God-like) supreme being is at least not necessarily irrational}.
@@ -1930,13 +1998,12 @@ However, it seems to me that
 \end{itemize}
 \end{block}
 
-% \vfill
-% \begin{block}{Ongoing and future work \hfill \textcolor{red}{See next talk by Bruno Woltzenlogel-P.}}
-% \begin{itemize}
-% \item continuation of systematic study of the ontological argument 
-% \item further studies in \textbf{Computational Metaphysics}
-% \end{itemize}
-% \end{block}
+\vfill
+\begin{block}{Ongoing/Future work \hfill \textcolor{red}{See next talk by Bruno Woltzenlogel-P.}}
+\begin{itemize}
+\item Landscape of verified/falsified ontological arguments
+\end{itemize}
+\end{block}
 \end{frame}
 
 \end{document}
@@ -2360,7 +2427,7 @@ $$
 \UIC{$P(G)$}
 		\AXC{$\textbf{A2}$} \dashedLine
 		\UIC{$\all \varphi. \all \psi.[(P(\varphi) \wedge \nec \all x.[\varphi(x) \imp \psi(x)]) \imp P(\psi)]$}
-					\AXC{$\textbf{A1a}$} \dashedLine
+					\AXC{$\textbf{A1($\supset$)}$} \dashedLine
 					\UIC{$\all \varphi. [P(\neg \varphi) \imp \neg P(\varphi)]$} \doubleLine
 				\BIC{$\textbf{T1: } \all \varphi. [P(\varphi) \imp \pos \ex x.\varphi(x)]$} \doubleLine
 	\BIC{$\textbf{C: } \pos \ex z. G(z)$}
@@ -2799,7 +2866,7 @@ $\textbf{D3: } NE(x) \equiv \all \varphi.[\ess{\varphi}{x} \imp \nec \ex y.\varp
 \UIC{$\phantom{P(G)}$}
 		\AXC{$\phantom{\textbf{A2}}$} \noLine
 		\UIC{$\phantom{\all \varphi. \all \psi.[(P(\varphi) \wedge \nec \all x.[\varphi(x) \imp \psi(x)]) \imp P(\psi)]}$}
-					\AXC{$\phantom{\textbf{A1a}}$} \noLine
+					\AXC{$\phantom{\textbf{A1($\supset$)}}$} \noLine
 					\UIC{$\phantom{\all \varphi. [P(\neg \varphi) \imp \neg P(\varphi)]}$} \noLine
 				\BIC{$\phantom{\textbf{T1: } \all \varphi. [P(\varphi) \imp \pos \ex x.\varphi(x)]}$} \noLine
 	\BIC{$\textbf{C: } \pos \ex z. G(z)$}
@@ -2828,7 +2895,7 @@ $\textbf{D3: } NE(x) \equiv \all \varphi.[\ess{\varphi}{x} \imp \nec \ex y.\varp
 \UIC{$P(G)$}
 		\AXC{$\phantom{\textbf{A2}}$} \noLine
 		\UIC{$\phantom{\all \varphi. \all \psi.[(P(\varphi) \wedge \nec \all x.[\varphi(x) \imp \psi(x)]) \imp P(\psi)]}$}
-					\AXC{$\phantom{\textbf{A1a}}$} \noLine
+					\AXC{$\phantom{\textbf{A1($\supset$)}}$} \noLine
 					\UIC{$\phantom{\all \varphi. [P(\neg \varphi) \imp \neg P(\varphi)]}$} \noLine
 				\BIC{$\phantom{\textbf{T1: } \all \varphi. [P(\varphi) \imp \pos \ex x.\varphi(x)]}$} 
 	\BIC{$\textbf{C: } \pos \ex z. G(z)$}
@@ -2857,7 +2924,7 @@ $\textbf{D3: } NE(x) \equiv \all \varphi.[\ess{\varphi}{x} \imp \nec \ex y.\varp
 \UIC{$P(G)$}
 		\AXC{$\phantom{\textbf{A2}}$} \noLine
 		\UIC{$\phantom{\all \varphi. \all \psi.[(P(\varphi) \wedge \nec \all x.[\varphi(x) \imp \psi(x)]) \imp P(\psi)]}$}
-					\AXC{$\phantom{\textbf{A1a}}$} \noLine
+					\AXC{$\phantom{\textbf{A1($\supset$)}}$} \noLine
 					\UIC{$\phantom{\all \varphi. [P(\neg \varphi) \imp \neg P(\varphi)]}$} \noLine
 				\BIC{$\phantom{\textbf{T1: } \all \varphi. [P(\varphi) \imp \pos \ex x.\varphi(x)]}$} 
 	\BIC{$\textbf{C: } \pos \ex z. G(z)$}
@@ -2887,7 +2954,7 @@ $\textbf{D3: } NE(x) \equiv \all \varphi.[\ess{\varphi}{x} \imp \nec \ex y.\varp
 \UIC{$P(G)$}
 		\AXC{$\phantom{\textbf{A2}}$} \noLine
 		\UIC{$\phantom{\all \varphi. \all \psi.[(P(\varphi) \wedge \nec \all x.[\varphi(x) \imp \psi(x)]) \imp P(\psi)]}$}
-					\AXC{$\phantom{\textbf{A1a}}$} \noLine
+					\AXC{$\phantom{\textbf{A1($\supset$)}}$} \noLine
 					\UIC{$\phantom{\all \varphi. [P(\neg \varphi) \imp \neg P(\varphi)]}$} \noLine
 				\BIC{$\textbf{T1: } \all \varphi. [P(\varphi) \imp \pos \ex x.\varphi(x)]$} 
 	\BIC{$\textbf{C: } \pos \ex z. G(z)$}
@@ -2917,7 +2984,7 @@ $\textbf{D3: } NE(x) \equiv \all \varphi.[\ess{\varphi}{x} \imp \nec \ex y.\varp
 \UIC{$P(G)$}
 		\AXC{$\textbf{A2}$} \dashedLine
 		\UIC{$\all \varphi. \all \psi.[(P(\varphi) \wedge \nec \all x.[\varphi(x) \imp \psi(x)]) \imp P(\psi)]$}
-					\AXC{$\textbf{A1a}$} \dashedLine
+					\AXC{$\textbf{A1($\supset$)}$} \dashedLine
 					\UIC{$\all \varphi. [P(\neg \varphi) \imp \neg P(\varphi)]$}
 				\BIC{$\textbf{T1: } \all \varphi. [P(\varphi) \imp \pos \ex x.\varphi(x)]$} 
 	\BIC{$\textbf{C: } \pos \ex z. G(z)$}
@@ -2949,7 +3016,7 @@ $$
 \UIC{$P(G)$}
 		\AXC{$\textbf{A2}$} \dashedLine
 		\UIC{$\all \varphi. \all \psi.[(P(\varphi) \wedge \nec \all x.[\varphi(x) \imp \psi(x)]) \imp P(\psi)]$}
-					\AXC{$\textbf{A1a}$} \dashedLine
+					\AXC{$\textbf{A1($\supset$)}$} \dashedLine
 					\UIC{$\all \varphi. [P(\neg \varphi) \imp \neg P(\varphi)]$} \doubleLine
 				\BIC{$\textbf{T1: } \all \varphi. [P(\varphi) \imp \pos \ex x.\varphi(x)]$} \doubleLine
 	\BIC{$\textbf{C: } \pos \ex z. G(z)$}
