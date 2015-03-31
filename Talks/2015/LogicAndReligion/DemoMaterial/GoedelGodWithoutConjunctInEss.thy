@@ -5,18 +5,18 @@ begin
   definition NE  where                   "NE x    = \<forall>(\<lambda>\<Phi>. \<Phi> ess x m\<rightarrow> \<box> (\<exists> \<Phi>))"
   axiomatization where A1a: "[\<forall>(\<lambda>\<Phi>. P (\<lambda>x. m\<not> (\<Phi> x)) m\<rightarrow> m\<not> (P \<Phi>))]"
                    and A2:  "[\<forall>(\<lambda>\<Phi>. \<forall>(\<lambda>\<Psi>. (P \<Phi> m\<and> \<box> (\<forall>(\<lambda>x. \<Phi> x m\<rightarrow> \<Psi> x))) m\<rightarrow> P \<Psi>))]" 
-                   and A5:  "[P NE]"
 
 -- {* Positive properties are possibly exemplified. *}
-  theorem T1: "[\<forall>(\<lambda>\<Phi>. P \<Phi> m\<rightarrow> \<diamond> (\<exists> \<Phi>))]"                                     by (metis A1a A2)
+  theorem T1: "[\<forall>(\<lambda>\<Phi>. P \<Phi> m\<rightarrow> \<diamond> (\<exists> \<Phi>))]"                                 by (metis A1a A2)
 
--- {* Necessarily, the empty property is an essence of every individual. *}
-  lemma Lemma1: "[\<box> (\<forall>(\<lambda>x.((\<lambda>y.\<lambda>w. False) ess x)))]"                         by (metis ess_def)
+-- {* The empty property is an essence of every individual. *}
+  lemma Lemma1: "[(\<forall>(\<lambda>x.((\<lambda>y.\<lambda>w. False) ess x)))]"                       by (metis ess_def)
 
--- {* Exemplification of necessary existence is impossible. *}
-  lemma Lemma2: "[m\<not> (\<diamond> (\<exists> NE))]"                            by (metis A5 A1a A2 Lemma1 NE_def)
+  axiomatization where A5:  "[P NE]"
 
--- {* Now the inconsistency easily follows A1a A2 A5 and Lemma2. *}
-  lemma False                                                           by (metis T1 A5 Lemma2) 
+-- {* Now the inconsistency follows from A5, Lemma1, NE_def and T1 *}
+  lemma False          
+  -- {* sledgehammer [remote_leo2] *}
+                                                             by (metis A5 Lemma1 NE_def T1) 
 end   
  
