@@ -315,13 +315,18 @@ Required: \\
  % \end{itemize} 
 \item \textcolor{Blue}{Theistic:} Successful argument could convince
   atheists? \\[2em]
-\item \textcolor{red}{Ours:} Can computers (theorem provers) be used \ldots
-  \begin{itemize}
-  \item \ldots to formalize the definitions, axioms and theorems?
-  \item \ldots to verify the arguments step-by-step?
-  \item \ldots to automate (sub-)arguments? 
-  \item \ldots to generate new knowledge?
-  \end{itemize}
+\item \textcolor{red}{Ours:} Can computers (theorem provers) be used
+  \ldots \\[.5cm]
+  %\begin{itemize}
+  %\item 
+    \ldots to formalize the definitions, axioms and theorems? \\
+  %\item 
+    \ldots to verify/falsify the arguments step-by-step? \\
+  %\item 
+    \ldots to automate (sub-)arguments? \\
+  %\item 
+    \ldots to generate new knowledge?
+  %\end{itemize}
   % \textcolor{red}{\emph{``Computer-assisted Theoretical Philosophy''}}\\[1em]
   %                                      remember Leibniz' dictum --- \emph{Calculemus!}
 \end{itemize}
@@ -727,13 +732,13 @@ $$
 
 \begin{frame}{Embedding HOML in HOL} \large
 
-  \hskip-1em Challenge: \hfill No provers for \emph{Higher-order Modal
-    Logic\/} (\textcolor{red}{HOML}) \\[1em]
+  \hskip-1em Challenge: \hfill No provers for \emph{\textcolor{red}{Higher-order Modal
+    Logic}\/} (\textcolor{red}{HOML}) \\[1em]
 
 \hskip-1em Our solution: \hfill Embedding in \textbf{\textcolor{Blue}{$\stackrel{\text{\normalsize Church's Simple Type Theory}}{\text{Higher-order Classical Logic}}$}} (\textcolor{Blue}{HOL})\\
 %\,\hfill \textbf{Church's Simple Type Theory (\phantom{HOL})} \\
 \, \hfill Then use existing \textcolor{Blue}{HOL} theorem provers for reasoning in \textcolor{red}{HOML} \\
-\,\hfill {\small [Benzm\"ullerPaulson, Logica Universalis, 2013]}
+\,\hfill {\chriscite{Benzm\"ullerPaulson, Logica Universalis, 2013}}
 \\[2em]
 
 \hskip-1em Assumption:  
@@ -741,7 +746,7 @@ $$
 \textcolor{Blue}{HOL} \\[2em]
 
 \hskip-1em Previous empirical findings:  \\[.5em]
-\,\hfill Embedding of  \emph{First-order Modal Logic} in \textcolor{Blue}{HOL} works well 
+\,\hfill Embedding of  \textcolor{red}{\emph{First-order Modal Logic}} in \textcolor{Blue}{HOL} works well 
 
 \,\hfill {\small [Benzm\"ullerOttenRaths, ECAI, 2012]} \\
 \,\hfill {\small [Benzm\"uller, LPAR, 2013]} \\[2em]
@@ -750,86 +755,86 @@ $$
 
 
 
-\begin{frame}[t]{Classical Higher-Order Logic  (HOL)} \large
+% \begin{frame}[t]{Classical Higher-Order Logic  (HOL)} \large
 
-Simple Types \hfill $\alpha ::=  {o} \mid {\iota}
-\mid \textcolor{gray}{\mu} \mid {\alpha_1 \typearrow \alpha_2}$\\[1em]
-\textcolor{Blue}{\text{HOL}} \\[-3.2em]
- \begin{align*}
-            \textcolor{Blue}{s},\textcolor{Blue}{t} ::=  & \textcolor{Blue}{C_{\alpha}} \mid \textcolor{Blue}{x_{\alpha}} \mid \textcolor{Blue}{(\lambda x_{\alpha}s_{\beta})_{\alpha \typearrow \beta}} \mid 
-            \textcolor{Blue}{(s_{\alpha \typearrow \beta}\, t_\alpha)_{\beta}} \mid \\
-            & \textcolor{Blue}{(\neg_{o \typearrow o}\;s_{o})_o} \mid \textcolor{Blue}{(s_o \vee_{o\typearrow o \typearrow o} t_o)_o}
-            \mid \textcolor{Blue}{(\forall_{(\alpha \typearrow o)\typearrow o}\; s_{\alpha
-              \typearrow o})_o}  \\[-1em]
-          \end{align*}
-\, \hfill \textcolor{gray}{(note:~binder~notation~\textcolor{Blue}{$\forall x_\alpha
-            t_o$}~as~syntactic~sugar~for~\textcolor{Blue}{$\forall_{(\alpha
-              \typearrow o)\typearrow o} \lambda x_\alpha t_o$})} \\[2em]
+% Simple Types \hfill $\alpha ::=  {o} \mid {\iota}
+% \mid \textcolor{gray}{\mu} \mid {\alpha_1 \typearrow \alpha_2}$\\[1em]
+% \textcolor{Blue}{\text{HOL}} \\[-3.2em]
+%  \begin{align*}
+%             \textcolor{Blue}{s},\textcolor{Blue}{t} ::=  & \textcolor{Blue}{C_{\alpha}} \mid \textcolor{Blue}{x_{\alpha}} \mid \textcolor{Blue}{(\lambda x_{\alpha}s_{\beta})_{\alpha \typearrow \beta}} \mid 
+%             \textcolor{Blue}{(s_{\alpha \typearrow \beta}\, t_\alpha)_{\beta}} \mid \\
+%             & \textcolor{Blue}{(\neg_{o \typearrow o}\;s_{o})_o} \mid \textcolor{Blue}{(s_o \vee_{o\typearrow o \typearrow o} t_o)_o}
+%             \mid \textcolor{Blue}{(\forall_{(\alpha \typearrow o)\typearrow o}\; s_{\alpha
+%               \typearrow o})_o}  \\[-1em]
+%           \end{align*}
+% \, \hfill \textcolor{gray}{(note:~binder~notation~\textcolor{Blue}{$\forall x_\alpha
+%             t_o$}~as~syntactic~sugar~for~\textcolor{Blue}{$\forall_{(\alpha
+%               \typearrow o)\typearrow o} \lambda x_\alpha t_o$})} \\[2em]
 
-\pause
+% \pause
 
-HOL with Henkin semantics is (meanwhile) well understood \\
+% HOL with Henkin semantics is (meanwhile) well understood \\
 
-\quad Origin, foundation for maths \hfill  \chriscite{Church,JSymbLog,1940} \\
-\quad Henkin semantics \hfill \chriscite{Henkin,JSymb.Log,1950} \\
-  \hfill \chriscite{Andrews, JSymbLog,1971,1972} \\
-\quad Extensionality/Intensionality   \hfill \chriscite{Benzm\"ullerEtAl,JSymbLog,2004} \\
-\, \hfill \chriscite{Muskens,JSymbLog,2007} \\[.5em]
+% \quad Origin, foundation for maths \hfill  \chriscite{Church,JSymbLog,1940} \\
+% \quad Henkin semantics \hfill \chriscite{Henkin,JSymb.Log,1950} \\
+%   \hfill \chriscite{Andrews, JSymbLog,1971,1972} \\
+% \quad Extensionality/Intensionality   \hfill \chriscite{Benzm\"ullerEtAl,JSymbLog,2004} \\
+% \, \hfill \chriscite{Muskens,JSymbLog,2007} \\[.5em]
 
-\pause
-Sound and complete provers do exists \\[.5em]
-  \quad interactive: \hfill Isabelle/HOL, HOL4, Hol Light, Coq/HOL, PVS,
-  \ldots \\[.5em]
-  \quad automated: \hfill TPS, LEO-II, Satallax, Nitpick, Isabelle/HOL, \ldots \\
+% \pause
+% Sound and complete provers do exists \\[.5em]
+%   \quad interactive: \hfill Isabelle/HOL, HOL4, Hol Light, Coq/HOL, PVS,
+%   \ldots \\[.5em]
+%   \quad automated: \hfill TPS, LEO-II, Satallax, Nitpick, Isabelle/HOL, \ldots \\
 
-\end{frame}
-
-
+% \end{frame}
 
 
 
 
-\begin{frame}{Embedding HOML in HOL} \large
-\begin{changemargin}{-.5cm}{0cm}
-
-\textcolor{red}{HOML} \hfill
-$\begin{array}{lll}\textcolor{red}{\varphi,\psi} & ::= &
-  \textcolor{red}{\ldots}  \mid \textcolor{red}{\neg
-    \varphi} \mid \textcolor{red}{\varphi \wedge \psi} \mid
-  \textcolor{red}{\varphi \imp \psi}  \mid \textcolor{red}{\Box
-    \varphi} \mid \textcolor{red}{\Diamond \varphi}  \mid
-  \textcolor{red}{\forall {x_\gamma}\, \varphi} \mid
-  \textcolor{red}{\exists {x_\gamma}\, \varphi} 
-%\mid \textcolor{red}{\forall {P}\, \varphi} 
-\end{array}$ \\[1em]
 
 
-\begin{itemize}
-\item Kripke style semantics (possible world semantics)\\
-$\begin{array}{lcl} 
-\onslide<1->{   \parbox[b]{2.5cm}{$M,g,s  \models  \textcolor{red}{ \neg \textcolor{black}{\varphi}}$}     & \text{ iff } &  \text{not } M,g,s \models {\varphi} \\}
-\onslide<1->{   M,g,s  \models  \textcolor{red}{
-    \textcolor{black}{\varphi} \wedge \textcolor{black}{\psi}}    &
-  \text{ iff } &  M,g,s \models {\varphi} \text{ and } M,g,s \models
-  {\psi} \\}
-\ldots \\
-\onslide<1->{   M,g,s  \models  \textcolor{red}{ \Box} \varphi & \text{ iff } &  M,g,u \models {\varphi} \text{ for all } u \text{ with } {\textcolor{red}{ r}(s,u)} \\}
-\ldots \\
-\onslide<1->{ M,g,s  \models  \textcolor{red}{ \forall} {x_\gamma}\,  \varphi
-  & \text{ iff } &  M,[d/x]g,s \models \varphi \text{ for all } d\in D_\gamma
-  \\}
-\ldots \\
- \end{array}
-$
-\vspace*{1em}
-\item[] 
-\, \hfill \chriscite{Benzm{\"u}llerWoltzenlogelPaleo, ECAI, 2014}\\
-\, \hfill \chriscite{Muskens, HandbookOfModalLogic, 2006}\\
-\end{itemize}
+% \begin{frame}{Embedding HOML in HOL} \large
+% \begin{changemargin}{-.5cm}{0cm}
+
+% \textcolor{red}{HOML} \hfill
+% $\begin{array}{lll}\textcolor{red}{\varphi,\psi} & ::= &
+%   \textcolor{red}{\ldots}  \mid \textcolor{red}{\neg
+%     \varphi} \mid \textcolor{red}{\varphi \wedge \psi} \mid
+%   \textcolor{red}{\varphi \imp \psi}  \mid \textcolor{red}{\Box
+%     \varphi} \mid \textcolor{red}{\Diamond \varphi}  \mid
+%   \textcolor{red}{\forall {x_\gamma}\, \varphi} \mid
+%   \textcolor{red}{\exists {x_\gamma}\, \varphi} 
+% %\mid \textcolor{red}{\forall {P}\, \varphi} 
+% \end{array}$ \\[1em]
 
 
-\end{changemargin}
-\end{frame}
+% \begin{itemize}
+% \item Kripke style semantics (possible world semantics)\\
+% $\begin{array}{lcl} 
+% \onslide<1->{   \parbox[b]{2.5cm}{$M,g,s  \models  \textcolor{red}{ \neg \textcolor{black}{\varphi}}$}     & \text{ iff } &  \text{not } M,g,s \models {\varphi} \\}
+% \onslide<1->{   M,g,s  \models  \textcolor{red}{
+%     \textcolor{black}{\varphi} \wedge \textcolor{black}{\psi}}    &
+%   \text{ iff } &  M,g,s \models {\varphi} \text{ and } M,g,s \models
+%   {\psi} \\}
+% \ldots \\
+% \onslide<1->{   M,g,s  \models  \textcolor{red}{ \Box} \varphi & \text{ iff } &  M,g,u \models {\varphi} \text{ for all } u \text{ with } {\textcolor{red}{ r}(s,u)} \\}
+% \ldots \\
+% \onslide<1->{ M,g,s  \models  \textcolor{red}{ \forall} {x_\gamma}\,  \varphi
+%   & \text{ iff } &  M,[d/x]g,s \models \varphi \text{ for all } d\in D_\gamma
+%   \\}
+% \ldots \\
+%  \end{array}
+% $
+% \vspace*{1em}
+% \item[] 
+% \, \hfill \chriscite{Benzm{\"u}llerWoltzenlogelPaleo, ECAI, 2014}\\
+% \, \hfill \chriscite{Muskens, HandbookOfModalLogic, 2006}\\
+% \end{itemize}
+
+
+% \end{changemargin}
+% \end{frame}
 
 
 \begin{frame}{Embedding HOML in HOL}\large
@@ -1524,7 +1529,7 @@ Summary
 \begin{itemize}
 \item Scott's assumptions are consistent; \\ shown by Nitpick
 \item G\"odel's assumptions are \textcolor{red}{inconsistent}; \\ shown by LEO-II
-  \textcolor{red}{(new philosophical result!)} 
+  \textcolor{red}{(new philosophical result?)} 
 \end{itemize}
 \vspace*{1em}
 \end{minipage}
@@ -1659,7 +1664,7 @@ Main critique on G\"odel's ontological proof:
 \usebackgroundtemplate{}
 
 
-\begin{frame}{Inconsistency: Proof by LEO-II}
+\begin{frame}{Inconsistency (Gödel): Proof by LEO-II in KB}
 \begin{changemargin}{-.5cm}{-1cm}
 \colorbox{gray!20}{
 \includegraphics[width=11.5cm,height=8cm]{./DemoMaterial/LeoProof.png}
@@ -1667,7 +1672,7 @@ Main critique on G\"odel's ontological proof:
 \end{changemargin}
 \end{frame}
 
-\begin{frame}{Inconsistency (KB): Reconstruction of Informal Argument}
+\begin{frame}{Inconsistency (Gödel): Reconstruction of Informal Argument (KB)}
 \textcolor{gray}{(special thanks to Chad Brown for a fruitful discussion)} \\[1em]
 \begin{flushright}
 \begin{minipage}{10cm}%\small
@@ -1678,16 +1683,17 @@ Main critique on G\"odel's ontological proof:
   ${\allq \phi \allq \psi} [(P(\phi) \wedge \alt<0>{\textcolor{red}{\nec}}{\nec} \allq x [\phi(x)
   \imp \psi(x)]) \imp P(\psi)]$ 
 \pause
-\item[\textcolor{Green}{Theorem 1}] Positive Properties are possibly
-  exemplified. \hfill ${\allq \phi} [P(\phi) \imp {\pos}  \exq x
+\item[\textcolor{Green}{Theorem 1}] \textcolor{Green}{Positive Properties are possibly
+  exemplified.} \hfill ${\allq \phi} [P(\phi) \imp {\pos}  \exq x
   \phi(x)]$ \\
 \,\hfill by \textcolor{Blue}{A1($\supset$), A2} \\[.5cm]
 \pause
-\item[Def. D2$^*$] \hfill ${\ess{\phi}{x} \biimp {\allq \psi} (\psi(x)
+\item[Def. D2$^*$] \hfill ${\ess{\phi}{x} \biimp \textcolor{gray}{\phi(x)\
+      \wedge\ }  {\allq \psi} (\psi(x)
     \imp {\nec} \allq y (\phi(y) \imp \psi(y)))}$ 
 \pause
-\item[\textcolor{Green}{Lemma 1}] The empty property is an essence of
-  every entity. \hfill $\allq x\,(\ess{\emptyset}{x})$ \\
+\item[\textcolor{Green}{Lemma 1}] \textcolor{Green}{The empty property is an essence of
+  every entity.} \hfill $\allq x\,(\ess{\emptyset}{x})$ \\
 \,\hfill by \textcolor{Blue}{D2$^*$} \\[.5cm]
 \pause
 \item[Def. D3] 
@@ -1698,8 +1704,8 @@ Main critique on G\"odel's ontological proof:
   \varphi (\varphi \imp \Box \Diamond \varphi)$ \quad \textcolor{gray}{(resp.
 $\forall x \forall y (r x y \imp r y x)$)}
 \pause
- \item[\textcolor{Green}{Lemma 2}] Exemplification of necessary
-   existence is not possible. \hfill  $\neg \pos \exists x\, \NE(x)$
+ \item[\textcolor{Green}{Lemma 2}] \textcolor{Green}{Exemplification of necessary
+   existence is not possible.} \hfill  $\neg \pos \exists x\, \NE(x)$
    \\
 \, \hfill by \textcolor{Blue}{B, D3, Lemma1} \\[.5cm]
  \pause
@@ -1717,13 +1723,13 @@ $\forall x \forall y (r x y \imp r y x)$)}
 \end{flushright}
 \end{frame}
 
-\begin{frame}{Inconsistency (KB): Verification in Isabelle/HOL}
+\begin{frame}{Inconsistency (Gödel): Verification in Isabelle/HOL (KB)}
 \begin{changemargin}{-.5cm}{-1cm}
 \includegraphics[width=12cm,height=8.5cm]{./DemoMaterial/GoedelGodWithoutConjunctInEss_KB.png}
 \end{changemargin}
 \end{frame}
 
-\begin{frame}{Inconsistency (K): Verification in Isabelle/HOL}
+\begin{frame}{Inconsistency (Gödel): Verification in Isabelle/HOL (K)}
 \begin{changemargin}{-.5cm}{-1cm}
 \includegraphics[width=12cm,height=8.5cm]{./DemoMaterial/GoedelGodWithoutConjunctInEss_K.png}
 \end{changemargin}
@@ -1767,11 +1773,11 @@ $\forall x \forall y (r x y \imp r y x)$)}
       \hfil}\vfil}
 }
 
-\begin{frame}{G\"odel's Manuscript: 1930's, 1941, 1946-1955, 1970}
+\begin{frame}{G\"odel's Manuscript}
 \end{frame}
 
 
-\begin{frame}{G\"odel's Manuscript: 1930's, 1941, 1946-1955, 1970}
+\begin{frame}{G\"odel's Manuscript}
 \bigskip
 %\begin{changemargin}{-1.2cm}{-1.2cm}
 %\includegraphics[width=13cm]{./Images/Manuscript.png}
@@ -1935,7 +1941,7 @@ Monotheism & \gg{} & \gg{} & \gg{} & \gg{} & \gg{} & \gg{} \\
       \hfil}\vfil}
 }
 
-\begin{frame}{Avoiding the Modal Collapse: Some Emendations}
+\begin{frame}{Avoiding the Modal Collapse: Recent Variants}
 \end{frame}
 
 \begin{frame}{Avoiding the Modal Collapse: Some Emendations}
@@ -2002,7 +2008,7 @@ Monotheism & \gg{} & \gg{} & \gg{} & \gg{} & \gg{} & \gg{} \\
 \end{block}
 
 \vfill
-\begin{block}{Ongoing/Future work \hfill \textcolor{red}{See next talk by Bruno Woltzenlogel-P.}}
+\begin{block}{Ongoing/Future work \hfill \textcolor{red}{see next talk by Bruno Woltzenlogel-P.}}
 \begin{itemize}
 \item Landscape of verified/falsified ontological arguments
 \item You may consider to contribute: \url{https://github.com/FormalTheology/GoedelGod.git}
@@ -2037,9 +2043,12 @@ Monotheism & \gg{} & \gg{} & \gg{} & \gg{} & \gg{} & \gg{} \\
 \end{block}
 \vfill
 \begin{block}{(Interim) Own standpoint}
-I am not fully convinced (yet) by the ontological argument. \\[.5cm]
-However, it seems to me that 
-\textbf{the believe in a (God-like) supreme being is at least not necessarily irrational/inconsistent}.
+\begin{itemize} 
+\item I am not fully convinced (yet) by the ontological argument. 
+\item However, it seems to me that \textbf{the believe in a (God-like)
+    supreme being is at least not necessarily
+    irrational/inconsistent}.
+\end{itemize}
 \end{block}
 \end{frame}
 
