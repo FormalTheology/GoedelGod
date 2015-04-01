@@ -1718,7 +1718,7 @@ $\forall x \forall y (r x y \imp r y x)$)}
 
 \begin{frame}{Inconsistency (K): Verification in Isabelle/HOL}
 \begin{changemargin}{-.5cm}{-1cm}
-\includegraphics[width=12cm,height=8.5cm]{./DemoMaterial/GoedelGodWithoutConjunctInEss.png}
+\includegraphics[width=12cm,height=8.5cm]{./DemoMaterial/GoedelGodWithoutConjunctInEss_K.png}
 \end{changemargin}
 \end{frame}
 
@@ -1812,11 +1812,11 @@ ${P(\NE)}$ \hfill A5\\
 
 \def\gg{\cellcolor{green!50}{\textcolor{Green}{\checkmark}}}
 \def\rr{\cellcolor{red!50}{\textcolor{Red}{$\times$}}}
-\def\oo{\cellcolor{yellow!20}{{\footnotesize \textcolor{gray}{obsolete}}}}
+\def\oo{\cellcolor{white}{{\footnotesize \textcolor{gray}{obsolete}}}}
 
-\begin{frame}{Varying Logic Settings: Results of Experiments} % \small
+\begin{frame}{Summary: Results of Experiments} % \small
 \begin{changemargin}{-.75cm}{-.5cm}
-\colorbox{yellow!20}{
+\colorbox{gray!15}{
 \begin{tabular}[c]{r|cc|cc|cc}
 Gödel's version & \multicolumn{2}{c|}{K} & \multicolumn{2}{c|}{KB} & \multicolumn{2}{c}{S5} \\ 
  & constant &  varying     & constant &  varying       & constant &  varying \\ \hline
@@ -1832,7 +1832,7 @@ Monotheism & \oo & \oo & \oo & \oo & \oo & \oo \\
 }
 \end{changemargin}
 \vfill
-\begin{block}{Further details on our logic setting}
+\begin{block}{Further logic details}
 \begin{itemize}
 \item Henkin semantics  
 \item full comprehension
@@ -1848,9 +1848,9 @@ Monotheism & \oo & \oo & \oo & \oo & \oo & \oo \\
 \end{frame}
 
 
-\begin{frame}{Varying Logic Settings: Results of Experiments}% \small
+\begin{frame}{Summary: Results of Experiments}% \small
 \begin{changemargin}{-.75cm}{-.5cm}
-\colorbox{yellow!20}{
+\colorbox{gray!15}{
 \begin{tabular}[c]{r|cc|cc|cc}
 Scott's version & \multicolumn{2}{c|}{K} & \multicolumn{2}{c|}{KB} & \multicolumn{2}{c}{S5} \\ 
  & constant &  varying     & constant &  varying       & constant &  varying \\ \hline
@@ -1865,7 +1865,7 @@ Monotheism & \gg{} & \gg{} & \gg{} & \gg{} & \gg{} & \gg{} \\
 \end{tabular}
 }
 \vfill
-\begin{block}{Further details on our logic setting}
+\begin{block}{Further logic details}
 \begin{itemize}
 \item Henkin semantics  
 \item full comprehension
