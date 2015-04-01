@@ -93,7 +93,7 @@ C. Benzmüller, 2015\,-----\,\insertshorttitle \hfill \insertframenumber
 \newcommand{\s}{\qquad}
 
 
-  \newcommand{\chriscite}[1]{\small \textcolor{gray}{[#1]}}
+  \newcommand{\chriscite}[1]{{\small \textcolor{gray}{[#1]}}}
 
 \def\modal#1{\boldsymbol{#1}}
 \def\mfalse{\modal\bot}
@@ -217,7 +217,8 @@ C. Benzmüller, 2015\,-----\,\insertshorttitle \hfill \insertframenumber
 \setlength{\fboxrule}{2pt}%
 
 
-\title[Towards Computational Metaphysics]
+\title[Computer-supported Analysis of Variants of Gödel's
+Ontological Proof]
 {
 Findings from a Computer-supported Analysis of Variants of Gödel's
 Ontological Proof\\[-1.5em]}
@@ -293,10 +294,37 @@ Required: \\
 \begin{itemize}
 \item verification (or falsification) of known results
 \item some novel results (by HOL-ATPs)
-\item varying logic settings
+% \item varying logic settings
 \item HOL as a universal metalogic via logic embeddings \\ (characteristica universalis?)
 \end{itemize}
 \end{block}
+\end{frame}
+
+
+
+\begin{frame}{Different Interests in Ontological Arguments} \Large
+
+\begin{itemize}
+\item \textcolor{Blue}{Philosophical:} Boundaries of Metaphysics \& Epistemology
+ %  \begin{itemize}
+ %  \item We specify a metaphysical concept (God), 
+ %  \item but we want to draw
+ %      a conclusion for the real world. % \\[1em]
+ % % \item Necessary Existence: metaphysical NE vs. logical NE  vs. modal NE 
+   \\[2em]
+ % \end{itemize} 
+\item \textcolor{Blue}{Theistic:} Successful argument could convince
+  atheists? \\[2em]
+\item \textcolor{red}{Ours:} Can computers (theorem provers) be used \ldots
+  \begin{itemize}
+  \item \ldots to formalize the definitions, axioms and theorems?
+  \item \ldots to verify the arguments step-by-step?
+  \item \ldots to automate (sub-)arguments? 
+  \item \ldots to generate new knowledge?
+  \end{itemize}
+  % \textcolor{red}{\emph{``Computer-assisted Theoretical Philosophy''}}\\[1em]
+  %                                      remember Leibniz' dictum --- \emph{Calculemus!}
+\end{itemize}
 \end{frame}
 
 
@@ -377,8 +405,8 @@ G\"odel's notion of God:\\
 \onslide<1->
 {
 To show by logical, deductive reasoning: \\
-\,\hfill \textbf{``\alt<3>{Necessarily God exists.}{God exists.}''} \\
-\,\hfill \alt<3>{${\nec} \exq x G(x)$}{$\exq x G(x)$}\\[1em]
+\,\hfill \textbf{``\alt<2>{Necessarily, God exists.}{God exists.}''} \\
+\,\hfill \alt<2>{${\nec} \exq x G(x)$}{$\exq x G(x)$}\\[1em]
 }
 \end{changemargin}
 \end{frame}
@@ -387,32 +415,6 @@ To show by logical, deductive reasoning: \\
 
 
 
-
-
-\begin{frame}{Different Interests in Ontological Arguments} \Large
-
-\begin{itemize}
-\item \textcolor{Blue}{Philosophical:} Boundaries of Metaphysics \& Epistemology
- %  \begin{itemize}
- %  \item We specify a metaphysical concept (God), 
- %  \item but we want to draw
- %      a conclusion for the real world. % \\[1em]
- % % \item Necessary Existence: metaphysical NE vs. logical NE  vs. modal NE 
-   \\[2em]
- % \end{itemize} 
-\item \textcolor{Blue}{Theistic:} Successful argument could convince
-  atheists? \\[2em]
-\item \textcolor{red}{Ours:} Can computers (theorem provers) be used \ldots
-  \begin{itemize}
-  \item \ldots to formalize the definitions, axioms and theorems?
-  \item \ldots to verify the arguments step-by-step?
-  \item \ldots to automate (sub-)arguments? 
-  \item \ldots to generate new knowledge?
-  \end{itemize}
-  % \textcolor{red}{\emph{``Computer-assisted Theoretical Philosophy''}}\\[1em]
-  %                                      remember Leibniz' dictum --- \emph{Calculemus!}
-\end{itemize}
-\end{frame}
 
 
 
@@ -496,7 +498,7 @@ To show by logical, deductive reasoning: \\
 
 \begin{frame}{Scott's Version of G\"odel's Axioms, Definitions and
     Theorems}
-\begin{changemargin}{-.2cm}{-.5cm}
+\begin{changemargin}{-.2cm}{.5cm}
 \begin{pgfpicture}{0cm}{0cm}{11cm}{11cm}
 \pgfsetlinewidth{5\pgflinewidth} 
 %\pgfsetendarrow{\pgfarrowto}
@@ -728,17 +730,18 @@ $$
   \hskip-1em Challenge: \hfill No provers for \emph{Higher-order Modal
     Logic\/} (\textcolor{red}{HOML}) \\[1em]
 
-\hskip-1em Our solution: \hfill Embedding in \textbf{$\stackrel{\text{\normalsize Church's Simple Type Theory}}{\text{Higher-order Classical Logic}}$ (\textcolor{Blue}{HOL})} \\
+\hskip-1em Our solution: \hfill Embedding in \textbf{\textcolor{Blue}{$\stackrel{\text{\normalsize Church's Simple Type Theory}}{\text{Higher-order Classical Logic}}$}} (\textcolor{Blue}{HOL})\\
 %\,\hfill \textbf{Church's Simple Type Theory (\phantom{HOL})} \\
 \, \hfill Then use existing \textcolor{Blue}{HOL} theorem provers for reasoning in \textcolor{red}{HOML} \\
 \,\hfill {\small [Benzm\"ullerPaulson, Logica Universalis, 2013]}
 \\[2em]
 
 \hskip-1em Assumption:  
-\,\hfill Henkin semantics for both HOML and HOL \\[2em]
+\,\hfill Henkin semantics for both \textcolor{Red}{HOML} and
+\textcolor{Blue}{HOL} \\[2em]
 
 \hskip-1em Previous empirical findings:  \\[.5em]
-\,\hfill Embedding of  \emph{First-order Modal Logic} in HOL works well 
+\,\hfill Embedding of  \emph{First-order Modal Logic} in \textcolor{Blue}{HOL} works well 
 
 \,\hfill {\small [Benzm\"ullerOttenRaths, ECAI, 2012]} \\
 \,\hfill {\small [Benzm\"uller, LPAR, 2013]} \\[2em]
@@ -747,84 +750,86 @@ $$
 
 
 
-% \begin{frame}[t]{Classical Higher-Order Logic  (HOL)} \large
-% Simple Types \hfill $\alpha ::=  {o} \mid {\iota}
-% \mid \textcolor{gray}{\mu} \mid {\alpha_1 \typearrow \alpha_2}$
-% \\[1em]
-% \textcolor{Blue}{\text{HOL}} \\[-3.2em]
-%  \begin{align*}
-%             \textcolor{Blue}{s},\textcolor{Blue}{t} ::=  & \textcolor{Blue}{C_{\alpha}} \mid \textcolor{Blue}{x_{\alpha}} \mid \textcolor{Blue}{(\lambda x_{\alpha}s_{\beta})_{\alpha \typearrow \beta}} \mid 
-%             \textcolor{Blue}{(s_{\alpha \typearrow \beta}\, t_\alpha)_{\beta}} \mid \\
-%             & \textcolor{Blue}{(\neg_{o \typearrow o}\;s_{o})_o} \mid \textcolor{Blue}{(s_o \vee_{o\typearrow o \typearrow o} t_o)_o}
-%             \mid \textcolor{Blue}{(\forall_{(\alpha \typearrow o)\typearrow o}\; s_{\alpha
-%               \typearrow o})_o}  \\[-1em]
-%           \end{align*}
-% \, \hfill \textcolor{gray}{(note:~binder~notation~\textcolor{Blue}{$\forall x_\alpha
-%             t_o$}~as~syntactic~sugar~for~\textcolor{Blue}{$\forall_{(\alpha
-%               \typearrow o)\typearrow o} \lambda x_\alpha t_o$})} \\[2em]
+\begin{frame}[t]{Classical Higher-Order Logic  (HOL)} \large
 
-% \pause
-% HOL with Henkin semantics is (meanwhile) well understood \\
-% \quad Origin, foundation for maths \hfill  \chriscite{Church,JSymbLog,1940} \\
-% \quad Henkin semantics \hfill \chriscite{Henkin,JSymb.Log,1950} \\
-%   \hfill \chriscite{Andrews, JSymbLog,1971,1972} \\
-% \quad Extensionality/Intensionality   \hfill \chriscite{Benzm\"ullerEtAl,JSymbLog,2004} \\
-% \, \hfill \chriscite{Muskens,JSymbLog,2007} \\[.5em]
+Simple Types \hfill $\alpha ::=  {o} \mid {\iota}
+\mid \textcolor{gray}{\mu} \mid {\alpha_1 \typearrow \alpha_2}$\\[1em]
+\textcolor{Blue}{\text{HOL}} \\[-3.2em]
+ \begin{align*}
+            \textcolor{Blue}{s},\textcolor{Blue}{t} ::=  & \textcolor{Blue}{C_{\alpha}} \mid \textcolor{Blue}{x_{\alpha}} \mid \textcolor{Blue}{(\lambda x_{\alpha}s_{\beta})_{\alpha \typearrow \beta}} \mid 
+            \textcolor{Blue}{(s_{\alpha \typearrow \beta}\, t_\alpha)_{\beta}} \mid \\
+            & \textcolor{Blue}{(\neg_{o \typearrow o}\;s_{o})_o} \mid \textcolor{Blue}{(s_o \vee_{o\typearrow o \typearrow o} t_o)_o}
+            \mid \textcolor{Blue}{(\forall_{(\alpha \typearrow o)\typearrow o}\; s_{\alpha
+              \typearrow o})_o}  \\[-1em]
+          \end{align*}
+\, \hfill \textcolor{gray}{(note:~binder~notation~\textcolor{Blue}{$\forall x_\alpha
+            t_o$}~as~syntactic~sugar~for~\textcolor{Blue}{$\forall_{(\alpha
+              \typearrow o)\typearrow o} \lambda x_\alpha t_o$})} \\[2em]
 
-% \pause
-% Sound and complete provers do exists \\[.5em]
-%   \quad interactive: \hfill Isabelle/HOL, HOL4, Hol Light, Coq/HOL, PVS,
-%   \ldots \\[.5em]
-%   \quad automated: \hfill TPS, LEO-II, Satallax, Nitpick, Isabelle/HOL, \ldots \\
+\pause
 
-% \end{frame}
+HOL with Henkin semantics is (meanwhile) well understood \\
 
+\quad Origin, foundation for maths \hfill  \chriscite{Church,JSymbLog,1940} \\
+\quad Henkin semantics \hfill \chriscite{Henkin,JSymb.Log,1950} \\
+  \hfill \chriscite{Andrews, JSymbLog,1971,1972} \\
+\quad Extensionality/Intensionality   \hfill \chriscite{Benzm\"ullerEtAl,JSymbLog,2004} \\
+\, \hfill \chriscite{Muskens,JSymbLog,2007} \\[.5em]
 
+\pause
+Sound and complete provers do exists \\[.5em]
+  \quad interactive: \hfill Isabelle/HOL, HOL4, Hol Light, Coq/HOL, PVS,
+  \ldots \\[.5em]
+  \quad automated: \hfill TPS, LEO-II, Satallax, Nitpick, Isabelle/HOL, \ldots \\
 
-
+\end{frame}
 
 
-% \begin{frame}{Embedding HOML in HOL} \large
-% \begin{changemargin}{-.5cm}{0cm}
-
-% \textcolor{red}{HOML} \hfill
-% $\begin{array}{lll}\textcolor{red}{\varphi,\psi} & ::= &
-%   \textcolor{red}{\ldots}  \mid \textcolor{red}{\neg
-%     \varphi} \mid \textcolor{red}{\varphi \wedge \psi} \mid
-%   \textcolor{red}{\varphi \imp \psi}  \mid \textcolor{red}{\Box
-%     \varphi} \mid \textcolor{red}{\Diamond \varphi}  \mid
-%   \textcolor{red}{\forall {x_\gamma}\, \varphi} \mid
-%   \textcolor{red}{\exists {x_\gamma}\, \varphi} 
-% %\mid \textcolor{red}{\forall {P}\, \varphi} 
-% \end{array}$ \\[1em]
 
 
-% \begin{itemize}
-% \item Kripke style semantics (possible world semantics)\\
-% $\begin{array}{lcl} 
-% \onslide<1->{   \parbox[b]{2.5cm}{$M,g,s  \models  \textcolor{red}{ \neg \textcolor{black}{\varphi}}$}     & \text{ iff } &  \text{not } M,g,s \models {\varphi} \\}
-% \onslide<1->{   M,g,s  \models  \textcolor{red}{
-%     \textcolor{black}{\varphi} \wedge \textcolor{black}{\psi}}    &
-%   \text{ iff } &  M,g,s \models {\varphi} \text{ and } M,g,s \models
-%   {\psi} \\}
-% \ldots \\
-% \onslide<1->{   M,g,s  \models  \textcolor{red}{ \Box} \varphi & \text{ iff } &  M,g,u \models {\varphi} \text{ for all } u \text{ with } {\textcolor{red}{ r}(s,u)} \\}
-% \ldots \\
-% \onslide<1->{ M,g,s  \models  \textcolor{red}{ \forall} {x_\gamma}\,  \varphi
-%   & \text{ iff } &  M,[d/x]g,s \models \varphi \text{ for all } d\in D_\gamma
-%   \\}
-% \ldots \\
-%  \end{array}
-% $
-% \vspace*{1em}
-% \item[] 
-% \, \hfill \chriscite{Benzm{\"u}llerWoltzenlogelPaleo, ECAI, 2014}\\
-% \, \hfill \chriscite{Muskens, HandbookOfModalLogic, 2006}\\
-% \end{itemize}
 
 
-% \end{changemargin}
-% \end{frame}
+\begin{frame}{Embedding HOML in HOL} \large
+\begin{changemargin}{-.5cm}{0cm}
+
+\textcolor{red}{HOML} \hfill
+$\begin{array}{lll}\textcolor{red}{\varphi,\psi} & ::= &
+  \textcolor{red}{\ldots}  \mid \textcolor{red}{\neg
+    \varphi} \mid \textcolor{red}{\varphi \wedge \psi} \mid
+  \textcolor{red}{\varphi \imp \psi}  \mid \textcolor{red}{\Box
+    \varphi} \mid \textcolor{red}{\Diamond \varphi}  \mid
+  \textcolor{red}{\forall {x_\gamma}\, \varphi} \mid
+  \textcolor{red}{\exists {x_\gamma}\, \varphi} 
+%\mid \textcolor{red}{\forall {P}\, \varphi} 
+\end{array}$ \\[1em]
+
+
+\begin{itemize}
+\item Kripke style semantics (possible world semantics)\\
+$\begin{array}{lcl} 
+\onslide<1->{   \parbox[b]{2.5cm}{$M,g,s  \models  \textcolor{red}{ \neg \textcolor{black}{\varphi}}$}     & \text{ iff } &  \text{not } M,g,s \models {\varphi} \\}
+\onslide<1->{   M,g,s  \models  \textcolor{red}{
+    \textcolor{black}{\varphi} \wedge \textcolor{black}{\psi}}    &
+  \text{ iff } &  M,g,s \models {\varphi} \text{ and } M,g,s \models
+  {\psi} \\}
+\ldots \\
+\onslide<1->{   M,g,s  \models  \textcolor{red}{ \Box} \varphi & \text{ iff } &  M,g,u \models {\varphi} \text{ for all } u \text{ with } {\textcolor{red}{ r}(s,u)} \\}
+\ldots \\
+\onslide<1->{ M,g,s  \models  \textcolor{red}{ \forall} {x_\gamma}\,  \varphi
+  & \text{ iff } &  M,[d/x]g,s \models \varphi \text{ for all } d\in D_\gamma
+  \\}
+\ldots \\
+ \end{array}
+$
+\vspace*{1em}
+\item[] 
+\, \hfill \chriscite{Benzm{\"u}llerWoltzenlogelPaleo, ECAI, 2014}\\
+\, \hfill \chriscite{Muskens, HandbookOfModalLogic, 2006}\\
+\end{itemize}
+
+
+\end{changemargin}
+\end{frame}
 
 
 \begin{frame}{Embedding HOML in HOL}\large
@@ -1021,15 +1026,16 @@ $\textcolor{Blue}{\forall x \forall y \forall z (r x y \wedge r x z
 \end{frame}
 
 
-\begin{frame}{Possibilist Quantification --- Varying Domains for Individuals}
+\begin{frame}{Possibilist vs. Actualist  Quantification }
 $\textcolor{red}{\forall^{\phantom{va}}}  = \textcolor{Blue}{ 
       \lambda{h_{\gamma\typearrow(\worldtype \typearrow o)}}
-      \lambda{w_\worldtype} \forall {d_\gamma} \, h d w}$\\
+      \lambda{w_\worldtype} \forall {d_\gamma} \, h d w}$ \hfill
+    (possibilist / constant dom.)\\
 \quad becomes \\
 $\textcolor{red}{\forall^{va}}  = \textcolor{Blue}{ 
       \lambda{h_{\gamma\typearrow(\worldtype \typearrow o)}}
       \lambda{w_\worldtype} \forall {d_\gamma} \, (\textbf{ExInW} d w \imp
-      h d w)}$
+      h d w)}$ \hfill (actualist / varying dom.)
 \vskip2em
 where \textbf{\textcolor{Blue}{ExInW}} is an existence predicate.
 \vskip3em
@@ -1041,10 +1047,11 @@ Additional axioms:
 
 \item denotation (constants \& functions) \hfill \textcolor{Blue}{$\forall{w_\worldtype}\textbf{exInW} c w$} \\
 \, \hfill  \textcolor{Blue}{$\forall{w_\worldtype} (\textbf{exInW} {t^1} w
-\wedge \ldots \wedge  \textbf{exInW} {t^n} w \supset \textbf{exInW}{(f\,t^1\ldots t^n)} w)$}\\[1em]
-
-\item cumulative domains \hfill \textcolor{Blue}{$\forall{x}\forall{v}\forall{w}  (\textbf{exInW} x v \wedge r v w \supset \textbf{exInW} x w)$}
+\wedge \ldots \wedge  \textbf{exInW} {t^n} w \supset
+\textbf{exInW}{(f\,t^1\ldots t^n)} w)$} \\[2em]
 \end{itemize}
+
+Cumulative domains:  \hfill \textcolor{Blue}{$\forall{x}\forall{v}\forall{w}  (\textbf{exInW} x v \wedge r v w \supset \textbf{exInW} x w)$}
 \end{frame}
 
 \def\chriscitebuf#1{}
@@ -1079,7 +1086,7 @@ Logic {\textcolor{red}{L}}:
 
 \item {\textcolor{red}{Access Control Logics}  \hfill \chriscitebuf{Benzm{\"u}ller, IFIP SEC, 2009}} \\
 
-\item {\textcolor{red}{Logic Combinations}  \hfill \chriscitebuf{Benzm{\"u}ller, AMAI, 2011}} \\[.5cm]
+\item {\textcolor{red}{Logic Combinations}  \hfill \chriscitebuf{Benzm{\"u}ller, AMAI, 2011}} \\
 
 %\item {\textcolor{red}{Ontologies: SUMO, DOLCE, OWL-full}}
 
