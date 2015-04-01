@@ -91,8 +91,8 @@ thf(defD3,definition,
 %     ( v @ ( p @ ne ) )).
 
 
-thf(ax_buf1,axiom,
-    ( v @ ( mexists_indset @ ^ [Phi: mu > $i > $o] : ( p @ Phi ) ) )).
+%thf(ax_buf1,axiom,
+%    ( v @ ( mexists_indset @ ^ [Phi: mu > $i > $o] : ( p @ Phi ) ) )).
 
 thf(conj,conjecture,
-     ( v @ ( mnot @ ( mexists_ind @ ^ [X: mu] : ( ne @ X ) ) ) )).
+     ( v @ ( mnot @ ( mdia @ ( mexists_ind @ ^ [X: mu] : ( ne @ X ) ) ) ) )).
