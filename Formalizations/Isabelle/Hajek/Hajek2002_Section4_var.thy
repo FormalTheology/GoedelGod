@@ -99,7 +99,9 @@ text {* Lemma L3 appears as Lemma 3.4 in Hajek 2002 and Aux1 appears in the proo
   by (metis Aux1 trans sym A4)
 
 
-subsection {* Consistency again (now with sym and trans) *}
+subsection {* Consistency again (now with sym, trans and refl) *}
+
+  axiomatization where refl: "((x r y) \<longrightarrow> (y r x))"
 
   lemma True 
   nitpick [satisfy, user_axioms, expect = genuine] oops
