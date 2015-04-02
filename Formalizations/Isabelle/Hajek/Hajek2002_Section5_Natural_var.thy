@@ -103,7 +103,9 @@ text {* A4 seems necessary to prove the interesting lemma L3 *}
   by (metis Aux1 P'_def trans sym A4)
 
 
-subsection {* Consistency again (now with A4, sym and trans) *}
+subsection {* Consistency again (now with A4, sym, trans and refl) *}
+
+  axiomatization where refl: "((x r y) \<longrightarrow> (y r x))"
 
   lemma True 
   nitpick [satisfy, user_axioms, expect = genuine] oops
@@ -148,10 +150,15 @@ subsection {* Immunity to Modal Collapse *}
   nitpick [user_axioms] oops
 
 
-subsection {* Analysis of Pages 13 and 14 *}
+
+
+subsection {* Analysis of Pages 13 and 14: ToDo *}
 
 theorem A3_e:  "[P (\<lambda>x. (G x m\<and> eiw x) ) ]"
 sledgehammer[provers = remote_leo2 remote_satallax, verbose]
+
+
+
 
 (* ToDo: Theorem 6 and Lemmas 6, 7, 8 and 9 in Hajek 2002 deserve to be investigated *)
 

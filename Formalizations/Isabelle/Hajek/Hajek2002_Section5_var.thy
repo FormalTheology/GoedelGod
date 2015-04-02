@@ -79,8 +79,11 @@ subsection {* Provability of T1, C1 and T3 *}
   (* sledgehammer [provers = remote_satallax remote_leo2, verbose, timeout = 200] (L1 C1 T1 A12 A3 sym trans G_def) *)
   by (metis C1 L1 sym)
 
+  axiomatization where trans: "((x r y) \<and> (y r z)) \<longrightarrow> (x r z)"
 
-subsection {* Consistency again (now with sym) *}
+  axiomatization where refl: "(x r y) \<longrightarrow> (y r x)"
+
+subsection {* Consistency again *}
 
   lemma True 
   nitpick [satisfy, user_axioms, expect = genuine] oops
@@ -93,8 +96,6 @@ subsection {* Immunity to Modal Collapse *}
 
 
 subsection {* Provability of A4 and A5 *}
-  
-  axiomatization where trans: "((x r y) \<and> (y r z)) \<longrightarrow> (x r z)"
 
 (* Satallax succeeds, but Metis fails *)
 
