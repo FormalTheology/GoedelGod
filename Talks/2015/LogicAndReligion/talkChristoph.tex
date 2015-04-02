@@ -46,7 +46,7 @@ C. Benzmüller, 2015\,-----\,\insertshorttitle \hfill \insertframenumber
 \usepackage{graphicx}
 \usepackage{stmaryrd}
 %\usepackage{latexsym}
-
+\usepackage[makeroom]{cancel}
 
 \usepackage{bussproofs}
 \usepackage{proof}
@@ -1612,7 +1612,7 @@ Summary
 \framecolorbox[8.5cm][s]{yellow}{yellow!20}{
 \begin{minipage}{8cm}\color{black} \bf
 %\vskip.5em
-\underline{Modal Collapse} 
+\underline{Modal Collapse (Sobel)} 
 \vskip.5em
 {\large \[ {\color{red} \allq \varphi ( \varphi \mimpl \Box \varphi ) } \]}
 \begin{itemize}
@@ -1664,6 +1664,13 @@ Main critique on G\"odel's ontological proof:
 \usebackgroundtemplate{}
 
 
+\begin{transitionframe}{./Images/Transitions/ComputerCross}{black}%$
+  \centering
+\textbf{Reconstruction of the Inconsistency of Gödel's Axioms}
+%\\ into Higher-Order Logic}
+%\textbf{Embedding Higher-Order Modal Logic \\ into Higher-Order Logic}
+\end{transitionframe}
+
 \begin{frame}{Inconsistency (Gödel): Proof by LEO-II in KB}
 \begin{changemargin}{-.5cm}{-1cm}
 \colorbox{gray!20}{
@@ -1688,8 +1695,8 @@ Main critique on G\"odel's ontological proof:
   \phi(x)]$ \\
 \,\hfill by \textcolor{Blue}{A1($\supset$), A2} \\[.5cm]
 \pause
-\item[Def. D2$^*$] \hfill ${\ess{\phi}{x} \biimp \textcolor{gray}{\phi(x)\
-      \wedge\ }  {\allq \psi} (\psi(x)
+\item[Def. D2$^*$] \hfill ${\ess{\phi}{x} \biimp \textcolor{gray}{\xcancel{\phi(x)\
+      \wedge}\ }  {\allq \psi} (\psi(x)
     \imp {\nec} \allq y (\phi(y) \imp \psi(y)))}$ 
 \pause
 \item[\textcolor{Green}{Lemma 1}] \textcolor{Green}{The empty property is an essence of
