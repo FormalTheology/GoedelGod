@@ -54,6 +54,28 @@ This is, of course, also a counterexamble in logics K, KB, S4. *}
  (* sledgehammer [provers = remote_leo2 remote_satallax] *)
  (* by (metis refl P_def) *)
 
+ axiomatization where no_imaginary_beings: "\<forall>x. \<exists>w. eiw x w"
+
+ (* theorem D1: "(G = (\<lambda>x. \<forall>(\<lambda>\<Phi>. P \<Phi> m\<rightarrow> \<Phi> x))) \<and> (\<exists>\<Psi>.(\<Psi> = G)) \<and> (\<forall>x. x=x)" *)
+ theorem D1: "\<forall>E. ( (E = eiw) \<longrightarrow> ( \<forall>Q. ((Q = P) \<longrightarrow> ( \<forall> H. ( (H = G) \<longrightarrow> (\<forall>x. ((G x) = \<forall>(\<lambda>\<Phi>. P \<Phi> m\<rightarrow> \<Phi> x))))))))"
+ nitpick [user_axioms] oops
+ (* sledgehammer [provers = remote_leo2 remote_satallax] *)
+ (* by (metis refl P_def) *)
+
+ definition MCP :: "(\<mu> \<Rightarrow> \<sigma>) \<Rightarrow> \<mu> \<Rightarrow> \<sigma>"  
+ where "MCP = (\<lambda>\<Phi> x. \<Phi> x m\<and> P \<Phi> m\<and> 
+   \<forall>(\<lambda>\<Psi>. (\<Psi> x m\<and> P \<Psi>) m\<rightarrow> \<box> (\<forall>e(\<lambda>y. \<Phi> y m\<rightarrow> \<Psi> y))))"
+
+ definition N :: "\<mu> \<Rightarrow> \<sigma>"  
+ where "N = (\<lambda>x. \<forall>(\<lambda>\<Phi>. MCP \<Phi> x m\<rightarrow> \<box> (\<exists>e(\<lambda>y. \<Phi> y))))"  
+
+ axiomatization where
+  A1: "[\<forall>(\<lambda>\<Phi>. P \<Phi> m\<rightarrow> m\<not> (P (\<lambda>x. m\<not> (\<Phi> x))))]" and
+  A5: "[P N]"
+
+ theorem D1: "\<forall>E. ( (E = eiw) \<longrightarrow> ( \<forall>Q. ((Q = P) \<longrightarrow> ( \<forall> H. ( (H = G) \<longrightarrow> (\<forall>x. ((G x) = \<forall>(\<lambda>\<Phi>. P \<Phi> m\<rightarrow> \<Phi> x))))))))"
+ nitpick [user_axioms] oops
+
 (*<*) 
 end
 (*>*) 
