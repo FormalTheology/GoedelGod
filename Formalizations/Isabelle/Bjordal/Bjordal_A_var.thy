@@ -50,7 +50,7 @@ This is, of course, also a counterexamble in logics K, KB, S4. *}
   sym:  "x r y \<longrightarrow> y r x"
 
  theorem D1: "G = (\<lambda>x. \<forall>(\<lambda>\<Phi>. P \<Phi> m\<rightarrow> \<Phi> x))"
- nitpick [user_axioms] oops
+ nitpick [user_axioms, show_all] oops
  (* sledgehammer [provers = remote_leo2 remote_satallax] *)
  (* by (metis refl P_def) *)
 
