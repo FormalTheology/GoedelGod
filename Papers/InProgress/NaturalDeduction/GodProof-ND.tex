@@ -394,6 +394,30 @@ is provable in our system K of modal logic.
 Brouwer's reduction theorem is a version of axiom B for modal logic and a property that enforces symmetry as a geometric property for the frame of a Kripke sematics for modal logic. \citep{negri}
 %See the following for a discussion about axiom B: http://plato.stanford.edu/entries/logic-modal/
 
+\begin{lemma}\label{BRP}
+The Brouwer Reduction Principle $\pos\nec A\imp A$ is derivable from axiom B, $A\imp \nec \pos A$. 
+\end{lemma}
+
+\begin{proof}\hfill
+
+\begin{small}
+\begin{prooftree}
+\AXC{$ $}\RightLabel{$2$}
+\UIC{$\neg\nec \neg \nec A$}
+\AXC{$ $}\RightLabel{$ 1$}
+\UIC{$\neg A$}
+\AXC{$ $}\RightLabel{$Axiom B$}
+\UIC{$\neg A\imp \nec\neg\nec\neg\neg A$}\RightLabel{$\imp_E$}
+\BIC{$\nec\neg\nec\neg\neg A$}\doubleLine
+\UIC{$\nec\neg\nec A$}
+\BIC{$(\neg\nec \neg \nec A)\&(\nec\neg \nec A)$}\RightLabel{$\neg_I^1$}
+\UIC{$\neg\neg A$} \RightLabel{$\neg\neg_E$}
+\UIC{$A$} \RightLabel{$\imp_I^2$}
+\UIC{$\neg\nec \neg \nec A\imp A$}
+\end{prooftree}
+\end{small}
+
+\end{proof}
 
 
 \section{Scott's Proof in Natural Deduction}
