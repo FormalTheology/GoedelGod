@@ -60,6 +60,8 @@ Germany
 
 [Focus](http://www.focus.de/wissen/experten/heinz_oberhummer/gottesbeweis-per-computer-naturwissenschaft-und-religion-gehen-nicht-zusammen_id_3711166.html)
 
+[3sat TV](http://www.3sat.de/mediathek/?mode=play&obj=50174)
+
 
 Austria
 -------
