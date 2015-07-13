@@ -496,14 +496,26 @@ superfluous. All these results, with the exception of the
 aforementioned countermodel for D1', hold for both constant and
 varying domain semantics.
 
+Figure \ref{fig:summary} summarizes the results obtained by the automated reasoning tools. The following abbreviations are used: S/I = superfluous and independent; R = superfluous and redundant; S/U = superfluous and unknown whether redundant or independent; N/I = non-superfluous and independent; P = provable; CS = counter-satisfiable. The weakest logic required to show redundancy or provability is indicated in parentheses (\K is the default). 
+Cells highlighted in red contain results that differ from what had been claimed by either Magari, Anderson or Hájek. Cells highlighted in yellow contain results that are surprising, albeit not contradicting any claims. Cells highlighted in green contain results where the tools were able to obtain the same results as humans, but using weaker modal logics.
+
+\begin{figure}
+\includegraphics[width=\textwidth]{Summary.png}
+\caption{Summary of Results}
+\label{fig:summary}
+\end{figure}
+
+
 Using our approach, the formalization and (partly) automated analysis
 of several variants of G\"odel's ontological argument has been
 surprisingly straightforward. The provers not only confirmed many
 claimed results, but also exposed a few mistakes and novel insights
 in a long standing controversy.
 We believe the technology employed in
-this work is ready to be  fruitfully adopted in larger scale by
+this work is ready to be fruitfully adopted in larger scale by
 philosophers.
+
+
 
 % ToDo: \\
 
