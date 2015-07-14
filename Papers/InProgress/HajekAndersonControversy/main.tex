@@ -314,12 +314,8 @@ Therefore, A4 and A5' are not redundant, despite their superfluousness.
 \noindent \framebox[\columnwidth][r]{
 \begin{minipage}{.94\columnwidth}\small
 \begin{itemize}
-\item[H:A12] The negation of a property necessarily implied by a
-  positive property is not positive:
-  $$\hol{\allq \varphi \allq \psi [(P(\varphi) \wedge \nec \allq x [\varphi(x)
-  \imp \psi(x)]) \imp \neg P(\neg \psi)]}$$
-\item[H:D1] A \emph{God-like} being necessarily possesses those and only those properties that are necessarily implied by a positive property:
-  $$\hol{G_H(x) \equiv \forall \varphi [\nec \varphi(x) \biimp \exq \psi[P(\psi) \wedge \nec \allq x [\psi(x)  \imp \varphi(x))]]}$$
+\item[H:DP] A \emph{God-like} being necessarily possesses those and only those properties that are necessarily implied by a positive property:
+  $$\hol{P(x) \equiv \forall \varphi [\nec \varphi(x) \biimp \exq \psi[P(\psi) \wedge \nec \allq x [\psi(x)  \imp \varphi(x))]]}$$
 \item[A3']  The property of being God-like is positive:
   $$\hol{P(G_H)}$$
 \item[A4]  Positive properties are necessarily positive:
@@ -426,7 +422,7 @@ The formalization of \AOEHHH\ shows that both H:A4 and H:A5 are superfluous
 aswell as independent. For the old A5', no conclusive results were achieved.
 
 Additionally, Anderson \citep[footnote
-14]{anderson90:_some_emend_of_goedel_ontol_proof} remarks that only
+14]{anderson90:_some_emend_of_goedel_ontol_proof} (cf. Fig. \ref{fig:Anderson_simp}) remarks that only
 the quantifiers in T3' and in A:D2 need to be interpreted as
 actualistic quantifiers, while others may be taken as possibilistic
 quantifiers. Our computer-assisted study of this mixed variant shows
@@ -439,7 +435,35 @@ this regard,  already
 \citet[p.~7]{anderson90:_some_emend_of_goedel_ontol_proof} indicates
 that, by taking a notion of \emph{defective} as primitive and defining
 the notion of \emph{positive} upon it, axioms A:A1, A2 and A4 become
-derivable. These claims have been confirmed by the automated theorem
+derivable.
+
+\begin{figure}[t]
+\noindent \framebox[\columnwidth][r]{
+\begin{minipage}{.94\columnwidth}\small
+$D$ (Defective) is taken as primitive and $P_{AS}$ (Positive) is defined.
+
+\bigskip
+
+
+\begin{itemize}
+\item[AS:D1] A property is positive iff its absence necessarily renders an individual defective and it is possible
+  that an individual has the property without being defective.
+   $$\hol{P_{AS}(\varphi) \equiv \nec (\allq x (\neg \varphi(x) \imp D(x)) \wedge (\neg \nec \allq x (\varphi(x) \imp D(x))))}$$
+\item[A:A1'] If a property is positive, its negation is not positive:
+  $$\hol{\allq \varphi [P_{AS}(\varphi) \imp \neg P_{AS}(\neg \varphi)]}$$
+\item[A2'] A property necessarily implied by a
+  positive property is positive:
+  $$\hol{\allq \varphi \allq \psi [(P_{AS}(\varphi) \wedge \nec \allq x [\varphi(x)
+  \imp \psi(x)]) \imp P_{AS}(\psi)]}$$
+\item[A4']  Positive properties are necessarily positive:
+  $$\hol{\allq \varphi [P_{AS}(\varphi) \imp \nec P_{AS}(\varphi)]}$$
+\end{itemize}
+\end{minipage}
+} \vskip-.5em
+\caption{Anderson's Simplification \label{fig:Anderson_simp}}
+\end{figure}
+
+These claims have been confirmed by the automated theorem
 provers (in logic \KFourB). Within the same trend, the alternative
 proposed by \citet{bjordal99} (cf. Fig. \ref{fig:Bjordal})
 achieves a high level of minimality.
@@ -468,7 +492,7 @@ $G_B$ (God-like) is taken as primitive and $P_B$ (Positive) is defined.
 \item[T3'] Necessarily, a God-like being exists: $$\hol{\nec \exq x G_B(x)}$$
 \end{itemize}
 \end{minipage}
-} %\vskip-.5em
+} \vskip-.5em
 \caption{Bjordal's Alternative \label{fig:Bjordal}}
 \end{figure}
 
