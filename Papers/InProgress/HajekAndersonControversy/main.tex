@@ -217,11 +217,27 @@ the existence relation). Our main results are summarized here.
 
 For all emendations and variants discussed here, the axioms and
 definitions have been shown to be consistent and not to entail modal
-collapse.
+collapse. 
+
+\begin{samepage}
+The following definitions of redundancy, superfluousness and independence are used throughout this paper:
 
 \begin{definition}
-An axiom $A$ is \textbf{redundant} w.r.t. a set of axioms $S$ iff $A$ is
-entailed by $S$. \end{definition}
+An axiom $A$ is \textbf{redundant} w.r.t. a set of axioms $S$ iff $S$ entails $A$. 
+\end{definition}
+
+\begin{definition}
+An axiom $A$ is \textbf{superfluous} w.r.t. axiom set $S$ iff $S \setminus \{ A \}$ entails T3.
+\end{definition}
+
+\begin{definition}
+  An axiom $A$ is \textbf{independent} of a set of axioms $S$ iff
+  there are models of $S$ where $A$ is true and other models of
+  $S$ where $A$ if false.
+\end{definition}
+\end{samepage}
+
+\clearpage
 
 For both \textbf{constant domain semantics} and \textbf{varying domain
 semantics}, the following results hold for \emph{Anderson's
@@ -272,10 +288,7 @@ consistent.
 \caption{Anderson's Emendation \label{fig:Anderson}}
 \end{figure}
 
-\begin{definition}
-An axiom $A$ is \textbf{superfluous} w.r.t. a set of axioms $S$ iff T3 is
-entailed by $S \setminus \{ A \}$.
-\end{definition}
+
 
 The redundancy of A4 and A5 is particularly controversial. Magari
 \cite{Magari1988} claimed that A4 and A5 are superfluous, arguing that T3 is true in all
@@ -311,11 +324,6 @@ A4 and A5' are independent
 of the other axioms and definitions.
 Therefore, A4 and A5' are not redundant, despite their superfluousness.
 
-\begin{definition}
-  An axiom $A$ is \emph{independent} of a set of axioms $S$ iff
-  there are models of $S$ where $A$ is true and other models of
-  $S$ where $A$ if false.
-\end{definition}
 
 \begin{figure}[t]
 \noindent \framebox[\columnwidth][r]{
