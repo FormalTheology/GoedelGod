@@ -1,0 +1,247 @@
+% \begin{transitionframe}{Images/Transitions/CartoucheThutmosisReverse(WaltersArtMuseum)(PublicDomain)}{black} \centering
+% \textbf{Embedding Modal Logic into Higher-Order Logic}
+% \end{transitionframe}
+
+
+\begin{frame}{Quick Introduction to Modal Logics}{Modal Operators} \large
+\centering 
+
+$$\nec P$$
+P is necessary, P is obligatory, P is known, \\ 
+P is believed, always P \ldots
+
+\bigskip
+\pause
+
+$$\pos P$$
+P is possible, P is permissible, P is epistemically possible, \\ 
+P is doxastically possible, eventually P \ldots
+
+\end{frame}
+
+
+\begin{frame}{Quick Introduction to Modal Logics}{Kripke Semantics - Possible Worlds} \large
+
+\includegraphics[width=0.8\textwidth]{Images/Kripke}
+
+\end{frame}
+
+
+\begin{frame}{Quick Introduction to Higher-Order Logics}{Higher-Order Quantification} \large
+
+\begin{Huge}
+$$
+\forall x. (G(x) \equiv \alert{\forall \varphi}. P(\varphi) \imp \alert{\varphi}(x))
+$$
+\end{Huge}
+
+\end{frame}
+
+
+\begin{frame}{Quick Introduction to Higher-Order Logics}{Lambda Calculus: Types and Beta-Reduction} \large
+
+\begin{Huge}
+$$
+(\lambda \varphi_{\alert{\iota \imp o}}. (P ~ \varphi) ) ~ G  \qquad  \leadsto_{\beta} \qquad (P ~ G)
+$$
+\end{Huge}
+\end{frame}
+
+
+
+\begin{frame}{Motivation, Challenge, Goals, Approach} \large
+
+\visible<+->{
+\hskip-1em Motivation : Applications (Ontologies, Paraconsistency, \emph{Philosophy}, \ldots) \\[1em]
+}
+
+\visible<+->{
+\hskip-1em Challenge : No provers for \emph{Higher-order
+  Quantified Modal
+  Logics\/} (\textcolor{red}{QML}) \\[1em]
+}
+
+\visible<+->{
+\hskip-1em Our goals : \\
+  \qquad efficient automated provers for \textcolor{red}{QML} \\
+  \qquad user-friendly interactive provers for \textcolor{red}{QML} \\[1em]
+}
+
+\visible<+->{
+\hskip-1em Approach : Embed \textcolor{red}{QML} in \emph{Higher-Order Classical
+  Logic\/} (\textcolor{blue}{HOL}) \\
+\, \hfill Then use existing \textcolor{blue}{HOL} theorem provers for reasoning in \textcolor{red}{QML} \\
+  \qquad\qquad\qquad interactive: \hfill Isabelle, HOL4, Hol Light, Coq, PVS, \ldots \\
+  \qquad\qquad\qquad automated: \hfill TPS, LEO-II, Satallax, Nitpick, \ldots \\
+}
+\end{frame}
+
+
+
+\begin{frame}{Embedding QML in HOL}\large
+
+\hskip-1em\textcolor{red}{QML} \hfill
+$\begin{array}{lll}\textcolor{red}{\varphi,\psi} & ::= &
+  \textcolor{red}{\ldots}  \mid \textcolor{red}{\neg
+    \varphi} \mid \textcolor{red}{\varphi \wedge \psi} \mid
+  \textcolor{red}{\varphi \imp \psi}  \mid \textcolor{red}{\Box
+    \varphi} \mid \textcolor{red}{\Diamond \varphi}  \mid
+  \textcolor{red}{\forall {x}\, \varphi} \mid
+  \textcolor{red}{\exists {x}\, \varphi} 
+\mid \textcolor{red}{\forall {P}\, \varphi} \end{array}$ \\[1em]
+
+\hskip-1em\textcolor{blue}{HOL}\hfill 
+$\begin{array}{lll}
+\textcolor{blue}{s,t} & ::= & \textcolor{blue}{C}  \mid
+\textcolor{blue}{x \mid \lambda{x} s} \mid \textcolor{blue}{s\, t}
+\mid \textcolor{blue}{\neg s} \mid \textcolor{blue}{s \vee t} \mid
+\textcolor{blue}{\forall {x}\, t} 
+\end{array}$ \\[1em]
+
+\pause
+
+\hskip-1em\textcolor{red}{QML} in \textcolor{blue}{HOL}: \quad \textcolor{red}{QML}
+formulas $\textcolor{red}{\varphi}$ are mapped to
+\textcolor{blue}{HOL} predicates $\textcolor{red}{\varphi_{\worldtype\typearrow o}}$
+
+\begin{center}
+\fcolorbox{blue}{white}{
+$\begin{array}{lcl} 
+    \textcolor{red}{\mnot} & = & \textcolor{blue}{
+      \lambda{\varphi_{\worldtype\typearrow o}}\lambda{w_\worldtype}\neg \varphi w} \\ 
+    \textcolor{red}{\mand} & = & \textcolor{blue}{ 
+      \lambda{\varphi_{\worldtype\typearrow o}}
+      \lambda{\psi_{\worldtype\typearrow o}} \lambda{w_\worldtype}
+      (\varphi w \wedge \psi w)} \\ 
+    \textcolor{red}{\imp} & = & \textcolor{blue}{ 
+      \lambda{\varphi_{\worldtype\typearrow o}}
+      \lambda{\psi_{\worldtype\typearrow o}} \lambda{w_\worldtype}
+      (\neg \varphi w \vee \psi w)} \\ 
+    \textcolor{red}{\forall} & = & \textcolor{blue}{ 
+      \lambda{h_{\gamma\typearrow(\worldtype \typearrow o)}}
+      \lambda{w_\worldtype} \forall {d_\gamma} \, h d w} \\
+    \textcolor{red}{\exists} & = & \textcolor{blue}{ 
+      \lambda{h_{\gamma\typearrow(\worldtype \typearrow o)}}
+      \lambda{w_\worldtype} \exists {d_\gamma} \, h d w} \\
+    \\
+    \textcolor{red}{\Box} & = & \textcolor{blue}{ 
+      \lambda{\varphi_{\worldtype\typearrow o}} \lambda{w_\worldtype}
+      \forall {u_\worldtype}\, (\neg r w u \vee
+      \varphi u)} \\ 
+    \textcolor{red}{\Diamond} & = & \textcolor{blue}{ 
+      \lambda{\varphi_{\worldtype\typearrow o}} \lambda{w_\worldtype}
+      \exists {u_\worldtype}\, (r w u \wedge
+      \varphi u)} \\ 
+    \\
+    \text{\textcolor{brown}{valid}} & = & \textcolor{blue}{
+        \lambda{\varphi_{\worldtype\typearrow o}} \all{w_\worldtype}
+        \varphi w}
+\end{array}$
+}  \quad \textcolor{blue}{Ax} 
+\vskip1em
+\end{center}
+
+\pause
+
+\quad The equations in \textcolor{blue}{Ax} are given as axioms to the \textcolor{blue}{HOL} provers. \\
+
+
+\end{frame}
+
+
+
+\begin{frame}{Embedding QML in HOL} \large
+
+\hskip-1em Example \\[.5em]
+
+ \textcolor{red}{QML} formula  \hfill \textcolor{red}{$\Diamond \exists x G(x)$}
+
+\pause 
+
+ \textcolor{red}{QML} formula in \textcolor{blue}{HOL}  \hfill $\text{\textcolor{brown}{valid}}\, \textcolor{red}{(\Diamond \exists x G(x))_{\worldtype\typearrow o}}$
+
+\pause
+
+expansion, $\beta\eta$-conversion \hfill $\textcolor{blue}{\forall
+  w_\worldtype\textcolor{red}{(\Diamond \exists x
+    G(x))_{\worldtype\typearrow o}}\, w}$ 
+
+\pause
+
+expansion, $\beta\eta$-conversion \hfill $\textcolor{blue}{\forall
+  w_\worldtype \exists {u_\worldtype} (r w u \wedge
+      \textcolor{red}{(\exists x G(x))_{\worldtype\typearrow o}} u)}$ 
+
+% expansion, $\beta\eta$-conversion \hfill $\textcolor{blue}{\forall
+%   w_\worldtype \exists {u_\worldtype} (r w u \wedge
+%       \exists x \textcolor{red}{G(x)_{\worldtype\typearrow o}} u)}$ 
+
+\pause
+
+expansion, $\beta\eta$-conversion \hfill $\textcolor{blue}{\forall
+  w_\worldtype \exists {u_\worldtype} (r w u \wedge
+      \exists x G x u)}$ \\[1em]
+
+\pause
+
+\visible<6->{
+\vfill
+\begin{block}{What do we do?}
+\vskip.5em
+In order to prove that $\textcolor{red}{\varphi}$ is valid in \textcolor{red}{QML}, \\
+we instead prove that 
+$\text{\textcolor{brown}{valid}}\,
+\textcolor{red}{\varphi_{\worldtype\typearrow o}}$ can be derived
+from \textcolor{blue}{Ax} in \textcolor{blue}{HOL}. \\[1em]
+
+This can be done with interactive or automated \textcolor{blue}{HOL} theorem provers.
+\end{block}
+}
+
+\end{frame}
+
+
+\begin{frame}{Embedding QML in HOL} \large
+
+\hskip-1em Example \\[.5em]
+
+ \textcolor{red}{QML} formula  \hfill \textcolor{red}{$\Diamond \exists x G(x)$}
+
+
+ \textcolor{red}{QML} formula in \textcolor{blue}{HOL}  \hfill $\text{\textcolor{brown}{valid}}\, \textcolor{red}{(\Diamond \exists x G(x))_{\worldtype\typearrow o}}$
+
+
+expansion, $\beta\eta$-conversion \hfill $\textcolor{blue}{\forall
+  w_\worldtype\textcolor{red}{(\Diamond \exists x
+    G(x))_{\worldtype\typearrow o}}\, w}$ 
+
+
+expansion, $\beta\eta$-conversion \hfill $\textcolor{blue}{\forall
+  w_\worldtype \exists {u_\worldtype} (r w u \wedge
+      \textcolor{red}{(\exists x G(x))_{\worldtype\typearrow o}} u)}$ 
+
+% expansion, $\beta\eta$-conversion \hfill $\textcolor{blue}{\forall
+%   w_\worldtype \exists {u_\worldtype} (r w u \wedge
+%       \exists x \textcolor{red}{G(x)_{\worldtype\typearrow o}} u)}$ 
+
+
+expansion, $\beta\eta$-conversion \hfill $\textcolor{blue}{\forall
+  w_\worldtype \exists {u_\worldtype} (r w u \wedge
+      \exists x G x u)}$ \\[1em]
+
+\vfill
+\begin{block}{Does this actually work in practice?}
+\vskip.5em
+\centering
+Is it efficient ?? 
+
+\bigskip
+
+Is it user-friendly ??
+
+\bigskip
+
+\end{block}
+
+\end{frame}
+
