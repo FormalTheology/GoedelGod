@@ -8,7 +8,7 @@ thf(mnot_type,type,(mnot:($i>$o)>$i>$o)).
 thf(mnot,definition,(mnot = (^[A:$i>$o,W:$i]:~(A@W)))).
 thf(mor_type,type,(mor:($i>$o)>($i>$o)>$i>$o)).
 thf(mor,definition,(mor = (^[A:$i>$o,Psi:$i>$o,W:$i]:((A@W)|(Psi@W))))).
-thf(mbox_type,type,(mbox:($i>$i>$o)>($i>$o)>$i>$o)).
+thf(mbox_type,type,(mbox:($i>$o)>$i>$o)).
 thf(mbox,definition,(mbox = (^[A:$i>$o,W:$i]:![V:$i]:(~(r@W@V)|(A@V))))).
 \textcolor{gray}{%----Quantifier (constant domains) for individuals and propositions} 
 thf(mall_ind_type,type,(mall_ind:(mu>$i>$o)>$i>$o)).
