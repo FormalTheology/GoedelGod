@@ -86,7 +86,8 @@ the existence of a greatest conceivable being with all these properties is possi
 
 G\"odel studied Leibniz's work \citep{Adams} and brought his ontological argument to a modern form using a modal logic with higher-order quantification over properties. In this setting, he gave precise axioms describing the notion of \emph{positive} property and defined God as a being having all positive properties. 
 
-G\"odel's notion of positive property and Leibniz's notion of perfection differ \citep{Adams}. The main formal distinction seems to be that G\"odel's positive properties are not just atomic properties, like Leibniz's perfections, but can also consist of complex combinations of atomic properties \citep{fitting}[p.139.] (TODO: Check this claim). In particular, one of G\"odel's axioms states that any conjunction of positive properties is itself positive. From this axiom, it is immediately deduced that the property of being God-like is positive. While this step is intuitively and informally clear, it is not easily formalizable in a standard logical calculus, because it requires inferring that being God-like is a (possibly infinite) conjunction of positive properties, from the universal definition of God-likeness as the property satisfied by individuals who have all positive properties. This interplay between universal quantification (in the definition of a God-like being) and infinite conjunctions (in G\"odel's axiom for positive properties) is a technical difficulty that probably explains why, starting with Scott \cite{Scott}, to whom G\"odel confided his manuscript, this axiom of G\"odel's has been replaced by another that simply assumes the positivity of the property of being God-like. 
+G\"odel's notion of positive property and Leibniz's notion of perfection differ \citep{Adams}. The main formal distinction seems to be that G\"odel's positive properties are not just atomic properties, like Leibniz's perfections, but can also consist of complex combinations of atomic properties \citep{fitting}[p.139.] (TODO: Check this claim). In particular, one of G\"odel's axioms states that any conjunction of positive properties is itself positive. From this axiom, it is immediately deduced that the property of being God-like is positive. While this step is intuitively and informally clear, it is not easily formalizable in a standard logical calculus, because it requires inferring that being God-like is a (possibly infinite) conjunction of positive properties, from the universal definition of God-likeness as the property satisfied by individuals who have all positive properties. This interplay between universal quantification (in the definition of a God-like being) and in!
+ finite conjunctions (in G\"odel's axiom for positive properties) is a technical difficulty that probably explains why, starting with Scott \cite{Scott}, to whom G\"odel confided his manuscript, this axiom of G\"odel's has been replaced by another that simply assumes the positivity of the property of being God-like. 
 
 The main criticism against G\"odel's ontological argument is an undesirable consequence of the stipulated axioms, called \emph{modal collapse}. Many recent works \cite{todo} on the ontological argument have focused on proposing modifications of the argument that would not entail a modal collapse. This is discussed in greater detail in Section \ref{sec:collapse}, but possible solutions are not implemented in this paper.
 
@@ -531,11 +532,11 @@ $$
 
 
 \begin{prooftree}
-\AXC{$ $} \RightLabel{3}
+\AXC{$ $} \RightLabel{5}
 \UIC{$P(\rho)$}
 		\AXC{Reflexivity} \dashedLine
 		\UIC{$\omega: \gamma = \gamma$} \RightLabel{$\imp_I$}
-		\UIC{$\omega: \rho{\gamma} \imp \gamma = \gamma$} \RightLabel{$\all_I$}
+		\UIC{$\omega: \rho(\gamma) \imp \gamma = \gamma$} \RightLabel{$\all_I$}
 		\UIC{$\omega: \all x. \rho(x) \imp x = x$} \RightLabel{$\nec_I$}
 		\UIC{$\nec (\all x. \rho(x) \imp x = x) $} \RightLabel{$\wedge_I$}
 	\BIC{$P(\rho) \wedge \nec (\all x. \rho(x) \imp x = x) $} 
@@ -547,17 +548,17 @@ $$
 
 
 \begin{prooftree}
-\AXC{$ $} \RightLabel{3}
+\AXC{$ $} \RightLabel{5}
 \UIC{$P(\rho)$}
-	\AXC{$ $} \RightLabel{8}
+	\AXC{$ $} \RightLabel{1}
 	\UIC{$\omega: \rho(\beta)$}
-			\AXC{$ $} \RightLabel{5}
+			\AXC{$ $} \RightLabel{3}
 			\UIC{$\nec \all x. \neg \rho(x)$} \RightLabel{$\nec_E$}
 			\UIC{$\omega: \all x. \neg \rho(x) $} \RightLabel{$\all_E$}
 			\UIC{$\omega: \neg \rho(\beta)$} \RightLabel{$\neg_E$}
 		\BIC{$\omega: \bot$} \RightLabel{$\neg_I^9$}
 		\UIC{$\omega: \neg (\beta = \beta)$} \dottedLine
-		\UIC{$\omega: (\beta \neq \beta)$} \RightLabel{$\imp_I^8$}
+		\UIC{$\omega: (\beta \neq \beta)$} \RightLabel{$\imp_I^1$}
 		\UIC{$\omega: (\rho(\beta) \imp (\beta \neq \beta))$} \RightLabel{$\all_I$}
 		\UIC{$\omega: (\all x. \rho(x) \imp (x \neq x))$} \RightLabel{$\nec_I$}
 		\UIC{$\nec (\all x. \rho(x) \imp (x \neq x))$}  \RightLabel{$\wedge_I$}
@@ -581,22 +582,22 @@ $$
 
 
 \begin{prooftree}
-\AXC{$ $} \RightLabel{2}
-\UIC{$\box \neg \ex x. \rho(x)$} \RightLabel{$\nec_E$}
+\AXC{$ $} \RightLabel{4}
+\UIC{$\nec \neg \ex x. \rho(x)$} \RightLabel{$\nec_E$}
 \UIC{$\omega: \neg \ex x. \rho(x)$}
-        \AXC{$ $} \RightLabel{4}
+        \AXC{$ $} \RightLabel{2}
         \UIC{$\rho(\alpha)$} \RightLabel{$\ex_I$}
 		\UIC{$\omega: \ex x. \rho(x)$} \RightLabel{$\neg_E$}
-    \BIC{$\omega: \bot$} \RightLabel{$\neg_I^4$}
-	\UIC{$\omega: \neg \rho(\alpha)$}
-	\UIC{$\omega: \all x. \neg \rho(x)$}
+    \BIC{$\omega: \bot$} \RightLabel{$\neg_I^2$}
+	\UIC{$\omega: \neg \rho(\alpha)$} \RightLabel{$\all_I$}
+	\UIC{$\omega: \all x. \neg \rho(x)$} \RightLabel{$\nec_I$}
 	\UIC{$\nec \all x. \neg \rho(x)$}
 	        \AXC{$ $} \dashedLine
-	        \UIC{$\bot$} \RightLabel{$\neg_I^5$}
+	        \UIC{$\bot$} \RightLabel{$\neg_I^3$}
     		\UIC{$\neg \nec \all x. \neg \rho(x)$} \RightLabel{$\neg_E$}
-  		\BIC{$\bot$} \RightLabel{$\neg_I^2$}
+  		\BIC{$\bot$} \RightLabel{$\neg_I^4$}
   		\UIC{$ \neg \nec \neg \ex x.\rho(x)$} \doubleLine %\RightLabel{definition of $\pos$}
-  		\UIC{$ \pos \ex x.\rho(x)$}  \RightLabel{$\imp_I^3$}
+  		\UIC{$ \pos \ex x.\rho(x)$}  \RightLabel{$\imp_I^5$}
   		\UIC{$ P(\rho) \imp \pos \ex x.\rho(x) $} 
 
 \end{prooftree}
@@ -665,14 +666,14 @@ $$
 \end{theorem}
 \begin{proof}
 
+\begin{small}
 \begin{prooftree}
-\AXC{$ $} \RightLabel{1}
-\UIC{$G(\gamma)$}
 
-	\AXC{$ $} \RightLabel{2}
+
+	\AXC{$ $} \RightLabel{5}
 	\UIC{$\rho(\gamma)$}
 
-		\AXC{$ $} \RightLabel{4}
+		\AXC{$ $} \RightLabel{2}
 		\UIC{$\neg P(\rho)$} 
 				\AXC{Axiom 1 for $\rho$} \RightLabel{$\imp_E$}
 			\BIC{$P(\lambda x. \neg \rho(x))$}  
@@ -682,35 +683,45 @@ $$
 					\UIC{$\all \varphi. P(\varphi) \imp \varphi(\gamma)$} \RightLabel{$\all_E$}
 					\UIC{$P(\lambda x. \neg \rho(x)) \imp \neg \rho(\gamma)$} \RightLabel{$\imp_E$}
 				\BIC{$\neg \rho(\gamma)$} \RightLabel{$\neg_E$}      
-	   \BIC{$\bot$} \RightLabel{$\neg_I^4$}
+	   \BIC{$\bot$} \RightLabel{$\neg_I^2$}
 	   \UIC{$\neg\neg P(\rho)$} \RightLabel{$\neg\neg_E$}
 	   \UIC{$P(\rho)$}
+	   \end{prooftree}
+\end{small}
+
+
+\begin{small}
+\begin{prooftree}
+\AXC{$ $} \RightLabel{1}
+\UIC{$G(\gamma)$}
+
+ \AXC{$ $}\dashedLine
+  \UIC{$P(\rho)$}
 	      \AXC{Axiom 4} \dashedLine
 	   	  \UIC{$P(\rho) \imp \nec P(\rho)$} \RightLabel{$\imp_E$}
 		 \BIC{$\nec P(\rho)$}
-
-			\AXC{$ $} \RightLabel{5}
+			\AXC{$ $} \RightLabel{4}
 			\UIC{$\omega: P(\rho)$}
-
-					\AXC{$ $} \RightLabel{6}
+					\AXC{$ $} \RightLabel{3}
 					\UIC{$\omega: G(\delta) $} \dottedLine
 					\UIC{$\omega: \all \varphi. P(\varphi) \imp \varphi(\delta)$} \RightLabel{$\all_E$} 
 					\UIC{$\omega: P(\rho) \imp \rho(\delta)$} \RightLabel{$\imp_E$}
-				\BIC{$\omega: \rho(\delta) $} \RightLabel{$\imp_I^6$}
+				\BIC{$\omega: \rho(\delta) $} \RightLabel{$\imp_I^3$}
 				\UIC{$\omega: G(\delta) \imp \rho(\delta) $} \RightLabel{$\all_I$}
-				\UIC{$\omega: \all y. G(y) \imp \rho(y) $} \RightLabel{$\imp_I^5$}
-				\UIC{$\omega: P(\rho) \imp (\all y. G(y) \imp \rho(y) )$}
-				\UIC{$\nec (P(\rho) \imp (\all y. G(y) \imp \rho(y) ))$}
-						\AXC{K} \RightLabel{$\imp_E$}
+				\UIC{$\omega: \all y. G(y) \imp \rho(y) $} \RightLabel{$\imp_I^4$}
+				\UIC{$\omega: P(\rho) \imp (\all y. G(y) \imp \rho(y) )$} \RightLabel{$\nec_I$}
+				\UIC{$\nec (P(\rho) \imp (\all y. G(y) \imp \rho(y) ))$} \RightLabel{$\imp_E$}
+						\AXC{ K} \RightLabel{$\imp_E$}
 					\BIC{$\nec P(\rho) \imp \nec (\all y. G(y) \imp \rho(y) )$}
-			\BIC{$\nec (\all y. G(y) \imp \rho(y) )$} \RightLabel{$\imp_I$}
+			\BIC{$\nec (\all y. G(y) \imp \rho(y) )$} \RightLabel{$\imp_I^5$}
 			\UIC{$\rho(\gamma) \imp \nec (\all y. G(y) \imp \rho(y) )$} \RightLabel{$\all_I$}
-			\UIC{$\all q. q(\gamma) \imp \nec (\all y. G(y) \imp q(y) )$} \RightLabel{$\wedge_I$}
-		\BIC{$ G(\gamma) \wedge (\all q. q(\gamma) \imp \nec (\all y. G(y) \imp q(y) ))$} \dottedLine
+			\UIC{$\all \varphi. \varphi(\gamma) \imp \nec (\all y. G(y) \imp \varphi(y) )$} \RightLabel{$\wedge_I$}
+		\BIC{$ G(\gamma) \wedge (\all \varphi. \varphi(\gamma) \imp \nec (\all y. G(y) \imp \varphi(y) ))$} \dottedLine
 		\UIC{$\ess{G}{\gamma}$} \RightLabel{$ \imp_I^1$}
 		\UIC{$G(\gamma) \imp \ess{G}{\gamma}$} \RightLabel{$\all_I$}
 		\UIC{$\all x. G(x) \imp \ess{G}{x}$}
 \end{prooftree}
+\end{small}
 
 \end{proof}
 
@@ -818,7 +829,7 @@ $$
 \begin{prooftree}
 	\AXC{Corollary 1} \dashedLine
 	\UIC{$\pos \ex x. G(x)$}
-			\AXC{Lamma 2} \dashedLine
+			\AXC{Lemma 2} \dashedLine
 			\UIC{$\pos \ex x. G(x) \imp \nec \ex x. G(x)$} \RightLabel{$\imp_E$}
 		\BIC{$\nec \ex x. G(x)$}
 \end{prooftree}
@@ -1143,7 +1154,7 @@ is provable.
 
 \begin{small}
 \begin{prooftree}
-\AXC{Theorem \ref{***}}\dashedLine
+\AXC{Theorem 2 of Scott}\dashedLine
 \UIC{$\all y.[G(y) \imp \ess{G}{y}]$} \RightLabel{D2 }\doubleLine
 \UIC{$\all y.[G(y) \imp G(y) \wedge \all \psi. (\psi(y) \imp \nec \all x. (G(x) \imp \psi(x)))]$}
 \UIC{$\all y.[G(y) \imp \all \psi. (\psi(y) \imp \nec \all x. (G(x) \imp \psi(x)))]$} \doubleLine
@@ -1156,7 +1167,7 @@ is provable.
 \begin{prooftree}
 \AXC{}\dashedLine
 \UIC{$\ex y.G(y) \imp (A \imp \nec \all x. (G(x) \imp A))$}
-\AXC{Theorem \ref{T2}}\dashedLine
+\AXC{Theorem 3 of Scott}\dashedLine
 \UIC{$\nec \ex y.G(y)$} \RightLabel{$\nec_E$}
 \UIC{$\ex y.G(y)$} \RightLabel{$\imp_E$}
 \BIC{$ A \imp \nec \all x. (G(x) \imp A)$} \doubleLine
@@ -1165,7 +1176,7 @@ is provable.
 \UIC{$A$} \RightLabel{$\imp_E$}
 \BIC{$ \nec (\ex x. G(x) \imp A)$} \RightLabel{$\nec_E$}
 \UIC{$ \omega:  \ex x. G(x) \imp A$} \RightLabel{$\imp_E$}
-\AXC{Theorem \ref{T2}}\dashedLine
+\AXC{Theorem 3 of Scott}\dashedLine
 \UIC{$\nec \ex y.G(y)$} \RightLabel{$\nec_E$}
 \UIC{$\omega: \ex x.G(x)$} \RightLabel{$\imp_E$}
 \BIC{$\omega: A$} \RightLabel{$\nec_I$}
