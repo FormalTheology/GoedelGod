@@ -1,0 +1,34 @@
+tpi(com,start_group,a2).
+  thf(axA2,axiom,(v@(mforall_indset@^[Phi:mu>$i>$o]:
+   (mforall_indset@^[Psi:mu>$i>$o]:
+     (mimplies@(mand@(p@Phi)@(mbox@(mforall_ind@^[X:mu]:(mimplies@(Phi@X)@(Psi@X)))))@(p@Psi)))))).
+tpi(com,end_group,a2).
+
+tpi(com,start_group,a3).
+  thf(axA3,axiom,(v@(p@g))).
+tpi(com,end_group,a3).
+
+tpi(com,start_group,a4).
+  thf(axA4,axiom,(v@(mforall_indset@^[Phi:mu>$i>$o]:(mimplies@(p@Phi)@(mbox@(p@Phi)))))).
+tpi(com,end_group,a4).
+
+tpi(com,start_group,a5).
+ thf(axA5,axiom,(v@(p@ne))).
+tpi(com,end_group,a5).
+
+tpi(com,write,'%%%    Done.').
+tpi(com,write,'%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%').
+tpi(com,write,'').
+
+% Checking asynchroneously for satisfiability of Axioms.
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+tpi(com,execute_async,'SZS_AXIOM_STATUS' = 'Nitrox---2013 60 $getgroups(tpi)').
+
+% Checking asynchroneously for unsatisfiability of Goedel's original Axioms (modified definition D2).
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+tpi(com,start_group,d2orig).
+  thf(defD2orig,definition,(ess=(^[Phi:mu>$i>$o,X:mu]:(mforall_indset@^[Psi:mu>$i>$o]:
+   (mimplies@(Psi@X)@(mbox@(mforall_ind@^[Y:mu]:(mimplies@(Phi@Y)@(Psi@Y))))))))).
+tpi(com,end_group,d2orig).
+tpi(com,execute_async,'SZS_STATUS_D2orig' = 
+    'LEO-II---1.6.0 120 $getgroups(embedding,sig,symmetry,d2orig,a1a,a2,d3,a5)').

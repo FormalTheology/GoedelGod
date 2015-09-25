@@ -1,0 +1,236 @@
+%------------------------------------------------------------------------------
+% File     : SET008^2 : TPTP v6.0.0. Released v3.6.0.
+% Domain   : Set Theory
+% Axioms   : Definitions for relations
+% Version  : [Ben08] axioms.
+% English  :
+
+% Refs     : [BS+05] Benzmueller et al. (2005), Can a Higher-Order and a Fi
+%          : [BS+08] Benzmueller et al. (2007), Combined Reasoning by Autom
+%          : [Ben08] Benzmueller (2008), Email to Geoff Sutcliffe
+% Source   : [Ben08]
+% Names    : Typed_Relation [Ben08]
+
+% Status   : Satisfiable
+% Syntax   : Number of formulae    :   42 (   0 unit;  21 type;  21 defn)
+%            Number of atoms       :  391 (  25 equality; 105 variable)
+%            Maximal formula depth :   12 (   7 average)
+%            Number of connectives :   88 (   3   ~;   2   |;  12   &;  62   @)
+%                                         (   1 <=>;   8  =>;   0  <=;   0 <~>)
+%                                         (   0  ~|;   0  ~&;   0  !!;   0  ??)
+%            Number of type conns  :  142 ( 142   >;   0   *;   0   +)
+%            Number of symbols     :   23 (  21   :;   0  :=)
+%            Number of variables   :   72 (   0 sgn;  18   !;   6   ?;  48   ^)
+%                                         (  72   :;   0  :=;   0  !>;   0  ?*)
+% SPC      : 
+
+% Comments :
+%------------------------------------------------------------------------------
+thf(cartesian_product_decl,type,(
+    cartesian_product: ( $i > $o ) > ( $i > $o ) > $i > $i > $o )).
+
+thf(cartesian_product,definition,
+    ( cartesian_product
+    = ( ^ [X: $i > $o,Y: $i > $o,U: $i,V: $i] :
+          ( ( X @ U )
+          & ( Y @ V ) ) ) )).
+
+thf(pair_rel_decl,type,(
+    pair_rel: $i > $i > $i > $i > $o )).
+
+thf(pair_rel,definition,
+    ( pair_rel
+    = ( ^ [X: $i,Y: $i,U: $i,V: $i] :
+          ( ( U = X )
+          | ( V = Y ) ) ) )).
+
+thf(id_rel_decl,type,(
+    id_rel: ( $i > $o ) > $i > $i > $o )).
+
+thf(id_rel,definition,
+    ( id_rel
+    = ( ^ [S: $i > $o,X: $i,Y: $i] :
+          ( ( S @ X )
+          & ( X = Y ) ) ) )).
+
+thf(sub_rel_decl,type,(
+    sub_rel: ( $i > $i > $o ) > ( $i > $i > $o ) > $o )).
+
+thf(sub_rel,definition,
+    ( sub_rel
+    = ( ^ [R1: $i > $i > $o,R2: $i > $i > $o] :
+        ! [X: $i,Y: $i] :
+          ( ( R1 @ X @ Y )
+         => ( R2 @ X @ Y ) ) ) )).
+
+thf(is_rel_on_decl,type,(
+    is_rel_on: ( $i > $i > $o ) > ( $i > $o ) > ( $i > $o ) > $o )).
+
+thf(is_rel_on,definition,
+    ( is_rel_on
+    = ( ^ [R: $i > $i > $o,A: $i > $o,B: $i > $o] :
+        ! [X: $i,Y: $i] :
+          ( ( R @ X @ Y )
+         => ( ( A @ X )
+            & ( B @ Y ) ) ) ) )).
+
+thf(restrict_rel_domain_decl,type,(
+    restrict_rel_domain: ( $i > $i > $o ) > ( $i > $o ) > $i > $i > $o )).
+
+thf(restrict_rel_domain,definition,
+    ( restrict_rel_domain
+    = ( ^ [R: $i > $i > $o,S: $i > $o,X: $i,Y: $i] :
+          ( ( S @ X )
+          & ( R @ X @ Y ) ) ) )).
+
+thf(rel_diagonal_decl,type,(
+    rel_diagonal: $i > $i > $o )).
+
+thf(rel_diagonal,definition,
+    ( rel_diagonal
+    = ( ^ [X: $i,Y: $i] : ( X = Y ) ) )).
+
+thf(rel_composition_decl,type,(
+    rel_composition: ( $i > $i > $o ) > ( $i > $i > $o ) > $i > $i > $o )).
+
+thf(rel_composition,definition,
+    ( rel_composition
+    = ( ^ [R1: $i > $i > $o,R2: $i > $i > $o,X: $i,Z: $i] :
+        ? [Y: $i] :
+          ( ( R1 @ X @ Y )
+          & ( R2 @ Y @ Z ) ) ) )).
+
+thf(reflexive_decl,type,(
+    reflexive: ( $i > $i > $o ) > $o )).
+
+thf(reflexive,definition,
+    ( reflexive
+    = ( ^ [R: $i > $i > $o] :
+        ! [X: $i] :
+          ( R @ X @ X ) ) )).
+
+thf(irreflexive_decl,type,(
+    irreflexive: ( $i > $i > $o ) > $o )).
+
+thf(irreflexive,definition,
+    ( irreflexive
+    = ( ^ [R: $i > $i > $o] :
+        ! [X: $i] :
+          ~ ( R @ X @ X ) ) )).
+
+thf(symmetric_decl,type,(
+    symmetric: ( $i > $i > $o ) > $o )).
+
+thf(symmetric,definition,
+    ( symmetric
+    = ( ^ [R: $i > $i > $o] :
+        ! [X: $i,Y: $i] :
+          ( ( R @ X @ Y )
+         => ( R @ Y @ X ) ) ) )).
+
+thf(transitive_decl,type,(
+    transitive: ( $i > $i > $o ) > $o )).
+
+thf(transitive,definition,
+    ( transitive
+    = ( ^ [R: $i > $i > $o] :
+        ! [X: $i,Y: $i,Z: $i] :
+          ( ( ( R @ X @ Y )
+            & ( R @ Y @ Z ) )
+         => ( R @ X @ Z ) ) ) )).
+
+thf(equiv_rel__decl,type,(
+    equiv_rel: ( $i > $i > $o ) > $o )).
+
+thf(equiv_rel,definition,
+    ( equiv_rel
+    = ( ^ [R: $i > $i > $o] :
+          ( ( reflexive @ R )
+          & ( symmetric @ R )
+          & ( transitive @ R ) ) ) )).
+
+thf(rel_codomain_decl,type,(
+    rel_codomain: ( $i > $i > $o ) > $i > $o )).
+
+thf(rel_codomain,definition,
+    ( rel_codomain
+    = ( ^ [R: $i > $i > $o,Y: $i] :
+        ? [X: $i] :
+          ( R @ X @ Y ) ) )).
+
+thf(rel_domain_decl,type,(
+    rel_domain: ( $i > $i > $o ) > $i > $o )).
+
+thf(rel_domain,definition,
+    ( rel_domain
+    = ( ^ [R: $i > $i > $o,X: $i] :
+        ? [Y: $i] :
+          ( R @ X @ Y ) ) )).
+
+thf(rel_inverse_decl,type,(
+    rel_inverse: ( $i > $i > $o ) > $i > $i > $o )).
+
+thf(rel_inverse,definition,
+    ( rel_inverse
+    = ( ^ [R: $i > $i > $o,X: $i,Y: $i] :
+          ( R @ Y @ X ) ) )).
+
+thf(equiv_classes_decl,type,(
+    equiv_classes: ( $i > $i > $o ) > ( $i > $o ) > $o )).
+
+thf(equiv_classes,definition,
+    ( equiv_classes
+    = ( ^ [R: $i > $i > $o,S1: $i > $o] :
+        ? [X: $i] :
+          ( ( S1 @ X )
+          & ! [Y: $i] :
+              ( ( S1 @ Y )
+            <=> ( R @ X @ Y ) ) ) ) )).
+
+thf(restrict_rel_codomain_decl,type,(
+    restrict_rel_codomain: ( $i > $i > $o ) > ( $i > $o ) > $i > $i > $o )).
+
+thf(restrict_rel_codomain,definition,
+    ( restrict_rel_codomain
+    = ( ^ [R: $i > $i > $o,S: $i > $o,X: $i,Y: $i] :
+          ( ( S @ Y )
+          & ( R @ X @ Y ) ) ) )).
+
+thf(rel_field_decl,type,(
+    rel_field: ( $i > $i > $o ) > $i > $o )).
+
+thf(rel_field,definition,
+    ( rel_field
+    = ( ^ [R: $i > $i > $o,X: $i] :
+          ( ( rel_domain @ R @ X )
+          | ( rel_codomain @ R @ X ) ) ) )).
+
+thf(well_founded_decl,type,(
+    well_founded: ( $i > $i > $o ) > $o )).
+
+thf(well_founded,definition,
+    ( well_founded
+    = ( ^ [R: $i > $i > $o] :
+        ! [X: $i > $o,Z: $i] :
+          ( ( X @ Z )
+         => ? [Y: $i] :
+              ( ( X @ Y )
+              & ! [W: $i] :
+                  ( ( R @ Y @ W )
+                 => ~ ( X @ W ) ) ) ) ) )).
+
+thf(upwards_well_founded_decl,type,(
+    upwards_well_founded: ( $i > $i > $o ) > $o )).
+
+thf(upwards_well_founded,definition,
+    ( upwards_well_founded
+    = ( ^ [R: $i > $i > $o] :
+        ! [X: $i > $o,Z: $i] :
+          ( ( X @ Z )
+         => ? [Y: $i] :
+              ( ( X @ Y )
+              & ! [W: $i] :
+                  ( ( R @ W @ Y )
+                 => ~ ( X @ W ) ) ) ) ) )).
+
+%------------------------------------------------------------------------------

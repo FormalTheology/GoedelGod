@@ -1,0 +1,8 @@
+(<=>
+   (instance ?REL TransitiveRelation)
+   (forall (?INST1 ?INST2 ?INST3)
+      (=>
+         (and
+            (?REL ?INST1 ?INST2)
+            (?REL ?INST2 ?INST3))
+         (?REL ?INST1 ?INST3))))

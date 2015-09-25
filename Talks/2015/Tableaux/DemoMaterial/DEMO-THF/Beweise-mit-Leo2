@@ -1,0 +1,175 @@
+BLACK=$(tput setaf 0)
+RED=$(tput setaf 1)
+GREEN=$(tput setaf 2)
+YELLOW=$(tput setaf 3)
+LIME_YELLOW=$(tput setaf 190)
+POWDER_BLUE=$(tput setaf 153)
+BLUE=$(tput setaf 4)
+MAGENTA=$(tput setaf 5)
+CYAN=$(tput setaf 6)
+WHITE=$(tput setaf 7)
+BRIGHT=$(tput bold)
+NORMAL=$(tput sgr0)
+BLINK=$(tput blink)
+REVERSE=$(tput smso)
+UNDERLINE=$(tput smul)
+
+tput sgr0
+tput bold
+
+clear
+echo "> "
+echo -n "> "
+sleep 3
+echo ""
+echo -n "> "
+sleep .1
+echo -n "B"
+sleep .13
+echo -n "e"
+sleep .05
+echo -n "w"
+sleep .1
+echo -n "e"
+sleep .05
+echo -n "i"
+sleep .06
+echo -n "s"
+sleep .1
+echo -n "e"
+sleep .17
+echo -n "-"
+sleep .12
+echo -n "m"
+sleep .05
+echo -n "i"
+sleep .05
+echo -n "t"
+sleep .12
+echo -n "-"
+sleep .1
+echo -n "L"
+sleep .07
+echo -n "e"
+sleep .1
+echo -n "o"
+sleep .09
+echo -n "2"
+sleep .03
+echo -n " "
+sleep .12
+echo -n "N"
+sleep .1
+echo -n "o"
+sleep .08
+echo -n "t"
+sleep .08
+echo -n "w"
+sleep .12
+echo -n "e"
+sleep .13
+echo -n "n"
+sleep .05
+echo -n "d"
+sleep .08
+echo -n "i"
+sleep .09
+echo -n "g"
+sleep .13
+echo -n "e"
+sleep .1
+echo -n "r"
+sleep .1
+echo -n "w"
+sleep .07
+echo -n "e"
+sleep .03
+echo -n "i"
+sleep .08
+echo -n "s"
+sleep .05
+echo -n "e"
+sleep .1
+echo -n "-"
+sleep .06
+echo -n "e"
+sleep .1
+echo -n "x"
+sleep .09
+echo -n "i"
+sleep .04
+echo -n "s"
+sleep .13
+echo -n "t"
+sleep .08
+echo -n "i"
+sleep .09
+echo -n "e"
+sleep .05
+echo -n "r"
+sleep .09
+echo -n "t"
+sleep .12
+echo -n "-"
+sleep .05
+echo -n "G"
+sleep .07
+echo -n "o"
+sleep .08
+echo -n "t"
+sleep .08
+echo -n "t"
+sleep .15
+echo -n "."
+sleep .08
+echo -n "p"
+sleep .05
+
+echo " "
+echo " "
+echo "${RED}Leo-II tries to prove"
+echo "${RED}====================="
+echo
+echo "${BLUE}  Goedel's Theorem T3: \"Necessarily, God exists\""
+echo "${GREEN}  thf(thmT3,conjecture,"
+echo "${GREEN}      ( v"
+echo "${GREEN}      @ ( mbox"
+echo "${GREEN}        @ ( mexists_ind"
+echo "${GREEN}          @ ^ [X: mu] :"
+echo "${GREEN}              ( g @ X ) ) ) ))."
+#echo "${GREEN}  thf(thmT3,conjecture, ( v @ ( mbox @ ( mexists_ind @ ^ [X: mu] : ( g @ X ) ) ) ))."
+echo
+echo "${GREEN}  Assumptions: D1, C, T2, D3, A5"
+sleep 1
+echo
+echo -n "${RED} . searching for proof " 
+sleep 1
+echo -n "${RED}." 
+sleep 1
+echo "${RED}." 
+echo
+echo "${GREEN} ********************"
+echo "${GREEN} *   Proof found    *"
+echo "${GREEN} ********************"
+echo "${GREEN} % SZS status Theorem for Notwendigerweise-existiert-Gott.p"
+echo
+echo -n "${RED} . generating proof object "
+sleep 1
+echo -n "${RED}."
+sleep 1 
+echo -n "${RED}."
+sleep 1 
+echo -n "${RED}.${BLUE}"
+echo 
+echo
+./leo Notwendigerweise-existiert-Gott.p -po 1
+
+echo
+echo "${RED} done: printing of proof object"
+echo "${BLACK}"
+echo -n "> "
+
+sleep 5
+
+#echo "> ./Beweise-mit-Leo2 Notwendigerweise-existiert-Gott.p"
+./Beweise-mit-Leo2 Notwendigerweise-existiert-Gott.p

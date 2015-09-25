@@ -1,0 +1,199 @@
+%------------------------------------------------------------------------------
+% File     : LCL008^0 : TPTP v6.0.0. Released v3.6.0.
+% Domain   : Logical Calculi (Modal Logic)
+% Axioms   : Multi-Modal Logic
+% Version  : [Ben08] axioms : Especial.
+% English  :
+
+% Refs     : [Ben08] Benzmueller (2008), Email to G. Sutcliffe
+%          : [BP08]  Benzmueller & Paulson (2009), Exploring Properties of
+% Source   : [Ben08]
+% Names    : MODAL_LOGIC [Ben08]
+
+% Status   : Satisfiable
+% Syntax   : Number of formulae    :   35 (   2 unit;  20 type;  15 defn)
+%            Number of atoms       :  212 (  15 equality;  40 variable)
+%            Maximal formula depth :    9 (   5 average)
+%            Number of connectives :   35 (   3   ~;   1   |;   2   &;  28   @)
+%                                         (   0 <=>;   1  =>;   0  <=;   0 <~>)
+%                                         (   0  ~|;   0  ~&;   0  !!;   0  ??)
+%            Number of type conns  :   79 (  79   >;   0   *;   0   +)
+%            Number of symbols     :   21 (  20   :;   0  :=)
+%            Number of variables   :   36 (   2 sgn;   4   !;   4   ?;  28   ^)
+%                                         (  36   :;   0  :=;   0  !>;   0  ?*)
+% SPC      : 
+
+% Comments : THF0 syntax
+%------------------------------------------------------------------------------
+%----Our possible worlds are are encoded as terms the type  $i;
+%----Here is a constant for the current world:
+thf(current_world,type,(
+    current_world: $i )).
+
+%----Modal logic propositions are then becoming predicates of type ( $i> $o);
+%----We introduce some atomic multi-modal logic propositions as constants of
+%----type ( $i> $o):
+thf(prop_a,type,(
+    prop_a: $i > $o )).
+
+thf(prop_b,type,(
+    prop_b: $i > $o )).
+
+thf(prop_c,type,(
+    prop_c: $i > $o )).
+
+%----The idea is that an atomic multi-modal logic proposition P (of type
+%---- $i >  $o) holds at a world W (of type  $i) iff W is in P resp. (P @ W)
+%----Now we define the multi-modal logic connectives by reducing them to set
+%----operations
+%----mfalse corresponds to emptyset (of type $i)
+thf(mfalse_decl,type,(
+    mfalse: $i > $o )).
+
+thf(mfalse,definition,
+    ( mfalse
+    = ( ^ [X: $i] : $false ) )).
+
+%----mtrue corresponds to the universal set (of type $i)
+thf(mtrue_decl,type,(
+    mtrue: $i > $o )).
+
+thf(mtrue,definition,
+    ( mtrue
+    = ( ^ [X: $i] : $true ) )).
+
+%----mnot corresponds to set complement
+thf(mnot_decl,type,(
+    mnot: ( $i > $o ) > $i > $o )).
+
+thf(mnot,definition,
+    ( mnot
+    = ( ^ [X: $i > $o,U: $i] :
+          ~ ( X @ U ) ) )).
+
+%----mor corresponds to set union
+thf(mor_decl,type,(
+    mor: ( $i > $o ) > ( $i > $o ) > $i > $o )).
+
+thf(mor,definition,
+    ( mor
+    = ( ^ [X: $i > $o,Y: $i > $o,U: $i] :
+          ( ( X @ U )
+          | ( Y @ U ) ) ) )).
+
+%----mand corresponds to set intersection
+thf(mand_decl,type,(
+    mand: ( $i > $o ) > ( $i > $o ) > $i > $o )).
+
+thf(mand,definition,
+    ( mand
+    = ( ^ [X: $i > $o,Y: $i > $o,U: $i] :
+          ( ( X @ U )
+          & ( Y @ U ) ) ) )).
+
+%----mimpl defined via mnot and mor
+thf(mimpl_decl,type,(
+    mimpl: ( $i > $o ) > ( $i > $o ) > $i > $o )).
+
+thf(mimpl,definition,
+    ( mimpl
+    = ( ^ [U: $i > $o,V: $i > $o] :
+          ( mor @ ( mnot @ U ) @ V ) ) )).
+
+%----miff defined via mand and mimpl
+thf(miff_decl,type,(
+    miff: ( $i > $o ) > ( $i > $o ) > $i > $o )).
+
+thf(miff,definition,
+    ( miff
+    = ( ^ [U: $i > $o,V: $i > $o] :
+          ( mand @ ( mimpl @ U @ V ) @ ( mimpl @ V @ U ) ) ) )).
+
+%----mbox
+thf(mbox_decl,type,(
+    mbox: ( $i > $i > $o ) > ( $i > $o ) > $i > $o )).
+
+thf(mbox,definition,
+    ( mbox
+    = ( ^ [R: $i > $i > $o,P: $i > $o,X: $i] :
+        ! [Y: $i] :
+          ( ( R @ X @ Y )
+         => ( P @ Y ) ) ) )).
+
+%----mdia
+thf(mdia_decl,type,(
+    mdia: ( $i > $i > $o ) > ( $i > $o ) > $i > $o )).
+
+thf(mdia,definition,
+    ( mdia
+    = ( ^ [R: $i > $i > $o,P: $i > $o,X: $i] :
+        ? [Y: $i] :
+          ( ( R @ X @ Y )
+          & ( P @ Y ) ) ) )).
+
+%----For mall and mexists, i.e., first order modal logic, we declare a new
+%----base type individuals
+thf(individuals_decl,type,(
+    individuals: $tType )).
+
+%----mall
+thf(mall_decl,type,(
+    mall: ( individuals > $i > $o ) > $i > $o )).
+
+thf(mall,definition,
+    ( mall
+    = ( ^ [P: individuals > $i > $o,W: $i] :
+        ! [X: individuals] :
+          ( P @ X @ W ) ) )).
+
+%----mexists
+thf(mexists_decl,type,(
+    mexists: ( individuals > $i > $o ) > $i > $o )).
+
+thf(mexists,definition,
+    ( mexists
+    = ( ^ [P: individuals > $i > $o,W: $i] :
+        ? [X: individuals] :
+          ( P @ X @ W ) ) )).
+
+%----Validity of a multi modal logic formula can now be encoded as
+thf(mvalid_decl,type,(
+    mvalid: ( $i > $o ) > $o )).
+
+thf(mvalid,definition,
+    ( mvalid
+    = ( ^ [P: $i > $o] :
+        ! [W: $i] :
+          ( P @ W ) ) )).
+
+%----Satisfiability of a multi modal logic formula can now be encoded as
+thf(msatisfiable_decl,type,(
+    msatisfiable: ( $i > $o ) > $o )).
+
+thf(msatisfiable,definition,
+    ( msatisfiable
+    = ( ^ [P: $i > $o] :
+        ? [W: $i] :
+          ( P @ W ) ) )).
+
+%----Countersatisfiability of a multi modal logic formula can now be encoded as
+thf(mcountersatisfiable_decl,type,(
+    mcountersatisfiable: ( $i > $o ) > $o )).
+
+thf(mcountersatisfiable,definition,
+    ( mcountersatisfiable
+    = ( ^ [P: $i > $o] :
+        ? [W: $i] :
+          ~ ( P @ W ) ) )).
+
+%----Invalidity of a multi modal logic formula can now be encoded as
+thf(minvalid_decl,type,(
+    minvalid: ( $i > $o ) > $o )).
+
+thf(minvalid,definition,
+    ( minvalid
+    = ( ^ [P: $i > $o] :
+        ! [W: $i] :
+          ~ ( P @ W ) ) )).
+
+%------------------------------------------------------------------------------

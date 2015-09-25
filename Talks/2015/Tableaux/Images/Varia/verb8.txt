@@ -1,0 +1,28 @@
+% 7b. Report on Inconsistency of Goedel's original axioms.
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+tpi(com,waitenv,'SZS_STATUS_D2orig').
+tpi(com,write,'%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%').
+tpi(com,write,'%%% 7b. Proving inconsistency of Goedel`s original axioms (d2orig).').
+tpi(com,write,'%%%     Checking  d2orig,a1a,a2,d3,a5  (using LEO-II).').
+tpi(com,output,stdout = d2orig).
+tpi(com,write,'%%%     SZS_STATUS_D2orig for d2orig is ' & '$getenv(SZS_STATUS_D2orig)').
+tpi(com,assert,$getenv('SZS_STATUS_D2orig') = 'Unsatisfiable').
+tpi(com,write,'%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%').
+tpi(com,write,'').
+
+% Analysing modal collapse (asynchroneously).
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+tpi(com,start_group,mc).
+  thf(phi_type,type,(phi:$i>$o)).
+  thf(thmMC_con,conjecture,(v@(mimplies@phi@(mbox@phi)))).
+tpi(com,end_group,mc).
+tpi(com,execute_async,'SZS_STATUS_MC' = 
+    'LEO-II---1.6.0 40 $getgroups(embedding,symmetry,sig,d2,t2,t3,mc)').
+
+% Analysing flawlessness (asynchroneously).
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+tpi(com,start_group,fg).
+  thf(thmFG_con,conjecture,(v@(mforall_indset@^[Phi:mu>$i>$o]:(mforall_ind@^[X:mu]:
+                                (mimplies@(g@X)@(mimplies@(mnot@(p@Phi))@(mnot@(Phi@X)))))))).
+tpi(com,end_group,fg).
+tpi(com,execute_async,'SZS_STATUS_FG' = 'LEO-II---1.6.0 40 $getgroups(embedding,sig,a1b,d1,fg)').

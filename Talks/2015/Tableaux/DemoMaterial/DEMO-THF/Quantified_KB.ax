@@ -1,0 +1,35 @@
+%----The base type $i (already built-in) stands here for worlds and
+%----mu for individuals; $o (also built-in) is the type of Booleans
+thf(mu_type,type,(mu:$tType)).
+%----Reserved constant r for accessibility relation
+thf(r,type,(r:$i>$i>$o)).
+%----Modal logic operators not, or, and, implies, box, diamond
+thf(mnot_type,type,(mnot:($i>$o)>$i>$o)).
+thf(mnot,definition,(mnot = (^[A:$i>$o,W:$i]:~(A@W)))).
+thf(mor_type,type,(mor:($i>$o)>($i>$o)>$i>$o)).
+thf(mor,definition,(mor = (^[A:$i>$o,Psi:$i>$o,W:$i]:((A@W)|(Psi@W))))).
+thf(mand_type,type,(mand:($i>$o)>($i>$o)>$i>$o)).
+thf(mand,definition,(mand = (^[A:$i>$o,Psi:$i>$o,W:$i]:((A@W)&(Psi@W))))).
+thf(mimplies_type,type,(mimplies:($i>$o)>($i>$o)>$i>$o)).
+thf(mimplies,definition,(mimplies = (^[A:$i>$o,Psi:$i>$o,W:$i]:((A@W)&(Psi@W))))).
+thf(mbox_type,type,(mbox:($i>$o)>$i>$o)).
+thf(mbox,definition,(mbox = (^[A:$i>$o,W:$i]:![V:$i]:(~(r@W@V)|(A@V))))).
+thf(mdia_type,type,(mdia:($i>$o)>$i>$o)).
+thf(mdia,definition,(mdia = (^[A:$i>$o,W:$i]:?[V:$i]:((r@W@V)&(A@V))))).
+%----Quantifiers (constant domains) for individuals and propositions 
+thf(mforall_ind_type,type,(mforall_ind:(mu>$i>$o)>$i>$o)).
+thf(mforall_ind,definition,(mforall_ind = (^[A:mu>$i>$o,W:$i]:![X:mu]:(A@X@W)))).
+thf(mforall_indset_type,type,(mforall_indset:((mu>$i>$o)>$i>$o)>$i>$o)).
+thf(mforall_indset,definition,(mforall_indset = (^[A:(mu>$i>$o)>$i>$o,W:$i]:![X:mu>$i>$o]:(A@X@W)))).
+thf(mexists_ind_type,type,(mexists_ind:(mu>$i>$o)>$i>$o)).
+thf(mexists_ind,definition,(mexists_ind = (^[A:mu>$i>$o,W:$i]:?[X:mu]:(A@X@W)))).
+thf(mexists_indset_type,type,(mexists_indset:((mu>$i>$o)>$i>$o)>$i>$o)).
+thf(mexists_indset,definition,(mexists_indset = (^[A:(mu>$i>$o)>$i>$o,W:$i]:?[X:mu>$i>$o]:(A@X@W)))).
+%----Definition of validity (grounding of lifted modal formulas)
+thf(v_type,type,(v:($i>$o)>$o)).
+thf(mvalid,definition,(v = (^[A:$i>$o]:![W:$i]:(A@W)))).
+%----Properties of accessibility relations: symmetry
+thf(msymmetric_type,type,(msymmetric:($i>$i>$o)>$o)).
+thf(msymmetric,definition,(msymmetric = (^[R:$i>$i>$o]:![S:$i,T:$i]:((R@S@T)=>(R@T@S))))).
+%----Here we work with logic KB, i.e., we postulate symmetry for r
+thf(sym,axiom,(msymmetric@r)).

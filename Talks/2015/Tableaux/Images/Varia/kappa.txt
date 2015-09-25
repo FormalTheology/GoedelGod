@@ -1,0 +1,7 @@
+(=> 
+  (attribute ?X Celebrity) 
+  (greaterThan  
+    (CardinalityFn 
+      (KappaFn ?A 
+        (knows ?A (exists (?P) (equal ?P ?X))))) 
+    1000)) 

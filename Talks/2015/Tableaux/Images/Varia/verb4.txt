@@ -1,0 +1,37 @@
+% 2. Analysing theorem t1.
+%%%%%%%%%%%%%%%%%%%%%%%%%%
+tpi(com,start_group,t1).
+  thf(thmT1_con,conjecture,
+   (v@(mforall_indset@^[Phi:mu>$i>$o]:(mimplies@(p@Phi)@(mdia@(mexists_ind@^[X:mu]:(Phi@X))))))).
+tpi(com,end_group,t1).
+tpi(com,execute,'SZS_STATUS_t1' = 'LEO-II---1.6.0 20 $getgroups(embedding,sig,a1a,a2,t1)').
+tpi(com,write,'%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%').
+tpi(com,write,'%%% 2. Analysing theorem t1.').
+tpi(com,write,'%%%    Checking a1a,a2 |- t1 (using LEO-II).').
+tpi(com,output,stdout = a1a).
+tpi(com,output,stdout = a2).
+tpi(com,output,stdout = t1).
+tpi(com,write,'%%%    SZS_STATUS for t1 is ' & '$getenv(SZS_STATUS_t1)').
+tpi(com,assert,$getenv('SZS_STATUS_t1') = 'Theorem').
+tpi(com,set_role,thmT1_con = lemma).
+tpi(com,write,'%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%').
+tpi(com,write,'').
+
+% 3. Analysing corollary c.
+%%%%%%%%%%%%%%%%%%%%%%%%%%%
+tpi(com,start_group,c).
+  thf(corC_con,conjecture,(v@(mdia@(mexists_ind@^[X:mu]:(g@X))))).
+tpi(com,end_group,c).
+tpi(com,execute,'SZS_STATUS_c' = 'LEO-II---1.6.0 20 $getgroups(embedding,sig,d1,a3,t1,c)').
+tpi(com,write,'%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%').
+tpi(com,write,'%%% 3. Analysing corollary c.').
+tpi(com,write,'%%%    Checking d1,a3,t1 |- c (using LEO-II).').
+tpi(com,output,stdout = d1).
+tpi(com,output,stdout = a3).
+tpi(com,output,stdout = t1).
+tpi(com,output,stdout = c).
+tpi(com,write,'%%%    SZS_STATUS for c is ' & '$getenv(SZS_STATUS_c)').
+tpi(com,assert,$getenv('SZS_STATUS_c') = 'Theorem').
+tpi(com,set_role,corC_con = lemma).
+tpi(com,write,'%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%').
+tpi(com,write,'').
