@@ -1,4 +1,6 @@
-theory GoedelGodWithoutConjunctInEss_K_var imports QML_var
+theory GoedelGodWithoutConjunctInEss_K_var 
+imports Main "../QML_var"
+
 begin
   consts P :: "(\<mu> \<Rightarrow> \<sigma>) \<Rightarrow> \<sigma>"  
   definition ess (infixr "ess" 85) where "\<Phi> ess x = \<forall>(\<lambda>\<Psi>. \<Psi> x m\<rightarrow> \<box> (\<forall>e(\<lambda>y. \<Phi> y m\<rightarrow> \<Psi> y)))"

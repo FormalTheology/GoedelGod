@@ -1,4 +1,6 @@
-theory GoedelGodWithoutConjunctInEss_KB_var imports QML_var
+theory GoedelGodWithoutConjunctInEss_KB_var 
+imports  Main "../QML_var"
+
 begin
   consts P :: "(\<mu> \<Rightarrow> \<sigma>) \<Rightarrow> \<sigma>"  
   axiomatization where A1a: "[\<forall>(\<lambda>\<Phi>. P (\<lambda>x. m\<not> (\<Phi> x)) m\<rightarrow> m\<not> (P \<Phi>))]"
