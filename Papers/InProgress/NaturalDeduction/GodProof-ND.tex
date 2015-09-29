@@ -61,48 +61,46 @@ which deals with concepts of the highest abstractness; and this is also most hig
 \end{footnotesize}
 
 
-%Begin with a focus on more recent stuff such as Gödel, not Anselm and so on. Focus on the improved level of formalization of the argument through Leibniz/Descartes/Kant and so on. 
-%Think about how much can be claimed about Russell, Descartes, Kant and so on... 
-%Russell eliminated or expained as a valuable contribution to the formal proof. 
-%check the Solmon paper to se about proofs in KB. Other ontological proofs. 
-%Relate introduction to the beginning quote
+
 %spell check
-%How to use the words God, God-like, god-like and greatest conceivable being. 
-%Theorem reference missing in the proof of modal collapse
-%Write the section on axiom B and the strength of the modal system that is necessary. 
+
+
+
+%Extra: 
+
+%Difference in the formalizations of Leibniz and Gödel? Why did Gödel change to conjunction? 
+
+%Kant argued against the ontological argument on the basis that existence is not an analytic property \citep{kant}. This means that existence cannot be contained in the definition of a concept, because it is generally synthetic. The strongest claim that can be proven by the ontological argument is a conditional claim of necessary existence: if God exists, then God necessarily exists \citep{citation needed}.
+
+% Another, possibly undesirable, consequence of the formalism is that there can only be one God, which is defined by the axioms. Namely, if one assumes that the theory contains the equality relation then a God has the property of being identical to itself. Since any other god-like being would have at least the same properties it shares the property of being identical to the one God. Thus, we have proved monotheism \citep{sobel2}[Ch. 4, section 3.3.2]. %\citep{fitting}[The proof is Exercise 7.1, p.163].  Inclusion of identity relation gives monothemism?*** Reference missing? 
+
+
+% The question arises what kind of second order quantification is allowed. The instantiations that are used in our proof are instantiated with predicate variables that later work as eigenvariables for the second order universal introduction. In the proof of corollary \ref{C1} we instantiate with $G$ and in the proof of lemma \ref{L1}. we instantiate with $G$ and $E$. %In Sobel on G\"{o}del's ontological proof by Robert E. Koons this question is raised.
+
+% One can also discuss if a second order modal logic is sound and complete. With Henkin models, which restrict the second order quantification with comprehension, we have that normal second order logic is sound and complete. There is a completeness proof for a second order modal logic found in A completeness theorem in second order modal logic by Cocchiarella. 
+
+% ToDo: check if disjunction rules are used in Goedel's proof. If not, we could define disjunction as we already do for negation and equivalence.
+
 
 \section{Introduction}
 
-Ontological arguments for the existence of God can be traced back at least to St. Anselm (1033-1109). His argument considers a greatest conceivable being, who must exist, because if it did not have the property of existence, then we could conceive of a greater being that, apart from the other properties, also has the property of existence. 
+Ontological arguments for the existence of God can be traced back at least to St. Anselm (1033-1109). His argument considers a greatest conceivable being, who must exist, because if it did not have the property of existence, then we could conceive of a greater being that, apart from the other properties, also has the property of existence. St. Anselm's argument was further elaborated by Descartes, Leibniz and Kant. 
 
-A major critique of this argument is that we do not know whether the concept of greatest conceivable being in fact designates anything or if it is inconsistent, like a round square \citep{fitting}[p.134].  
-%The question is if the argument is sound. 
-As Bertrand Russell pointed out, the definition of greatest conceivable being allows us to define properties, like having boots, which the being then also must have \citep{citation needed}. 
+Leibniz identified the possible existence of God as a critical missing step in St. Anselm's argument. To fill this gap, he argued that the properties of God, the perfections, are compatible. This means that it is possible to satisfy all perfections at once which implies that the existence of a greatest conceivable being with all these properties is possible. 
 
-Kant argued against the ontological argument on the basis that existence is not an analytic property \citep{kant}. This means that existence cannot be contained in the definition of a concept, because it is generally synthetic. The strongest claim that can be proven by the ontological argument is a conditional claim of necessary existence: if God exists, then God necessarily exists \citep{citation needed}.
+G\"odel bulit on Leibniz's work \cite{adams} and brought the ontological argument to a modern form using a modal logic with higher-order quantification over properties. In this setting, he gave precise axioms describing the notion of \emph{positive} property and defined God as a being that has all positive properties. G\"odel's work was saved in his own notes \cite{Goedel} as well as notes by Scott \cite{Scott}, in whom he confided his proof. 
 
-St. Anselm's argument was further elaborated by Descartes and Leibniz. Leibniz identified the possible existence of God as a critical missing step in St. Anselm's argument. To fill this gap, he argued that the properties of God, the perfections, are compatible. This means that it is possible to satisfy all perfections at once which implies that 
-the existence of a greatest conceivable being with all these properties is possible. 
+The increase in formality of the ontological argument has required a development of the basic notions. G\"odel's notion of positive property and Leibniz's notion of perfection differ. A formal distinction is that Leibniz's perfections are atomic whereas G\"odel's positive properties can consist of combinations of atomic properties \citep{fitting}[p.139]. In particular, one of G\"odel's axioms states that any conjunction of positive properties is itself positive. From this axiom, it is immediately deduced that the property of being god-like is positive. Intuitively, a (possibly infinite) conjunction of positive properties is deduced from the universal definition of God-likeness. This deductive inference is not formalizable in a finite first-order calculus. The interplay between universal quantification (in the definition of a god-like being) and infinite conjunctions (in G\"odel's axiom for positive properties) could explain why, starting with Scott \cite{Scott}, this axiom o!
+ f G\"odel has been replaced by another that simply assumes the positivity of the property of being god-like. 
 
-G\"odel studied Leibniz's work \citep{Adams} and brought his ontological argument to a modern form using a modal logic with higher-order quantification over properties. In this setting, he gave precise axioms describing the notion of \emph{positive} property and defined God as a being having all positive properties. 
+The main criticism against the ontological argument is that its soundness has been doubted. As Fitting \citep{fitting}[p.134] described the problem ''we do not know whether the concept of greatest conceivable being in fact designates anything or if it is inconsistent, like a round square''.  
 
-G\"odel's notion of positive property and Leibniz's notion of perfection differ \citep{Adams}. The main formal distinction seems to be that G\"odel's positive properties are not just atomic properties, like Leibniz's perfections, but can also consist of complex combinations of atomic properties \citep{fitting}[p.139.] (TODO: Check this claim). In particular, one of G\"odel's axioms states that any conjunction of positive properties is itself positive. From this axiom, it is immediately deduced that the property of being God-like is positive. While this step is intuitively and informally clear, it is not easily formalizable in a standard logical calculus, because it requires inferring that being God-like is a (possibly infinite) conjunction of positive properties, from the universal definition of God-likeness as the property satisfied by individuals who have all positive properties. This interplay between universal quantification (in the definition of a God-like being) and in!
- finite conjunctions (in G\"odel's axiom for positive properties) is a technical difficulty that probably explains why, starting with Scott \cite{Scott}, to whom G\"odel confided his manuscript, this axiom of G\"odel's has been replaced by another that simply assumes the positivity of the property of being God-like. 
+The main criticism against G\"odel's formal argument is an undesirable consequence of the stipulated axioms, called \emph{modal collapse}. Many recent works on the ontological argument have focused on proposing modifications of the argument that would not entail a modal collapse. This is discussed in greater detail in Section \ref{sec:collapse}, but possible solutions are not implemented in this paper.
 
-The main criticism against G\"odel's ontological argument is an undesirable consequence of the stipulated axioms, called \emph{modal collapse}. Many recent works \cite{todo} on the ontological argument have focused on proposing modifications of the argument that would not entail a modal collapse. This is discussed in greater detail in Section \ref{sec:collapse}, but possible solutions are not implemented in this paper.
+The aim of this paper is to present two detailed formal proofs of G\"odel's ontological argument in a natural deduction calculus (as defined in Section \ref{sec:calculus}). For a comprehensive introduction to natural deduction the reader can consult \citep{prawitz}. The natural deduction style was chosen for three reasons. Firstly, presentations of G\"odel's proof are typically either informal or formalized in other styles of calculi (e.g. Fitting's tableaux \cite{fitting} or Sobel's sentential modal calculus \cite{sobel2}). Therefore, a formalization in natural deduction is a valuable complement to the existing presentations. Secondly, it makes the ontological proof accessible to people who are familiarized with a natural deduction style. Thirdly, as natural deduction is the style used by proof assistants such as Coq \cite{coq} and Isabelle \cite{isabelle}, the natural deduction formalizations have been easily checked step-by-step in Coq \cite{coqformalizations}.
 
-%This axiom is unfortunately equivalent to the possibility of God's existence given the other axioms, leading to criticisms that it might be too strong \citep{sobel2}\citep{fitting}[Section 11.4. Objections.]. 
+The first contribution of this paper is a detailed formalization of Scott's version \cite{Scott} of G\"odel's ontological argument \cite{Goedel} (as shown in Section \ref{sec:scott}) in a natural deduction calculus. In section \ref{sec:compl-sound} we prove that the calculus used is sound and complete relative to an axiomatic modal calculus and this detailed formalization of Scott's version has as been formally verified. The second contribution of the paper is a new proof (also in natural deduction style) in a natural deduction calculus. In contrast to Scott's proof \cite{Scott} formalized in the modal calculus S5, the latter proof is formalized in KB, as discussed in Section \ref{sec:AxiomB}.
 
-%The possibility  God's existence in turn is equivalent to  God's necessary existence as well as  God's existence itself. Thus, we have an axiom which seems to be equivalent to the conclusion. 
-
-
- % This axiom of the positiveness of conjunctions can be given a third order formulation which is the reason for the claim that third-order quantification may be required \citep{and}. %\citep{fitting}[p. 148.]   
-
-% Another, possibly undesirable, consequence of the formalism is that there can only be one God, which is defined by the axioms. Namely, if one assumes that the theory contains the equality relation then a God has the property of being identical to itself. Since any other god-like being would have at least the same properties it shares the property of being identical to the one God. Thus, we have proved monotheism \citep{sobel2}[Ch. 4, section 3.3.2]. %\citep{fitting}[The proof is Exercise 7.1, p.163]. 
-
-The aim of this paper is to present two detailed formal proofs of G\"odel's ontological argument \cite{Goedel} in a natural deduction calculus (as defined in Section \ref{sec:calculus}). The natural deduction style \citep{gentzen,prawitz} was chosen for three reasons. Firstly, presentations of G\"odel's proof are typically either informal or formalized in other styles of calculi (e.g. Fitting's tableaux \cite{fitting} or Sobel's sentential modal calculus \cite{sobel2}). Therefore, a formalization in natural deduction is a valuable complement to the existing presentations. Secondly, it makes the ontological proof accessible to people who are familiarized with a natural deduction style. Thirdly, as natural deduction is the style used by proof assistants such as Coq \cite{coq} and Isabelle \cite{isabelle}, the natural deduction formalizations have been easily checked step-by-step in Coq \cite{coqformalizations}.
-
-The first contribution of this paper is a detailed formalization of Scott's version \cite{Scott} of G\"odel's ontological argument \cite{Goedel} (as shown in Section \ref{sec:scott}) in a natural deduction calculus. The second contribution of the paper is a new proof (also in natural deduction style) of the lemmas, theorems and corollaries in G\"odel's manuscript. In contrast to Scott's proofs \cite{Scott}, the proofs presented here are simpler and shorter, as discussed in Section \ref{sec:conclusion}.
 
 
 
@@ -117,8 +115,6 @@ $$
 $$
 where $\mu$ is the atomic type for individuals, $o$ is the atomic type for propositions and $\theta \imp \tau$ is the type for functions taking an argument of type $\theta$ and returning something of type $\tau$. `$\imp$' is assumed to be right associative.
 \end{definition}
-
-ToDo: decide which connectives and corresponding inference rules will be primitive.
 
 \begin{definition} \emph{Terms and formulas} are given by the following grammar:
 \begin{align*}
@@ -139,16 +135,13 @@ ToDo: decide which connectives and corresponding inference rules will be primiti
 where $p_\tau$ and $X_\tau$ range over, respectively, constants and variables of type $\tau$. Parenthesis conventions, infix notation for propositional connectives and binding notation for quantifiers are assumed. Furthermore, subscript types are omitted when they are clear from the context. Negation ($\neg_{o\imp o}$) and equivalence ($\biimp_{o\imp o\imp o}$) are defined by $\neg A\equiv A\imp \bot$ and $ (A\biimp B)\equiv (A\imp B)\wedge (B\imp A)$.
 \end{definition}
 
-ToDo: decide if rules for diamond should be added.
-
-
 The natural deduction calculus used here has standard rules for propositional connectives and quantifiers, as shown in Figures \ref{fig:PropositionalRules} and \ref{fig:QuantifierRules}. The extension to classical logic is achieved by adding a rule for double negation elimination, shown in Figure \ref{fig:Classical}. Finally, modal operators are handled by special rules that insert or remove formulas from boxes, as shown in Figure \ref{fig:NDK}. Apart from the use of labels and the dual rules for `$\pos$', these rules are essentially the modal rules from \cite{todo}. Beta-reduction is implicit; all rules are assumed modulo beta-reduction. A \emph{derivation} is a directed acyclic graph whose nodes are formulas and whose edges correspond to applications of the inference rules. A \emph{proof} of a formula $F$ is a derivation without open assumptions and having $F$ as root not inside any box. 
 
 Double lines are used to abbreviate tedious propositional reasoning steps in the derivations. Dashed lines are used to refer to an axiom or theorem with proof shown elsewhere. Dotted lines are used to indicate folding and unfolding of definitions. Furthermore, as it is inconvenient to draw boxes around large derivations in \LaTeX, formulas inside boxes are labeled with the names of the boxes surrounding them. Therefore, the boxes can be omitted without loss of information. 
 
 \newcommand{\s}{\qquad}
 
-% ToDo: check if disjunction rules are used in Goedel's proof. If not, we could define disjunction as we already do for negation and equivalence.
+
 
 
 \begin{calculus}
@@ -266,7 +259,7 @@ The calculus having only the rules shown in Figures \ref{fig:PropositionalRules}
 
 %\clearpage
 
-\subsection{Suitability for Rigid Higher-Order Modal Logic K}
+\subsection{Suitability for Rigid Higher-Order Modal Logic K}\label{sec:compl-sound}
 
 Adding the modal rules results in a calculus that is suitable for the basic modal logic \textbf{K}.
 In other words, {\NDK} is sound and complete relative to {\ND} extended with axiom K ($\nec(A\imp B)\imp (\nec A\imp \nec B)$) and the necessitation rule (which establishes that $\nec A$ is a theorem if $A$ is a theorem).
@@ -388,27 +381,29 @@ This example of an unsound derivation is prevented by the eigen-box condition be
 
 The straightforward combinations of the quantifier rules of {\ND} either with the modal rules of {\NDK} or with axiom K and the necessitation rule are suitable for a higher-order modal logic where constants and variables are \emph{rigid}. From the point of view of a \emph{possible worlds} semantics, rigidity means that their interpretation is independent of the world in which they are being interpreted. Rigidity is silently assumed by most works investigating the ontological argument, and is explicitly assumed here. Nevertheless, it should be noted that its adequacy has already been contested \cite{fitting}.
 
-ToDo: Talk about constant domains and varying domains, mention Conchiarella's semantics and Anderson's footnote 14.
 
-\section{Some Derivable Modal Principles}
+
+\section{Derivable Modal Principles}
 \label{sec:AxiomB}.
 
-As mentioned in \citep{and90}[Footnote 5], there are sources that discuss what modal principles are needed for the ontological argument. The standard system for the argument is S5. Through an analysis of the proofs weaker systems, in particular KB, can be shown to be sufficient for versions of the ontological argument \citep{sobel2}[p. 152]. The proof presented in Section \ref{sec:newproof} is such a version and explicitly shows a single use of Brouwer Reduction Principle, which, in turn, is provable from axiom B. All other proof steps are formalizable in a basic second-order modal logic K. 
 
-In standard first-order modal logics the modal axioms correspond to geometric conditions on the frames of Kripke models \citep{negri}. The modal axiom {\bf T} corresponds to reflexivity of the frame and {\bf B} corresponds to symmetry of the frame. The frames of the modal logic {\bf S5} are in addition transitive. 
+In standard first-order modal logics the modal axioms correspond to geometric frame properties for Kripke models \cite{negri}. The modal axiom {\bf T} corresponds to reflexivity of the frame and {\bf B} corresponds to symmetry of the frame. The frames of the modal logic {\bf S5} are in addition transitive. 
+
+There are discussion of what modal principles are needed for the ontological argument. 
+G\"odel mentions in his notes that the modal system required for proving his theorem is a second order version of the modal system {\bf S5}. In \cite{and90} it is conjectured that the principles of proof could be restricted to the weaker modal logic {\bf KB}. The modal logic {\bf KB} consists of the basic modal system {\bf K} and the modal axioms {\bf T} and {\bf B}. 
+
+Through an analysis of the proofs weaker systems, in particular KB, can be shown to be sufficient for versions of the ontological argument \citep{sobel2}[p. 152]. The proof presented in Section \ref{sec:newproof} is such a version and explicitly shows a single use of Brouwer Reduction Principle, which, in turn, is provable from axiom B. All other proof steps are formalizable in a basic second-order modal logic K. 
+
+We will prove the necessary modal principles as two lemmas; a modal distribution principle derivable in K and Brouwer's reduction principle derivable in KB. In addition we prove an iteration principle, which is valid in S5, for the proof in section \ref{sec:scott}. The iteration principle is derived in KB with axiom 5. 
 
 
-%G\"odel mentions in the notes which are saved of his proof that the modal system required for proving his theorem is a second order version of the modal system {\bf S5}. In \citep{and90} it is conjectured that the principles of proof could be restricted to the weaker modal logic {\bf KB}. The modal logic {\bf KB} consists of the basic modal system {\bf K} and the modal axioms {\bf T} and {\bf B}. 
 
 
 
-ToDo: Sobel Anderson on KB: Sobel page 152
-and
-Anderson's footnote 5 on KB %Nathan Salmon: On the Logic of What Might Have Been,"
 
 \subsection{A modal distribution principle in K}
 
-To prove G\"odel's ontological proof in natural deduction we use a modal distribution principle derivable in K and  Brouwer's reduction theorem derivable from the modal Axiom B. 
+
 
 \begin{lemma}\label{DP}
 The distribution principle 
@@ -437,10 +432,9 @@ is provable in our system K of modal logic.
 
 
 
-\subsection{Axiom B and Brouwer's Reduction Principle}
+\subsection{Brouwer's Reduction Principle}
 
 
-Brouwer's reduction theorem is a version of axiom B for modal logic and a property that enforces symmetry as a geometric property for the frame of a Kripke sematics. 
 
 
 \begin{lemma}\label{BRP}
@@ -472,7 +466,7 @@ The Brouwer Reduction Principle $\pos\nec A\imp A$ is derivable from axiom B, $A
 
 \subsection{S5 and its Iteration Principle}
 
-ToDo: Is this principle really commonly called ``S5 Iteration Principle''?
+
 
 \begin{lemma}
 What is possibly necessary is necessary:
@@ -483,9 +477,34 @@ $$
 
 \begin{proof}
 
+
+
+
+Axiom 5 is $\pos A\imp \nec \pos A$. 
+
+\begin{small}
 \begin{prooftree}
-\AXC{ToDo}
+
+
+
+\AXC{Brouwer's reduction principle}\dashedLine
+\UIC{$\pos \nec A\imp A$}\RightLabel{$\nec_I$}
+\UIC{$\nec(\pos \nec A\imp A)$}
+\AXC{Axiom K}\dashedLine
+\UIC{$\nec(\pos \nec A\imp A)\imp (\nec\pos \nec A\imp \nec A)$}\RightLabel{$\imp_E$}
+\BIC{$\nec\pos \nec A\imp \nec A$}
+
+\AXC{Axiom 5 on $\nec A$}\dashedLine
+\UIC{$\pos \nec A\imp \nec \pos \nec A$}
+
+\AXC{$ $}\RightLabel{$1$}
+\UIC{$\pos \nec A$}\RightLabel{$\imp_E$}
+\BIC{$\nec \pos \nec A$}\RightLabel{$\imp_E$}
+\BIC{$\nec A$}\RightLabel{$\imp_I^1$}
+\UIC{$\pos \nec A \imp  \nec A$}
 \end{prooftree}
+\end{small}
+
 
 \end{proof}
 
@@ -499,9 +518,9 @@ $$
 \setcounter{corollary}{0}
 \setcounter{definition}{0}
 
-ToDo: natural language explanation of the proof in Anderson.
 
-The acceptance of the correctness of the ontological argument by G\"odel's work boils down to the intuitive correctness of the axioms and definitions and the belief in the soundness of the deductive system. The formal argument of G\"odel is based on Leibniz proof, which in turn is based on Descartes proof. These proofs have two parts; a proof that if the exemplification of the god-likeness property is possible, then it is necessary and a proof that the exemplification is in fact possible. 
+
+The acceptance of the correctness of the ontological argument by G\"odel's work boils down to the intuitive correctness of the axioms and definitions and the belief in the soundness of the deductive system. The following proof is a detailed formalization of Scott's proof that has been verified in Coq \cite{***}. The formal argument has  two parts; a proof that if the exemplification of the god-likeness property is possible, then it is necessary and a proof that the exemplification is in fact possible. 
 
 
 \begin{axiom}
@@ -659,7 +678,7 @@ $$
 
 \begin{theorem}
 \label{T2}
-Being God-like is an essence of any God-like being:
+Being god-like is an essence of any god-like being:
 $$
 \all x. G(x) \imp \ess{G}{x}
 $$
@@ -788,7 +807,7 @@ $$
 
 \begin{lemma}
 \label{L2}
-If the existence of a God-like being is possible, then it is necessary:
+If the existence of a god-like being is possible, then it is necessary:
 $$
 \pos \ex z. G(z) \imp \nec \ex x. G(x)
 $$
@@ -818,7 +837,7 @@ $$
 
 \begin{theorem}
 \label{T3}
-Necessarily, there exists a God-like being:
+Necessarily, there exists a god-like being:
 $$
 \nec \ex x. G(x)
 $$
@@ -840,7 +859,8 @@ $$
 
 \section{New Proof}\label{sec:newproof}
 
-A outline of the proof is that firstly all positive properties are proven to be possibly exemplified (Theorem \ref{T1}). Then this theorem is applied to the property of god-likeness, thus showing the possible existence of a god-like being (Corollary \ref{C1}). In Lemma \ref{L1} it is classically proven that the hypothetically assumed existence of a god-like being implies that the existence is necessary. Lastly, the necessary existence of a god-like being is proven (Theorem \ref{T2}) from Corollary \ref{C1} and Lemma \ref{L1} by properties of the modal system. The properties required for the proof are the distribution principle and Brouwer's reduction theorem mentioned in Section \ref{sec:AxiomB}. The proof of Theorem \ref{T2} follows the proof of Sobel \citep{sobel2}[p. 126--127]. 
+In this section we present a new proof in KB. The outline of the proof is: 
+Firstly all positive properties are proven to be possibly exemplified (Theorem \ref{T1}). Then this theorem is applied to the property of god-likeness, thus showing the possible existence of a god-like being (Corollary \ref{C1}). In Lemma \ref{L1} it is classically proven that the hypothetically assumed existence of a god-like being implies that the existence is necessary. Lastly, the necessary existence of a god-like being is proven (Theorem \ref{T2}) from Corollary \ref{C1} and Lemma \ref{L1} by properties of the modal system. The properties required for the proof are the distribution principle and Brouwer's reduction theorem mentioned in Section \ref{sec:AxiomB}. The proof of Theorem \ref{T2} follows the proof of Sobel \citep{sobel2}[p. 126--127]. 
 
 
 \setcounter{axiom}{0}
@@ -1079,7 +1099,7 @@ $$
 
 \subsection{God necessarily exists}
 
-The exemplification of the god-likeness property is provable from its possible exemplification by the modal distribution principle \ref{DP} and Brouwer's reduction principle \ref{BRP}. The necessary exemplification of the god-likeness property can then be deduced from lemma \ref{L1}. This single use of the modal distribution principle \ref{DP} and Brouwer's reduction principle \ref{BRP} follows the presentation of in Sobel \citep{sobel2}[p.126--127]. 
+The exemplification of the god-likeness property is provable from its possible exemplification by the modal distribution principle \ref{DP} and Brouwer's reduction principle \ref{BRP}. The necessary exemplification of the god-likeness property can then be deduced from lemma \ref{L1}. This single use of the modal distribution principle \ref{DP} and Brouwer's reduction principle \ref{BRP} follows the presentation of Sobel \citep{sobel2}[p.126--127]. 
 
 \setcounter{theorem}{2}
 \begin{theorem}
@@ -1090,9 +1110,7 @@ $$
 $$
 \end{theorem}
 
-%Is the distribution principle and brouwers Red thm better than using axiom B straight? Check previous versions... *** 
 
-%From that it is possible to that it exists with modal inferences... **** and axioms... 
 
 \begin{proof}
 
@@ -1132,7 +1150,7 @@ $$\varphi \biimp \pos \varphi \biimp \nec \varphi
 $$
 If G\"odel's ontological proof is abstractly analysed, then we are proving a restricted modal collapse, which applies to one specific formula, the exemplification of god-likeness. In addition we prove and that the definition of god-likeness is sound, which means that it is possibly exemplified. Thus, the necessity of the formula follows. The interest in the proof naturally decreases if a consequence of the axiomatization is a modal collapse for all formulas. Therefore, an improvement would be obtained if the modal collapse was limited to one property, namely the property of god-likeness. A number of solutions to the problem of the modal collapse have been proposed. 
 
-Anderson's solution \citep{citation needed} modifies the definitions of god-like being and essence, and eliminates half of an axiom. This not only avoids the modal collapse, but also makes two of G\"odel's five axioms derivable from the others \citep{hajek} under some implicit additional assumptions \citep{fuhrmann}. Another solution involving more substantial modifications is that of Bj{\o}rdal \citep{bjordal,fuhrmann}. 
+Anderson's solution \citep{and***} modifies the definitions of god-like being and essence, and eliminates half of an axiom. This not only avoids the modal collapse, but also makes two of G\"odel's five axioms derivable from the others \citep{hajek} under some implicit additional assumptions \citep{fuhrmann}. Another solution involving more substantial modifications is that of Bj{\o}rdal \cite{bjordal,fuhrmann}. 
 
 On another track, Fitting has argued that greater care has to be taken with the semantics of higher-order modal logics. Quantified variables may be rigid or flexible; and properties may be treated as intensional or extensional. Making the right choices may prevent the modal collapse \citep{fitting}[Sections 11.9 and 11.10].
 
@@ -1186,16 +1204,6 @@ is provable.
 \end{small}
 
 
-% The question arises what kind of second order quantification is allowed. The instantiations that are used in our proof are instantiated with predicate variables that later work as eigenvariables for the second order universal introduction. In the proof of corollary \ref{C1} we instantiate with $G$ and in the proof of lemma \ref{L1}. we instantiate with $G$ and $E$. %In Sobel on G\"{o}del's ontological proof by Robert E. Koons this question is raised.
-
-% One can also discuss if a second order modal logic is sound and complete. With Henkin models, which restrict the second order quantification with comprehension, we have that normal second order logic is sound and complete. There is a completeness proof for a second order modal logic found in A completeness theorem in second order modal logic by Cocchiarella.
-
-
-
-
-
- 
-
 
 
 
@@ -1204,8 +1212,14 @@ is provable.
 
 \section{Conclusions}\label{sec:conclusion}
 
+
 The proofs of theorem T1 and corollary C1 ($\pos \ex x. G(x)$) do not rely on equality and use axiom A2 ($\all \varphi. \all \psi.[(P(\varphi) \wedge \nec \all x.[\varphi(x) \imp \psi(x)]) \imp P(\psi)]$) only once. 
 Corollary C2 ($\ex x. G(x)$), which is usually regarded as a trivial corollary of main theorem T3 ($\nec \ex x. G(x)$) using the modal logic axiom T, is here derived directly from lemma L1 and corollary C1, not relying on T. The main theorem T3 becomes derivable from C2 by a single application of the necessitation rule. Furthermore, all proofs are done in the modal logic K, except for the proof of corollary C2, which requires one use of the axiom B of modal logic KB.
+
+
+
+
+
 
 ToDo: Sobel Anderson on KB: Sobel page 152
 
@@ -1215,8 +1229,20 @@ ToDo: talk about anderson's footnote 2, where he argues that an anonymous refere
 
 Hajek (magari and others) on non-provability of ex x. G(x) in KD45.
 
+ToDo: Talk about constant domains and varying domains, mention Conchiarella's semantics and Anderson's footnote 14.
+
+ToDo: natural language explanation of the proof in Anderson.
+
+ToDo: Sobel Anderson on KB: Sobel page 152
+and
+Anderson's footnote 5 on KB %Nathan Salmon: On the Logic of What Might Have Been,"
+
+
 
 \begin{thebibliography}{9}
+
+\bibitem[{\itshape Adams(1995)}]{adams}
+Adams, R. M. 1995. Introductory note to [G\"odel 1970]. 
 
 \bibitem[{\itshape Anderson (1990)}]{and90}
 Anderson, C. A. 1990. {\itshape Some Emendations of G\"odel's Ontological Proof}. Faith and Philosophy, Vol. 7, Issue 3, pp. 291-303. 
@@ -1224,24 +1250,41 @@ Anderson, C. A. 1990. {\itshape Some Emendations of G\"odel's Ontological Proof}
 \bibitem[{\itshape Anderson \& Gettings(1996)}]{and}
 Anderson, C. A.\& Gettings, M. 1996.  {\itshape G\"odel's ontological proof revisited}. In: edited by Hajek P. {\itshape G\"odel '96},  Springer. 
 
+\bibitem[{\itshape Bj{\o}rdal(1999)}]{bjordal}
+Bj{\o}rdal, F. 1999. 
+Understanding G\"odel's Ontological Argument, in Timothy Childers (ed.) The Logica Yearbook 1998, pp. 214-217, Filosofia.
+
+\bibitem[{\itshape Church(1940)}]{church}
+Church, A. 1940. {\itshape A Formulation of the Simple Theory of Types}, Journal of Symbolic Logic, 5: 56?68. 
 
 \bibitem[{\itshape Fitting(2002)}]{fitting}
 Fitting, M. 2002.  {\itshape Types, Tableaus, and G\"odel's God}, Kluwer Academic Publishers.  
 
-\bibitem[{\itshape Goedel(***)}]{Goedel} 
-G\"odel, K. {\itshape Appendix A. Notes in Kurt G\"odel's hand} in Logic and Theism: Arguments for and against Beliefs in God by Sobel, J. H. 
+\bibitem[{\itshape Fuhrmann(2005)}]{fuhrmann}
+Fuhrmann, A. 2005.
+Existenz und Notwendigkeit -- Kurt G\"odel's Axiomatische Theologie, in Olsson e.J., Schr\"oder-Heister, P. and Spohn, W. (eds.) Logik in der Philosophie, pp. 349-374, Synchr.-Wissenschafts-Verlag.
+
+\bibitem[{\itshape Goedel(1970)}]{Goedel} 
+G\"odel, K. Ontological Proof. In Kurt G\"odel Collected Works vol. III. Ed. Feferman et al., pp. 403--404, 139, 145 or {\itshape Appendix A. Notes in Kurt G\"odel's hand} in [Sobel 2001]. 
+
+\bibitem[{\itshape Hajek(1996)}]{hajek}
+Hajek, P. 1996. Magari and others on G\"odel's Ontological Proof, in Ursini et alii
+(eds.) Logic and Logical Algebra, pp. 125-136, Marcel Dekker.
 
 \bibitem[{\itshape Kant(1781)}]{kant}
-Kant, I.  original 1781.   {\itshape Critique of Pure Reason}, J. M. Dent \& Sons LTD, edition from 1959.
+Kant, I.  original 1781. {\itshape Critique of Pure Reason}, J. M. Dent \& Sons LTD, edition from 1959.
 
 \bibitem[{\itshape Negri (2005)}]{negri}
 Negri, S. 2005. {\itshape Proof analysis in modal logic}. J. Philosophical Logic, vol. 34, pp. 507--544. 
+
+\bibitem[{\itshape Prawitz (2006)}]{prawitz}
+Prawitz, D. 2006 (1st ed. 1965). {\itshape Natural deduction: a proof-theoretical study}. Mineola, New York: Dover publications. 
 
 \bibitem[{\itshape Scott (***)}]{Scott}
 Scott, D. {\itshape Appendix B. Notes in Dana Scott's hand} in Logic and Theism: Arguments for and against Beliefs in God by Sobel, J. H. 
 
 \bibitem[{\itshape Sobel(1987)}]{sobel}
-Sobel, J. H. 1987. {\itshape G\"odel's Ontological Proof}. In: edited by J. J. Thompson. {\itshape On being and saying : essays for Richard Cartwright},  MIT Press. 
+Sobel, J. H. 1987. {\itshape G\"odel's Ontological Proof}. In: J. J. Thompson (ed.). {\itshape On being and saying : essays for Richard Cartwright},  MIT Press. 
 
 \bibitem[{\itshape Sobel(2001)}]{sobel2}
 Sobel, J. H. 2001. {\itshape Logic and Theism: Arguments for and against Beliefs in God}, Cambridge University Press. 
@@ -1249,9 +1292,11 @@ Sobel, J. H. 2001. {\itshape Logic and Theism: Arguments for and against Beliefs
 \bibitem[{\itshape Wang(1996)}]{Wang1996}
 Wang, H. 1996. {\itshape A Logical Journey: From G\"odel to Philosophy}, The MIT Press. 
 
-***Gentzen and Prawitz: references to Natural Deduction. 
-Adams, Fuhrmann, Hajek and Bjordal: References to amendations. 
-Church: Reference to simple type theory. 
+***Adams, Fuhrmann, Hajek and Bjordal: Confirm references to ammendations and Church. 
+****References for \cite{coq} and \cite{isabelle} and other papers checked step-by-step in Coq \cite{BenzmullerWolzenlogel-Paleo}. Reference to the inspiration for the modal rules. 
+***One Anderson reference incomplete***
+***Scott reference: the year is missing*** 
+
 
 
 \end{thebibliography}
