@@ -186,7 +186,24 @@ dia_i w.
 
   exact H.
 Qed.
- 
+
+
+Theorem Four: [mforall p, (box p) m-> (box (box p))].
+Proof.
+mv.
+intro p.
+intro H.
+box_i.
+box_i.
+box_e H H1.
+  exact H1.
+
+  apply transitivity with (w2 := w0).
+    exact R.
+
+    exact R0.
+Qed.
+
 
 (* In strong modal logics, such as S5, iterations of modal operators can be collapsed *)
 Theorem dia_box_to_box: [ mforall p, (dia (box p)) m-> (box p) ].
@@ -204,4 +221,3 @@ eapply transitivity.
 
   exact R0.
 Qed.
-
