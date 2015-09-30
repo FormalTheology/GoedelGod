@@ -70,7 +70,7 @@ assert (H3: ((box (mforall x, m~ (p x))) w)). (* Lemma from Scott's notes *)
 
       assert (H10: ((box (mforall x, (p x) m-> (x m= x))) w)). (* Lemma from Scott's notes *)
         box_i.
-        intros x H11.     
+        intros x H11.
         reflexivity.
 
         assert (H11 : ((Positive (fun x => (x m= x))) w)). (* Lemma from Scott's notes *)
