@@ -1,17 +1,29 @@
 \documentclass{llncs}
 
+\usepackage{setspace}
+\doublespacing
+
+\usepackage[utf8]{inputenc}
 \usepackage{fancybox}
 \usepackage{latexsym}
+
+
+
 \usepackage{proof}
 \usepackage{bussproofs}
-\usepackage{amsmath}
 \EnableBpAbbreviations
 \newcommand{\rl}[1]{\RightLabel{#1}}
 
+\usepackage{amsmath}
+\usepackage{ntheorem}
+
+\usepackage[margin=3.5cm]{geometry}
 
 \usepackage{calculi}
 \usepackage{theorems}
 \usepackage[numbers]{natbib}
+
+\pagestyle{plain}
 
 
 % Logical symbols
@@ -23,24 +35,38 @@
 \newcommand{\nec}{\Box} % necessarily
 \newcommand{\pos}{\Diamond} % possibly
 
+
+\newtheorem*{lemma*}{Lemma}
+
 \title{A Variant of G\"{o}del's Ontological Proof \\
-in a Natural Deduction Calculus \\
-(Draft)}
+in a Natural Deduction Calculus}
 
 
-\author{Annika Siders\inst{1} \and Bruno Woltzenlogel Paleo\inst{2}}
-
+\author{Annika Siders\inst{1} \and Bruno Woltzenlogel Paleo\inst{2,3}}
 
 \authorrunning{A.\~Siders \and B.\~Woltzenlogel Paleo}
 
-
 \institute{
-  Helsinki, Finland\\
-  \email{annika.siders@helsinki.fi}
+  \email{annika.siders@helsinki.fi} \\
+  +358 2941 29241
+  Department of Philosophy \\
+  University of Helsinki\\
+  P.O. Box 24 (Unioninkatu 40 A) \\
+  Finland \\[2em]
   \and 
-  Vienna, Austria \\
   \email{bruno@logic.at}
+  Theory and Logic Group \\ 
+  Vienna University of Technology \\ 
+  Austria \\[2em]
+  \and
+  \email{bruno.woltzenlogel.paleo@anu.edu.au}
+  Logic and Computation Group \\
+  College of Engineering and Computer Science \\
+  Australian National University \\
+  Australia
 }
+
+
 
 
 
@@ -48,45 +74,56 @@ in a Natural Deduction Calculus \\
 
 \maketitle
 
+\clearpage
+
+\title{A Variant of G\"{o}del's Ontological Proof \\
+in a Natural Deduction Calculus}
+\author{}
+\authorrunning{}
+\institute{}
+\maketitle
+
+
+\begin{abstract}
+This paper presents two detailed formalizations of ontological arguments in a simple natural deduction calculus. The first formal proof closely follows the hints in Scott's manuscript about G\"odel's argument and fills in the gaps, thus verifying its correctness. The second formal proof improves the first one, by relying on the weaker modal logic {\bf KB} instead of the stronger modal logic {\bf S5}; and by avoiding the introduction of the equality predicate. The second proof is also technically shorter than the first one, because it eliminates unnecessary detours and uses Axiom 1 for the positivity of properties only once.
+\end{abstract}
+
+\noindent
+\textbf{Keywords: } G\"odel's Ontological Proof, Higher-Order Modal Logics, Natural Deduction
+
+
 \newcommand{\ess}[2]{#1 \ \mathit{ess} \ #2}
 \newcommand{\NE}{E}
 
 
 \noindent
+\begin{footnotesize}
+\begin{center}
 ``There is a scientific (exact) philosophy and theology,
-which deals with concepts of the highest abstractness; and this is also most highly fruitful for science. [\ldots] Religions are, for the most part, bad; but religion is not.'' - Kurt G\"{o}del
+which deals with concepts of the highest abstractness; and this is also most highly fruitful for science. [\ldots] \\Religions are, for the most part, bad; but religion is not.'' \\
+- Kurt G\"{o}del \citep{Wang1996}[p. 316]
+\end{center}
+\end{footnotesize}
+
+
 
 \section{Introduction}
 
-Ontological arguments for the existence of God can be traced back at least to St. Anselm (1033-1109). His argument considered a greatest conceivable being, who must exist, because if it did not have the property of existence, then we could conceive of a greater being that, apart from the other properties, also has the property of existence. 
+Ontological arguments for the existence of God can be traced back at least to St. Anselm (1033-1109). His argument considers a greatest conceivable being, who must exist, because if it did not have the property of existence, then we could conceive of a greater being that, apart from the other properties, also had the property of existence. St. Anselm's argument was further elaborated by Descartes, Leibniz and Kant. 
 
-A major critique of this argument is that we do not know whether the concept greatest conceivable being in fact designates anything or if it is inconsistent, like a round square \citep{fitting}[p.134].  
-%The question is if the argument is sound. 
-As Bertrand Russell pointed out, the definition of greatest allows us to define properties, like having boots, which the greatest being then also must have \citep{citation needed}. 
+Leibniz identified the possible existence of God as a critical missing step in St. Anselm's argument. To fill this gap, he argued that the properties of God, the perfections, are compatible. This means that it is possible to satisfy all perfections at once, which implies that the existence of a greatest conceivable being with all these properties is possible. 
 
-Kant argued against the ontological argument on the basis that existence is not an analytic property \citep{kant}. This means that existence cannot be contained in the definition of a concept, because it is generally synthetic. All that we can say is that if God exists, then God necessarily exists \citep{citation needed}.
+G\"odel bulit on Leibniz's work \cite{adams} and brought the ontological argument to a modern form using a modal logic with higher-order quantification over properties. In this setting, he gave precise axioms describing the notion of \emph{positive} property and defined God as a being that has all positive properties. G\"odel's work was saved in his own notes \cite{Goedel} as well as in notes by Scott \cite{scott}, in whom he confided his proof. 
 
-St. Anselm's argument was elaborated further by Descartes and Leibniz. Leibniz identified that establishing the possible existence of God is a critical missing step in St. Anselm's argument. To fill this gap, he argued that the properties of God, the perfections, are compatible. This implies that it is possible to have all perfections at once and therefore the existence of a greatest being with all these properties is possible. 
+The increase in formality of the ontological argument has required a development of its basic notions. G\"odel's notion of positive property and Leibniz's notion of perfection differ. A formal distinction is that Leibniz's perfections are atomic whereas G\"odel's positive properties can consist of combinations of atomic properties \citep{fitting}[p.139]. In particular, one of G\"odel's axioms states that any conjunction of positive properties is itself positive. From this axiom, it is immediately deduced that the property of being God-like is positive. Intuitively, a (possibly infinite) conjunction of positive properties is deduced from the universal definition of God-likeness. This deductive inference is not formalizable in a finite first-order calculus. The interplay between universal quantification (in the definition of a God-like being) and infinite conjunctions (in G\"odel's axiom for positive properties) could explain why, starting with Scott \cite{scott}, this axiom of G\"odel has been replaced by another that simply assumes the positivity of the property of being god-like. 
 
-G\"odel studied Leibniz's work \citep{Adams} and brought his ontological argument to a modern form using a modal logic with higher-order quantification over properties. In this setting, he gave precise axioms describing the notion of \emph{positive} property and defined God as a being having all positive properties. 
+The aim of this paper is to present two detailed formalizations of ontological arguments in a natural deduction calculus. For a comprehensive introduction to natural deduction, the reader can consult \citep{prawitz}. The higher-order modal natural deduction calculus proposed here has special introduction and elimination rules for modalities, as defined in Section \ref{sec:calculus}, and is sound and complete relative to an axiomatic modal calculus, as proven in Section \ref{sec:compl-sound}.
 
-G\"odel's notion of positive property and Leibniz's notion of perfection are not exactly the same \citep{Adams}. On a technical level, the main distinction seems to be that G\"odel's positive properties are not just atomic properties, like Leibniz's perfections, but can also consist of complex combinations of atomic properties \citep{fitting}[p.139.] (TODO: Check this claim). In particular, one of G\"odel's axioms states that the conjunction of any set of positive properties is positive. And from this axiom, it follows immediately that the property of being God-like is positive. While this step is intuitively and informally clear, it is not easily formalizable in a typical logical calculus, because it requires inferring that being god-like is a (possibly infinite) conjuntion of positive properties, while it has only been defined as the property holding for individuals who have all positive properties. This interplay between universal quantification (in the definition of a God-like being) and conjunction (in G\"odel's mentioned axiom) is a technical difficulty that probably explains why, starting with Scott \cite{scott}, to whom G\"odel confided his manuscript, this axiom of G\"odel's has been replaced by another one that simply assumes the positivity of the property of being God-like. 
+The natural deduction style was chosen for three reasons. Firstly, presentations of G\"odel's proof are typically either informal or formalized in other styles of proof calculi (e.g. Fitting's tableaux \cite{fitting} or Sobel's sentential modal calculus \cite{sobel2}). Therefore, a formalization in natural deduction is a valuable complement to the existing presentations. Secondly, it makes the ontological proof accessible to people who are familiar with a natural deduction style. Thirdly, as natural deduction is the style used by proof assistants such as Coq \cite{coq} and Isabelle \cite{isabelle}, natural deduction formalizations can be verified step-by-step in such proof assistants, and we have in fact done this.
 
-The main criticism against G\"odel's ontological argument is the \emph{modal collapse}, an undesirable consequence of the stipulated axioms. Most recent works \cite{todo} on the ontological argument have focused on proposing modifications of the argument that would not entail a modal collapse. This is discussed in more detail in Section \ref{sec:collapse}.
+The first contribution of this paper is a detailed formalization of Scott's version \cite{scott} of G\"odel's ontological argument \cite{Goedel} (as shown in Section \ref{sec:scott}) in the proposed natural deduction calculus. The second contribution of the paper is a new proof (also in natural deduction style). In contrast to Scott's proof \cite{scott}, which requires the modal logic \textbf{S5}, the new proof requires only the weaker modal logic \textbf{KB}. The new proof also does not rely on the equality predicate and is much shorter.
 
-%This axiom is unfortunately equivalent to the possibility of God's existence given the other axioms, leading to criticisms that it might be too strong \citep{sobel2}\citep{fitting}[Section 11.4. Objections.]. 
-
-%The possibility  God's existence in turn is equivalent to  God's necessary existence as well as  God's existence itself. Thus, we have an axiom which seems to be equivalent to the conclusion. 
-
-
- % This axiom of the positiveness of conjunctions can be given a third order formulation which is the reason for the claim that third-order quantification may be required \citep{and}. %\citep{fitting}[p. 148.]   
-
-% Another, possibly undesirable, consequence of the formalism is that there can only be one God, which is defined by the axioms. Namely, if one assumes that the theory contains the equality relation then a God has the property of being identical to itself. Since any other god-like being would have at least the same properties it shares the property of being identical to the one God. Thus, we have proved monotheism \citep{sobel2}[Ch. 4, section 3.3.2]. %\citep{fitting}[The proof is Exercise 7.1, p.163]. 
-
-The first contribution of this paper is a detailed formalization of Scott's version \cite{Scott} of G\"odel's ontological argument \cite{Goedel} (as shown in Section \ref{sec:scott}) in a natural deduction calculus (as defined in Section \ref{sec:calculus}). A natural deduction style \citep{gentzen,prawitz} was chosen mainly for three reasons. Firstly, presentations of G\"odel's proof are typically either informal or formalized in other styles of calculi (e.g. Fitting's tableaux \cite{fitting} or Sobel's sentential modal calculus \cite{sobel2}). Therefore, a formalization in natural deduction is a valuable complement to the existing presentations. Secondly, it makes the ontological proof accessible to people who are familiarized with a natural deduction style. Finally, as natural deduction is the style used by proof assistants such as Coq \cite{coq} and Isabelle \cite{isabelle}, the natural deduction formalizations have been easily checked step-by-step in Coq \cite{coqformalizations}.
-
-The main contribution of the paper, however, is the presentation of new proofs (also in natural deduction style) of the lemmas, theorems and corollaries in G\"odel's manuscript. In contrast to Scott's proofs \cite{Scott}, the proofs presented here are simpler and shorter, as discussed in Section \ref{sec:conclusion}.
-
+A major criticism against G\"odel's formal argument is an undesirable consequence of the stipulated axioms, called \emph{modal collapse}. This is discussed in greater detail in Section \ref{sec:collapse}, where a natural deduction derivation of the collapse is presented. Although many recent works on the ontological argument have proposed modifications of the argument that do not entail a modal collapse, these solutions are beyond the scope of this paper.
 
 
 \section{Natural Deduction}
@@ -100,8 +137,6 @@ $$
 $$
 where $\mu$ is the atomic type for individuals, $o$ is the atomic type for propositions and $\theta \imp \tau$ is the type for functions taking an argument of type $\theta$ and returning something of type $\tau$. `$\imp$' is assumed to be right associative.
 \end{definition}
-
-ToDo: decide which connectives and corresponding inference rules will be primitive.
 
 \begin{definition} \emph{Terms and formulas} are given by the following grammar:
 \begin{align*}
@@ -122,20 +157,23 @@ ToDo: decide which connectives and corresponding inference rules will be primiti
 where $p_\tau$ and $X_\tau$ range over, respectively, constants and variables of type $\tau$. Parenthesis conventions, infix notation for propositional connectives and binding notation for quantifiers are assumed. Furthermore, subscript types are omitted when they are clear from the context. Negation ($\neg_{o\imp o}$) and equivalence ($\biimp_{o\imp o\imp o}$) are defined by $\neg A\equiv A\imp \bot$ and $ (A\biimp B)\equiv (A\imp B)\wedge (B\imp A)$.
 \end{definition}
 
-ToDo: decide if rules for diamond should be added.
+The natural deduction calculus used here has standard rules for propositional connectives and quantifiers, as shown in Figures \ref{fig:PropositionalRules} and \ref{fig:QuantifierRules}. The extension to classical logic is achieved by adding a rule for double negation elimination, shown in Figure \ref{fig:Classical}. Finally, modal operators are handled by special rules that insert or remove formulas from boxes, as shown in Figure \ref{fig:NDK}.
+%Apart from the use of labels and the dual rules for `$\pos$', these rules are essentially the modal rules from \cite{todo}. 
+Beta-reduction is implicit; all rules are assumed to operate modulo beta-reduction. A \emph{derivation} is a directed acyclic graph whose nodes are formulas and whose edges correspond to applications of the inference rules. A \emph{proof} of a formula $F$ is a derivation without open assumptions and having $F$ as root not inside any box. 
 
+\newcommand{\subproof}{\star}
 
-The natural deduction calculus used here has standard rules for propositional connectives and quantifiers, as shown in Figures \ref{fig:PropositionalRules} and \ref{fig:QuantifierRules}. The extension to classical logic is achieved by adding a rule for double negation elimination, shown in Figure \ref{fig:Classical}. Finally, modal operators are handled by special rules that insert or remove formulas from boxes, as shown in Figure \ref{fig:NDK}. Apart from the use of labels and the dual rules for `$\pos$', these rules are essentially the modal rules from \cite{todo}. Beta-reduction is implicit; all rules are assumed modulo beta-reduction. A \emph{derivation} is a directed acyclic graph whose nodes are formulas and whose edges correspond to applications of the inference rules. A \emph{proof} of a formula $F$ is a derivation without open assumptions and having $F$ as root not inside any box. 
+Double lines are used to abbreviate tedious propositional reasoning steps in the derivations. Dashed lines are used to refer to an axiom or theorem with the proof shown elsewhere. When proof trees are too large to fit on the page, some branches may be displayed separately. In such cases, the conclusion of the branch and the location in the main proof tree where the branch belongs are annotated with the same symbol (a subscripted $\subproof$). Dotted lines are used to indicate folding and unfolding of definitions. Furthermore, as it is inconvenient to draw boxes around large derivations in \LaTeX, formulas inside boxes are labeled with the names of the boxes surrounding them. Therefore, the boxes can be omitted without loss of information. 
 
-Double lines are used to abbreviate tedious propositional reasoning steps in the derivations. Dashed lines are used to refer to an axiom or theorem with proof shown elsewhere. Dotted lines are used to indicate folding and unfolding of definitions. Furthermore, as it is inconvenient to draw boxes around large derivations in \LaTeX, formulas inside boxes are labeled with the names of the boxes surrounding them. Therefore, the boxes can be omitted without loss of information. 
+The calculus having only the rules shown in Figures \ref{fig:PropositionalRules}, \ref{fig:Classical} and \ref{fig:QuantifierRules} is named \ND, while the calculus with the additional rules shown in Figure \ref{fig:NDK} is named \NDK.
 
 \newcommand{\s}{\qquad}
 
-% ToDo: check if disjunction rules are used in Goedel's proof. If not, we could define disjunction as we already do for negation and equivalence.
+
 
 
 \begin{calculus}
-{propositional rules}
+{Propositional rules}
 {fig:PropositionalRules}
 
 \vspace{1em}
@@ -171,14 +209,14 @@ Double lines are used to abbreviate tedious propositional reasoning steps in the
 \end{calculus}
 
 \begin{calculus}
-{double negation elimination}
+{Double negation elimination}
 {fig:Classical}
 \infer[\neg\neg_E]{A}{ \neg\neg A }
 \end{calculus}
 
 
 \begin{calculus}
-{quantifier rules}
+{Quantifier rules}
 {fig:QuantifierRules}
 
 \vspace{1em}
@@ -207,7 +245,7 @@ if $\rho$ is a $\ex_E$ inference introducing a variable $\beta$, then any occurr
 
 
 \begin{calculus}
-{Rules for Modal Operators}
+{Rules for modal operators}
 {fig:NDK}
 
 \vspace{1em}
@@ -242,16 +280,10 @@ assumptions should be discharged within the box where they are created.
 
 \end{calculus}
 
-%\clearpage
 
-\noindent
-The calculus having only the rules shown in Figures \ref{fig:PropositionalRules}, \ref{fig:Classical} and \ref{fig:QuantifierRules} is named \ND. The calculus with the additional rules shown in Figure \ref{fig:NDK} is called \NDK.
+\subsection{Suitability for Rigid Higher-Order Modal Logic K}\label{sec:compl-sound}
 
-%\clearpage
-
-\subsection{Suitability for Rigid Higher-Order Modal Logic K}
-
-Adding the modal rules results in a calculus that is suitable for the basic normal modal logic \textbf{K}.
+Adding the modal rules results in a calculus that is suitable for the basic modal logic \textbf{K}.
 In other words, {\NDK} is sound and complete relative to {\ND} extended with axiom K ($\nec(A\imp B)\imp (\nec A\imp \nec B)$) and the necessitation rule (which establishes that $\nec A$ is a theorem if $A$ is a theorem).
 
 
@@ -264,9 +296,11 @@ The necessitation rule can be immediately simulated with the $\nec_I$ rule. Axio
 
 \begin{small}
 \begin{prooftree}
-\AXC{$\nec(A\imp B)^2 $}\RightLabel{$\nec_E$}
+\AXC{$ $}\RightLabel{2}
+\UIC{$\nec(A\imp B)$}\RightLabel{$\nec_E$}
 \UIC{$\omega: A\imp B$}
-      \AXC{$\nec A ^1 $}\RightLabel{$\nec_E$}
+      \AXC{$ $}\RightLabel{1}
+      \UIC{$\nec A $}\RightLabel{$\nec_E$}
       \UIC{$\omega: A$} \RightLabel{$\imp_E$}
    \BIC{$ \omega: B$} \RightLabel{$\nec_I$}
    \UIC{$ \nec B$} \RightLabel{$\imp_I^1$}
@@ -353,33 +387,49 @@ For $n > 1$, the translation is a straightforward generalization:
 
 \end{proof}
 
-Without the restriction that every box must be accessed by exactly one strong modal inference, the calculus would be unsound for the modal logic \textbf{K}, because the formula $\all \psi. (\nec \psi \imp \pos \psi)$ would be derivable although it is not valid in \textbf{K}.
+Without the restriction that every box must be accessed by exactly one strong modal inference, the calculus would be unsound for the modal logic \textbf{K}. For example, the formula $\all \psi. (\nec \psi \imp \pos \psi)$ is not valid in \textbf{K} but would be provable without this restriction:
 
-ToDo: show example of unsound derivation.
+\begin{prooftree}
+  \AXC{$ $} \RightLabel{1}
+  \UIC{$\nec \psi$} \RightLabel{$\nec_E$}
+        \UIC{$\omega: \psi$} \RightLabel{$\pos_I$}
+        \UIC{$\pos \psi$} \RightLabel{$\imp_I^1$}
+    \UIC{$\nec \psi \imp \pos \psi$} \RightLabel{$\forall_I$}
+    \UIC{$\all \psi. (\nec \psi \imp \pos \psi)$}
+\end{prooftree}
+
+This example proof is unsound according to the {\NDK} calculus, because the eigen-box condition is violated: the box labelled by $\omega$ is not accessed by any strong inference. 
+
+The straightforward combinations of the quantifier rules of {\ND} either with the modal rules of {\NDK} or with axiom K and the necessitation rule are suitable for a higher-order modal logic where constants and variables are \emph{rigid}. From the point of view of a \emph{possible world semantics}, rigidity means that their interpretation is independent of the world in which they are being interpreted. Rigidity is silently assumed by most works investigating the ontological argument, and is explicitly assumed here. Nevertheless, it should be noted that its adequacy for the ontological argument has already been contested \cite{fitting}. Another assumption made here is that the quantification domains are constant (i.e. independent of the possible worlds). Neither G\"odel's manuscript nor Scott's manuscript reveal whether they use constant or varying domains, and this is also the case for many variants (e.g. \cite{hajek}). Nevertheless, some authors of variants \cite[footnotes 11 and 14]{and90} of G\"odel's ontological argument do explicitly state a preference for varying domains. Our choice of assuming constant domains is motivated by simplicity.
 
 
-The straightforward combinations of the quantifier rules of {\ND} either with the modal rules of {\NDK} or with axiom K and the necessitation rule are suitable for a higher-order modal logic where constants and variables are \emph{rigid}. From the point of view of a \emph{possible worlds} semantics, rigidity means that their interpretation is independent of the world in which they are being interpreted. Rigidity is silently assumed by most works investigating the ontological argument, and is explicitly assumed here. Nevertheless, it should be noted that its adequacy has already been contested \cite{fitting}.
 
-ToDo: Talk about constant domains and varying domains, mention Conchiarella's semantics and Anderson's footnote 14.
+\section{Some Useful Derivable Modal Principles}
+\label{sec:ModalLogics}
 
-\section{A distribution principle and axiom B}
+From an axiomatic point of view, modal logics differ with respect to which additional axiom schemas they admit. Some common axiom schemas of relevance to the ontological argument are T ($\nec A \imp A$), B ($A \imp \nec \pos A$), 4 ($\nec A \imp \nec \nec A $) and 5 ($\pos A \imp \nec \pos A$). From a semantic point of view, these axioms correspond to geometric frame conditions that must be satisfied by the accesibility relation in the Kripke models \cite{negri}: T corresponds to reflexivity, B corresponds to symmetry, 4 corresponds to transitivity and 5 corresponds to euclidianity. In the models of logic {\bf S5}, all these axioms are satisfied; in the models of logic {\bf KB}, K and B are satisfied; and in the models of logic {\bf B}, K, T and B are satisfied.
 
-To prove G\"odel's ontological proof in natural deduction we will prove that a distribution principle is derivable and state Brouwer's reduction theorem. 
+In this section, natural deduction proofs of three convenient derived modal principles are presented. These principles are used in the ontological proofs formalized in the next sections. Although they are well-known among modal logicians, we include their proofs here in order to have a self-contained and fully formal presentation of the ontological proofs, without any gaps.
 
-\begin{lemma}\label{DP}
-The distribution principle 
+\bigskip
+
+
+\noindent
+The \emph{distribution principle} can be seen as a form of modus ponens within the scope of modalities: if $A \imp B$ holds in all accessible worlds and $A$ holds in an accessible world, then $B$ holds in an accessible world. This principle is provable in the modal logic {\bf K}.
+
+\begin{lemma*}[Distribution Principle]
+\label{DP} 
 $$\nec (A\imp B)\imp(\pos A\imp \pos B)$$
-is provable in our system K of modal logic. 
-\end{lemma}
+\end{lemma*}
 
 \begin{proof}\hfill
 
 \begin{small}
 \begin{prooftree}
-\AXC{$ $} \dashedLine\RightLabel{2}
+\AXC{$ $} \RightLabel{2}
 \UIC{$\nec (A\imp B)$}\RightLabel{$\nec_E$}
 \UIC{$\omega: A\imp B$}
-\AXC{$ $} \dashedLine\RightLabel{1}
+\AXC{$ $} \RightLabel{1}
 \UIC{$\pos A$}\RightLabel{$\pos_E$}
 \UIC{$\omega: A$}\RightLabel{$\imp_E$}
 \BIC{$\omega: B$} \RightLabel{$\pos_I$}
@@ -391,45 +441,112 @@ is provable in our system K of modal logic.
 
 \end{proof}
 
-Brouwer's reduction theorem is a version of axiom B for modal logic and a property that enforces symmetry as a geometric property for the frame of a Kripke sematics for modal logic. \citep{negri}
-%See the following for a discussion about axiom B: http://plato.stanford.edu/entries/logic-modal/
+\bigskip
 
-\begin{lemma}\label{BRP}
-The Brouwer Reduction Principle $\pos\nec A\imp A$ is derivable from axiom B, $A\imp \nec \pos A$. 
-\end{lemma}
+\noindent
+\emph{Brouwer's reduction principle} is derivable in modal logic {\bf KB}, using axiom B. The proof of G\"odel and Scott (Section \ref{sec:scott}) do not make direct use of this principle, but the new proof presented in Section \ref{sec:newproof} does.
+
+
+\begin{lemma*}[Brouwer's Reduction Principle]
+\label{BRP}
+$$
+\pos\nec A\imp A
+$$ 
+\end{lemma*}
+
 
 \begin{proof}\hfill
 
 \begin{small}
 \begin{prooftree}
 \AXC{$ $}\RightLabel{$2$}
+\UIC{$\pos \nec A $} \doubleLine
 \UIC{$\neg\nec \neg \nec A$}
 \AXC{$ $}\RightLabel{$ 1$}
 \UIC{$\neg A$}
-\AXC{$ $}\RightLabel{$Axiom B$}
+\AXC{Axiom B}\dashedLine
+\UIC{$\neg A\imp \nec\pos\neg A$} \doubleLine
 \UIC{$\neg A\imp \nec\neg\nec\neg\neg A$}\RightLabel{$\imp_E$}
 \BIC{$\nec\neg\nec\neg\neg A$}\doubleLine
-\UIC{$\nec\neg\nec A$}
-\BIC{$(\neg\nec \neg \nec A)\&(\nec\neg \nec A)$}\RightLabel{$\neg_I^1$}
+\UIC{$\nec\neg\nec A$} \RightLabel{$\neg_E$}
+\BIC{$\bot$}\RightLabel{$\neg_I^1$}
 \UIC{$\neg\neg A$} \RightLabel{$\neg\neg_E$}
 \UIC{$A$} \RightLabel{$\imp_I^2$}
-\UIC{$\neg\nec \neg \nec A\imp A$}
+\UIC{$\pos \nec A\imp A$}
 \end{prooftree}
 \end{small}
 
 \end{proof}
 
+\bigskip
 
-\section{Scott's Proof in Natural Deduction}
+\noindent
+In the modal logic {\bf S5}, a sequential iteration of modalities can be collapsed to the last modality in the sequence. In other words, the following principles hold in {\bf S5}:
+\begin{itemize}
+\item $\pos^n \nec A \imp \nec A$
+\item $\nec^n \pos A \imp \pos A$
+\item $\pos^n \pos A \imp \pos A$
+\item $\nec^n \nec A \imp \nec A$
+\end{itemize}
+
+\noindent
+Below we exhibit a natural deduction proof for the first principle listed above  when $n = 1$. Informally, this particular case can be read as the claim that anything that is possibly necessary is in fact necessary, and it is sufficient for the ontological proofs of G\"odel and Scott. The proof of this principle depends on the previously proven Brouwer's reduction principle, on the Modal Axiom 5, and on K, which was shown to be derivable in the proof of Theorem \ref{theorem:completeness}.
+
+
+\begin{lemma*}[Iteration Principle]
+$$
+\pos \nec A \imp \nec A
+$$
+\end{lemma*}
+
+\begin{proof}\hfill
+
+\begin{footnotesize}
+\begin{prooftree}
+
+\AXC{Brouwer's Reduction}\dashedLine
+\UIC{$\pos \nec A\imp A$}\RightLabel{$\nec_I$}
+\UIC{$\nec(\pos \nec A\imp A)$}
+\AXC{K}\dashedLine
+\UIC{$\nec(\pos \nec A\imp A)\imp (\nec\pos \nec A\imp \nec A)$}\RightLabel{$\imp_E$}
+\BIC{$\nec\pos \nec A\imp \nec A$}
+
+\AXC{Axiom 5 for $\nec A$}\dashedLine
+\UIC{$\pos \nec A\imp \nec \pos \nec A$}
+
+\AXC{$ $}\RightLabel{$1$}
+\UIC{$\pos \nec A$}\RightLabel{$\imp_E$}
+\BIC{$\nec \pos \nec A$}\RightLabel{$\imp_E$}
+\BIC{$\nec A$}\RightLabel{$\imp_I^1$}
+\UIC{$\pos \nec A \imp  \nec A$}
+\end{prooftree}
+\end{footnotesize}
+
+
+\end{proof}
+
+
+
+\section{Scott's Proof in Natural Deduction}\label{sec:scott}
 
 \setcounter{axiom}{0}
 \setcounter{lemma}{0}
 \setcounter{theorem}{0}
 \setcounter{corollary}{0}
+\setcounter{definition}{0}
 
-ToDo: natural language explanation of the proof in Anderson.
 
-The acceptance of the correctness of the ontological argument by G\"odel's work boils down to the intuitive correctness of the axioms and definitions and the belief in the soundness of the deductive system. The formal argument of G\"odel is based on Leibniz proof, which in turn is based on Descartes proof. These proofs have two parts; a proof that if God's existence is possible, then it is necessary and a proof that God's existence is in fact possible. 
+\newcommand{\scott}{^{\dagger}}
+
+
+In this section we present a detailed formalization of Scott's proof in the natural deduction calculus defined in Section \ref{sec:calculus}. The reasoning in Scott's manuscript has been reproduced step-by-step and all reasoning gaps are filled in by using the deduction considered most natural. All derived formulas that do appear in Scott's manuscript are marked with a $\dagger$ here. Unmarked formulas were derived in the process of filling the gaps between the marked formulas mentioned in Scott's manuscript. 
+
+% ToDo: uncomment this post-acceptance: the journal uses double blind reviewing.
+%The formal natural deduction proof presented here was verified in the Coq proof assistant\footnote{\url{https://github.com/FormalTheology/GoedelGod/blob/master/Formalizations/Coq/GoedelGod_Scott.v}}. 
+
+Scott's version of G\"odel's proof depends on 5 axioms that circumscribe the notion of \emph{positive} property, with positivity being denoted by the undefined second-order predicate symbol $P$. Additionally, 3 definitions are used for defining the notions of \emph{God-like}, \emph{essence} and \emph{necessary existence}. Technically, these definitions only abbreviate certain complex formulas. The argument would still go through if all defined symbols were replaced by the complex formulas they define. This observation is particularly relevant in the case of \emph{necessary existence}. Since this notion of ``existence'' is just an abbreviation, G\"odel's argument is not susceptible to Kant's criticism against Anselm's argument (that existence should not be treated as a predicate). In G\"odel's proof, existence is properly denoted by the existential quantifier. It is, therefore, unfortunately misleading to refer to the defined predicate symbol $E$ as ``necessary existence'', when in fact it is just a convenient abbreviation.
+
+Beside the 5 axioms and 3 definitions that pertain specifically to the argument, the proof also uses {\bf S5}'s iteration principle (in the proof of Lemma 2) and the equality axiom of reflexivity (in the proof of Theorem 1). The use of reflexivity could be avoided, but allows a shorter proof.
 
 
 \begin{axiom}
@@ -448,79 +565,90 @@ $$
 $$
 \end{axiom}
 
-\section{New Proof}
-\setcounter{axiom}{0}
-\setcounter{lemma}{0}
-\setcounter{theorem}{0}
-\setcounter{corollary}{0}
-\subsection{Possibly, God Exists}
-\begin{axiom}
-\label{A1}
-Either a property or its negation is positive, but not both:
-Axiom schema, for all $\varphi$:
-$$
-P(\neg \varphi) \biimp \neg P(\varphi)
-$$
-\end{axiom}
-\begin{axiom}
-\label{A2}
-A property necessarily implied by a positive property is positive:
-Axiom schema, for all $\varphi$ and $\psi$: 
-$$
-(P(\varphi) \wedge \nec \all x.[\varphi(x) \imp \psi(x)]) \imp P(\psi)
-$$
-\end{axiom}
+
 \begin{theorem}
 \label{T1}
 Positive properties are possibly exemplified:
-Axiom schema, for all $\varphi$:
 $$
-P(\varphi) \imp \pos \ex x.\varphi(x)
+\all \varphi. [P(\varphi) \imp \pos \ex x.\varphi(x)]
 $$
 \end{theorem}
 \begin{proof} \hfill
 
+
 \begin{prooftree}
-
-
-\AXC{$[P(\rho)]^3$} 
-\AXC{$[\nec \neg \ex x.\rho(x) ]^2$} \RightLabel{$\nec_E$}
-\UIC{$\neg \ex x.\rho(x) $} 
-\AXC{$[\rho(x)]^1$} \RightLabel{$\ex_I$}
-\UIC{$\ex x.\rho(x) $} \RightLabel{$\imp_E$}
-\BIC{$ \bot $}\RightLabel{$\imp_I, 1$}
-\UIC{$ \neg \rho(x) $} \RightLabel{$\imp_I$}
-\UIC{$ \rho(x) \imp \neg \rho(x) $} \RightLabel{$\all_I$}
-\UIC{$ \all x.(\rho(x) \imp \neg \rho(x)) $}  \RightLabel{$\nec_I$}
-\UIC{$ \nec \all x.(\rho(x) \imp \neg \rho(x)) $}\RightLabel{$\wedge_I$}
-\BIC{$ P(\rho) \wedge \nec \all x.[\rho(x) \imp \neg \rho(x)]$}
-\AXC{Axiom \ref{A2} for $\rho$ and $\neg\rho$} \dashedLine
-\UIC{$(P(\rho) \wedge \nec \all x.[\rho(x) \imp \neg \rho(x)]) \imp P(\neg \rho)$} \RightLabel{$\imp_E$}
-\BIC{$P(\neg \rho)$} \RightLabel{$\imp_E$}
+\AXC{$ $} \RightLabel{5}
+\UIC{$P(\rho)$}
+		\AXC{Reflexivity} \dashedLine
+		\UIC{$\omega: \gamma = \gamma$} \RightLabel{$\imp_I$}
+		\UIC{$\omega: \rho(\gamma) \imp \gamma = \gamma$} \RightLabel{$\all_I$}
+		\UIC{$\omega: \all x. \rho(x) \imp x = x$} \RightLabel{$\nec_I$}
+		\UIC{$\nec (\all x. \rho(x) \imp x = x)\scott $} \RightLabel{$\wedge_I$}
+	\BIC{$P(\rho) \wedge \nec (\all x. \rho(x) \imp x = x) $} 
+			\AXC{Axiom 2 for $\rho$ and $\lambda x. x = x$} \dashedLine
+	    	\UIC{$P(\rho) \wedge \nec (\all x. \rho(x) \imp x = x) \imp P(\lambda x. x = x)$} 
+		\BIC{$[\subproof_1] \qquad P(\lambda x. x = x)\scott$} 
 \end{prooftree}
 
 
-
-
-
 \begin{prooftree}
-\AXC{$ $} \dashedLine
-\UIC{$P(\neg \rho)$} \RightLabel{$\imp_E$}
-\AXC{Half of axiom \ref{A1}} \dashedLine
-\UIC{$ P(\neg \rho) \imp \neg P(\rho) $}  \RightLabel{$\imp_E$}
-\BIC{$\neg P(\rho) $} 
-\AXC{$[P(\rho)]^3$} 
-\BIC{$\bot$} \RightLabel{$\imp_I, 2$}
-\UIC{$ \neg \nec \neg \ex x.\rho(x)$} \dashedLine \RightLabel{definition of $\pos$}
-\UIC{$ \pos \ex x.\rho(x)$}  \RightLabel{$\imp_I, 3$}
-\UIC{$ P(\rho) \imp \pos \ex x.\rho(x) $} 
-
+\AXC{$ $} \RightLabel{5}
+\UIC{$P(\rho)$}
+	\AXC{$ $} \RightLabel{1}
+	\UIC{$\omega: \rho(\beta)$}
+			\AXC{$ $} \RightLabel{3}
+			\UIC{$\nec \all x. \neg \rho(x)$} \RightLabel{$\nec_E$}
+			\UIC{$\omega: \all x. \neg \rho(x) $} \RightLabel{$\all_E$}
+			\UIC{$\omega: \neg \rho(\beta)$} \RightLabel{$\neg_E$}
+		\BIC{$\omega: \bot$} \RightLabel{$\bot_E$}
+		\UIC{$\omega: \neg (\beta = \beta)$} \dottedLine
+		\UIC{$\omega: (\beta \neq \beta)$} \RightLabel{$\imp_I^1$}
+		\UIC{$\omega: (\rho(\beta) \imp (\beta \neq \beta))$} \RightLabel{$\all_I$}
+		\UIC{$\omega: (\all x. \rho(x) \imp (x \neq x))$} \RightLabel{$\nec_I$}
+		\UIC{$\nec (\all x. \rho(x) \imp (x \neq x))\scott$}  \RightLabel{$\wedge_I$}
+	\BIC{$P(\rho) \wedge \nec (\all x. \rho(x) \imp x \neq x) $} 
+			\AXC{Axiom 2 for $\rho$ and $\lambda x. x \neq x$} \dashedLine
+	    	\UIC{$P(\rho) \wedge \nec (\all x. \rho(x) \imp x \neq x) \imp P(\lambda x. x \neq x)$} 
+		\BIC{$[\subproof_2] \qquad P(\lambda x. x \neq x)\scott$} 
 \end{prooftree}
 
 
+\begin{prooftree}
+		\AXC{$\subproof_2$} \dashedLine
+		\UIC{$P(\lambda x. x \neq x)\scott$}    
+    		\AXC{$\subproof_1$} \dashedLine
+			  \UIC{$P(\lambda x. x = x)\scott$} 
+					\AXC{Half of Axiom 1} \dashedLine
+					\UIC{$P(\lambda x. x = x) \imp \neg P(\lambda x. x \neq x)$} \RightLabel{$\imp_E$}
+				\BIC{$\neg P(\lambda x. x \neq x)$} \RightLabel{$\neg_E$}
+			\BIC{$\bot$}
+\end{prooftree}
 
+
+\begin{prooftree}
+\AXC{$ $} \RightLabel{4}
+\UIC{$\nec \neg \ex x. \rho(x)$} \RightLabel{$\nec_E$}
+\UIC{$\omega: \neg \ex x. \rho(x)$}
+        \AXC{$ $} \RightLabel{2}
+        \UIC{$\rho(\alpha)$} \RightLabel{$\ex_I$}
+		\UIC{$\omega: \ex x. \rho(x)$} \RightLabel{$\neg_E$}
+    \BIC{$\omega: \bot$} \RightLabel{$\neg_I^2$}
+	\UIC{$\omega: \neg \rho(\alpha)$} \RightLabel{$\all_I$}
+	\UIC{$\omega: \all x. \neg \rho(x)$} \RightLabel{$\nec_I$}
+	\UIC{$\nec \all x. \neg \rho(x) \scott$}
+	        \AXC{$ $} \dashedLine
+	        \UIC{$\bot$} \RightLabel{$\neg_I^3$}
+    		\UIC{$\neg \nec \all x. \neg \rho(x)$} \RightLabel{$\neg_E$}
+  		\BIC{$\bot$} \RightLabel{$\neg_I^4$}
+  		\UIC{$ \neg \nec \neg \ex x.\rho(x)$} \doubleLine %\RightLabel{definition of $\pos$}
+  		\UIC{$ \pos \ex x.\rho(x)$}  \RightLabel{$\imp_I^5$}
+  		\UIC{$ P(\rho) \imp \pos \ex x.\rho(x)$} \RightLabel{$\all_I$}
+      \UIC{$ \all \varphi. [P(\varphi) \imp \pos \ex x.\varphi(x)] $}
+\end{prooftree}
 
 \end{proof}
+
+
 \begin{definition}
 \label{D1}
 A \emph{God-like} being possesses all positive properties:
@@ -530,9 +658,10 @@ $$
 \end{definition}
 
 
+
 \begin{axiom}
 \label{A3}
-The property of being God-like is positive:
+The property of being god-like is positive:
 $$
 P(G)
 $$
@@ -554,7 +683,14 @@ $$
 \end{prooftree}
 \end{proof}
 
-\subsection{If God exists, then God necessarily exists}
+
+\begin{axiom}
+\label{A4}
+Positive properties are necessarily positive:
+$$
+\all \varphi.[P(\varphi) \to \Box \; P(\varphi)]
+$$
+\end{axiom}
 
 \begin{definition}
 \label{D2}
@@ -565,6 +701,79 @@ $$
 \end{definition}
 
 
+\begin{theorem}
+\label{T2}
+Being god-like is an essence of any God-like being:
+$$
+\all x. G(x) \imp \ess{G}{x}
+$$
+\end{theorem}
+\begin{proof}\hfill
+
+\begin{small}
+\begin{prooftree}
+
+
+	\AXC{$ $} \RightLabel{5}
+	\UIC{$\rho(\gamma)$}
+
+		\AXC{$ $} \RightLabel{2}
+		\UIC{$\neg P(\rho)$} 
+				\AXC{Axiom 1} \dashedLine
+        \UIC{$\all \varphi. [P(\neg \varphi) \biimp \neg P(\varphi)]$} \RightLabel{$\all_E$}
+        \UIC{$P(\lambda x. \neg \rho(x)) \biimp \neg P(\rho)$} \RightLabel{$\wedge_E$}
+        \UIC{$\neg P(\rho) \imp P(\lambda x. \neg \rho(x))$} \RightLabel{$\imp_E$}
+			\BIC{$P(\lambda x. \neg \rho(x))$}  
+
+					\AXC{$ $} \RightLabel{1}
+					\UIC{$G(\gamma)$} \dottedLine
+					\UIC{$\all \varphi. P(\varphi) \imp \varphi(\gamma)$} \RightLabel{$\all_E$}
+					\UIC{$P(\lambda x. \neg \rho(x)) \imp \neg \rho(\gamma)$} \RightLabel{$\imp_E$}
+				\BIC{$\neg \rho(\gamma)$} \RightLabel{$\neg_E$}      
+	   \BIC{$\bot$} \RightLabel{$\neg_I^2$}
+	   \UIC{$\neg\neg P(\rho)$} \RightLabel{$\neg\neg_E$}
+	   \UIC{$[\subproof_3] \qquad P(\rho)$}
+	   \end{prooftree}
+\end{small}
+
+
+\begin{small}
+\begin{prooftree}
+\AXC{$ $} \RightLabel{1}
+\UIC{$G(\gamma)$}
+
+ \AXC{$\subproof_3$}\dashedLine
+ \UIC{$P(\rho)$}
+	      \AXC{Axiom 4} \dashedLine
+        \UIC{$\all \varphi.[P(\varphi) \to \Box \; P(\varphi)]$} \RightLabel{$\all_E$}
+	   	  \UIC{$P(\rho) \imp \nec P(\rho)$} \RightLabel{$\imp_E$}
+		 \BIC{$\nec P(\rho)\scott$}
+			\AXC{$ $} \RightLabel{4}
+			\UIC{$\omega: P(\rho)$}
+					\AXC{$ $} \RightLabel{3}
+					\UIC{$\omega: G(\delta) $} \dottedLine
+					\UIC{$\omega: \all \varphi. P(\varphi) \imp \varphi(\delta)$} \RightLabel{$\all_E$} 
+					\UIC{$\omega: P(\rho) \imp \rho(\delta)$} \RightLabel{$\imp_E$}
+				\BIC{$\omega: \rho(\delta) $} \RightLabel{$\imp_I^3$}
+				\UIC{$\omega: G(\delta) \imp \rho(\delta) $} \RightLabel{$\all_I$}
+				\UIC{$\omega: \all y. G(y) \imp \rho(y) $} \RightLabel{$\imp_I^4$}
+				\UIC{$\omega: P(\rho) \imp (\all y. G(y) \imp \rho(y) )$} \RightLabel{$\nec_I$}
+				\UIC{$\nec (P(\rho) \imp (\all y. G(y) \imp \rho(y) ))$} \RightLabel{$\imp_E$}
+						\AXC{ K} \RightLabel{$\imp_E$}
+					\BIC{$\nec P(\rho) \imp \nec (\all y. G(y) \imp \rho(y) )$}
+			\BIC{$\nec (\all y. G(y) \imp \rho(y) )$} \RightLabel{$\imp_I^5$}
+			\UIC{$\rho(\gamma) \imp \nec (\all y. G(y) \imp \rho(y) )$} \RightLabel{$\all_I$}
+			\UIC{$\all \varphi. \varphi(\gamma) \imp \nec (\all y. G(y) \imp \varphi(y) )$} \RightLabel{$\wedge_I$}
+		\BIC{$ G(\gamma) \wedge (\all \varphi. \varphi(\gamma) \imp \nec (\all y. G(y) \imp \varphi(y) ))$} \dottedLine
+		\UIC{$\ess{G}{\gamma}$} \RightLabel{$ \imp_I^1$}
+		\UIC{$G(\gamma) \imp \ess{G}{\gamma}$} \RightLabel{$\all_I$}
+		\UIC{$\all x. G(x) \imp \ess{G}{x}$}
+\end{prooftree}
+\end{small}
+
+\end{proof}
+
+
 \begin{definition}
 \label{D3}
 \emph{Necessary existence} of an individual is the necessary exemplification of all its essences:
@@ -572,6 +781,8 @@ $$
 E(x) \biimp \all \varphi.[\ess{\varphi}{x} \imp \nec \ex y.\varphi(y)]
 $$
 \end{definition}
+
+
 \begin{axiom}
 \label{A5}
 Necessary existence is a positive property:
@@ -579,87 +790,374 @@ $$
 P(E)
 $$
 \end{axiom}
+
+
+
 \begin{lemma}
 \label{L1}
-If there is a God, then necessarily there exists a God:
+If there is a God-like being, then there is a God-like being necessarily:
 $$
 \ex z. G(z) \imp \nec \ex x. G(x)
 $$
 \end{lemma}
 
+\begin{proof}\hfill
+
+\begin{prooftree}
+\AXC{$ $} \RightLabel{1}
+\UIC{$\ex z. G(z)$} \RightLabel{$\ex_E$}
+\UIC{$[\subproof_4] \qquad G(\gamma)$}
+\end{prooftree}
 
 
+\begin{prooftree}
+\AXC{$\subproof_4$} \dashedLine
+\UIC{$G(\gamma)$}
+		\AXC{Theorem 2} \dashedLine 
+		\UIC{$\all x. G(x) \imp \ess{G}{x}$} \RightLabel{$\all_E$}
+		\UIC{$G(\gamma) \imp \ess{G}{\gamma}$}
+	\BIC{$\ess{G}{\gamma}\scott$}
+				\AXC{Axiom 5} \dashedLine
+				\UIC{$P(E)$}
+						\AXC{$\subproof_4$} \dashedLine
+						\UIC{$G(\gamma)$} \dottedLine
+						\UIC{$\all \varphi. P(\varphi) \imp \varphi(\gamma)$} \RightLabel{$\all_E$}
+						\UIC{$P(E) \imp E(\gamma)$} 
+					\BIC{$E(\gamma)\scott$} \dottedLine
+					\UIC{$\all \varphi. \ess{\varphi}{\gamma} \imp \nec \ex x. \varphi(x)$} \RightLabel{$\all_E$}
+					\UIC{$\ess{G}{\gamma} \imp \nec \ex x. G(x)$}
+		\BIC{$\nec \ex x. G(x)$} \RightLabel{$\imp_I^1$}
+		\UIC{$\ex z. G(z) \imp \nec \ex x. G(x)$}
+
+\end{prooftree}
+
+\end{proof}
+
+
+\begin{lemma}
+\label{L2}
+If the existence of a God-like being is possible, then it is necessary:
+$$
+\pos \ex z. G(z) \imp \nec \ex x. G(x)
+$$
+\end{lemma}
+
+\begin{proof}\hfill
+
+\begin{scriptsize}
+\begin{prooftree}
+
+\AXC{$ $} \RightLabel{1}
+\UIC{$\pos \ex x. G(x)$} 
+		\AXC{Lemma 1} \dashedLine
+		\UIC{$\omega: \ex x. G(x) \imp \pos \nec \ex x. G(x)$} \RightLabel{$\nec_I$}
+		\UIC{$\nec (\ex x. G(x) \imp \nec \ex x. G(x)) $}
+				\AXC{Distribution Principle}
+			\BIC{$\pos \ex x. G(x) \imp \pos \nec \ex x. G(x)$} \RightLabel{$\imp_E$}
+	\BIC{$\pos \nec \ex x. G(x)\scott$}
+			\AXC{S5 Iteration Principle} \dashedLine
+			\UIC{$\pos \nec \ex x. G(x) \imp \nec \ex x. G(x)$}
+		\BIC{$\nec \ex x. G(x)$} \RightLabel{$\imp_I^1$}
+		\UIC{$\pos \ex z. G(z) \imp \nec \ex x. G(x)$}
+\end{prooftree}
+\end{scriptsize}
+
+\end{proof}
+
+\begin{theorem}
+\label{T3}
+Necessarily, there exists a God-like being:
+$$
+\nec \ex x. G(x)
+$$
+\end{theorem}
+
+\begin{proof}\hfill
+
+\begin{prooftree}
+	\AXC{Corollary 1} \dashedLine
+	\UIC{$\pos \ex x. G(x)$}
+			\AXC{Lemma 2} \dashedLine
+			\UIC{$\pos \ex x. G(x) \imp \nec \ex x. G(x)$} \RightLabel{$\imp_E$}
+		\BIC{$\nec \ex x. G(x)$}
+\end{prooftree}
+
+\end{proof}
+
+
+
+\section{New Proof}\label{sec:newproof}
+
+In this section we present a new proof in {\bf KB}. This proof uses exactly the same axioms and definitions of Scott's proof shown in the previous sections, but it uses neither the equality axiom of reflexivity nor {\bf S5}'s modal iteration principle. Instead, it relies only on Brouwer's reduction principle (in the proof of Theorem 3). The new proof is also shorter than Scott's proof. 
+
+
+
+\setcounter{axiom}{0}
+\setcounter{lemma}{0}
+\setcounter{theorem}{0}
+\setcounter{corollary}{0}
+\setcounter{definition}{0}
+
+
+\begin{axiom}
+\label{A1}
+Either a property or its negation is positive, but not both:
+$$
+\all \varphi. [P(\neg \varphi) \biimp \neg P(\varphi)]
+$$
+\end{axiom}
+
+\begin{axiom}
+\label{A2}
+A property necessarily implied by a positive property is positive:
+$$
+\all \varphi. \all \psi.[(P(\varphi) \wedge \nec \all x.[\varphi(x) \imp \psi(x)]) \imp P(\psi)]
+$$
+\end{axiom}
+\begin{theorem}
+\label{T1}
+Positive properties are possibly exemplified:
+$$
+\all \varphi. [P(\varphi) \imp \pos \ex x.\varphi(x)]
+$$
+\end{theorem}
+\begin{proof} \hfill
+
+\begin{prooftree}
+\AXC{$ $} \RightLabel{3}
+\UIC{$P(\rho)$} 
+\AXC{$ $} \RightLabel{2}
+\UIC{$\nec \neg \ex x.\rho(x) $} \RightLabel{$\nec_E$}
+\UIC{$\omega: \neg \ex x.\rho(x) $} 
+\AXC{$ $} \RightLabel{$1$}
+\UIC{$\omega: \rho(x)$} \RightLabel{$\ex_I$}
+\UIC{$\omega: \ex x.\rho(x) $} \RightLabel{$\imp_E$}
+\BIC{$\omega:  \bot $}\RightLabel{$\imp_I^1$}
+\UIC{$\omega:  \neg \rho(x) $} \RightLabel{$\imp_I$}
+\UIC{$\omega:  \rho(x) \imp \neg \rho(x) $} \RightLabel{$\all_I$}
+\UIC{$\omega:  \all x.(\rho(x) \imp \neg \rho(x)) $}  \RightLabel{$\nec_I$}
+\UIC{$ \nec \all x.(\rho(x) \imp \neg \rho(x)) $}\RightLabel{$\wedge_I$}
+\BIC{$ P(\rho) \wedge \nec \all x.[\rho(x) \imp \neg \rho(x)]$}
+\AXC{Axiom \ref{A2} for $\rho$ and $\lambda x. \neg \rho(x)$} \dashedLine
+\UIC{$(P(\rho) \wedge \nec \all x.[\rho(x) \imp \neg \rho(x)]) \imp P(\lambda x. \neg \rho(x))$} \RightLabel{$\imp_E$}
+\BIC{$[\subproof_5]\qquad P(\lambda x. \neg \rho(x))$} \RightLabel{$\imp_E$}
+\end{prooftree}
+
+
+
+\begin{prooftree}
+\AXC{$\subproof_5$} \dashedLine
+\UIC{$P(\lambda x. \neg \rho(x))$} \RightLabel{$\imp_E$}
+\AXC{Axiom 1} \dashedLine
+\UIC{$\all \varphi. [P(\neg \varphi) \biimp \neg P(\varphi)]$} \RightLabel{$\all_E$}
+\UIC{$P(\lambda x. \neg \rho(x)) \biimp \neg P(\rho)$} \RightLabel{$\wedge_E$}
+\UIC{$ P(\lambda x. \neg \rho(x)) \imp \neg P(\rho) $}  \RightLabel{$\imp_E$}
+\BIC{$\neg P(\rho) $} 
+\AXC{$ $} \RightLabel{3} 
+\UIC{$P(\rho)$} 
+\BIC{$\bot$} \RightLabel{$\imp_I^2$}
+\UIC{$ \neg \nec \neg \ex x.\rho(x)$} \doubleLine %\RightLabel{definition of $\pos$}
+\UIC{$ \pos \ex x.\rho(x)$}  \RightLabel{$\imp_I^3$}
+\UIC{$ P(\rho) \imp \pos \ex x.\rho(x) $} \RightLabel{$\all_I$}
+\UIC{$ \all \varphi. [P(\varphi) \imp \pos \ex x.\varphi(x)] $} 
+
+\end{prooftree}
+
+
+\end{proof}
+
+Comparing this new proof of Theorem 1 with the proof of Theorem 1 indicated by G\"odel and Scott, it is noticeable that new proof is significantly shorter. The key idea to obtain a shorter proof is to instantiate the second universally quantified property of Axiom 2 by $\lambda x. \neg \rho(x)$ instead of using the predicate symbols $=$ or $\neq$ as G\"odel and Scott did. This eliminates the reliance of the ontological argument on the presence of $=$ and $\neq$ in the logical language. Furthermore, Axiom 2 is then needed only once.
+
+Although the simpler proof of Theorem 1 presented here was developed independently, it seems conceptually related to a possible simplification briefly and informally described by Anderson \cite[footnote 2]{and90} and attributed by him to an anonymous referee. The simpler proof of Theorem 1 is not particularly special. In fact, it is probably the most likely proof that any well-trained logician would construct, if asked to derive Theorem 1 from Axioms 1 and 2 using methodical formal proof search techniques. Modern techniques usually rely on unification to compute or guess good instances for weakly quantified variables, and therefore they would never result in instantiations containing $=$ and $\neq$, which are symbols that do not appear anywhere in the axioms or in the theorems to be proved. We may only wonder why G\"odel preferred to use those unusual instantiations. It might be an interesting question from a historical point of view, if this suggests that there might have been a change (perhaps evolution) in the way logicians construct formal proofs; or even from a philosophical point of view, if G\"odel's preference was philosophically motivated.
+
+
+
+\begin{definition}
+\label{D1}
+A \emph{God-like} being possesses all positive properties:
+$$
+G(x) \biimp \forall \varphi. [P(\varphi) \to \varphi(x)]
+$$
+\end{definition}
+
+\begin{axiom}
+\label{A3}
+The property of being god-like is positive:
+$$
+P(G)
+$$
+\end{axiom}
+
+\begin{corollary}
+\label{C1}
+Possibly, a God-like being exists:
+$$
+\pos \ex x. G(x)
+$$
+\end{corollary}
+\begin{proof} \hfill
+\begin{prooftree}
+\AXC{Axiom \ref{A3}} \dashedLine
+\UIC{$P(G)$}
+\AXC{Theorem \ref{T1} for G} \dashedLine
+\UIC{$ P(G) \imp \pos \ex x.G(x) $} \RightLabel{$\imp_E$}
+\BIC{$\pos \ex x. G(x)$}
+\end{prooftree}
+\end{proof}
+
+
+\begin{axiom}
+\label{A4}
+Positive properties are necessarily positive:
+$$
+\all \varphi.[P(\varphi) \to \Box \; P(\varphi)]
+$$
+\end{axiom}
+
+\begin{definition}
+\label{D2}
+An \emph{essence} of an individual is a property possessed by it and necessarily implying any of its properties:
+$$
+\ess{\varphi}{x} \biimp \varphi(x) \wedge \all \psi. (\psi(x) \imp \nec \all x. (\varphi(x) \imp \psi(x)))
+$$
+\end{definition}
+
+
+At this point, G\"odel and Scott proceed to prove Theorem 2, which is then used to prove Lemma 1. However, a close inspection of Scott's proof of Lemma 1 reveals that Theorem 2 is an unnecessary detour. Therefore, we do not include it in the new proof.
+
+
+\begin{definition}
+\label{D3}
+\emph{Necessary existence} of an individual is the necessary exemplification of all its essences:
+$$
+E(x) \biimp \all \varphi.[\ess{\varphi}{x} \imp \nec \ex y.\varphi(y)]
+$$
+\end{definition}
+
+
+\begin{axiom}
+\label{A5}
+Necessary existence is a positive property:
+$$
+P(E)
+$$
+\end{axiom}
+
+
+The new proof of Lemma 1 does not rely on Theorem 2. Overall, it is slightly shorter than Scott's proofs of Theorem 2 and Lemma 1 combined, but a large part of the new proof of Lemma 1 is structurally very similar to Scott's proof of Theorem 2, and their underlying intuitive ideas are still essentially the same. However, despite being an unnecessary detour from a technical point of view, Theorem 2 is very interesting from a philosophical perspective. It breaks an otherwise long proof of Lemma 1 in a point that facilitates comprehension by humans at an intuitive and informal level.
+
+This phenomenon is very intriguing: the new proof of Lemma 1 is technically simpler (because it has fewer inferences), but Scott's proof of Lemma 1 with Theorem 2 can be considered intuitively simpler (because it is arguably easier to understand). This constitutes an interesting case for Hilbert's 24th Problem \cite{hilbert}, which asks for criteria to properly compare the simplicity of proofs. While Hilbert had mathematical proofs in mind, insights into the 24th problem could be gained by analyzing philosophical proofs as well. As G\"odel suggested, ``a scientific (exact) philosophy and theology [\ldots] is also most highly fruitful for science''.
+
+
+\begin{lemma}
+\label{L1}
+If there is a God-like being, then there is a God-like being necessarily:
+$$
+\ex z. G(z) \imp \nec \ex x. G(x)
+$$
+\end{lemma}
 
 \begin{proof} \hfill
 \begin{prooftree}
 \AXC{$ $} \RightLabel{1}
 \UIC{$\ex z. G(z)$}\RightLabel{$\ex_E$}
-\UIC{$G(g)$}
+\UIC{$[\subproof_6] \qquad G(\gamma)$}
 \end{prooftree}
 
-
+\begin{scriptsize}
 \begin{prooftree}
-
-
 \AXC{$ $} \RightLabel{2}
-\UIC{$\neg P(\psi)$} 
-\AXC{Axiom \ref{A1}} \dashedLine
-\UIC{$\neg P(\psi) \imp P(\neg \psi)$}\RightLabel{$\imp_E$}
-\BIC{$P(\neg \psi)$}
-\AXC{$G(g)$}  \dashedLine \RightLabel{D\ref{D1}}
-\UIC{$\forall \varphi.(P(\varphi) \imp \varphi(g))$}\RightLabel{$\forall_E$}
-\UIC{$P(\neg \psi) \imp \neg \psi(g)$}\RightLabel{$\imp_E$}
-\BIC{$\neg \psi(g)$}
-\AXC{$ $} \RightLabel{4}
-\UIC{$\psi(g)$} \RightLabel{$\imp_E$}
-\BIC{$\bot$}\RightLabel{$\imp_I^2$}
-\UIC{$\neg\neg P(\psi)$}\RightLabel{$\neg\neg_E$}
-\UIC{$P(\psi)$}
-\end{prooftree}
-
-\begin{prooftree}
-\AXC{$P(\psi)$}
+\UIC{$\neg P(\rho)$} 
+\AXC{Axiom 1} \dashedLine
+\UIC{$\all \varphi. [P(\neg \varphi) \biimp \neg P(\varphi)]$} \RightLabel{$\all_E$}
+\UIC{$P(\lambda x. \neg \rho(x)) \biimp \neg P(\rho)$} \RightLabel{$\wedge_E$}
+\UIC{$\neg P(\rho) \imp P(\lambda x. \neg \rho(x))$}\RightLabel{$\imp_E$}
+\BIC{$P(\lambda x. \neg \rho(x))$}
+\AXC{$\subproof_6$} \dashedLine
+\UIC{$G(\gamma)$}  \dottedLine \RightLabel{D\ref{D1}}
+\UIC{$\forall \varphi.(P(\varphi) \imp \varphi(\gamma))$}\RightLabel{$\forall_E$}
+\UIC{$P(\lambda x. \neg \rho(x)) \imp \neg \rho(\gamma)$}\RightLabel{$\imp_E$}
+\BIC{$\neg \rho(\gamma)$}
 \AXC{$ $} \RightLabel{3}
-\UIC{$G(y)$}  \dashedLine \RightLabel{D\ref{D1}}
-\UIC{$\forall \varphi.(P(\varphi) \imp \varphi(g))$}\RightLabel{$\forall_E$}
-\UIC{$P(\psi) \imp \psi(y)$}\RightLabel{$\imp_E$}
-\BIC{$\psi(y)$} \RightLabel{$\imp_I^3$}
-\UIC{$G(y) \imp \psi(y)$}\RightLabel{$\forall_I$}
-\UIC{$\forall y.(G(y) \imp \psi(y))$}\RightLabel{$\nec_I$}
-\UIC{$\nec \forall y.(G(y) \imp \psi(y))$}\RightLabel{$\imp_I^4$}
-\UIC{$\psi(g) \imp \nec \forall y.(G(y) \imp \psi(y))$}\RightLabel{$\forall_I$}
-\UIC{$\forall \psi.(\psi(g) \imp \nec \forall y.(G(y) \imp \psi(y)))$}\RightLabel{$\wedge_I$}
-\AXC{$G(g)$}  
-\BIC{$G(g) \wedge \forall \psi.(\psi(g) \imp \nec \forall y.(G(y) \imp \psi(y)))$}\dashedLine \RightLabel{D\ref{D2}}
-\UIC{$\ess{G}{g}$}
+\UIC{$\rho(\gamma)$} \RightLabel{$\imp_E$}
+\BIC{$\bot$}\RightLabel{$\imp_I^2$}
+\UIC{$\neg\neg P(\rho)$}\RightLabel{$\neg\neg_E$}
+\UIC{$P(\rho)$}
+\AXC{Axiom \ref{A4}} \dashedLine
+\UIC{$\all \varphi.[P(\varphi) \imp \nec\; P(\varphi)]$}\RightLabel{$\forall_E$}
+\UIC{$P(\rho) \imp \nec\; P(\rho)$}\RightLabel{$\imp_E$}
+\BIC{$\nec P(\rho)$}\RightLabel{$\imp_I^3$}
+\UIC{$[\subproof_7] \qquad \rho(\gamma) \imp \nec\; P(\rho)$}
+\end{prooftree}
+\end{scriptsize}
+
+
+\begin{small}
+\begin{prooftree}
+\AXC{$ $} \RightLabel{5}
+\UIC{$\nec P(\rho)$} \RightLabel{$\nec_E$}
+\UIC{$\omega: P(\rho)$}
+\AXC{$ $} \RightLabel{4}
+\UIC{$\omega: G(y)$}  \dottedLine \RightLabel{D\ref{D1}}
+\UIC{$\omega: \forall \varphi.(P(\varphi) \imp \varphi(y))$}\RightLabel{$\forall_E$}
+\UIC{$\omega: P(\rho) \imp \rho(y)$}\RightLabel{$\imp_E$}
+\BIC{$\omega: \rho(y)$} \RightLabel{$\imp_I^4$}
+\UIC{$\omega: G(y) \imp \rho(y)$}\RightLabel{$\forall_I$}
+\UIC{$\omega: \forall y.(G(y) \imp \rho(y))$}\RightLabel{$\nec_I$}
+\UIC{$\nec \forall y.(G(y) \imp \rho(y))$} \RightLabel{$\imp_I^5$}
+\UIC{$\nec P(\rho)\imp \nec \forall y .(G(y)\imp \rho(y))$} \RightLabel{$\imp_E$}
+\AXC{$ $} \RightLabel{6}
+\UIC{$\rho(\gamma)$} \RightLabel{}
+\AXC{$\subproof_7$} \dashedLine
+\UIC{$\rho(\gamma)\imp\Box P(\rho)$}\RightLabel{$\imp_E$}
+\BIC{$\nec P(\rho)$} \RightLabel{$\imp_E$}
+\BIC{$\nec \forall y .(G(y)\imp \rho(y))$}\RightLabel{$\imp_I^6$}
+\UIC{$\rho(\gamma) \imp \nec \forall y.(G(y) \imp \rho(y))$}\RightLabel{$\forall_I$}
+\UIC{$\forall \psi.(\psi(\gamma) \imp \nec \forall y.(G(y) \imp \psi(y)))$}
+\AXC{$\subproof_6$} \dashedLine
+\UIC{$G(\gamma)$}  
+\BIC{$G(\gamma) \wedge \forall \psi.(\psi(\gamma) \imp \nec \forall y.(G(y) \imp \psi(y)))$}\dottedLine \RightLabel{D\ref{D2}}
+\UIC{$[\subproof_8] \qquad \ess{G}{\gamma}$}
+\end{prooftree}
+\end{small}
+
+\begin{small}
+\begin{prooftree}
+\AXC{$\subproof_8$} \dashedLine
+\UIC{$\ess{G}{\gamma}$}
 \AXC{Axiom \ref{A5}} \dashedLine
 \UIC{$P(E)$}\dottedLine \RightLabel{D\ref{D3}}
-\AXC{$G(g)$}\dashedLine \RightLabel{D\ref{D1}}
-\UIC{$\forall \varphi.(P(\varphi) \imp \varphi(g))$}\RightLabel{$\forall_E$}
-\UIC{$P(E) \imp E(g)$}\RightLabel{$\imp_E$}
-\BIC{$E(g)$}\dottedLine \RightLabel{D\ref{D3}}
-\UIC{$ \all \varphi.[\ess{\varphi}{g} \imp \nec \ex x.\varphi(x)] $}\RightLabel{$\all_E$}
-\UIC{$ \ess{G}{g} \imp \nec \ex x. G(x) $}\RightLabel{$\imp_E$}
+\AXC{$\subproof_6$} \dashedLine
+\UIC{$G(\gamma)$}\dottedLine \RightLabel{D\ref{D1}}
+\UIC{$\forall \varphi.(P(\varphi) \imp \varphi(\gamma))$}\RightLabel{$\forall_E$}
+\UIC{$P(E) \imp E(\gamma)$}\RightLabel{$\imp_E$}
+\BIC{$E(\gamma)$}\dottedLine \RightLabel{D\ref{D3}}
+\UIC{$ \all \varphi.[\ess{\varphi}{\gamma} \imp \nec \ex x.\varphi(x)] $}\RightLabel{$\all_E$}
+\UIC{$ \ess{G}{\gamma} \imp \nec \ex x. G(x) $}\RightLabel{$\imp_E$}
 \BIC{$\nec \ex x. G(x)$} \RightLabel{$\imp_I^1$}
 \UIC{$\ex z. G(z) \imp \nec \ex x. G(x)$}
 \end{prooftree}
+\end{small}
 \end{proof}
 
-\subsection{God necessarily exists}
 
-ToDo: this is proven in a way that is slightly different from G\"odel's 1970.
+Lemma 2 also turns out to be a superfluous detour and therefore the new proof does not include it. Inspecting Scott's proof of Lemma 2, we see that an important step is the derivation of $\nec \ex x. G(x)$ from $\pos \nec \ex x. G(x)$ and {\bf S5}'s iteration principle. Instead, we can derive $\ex x. G(x)$ from $\pos \nec \ex x. G(x)$ and Brouwer's reduction theorem and then derive $\nec \ex x. G(x)$ from $\ex x. G(x)$ by the $\nec_I$ (necessitation) inference rule. This is precisely what the new proof of Theorem 3 does.
+
+
+\setcounter{theorem}{2}
 \begin{theorem}
-\label{T4}
-God necessarily exists:
+\label{T3}
+Necessarily, there exists a God-like being:
 $$
 \nec \ex x. G(x)
 $$
 \end{theorem}
+
 \begin{proof}
 
 \begin{small}
 \begin{prooftree}
-\AXC{ Distribution principle \ref{DP} } \dashedLine
+\AXC{ Distribution Principle} \dashedLine
 \UIC{$\nec [\ex x. G(x)\imp \nec \ex x. G(x)]\imp [\pos \ex x. G(x)\imp \pos\nec \ex x. G(x)]$}
 \AXC{ Lemma \ref{L1} } \dashedLine
 \UIC{$\ex x. G(x)\imp \nec \ex x. G(x)$}\RightLabel{$\nec_I$}
@@ -670,10 +1168,10 @@ $$
 \begin{small}
 \begin{prooftree}
 \AXC{$[\pos \ex x. G(x)\imp \pos\nec \ex x. G(x)]$}
-\AXC{ Theorem \ref{T1} } \dashedLine
+\AXC{ Corollary \ref{C1} } \dashedLine
 \UIC{$\pos \ex x. G(x)$}\RightLabel{$\imp_E$}
 \BIC{$\pos\nec \ex x. G(x)$}
-\AXC{ Brouwer's reduction theorem \ref{***} } \dashedLine
+\AXC{ Brouwer's Reduction Principle } \dashedLine
 \UIC{$\pos\nec \ex x. G(x) \imp \ex x. G(x)$}\RightLabel{$\imp_E$}
 \BIC{$ \ex x. G(x)$} \RightLabel{$\nec_I$}
 \UIC{$\nec \ex x. G(x)$} 
@@ -683,60 +1181,64 @@ $$
 \end{proof}
 
 
+Since the iteration principle requires the strong modal logic {\bf S5} while Brouwer's reduction principle relies only the much weaker modal logic {\bf KB},  the possibility of proving Theorem 3 using Brouwer's reduction principle instead of {\bf S5}'s iteration principle is philosophically profound. There have been many discussions of what modal axioms are needed for the ontological argument. In their manuscripts, G\"odel and Scott do not write explicitly which logic they use. However, a proof step in their notes clearly relies on {\bf S5}'s \emph{iteration principle}.
+Anderson \cite[footnote 5]{and90} cites several articles questioning the adequacy of {\bf S5} for the ontological argument and conjectures that the ontological argument could be restricted to the weaker modal logic {\bf B}. Sobel \citep{sobel2}[p. 152] acknowledges Anderson's conjecture, claims that it is correct and tries to informally explain how his formal proofs could be modified to rely on {\bf B} instead of {\bf S5}. Nevertheless, neither Anderson nor Sobel presented any formal proof relying only on {\bf B}. The new formal proof presented in Section \ref{sec:newproof} relies on {\bf KB}, which is weaker than {\bf B}. 
+
+Curiously, in the new proof of Theorem 3, the actual existence of a God-like being ($\ex x. G(x)$) is proven \emph{before} its necessity ($\nec \ex x. G(x)$). This contrasts with G\"odel's proof, where the actual existence is never actually proven, although it can be derived as a trivial corollary of its necessity by applying the modal axiom T.
 
 
 
-\section{Modal collapse}
 
-A major criticism against G\"odel's proof is that its axioms lead to the so-called \emph{modal collapse} \citep{sobel}: it is possible to prove that everything that is the case is so necessarily, and hence actuality, possibility and necessity coincide \citep{sobel2}[Ch. 4,  section 6, theorems 9 and 10]. As this is an undesirable consequence, many solutions to the problem of the modal collapse have been proposed.
+\section{Modal Collapse} \label{sec:collapse}
 
-Anderson's solution \citep{citation needed} modifies the definitions of God-like being and essence, and eliminates half of an axiom. This not only avoids the modal collapse, but also makes two of G\"odel's five axioms derivable from the others \citep{hajek} under some implicit additional assumptions \citep{fuhrmann}. Another solution involving more substantial modifications is that of Bj{\o}rdal \citep{bjordal,fuhrmann}. 
+A major criticism against G\"odel's proof is that its axioms lead to the so-called \emph{modal collapse} \citep{sobel}: it is possible to prove that everything that is the case is so necessarily, and hence actuality, possibility and necessity coincide \citep{sobel2}[Ch. 4, section 6, theorems 9 and 10]. That is: for all propositions $A$, 
+$$
+A \biimp \pos A \biimp \nec A
+$$
 
-On another track, Fitting has argued that greater care has to be taken with the semantics of higher-order modal logics. Quantified variables may be rigid or flexible; and properties may be treated as intensional or extensional. Making the right choices may prevent the modal collapse \citep{fitting}[Sections 11.9 and 11.10].
-
-Anderson \citep{anderson1990}[p. 292] and Sobel \citep{sobel2}[p. 133] also discuss the idea that the notion of property over which quantification is allowed might be too general and restrictions might be appropriate.  
-
-%In his manuscript, G\"odel warned that ``positive means positive in the moral aesthetic sense [\ldots]. Only then [are] the axioms true''. 
-
-It is beyond the scope of this paper to analyze these solutions in detail or propose new solutions. The purpose of this section is simply to show natural deduction derivations of the modal collapse, thus confirming that it holds for the axioms used in the previous sections.
-
+Below we show natural deduction derivations of the modal collapse, thereby confirming that it holds\footnote{It is well-known and uncontroversial that the modal collapse holds. We show a natural deduction proof here merely for the sake of self-containment and so that the proof becomes more accessible to readers who might be more familiarized with natural deduction than with Sobel's proof system.} for the axioms used in the previous sections. We show only the strongest implication above. The others are easy corollaries in modal logics where T holds. % ToDo: do we really need T?
 
 \begin{theorem}
-\label{T5}
-For all constant fomulas (without free variables), $A$, we have:
+\label{Collapse}
+For all propositions $A$, the following \emph{modal collapse} proposition is provable:
 $$
 A \imp \nec A
-$$
+$$ 
 \end{theorem}
 
-Note that in intuitionistic predicate logic we have $\all y.[B \imp C] \biimp [\ex y.B \imp C]$ if $y$ is not free in $C$.
+
 
 \begin{small}
 \begin{prooftree}
-\AXC{Theorem \ref{T2}}\dashedLine
-\UIC{$\all y.[G(y) \imp \ess{G}{y}]$} \RightLabel{D2 }
-\UIC{$\all y.[G(y) \imp G(y) \wedge \all \psi. (\psi(y) \imp \nec \all x. (G(x) \imp \psi(x)))]$} \RightLabel{Prop. logic }
-\UIC{$\all y.[G(y) \imp \all \psi. (\psi(y) \imp \nec \all x. (G(x) \imp \psi(x)))]$} \RightLabel{Second order quantifier elimination and logical steps }
+\AXC{Theorem 2}\dashedLine
+\UIC{$\all y.[G(y) \imp \ess{G}{y}]$} \RightLabel{D2 }\doubleLine
+\UIC{$\all y.[G(y) \imp G(y) \wedge \all \psi. (\psi(y) \imp \nec \all x. (G(x) \imp \psi(x)))]$}
+\UIC{$\all y.[G(y) \imp \all \psi. (\psi(y) \imp \nec \all x. (G(x) \imp \psi(x)))]$} \doubleLine
 \UIC{$\all y.[G(y) \imp (A(y) \imp \nec \all x. (G(x) \imp A(x)))]$} \RightLabel{$A$ is constant}
-\UIC{$\all y.[G(y) \imp (A \imp \nec \all x. (G(x) \imp A))]$} \RightLabel{intuitionistic predicate logic}
-\UIC{$\ex y.G(y) \imp (A \imp \nec \all x. (G(x) \imp A))$}
+\UIC{$\all y.[G(y) \imp (A \imp \nec \all x. (G(x) \imp A))]$} \doubleLine
+\UIC{$[\subproof_9] \qquad \ex y.G(y) \imp (A \imp \nec \all x. (G(x) \imp A))$}
 \end{prooftree}
 \end{small}
+
+
+
 \begin{small}
 \begin{prooftree}
-\AXC{}\dashedLine
+\AXC{$ \subproof_9 $}\dashedLine
 \UIC{$\ex y.G(y) \imp (A \imp \nec \all x. (G(x) \imp A))$}
-\AXC{Theorem \ref{T4}}\dashedLine
+\AXC{Theorem 3}\dashedLine
+\UIC{$\nec \ex y.G(y)$} \RightLabel{$\nec_E$}
 \UIC{$\ex y.G(y)$} \RightLabel{$\imp_E$}
-\BIC{$ A \imp \nec \all x. (G(x) \imp A)$} \RightLabel{intuitionistic predicate logic}
+\BIC{$ A \imp \nec \all x. (G(x) \imp A)$} \doubleLine
 \UIC{$ A \imp \nec (\ex x. G(x) \imp A)$}
 \AXC{$ $} \RightLabel{1}
 \UIC{$A$} \RightLabel{$\imp_E$}
 \BIC{$ \nec (\ex x. G(x) \imp A)$} \RightLabel{$\nec_E$}
-\UIC{$ \ex x. G(x) \imp A$} \RightLabel{$\imp_E$}
-\AXC{Theorem \ref{T4}}\dashedLine
-\UIC{$\ex x.G(x)$} \RightLabel{$\imp_E$}
-\BIC{$A$} \RightLabel{$\nec_I$}
+\UIC{$ \omega:  \ex x. G(x) \imp A$} \RightLabel{$\imp_E$}
+\AXC{Theorem 3}\dashedLine
+\UIC{$\nec \ex y.G(y)$} \RightLabel{$\nec_E$}
+\UIC{$\omega: \ex x.G(x)$} \RightLabel{$\imp_E$}
+\BIC{$\omega: A$} \RightLabel{$\nec_I$}
 \UIC{$ \nec A$} \RightLabel{$\imp_I^1$}
    \UIC{$A\imp \nec A$}
 \end{prooftree}
@@ -744,56 +1246,84 @@ Note that in intuitionistic predicate logic we have $\all y.[B \imp C] \biimp [\
 
 
 
-% This collapse of the system was first proved in \citep{sobel} and the argument is also given in \citep{fitting}[ch. 11, sections 8-11] who provides summaries of two solutions by the modifications of the axioms. The argument may require that one doesn't instantiate the second order quantifier with $A$ directly but with $\lambda x.A$ to make $A$ a property. But still we have $(\lambda x.A)(y)\equiv A$ because $A$ is constant.
+In G\"odel's ontological proof, we are proving a restricted modal collapse, which applies to one specific formula, the existence of a God-like being. The interest in the proof naturally decreases if a consequence of the axiomatization is a modal collapse for \emph{all} formulas. Therefore, an improvement would be obtained if the modal collapse was limited only to the property of being god-like or at least to a restricted collection of properties. Several solutions to the problem of modal collapse have been proposed. 
+
+Anderson's solution \citep{and90} modifies the definitions of God-like being and essence, and eliminates half of an axiom. This not only avoids the modal collapse, but also makes two of G\"odel's five axioms derivable from the others \citep{hajek} under some implicit additional assumptions \citep{fuhrmann}. Another solution involving more substantial modifications is that of Bj{\o}rdal \cite{bjordal,fuhrmann}. 
+
+On another track, Fitting has argued that greater care has to be taken with the semantics of higher-order modal logics. Quantified variables may be rigid or flexible; and properties may be treated as intensional or extensional. Making the right choices may prevent the modal collapse \citep{fitting}[Sections 11.9 and 11.10].
+
+Anderson \citep{and90}[p. 292] and Sobel \citep{sobel2}[p. 133] also discuss the idea that the notion of property over which quantification is allowed might be too general and restrictions might be appropriate.  
+
+It is likely that a reduction from {\bf S5} to {\bf KB} is possible for these variants as well, since the technique we used to replace {\bf S5}'s iteration principle by Brouwer's reduction principle depends only on the structure of the final steps of the proof of Theorem 3, but not on details of the axioms.
 
 
-% The question arises what kind of second order quantification is allowed. The instantiations that are used in our proof are instantiated with predicate variables that later work as eigenvariables for the second order universal introduction. In the proof of corollary \ref{C1} we instantiate with $G$ and in the proof of lemma \ref{L1}. we instantiate with $G$ and $E$. %In Sobel on G\"{o}del's ontological proof by Robert E. Koons this question is raised.
-
-% One can also discuss if a second order modal logic is sound and complete. With Henkin models, which restrict the second order quantification with comprehension, we have that normal second order logic is sound and complete. There is a completeness proof for a second order modal logic found in A completeness theorem in second order modal logic by Cocchiarella.
-
-
-\section{Conclusions}
-
-The proofs of theorem T1 and corollary C1 ($\pos \ex x. G(x)$) do not rely on equality and use axiom A2 ($\all \varphi. \all \psi.[(P(\varphi) \wedge \nec \all x.[\varphi(x) \imp \psi(x)]) \imp P(\psi)]$) only once. 
-Corollary C2 ($\ex x. G(x)$), which is usually regarded as a trivial corollary of main theorem T3 ($\nec \ex x. G(x)$) using the modal logic axiom T, is here derived directly from lemma L1 and corollary C1, not relying on T. The main theorem T3 becomes derivable from C2 by a single application of the necessitation rule. Furthermore, all proofs are done in the modal logic K, except for the proof of corollary C2, which requires one use of the axiom B of modal logic KB.
-
-ToDo: Sobel Anderson on KB: Sobel page 152
-
-Anderson's footnote 5 on KB
-
-ToDo: talk about anderson's footnote 2, where he argues that an anonymous referee knew the simpler proof of T1.
-
-Hajek (magari and others) on non-provability of ex x. G(x) in KD45.
+%ToDo: acknowledgements
 
 
 \begin{thebibliography}{9}
 
+\bibitem[{\itshape Adams (1995)}]{adams}
+Adams, R. M. 1995. Introductory note to [G\"odel 1970]. 
+
 \bibitem[{\itshape Anderson (1990)}]{and90}
 Anderson, C. A. 1990. {\itshape Some Emendations of G\"odel's Ontological Proof}. Faith and Philosophy, Vol. 7, Issue 3, pp. 291-303. 
 
-\bibitem[{\itshape Anderson \& Gettings(1996)}]{and}
+\bibitem[{\itshape Anderson \& Gettings (1996)}]{and}
 Anderson, C. A.\& Gettings, M. 1996.  {\itshape G\"odel's ontological proof revisited}. In: edited by Hajek P. {\itshape G\"odel '96},  Springer. 
 
+\bibitem[{\itshape Bj{\o}rdal (1999)}]{bjordal}
+Bj{\o}rdal, F. 1999. 
+Understanding G\"odel's Ontological Argument, in Timothy Childers (ed.) The Logica Yearbook 1998, pp. 214-217, Filosofia.
 
-\bibitem[{\itshape Fitting(2002)}]{fitting}
+\bibitem[{\itshape Church (1940)}]{church}
+Church, A. 1940. {\itshape A Formulation of the Simple Theory of Types}, Journal of Symbolic Logic, 5: 56--68. 
+
+\bibitem[{\itshape Fitting (2002)}]{fitting}
 Fitting, M. 2002.  {\itshape Types, Tableaus, and G\"odel's God}, Kluwer Academic Publishers.  
 
-\bibitem[{\itshape Kant(1781)}]{kant}
-Kant, I.  original 1781.   {\itshape Critique of Pure Reason}, J. M. Dent \& Sons LTD, edition from 1959.
+\bibitem[{\itshape Fuhrmann (2005)}]{fuhrmann}
+Fuhrmann, A. 2005.
+Existenz und Notwendigkeit -- Kurt G\"odel's Axiomatische Theologie, in Olsson e.J., Schr\"oder-Heister, P. and Spohn, W. (eds.) Logik in der Philosophie, pp. 349-374, Synchr.-Wissenschafts-Verlag.
+
+\bibitem[{\itshape Goedel (1970)}]{Goedel} 
+G\"odel, K. Ontological Proof. In Kurt G\"odel Collected Works vol. III. Ed. Feferman et al., pp. 403--404, 139, 145 or {\itshape Appendix A. Notes in Kurt G\"odel's hand} in [Sobel 2001]. 
+
+\bibitem[{\itshape Hajek (1996)}]{hajek}
+Hajek, P. 1996. Magari and others on G\"odel's Ontological Proof, in Ursini et alii
+(eds.) Logic and Logical Algebra, pp. 125--136, Marcel Dekker.
+
+\bibitem[{\itshape Kant (1781)}]{kant}
+Kant, I.  original 1781. {\itshape Critique of Pure Reason}, J. M. Dent \& Sons LTD, edition from 1959.
 
 \bibitem[{\itshape Negri (2005)}]{negri}
 Negri, S. 2005. {\itshape Proof analysis in modal logic}. J. Philosophical Logic, vol. 34, pp. 507--544. 
 
-\bibitem[{\itshape Sobel(1987)}]{sobel}
-Sobel, J. H. 1987. {\itshape G\"odel's Ontological Proof}. In: edited by J. J. Thompson. {\itshape On being and saying : essays for Richard Cartwright},  MIT Press. 
+\bibitem[{\itshape Prawitz (2006)}]{prawitz}
+Prawitz, D. 2006 (1st ed. 1965). {\itshape Natural deduction: a proof-theoretical study}. Mineola, New York: Dover publications. 
 
-\bibitem[{\itshape Sobel(2001)}]{sobel2}
+\bibitem[{\itshape Scott (2001)}]{scott}
+Scott, D. {\itshape Appendix B. Notes in Dana Scott's hand} in Logic and Theism: Arguments for and against Beliefs in God by Sobel, J. H. 
+
+\bibitem[{\itshape Sobel (1987)}]{sobel}
+Sobel, J. H. 1987. {\itshape G\"odel's Ontological Proof}. In: J. J. Thompson (ed.). {\itshape On being and saying: essays for Richard Cartwright},  MIT Press. 
+
+\bibitem[{\itshape Sobel (2001)}]{sobel2}
 Sobel, J. H. 2001. {\itshape Logic and Theism: Arguments for and against Beliefs in God}, Cambridge University Press. 
 
+\bibitem[{\itshape Wang (1996)}]{Wang1996}
+Wang, H. 1996. {\itshape A Logical Journey: From G\"odel to Philosophy}, The MIT Press. 
+
+\bibitem[{\itshape Paulin-Mohring (2015)}]{coq} Paulin-Mohring, C. 2015. {\itshape Introduction to the calculus of inductive constructions}. In %D. Delahaye and B. Woltzenlogel Paleo, editors, 
+All about Proofs, Proofs for All,
+Mathematical Logic and Foundations. College Publications, London.
+
+\bibitem[{\itshape Nipkow \& Paulson \& Wenzel (2002)}]{isabelle} Nipkow, T. \& Paulson, L.C. \& Wenzel, M. 2002. {\itshape Isabelle/HOL: A Proof Assistant for
+Higher-Order Logic}. Number 2283 in LNCS, Springer.
+
+\bibitem[{\itshape Thiele (2003)}]{hilbert} Thiele, R. 2003. {\itshape Hilberts twenty-fourth problem}, American Mathematical Monthly, January. 
 
 
 \end{thebibliography}
-
 
 
 \end{document}

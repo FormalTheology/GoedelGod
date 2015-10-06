@@ -221,3 +221,44 @@ eapply transitivity.
 
   exact R0.
 Qed.
+
+Theorem BrouwerReduction: [mforall p, (dia (box p)) m-> p].
+Proof.
+mv.
+intros p H.
+dia_e H.
+box_e H H1.
+  exact H1.
+
+  apply symmetry.
+  exact R.
+Qed.
+
+
+(*
+Theorem B_implies_symmetry: [ mforall p, (p m-> (box (dia p))) ] -> (forall w w1, (r w w1) -> (r w1 w)).
+Proof.
+intros.
+
+Qed.
+
+Theorem BrouwerReduction2: [ mforall p, (p m-> (box (dia p))) ] -> [mforall p, (dia (box p)) m-> p].
+Proof.
+intros.
+intro w.
+intro p.
+unfold V in H.
+assert ((p m-> box (dia p)) w).
+  apply H.
+
+  intro H1.
+  dia_e H1.
+  clear H.
+  box_e H1 H2.
+
+  unfold box in H0; unfold dia in H0.
+  firstorder.
+
+*)
+
+
