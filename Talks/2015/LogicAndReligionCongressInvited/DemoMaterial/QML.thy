@@ -11,6 +11,8 @@ section {* An Embedding of QML in HOL *}
 
   type_synonym \<sigma> = "(i \<Rightarrow> bool)"
 
+  abbreviation mtrue :: "\<sigma>" ("m\<top>") where "m\<top> \<equiv> (\<lambda>w. True)"
+  abbreviation mfalse :: "\<sigma>" ("m\<bottom>") where "m\<bottom> \<equiv> (\<lambda>w. False)"
   abbreviation mnot :: "\<sigma> \<Rightarrow> \<sigma>" ("m\<not>") where "m\<not> \<phi> \<equiv> (\<lambda>w. \<not> \<phi> w)"    
   abbreviation mand :: "\<sigma> \<Rightarrow> \<sigma> \<Rightarrow> \<sigma>" (infixr "m\<and>" 51) where "\<phi> m\<and> \<psi> \<equiv> (\<lambda>w. \<phi> w \<and> \<psi> w)"   
   abbreviation mor :: "\<sigma> \<Rightarrow> \<sigma> \<Rightarrow> \<sigma>" (infixr "m\<or>" 50) where "\<phi> m\<or> \<psi> \<equiv> (\<lambda>w. \<phi> w \<or> \<psi> w)"   
