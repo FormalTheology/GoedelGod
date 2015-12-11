@@ -56,8 +56,8 @@ section {* Modal Collapse *}
 
   lemma MC: "[\<forall>(\<lambda>\<Phi>.(\<Phi> m\<rightarrow> (\<box> \<Phi>)))]"  
   sledgehammer [provers = remote_leo2 remote_satallax] (T2 T3 ess_def)
-  -- {* by (metis T2 T3 ess\_def) *}
-  oops
+  by (meson T2 T3 ess_def)
+
 (*<*) 
 end
 (*>*) 
