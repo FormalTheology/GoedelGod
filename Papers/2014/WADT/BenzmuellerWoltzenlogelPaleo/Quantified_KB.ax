@@ -1,0 +1,27 @@
+\textcolor{gray}{%----The base type $i (already built-in) stands here for worlds and}
+\textcolor{gray}{%----mu for individuals; $o (also built-in) is the type of Booleans}
+thf(mu_type,type,(mu:$tType)).
+\textcolor{gray}{%----Reserved constant r for accessibility relation}
+thf(r,type,(r:$i>$i>$o)).
+\textcolor{gray}{%----Modal operators not, or, box}
+thf(mnot_type,type,(mnot:($i>$o)>$i>$o)).
+thf(mnot,definition,(mnot = (^[A:$i>$o,W:$i]:~(A@W)))).
+thf(mor_type,type,(mor:($i>$o)>($i>$o)>$i>$o)).
+thf(mor,definition,(mor = (^[A:$i>$o,Psi:$i>$o,W:$i]:((A@W)|(Psi@W))))).
+thf(mbox_type,type,(mbox:($i>$i>$o)>($i>$o)>$i>$o)).
+thf(mbox,definition,(mbox = (^[A:$i>$o,W:$i]:![V:$i]:(~(r@W@V)|(A@V))))).
+\textcolor{gray}{%----Quantifier (constant domains) for individuals and propositions} 
+thf(mall_ind_type,type,(mall_ind:(mu>$i>$o)>$i>$o)).
+thf(mall_ind,definition,(mall_ind = (^[A:mu>$i>$o,W:$i]:![X:mu]:(A@X@W)))).
+thf(mall_indset_type,type,(mall_indset:((mu>$i>$o)>$i>$o)>$i>$o)).
+thf(mall_indset,definition,(
+    mall_indset = (^[A:(mu>$i>$o)>$i>$o,W:$i]:![X:mu>$i>$o]:(A@X@W)))).
+\textcolor{gray}{%----Definition of validity (grounding of lifted modal formulas)}
+thf(v_type,type,(v:($i>$o)>$o)).
+thf(mvalid,definition,(v = (^[A:$i>$o]:![W:$i]:(A@W)))).
+\textcolor{gray}{%----Properties of accessibility relations: symmetry}
+thf(msymmetric_type,type,(msymmetric:($i>$i>$o)>$o)).
+thf(msymmetric,definition,(
+    msymmetric = (^[R:$i>$i>$o]:![S:$i,T:$i]:((R@S@T)=>(R@T@S))))).
+\textcolor{gray}{%----Here we work with logic KB, i.e., we postulate symmetry for r}
+thf(sym,axiom,(msymmetric@r)).

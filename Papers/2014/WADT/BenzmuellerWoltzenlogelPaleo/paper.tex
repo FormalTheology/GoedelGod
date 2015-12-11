@@ -1,0 +1,454 @@
+% This is LLNCS.DEM the demonstration file of
+% the LaTeX macro package from Springer-Verlag
+% for Lecture Notes in Computer Science,
+% version 2.4 for LaTeX2e as of 16. April 2010
+%
+\documentclass{llncs}
+%
+
+\usepackage[utf8]{inputenc}
+\usepackage{fancyvrb,amssymb,graphicx}
+\usepackage[usenames,dvipsnames,svgnames,table]{xcolor}
+
+
+
+
+\begin{document}
+
+\title{On Logic Embeddings and G\"odel's God}
+\author{Christoph Benzm\"uller\inst{1}\thanks{This work has been supported by
+    the German Research Foundation DFG under grants BE2501/9-1,2 and
+    BE2501/11-1.} \and Bruno Woltzenlogel Paleo\inst{2} 
+}
+
+\institute{%Department of Mathematics and Computer Science \\ 
+ Freie Universit\"at Berlin, Germany \\ \url{c.benzmueller@fu-berlin.de}
+\and
+ Vienna Technical University, Austria \\\url{bruno@logic.at}}
+
+\maketitle            
+
+
+
+\begin{abstract}
+  We have applied an elegant and flexible  logic embedding
+  approach to verify and automate a prominent philosophical argument:
+  the ontological argument for the existence of God. In our ongoing
+  computer-assisted study, higher-order automated reasoning tools have
+  made some interesting observations, some of which were previously unknown.
+\end{abstract}
+
+%   Our work attests the maturity of contemporary interactive and
+%   automated deduction tools for classical higher-order logic and
+%   demonstrates the elegance and practical relevance of the
+%   embeddings-based approach. Most importantly, our work opens new
+%   perspectives towards a computational metaphysics.
+
+%   In addition to the above, I will also briefly discuss the relation
+%   of the logic embeddings approach to axiomatic and algebraic
+%   specifications
+
+%   The study of G\"odel's ontological proof of God's existence is joint
+%   work with Bruno Woltzenlogel Paleo.
+% \end{abstract}
+%
+% \section{Introduction}
+%
+
+Logic embeddings provide an elegant means to formalize sophisticated
+non-classical logics in classical higher-order logic (HOL, Church's
+simple type theory \cite{Church40}). In previous work (cf.~\cite{C35}
+and the references therein) the embeddings approach has been
+successfully applied to automate object-level and meta-level reasoning
+for a range of logics and logic combinations with off-the-shelf HOL
+theorem provers. This also includes quantified modal logics (QML)
+\cite{J23} and quantified conditional logics (QCL) \cite{C37}.  For
+many of the embedded logics few or no automated theorem provers did
+exist before. HOL is exploited in this approach to encode the
+semantics of the logics to be embedded, for example, Kripke semantics
+for QMLs \cite{fitting98} or selection function semantics for QCLs
+\cite{Stalnaker68}.  
+
+The embeddings approach is related to labelled deductive systems
+\cite{gabbay96}, which employ meta-level (world-)labeling techniques
+for the modeling and implementation of non-classical proof systems. In
+our embeddings approach such labels are instead encoded in the HOL
+logic. 
+
+The embedding approach is flexible, because various modal logics (even
+with multiple modalities or a mix of varying/cumulative domain
+quantifiers) can be easily supported by stating their characteristic
+axioms. Moreover, it is relatively simple to implement, because it
+does not require any modification in the source code of the
+higher-order prover. A minimal encoding of
+second-order modal logic KB in TPTP THF syntax \cite{J22} --- this syntax is
+accepted by a range of HOL automated theorem provers (ATPs) --- is
+exemplarily provided in Fig.~\ref{fig1}.\footnote{Some Notes on THF, which is a concrete syntax for HOL: \texttt{\$i} and
+                   \texttt{\$o} represent the HOL base types $i$ and
+                   $o$ (Booleans). \texttt{\$i>\$o} encodes a function
+                   (predicate) type.  Predicate
+                   application as in $A(X,W)$ is encoded as
+                   \texttt{((A@X)@W)} or simply as
+                   \texttt{(A@X@W)}, i.e., function/predicate application
+                   is represented by \texttt{@}; universal
+                   quantification and $\lambda$-abstraction as in
+                   $\lambda {A}_{i\rightarrow o} \forall {W_i} (A\,W)$
+                   and are represented as in
+                   \texttt{\^{}[X:\$i>\$o]:![W:\$i]:(A@W)}; comments begin with
+                   \texttt{\%}.} The given set of axioms turns
+any TPTP THF compliant HOL-ATP in a reasoning tool for second-order modal logic. A
+Henkin-style semantics is thereby assumed for both logics: HOL and
+second-order modal logic.
+
+
+\begin{figure}[t]
+\begin{flushright}
+\begin{minipage}{.97\textwidth}
+\VerbatimInput[frame=single,%
+               commandchars=\\\{\},%
+               fontfamily=courier,
+               fontseries=b,%
+               fontsize=\scriptsize,%
+               %rulecolor=green,%
+               %fillcolor=yellow,%
+               %formatcom=blue,%
+               framerule=1pt,%
+               framesep=5pt,
+               numbersep=5pt,
+               numbers=left]%
+               {Quantified_KB.ax}
+\end{minipage}
+\end{flushright}
+                \vskip-.5em
+               \caption{\label{fig1}HOL encoding of second-order modal
+                 logic KB in THF syntax. 
+                 Modal formulas are mapped to HOL 
+                 predicates (with type \texttt{\$i>\$o}); 
+                 type \texttt{\$i} now stands for possible worlds. 
+                 The modal connectives $\neg$ (\texttt{mnot}), $\vee$ (\texttt{mor}) and
+                 $\square$ (\texttt{mbox}), universal quantification for
+                 individuals (\texttt{mall\_ind}) and for sets of 
+                 individuals  (\texttt{mall\_indset}) are introduced in 
+                 lines 7-18. 
+                 Validity of lifted modal formulas is
+                 defined in the standard way (lines 20-21). Symmetry
+                 of accessibility relation $r$ is postulated in lines
+                 23-26. Hence, second-order KB is realized here; 
+                 for logic K the symmetry axiom can be dropped.
+                 % \texttt{?}
+                   % is the existential quantifier, and
+                   % $\neg,\vee,\wedge, and \Rightarrow$ (mat. impl.)
+                   % are written as \texttt{\url{~}}, \texttt{|},
+                   % \texttt{\&}, and \texttt{=>}. 
+                   % Better formatted and easier readable
+                   % presentations of our THF code can easily be
+                   % generated with the TPTP tools of
+                   % Sutcliffe;
+                   % here we did minimize space.
+                 }
+\end{figure}
+
+In recent work \cite{C40,J28,CSR} we have applied the embedding approach
+to verify and automate a philosophical argument that has fascinated
+philosophers and theologians for about 1000 years: the ontological
+argument for the existence of God~\cite{sobel2004logic}. We have
+thereby concentrated on G\"odel's \cite{GoedelNotes} 
+modern version of this argument and on
+Scott's \cite{ScottNotes} modification, which
+employ a second-order modal logic (S5) for which, until now, no
+theorem provers were available.  In our computer-assisted study of the
+argument, the HOL provers LEO-II \cite{C26}, Satallax \cite{Satallax}
+and Nitpick \cite{Nitpick} have made some interesting observations,
+some of which were unknown so far. This is a landmark result, with
+media repercussion in a global scale, and yet it is only a glimpse of
+what can be achieved by combining computer science, philosophy and
+theology.
+
+
+We briefly summarize some of these observations: Nitpick confirms that
+Scott's axioms are consistent, while LEO-II and Satallax demonstrate
+that Gödel's original, slightly different axioms are inconsistent. As
+far as we are aware, this is a new result. As experiments with LEO-II
+revealed, the problem lies in a subtle difference in the definitions
+of the predicate \textit{essence} (characterizing the essential
+properties of an entity) between Gödel and Scott. In recent papers on
+the ontological argument (see e.g. below), some authors speak of an oversight/flaw by
+Gödel, some silently replace Gödel's definition without commenting and
+some simply stay with it.
+Moreover, instead of using modal logic S5, LEO-II and Satallax can
+prove the final theorem (that is, $\square \exists x . G(x)$,
+necessarily there exists God) already for modal logic KB.  This is
+highly relevant since some philosophers have criticized G{\"o}del's
+argument for the use of logic S5.  Axiom B (symmetry), however, cannot be dropped,
+which in turn is confirmed by Nitpick.  LEO-II and Satallax can also
+show that G{\"o}del's and Scott's axioms imply what is called the
+modal collapse: $\phi\supset\Box\phi$. This expresses that contingent
+truth implies necessary truth (which can even be interpreted as an
+argument against free will; cf.~\cite{sobel2004logic}) and is probably
+the most fundamental criticism put forward against G{\"o}del's and
+Scott's versions of the argument. Other theorems that can be shown by
+LEO-II and Satallax include flawlessness of God and 
+monotheism.
+
+
+
+
+% \item The axioms and definitions from Fig.~\ref{fig1} are consistent (cf.~CO in Fig.~\ref{fig2}). 
+% \item Logic K is sufficient for proving T1, C and T2.
+% \item For proving the final theorem T3, logic KB is sufficient (and
+%   for K a countermodel is reported). This is highly relevant since
+%   several philosophers have criticized G{\"o}del's argument for the
+%   use of logic S5. This criticism is thus provably pointless.
+% \item Only for T3 the HOL-ATPs still fail to produce a proof directly
+%   from the axioms; thus, T3 remains an interesting benchmark problem; T1, C, and T2 are rather trivial for HOL-ATPs.
+% \item G\"odel's original version of the proof \cite{GoedelNotes},
+%   which omits conjunct $\phi(x)$ in the definition of \emph{essence} (cf.~D2'),
+%   seems inconsistent (cf.~the failed consistency check for CO' in
+%   Fig.~\ref{fig2}). As far as we are aware of, this is a new result.
+% \item G{\"o}del's axioms imply what is called the modal collapse (cf.~MC
+%   in Fig.~\ref{fig2}) $\phi\supset\Box\phi$, that is, contingent truth
+%   implies necessary truth (which can even be interpreted as an
+%   argument against free will; cf.~\cite{sobel2004logic}). MC is probably the most fundamental
+%   criticism put forward against G{\"o}del's argument.
+% \item For proving T1, only the $\supset$-direction of A1 is
+%   needed. However, the $\subset$-direction of A1 is required for
+%   proving T2. Some philosophers (e.g.~\cite{anderson90:_some_emend_of_goedel_ontol_proof}) try to avoid MC by
+%   eluding/replacing the $\supset$-direction of A1.
+% \item G{\"o}del's axioms imply a `flawless God', that is, an entity
+%   that can only have `positive' properties (cf.~FG in
+%   Fig.~\ref{fig2}). However, a comment by G{\"o}del in \cite{GoedelNotes}
+%   explains that `positive' is to be interpreted in a moral aesthetic
+%   sense only.
+
+
+% \footnote{In order to better understand G\"odel's notion of
+%     `positive' properties, we have reformulated G{\"o}del's theory
+%     and used `divine' instead of `positive'. Then we introduced
+%     orthogonal predicates `positive' and `negative' and we showed that
+%     God-like beings may well have positive and negative properties as
+%     long as all these properties are classified as divine properties. A respective
+%     formalization in Isabelle can be found at
+%     \url{https://github.com/FormalTheology/GoedelGod/blob/master/Formalizations/Isabelle/DivineVersion/GoedelGodDivine.thy}.}
+% \item Another implication of G{\"o}del's axioms is monotheism (see MT
+%   in Fig.~\ref{fig2}). MT can easily be proved by Satallax from FG and
+%   D1. It remains non-trivial to prove it directly from
+%   G{\"o}del's axioms.
+% \item \label{vary} All of the above findings hold for both constant domain semantics and varying domain semantics (for the domain of individuals).
+% \end{enumerate}
+
+Ongoing and future work concentrates on the systematic study of
+G\"odel's and Scott's proofs. We have also begun to study more recent
+variants of the argument
+\cite{anderson90:_some_emend_of_goedel_ontol_proof,AndersonGettings,bjordal99,fuhrmann05:_exist_notwen,fitting02:_types_tableaus_god,Hajek2002,Hajek2008},
+which claim to remedy some fundamental problems of G\"odel's and
+Scott's proofs, especially the modal collapse \cite{C41}.  One interesting
+and very encouraging observation from these studies is, that the
+argumentation granularity typical of these philosophy
+papers is already within reach of the capabilities 
+of our higher-order automated theorem provers.
+This provides good evidence for the potential 
+relevance of the embedding approach (not only) w.r.t. 
+other similar applications in metaphysics.
+
+
+The long-term goal
+is to methodically determine the range of logical parameters (e.g.,
+constant vs. varying domains, rigid vs. non-rigid terms, logics KB vs.
+S4 vs. S5, etc.) under which the proposed variants of the modern
+ontological argument hold or fail.
+
+There have been few related works~\cite{oppenheimera11,rushby13}, 
+and they have
+focused solely on the comparably simpler, original ontological
+argument by Anselm of Canterbury. These works do not achieve the
+close correspondence between the original formulations and the formal
+encodings that can be found in our approach and they also do not reach
+the same degree of proof automation.
+
+Our work attests the maturity of contemporary interactive and
+automated deduction tools for HOL and
+demonstrates the elegance and practical relevance of the
+embeddings-based approach. Most importantly, our work opens new
+perspectives towards computational metaphysics.
+
+
+
+
+% \paragraph{Acknowledgement:}
+%   The study of G\"odel's ontological proof of God's existence is joint
+%   work with Bruno Woltzenlogel Paleo.
+
+\bibliographystyle{plain}
+%\bibliography{chris,Bibliography}
+
+
+\begin{thebibliography}{10}
+
+\bibitem{anderson90:_some_emend_of_goedel_ontol_proof}
+C.A.~Anderson.
+\newblock Some emendations of {G{\"o}del's} ontological proof.
+\newblock {\em Faith and Philosophy}, 7(3), 1990.
+
+
+\bibitem{AndersonGettings}
+C.A.~Anderson and M.~Gettings.
+\newblock G\"odel ontological proof revisited.
+\newblock In {\em {G\"odel'96: Logical Foundations of Mathematics, Computer
+  Science, and Physics: Lecture Notes in Logic 6}}, pages 167--172. {Springer},
+  1996.
+
+
+\bibitem{C37}
+C. Benzm{\"u}ller.
+\newblock Automating quantified conditional logics in {HOL}.
+\newblock In F.~Rossi, editor, Proc. of {\em IJCAI 2013}, pages 746--753, Beijing, China, 2013.
+
+\bibitem{C35}
+C. Benzm{\"u}ller.
+\newblock A top-down approach to combining logics.
+\newblock In {\em Proc. of ICAART 2013}, pages 346--351, Barcelona, Spain, 2013.
+  SciTePress Digital Library.
+
+\bibitem{J28}
+C. Benzm\"uller and B.~Woltzenlogel Paleo.
+\newblock {G{\"o}del's God in Isabelle/HOL}.
+\newblock {\em Archive of Formal Proofs}, 2013.
+
+\bibitem{C40}
+C. Benzm{\"u}ller and B.~Woltzenlogel Paleo.
+\newblock Automating {G\"{o}del's} ontological proof of god's existence with
+  higher-order automated theorem provers.
+\newblock In 
+  {\em ECAI 2014}, volume 263 of {\em Frontiers in AI and
+  Applications}, pages 163 -- 168. IOS Press, 2014.
+
+\bibitem{C41}
+C. Benzm{\"u}ller and L. Weber and B. Woltzenlogel
+Paleo. Computer-Assisted Analysis of the {Anderson-H\'{a}jek}
+Ontological Controversy. Handbook of the 1st World Congress on Logic
+and Religion, Jo\~ao Pessoa, Brazil, 2015.
+
+\bibitem{CSR}
+C.~Benzm{\"u}ller and B. Woltzenlogel Paleo.
+\newblock Interacting with Modal Logics in the Coq Proof Assistant,
+{\em 10th Intl. Computer Science Symp. in Russia (CSR)}, 2015.
+
+\bibitem{J23}
+C. Benzm{\"u}ller and L. Paulson.
+\newblock Quantified multimodal logics in simple type theory.
+\newblock {\em Logica Universalis (Special Issue on Multimodal Logics)},
+  7(1):7--20, 2013.
+
+\bibitem{C26}
+C. Benzm{\"u}ller, F. Theiss, L. Paulson, and A. Fietzke.
+\newblock {LEO-II} - a cooperative automatic theorem prover for higher-order
+  logic (system description).
+\newblock In 
+  {\em Proc. of IJCAR 2008}, volume 5195 of {\em
+  LNCS}, pages 162--170. Springer, 2008.
+
+\bibitem{bjordal99}
+F. Bjørdal.
+\newblock Understanding gödel’s ontological argument.
+\newblock In T. Childers, editor, {\em The Logica Yearbook 1998}.
+  Filosofia, 1999.
+
+\bibitem{Nitpick}
+J.C. Blanchette and T.~Nipkow.
+\newblock Nitpick: A counterexample generator for
+  higher-order logic based on a relational model finder. In {\em Proc. of ITP
+  2010}, volume 6172 of LNCS, pp. 131--146. Springer, (2010).
+
+\bibitem{Satallax}
+C.E. Brown.
+\newblock Satallax: An automated higher-order prover.
+\newblock In {\em Proc. of IJCAR 2012}, number 7364 in LNAI, pages 111 -- 117.
+  Springer, 2012.
+
+
+\bibitem{Church40}
+A.~Church.
+\newblock A formulation of the simple theory of types.
+\newblock {\em Journal of Symbolic Logic}, 5:56--68, 1940.
+
+\bibitem{fitting98}
+M.~Fitting and R.L. Mendelsohn.
+\newblock {\em First-Order Modal Logic}, volume 277 of {\em Synthese Library}.
+\newblock Kluwer, 1998.
+
+\bibitem{fitting02:_types_tableaus_god}
+M.~Fitting.
+\newblock {\em Types, Tableaus, and {G}{\"o}del's God}.
+\newblock Kluwer, 2002.
+
+\bibitem{fuhrmann05:_exist_notwen}
+A.~Fuhrmann.
+\newblock {Existenz und Notwendigkeit --- Kurt G\"odels axiomatische
+  Theologie}.
+\newblock In W.~Spohn et~al., editor, {\em Logik in der Philosophie}.
+  Heidelberg (Synchron), 2005.
+
+\bibitem{gabbay96}
+D.M. Gabbay.
+\newblock {\em Labelled Deductive Systems}.
+\newblock Clarendon Press, 1996.
+
+\bibitem{GoedelNotes}
+K.~G\"odel.
+\newblock {\em Appx.A: Notes in Kurt G\"odel's Hand}, pages 144--145.
+\newblock In  \cite{sobel2004logic}, 2004.
+
+\bibitem{Hajek2002}
+P.~Hajek.
+\newblock A new small emendation of g\"odel's ontological proof.
+\newblock {\em Studia Logica: An International Journal for Symbolic Logic},
+  71(2):pp. 149-164, 2002.
+
+\bibitem{Hajek2008}
+P.~Hajek.
+\newblock Ontological proofs of existence and non-existence.
+\newblock {\em Studia Logica: An International Journal for Symbolic Logic},
+  90(2):pp. 257--262, 2008.
+
+\bibitem{oppenheimera11}
+P.E. Oppenheimera and E.N. Zalta.
+\newblock A computationally-discovered simplification of the ontological
+  argument.
+\newblock {\em Australasian J. of Philosophy}, 89(2):333--349, 2011.
+
+\bibitem{rushby13}
+J.~Rushby.
+\newblock The ontological argument in {PVS}.
+\newblock In {\em Proc.~of CAV Workshop ``Fun With Formal Methods''}, St.
+  Petersburg, Russia,, 2013.
+
+\bibitem{ScottNotes}
+D.~Scott.
+\newblock {\em Appx.B: Notes in Dana Scott's Hand}, pages 145--146.
+\newblock In  \cite{sobel2004logic}, 2004.
+
+\bibitem{sobel2004logic}
+J.H. Sobel.
+\newblock {\em Logic and Theism: Arguments for and Against Beliefs in God}.
+\newblock Cambridge U. Press, 2004.
+
+\bibitem{Stalnaker68}
+R.C.~Stalnaker.
+\newblock A theory of conditionals.
+\newblock In {\em Studies in Logical Theory}, pages
+98--112. Blackwell, 1968.
+
+\bibitem{J22}
+G.~Sutcliffe and C.~Benzm{\"u}ller.
+\newblock Automated reasoning in higher-order logic
+  using the {TPTP THF} infrastructure, {\em J. of Formalized Reasoning},
+  3(1),  1--27, (2010).
+
+
+
+\end{thebibliography}
+
+
+
+\end{document}
+
