@@ -3,7 +3,7 @@ begin
   consts P :: "(\<mu> \<Rightarrow> \<sigma>) \<Rightarrow> \<sigma>"  
   definition ess (infixl "ess" 85) where "\<Phi> ess x \<equiv> \<^bold>\<forall>\<Psi>. \<Psi>(x) \<^bold>\<rightarrow> \<^bold>\<box>(\<^bold>\<forall>y. \<Phi>(y) \<^bold>\<rightarrow> \<Psi>(y))"
   definition NE  where                   "NE x    \<equiv> \<^bold>\<forall>(\<lambda>\<Phi>. \<Phi> ess x \<^bold>\<rightarrow> \<^bold>\<box>(\<^bold>\<exists> \<Phi>))"
-  axiomatization where A1a: "[(\<^bold>\<forall>\<Phi>. P(\<lambda>x.\<^bold>\<not>(\<Phi>(x))) \<^bold>\<rightarrow> \<^bold>\<not>(P(\<Phi>)))]"
+  axiomatization where A1a: "[(\<^bold>\<forall>\<Phi>. P(\<lambda>x.\<^bold>\<not>\<Phi>(x)) \<^bold>\<rightarrow> \<^bold>\<not>P(\<Phi>))]"
                    and A2:  "[(\<^bold>\<forall>\<Phi>. \<^bold>\<forall>\<Psi>.(P(\<Phi>) \<^bold>\<and> \<^bold>\<box>(\<^bold>\<forall>x. \<Phi>(x) \<^bold>\<rightarrow> \<Psi>(x))) \<^bold>\<rightarrow> P(\<Psi>))]" 
 
 -- {* Positive properties are possibly exemplified. *}
