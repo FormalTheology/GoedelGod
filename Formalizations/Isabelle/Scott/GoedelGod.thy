@@ -203,7 +203,9 @@ Calling Metis with @{text "T2"}, @{text "T3"} and @{text "ess_def"} also does no
   lemma MC: "[\<forall>(\<lambda>\<Phi>.(\<Phi> m\<rightarrow> (\<box> \<Phi>)))]"  
   -- {* sledgehammer [provers = remote\_satallax] *}
   -- {* by (metis T2 T3 ess\_def) *}
+  -- {* by (meson T2 T3 ess_def) *}
   oops
+
 (*<*) 
 end
 (*>*) 
