@@ -12,7 +12,7 @@ Parameter u: Type.
 (* Type of lifted propositions *)
 Definition o := i -> Prop.
 
-(* Acessibility relation for worlds *)
+(* Accessibility relation for worlds *)
 Parameter r: i -> i -> Prop.
 
 
