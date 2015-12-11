@@ -1,6 +1,4 @@
-theory GoedelGodWithoutConjunctInEss_K 
-imports  Main "../QML"
-
+theory GoedelGodWithoutConjunctInEss_K imports  Main "../QML"
 begin
   consts P :: "(\<mu> \<Rightarrow> \<sigma>) \<Rightarrow> \<sigma>"  
   definition ess (infixr "ess" 85) where "\<Phi> ess x = \<forall>(\<lambda>\<Psi>. \<Psi> x m\<rightarrow> \<box> (\<forall>(\<lambda>y. \<Phi> y m\<rightarrow> \<Psi> y)))"
@@ -18,7 +16,6 @@ begin
 
 -- {* Now the inconsistency follows from A5, Lemma1, NE_def and T1 *}
   lemma False          
-  -- {* sledgehammer [remote_leo2] *}
-                                                             by (metis A5 Lemma1 NE_def T1) 
+  -- {* sledgehammer [remote_leo2] *}                        by (metis A5 Lemma1 NE_def T1) 
 end   
  

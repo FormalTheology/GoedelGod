@@ -36,6 +36,9 @@
 % page charge instructions.
 % Put where the files are available in the appropriate places.
 
+\usepackage{graphicx}
+
+
 \title{Automating the Ontological Argument}
 \author{Christoph Benzmüller\thanks{German Research Foundation DFG \ldots} and Bruno Woltzenlogel Paleo}
 \author{}
@@ -118,10 +121,23 @@ Short history, Anselm, Leibniz, etc.
 \subsection{LEO-II's Inaccessible Inconsistency Proof}
 Tell the story (here or earlier). Show parts of LEO proof.  Inaccessible, but relevant knowledge
 is contained.
+\begin{figure*}
+\centerline{\includegraphics[width=\textwidth]{./Images/LEO-Proof.png}}
+\caption{Primitive substitution in LEO-II generates candidates for the
+empty property.} \label{LEO-Proof}
+\end{figure*}
+LEO-II's resolution proof is human unintuitive. However, it contained
+relevant hints to the empty property (cf. Fig.~\ref{LEO-Proof}).
 
 \subsection{Argument Reconstruction in Isabelle}
 Present the argument informal and in Isabelle. Easy to understand in 
 in KB and KT, slightly harder in K.
+
+\subsection{Mapping to Gödel's Script}
+\begin{figure*}
+\centerline{\includegraphics[width=\textwidth]{./Images/Manuscript2.png}}
+\caption{Sources of Inconsistence in G\"{o}del's proof script.} \label{GoedelScript}
+\end{figure*}
 
 \section{Full Automation of Scott's Proof}
 Within the modified logic S5 Scott's proof can be fully automated. The
