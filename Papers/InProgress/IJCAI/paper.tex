@@ -95,7 +95,9 @@ which did not work for the previous.
 \item On a technical level we show that the novel embedding of S5 is more
     effective than the previous one.
 
-\item Improved syntax presentation.
+\item Much improved syntax presentation.
+
+\item Technical issues detected within Isabelle-Sledgehammer; room for improvements
 \end{itemize}
 
 These novel contributions are presented in Sections ? and ?.
@@ -118,6 +120,16 @@ Short history, Anselm, Leibniz, etc.
 \section{Automating HOML in HOL}
 \subsection{Outline of the Embedding}
 \subsection{Improved Embedding for S5}
+
+
+\section{Full Automation of Scott's Proof}
+Within the modified logic S5 Scott's proof can be fully automated. The
+intermediate argumentation steps as not needed anymore to support the
+prover.
+
+In the modified S5 setting also further results can be automatically verified, which 
+failed in previous work: verification of  modal collapse in
+Isabelle/HOL with Meson.
 
 \section{Intuitive Inconsistency Argument}
 \subsection{LEO-II's Inaccessible Inconsistency Proof}
@@ -147,14 +159,6 @@ in KB and KT, slightly harder in K.
 \caption{Sources of Inconsistence in G\"{o}del's proof script.} \label{GoedelScript}
 \end{figure*}
 
-\section{Full Automation of Scott's Proof}
-Within the modified logic S5 Scott's proof can be fully automated. The
-intermediate argumentation steps as not needed anymore to support the
-prover.
-
-In the modified S5 setting also further results can be automatically verified, which 
-failed in previous work: verification of  modal collapse in
-Isabelle/HOL with Meson.
 
 \section{Conclusion}
 

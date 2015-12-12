@@ -1,11 +1,10 @@
-theory QML imports Main 
+theory QML_S5
+imports Main 
+
 begin
-section {* An Embedding of QML in HOL *}
-
-  typedecl i                                      -- "the type for possible worlds" 
-  typedecl \<mu>                                      -- "the type for individuals"      
-  consts r :: "i \<Rightarrow> i \<Rightarrow> bool" (infixr "r" 70)     -- "accessibility relation r"   
-
+section {* An Embedding of QML S5 in HOL *}
+  typedecl i    -- "the type for possible worlds" 
+  typedecl \<mu>    -- "the type for individuals"      
   type_synonym \<sigma> = "(i \<Rightarrow> bool)"
 
   abbreviation mnot :: "\<sigma> \<Rightarrow> \<sigma>" ("\<^bold>\<not> _" [53] 52) where "\<^bold>\<not> \<phi> \<equiv> (\<lambda>w. \<not> \<phi> w)"    
@@ -18,9 +17,9 @@ section {* An Embedding of QML in HOL *}
   abbreviation mexists :: "('a \<Rightarrow> \<sigma>) \<Rightarrow> \<sigma>" ("\<^bold>\<exists>") where "\<^bold>\<exists> \<Phi> \<equiv> (\<lambda>w. \<exists>x. \<Phi> x w)"
   abbreviation mexistsB :: "('a \<Rightarrow> \<sigma>) \<Rightarrow> \<sigma>" (binder "\<^bold>\<exists>" [9] 9)  where "\<^bold>\<exists> x. \<phi> x \<equiv> \<^bold>\<exists> \<phi>"   
   abbreviation mLeibeq :: "\<mu> \<Rightarrow> \<mu> \<Rightarrow> \<sigma>" (infixr "\<^bold>=" 52) where "x \<^bold>= y \<equiv> \<^bold>\<forall>(\<lambda>\<phi>. (\<phi> x \<^bold>\<rightarrow> \<phi> y))"
-  abbreviation mbox :: "\<sigma> \<Rightarrow> \<sigma>" ("\<^bold>\<box>") where "\<^bold>\<box> \<phi> \<equiv> (\<lambda>w. \<forall>v.  w r v \<longrightarrow> \<phi> v)"
-  abbreviation mdia :: "\<sigma> \<Rightarrow> \<sigma>" ("\<^bold>\<diamond>") where "\<^bold>\<diamond> \<phi> \<equiv> (\<lambda>w. \<exists>v. w r v \<and> \<phi> v)" 
+  abbreviation mbox :: "\<sigma> \<Rightarrow> \<sigma>" ("\<^bold>\<box>") where "\<^bold>\<box> \<phi> \<equiv> (\<lambda>w. \<forall>v. \<phi> v)"
+  abbreviation mdia :: "\<sigma> \<Rightarrow> \<sigma>" ("\<^bold>\<diamond>") where "\<^bold>\<diamond> \<phi> \<equiv> (\<lambda>w. \<exists>v. \<phi> v)" 
 
   (*<*) no_syntax "_list" :: "args \<Rightarrow> 'a list" ("[(_)]") (*>*) 
-  abbreviation valid :: "\<sigma> \<Rightarrow> bool" ("[_]") where "[p] \<equiv> \<forall>w. p w" 
+  abbreviation valid :: "\<sigma> \<Rightarrow> bool" ("[_]") where "[p] \<equiv> \<forall>w. p w"
 end
