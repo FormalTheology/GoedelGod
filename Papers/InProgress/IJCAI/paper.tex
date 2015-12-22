@@ -116,6 +116,55 @@ Short history, Anselm, Leibniz, etc.
 \subsection{G\"{o}del's Proof Script}
 \subsection{Scott's Variant}
 \subsection{Recent Variants}
+Dozens of contributions were published in the last four decades which
+present variants of G\"odel's/Scott's proofs. In many cases the
+motivation has been to remedy the modal collapse. Other authors are
+simply interested in a critical assessment. Particularly interesting
+from the perspective of this paper is that many literature
+contributions unfortunately work with or refer to G''odel's original
+definition of essence
+$$ todo $$
+This original version avoids the conjunct added by Scott expressing
+that essential properties of an individual should be possessed by the
+individual. As we show in this paper using this notion of essence
+leads to an inconsistent axiom system, which in a classical setting of
+course deserves no further attention, since from an inconsistent
+system everything can be concluded, including God's existence and
+non-existence simultaneously. In other words, these literature
+contributions discuss variants of the argument which from a classical
+logical perspective do not deserve any further attention.
+
+We give here a list of examples:
+\begin{itemize}
+\item Anderson and Getting's 1996, p. 168 \cite[p.168]{AndersonGettings1968}
+  use essence without conjunct.
+\item  Hazen 1998, p.365 \cite[p.365]{Hazen1998} states: ``G\"odel left this
+  clause out in [11], but this appears to have been an oversight--it
+  is included in related manuscripts''. There is not mentioning of an
+  inconsistency though.
+\item Look???, p. 514
+\item Oppy 1996, p.226-227 \cite[p.226/227]{Oppy1996}, Oppy 2000, p. 364
+  \cite[p.364]{Oppy200}, Oppy 2008, p. 1068 \cite[p.1068]{Oppy2008}:
+  Oppy uses: ``A is an essence of x iff for every property B, x has B
+  neces- sarily iff A entails B'' (this is from Anderson's
+  emendation). Check is this leads to inconsistency as well. In this
+  case we may write something like: 
+
+ Oppy presents an critical
+  assessment in order to conclude that G\"odel's argument fails to
+  convince. Oppy apparently does not see that he is assessing an
+  inconsistent axiom system (and he in fact creates adaptations that
+  suffer the same problems).
+\item 
+\end{itemize}
+
+
+\footnote{Fuhrmann2005: Gödel vermerkt diese Konsequenz [dass aus der Definition unmittelbar folgt, daß alle wesentlichen
+Eigenschaften notwendig äquivalent sind] in einer Fußnote zur Definition. Die Definition selbst aber läßt im Definiens das Konjunkt Xx aus. Ohne das Konjunkt folgt jedoch die Konsequenz nicht. Es ist deshalb naheliegend anzunehmen, daß Gödel die Definition so beabsichtigte, wie sie hier notiert ist und wie Gödel sie selbst in früheren Notizbucheintragungen formuliert hat.}
+
+
+
+
 
 \section{Automating HOML in HOL}
 \subsection{Outline of the Embedding}
@@ -160,7 +209,7 @@ Present the argument informal and in Isabelle (see
 Fig.~\ref{InconsistencyIsabelleK}). Easy to understand in 
 in KB and KT, slightly harder in K.
 \begin{figure}
-\centerline{\includegraphics[width=\columnwidth]{./Images/InconsistencyIsabelleK.png}}
+%\centerline{\includegraphics[width=\columnwidth]{./Images/InconsistencyIsabelleK.png}}
 \caption{Reconstruction of inconsistency in Isabelle/HOl..} \label{InconsistencyIsabelleK}
 \end{figure}
 
