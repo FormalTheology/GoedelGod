@@ -36,7 +36,7 @@
 % page charge instructions.
 % Put where the files are available in the appropriate places.
 
-\usepackage{graphicx}
+\usepackage{graphicx,url}
 
 
 \title{Automating the Ontological Argument}
@@ -53,61 +53,110 @@
 \end{abstract}
 
 \section{Introduction}
-G\"{o}del's ontological argument for the existence of God is frequently
-presented as a masterpiece argument in metaphysics. A large body of
-literature is available which discusses G\"{o}del's original work and/or
-subsequent variants of it.
+Without exaggeration one may claim that Kurt G\"{o}del's ontological
+argument for the existence of God \cite{GoedelNotes,ScottNotes} is
+amongst the most discussed formal proofs in modern literature. A rich
+body of publications -- including very recent ones -- present,
+discuss, assess, criticise, modify and improve G\"{o}del's original
+work (see e.g.~Sobel~\shortcite{Sobel} and Oppy~\shortcite{sep-ontological-arguments} and the
+references therein).  In philosophy lectures at universities the
+argument is regularly presented as a masterpiece argument in
+metaphysics. Since summer 2013, when Benzm\"uller and Woltzenlogel-Paleo~\shortcite{J30,C40} first
+reported on their successful initial computational
+analysis of the G\"odel's respectively Scott's variants of the proof,
+their contribution received a media repercussion on a global scale\footnote{A
+  small collection of these reports is available at {\scriptsize
+    \url{https://github.com/FormalTheology/GoedelGod/blob/master/Press/LinksToNews.md}}},
+and numerous bloggers commented on the proof
+\cite{fuhrmann15:_blogg_goedel}.
 
-This paper presents an in depth analysis of G\"{o}del's original version
-of the ontological argument.   
-
-The analysis has been conducted with automated theorem provers for
-classical higher-order logic (HOL). However, since higher-order modal
-logic is actually required for the encoding of G\"{o}del's argument, we
-utilize an semantic embedding of HOML in HOL.
-
-
-First applications of theorem proving technology in metaphysics
-appeared in 199? in the work Zalta and Oppenheimer.  Further work also
-includes Rushby \ldots. Different to what is presented here, none of
-these previous formalises and automates variants of HOML, which is
-however crucial for G\"{o}del's ontological argument.
+The in-depth computational analysis presented here substantially
+extends previous computer-assisted studies on G\"odel's ontological
+argument. Similar to the related work \cite{J30,C40} the analysis has
+been conducted with automated theorem provers for classical
+higher-order logic (HOL) even though G\"odel's proof is actually
+formulated in modal higher-order logic. To bridge between the two
+logic formalisms we utilise and further improve the logic embeddings
+approach \cite{J23,C40} as also employed in preceding related work.
 
 
-The work presented here substantially extends previous work \cite{}.  
-The novel contributions of this paper include:
+The novel contributions of this paper include (but are not limited to):
+
 
 \begin{itemize}
-\item Detailed analysis of the inconsistency of G\"{o}del's axioms. The
-inconsistency was detected before, but for a long time we were not
-able to extract an intuitive argument from the proof of the ATPs.
-Further experiments now led to discovery of a surprisingly accessible
-understanding of this inconsistency which is philosophically profound
-and which has not been presented yet in the respective literature.
-
-\item Fully automated proof of Scott's theorem T3 from the axioms, that
-   is, without intermediate argumentation steps as used in previous
-   work.
-
-\item Direct verification of modal collapse with Meson in Isabelle/HOL,
-which did not work for the previous.
-
-\item On a technical level we show that the novel embedding of S5 is more
-    effective than the previous one.
-
-\item Much improved syntax presentation.
-
-\item Technical issues detected within Isabelle-Sledgehammer; room for improvements
+\item A detailed analysis of the inconsistency of G\"{o}del's
+  \shortcite{GoedelNotes} original version of the proof is presented
+  for higher-order modal logics KB and K (with possibilist and
+  actualist first-order quantifiers). The extraction, reconstruction
+  and verification of an informal, human intuitive argument has been
+  an open problem since the first detection of this inconsistency by
+  Benzmüller and Woltzenlogel-Paleo \shortcite{C40}. The experiments
+  reported here led to the discovery of a surprisingly accessible
+  understanding of this inconsistency which is philosophically
+  profound and which has not been presented yet in the respective
+  literature. The detection of this inconsistency in combination with
+  the work reported here thus demonstrates that higher-order automated
+  theorem provers (and thus AI systems) are capable of contributing
+  new and relevant knowledge in philosophy. 
+\item Another open question has been whether the G\"odel's
+  respectively Scott's main theorem T3 \textit{``Necessarily, there
+    exists God''} can eventually be proved fully automatically
+  directly from the axioms, that is, without the need for intermediate
+  argumentation steps (lemmata). Benzm\"uller and Woltzenlogel-Paleo
+  \shortcite{C40} still failed in achieving this. We here report
+  success for Scott's (consistent) variant of the proof in
+  higher-order modal logic S5. The fully automated proof has been
+  contributed by the theorem prover \textsc{Leo-II}~\cite{C26} and
+  subsequently verified in the proof assistant
+  Isabelle/HOL~\cite{NPW02}. On a technical level we show that the
+  novel embedding of S5 is more effective than the previous one.
+\item A third open issue has been whether the modal
+  collapse \cite{Sobel}, which is one of the most strongly criticised
+  `side-effects' of G\"odel's and Scott's variants of the proof, can
+  eventually be directly verified in Isabelle/HOL. Indeed, in previous work
+  the modal collapse has been confirmed by the provers
+  \textsc{Satallax} \cite{Satallax} and \textsc{Leo-II}, but a
+  direct verification in the highly trusted Isabelle/HOL still failed.
+\item On the technical side, we present a significantly improved
+  syntax representation of G\"odel's resp.~Scott's proof in
+  Isabelle/HOL. In fact, we demonstrate that a nearly perfect match
+  between the original pen and paper presentations and our encoding in
+  Isabelle/HOl is feasible. This is clearly an important prerequisite
+  for promoting the here employed theorem proving technology to
+  non-expert philosophers.
+\item On the other hand, we will
+  also point to several technical challenges which, at least for the
+  moment, still restrain non-expert users of these systems from
+  independently conducting similar experiments in computational
+  metaphysics as reported here and in previous work. 
+% Technical issues detected within Isabelle-Sledgehammer; room for improvements
 \end{itemize}
 
-These novel contributions are presented in Sections ? and ?.
+% These novel contributions are presented in Sections ? and ?.
+% In Section ?, novel and previous findings are summarised and discussed 
+% with regard to their relevance in metaphysics. In this section also 
+% some further details and improvements on earlier 
+% findings are presented.
+% Section ? concludes the paper.
 
-In Section ?, novel and previous findings are summarised and discussed 
-with regard to their relevance in metaphysics. In this section also 
-some further details and improvements on earlier 
-findings are presented.
+Give paper structure (maybe not needed) ...
 
-Section ? concludes the paper.
+
+First successful applications of theorem proving technology in
+metaphysics were reported by Oppenheimer and
+Zalta~\shortcite{oppenheimera11}. They employed the first-order
+\textsc{Prover9} \cite{Prover9} in their experiments. It was also
+Zalta and Oppenheimer who first proposed the term
+\textit{Computational Metaphysics} for this new research area. Further
+related work includes Rushby's~\shortcite{rushby13} work with the
+higher-order proof assistant \textsc{PVS} \cite{PVS}. Common to both
+works is a significant amount of proof-hand-coding work as well as their
+focus on St. Anselm's~\shortcite{Anselm} simpler, non-modal historical
+version of the ontological argument.
+
+\ldots. Different to what is presented here, none of these previous
+formalises and automates variants of HOML, which is however crucial
+for G\"{o}del's ontological argument.
 
 
 
@@ -244,7 +293,7 @@ Present the argument informal and in Isabelle (see
 Fig.~\ref{InconsistencyIsabelleK}). Easy to understand in 
 in KB and KT, slightly harder in K.
 \begin{figure}
-%\centerline{\includegraphics[width=\columnwidth]{./Images/InconsistencyIsabelleK.png}}
+\centerline{\includegraphics[width=\columnwidth]{./Images/InconsistencyIsabelleK.png}}
 \caption{Reconstruction of inconsistency in Isabelle/HOl..} \label{InconsistencyIsabelleK}
 \end{figure}
 
@@ -299,7 +348,7 @@ pcchair15@ijcai.org}.
 
 %% The file named.bst is a bibliography style file for BibTeX 0.99c
 \bibliographystyle{named}
-\bibliography{ijcai15}
+\bibliography{Bibliography}
 
 \end{document}
 
