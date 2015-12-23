@@ -143,19 +143,19 @@ We give here a list of examples:
   is included in related manuscripts''. There is not mentioning of an
   inconsistency though.
 \item Look???, p. 514
-\item Oppy 1996, p.226-227 \cite[p.226/227]{Oppy1996}, Oppy 2000, p. 364
-  \cite[p.364]{Oppy200}, Oppy 2008, p. 1068 \cite[p.1068]{Oppy2008}:
-  Oppy uses: ``A is an essence of x iff for every property B, x has B
-  neces- sarily iff A entails B'' (this is from Anderson's
-  emendation). Check is this leads to inconsistency as well. In this
-  case we may write something like: 
+% \item Oppy 1996, p.226-227 \cite[p.226/227]{Oppy1996}, Oppy 2000, p. 364
+%   \cite[p.364]{Oppy200}, Oppy 2008, p. 1068 \cite[p.1068]{Oppy2008}:
+%   Oppy uses: ``A is an essence of x iff for every property B, x has B
+%   neces- sarily iff A entails B'' (this is from Anderson's
+%   emendation). Check is this leads to inconsistency as well. In this
+%   case we may write something like: 
 
- Oppy presents an critical
-  assessment in order to conclude that G\"odel's argument fails to
-  convince. Oppy apparently does not see that he is assessing an
-  inconsistent axiom system (and he in fact creates adaptations that
-  suffer the same problems).
-\item 
+%  Oppy presents an critical
+%   assessment in order to conclude that G\"odel's argument fails to
+%   convince. Oppy apparently does not see that he is assessing an
+%   inconsistent axiom system (and he in fact creates adaptations that
+%   suffer the same problems).
+% \item 
 \end{itemize}
 
 
@@ -168,6 +168,41 @@ Eigenschaften notwendig äquivalent sind] in einer Fußnote zur Definition. Die
 
 \section{Automating HOML in HOL}
 \subsection{Outline of the Embedding}
+Logic textbooks commonly utilise classical higher-order logic (HOL)
+\cite{Church} as a meta-language to introduce the syntax and the
+semantics of object logics of interest, in which then reasoning
+problems in concrete application domains can be modeled and solved
+with pen and paper.  In fact, this approach can also be followed to
+enable interactive and automated proof for even very challenging
+objects logics with existing theorem provers for classical
+higher-order logic.
+
+% Just as commonly the case in logic textbooks, in the embeddings
+% approach classical higher-order logic is utilised as a meta-language
+% to encode the syntax and the semantics of object logics in which the
+% proof problems of interest are then modeled in. Modulo the embedding
+% state of the art automated theorem provers for classical higher-order
+% logic can then be utilised as object logic reasoning tools.
+
+For a computational analysis of G\"odel's ontological argument in this
+approach the embedding of modal higher-order logics (MHOL) such as K,
+KB and S5 for different domain conditions (possibilist and actualist)
+is required. This idea has been successfully followed in related work
+\cite{C40}. The embedding of modal higher-order logic is in fact
+straightforward. Formulas in MHOL such as are lifted to predicates
+over worlds, which are explicitly represented in the approach as
+terms. Propositional MHOL such as $\neg \varphi$, $\varphi\vee\psi$
+and $\box \varphi$ are then mapped to HOL formulas \ldots.  
+
+It is easy
+to see that this captures the standard translation \cite{Ohlbach},
+which is here (intra-logically) realised in HOL by stating a set of
+equations; see also Fig. ~\ref{QMLS5}. New is that also quantifiers 
+can be mapped \ldots 
+
+The approach is very flexible, KB, S5, domain conditions\ldots 
+
+
 \subsection{Improved Embedding for S5}
 We present an improved embedding (syntax and defintion of box) in  Fig.~\ref{QMLS5}).
 \begin{figure}
