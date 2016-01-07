@@ -123,72 +123,73 @@ focus on a non-modal formalization of St. Anselm's~\shortcite{Anselm} simpler
 and older ontological argument. 
 None of these previous works formalises and automates variants of \emph{higher-order} and \emph{modal} logics, which are, however, crucial
 for G\"{o}del's more complex ontological argument.
-x
-
-\section{Variants of the Ontological Argument}
-Short history, Anselm, Leibniz, etc.
-\subsection{G\"{o}del's Proof Script}
-\subsection{Scott's Variant}
-\subsection{Recent Variants}
-Dozens of contributions were published in the last four decades which
-present variants of G\"odel's/Scott's proofs. In many cases the
-motivation has been to remedy the modal collapse. Other authors are
-simply interested in a critical assessment. Particularly interesting
-from the perspective of this paper is that many literature
-contributions unfortunately work with or refer to G''odel's original
-definition of essence
-$$ todo $$
-This original version avoids the conjunct added by Scott expressing
-that essential properties of an individual should be possessed by the
-individual. As we show in this paper using this notion of essence
-leads to an inconsistent axiom system, which in a classical setting of
-course deserves no further attention, since from an inconsistent
-system everything can be concluded, including God's existence and
-non-existence simultaneously. In other words, these literature
-contributions discuss variants of the argument which from a classical
-logical perspective do not deserve any further attention.
-
-We give here a list of examples:
-\begin{itemize}
-\item Anderson and Getting's 1996, p. 168 \cite[p.168]{AndersonGettings1968}
-  use essence without conjunct.
-\item  Hazen 1998, p.365 \cite[p.365]{Hazen1998} states: ``G\"odel left this
-  clause out in [11], but this appears to have been an oversight--it
-  is included in related manuscripts''. There is not mentioning of an
-  inconsistency though.
-\item Look???, p. 514
-% \item Oppy 1996, p.226-227 \cite[p.226/227]{Oppy1996}, Oppy 2000, p. 364
-%   \cite[p.364]{Oppy200}, Oppy 2008, p. 1068 \cite[p.1068]{Oppy2008}:
-%   Oppy uses: ``A is an essence of x iff for every property B, x has B
-%   neces- sarily iff A entails B'' (this is from Anderson's
-%   emendation). Check is this leads to inconsistency as well. In this
-%   case we may write something like: 
-
-%  Oppy presents an critical
-%   assessment in order to conclude that G\"odel's argument fails to
-%   convince. Oppy apparently does not see that he is assessing an
-%   inconsistent axiom system (and he in fact creates adaptations that
-%   suffer the same problems).
-% \item 
-\end{itemize}
 
 
-\footnote{Fuhrmann2005: Gödel vermerkt diese Konsequenz [dass aus der Definition unmittelbar folgt, daß alle wesentlichen
-Eigenschaften notwendig äquivalent sind] in einer Fußnote zur Definition. Die Definition selbst aber läßt im Definiens das Konjunkt Xx aus. Ohne das Konjunkt folgt jedoch die Konsequenz nicht. Es ist deshalb naheliegend anzunehmen, daß Gödel die Definition so beabsichtigte, wie sie hier notiert ist und wie Gödel sie selbst in früheren Notizbucheintragungen formuliert hat.}
+\section{A Brief History of the Argument}
+
+St. Anselm's ontological argument \cite{Proslogion} can be regarded as the ancestor of modern ontological arguments such as G\"odel's. In the millenium between Anselm and G\"odel, many philosophers modified and arguably improved Anselm's argument. Of particular importance to G\"odel was the work of Leibniz \cite{ToDo}. 
+G\"odel's manuscript (Figure \ref{GoedelScript}) can be considered a translation of Leibniz's presentation of the argument into modern modal logic. G\"odel shared his manuscript with Scott, who shared a slightly different version with a larger public. Scott's version of the axioms and definitions, formalized in Isabelle, is shown in Figure \ref{ScottS5}. The main difference to G\"odel's version is the addition of a conjunct in the definition of \emph{essence}. G\"odel's different definition of essence can be seen either in his manuscript (Figure \ref{GoedelScript}) or, in more modern notation, in the Isabelle formalization shown in Figure \ref{nconsistencyIsabelleK}. For Scott, an essential property of an individual must be possessed by him/her. For G\"odel, this is not required. This difference has been considered inessential and merely an oversight by many. For instance, Hazen 1998, p.365 \cite[p.365]{Hazen1998} states that ``G\"odel left this clause out in [11], but this appears to have been an oversight--it is included in related manuscripts''. However, the omitted conjunct is in fact crucial. Without it, G\"odel's original axioms are inconsistent. With it, Scott's axioms are consistent.
+
+\begin{figure*}
+\centerline{\includegraphics[width=\textwidth]{./Images/Manuscript2.png}}
+\caption{G\"{o}del's manuscript, with mutually inconsistent axioms and definitions highlighted.} \label{GoedelScript}
+\end{figure*}
+
+% There is reason to believe that the omission was more than just an oversight. As pointed out by Fuhrmann \cite{Fuhrmann2005}, ``G\"odel vermerkt diese Konsequenz [dass aus der Definition unmittelbar folgt, da\ss alle wesentlichen Eigenschaften notwendig äquivalent sind] in einer Fußnote zur Definition. Die Definition selbst aber l\"a{\ss}t im Definiens das Konjunkt $Xx$ aus. Ohne das Konjunkt folgt jedoch die Konsequenz nicht. Es ist deshalb naheliegend anzunehmen, da\ss G\"odel die Definition so beabsichtigte, wie sie hier notiert ist und wie G\"odel sie selbst in fr\"uheren Notizbucheintragungen formuliert hat.''\footnote{Our translation: ``G\"odel remarks this consequence [that the definition of essence entails that all essences are necessarily equivalent] in a footnote to the definition. The definition, however, omits the conjunct. ... ToDo''} 
+% \marginpar{ToDo: check Fuhrmann's claim. He may be pointing out a second mistake by Gödel.}
+
+For more than four decades, the serious consequences of G\"odel's mistake remained unnoticed, despite intense activity focused on criticizing his argument. Especially since the discovery by Sobel \cite{Sobel} that a modal collapse is entailed by G\"odel's (or also Scott's) axioms, several variants have been proposed \cite{Anderson,AndersonGettings1968,Hajek,Hajek2,Hajek3,Bjordal} attempting to avoid the modal collapse. Many of these variants omit the crucial conjunct in the definition of essence as well\footnote{As these variants also change other axioms, on which the inconsistency of G\"odel's axioms depends, it is not necessarily the case that these variants are also inconsistent.}. Opponents of the argument (e.g. Oppy \cite[p.226/227]{Oppy1996} \cite[p.364]{Oppy2000} \cite[p.1068]{Oppy2008}) have also proposed parodies and other criticisms, referring to variants where the conjunct is omitted.
+
+
+
+
+
+%  Particularly interesting
+% from the perspective of this paper is that many literature
+% contributions unfortunately work with or refer to G\"odel's original
+% definition of essence
+% $$ todo $$
+% This original version avoids the conjunct added by Scott expressing
+% that essential properties of an individual should be possessed by the
+% individual. 
+
+% We give here a list of examples:
+% \begin{itemize}
+% \item Anderson and Getting's 1996, p. 168 \cite[p.168]{AndersonGettings1968}
+%   use essence without conjunct.
+% \item  
+% \item Look???, p. 514
+% % \item Oppy 1996, p.226-227 \cite[p.226/227]{Oppy1996}, Oppy 2000, p. 364
+% %   \cite[p.364]{Oppy200}, Oppy 2008, p. 1068 \cite[p.1068]{Oppy2008}:
+% %   Oppy uses: ``A is an essence of x iff for every property B, x has B
+% %   neces- sarily iff A entails B'' (this is from Anderson's
+% %   emendation). Check is this leads to inconsistency as well. In this
+% %   case we may write something like: 
+
+% %  Oppy presents an critical
+% %   assessment in order to conclude that G\"odel's argument fails to
+% %   convince. Oppy apparently does not see that he is assessing an
+% %   inconsistent axiom system (and he in fact creates adaptations that
+% %   suffer the same problems).
+% % \item 
+% \end{itemize}
+
+
+
 
 
 
 
 
 \section{Automating HOML in HOL}
-\subsection{Outline of the Embedding}
-Logic textbooks commonly utilise classical higher-order logic (HOL)
+
+Logic textbooks \cite{ToDo: which} commonly utilize classical higher-order logic (HOL)
 \cite{Church} as a meta-language to introduce the syntax and the
-semantics of object logics of interest, in which then reasoning
+semantics of object logics of interest, in which reasoning
 problems in concrete application domains can be modeled and solved
-with pen and paper.  In fact, this approach can also be followed to
-enable interactive and automated proof for even very challenging
-objects logics with existing theorem provers for classical
+with pen and paper. In fact, this approach can also be followed for even very challenging
+object logics to
+enable interactive and automated theorem proving with existing theorem provers for classical
 higher-order logic.
 
 % Just as commonly the case in logic textbooks, in the embeddings
