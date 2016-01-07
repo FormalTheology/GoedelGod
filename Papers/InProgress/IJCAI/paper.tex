@@ -200,30 +200,51 @@ higher-order logic.
 % logic can then be utilised as object logic reasoning tools.
 
 For a computational analysis of G\"odel's ontological argument in this
-approach the embedding of modal higher-order logics (MHOL) such as K,
-KB and S5 for different domain conditions (possibilist and actualist)
+approach the embedding of higher-order modal logics (HOML) such as K,
+KB and S5 with various domain conditions (possibilist and actualist)
 is required. This idea has been successfully followed in related work
-\cite{C40}. The embedding of modal higher-order logic is in fact
-straightforward. Formulas in MHOL such as are lifted to predicates
-over worlds, which are explicitly represented in the approach as
-terms. Propositional MHOL such as $\neg \varphi$, $\varphi\vee\psi$
-and $\box \varphi$ are then mapped to HOL formulas \ldots.  
-
-It is easy
-to see that this captures the standard translation \cite{Ohlbach},
-which is here (intra-logically) realised in HOL by stating a set of
-equations; see also Fig. ~\ref{QMLS5}. New is that also quantifiers 
-can be mapped \ldots 
-
-The approach is very flexible, KB, S5, domain conditions\ldots 
+\cite{C40}. The embedding of higher-order modal logic is in fact
+straightforward. Formulas in HMOL are \emph{lifted}, translated to predicates
+over worlds, which are themselves explicitly represented as
+terms. The logical constants of HMOL are translated to HOL terms in such a way that, for instance, 
+%$\neg \varphi$, $\varphi\vee\psi$
+$\Box \varphi$ and $\Diamond \varphi$ are mapped, respectively, to the HOL formulas $\forall w. (r w_0 w) \imp (\varphi w)$ and $\exists w. (r w_0 w) \wedge (\varphi w)$. This form of embedding is precisely the well-known standard translation \cite{Ohlbach,ModalLogicPatrickBlackburn},
+which is here (intra-logically) realized in HOL by stating a set of
+equations defining the logical constants (Fig. ~\ref{QMLS5}). The resulting object logic is the HOML K with rigid terms and constant domains (possibilist quantifiers). Other logics (e.g. KB, S5) can be embedded by adding axioms that restrict the accessibility relation $r$. Varying domains and actualist quantifiers can be simulated by means of an existence predicate, which can be used to guard the quantifiers. Therefore, the embedding approach is very flexible.
 
 
-\subsection{Improved Embedding for S5}
-We present an improved embedding (syntax and defintion of box) in  Fig.~\ref{QMLS5}).
+\subsection{Improved Embedding for S5+}
+
+The modal logic S5 requires that the accessibility relation be reflexive, symmetric and transitive. The usual approach to embed S5 would be to use the standard translation for K described above and state these additional conditions as three HOL axioms: 
+\begin{itemize}
+\item Reflexivity: $\forall x. (r~x~x)$
+\item Symmetry: $\forall x. \forall y. (r~x~y) \rightarrow (r~y~x)$ 
+\item Transitivity: $\forall x. \forall y, \forall z. (r~x~y) \wedge (r~y~z) \rightarrow (r~x~z)$
+\end{itemize}
+
+We consider here a modal logic that we call S5+, which is characterized by the following condition on the accessibility relation:
+\begin{itemize}
+\item Omni-accessibility: $\forall x. \forall y. (r~x~y)$
+\end{itemize}
+
+It is easy to see that S5+ is at least as strong as S5: omni-accessibility entails reflexivity, symmetry and transitivity. S5+, in fact, \emph{strictly stronger} than S5. S5+ only admits complete\footnote{\emph{Complete} in the graph-theoretical sense: for any directed pair of vertices/worlds there is a directed edge connecting them.}} frames, whereas S5 admits non-complete frames as long as all their components are complete.
+
+For S5+, an improved embedding is possible. Omni-accessibility implies that the guarding predicates in the definitions of $\Box$ and $\Diamond$ always hold. Therefore, they can be omitted, and the modal operators can be defined instead merely as:
+\begin{itemize}
+\item $\Box \varphi \equiv \forall w. (\varphi w)$ 
+\item $\Diamond \varphi \equiv \exists w. (\varphi w)$
+\end{itemize}
+
+This improved embedding for S5+ is shown in Fig.~\ref{QMLS5}).
 \begin{figure}
 \centerline{\includegraphics[width=\columnwidth]{./Images/QMLS5.png}}
 \caption{Improved Embedding of S5} \label{QMLS5}
 \end{figure}
+
+
+\section{Adequacy of S5+ for Metaphysics}
+
+S5+ is only slightly stronger than S5.  ToDo
 
 
 \section{Full Automation of Scott's Proof}
@@ -264,11 +285,7 @@ in KB and KT, slightly harder in K.
 \end{figure}
 
 
-\subsection{Mapping to Gödel's Script}
-\begin{figure*}
-\centerline{\includegraphics[width=\textwidth]{./Images/Manuscript2.png}}
-\caption{Sources of Inconsistence in G\"{o}del's proof script.} \label{GoedelScript}
-\end{figure*}
+
 
 
 \section{Conclusion}
