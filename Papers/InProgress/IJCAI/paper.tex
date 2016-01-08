@@ -9,20 +9,28 @@
 % Use the postscript times font!
 \usepackage{times}
 
+
 % the following package is optional:
 \usepackage{latexsym} 
 
 \usepackage{amsmath}
+\usepackage{xspace}
 \usepackage{modallogics}
 \usepackage{graphicx,url}
+\usepackage{txfonts} % needed for \Diamondblack
+\usepackage{float}
 
 \newcommand{\imp}{\rightarrow}
 \newcommand{\biimp}{\leftrightarrow}
 \newcommand{\allq}{\forall}
 \newcommand{\exq}{\exists}
 \newcommand{\seq}{\vdash}
-\newcommand{\nec}{\Box} % necessarily
-\newcommand{\pos}{\Diamond} % possibly
+
+\newcommand{\Dia}{\Diamond} % possibly
+\newcommand{\BlackBox}{\blacksquare}
+\newcommand{\BlackDia}{\Diamondblack}
+
+
 
 \title{Towards Artificial Intelligence for Metaphysics: \\ the Case of the Inconsistency in G\"odel's Ontological Argument}
 \author{Christoph Benzm\"uller\thanks{German Research Foundation DFG \ldots} and Bruno Woltzenlogel Paleo}
@@ -130,10 +138,6 @@ for G\"{o}del's more complex ontological argument.
 St. Anselm's ontological argument \cite{Proslogion} can be regarded as the ancestor of modern ontological arguments such as G\"odel's. In the millenium between Anselm and G\"odel, many philosophers modified and arguably improved Anselm's argument. Of particular importance to G\"odel was the work of Leibniz \cite{ToDo}. 
 G\"odel's manuscript (Figure \ref{GoedelScript}) can be considered a translation of Leibniz's presentation of the argument into modern modal logic. G\"odel shared his manuscript with Scott, who shared a slightly different version with a larger public. Scott's version of the axioms and definitions, formalized in Isabelle, is shown in Figure \ref{ScottS5}. The main difference to G\"odel's version is the addition of a conjunct in the definition of \emph{essence}. G\"odel's different definition of essence can be seen either in his manuscript (Figure \ref{GoedelScript}) or, in more modern notation, in the Isabelle formalization shown in Figure \ref{nconsistencyIsabelleK}. For Scott, an essential property of an individual must be possessed by him/her. For G\"odel, this is not required. This difference has been considered inessential and merely an oversight by many. For instance, Hazen 1998, p.365 \cite[p.365]{Hazen1998} states that ``G\"odel left this clause out in [11], but this appears to have been an oversight--it is included in related manuscripts''. However, the omitted conjunct is in fact crucial. Without it, G\"odel's original axioms are inconsistent. With it, Scott's axioms are consistent.
 
-\begin{figure*}
-\centerline{\includegraphics[width=\textwidth]{./Images/Manuscript2.png}}
-\caption{G\"{o}del's manuscript, with mutually inconsistent axioms and definitions highlighted.} \label{GoedelScript}
-\end{figure*}
 
 % There is reason to believe that the omission was more than just an oversight. As pointed out by Fuhrmann \cite{Fuhrmann2005}, ``G\"odel vermerkt diese Konsequenz [dass aus der Definition unmittelbar folgt, da\ss alle wesentlichen Eigenschaften notwendig äquivalent sind] in einer Fußnote zur Definition. Die Definition selbst aber l\"a{\ss}t im Definiens das Konjunkt $Xx$ aus. Ohne das Konjunkt folgt jedoch die Konsequenz nicht. Es ist deshalb naheliegend anzunehmen, da\ss G\"odel die Definition so beabsichtigte, wie sie hier notiert ist und wie G\"odel sie selbst in fr\"uheren Notizbucheintragungen formuliert hat.''\footnote{Our translation: ``G\"odel remarks this consequence [that the definition of essence entails that all essences are necessarily equivalent] in a footnote to the definition. The definition, however, omits the conjunct. ... ToDo''} 
 % \marginpar{ToDo: check Fuhrmann's claim. He may be pointing out a second mistake by Gödel.}
@@ -213,55 +217,54 @@ which is here (intra-logically) realized in HOL by stating a set of
 equations defining the logical constants (Fig. ~\ref{QMLS5}). The resulting object logic is the HOML K with rigid terms and constant domains (possibilist quantifiers). Other logics (e.g. KB, S5) can be embedded by adding axioms that restrict the accessibility relation $r$. Varying domains and actualist quantifiers can be simulated by means of an existence predicate, which can be used to guard the quantifiers. Therefore, the embedding approach is very flexible.
 
 
-\subsection{Improved Embedding for S5+}
+\subsection{Improved Embedding for \SFiveU}
 
-The modal logic S5 requires that the accessibility relation be reflexive, symmetric and transitive. The usual approach to embed S5 would be to use the standard translation for K described above and state these additional conditions as three HOL axioms: 
+The modal logic \SFive requires that the accessibility relation be reflexive, symmetric and transitive. The usual approach to embed \SFive would be to use the standard translation for K described above and state these additional conditions as three HOL axioms: 
 \begin{itemize}
 \item Reflexivity: $\forall x. (r~x~x)$
 \item Symmetry: $\forall x. \forall y. (r~x~y) \rightarrow (r~y~x)$ 
 \item Transitivity: $\forall x. \forall y, \forall z. (r~x~y) \wedge (r~y~z) \rightarrow (r~x~z)$
 \end{itemize}
 
-We consider here a modal logic that we call S5+, which is characterized by the following condition on the accessibility relation:
+We consider here a modal logic that we call \SFiveU, which is characterized by the following condition on the accessibility relation:
 \begin{itemize}
-\item Omni-accessibility: $\forall x. \forall y. (r~x~y)$
+\item Universality: $\forall x. \forall y. (r~x~y)$
 \end{itemize}
 
-It is easy to see that S5+ is at least as strong as S5: omni-accessibility entails reflexivity, symmetry and transitivity. S5+, in fact, \emph{strictly stronger} than S5. S5+ only admits complete\footnote{\emph{Complete} in the graph-theoretical sense: for any directed pair of vertices/worlds there is a directed edge connecting them.}} frames, whereas S5 admits non-complete frames as long as all their components are complete.
+It is easy to see that \SFiveU is at least as strong as \SFive: universality entails reflexivity, symmetry and transitivity. \SFiveU is, in fact, \emph{strictly stronger} than \SFive. \SFiveU only admits complete\footnote{A graph is \emph{complete} iff there is a directed edge connecting every ordered pair of vertices.} frames, whereas \SFive admits non-complete frames as long as all their components are complete.
 
-For S5+, an improved embedding is possible. Omni-accessibility implies that the guarding predicates in the definitions of $\Box$ and $\Diamond$ always hold. Therefore, they can be omitted, and the modal operators can be defined instead merely as:
+For \SFiveU, an improved embedding is possible. Universality implies that the guarding predicates in the definitions of $\Box$ and $\Diamond$ always hold. Therefore, they can be omitted and the accessibility relation can be dispensed altogether. The modal operators can then be defined merely as:
 \begin{itemize}
-\item $\Box \varphi \equiv \forall w. (\varphi w)$ 
-\item $\Diamond \varphi \equiv \exists w. (\varphi w)$
+\item $\BlackBox \varphi \equiv \forall w. (\varphi w)$ 
+\item $\BlackDia \varphi \equiv \exists w. (\varphi w)$
 \end{itemize}
 
-This improved embedding for S5+ is shown in Fig.~\ref{QMLS5}).
+The improved embedding of \SFiveU in Isabelle is shown in Fig.~\ref{QMLS5}.
 \begin{figure}
 \centerline{\includegraphics[width=\columnwidth]{./Images/QMLS5.png}}
-\caption{Improved Embedding of S5} \label{QMLS5}
+\caption{Improved Embedding of \SFiveU} \label{QMLS5}
 \end{figure}
 
-
-\section{Adequacy of S5+ for Metaphysics}
-
-S5+ is only slightly stronger than S5.  ToDo
+\SFiveU is only slightly stronger than \SFive. Most importantly, $\vDash_{\SFive} \varphi$ iff $\vDash_{\SFiveU} \varphi^{U}$, where $\varphi^U$ is obtained from $\varphi$ by replacing all $\Box$ and $\Dia$ by, respectively, $\BlackBox$ and $\BlackDia$. Therefore, \SFiveU can be considered as adequate for metaphysics as \SFive (cf. \cite{Mattey}, \cite[p. 127]{WilliamsonModalLogicAsMetaphysics}, \cite[ToDo]{DunnHardegree}). 
 
 
-\section{Full Automation of Scott's Proof}
-Within the modified logic S5 Scott's proof can be fully automated. The
+With the improved embedding for \SFiveU, the main theorem T3 can be derived from Scott's version of the axioms fully automatically. The
 intermediate argumentation steps as not needed anymore to support the
-prover, see Fig.~\ref{ScottS5}).
+prover.  This is shown in Fig.~\ref{ScottS5}. There it is also shown that the modal collapse can now be verified in
+Isabelle/HOL with Meson. In previous work, with a less efficient embedding for \SFive, this failed.
 \begin{figure}
 \centerline{\includegraphics[width=\columnwidth]{./Images/ScottS5.png}}
-\caption{Full Automation of the Ontological Argument in S5 } \label{ScottS5}
+\caption{Full Automation of T3 and MC in \SFiveU } \label{ScottS5}
 \end{figure}
+\marginpar{ToDo: this picture has to be replaced by one without Isabelle errors}
 
 
+\begin{figure*}
+\centerline{\includegraphics[width=\textwidth]{./Images/Manuscript2.png}}
+\caption{G\"{o}del's manuscript, with mutually inconsistent axioms and definitions highlighted.} \label{GoedelScript}
+\end{figure*}
 
 
-In the modified S5 setting also further results can be automatically verified, which 
-failed in previous work: verification of  modal collapse in
-Isabelle/HOL with Meson.
 
 \section{Intuitive Inconsistency Argument}
 \subsection{LEO-II's Inaccessible Inconsistency Proof}
