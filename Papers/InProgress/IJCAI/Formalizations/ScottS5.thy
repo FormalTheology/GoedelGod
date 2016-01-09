@@ -18,12 +18,16 @@ begin
     A5:  "\<lfloor>P(NE)\<rfloor>"
 
   theorem T3: "\<lfloor>\<^bold>\<box> (\<^bold>\<exists> G)\<rfloor>" -- {* LEO-II proves T3 in 2,5sec *}
-  sledgehammer [provers = remote_leo2 remote_satallax]
-  (* by (metis A1a A1b A2 A3 A4 A5 G_def NE_def ess_def) *)
+  sledgehammer [provers = remote_leo2 remote_satallax, overlord] 
+  by (metis A1a A1b A2 A3 A4 A5 G_def NE_def ess_def)
 
   lemma True nitpick [satisfy,user_axioms,expect=genuine] oops  
   -- {* Consistency is confirmed by Nitpick *}
 
+  theorem T2: "\<lfloor>\<^bold>\<forall>x. G(x) \<^bold>\<rightarrow> G ess x\<rfloor>"
+  sledgehammer [provers = remote_leo2, verbose]
+  by (metis A1b A4 G_def ess_def)
+  
   lemma MC: "\<lfloor>\<^bold>\<forall>\<Phi>. \<Phi> \<^bold>\<rightarrow> (\<^bold>\<box> \<Phi>)\<rfloor>"  -- {* Modal Collapse *}
   sledgehammer [provers = remote_leo2 remote_satallax]
   by (meson T2 T3 ess_def)
