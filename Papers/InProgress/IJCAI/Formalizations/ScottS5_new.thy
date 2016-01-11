@@ -18,6 +18,7 @@ begin
 
   theorem T3: "\<lfloor>\<^bold>\<box> (\<^bold>\<exists> G)\<rfloor>" -- {* LEO-II proves T3 in 2,5sec *}
   sledgehammer [provers = remote_leo2 remote_satallax, verbose]
+by (metis A1 A2 A3 A4 A5 G_def NE_def ess_def) oops
   (* by (metis A1a A1b A2 A3 A4 A5 G_def NE_def ess_def) *)
 
   lemma True nitpick [satisfy,user_axioms,expect=genuine] oops  
