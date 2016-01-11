@@ -18,7 +18,7 @@ begin
     A5:  "\<lfloor>P(NE)\<rfloor>"
 
   theorem T3: "\<lfloor>\<^bold>\<box> (\<^bold>\<exists> G)\<rfloor>" -- {* LEO-II proves T3 in 2,5sec *}
-  sledgehammer [remote_leo2 remote_satallax, verbose]
+  sledgehammer [provers = remote_leo2, verbose]
   by (metis (lifting, full_types) 
       A1a A1b A2 A3 A4 A5 G_def NE_def ess_def)
 
@@ -30,6 +30,6 @@ begin
   by (metis A1b A4 G_def ess_def)
 
   lemma MC: "\<lfloor>\<^bold>\<forall>\<Phi>. \<Phi> \<^bold>\<rightarrow> (\<^bold>\<box> \<Phi>)\<rfloor>"  -- {* Modal Collapse *}
-  sledgehammer [remote_leo2 remote_satallax, timeout=600]
+  sledgehammer [provers = remote_satallax, timeout=600]
   by (meson T2 T3 ess_def)
 end
