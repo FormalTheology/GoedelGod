@@ -2,7 +2,7 @@ theory ScottS5_new imports QML_S5
 begin
   consts P :: "(\<mu>\<Rightarrow>\<sigma>)\<Rightarrow>\<sigma>"  
   axiomatization where
-    A1: "\<lfloor>\<^bold>\<forall>\<Phi>. P(\<inverse>\<Phi>) \<^bold>\<equiv> \<^bold>\<not>P(\<Phi>)\<rfloor>" and
+    A1: "\<lfloor>\<^bold>\<forall>\<Phi>. P(\<^sup>\<not>\<Phi>) \<^bold>\<equiv> \<^bold>\<not>P(\<Phi>)\<rfloor>" and
     A2: "\<lfloor>\<^bold>\<forall>\<Phi> \<Psi>. P(\<Phi>) \<^bold>\<and> \<^bold>\<box>(\<^bold>\<forall>x. \<Phi>(x) \<^bold>\<rightarrow> \<Psi>(x)) \<^bold>\<rightarrow> P(\<Psi>)\<rfloor>"
   definition G where 
     "G(x) = (\<^bold>\<forall>\<Phi>. P(\<Phi>) \<^bold>\<rightarrow> \<Phi>(x))"   
@@ -18,12 +18,15 @@ begin
 
   theorem T3: "\<lfloor>\<^bold>\<box> (\<^bold>\<exists> G)\<rfloor>" -- {* LEO-II proves T3 in 2,5sec *}
   sledgehammer [provers = remote_leo2 remote_satallax, verbose]
-  (* by (metis A1a A1b A2 A3 A4 A5 G_def NE_def ess_def) *)
+  by (metis (lifting, full_types) A1 A2 A3 A4 A5 G_def NE_def ess_def)
 
   lemma True nitpick [satisfy,user_axioms,expect=genuine] oops  
   -- {* Consistency is confirmed by Nitpick *}
 
   lemma MC: "\<lfloor>\<^bold>\<forall>\<Phi>. \<Phi> \<^bold>\<rightarrow> (\<^bold>\<box> \<Phi>)\<rfloor>"  -- {* Modal Collapse *}
-  sledgehammer [provers = remote_leo2 remote_satallax]
+  sledgehammer [provers = remote_leo2 remote_satallax, verbose]
+by (metis A1 A4 G_def T3 ext) 
+
+  by (meson A1 A4 G_def T3)
   by (meson T2 T3 ess_def)
 end
