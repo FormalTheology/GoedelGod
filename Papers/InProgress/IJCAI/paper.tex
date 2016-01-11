@@ -185,7 +185,7 @@ For more than four decades, the serious consequences of G\"odel's mistake remain
 \section{Automating HOML in HOL}
 
 Logic textbooks \cite{ToDo:which} commonly utilize classical higher-order logic (HOL)
-\cite{Church} as a meta-language to introduce the syntax and the
+\cite{Church40} as a meta-language to introduce the syntax and the
 semantics of object logics of interest, in which reasoning
 problems in concrete application domains can be modeled and solved
 with pen and paper. In fact, this approach can also be followed for even very challenging
@@ -209,9 +209,19 @@ straightforward. Formulas in HMOL are \emph{lifted}, translated to predicates
 over worlds, which are themselves explicitly represented as
 terms. The logical constants of HMOL are translated to HOL terms in such a way that, for instance, 
 %$\neg \varphi$, $\varphi\vee\psi$
-$\Box \varphi$ and $\Diamond \varphi$ are mapped, respectively, to the HOL formulas $\forall w. (r w_0 w) \imp (\varphi w)$ and $\exists w. (r w_0 w) \wedge (\varphi w)$. This form of embedding is precisely the well-known standard translation \cite{Ohlbach,ModalLogicPatrickBlackburn},
-which is here (intra-logically) realized in HOL by stating a set of
-equations defining the logical constants (Fig. ~\ref{QML_S5}). The resulting object logic is the HOML K with rigid terms and constant domains (possibilist quantifiers). Other logics (e.g. KB, S5) can be embedded by adding axioms that restrict the accessibility relation $r$. Varying domains and actualist quantifiers can be simulated by means of an existence predicate, which can be used to guard the quantifiers. Therefore, the embedding approach is very flexible.
+$\Box \varphi$ and $\Diamond \varphi$ are mapped, respectively, to the
+HOL formulas $\forall w. (r w_0 w) \imp (\varphi w)$ and $\exists
+w. (r w_0 w) \wedge (\varphi w)$. This form of embedding is precisely
+the well-known standard translation
+\cite{DBLP:journals/logcom/Ohlbach91}, which is here (intra-logically)
+realized in HOL by stating a set of equations defining the logical
+constants (Fig. ~\ref{QML_S5}). The resulting object logic is the HOML
+K with rigid terms and constant domains (possibilist
+quantifiers). Other logics (e.g. KB, S5) can be embedded by adding
+axioms that restrict the accessibility relation $r$. Varying domains
+and actualist quantifiers can be simulated by means of an existence
+predicate, which can be used to guard the quantifiers. Therefore, the
+embedding approach is very flexible.
 
 
 \subsection{Improved Embedding for \SFiveU}
