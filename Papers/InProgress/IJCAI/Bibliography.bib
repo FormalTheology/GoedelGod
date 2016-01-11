@@ -778,10 +778,9 @@
 @InProceedings{C40,
   keywords =	 {Automated Reasoning, Interactive Proof, Ontology
                   Reasoning, LEO Prover, Higher Order Logic},
-  editor =	 {Torsten Schaub and Gerhard Friedrich and Barry
+  OPTeditor =	 {Torsten Schaub and Gerhard Friedrich and Barry
                   O'Sullivan},
-  author =	 {Christoph Benzm{\"u}ller and Woltzenlogel
-                  Paleo, Bruno},
+  author =	 {C. Benzm{\"u}ller and B. Woltzenlogel-Paleo},
   title =	 {Automating {G\"{o}del's} Ontological Proof of
                   {God}'s Existence with Higher-order Automated
                   Theorem Provers},
@@ -2286,7 +2285,7 @@ Article{J27,
 }
 
 @ARTICLE{R54,
-   author = {{Benzm{\"u}ller}, C. and {Woltzenlogel Paleo}, B.},
+   author = {{Benzm{\"u}ller}, C. and {Woltzenlogel-Paleo}, B.},
     title = "{Formalization, Mechanization and Automation of G{\"o}del's Proof of {God's} Existence}",
   journal = {ArXiv e-prints},
 archivePrefix = "arXiv",
@@ -3612,7 +3611,7 @@ Autom. Reasoning},
                   target="_blank " target="_blank">poster</a>},
 }
 
-Article{J23,
+@Article{J23,
   keywords =	 {Higher Order Logic, Semantic Embedding,
                   Modal Logics, Henkin Semantics},
   author =	 {C. Benzm{\"u}ller and L.C.~Paulson},
@@ -3901,7 +3900,7 @@ InCollection{B9,
 
 
 @url{FormalTheologyRepository,
-  Author = {B. Woltzenlogel Paleo and C. Benzm\"uller},
+  Author = {B. Woltzenlogel-Paleo and C. Benzm\"uller},
   url = {https://github.com/FormalTheology/GoedelGod},
   Date-Added = {2013-08-17 06:52:50 +0200},
   Date-Modified = {2013-08-17 06:54:37 +0200},
@@ -3952,18 +3951,7 @@ InCollection{B9,
   year =	 1987,
 }
 
-@book{sobel2004logic,
-  title =	 {Logic and Theism: Arguments for and Against Beliefs
-                  in God},
-  booktitle =	 {Logic and Theism: Arguments for and Against Beliefs
-                  in God},
-  author =	 {Sobel, J.H.},
-  isbn =	 9781139449984,
-  lccn =	 2002034954,
-  url =		 {http://books.google.de/books?id=ZQh8QJOQdOQC},
-  year =	 2004,
-  publisher =	 {Cambridge U. Press}
-}
+
 
 
 @inBook{GoedelNotes,
@@ -3979,6 +3967,21 @@ InCollection{B9,
   author =	 {D. Scott},
   title =	 {Appx.B: Notes in Dana Scott's Hand},
   pages =	 {145-146},
+}
+
+
+
+@book{sobel2004logic,
+  title =	 {Logic and Theism: Arguments for and Against Beliefs
+                  in God},
+  booktitle =	 {Logic and Theism: Arguments for and Against Beliefs
+                  in God},
+  author =	 {Sobel, J.H.},
+  isbn =	 9781139449984,
+  lccn =	 2002034954,
+  url =		 {http://books.google.de/books?id=ZQh8QJOQdOQC},
+  year =	 2004,
+  publisher =	 {Cambridge U. Press}
 }
 
 @InCollection{Scott,
@@ -4039,8 +4042,8 @@ InCollection{B9,
 
 
 
-@Article{oppenheimera11,
-  author = 	 {P.E.~Oppenheimera and E.N.~Zalta},
+@Article{oppenheimer11,
+  author = 	 {P.E.~Oppenheimer and E.N.~Zalta},
   title = 	 {A Computationally-Discovered Simplification of the Ontological Argument},
   journal = 	 {Australasian Journal of Philosophy},
   year = 	 2011,
@@ -4131,6 +4134,27 @@ article{J28,
 }
 
 
+@inproceedings{cade92-pvs,
+    AUTHOR = {{S.} Owre and {J.} {M.} Rushby and {N.} Shankar},
+    TITLE = {{PVS:} {A} Prototype Verification System},
+    BOOKTITLE = {CADE},
+    YEAR = {1992},
+    OPTEDITOR = {Deepak Kapur},
+    SERIES = {LNAI},
+    VOLUME = {607},
+    PAGES = {748--752},
+    OPTADDRESS = {Saratoga, {NY}},
+    OPTMONTH = {jun},
+    PUBLISHER = {Springer},
+    OPTURL = {http://www.csl.sri.com/papers/cade92-pvs/}
+}
+
+@unpublished{prover9-mace4,
+    author = "W. McCune",
+    title = "Prover9 and Mace4",
+    note = "\verb|http://www.cs.unm.edu/~mccune/prover9/|",
+    year = "2005--2010"}
+
 @Article{anderson90:_some_emend_of_goedel_ontol_proof,
   author = 	 {C.A.~Anderson},
   title = 	 {Some emendations of {G{\"o}del's} ontological proof},
@@ -4152,7 +4176,7 @@ article{J28,
 
 
 @InProceedings{ITP,
-  author = 	 {C.~Benzm{\"u}ller and B.~Woltzenlogel Paleo},
+  author = 	 {C.~Benzm{\"u}ller and B.~Woltzenlogel-Paleo},
   title = 	 {Modal Logic in {Coq} and {Scott’s} Version of {G{\"o}del’s} Proof of {God’s} Existence (Rough Diamond Proof Pearl)},
   note = 	 {Submitted to ITP'2014},
   year = 2014}
@@ -4241,12 +4265,24 @@ article{J28,
 }
 
 
+
+
+
+@InCollection{Proslogion,
+  author = 	 {Anselm, St.},
+  editor = 	 {M. Charlesworth},
+  booktitle = 	 {St.~Anselm's Proslogion},
+  title = 	 {Proslogion},
+  publisher = 	 {Oxford:OUP},
+  year = 	 1965,
+}
+
 @incollection{Paulin, 
   author =  {C. Paulin-Mohring}, 
   title = {Introduction to the Calculus of Inductive Constructions}, 
   year = {2015},
   booktitle = {All about Proofs, Proofs for All}, 
-  editor = {Delahaye, D. and Woltzenlogel Paleo, B.}, 
+  editor = {Delahaye, D. and Woltzenlogel-Paleo, B.}, 
   publisher = {College Publications}, 
   address = {London}, 
   series = {Mathematical Logic and Foundations}, 
@@ -4272,7 +4308,7 @@ article{J28,
 
 
 @misc{ModalND,
-  author = {Siders, A. and Woltzenlogel Paleo, B.},
+  author = {Siders, A. and Woltzenlogel-Paleo, B.},
   title = {A Variant of {G\"odel's} Ontological Proof in a Natural Deduction Calculus},
   note = {(\url{github.com/FormalTheology/GoedelGod/blob/master/Papers/InProgress/NaturalDeduction/GodProof-ND.pdf?raw=true}) },
   url = {https://github.com/FormalTheology/GoedelGod/blob/master/Papers/InProgress/NaturalDeduction/GodProof-ND.pdf?raw=true}
