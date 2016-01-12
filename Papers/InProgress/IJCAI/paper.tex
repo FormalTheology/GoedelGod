@@ -468,12 +468,8 @@ To verify the correctness of the informal argument explained above, it was recon
 The inconsistency of G\"odel's original axioms in his ontological
 argument has been detected automatically by the prover
 \textsc{Leo-II}. Here we have presented a rational reconstruction and
-verification of the inconsistency proof in Isabelle/HOL. Interestingly,
-the inconsistency argument applies to all normal modal logics
-including K. 
-
-
-
+verification of the inconsistency proof in Isabelle/HOL. This
+inconsistency argument applies to all normal modal logics including K.
 \begin{figure*}
 \centerline{\includegraphics[width=\textwidth]{./Images/Manuscript2.png}}
 \caption{G\"{o}del's manuscript, with mutually inconsistent axioms and definitions highlighted.} \label{GoedelScript}
@@ -500,10 +496,11 @@ improvements. For example, in default setting, Sledgehammer does not
 inform the user early that a proof has been found and instead silently
 applies first a series of time-consuming analysis tools (e.g. it's
 minimizer), before it eventually informs the user of success. For the
-involved proof problems presented here (e.g. T3), this phase of
-silence may take several minutes (during which the user might actually
-give up on the proof attempt), while \textsc{Leo-II} already reported
-success to Sledgehammer much earlier (e.g. after 2,5 seconds for T3).
+involved proof problems presented here (e.g. G\"odel's theorem T3:
+\textit{Necessarily, there exists God}), this phase of silence may
+take several minutes (during which the user might actually give up on
+the proof attempt), while \textsc{Leo-II} already reported success to
+Sledgehammer much earlier (e.g. after 2,5 seconds for T3).
 
 Moreover, our work points to a challenge for proof transformation:
 even if \textsc{Leo-II}'s proof could be automatically verified
@@ -513,6 +510,18 @@ example, an argument as has been presented here. For philosophers,
 however, the reconstruction of such human-intuitive arguments from
 machine found proofs will likely be crucial for accepting any novel results.
 
+Another open problem that we solved in this paper is a fully automatic
+proof of T3 directly from Scott's axioms. Again, this proof was
+contributed by \textsc{Leo-II}. However, this has been possible only
+after providing a more efficient embedding, based on a universal
+accessibility relation, for HOML S5 in HOL. 
+
+Both, the automated detection of the inconsistency in G\"odel's axioms
+and the fully automatic proof of T3 from Scott's axioms demonstrates
+the potential of our AI technology for philosophy: this technology is
+already in its current state able to contribute novel results to
+metaphysics and to conduct reasoning steps at granularity-levels
+beyond common human capabilities.
 
 
 % Good improvement (technical sense), Sledgehammer can still be improved
@@ -537,9 +546,7 @@ Will be added at a later point.
 %German Research Foundation DFG, Chad Brown
 
 
-\newpage
 
-*
 
 \newpage
 
