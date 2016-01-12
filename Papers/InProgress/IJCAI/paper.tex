@@ -56,7 +56,7 @@ argument for the existence of God \cite{GoedelNotes,ScottNotes} is
 amongst the most discussed formal proofs in modern literature. A rich
 body of publications -- including very recent ones -- present,
 discuss, assess, criticise, modify and improve G\"{o}del's original
-work (see e.g.~Sobel~\shortcite{Sobel} and Oppy~\shortcite{sep-ontological-arguments} and the
+work (see e.g.~Sobel~\shortcite{sobel2004logic} and Oppy~\shortcite{sep-ontological-arguments} and the
 references therein).  In philosophy lectures at universities the
 argument is regularly presented as a masterpiece argument in
 metaphysics. Since 2013, when Benzm\"uller and Woltzenlogel-Paleo~\shortcite{J30,C40} first
@@ -73,7 +73,7 @@ extends previous computer-assisted studies of G\"odel's ontological
 argument. Similar to the related work \cite{J30,C40} the analysis has
 been conducted with automated theorem provers for classical
 higher-order logic (HOL) even though G\"odel's proof is actually
-formulated in \emph{modal} higher-order logic. To bridge between the two
+formulated in \emph{modal} higher-order logic (HOML). To bridge between the two
 logics we utilise and further improve the logic embedding
 approach \cite{J23,C40}, which has already been employed succesfully in preceding related work.
 
@@ -162,7 +162,26 @@ inconsistent. With it, Scott's axioms are consistent\footnote{In
 % There is reason to believe that the omission was more than just an oversight. As pointed out by Fuhrmann \cite{Fuhrmann2005}, ``G\"odel vermerkt diese Konsequenz [dass aus der Definition unmittelbar folgt, da\ss alle wesentlichen Eigenschaften notwendig äquivalent sind] in einer Fußnote zur Definition. Die Definition selbst aber l\"a{\ss}t im Definiens das Konjunkt $Xx$ aus. Ohne das Konjunkt folgt jedoch die Konsequenz nicht. Es ist deshalb naheliegend anzunehmen, da\ss G\"odel die Definition so beabsichtigte, wie sie hier notiert ist und wie G\"odel sie selbst in fr\"uheren Notizbucheintragungen formuliert hat.''\footnote{Our translation: ``G\"odel remarks this consequence [that the definition of essence entails that all essences are necessarily equivalent] in a footnote to the definition. The definition, however, omits the conjunct. ... ToDo''} 
 % \marginpar{ToDo: check Fuhrmann's claim. He may be pointing out a second mistake by Gödel.}
 
-For more than four decades, the serious consequences of G\"odel's mistake remained unnoticed, despite intense activity focused on criticizing his argument. Especially since the discovery by Sobel \cite{Sobel} that a modal collapse is entailed by G\"odel's (or also Scott's) axioms, several variants have been proposed \cite{Anderson,AndersonGettings,Hajek1,Hajek2,Hajek3,Bjordal} attempting to avoid the modal collapse. Many of these variants omit the crucial conjunct in the definition of essence as well\footnote{As these variants also change other axioms, on which the inconsistency of G\"odel's axioms depends, it is not necessarily the case that these variants are also inconsistent.}. Opponents of the argument (e.g. Oppy \cite[p.226/227]{oppy96:_goedel_ontol_argum} \cite[p.364]{oppy00:_respon_gettin} \cite[p.1068]{oppy08:_higher_order_ontol_argum}) have also proposed parodies and other criticisms, referring to variants where the conjunct is omitted.
+For more than four decades, the serious consequences of G\"odel's
+mistake remained unnoticed, despite intense activity focused on
+criticizing his argument. Especially since the discovery by Sobel
+\cite{Sobel} that modal collapse (MC)\footnote{The modal collapse,
+  $\phi\rightarrow \Box \phi$, states that contingent truth implies
+  necessary truth; it can be interpreted as \textit{everything is
+    pre-determined} or even \textit{there is no free will}. } is
+entailed by G\"odel's (or also Scott's) axioms, several variants have
+been proposed
+\cite{Anderson,AndersonGettings,Hajek1,Hajek2,Hajek3,Bjordal}
+attempting to avoid the modal collapse. Many of these variants omit
+the crucial conjunct in the definition of essence as well\footnote{As
+  these variants also change other axioms, on which the inconsistency
+  of G\"odel's axioms depends, it is not necessarily the case that
+  these variants are also inconsistent.}. Opponents of the argument
+(e.g. Oppy \cite[p.226/227]{oppy96:_goedel_ontol_argum}
+\cite[p.364]{oppy00:_respon_gettin}
+\cite[p.1068]{oppy08:_higher_order_ontol_argum}) have also proposed
+parodies and other criticisms, referring to variants where the
+conjunct is omitted.
 
 
 
@@ -249,6 +268,10 @@ embedding approach is very flexible.
 
 
 \subsection{Improved Embedding \SFiveU}\label{sec:improvedembedding}
+\begin{figure}[t]
+\centerline{\includegraphics[width=\columnwidth]{./Images/QML_S5.png}}
+\caption{Improved Embedding of \SFiveU} \label{QML_S5}
+\end{figure}
 
 The modal logic \SFive requires that the accessibility relation be
 reflexive, symmetric and transitive. The usual approach to embed
@@ -274,8 +297,8 @@ complete\footnote{A graph is \emph{complete} iff there is a directed
 \SFive admits non-complete frames as long as all their components are
 complete. In other words, in \SFiveU we face one single equivalence
 class of possible worlds, while in \SFive we may deal with several
-disconnected equivalence classes. For this reason, \SFiveU considered
-as metaphysically more appropriate by many philosophers;
+disconnected equivalence classes. In fact, for this reason, \SFiveU is
+considered as metaphysically more appropriate by some philosophers;
 cf. \cite[p.~127]{williamson13}.
 
 For \SFiveU, an improved embedding is possible. Universality implies
@@ -291,10 +314,6 @@ operators can then be defined merely as:
 \qquad \Dia \varphi \equiv \exists w. (\varphi w)\]
 
 The new embedding of \SFiveU in Isabelle is shown in Fig.~\ref{QML_S5}.
-\begin{figure}
-\centerline{\includegraphics[width=\columnwidth]{./Images/QML_S5.png}}
-\caption{Improved Embedding of \SFiveU} \label{QML_S5}
-\end{figure}
 %
 \marginpar{@Bruno: I commented you paragraph here, since I am not
   convinced (yet) that e.g. BF and CBF are equally valid in \SFiveU
@@ -352,7 +371,7 @@ Instead of reading $\psi(y)$, as he would expect, he has to read $(\psi y)$. Out
 
 In the embedding presented here, in Fig.~\ref{QML_S5}, advanced
 syntax-sugaring effects provided by Isabelle were used to prevent
-issues as enumerated above. The possibility to define boldface connectives allows us to drop the prefix; ``\texttt{binder}'' annotations enable modal quantifiers to be used in the standard binding way and reduce the need for explicit lambda abstractions; and a careful choice of priorities for infix connectives gives the parenthesis conventions that are more familiar to the user. As desired, the definition of essence in Fig.~\ref{QML_S5} is undeniably more immediately recognizable and comprehensible than the definition in Fig.~\ref{Scott_S5}. The embedding technique is now completely transparent to the user.
+issues as enumerated above. The possibility to define boldface connectives allows us to drop the prefix; ``\texttt{binder}'' annotations enable modal quantifiers to be used in the standard binding way and reduce the need for explicit lambda abstractions; and a careful choice of priorities for infix connectives gives the parenthesis conventions that are more familiar to the user. As desired, the definition of essence in Fig.~\ref{Scott_S5} is undeniably more immediately recognizable and comprehensible than the definition in Fig.~\ref{UglyEssence}. The embedding technique is now completely transparent to the user.
 
 We hope that the syntax improvements described here will render the computer-assisted analysis of ontological arguments (as well as future works utilizing the embedding of modal logics into HOL) accessible to a wider audience and encourage philosophers to adopt logic-based artificial intelligence tools in order to conduct similar experiments in computational metaphysics.
 
@@ -423,18 +442,36 @@ $$\pos \nec \bot $$
 \item To see that the sentence above is contradictory, we may reason semantically, in terms of possible worlds. If $w_0$ is the arbitrary current world, the $\pos$ operator forces the existence of a world $w$ accessible from $w_0$ such that $\nec \bot$ is true in $w$. But $\nec \bot$ can only be true in $w$, if there is no world $w'$ accessible from $w$. In logics with a reflexive or symmetric accessibility relation (e.g. \KB), it is easy to see that there must be a world $w'$ accessible from $w$: either $w'$ itself, in case of a reflexive relation, or $w_0$, in case of a symmetric relation. In fact, even in \K, with no accessibility condition, there must be a world $w'$ accessible from $w$. The reason is that $\pos \nec \bot$ should be \emph{valid} (true in all worlds). Therefore, it is true in $w$ as well, where the existence of an accessible world $w'$ is forced by the $\pos$ operator. As a model for $\pos \nec \bot$ (which is a consequence of G\"odel's axioms) cannot be built, G\"odel's axioms are inconsistent.
 \end{enumerate}
 
-Interestingly, the refutation automatically generated by \textsc{Leo-II} uses a symmetric accessibility relation, and thus requires the modal logic KB. The informal refutation described above, on the other hand, requires only the weaker modal logic K.
+Interestingly, the refutation automatically generated by
+\textsc{Leo-II} uses a symmetric accessibility relation, and thus
+requires the modal logic KB. The informal, human-constructed
+refutation described above, on the other hand, requires only the
+weaker modal logic K. In our experiments \textsc{Leo-II} (like all
+other HOL provers) was still to weak to automatically prove the
+inconsistency already in logic K. Hence, this remains an open problem for automated
+theorem provers.
 
 
 \subsection{Argument Reconstruction in Isabelle}
 
 To verify the correctness of the informal argument explained above, it was reconstructed in Isabelle/HOL, using Metis to automate the inessential parts. The essential use of the Empty Essence Lemma, on the other hand, is explicitly stated, to ensure that Isabelle is reconstructing the same argument. In fact, without the help of this lemma, Metis is not strong enough to refute G\"odel's axioms. \marginpar{ToDo: check this claim about Metis.}
-
-
-\begin{figure}
+\begin{figure}[t]
 \centerline{\includegraphics[width=\columnwidth]{./Images/InconsistencyIsabelleK.png}}
 \caption{Refutation of G\"odel's Axioms in Isabelle/HOl..} \label{InconsistencyIsabelleK}
 \end{figure}
+
+
+
+
+
+\section{Conclusion}\label{sec:conclusion}
+The inconsistency of G\"odel's original axioms in his ontological
+argument has been detected automatically by the prover
+\textsc{Leo-II}. Here we have presented a rational reconstruction and
+verification of the inconsistency proof in Isabelle/HOL. Interestingly,
+the inconsistency argument applies to all normal modal logics
+including K. 
+
 
 
 \begin{figure*}
@@ -443,29 +480,52 @@ To verify the correctness of the informal argument explained above, it was recon
 \end{figure*}
 
 
+Moreover, we have reported on several technical improvements regarding
+the semantic embedding approach. In fact, we have a achieved a nearly
+perfect match between pen and paper presentations in HOML and the
+syntax in Isabelle/HOL. As a result, the embedding of HOML in
+HOL is now fully transparent and, as we think, ready for wider adoption by
+philosophers.
+
+On the other hand, there is still room for improvements in
+Isabelle/HOL. For example, Isabelle/HOL's Sledgehammer tool, which
+realises calls to external automated theorem provers, such as
+\textsc{Leo-II}, still fails to detect the inconsistency of G\"odel's
+axioms, while a direct modeling of the problem in TPTP THF syntax in
+combination with a direct call of \textsc{Leo-II} succeeds. In other
+words, without independent experiments directly in TPTP THF the
+inconsistency would thus not have been detected. There are further
+technical issues regarding Sledgehammer that motivate
+improvements. For example, in default setting, Sledgehammer does not
+inform the user early that a proof has been found and instead silently
+applies first a series of time-consuming analysis tools (e.g. it's
+minimizer), before it eventually informs the user of success. For the
+involved proof problems presented here (e.g. T3), this phase of
+silence may take several minutes (during which the user might actually
+give up on the proof attempt), while \textsc{Leo-II} already reported
+success to Sledgehammer much earlier (e.g. after 2,5 seconds for T3).
+
+Moreover, our work points to a challenge for proof transformation:
+even if \textsc{Leo-II}'s proof could be automatically verified
+in Isabelle, this would clearly not entail that Isabelle/HOL could
+also extract from this verification a human-intuitive argument, for
+example, an argument as has been presented here. For philosophers,
+however, the reconstruction of such human-intuitive arguments from
+machine found proofs will likely be crucial for accepting any novel results.
 
 
-\section{Conclusion}\label{sec:conclusion}
+
+% Good improvement (technical sense), Sledgehammer can still be improved
+% (\textsc{Leo-II} finds inconsistency when call directly in THF Syntax, but not
+% from within Isabelle). 
 
 
-Good improvement (technical sense), Sledgehammer can still be improved
-(\textsc{Leo-II} finds inconsistency when call directly in THF Syntax, but not
-from within Isabelle). Without independent experiments directly in THF 
-the inconsistency would thus not have been detected.
+% We also point to several technical challenges which, at least for the
+% moment, still restrain non-expert users of these systems from
+% independently conducting similar experiments in computational
+% metaphysics as reported here and in previous work.
 
 
-As we show in this paper using this notion of essence
-leads to an inconsistent axiom system, which in a classical setting of
-course deserves no further attention, since from an inconsistent
-system everything can be concluded, including God's existence and
-non-existence simultaneously. In other words, these literature
-contributions discuss variants of the argument which from a classical
-logical perspective do not deserve any further attention.
-
-We also point to several technical challenges which, at least for the
-moment, still restrain non-expert users of these systems from
-independently conducting similar experiments in computational
-metaphysics as reported here and in previous work.
 % Technical issues detected within Isabelle-Sledgehammer; room for improvements
 
 
@@ -476,8 +536,6 @@ Will be added at a later point.
 
 %German Research Foundation DFG, Chad Brown
 
-\vfill
- bla
 
 \newpage
 
