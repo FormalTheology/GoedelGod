@@ -21,7 +21,7 @@
 \usepackage{color}
 \usepackage{xcolor}
 
-\newcommand{\imp}{\rightarrow}
+\newcommand{\imp}{{\rightarrow}}
 \newcommand{\biimp}{\leftrightarrow}
 \newcommand{\allq}{\forall}
 \newcommand{\exq}{\exists}
@@ -160,7 +160,7 @@ clause out in [11], but this appears to have been an oversight--it is
 included in related manuscripts''. However, the omitted conjunct is in
 fact crucial. Without it, G\"odel's original axioms are
 inconsistent. With it, Scott's axioms are consistent (cf.~Fig.~\ref{Scott_S5}
-where the model finder Nitpick confirms consistency).\footnote{In
+where the model finder Nitpick \cite{Nitpick} confirms consistency).\footnote{In
   personal communication, Dana Scott confirmed that he was unaware
   that G\"odel's axioms were inconsistent.}
 
@@ -275,7 +275,7 @@ means of an existence predicate, which can be used to guard the
 quantifiers. Therefore, the embedding approach is very flexible.
 
 
-\subsection{Improved Embedding \SFiveU}\label{sec:improvedembedding}
+\subsection{Improved Embedding}\label{sec:improvedembedding}
 \begin{figure}[t]
 \centerline{\includegraphics[width=\columnwidth]{./Images/QML_S5.png}}
 \caption{Improved Embedding of \SFiveU} \label{QML_S5}
@@ -341,6 +341,9 @@ Scott's consistent version of the axioms fully automatically.  The fully
 automatic proof has been generated (in about 2,5 seconds) by the theorem prover
 \textsc{Leo-II}~\cite{C26} and subsequently verified in the proof
 assistant Isabelle/HOL~\cite{NPW02}, as shown in Fig.~\ref{Scott_S5}.
+The collaboration between the two systems has been orchestrated by
+Isabelle's Sledgehammer tool \cite{Sledgehammer}.
+
 With the embedding used by Benzm\"uller and Woltzenlogel-Paleo \shortcite{C40}, the
 provers still had to be given the intermediate theorem T2 and the corollary
 C in order to manage to prove T3.
@@ -367,8 +370,11 @@ verification in the highly trusted Isabelle/HOL system still failed
 Wider adoption of higher-order theorem proving technology for reasoning about and within embedded object logics, especially among non-expert users, is still hindered by the gap between the syntax used by people, when they write logical formulas with pen and paper, and the syntax used by higher-order logic theorem provers. Even when the syntax of the underlying higher-order system is elegant (as is the case in Isabelle/HOL), the embedding of HOML into HOL may easily expose details of HOL that may be uncommon to the user, disturbing his/her experience while using the system. To illustrate this point, Fig.~\ref{UglyEssence} shows how the definition of essence looked like in previous work \cite{J28}, where advanced syntax-sugaring features were not used. It looks notably higher-order, and its style differs significantly from the common style seen in works on modal logics and the ontological argument. The following specific issues can be enumerated:
 \begin{enumerate}
 \item Lambda abstractions (which are a typical higher-order feature) appear explicitly in places where it didn't need to appear in a pure HOML formulation (cf. G\"odel's manuscript, Fig.~\ref{GoedelScript}).
-\item Quantifiers appear as higher-order defined constants, and not as binders. This forces the user to read (and write) formulas of the form $\forall (\lambda x. A(x))$ instead of the more common $\forall x. A(x)$.
-\item The lifted modal connectives are represented by prefixing the letter ``m'' (e.g. $m\wedge$ and $m\rightarrow$). The prefix disturbs the user, as it constantly reminds him/her that there is something unusual about the modal connectives.
+\item Quantifiers appear as higher-order dqefined constants, and not as binders. This forces the user to read (and write) formulas of the form $\forall (\lambda x. A(x))$ instead of the more common $\forall x. A(x)$.
+\item The lifted modal connectives are represented by prefixing the
+  letter ``m'' (e.g. $m\wedge$ and $m\imp$). The prefix disturbs the
+  user, as it constantly reminds him/her that there is something
+  unusual about the modal connectives.
 \item Higher-order parenthesis conventions for the application of a predicate to a term are used. 
 Instead of reading $\psi(y)$, as he would expect, he has to read $(\psi y)$. Outside niche areas in computer science, the former syntax is more widely known than the latter.
 \end{enumerate}
@@ -418,7 +424,7 @@ empty property by self-difference.
 % denotations. Consequently, they are mutually replacable below and the
 % reader may simply use the version he prefers.
 
-\subsection{Informal Refutation}
+\subsection{Informal Argument}
 
 Based on the hints found in \textsc{Leo-II}'s refutation, we conceived the following informal explanation for the inconsistency of G\"odel's axioms:
 
@@ -485,43 +491,43 @@ To verify the correctness of the informal argument explained above, it was recon
 
 \subsection{Mapping the Inconsistency to G\"odel}
 The inconsistency verified in Fig.~\ref{InconsistencyIsabelleK} follows from the definition of
-essence ($ess$), the definition of necessary existence ($NE$), the
+essence (ess), the definition of necessary existence (NE), the
 axioms A1(a) and A2 (which entail theorem T1), and axiom A5. It remains to demonstrate that
 these ingredients are actually present in G\"odel's manuscript in
 Fig.~\ref{GoedelScript}. 
 
-This can easily be seen: Axioms A1(a) in
-Fig.~\ref{InconsistencyIsabelleK} is implied by Axiom A2 and the
+This can easily be seen: Axioms A1a in
+Fig.~\ref{InconsistencyIsabelleK} is implied by Axiom Ax2 and the
 highlighted footnote remark in Fig.~\ref{GoedelScript}. Axioms A2 and
-A5 in Fig.~\ref{InconsistencyIsabelleK} correspond to A4 and A3 in
+A5 in Fig.~\ref{InconsistencyIsabelleK} correspond to Ax4 and Ax3 in
 Fig.~\ref{GoedelScript}. The definitions of essence and necessary
 existence are easy to identify. Thus, we conclude that the verified
 inconsistency from Fig.~\ref{InconsistencyIsabelleK} does apply to 
-G''odel's proof script in Fig.~\ref{GoedelScript}.
+G\"odel's original manuscript.
 
 
 \section{Conclusion}\label{sec:conclusion}
-The inconsistency of G\"odel's original axioms in his ontological
-argument has been detected automatically by the prover
+The axioms and definitions in G\"odel's manuscript are inconsistent;
+this has been detected automatically by the prover
 \textsc{Leo-II}. Here we have presented a rational reconstruction and
-verification of the inconsistency proof in Isabelle/HOL. This
-inconsistency argument applies to all normal modal logics including K.
+verification of the inconsistency argument in Isabelle/HOL. This
+argument is valid in all normal HOMLs including base logic K.
 \begin{figure*}
 \centerline{\includegraphics[width=\textwidth]{./Images/Manuscript2.png}}
 \caption{G\"{o}del's manuscript, with mutually inconsistent axioms and definitions highlighted.} \label{GoedelScript}
 \end{figure*}
 
 
-Moreover, we have reported on several technical improvements regarding
-the semantic embedding approach. In fact, we have a achieved a nearly
-perfect match between pen and paper presentations in HOML and the
-syntax in Isabelle/HOL. As a result, the embedding of HOML in
-HOL is now fully transparent and, as we think, ready for wider adoption by
+We have also presented several technical improvements regarding the
+semantic embedding approach. In particular, we have a achieved a
+nearly perfect match between pen and paper presentations in HOML and
+the syntax in Isabelle/HOL. As a result, the embedding of HOML in HOL
+is now fully transparent and, as we think, ready for wider adoption by
 philosophers.
 
 On the other hand, there is still room for improvements in
 Isabelle/HOL. For example, Isabelle/HOL's Sledgehammer tool, which
-realises calls to external automated theorem provers, such as
+orchestrates the calls to external automated theorem provers, such as
 \textsc{Leo-II}, still fails to detect the inconsistency of G\"odel's
 axioms, while a direct modeling of the problem in TPTP THF syntax in
 combination with a direct call of \textsc{Leo-II} succeeds. In other
@@ -529,9 +535,9 @@ words, without independent experiments directly in TPTP THF the
 inconsistency would thus not have been detected. There are further
 technical issues regarding Sledgehammer that motivate
 improvements. For example, in default setting, Sledgehammer does not
-inform the user early that a proof has been found and instead silently
-applies first a series of time-consuming analysis tools (e.g. it's
-minimizer), before it eventually informs the user of success. For the
+immediately inform the user when a proof has been found and instead silently
+ first executes a series of time-consuming proof analysis processes (e.g. it's
+dependency minimizer), before it eventually informs the user of success. For the
 involved proof problems presented here (e.g. G\"odel's theorem T3:
 \textit{Necessarily, there exists God}), this phase of silence may
 take several minutes (during which the user might actually give up on
@@ -539,23 +545,24 @@ the proof attempt), while \textsc{Leo-II} already reported success to
 Sledgehammer much earlier (e.g. after 2,5 seconds for T3).
 
 Moreover, our work points to a challenge for proof transformation:
-even if \textsc{Leo-II}'s proof could be automatically verified
-in Isabelle, this would clearly not entail that Isabelle/HOL could
-also extract from this verification a human-intuitive argument, for
-example, an argument as has been presented here. For philosophers,
-however, the reconstruction of such human-intuitive arguments from
-machine found proofs will likely be crucial for accepting any novel results.
+even if \textsc{Leo-II}'s proof can eventually be automatically
+verified in Isabelle, without a human-intuitive explanation of the
+proof, this will presumably be of limited value for philosophers.  The
+challenge is to extract from such a verification process an abstract
+level argument, similar to what we have presented in this paper: for
+philosophers, the reconstruction of such human-intuitive arguments
+from machine found proofs will likely be crucial for accepting any
+novel results.
 
 Another open problem that we solved in this paper is a fully automatic
 proof of T3 directly from Scott's axioms. Again, this proof was
 contributed by \textsc{Leo-II}. However, this has been possible only
-after providing a more efficient embedding, based on a universal
-accessibility relation, for HOML S5 in HOL. 
+after providing a more efficient embedding for HOML S5 in HOL. 
 
 Both, the automated detection of the inconsistency in G\"odel's axioms
 and the fully automatic proof of T3 from Scott's axioms demonstrates
 the potential of our AI technology for philosophy: this technology is
-already in its current state able to contribute novel results to
+in its current state of development already capable of contributing novel results to
 metaphysics and to conduct reasoning steps at granularity-levels
 beyond common human capabilities.
 
@@ -586,7 +593,7 @@ Will be added at a later point.
 
 
 
-
+\small 
 %% The file named.bst is a bibliography style file for BibTeX 0.99c
 \bibliographystyle{named}
 \bibliography{Bibliography}
