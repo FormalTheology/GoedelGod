@@ -1,11 +1,8 @@
-theory QML_S5 imports Main 
+theory QML_S5U imports Main 
 begin
  typedecl i -- "type for possible worlds" 
  typedecl \<mu> -- "type for individuals"      
  type_synonym \<sigma> = "(i\<Rightarrow>bool)"
-
- consts r :: "i \<Rightarrow> i \<Rightarrow> bool" (infixr "r" 70)     
- -- "accessibility relation r"   
 
  abbreviation mnot :: "\<sigma>\<Rightarrow>\<sigma>" ("\<^bold>\<not>_"[52]53) 
   where "\<^bold>\<not>\<phi> \<equiv> \<lambda>w. \<not>\<phi>(w)" 
@@ -28,14 +25,10 @@ begin
  abbreviation mexiB:: "('a\<Rightarrow>\<sigma>)\<Rightarrow>\<sigma>" (binder"\<^bold>\<exists>"[8]9) 
   where "\<^bold>\<exists>x. \<phi>(x) \<equiv> \<^bold>\<exists>\<phi>"   
  abbreviation mbox :: "\<sigma>\<Rightarrow>\<sigma>" ("\<^bold>\<box>") 
-  where "\<^bold>\<box>\<phi> \<equiv> \<lambda>w. \<forall>v.  w r v \<longrightarrow> \<phi>(v)"
+  where "\<^bold>\<box>\<phi> \<equiv> \<lambda>w.\<forall>v. \<phi>(v)"
  abbreviation mdia :: "\<sigma>\<Rightarrow>\<sigma>" ("\<^bold>\<diamond>") 
-  where "\<^bold>\<diamond>\<phi> \<equiv> \<lambda>w. \<exists>v. w r v \<and> \<phi>(v)" 
+  where "\<^bold>\<diamond>\<phi> \<equiv> \<lambda>w.\<exists>v. \<phi>(v)" 
 
  abbreviation valid :: "\<sigma> \<Rightarrow> bool" ("\<lfloor>_\<rfloor>"[7]8) 
   where "\<lfloor>p\<rfloor> \<equiv> \<forall>w. p w"
-
- axiomatization where ref: "x r x" 
- axiomatization where sym: "x r y \<longrightarrow> y r x" 
- axiomatization where trans: "x r y \<and> y r z \<longrightarrow> x r z" 
 end
