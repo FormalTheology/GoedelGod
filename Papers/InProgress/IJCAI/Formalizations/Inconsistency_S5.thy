@@ -17,12 +17,14 @@ definition NE where
 axiomatization where                   
  A5:  "\<lfloor>P(NE)\<rfloor>"                       
 
-lemma False                    (* Inconsistency *)
+lemma False                     (* Inconsistency *)
  sledgehammer [remote_leo2, verbose]
- by (metis A1a A1b A5 NE_def ess_def)
+ by (metis (full_types) A1a A1b A2 A3 A4 A5 
+     G_def NE_def ess_def)
 
 theorem         (* Neccessarily there exists God *)                             
  T3: "\<lfloor>\<^bold>\<box>(\<^bold>\<exists> G)\<rfloor>"                                                 
  sledgehammer [remote_leo2, verbose]
- by (metis A1a A1b A2 A3 A4 A5 G_def NE_def ess_def)                 
+ (* by (metis (full_types) A1a A1b A2 A3 A4 A5 
+        G_def NE_def ess_def) *)              
 end
