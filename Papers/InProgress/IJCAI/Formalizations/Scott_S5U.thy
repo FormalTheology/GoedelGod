@@ -18,7 +18,7 @@ begin
     A5:  "\<lfloor>P(NE)\<rfloor>"
 
   theorem T3: "\<lfloor>\<^bold>\<box> (\<^bold>\<exists> G)\<rfloor>" -- {* LEO-II proves T3 in 2,5sec *}
-  sledgehammer [provers = remote_leo2, verbose]
+  sledgehammer [provers = remote_leo2, verbose, overlord]
   by (metis (lifting, full_types) 
       A1a A1b A2 A3 A4 A5 G_def NE_def ess_def)
 

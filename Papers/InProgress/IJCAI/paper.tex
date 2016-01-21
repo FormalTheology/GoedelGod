@@ -101,7 +101,7 @@ refutation, capable of convincing also human non-experts, led us to
 improve the syntax of the embedding of modal logics in Isabelle/HOL
 (as discussed in \S\ref{sec:improvedsyntax}). With the new syntax, a
 (nearly) perfect match between the original pen and paper
-presentations and our encoding in Isabelle/HOl is feasible. A more
+presentations and our encoding in Isabelle/HOL is feasible. A more
 user-friendly syntax, as reported here, is clearly an important
 prerequisite for promoting the theorem proving technology employed
 here to a wider community of philosophers, who are not necessarily
@@ -142,7 +142,7 @@ the ancestor of modern ontological arguments such as G\"odel's. In the
 millenium between Anselm and G\"odel, many philosophers modified and
 arguably improved Anselm's argument. Of particular importance to
 G\"odel was the work of Leibniz \cite{ToDo:Leibniz}.  G\"odel's manuscript
-(Fig.~\ref{GoedelScript}) can be considered a translation of Leibniz's
+(Fig.~\ref{GoedelScript}(a)) can be considered a translation of Leibniz's
 presentation of the argument into modern modal logic. G\"odel
 discussed his manuscript with Scott, who shared a slightly different
 version with a larger public. Scott's version of the axioms and
@@ -150,7 +150,7 @@ definitions, formalized in Isabelle, is shown in
 Fig.~\ref{Scott_S5U}. The main difference to G\"odel's version is the
 addition of a conjunct in the definition of \emph{essence}. G\"odel's
 different definition of essence can be seen either in his manuscript
-(Fig.~\ref{GoedelScript}) or, in more modern notation, in the Isabelle
+(Fig.~\ref{GoedelScript}(a)) or, in more modern notation, in the Isabelle
 formalization shown in Fig.~\ref{InconsistencyIsabelleK}. For Scott,
 an essential property of an individual must be possessed by
 him/her. For G\"odel, this is not required. This difference has been
@@ -374,7 +374,7 @@ verification in the highly trusted Isabelle/HOL system still failed
 
 Wider adoption of higher-order theorem proving technology for reasoning about and within embedded object logics, especially among non-expert users, is still hindered by the gap between the syntax used by people, when they write logical formulas with pen and paper, and the syntax used by higher-order logic theorem provers. Even when the syntax of the underlying higher-order system is elegant (as is the case in Isabelle/HOL), the embedding of HOML into HOL may easily expose details of HOL that may be uncommon to the user, disturbing his/her experience while using the system. To illustrate this point, Fig.~\ref{UglyEssence} shows how the definition of essence looked like in previous work \cite{J28}, where advanced syntax-sugaring features were not used. It looks notably higher-order, and its style differs significantly from the common style seen in works on modal logics and the ontological argument. The following specific issues can be enumerated:
 \begin{enumerate}
-\item Lambda abstractions (which are a typical higher-order feature) appear explicitly in places where it didn't need to appear in a pure HOML formulation (cf. G\"odel's manuscript, Fig.~\ref{GoedelScript}).
+\item Lambda abstractions (which are a typical higher-order feature) appear explicitly in places where it didn't need to appear in a pure HOML formulation (cf. G\"odel's manuscript, Fig.~\ref{GoedelScript}(a)).
 \item Quantifiers appear as higher-order dqefined constants, and not as binders. This forces the user to read (and write) formulas of the form $\forall (\lambda x. A(x))$ instead of the more common $\forall x. A(x)$.
 \item The lifted modal connectives are represented by prefixing the
   letter ``m'' (e.g. $m\wedge$ and $m\imp$). The prefix disturbs the
@@ -429,8 +429,7 @@ empty property by self-difference.
 % denotations. Consequently, they are mutually replacable below and the
 % reader may simply use the version he prefers.
 
-\subsection{Informal Argument}
-
+\subsection{Informal Argument} \label{sec:arg1}
 Based on the hints found in \textsc{Leo-II}'s refutation, we conceived the following informal explanation for the inconsistency of G\"odel's axioms:
 
 \begin{enumerate}
@@ -486,12 +485,19 @@ inconsistency already in logic K. Hence, this remains an open problem for automa
 theorem provers.
 
 
-\subsection{Argument Reconstruction in Isabelle}
-
-To verify the correctness of the informal argument explained above, it was reconstructed in Isabelle/HOL, using Metis to automate the inessential parts. The essential use of the Empty Essence Lemma, on the other hand, is explicitly stated, to ensure that Isabelle is reconstructing the same argument. In fact, without the help of this lemma, Metis is not strong enough to refute G\"odel's axioms. \marginpar{ToDo: check this claim about Metis.}
+\subsection{Argument Reconstruction in Isabelle}  \label{sec:arg2}
+To verify the correctness of the informal argument explained above, it
+was reconstructed in Isabelle/HOL, using Metis\footnote{Metis, unlike
+  external provers such as \textsc{Leo-II} or Satallax, 
+  constructs proofs in Isabelle's highly trusted kernel calculus.} to automate the
+inessential parts. The essential use of the Empty Essence Lemma, on
+the other hand, is explicitly stated, to ensure that Isabelle is
+reconstructing the same argument. In fact, without the help of this
+lemma, Metis is not strong enough to refute G\"odel's
+axioms. \marginpar{ToDo: check this claim about Metis.}
 \begin{figure}[t]
 \centerline{\includegraphics[width=\columnwidth]{./Images/InconsistencyIsabelleK.png}}
-\caption{Refutation of G\"odel's Axioms in Isabelle/HOl..} \label{InconsistencyIsabelleK}
+\caption{Refutation of G\"odel's Axioms in Isabelle/HOL.} \label{InconsistencyIsabelleK}
 \end{figure}
 
 \subsection{Mapping the Inconsistency to G\"odel}
@@ -499,17 +505,43 @@ The inconsistency verified in Fig.~\ref{InconsistencyIsabelleK} follows from the
 essence (ess), the definition of necessary existence (NE), the
 axioms A1(a) and A2 (which entail theorem T1), and axiom A5. It remains to demonstrate that
 these ingredients are actually present in G\"odel's manuscript in
-Fig.~\ref{GoedelScript}. 
+Fig.~\ref{GoedelScript}(a). 
 
 This can easily be seen: Axioms A1a in
 Fig.~\ref{InconsistencyIsabelleK} is implied by Axiom Ax2 and the
-highlighted footnote remark in Fig.~\ref{GoedelScript}. Axioms A2 and
+highlighted footnote remark in Fig.~\ref{GoedelScript}(a). Axioms A2 and
 A5 in Fig.~\ref{InconsistencyIsabelleK} correspond to Ax4 and Ax3 in
-Fig.~\ref{GoedelScript}. The definitions of essence and necessary
+Fig.~\ref{GoedelScript}(a). The definitions of essence and necessary
 existence are easy to identify. Thus, we conclude that the verified
 inconsistency from Fig.~\ref{InconsistencyIsabelleK} does apply to 
 G\"odel's original manuscript.
 
+\subsection{Inconsistency of G\"odel's Axioms in \SFiveU}
+Isabelle/HOL's Sledgehammer tool, which orchestrates the calls to
+external automated theorem provers, such as \textsc{Leo-II}, still
+fails to detect the inconsistency of G\"odel's axioms in the standard
+embedding, while a direct modeling of the problem in TPTP THF syntax
+in combination with a direct call of \textsc{Leo-II} succeeds. In
+other words, without independent experiments directly in TPTP THF the
+inconsistency would thus not have been detected.
+\begin{figure*}
+\centerline{
+\includegraphics[width=.65\textwidth]{./Images/Manuscript2.png} \hfill
+\includegraphics[width=.35\textwidth]{./Images/Inconsistency_S5U_direct.png}
+}
+\caption{(a) G\"{o}del's manuscript, with mutually inconsistent axioms and
+  definitions highlighted; (b) Refutation of G\"odel's Axioms in
+\SFiveU} \label{Inconsistency_S5U} \label{GoedelScript} 
+\end{figure*}
+
+
+Recent experiments in Isabelle/HOL with the improved embedding \SFiveU were
+successful. Analogous to our findings in
+\$\ref{sec:improvedembedding}, the inconsistency can now be detected
+by \textsc{Leo-II} when called via
+Sledgehammer. Moreover, the result can subsequently be verified with
+Metis; cf. Fig.\ref{Inconsistency_S5U}. Interestingly, Metis generates an argument different to
+\$\ref{sec:arg1} and \$\ref{sec:arg2}, since axiom A1b is not used.
 
 \section{Conclusion}\label{sec:conclusion}
 The axioms and definitions in G\"odel's manuscript are inconsistent;
@@ -517,10 +549,6 @@ this has been detected automatically by the prover
 \textsc{Leo-II}. Here we have presented a rational reconstruction and
 verification of the inconsistency argument in Isabelle/HOL. This
 argument is valid in all normal HOMLs including base logic K.
-\begin{figure*}
-\centerline{\includegraphics[width=\textwidth]{./Images/Manuscript2.png}}
-\caption{G\"{o}del's manuscript, with mutually inconsistent axioms and definitions highlighted.} \label{GoedelScript}
-\end{figure*}
 
 
 We have also presented several technical improvements regarding the
@@ -530,33 +558,24 @@ the syntax in Isabelle/HOL. As a result, the embedding of HOML in HOL
 is now fully transparent and, as we think, ready for wider adoption by
 philosophers.
 
-On the other hand, there is still room for improvements. For example, Isabelle/HOL's Sledgehammer tool, which
-orchestrates the calls to external automated theorem provers, such as
-\textsc{Leo-II}, still fails to detect the inconsistency of G\"odel's
-axioms, while a direct modeling of the problem in TPTP THF syntax in
-combination with a direct call of \textsc{Leo-II} succeeds. In other
-words, without independent experiments directly in TPTP THF the
-inconsistency would thus not have been detected. There are further
-technical issues regarding Sledgehammer that motivate
-improvements. For example, in default setting, Sledgehammer does not
-immediately inform the user when a proof has been found and instead silently
- first executes a series of time-consuming proof analysis processes (e.g. it's
-dependency minimizer), before it eventually informs the user of success. For the
-involved proof problems presented here (e.g. G\"odel's theorem T3:
-\textit{Necessarily, there exists God}), this phase of silence may
-take several minutes (during which the user might actually give up on
-the proof attempt), while \textsc{Leo-II} already reported success to
-Sledgehammer much earlier (e.g. after 2,5 seconds for T3).
+On the other hand, there is still room for many pragmatical
+improvements in Isabelle; just one example: in default setting,
+Sledgehammer does not immediately inform the user when a proof has
+been found and instead silently first executes a series of
+time-consuming proof analysis processes (e.g. it's dependency
+minimizer), before it eventually reports success. For G\"odel's
+theorem T3 (\textit{Necessarily, there exists God}), for example, this
+phase of silence takes several minutes --- during which the user might
+actually give up on the proof attempt, while \textsc{Leo-II} already
+reported success to Sledgehammer after 2,5 seconds for T3
 
-Moreover, our work points to a challenge for proof transformation:
-even if \textsc{Leo-II}'s proof can eventually be automatically
-verified in Isabelle, without a human-intuitive explanation of the
-proof, this will presumably be of limited value for philosophers.  The
-challenge is to extract from such a verification process an abstract
-level argument, similar to what we have presented in this paper: for
-philosophers, the reconstruction of such human-intuitive arguments
-from machine found proofs will likely be crucial for accepting any
-novel results.
+More importantly, our work reveals a challenge for proof
+transformation: Without accompanying, human-intuitive explanations,
+the proofs generated by provers such as \textsc{Leo-II} or Metis, will
+presumably be only of limited value for philosophers.  The challenge
+is to extract abstract level arguments, similar to what we have
+presented in this paper. For philosophers, such human-intuitive
+arguments will likely be crucial for accepting any novel results.
 
 Another open problem that we solved in this paper is a fully automatic
 proof of T3 directly from Scott's axioms. Again, this proof was
@@ -586,21 +605,19 @@ beyond common human capabilities.
 
 
 
-\section*{Acknowledgments}
+%\section*{Acknowledgments} Will be added at a later point.
+\paragraph*{Acknowledgments} Will be added at a later point.
 
-Will be added at a later point.
+%\pagebreak
 
 %German Research Foundation DFG, Chad Brown
 
 
-\begin{figure}[t]
-\centerline{\includegraphics[width=\columnwidth]{./Images/Inconsistency_S5U_direct.png}}
-\caption{Further improvement: direct  proof of inconsistency in \SFiveU} \label{QML_S5U}
-\end{figure}
 
 
 
-\small 
+
+%\small 
 %% The file named.bst is a bibliography style file for BibTeX 0.99c
 \bibliographystyle{named}
 \bibliography{Bibliography}
