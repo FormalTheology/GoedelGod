@@ -324,9 +324,8 @@ operators can then be defined merely as:
 
 The new embedding of \SFiveU in Isabelle is shown in Fig.~\ref{QML_S5}.
 %
-\marginpar{@Bruno: I commented you paragraph here, since I am not
-  convinced (yet) that e.g. BF and CBF are equally valid in \SFiveU
-  and \SFive}
+\marginpar{@Bruno: I commented your paragraph here, are BF and CBF
+  equally valid in \SFiveU and \SFive?}
 % \SFiveU is only slightly stronger than \SFive. Most importantly,
 % $\vDash_{\SFive} \varphi$ iff $\vDash_{\SFiveU} \varphi^{U}$, where
 % $\varphi^U$ is obtained from $\varphi$ by replacing all $\Box$ and
@@ -483,7 +482,13 @@ theorem provers.
 
 \subsection{Argument Reconstruction in Isabelle}
 
-To verify the correctness of the informal argument explained above, it was reconstructed in Isabelle/HOL, using Metis to automate the inessential parts. The essential use of the Empty Essence Lemma, on the other hand, is explicitly stated, to ensure that Isabelle is reconstructing the same argument. In fact, without the help of this lemma, Metis is not strong enough to refute G\"odel's axioms. \marginpar{ToDo: check this claim about Metis.}
+To verify the correctness of the informal argument explained above, it
+was reconstructed in Isabelle/HOL, using Metis to automate the
+inessential parts. The essential use of the Empty Essence Lemma, on
+the other hand, is explicitly stated, to ensure that Isabelle is
+reconstructing the same argument. In fact, without the help of this
+lemma, Metis is not strong enough to refute G\"odel's axioms. 
+\marginpar{ToDo: check this claim about Metis.}
 \begin{figure}[t]
 \centerline{\includegraphics[width=\columnwidth]{./Images/InconsistencyIsabelleK.png}}
 \caption{Refutation of G\"odel's Axioms in Isabelle/HOl..} \label{InconsistencyIsabelleK}
