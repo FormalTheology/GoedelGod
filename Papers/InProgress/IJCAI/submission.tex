@@ -115,7 +115,7 @@ embedding is more efficient, as the following two, previously open problems can 
 \item Proving the final theorem T3 \textit{``Necessarily, there
     exists God''} (in Scott's \shortcite{ScottNotes} consistent variant) fully automatically and directly from the axioms
   alone, without relying on the argument's intermediate argumentation
-  steps (i.e., lemmata). \marginpar{ToDo: 2004 is the year of Sobel's book, not of Scott's manuscript. We need to fix this as I fixed the date for Goedel's manuscript.}
+  steps (i.e., lemmata). \marginpar{ToDo: 2004 is the year of Sobel's book, not of Scott's manuscript. We need to fix this as I fixed the date for Goedel's manuscript. But I don't know the correct date for Scott's manuscript.}
 \item Verifying automatically (in Isabelle/HOL) the proof of the modal
   collapse \cite{Sobel}, which is one of the most strongly criticized
   `side-effects' of the argument's axioms.
@@ -369,7 +369,6 @@ verification in the highly trusted Isabelle/HOL system still failed
 \caption{Full Automation of T3 in \SFiveU; Consistency of Scott's
   Axioms;  Automatic Verification of Modal Collapse} \label{Scott_S5U}
 \end{figure}
-%\marginpar{ToDo: this picture has to be replaced by one without Isabelle errors}
 
 
 \subsection{Improved Syntax in Isabelle}\label{sec:improvedsyntax}
@@ -420,7 +419,7 @@ self-difference over the empty property\footnote{This occurred in
   a private communication of the authors with Andr\'e Fuhrmann.} in
 the analysis below. However, for the proof to go through it is
 irrelevant which notion we use and the reader may simply replace the
-empty property by self-difference. In HOL it is customary to think of a set as a unary predicate that is true for (and only for) elements of the set. Therefore, the empty property (i.e. the unary predicate that is false for any individual) represents the empty set, and hence we use the empty set symbol ($\emptyset$) as an abbreviation for the empty property. \marginpar{ToDo: should we use the empty set symbol in the isabelle code in figure 5 as well?}
+empty property by self-difference. In HOL it is customary to think of a set as a unary predicate that is true for (and only for) elements of the set. Therefore, the empty property (i.e. the unary predicate that is false for any individual) represents the empty set, and hence we use the empty set symbol ($\emptyset$) as an abbreviation for the empty property. \marginpar{ToDo: should we use the empty set symbol in the isabelle code in figure 5 as well? Or should we instead stop using the empty set symbol in the informal argument (and use $\lambda x. \bot$ instead) and remove this convoluted commentary that I added here.}
 
 
 % Philosophers
@@ -495,7 +494,7 @@ inessential parts. The essential use of the Empty Essence Lemma, on
 the other hand, is explicitly stated, to ensure that Isabelle is
 reconstructing the same argument. In fact, without the help of this
 lemma, Metis is still not strong enough to refute G\"odel's
-axioms. \marginpar{ToDo: check this claim about Metis.}
+axioms.
 \begin{figure}[t]
 \centerline{\includegraphics[width=\columnwidth]{./Images/InconsistencyIsabelleK.png}}
 \caption{Refutation of G\"odel's Axioms in Isabelle/HOL.} \label{InconsistencyIsabelleK}
