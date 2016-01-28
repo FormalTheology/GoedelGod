@@ -13,6 +13,10 @@
 % the following package is optional:
 \usepackage{latexsym} 
 
+\usepackage{graphicx}
+\usepackage{caption}
+\usepackage{subcaption}
+
 \usepackage{amsmath}
 \usepackage{xspace}
 \usepackage{modallogics}
@@ -189,6 +193,30 @@ inconsistent. With it, Scott's axioms are consistent (cf.~Fig.~\ref{Scott_S5U}
 where the model finder Nitpick \cite{Nitpick} confirms consistency).\footnote{In
   personal communication, Dana Scott confirmed that he was unaware
   at the time that G\"odel's axioms were inconsistent.}
+
+\begin{figure*}
+    \centering
+    \begin{subfigure}[b]{0.3\textwidth}
+        \includegraphics[width=\textwidth]{./Images/Scott_S5U.png}
+        \caption{Full Automation of T3 in \SFiveU; Consistency of Scott's
+  Axioms;  Automatic Verification of Modal Collapse} \label{Scott_S5U}
+    \end{subfigure}
+    ~ %add desired spacing between images, e. g. ~, \quad, \qquad, \hfill etc. 
+      %(or a blank line to force the subfigure onto a new line)
+    \begin{subfigure}[b]{0.3\textwidth}
+        \includegraphics[width=\textwidth]{./Images/Scott_S5U.png}
+       \caption{Full Automation of T3 in \SFiveU; Consistency of Scott's
+  Axioms;  Automatic Verification of Modal Collapse} \label{Scott_S5U}
+    \end{subfigure}
+    ~ %add desired spacing between images, e. g. ~, \quad, \qquad, \hfill etc. 
+    %(or a blank line to force the subfigure onto a new line)
+    \begin{subfigure}[b]{0.3\textwidth}
+        \includegraphics[width=\textwidth]{./Images/Scott_S5U.png}
+        \caption{Full Automation of T3 in \SFiveU; Consistency of Scott's
+  Axioms;  Automatic Verification of Modal Collapse} \label{Scott_S5U}
+    \end{subfigure}
+\end{figure*}
+
 
 \begin{figure}[t]
 \centerline{\includegraphics[width=.95\columnwidth]{./Images/Scott_S5U.png}}
