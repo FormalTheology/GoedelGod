@@ -1,12 +1,10 @@
 theory QML imports Main 
 begin
-section {* An Embedding of QML in HOL *}
-
-  typedecl i                                      -- "the type for possible worlds" 
-  typedecl \<mu>                                      -- "the type for individuals"      
-  consts r :: "i \<Rightarrow> i \<Rightarrow> bool" (infixr "r" 70)     -- "accessibility relation r"   
-
-  type_synonym \<sigma> = "(i \<Rightarrow> bool)"
+  typedecl i -- "type for possible worlds" 
+  typedecl \<mu> -- "type for individuals"      
+  consts r :: "i\<Rightarrow>i \<Rightarrow>bool" (infixr"r"70)     
+             -- "accessibility relation r"   
+  type_synonym \<sigma> = "(i\<Rightarrow>bool)"
 
  abbreviation mnot :: "\<sigma>\<Rightarrow>\<sigma>" ("\<^bold>\<not>_"[52]53) 
   where "\<^bold>\<not>\<phi> \<equiv> \<lambda>w. \<not>\<phi>(w)" 
@@ -28,11 +26,11 @@ section {* An Embedding of QML in HOL *}
   where "\<^bold>\<exists>\<Phi> \<equiv> \<lambda>w.\<exists>x. \<Phi>(x)(w)"
  abbreviation mexiB:: "('a\<Rightarrow>\<sigma>)\<Rightarrow>\<sigma>" (binder"\<^bold>\<exists>"[8]9) 
   where "\<^bold>\<exists>x. \<phi>(x) \<equiv> \<^bold>\<exists>\<phi>"   
- abbreviation mbox :: "\<sigma> \<Rightarrow> \<sigma>" ("\<^bold>\<box>") 
-  where "\<^bold>\<box> \<phi> \<equiv> (\<lambda>w. \<forall>v.  w r v \<longrightarrow> \<phi> v)"
- abbreviation mdia :: "\<sigma> \<Rightarrow> \<sigma>" ("\<^bold>\<diamond>") 
-  where "\<^bold>\<diamond> \<phi> \<equiv> (\<lambda>w. \<exists>v. w r v \<and> \<phi> v)" 
+ abbreviation mbox :: "\<sigma>\<Rightarrow>\<sigma>" ("\<^bold>\<box>") 
+  where "\<^bold>\<box>\<phi> \<equiv> \<lambda>w. \<forall>v.  w r v \<longrightarrow> \<phi> v"
+ abbreviation mdia :: "\<sigma>\<Rightarrow>\<sigma>" ("\<^bold>\<diamond>") 
+  where "\<^bold>\<diamond>\<phi> \<equiv> \<lambda>w. \<exists>v. w r v \<and> \<phi> v" 
 
- abbreviation valid :: "\<sigma> \<Rightarrow> bool" ("\<lfloor>\<^bold>_\<rfloor>") 
-  where "\<lfloor>\<^bold>p\<rfloor> \<equiv> \<forall>w. p w" 
+ abbreviation valid :: "\<sigma> \<Rightarrow> bool" ("\<lfloor>_\<rfloor>"[7]8) 
+  where "\<lfloor>p\<rfloor> \<equiv> \<forall>w. p w"
 end

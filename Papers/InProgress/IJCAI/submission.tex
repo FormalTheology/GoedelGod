@@ -171,14 +171,14 @@ arguably improved Anselm's argument. Of particular importance to
 G\"odel was the work of Leibniz. 
 %\cite{ToDo:Leibniz}.  
 G\"odel's manuscript
-(Fig.~\ref{GoedelScript}(a)) can be considered a translation of Leibniz's
+(Fig.~\ref{GoedelScript}) can be considered a translation of Leibniz's
 presentation of the argument into modern modal logic. G\"odel
 discussed his manuscript with Scott, who shared a slightly different
 version with a larger public. Scott's version of the axioms and
 definitions, formalized in Isabelle, is shown in
 Fig.~\ref{Scott_S5U}. The main difference to G\"odel's version is an extra conjunct in the definition of \emph{essence}. G\"odel's
 different definition of essence can be seen either in his manuscript
-(Fig.~\ref{GoedelScript}(a)) or, in more modern notation, in the Isabelle
+(Fig.~\ref{GoedelScript}) or, in more modern notation, in the Isabelle
 formalization shown in Fig.~\ref{InconsistencyIsabelleK}. For Scott,
 an essential property of an individual must be possessed by
 him/her. For G\"odel, this is not required. This difference has been
@@ -221,7 +221,7 @@ where the model finder Nitpick \cite{Nitpick} confirms consistency).\footnote{In
 
 
 \begin{figure}[t]
-\centerline{\includegraphics[width=.95\columnwidth]{./Images/Scott_S5U.png}}
+\centerline{\includegraphics[width=1\columnwidth]{./Images/Scott_S5U.png}}
 \caption{Full Automation of T3 in \SFiveU; Consistency of Scott's
   Axioms;  Automatic Verification of Modal Collapse} \label{Scott_S5U}
 \end{figure}
@@ -337,7 +337,7 @@ quantifiers. The embedding approach is, therefore, very flexible.
 
 \subsection{Improved Embedding}\label{sec:improvedembedding}
 \begin{figure}[t]
-\centerline{\includegraphics[width=.95\columnwidth]{./Images/QML_S5U.png}}
+\centerline{\includegraphics[width=1\columnwidth]{./Images/QML_S5U.png}}
 \caption{Improved Embedding of \SFiveU} \label{QML_S5U}
 \end{figure}
 
@@ -443,7 +443,7 @@ significantly from the common style seen in works on modal logics and
 the ontological argument. The following specific issues can be
 enumerated:
 \begin{enumerate}
-\item $\lambda$-abstractions, a typical higher-order feature, appear explicitly in places where they didn't need to in a pure HOML formulation (cf. G\"odel's manuscript, Fig.~\ref{GoedelScript}(a)).
+\item $\lambda$-abstractions, a typical higher-order feature, appear explicitly in places where they didn't need to in a pure HOML formulation (cf. G\"odel's manuscript, Fig.~\ref{GoedelScript}).
 \item Quantifiers appear as higher-order defined constants, and not as binders. This forces the user to read (and write) formulas of the form $\forall (\lambda x. A(x))$ instead of the more common $\forall x. A(x)$.
 \item The lifted modal connectives are represented by prefixing the
   letter ``m'' (e.g. $m\wedge$ and $m\imp$). The prefix disturbs the
@@ -455,7 +455,7 @@ Instead of reading $\psi(y)$, as he would expect, he has to read $(\psi ~ y)$. O
 
 
 \begin{figure}
-\centerline{\includegraphics[width=.95\columnwidth]{./Images/UglyEssence.png}}
+\centerline{\includegraphics[width=1\columnwidth]{./Images/UglyEssence.png}}
 \caption{Definition of Essence using Old Syntax} \label{UglyEssence}
 \end{figure}
 
@@ -496,7 +496,10 @@ empty property by self-difference. In HOL it is customary to think of
 a set as a unary predicate that is true for (and only for) elements of
 the set. Therefore, the empty property (i.e. the unary predicate that
 is false for any individual) represents the empty set, and hence we
-use the empty set symbol $\emptyset$ as an abbreviation for the empty property. \marginpar{ToDo: should we use the empty set symbol in the isabelle code in figure 5 as well? Or should we instead stop using the empty set symbol in the informal argument (and use $\lambda x. \bot$ instead) and remove this convoluted commentary that I added here.}
+use the empty set symbol $\emptyset$ as an abbreviation for the empty
+property. 
+\marginpar{Isabelle proof now uses empty set; the commentary is still convoluted}
+%\marginpar{ToDo: should we use the empty set symbol in the isabelle code in figure 5 as well? Or should we instead stop using the empty set symbol in the informal argument (and use $\lambda x. \bot$ instead) and remove this convoluted commentary that I added here.}
 
 
 % Philosophers
@@ -514,7 +517,7 @@ Based on the hints found in \textsc{Leo-II}'s refutation, we conceived the follo
 (${\ess{\phi}{x} \biimp {\allq \psi} (\psi(x)
 \imp {\nec} \allq y (\phi(y) \imp \psi(y)))}$) it follows that the
 empty property (or self-difference) is an essence of every individual (\textbf{Empty Essence Lemma}): 
-$$\allq x (\ess{\emptyset}{x})$$
+$$\allq x\; (\ess{\emptyset}{x})$$
 
 \item From theorem T1 (\textit{Positive properties are possibly
   exemplified}: ${\allq \phi} [P(\phi) \imp {\pos}  \exq x
@@ -567,14 +570,14 @@ To verify the correctness of the informal argument explained above, it
 was reconstructed in Isabelle/HOL, using Metis\footnote{Metis, unlike
   external provers such as \textsc{Leo-II} or Satallax, 
   constructs proofs in Isabelle's highly trusted kernel calculus.} to automate the
-inessential parts. The essential use of the Empty Essence Lemma, on
+inessential parts (cf. Fig.~\ref {InconsistencyIsabelleK}). The essential use of the Empty Essence Lemma, on
 the other hand, is explicitly stated, to ensure that Isabelle is
 reconstructing the same argument. In fact, without the help of this
 lemma, Metis is still not strong enough to refute G\"odel's
 axioms.
 \begin{figure}[t]
-\centerline{\includegraphics[width=.95\columnwidth]{./Images/InconsistencyIsabelleK.png}}
-\caption{Refutation of G\"odel's Axioms in Isabelle/HOL.} \label{InconsistencyIsabelleK}
+\centerline{\includegraphics[width=1\columnwidth]{./Images/InconsistencyIsabelleK.png}}
+\caption{Inconsistency of G\"odel's Axioms in HOML \K verified in Isabelle/HOL} \label{InconsistencyIsabelleK}
 \end{figure}
 
 \subsection{Mapping the Inconsistency to G\"odel}
@@ -582,13 +585,13 @@ The inconsistency verified in Fig.~\ref{InconsistencyIsabelleK} follows from the
 essence (ess), the definition of necessary existence (NE), the
 axioms A1(a) and A2 (which entail theorem T1), and axiom A5. It remains to show that
 these ingredients are actually present in G\"odel's manuscript in
-Fig.~\ref{GoedelScript}(a). 
+Fig.~\ref{GoedelScript}. 
 
 This can easily be seen: Axioms A1a in
 Fig.~\ref{InconsistencyIsabelleK} is implied by Axiom Ax2 and the
-highlighted footnote remark in Fig.~\ref{GoedelScript}(a). Axioms A2 and
+highlighted footnote remark in Fig.~\ref{GoedelScript}. Axioms A2 and
 A5 in Fig.~\ref{InconsistencyIsabelleK} correspond to Ax4 and Ax3 in
-Fig.~\ref{GoedelScript}(a). The definitions of essence and necessary
+Fig.~\ref{GoedelScript}. The definitions of essence and necessary
 existence are easy to identify. Thus, we conclude that the verified
 inconsistency from Fig.~\ref{InconsistencyIsabelleK} does apply to 
 G\"odel's original manuscript.
@@ -602,16 +605,16 @@ embedding), while a direct modeling of the problem in TPTP THF syntax
 in combination with a direct call of \textsc{Leo-II} succeeded. In
 other words, without independent experiments directly in TPTP THF the
 inconsistency would thus not have been detected.
-\begin{figure*}
+\begin{figure*}[t]
   \centering
-  \begin{subfigure}[t]{0.72\textwidth}
+  \begin{subfigure}[t]{0.715\textwidth}
     \includegraphics[width=\textwidth]{./Images/Manuscript2.png}
     \caption{G\"{o}del's manuscript, with mutually inconsistent axioms and
       definitions highlighted} \label{GoedelScript} 
   \end{subfigure}
-   \begin{subfigure}[t]{0.27\textwidth}
+   \begin{subfigure}[t]{0.28\textwidth}
      \includegraphics[width=\textwidth]{./Images/Inconsistency_S5U_direct.png}
-     \caption{ Inconsistency in \SFiveU} \label{Inconsistency_S5U} 
+     \caption{Inconsistency in HOML \SFiveU} \label{Inconsistency_S5U} 
    \end{subfigure}
 % \includegraphics[width=.73\textwidth]{./Images/Manuscript2.png} \hfill
 % \includegraphics[width=.26\textwidth]{./Images/Inconsistency_S5U_direct.png}
@@ -625,9 +628,9 @@ the reconstruction in Isabelle/HOL with the improved embedding for \SFiveU was m
 the inconsistency could be detected
 by \textsc{Leo-II} also when called via
 Sledgehammer. Moreover, the result could subsequently be verified with
-Metis even without the Empty Essence Lemma; cf. Fig.\ref{Inconsistency_S5U}. 
-Interestingly, Metis' argument is different from that of
-\S\ref{sec:arg1} and \S\ref{sec:arg2}, since axiom A1b is not used.
+Metis even without the Empty Essence Lemma; cf. Fig.~\ref{Inconsistency_S5U}. 
+% Interestingly, Metis' argument is different from that of
+% \S\ref{sec:arg1} and \S\ref{sec:arg2}, since axiom A1b is not used.
 
 
 
