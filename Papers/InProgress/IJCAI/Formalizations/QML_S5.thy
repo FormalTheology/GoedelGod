@@ -33,9 +33,5 @@ begin
   where "\<^bold>\<diamond>\<phi> \<equiv> \<lambda>w. \<exists>v. w r v \<and> \<phi>(v)" 
 
  abbreviation mvalid :: "\<sigma> \<Rightarrow> bool" ("\<lfloor>_\<rfloor>"[7]8) 
-  where "\<lfloor>p\<rfloor> \<equiv> \<forall>w. p w"
-
- axiomatization where ref: "x r x" 
- axiomatization where sym: "x r y \<longrightarrow> y r x" 
- axiomatization where trans: "x r y \<and> y r z \<longrightarrow> x r z" 
+  where "\<lfloor>p\<rfloor> \<equiv> \<forall>w. p w" 
 end

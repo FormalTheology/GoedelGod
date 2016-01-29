@@ -194,33 +194,37 @@ where the model finder Nitpick \cite{Nitpick} confirms consistency).\footnote{In
   personal communication, Dana Scott confirmed that he was unaware
   at the time that G\"odel's axioms were inconsistent.}
 
-\begin{figure*}
-    \centering
-    \begin{subfigure}[b]{0.32\textwidth}
-        \includegraphics[width=\textwidth]{./Images/Scott_S5U.png}
-        \caption{Full Automation of T3 in \SFiveU; Consistency of Scott's
+% \begin{figure*}
+%   \centering
+%   \begin{subfigure}[t]{0.4\textwidth}
+%     \includegraphics[width=\textwidth]{./Images/Scott_S5U.png}
+%     \caption{Full Automation of T3 in \SFiveU; Consistency of Scott's
+%       Axioms;  Automatic Verification of Modal Collapse} \label{Scott_S5U}
+%   \end{subfigure}
+%   ~ %add desired spacing between images, e. g. ~, \quad, \qquad, \hfill etc. 
+%   % (or a blank line to force the subfigure onto a new line)
+%   \begin{subfigure}[t]{0.4\textwidth}
+%     \includegraphics[width=\textwidth]{./Images/QML_S5U.png}
+%     \caption{Improved Embedding of \SFiveU} \label{QML_S5U}
+%   \end{subfigure}
+%   ~ %add desired spacing between images, e. g. ~, \quad, \qquad, \hfill etc. 
+%   % (or a blank line to force the subfigure onto a new line)
+%   \begin{subfigure}[t]{0.4\textwidth}
+%     \includegraphics[width=\textwidth]{./Images/Inconsistency_S5U_direct.png}
+%     \caption{Inconsistency  in \SFiveU} \label{Inconsistency_S5U} 
+%   \end{subfigure}
+%   \begin{subfigure}[t]{0.4\textwidth}
+%     \centerline{\includegraphics[width=\textwidth]{./Images/InconsistencyIsabelleK.png}}
+%     \caption{Refutation of G\"odel's Axioms in Isabelle/HOL.} \label{InconsistencyIsabelleK}
+%   \end{subfigure}
+% \end{figure*}
+
+
+\begin{figure}[t]
+\centerline{\includegraphics[width=.95\columnwidth]{./Images/Scott_S5U.png}}
+\caption{Full Automation of T3 in \SFiveU; Consistency of Scott's
   Axioms;  Automatic Verification of Modal Collapse} \label{Scott_S5U}
-    \end{subfigure}
-    ~ %add desired spacing between images, e. g. ~, \quad, \qquad, \hfill etc. 
-      %(or a blank line to force the subfigure onto a new line)
-    \begin{subfigure}[b]{0.32\textwidth}
-      \includegraphics[width=.95\columnwidth]{./Images/QML_S5U.png}
-      \caption{Improved Embedding of \SFiveU} \label{QML_S5U}
-    \end{subfigure}
-    ~ %add desired spacing between images, e. g. ~, \quad, \qquad, \hfill etc. 
-    %(or a blank line to force the subfigure onto a new line)
-    \begin{subfigure}[b]{0.32\textwidth}
-\includegraphics[width=.35\textwidth]{./Images/Inconsistency_S5U_direct.png}
-\caption{Refutation in\SFiveU} \label{Inconsistency_S5U} 
-    \end{subfigure}
-\end{figure*}
-
-
-% \begin{figure}[t]
-% \centerline{\includegraphics[width=.95\columnwidth]{./Images/Scott_S5U.png}}
-% \caption{Full Automation of T3 in \SFiveU; Consistency of Scott's
-%   Axioms;  Automatic Verification of Modal Collapse} \label{Scott_S5U}
-% \end{figure}
+\end{figure}
 
 % There is reason to believe that the omission was more than just an oversight. As pointed out by Fuhrmann \cite{Fuhrmann2005}, ``G\"odel vermerkt diese Konsequenz [dass aus der Definition unmittelbar folgt, da\ss alle wesentlichen Eigenschaften notwendig äquivalent sind] in einer Fußnote zur Definition. Die Definition selbst aber l\"a{\ss}t im Definiens das Konjunkt $Xx$ aus. Ohne das Konjunkt folgt jedoch die Konsequenz nicht. Es ist deshalb naheliegend anzunehmen, da\ss G\"odel die Definition so beabsichtigte, wie sie hier notiert ist und wie G\"odel sie selbst in fr\"uheren Notizbucheintragungen formuliert hat.''\footnote{Our translation: ``G\"odel remarks this consequence [that the definition of essence entails that all essences are necessarily equivalent] in a footnote to the definition. The definition, however, omits the conjunct. ... ToDo''} 
 % \marginpar{ToDo: check Fuhrmann's claim. He may be pointing out a second mistake by Gödel.}
@@ -332,10 +336,10 @@ quantifiers. The embedding approach is, therefore, very flexible.
 
 
 \subsection{Improved Embedding}\label{sec:improvedembedding}
-% \begin{figure}[t]
-% \centerline{\includegraphics[width=.95\columnwidth]{./Images/QML_S5U.png}}
-% \caption{Improved Embedding of \SFiveU} \label{QML_S5U}
-% \end{figure}
+\begin{figure}[t]
+\centerline{\includegraphics[width=.95\columnwidth]{./Images/QML_S5U.png}}
+\caption{Improved Embedding of \SFiveU} \label{QML_S5U}
+\end{figure}
 
 The modal logic \SFive requires that the accessibility relation be
 reflexive, symmetric and transitive. The usual approach to embed
@@ -452,7 +456,7 @@ Instead of reading $\psi(y)$, as he would expect, he has to read $(\psi ~ y)$. O
 
 \begin{figure}
 \centerline{\includegraphics[width=.95\columnwidth]{./Images/UglyEssence.png}}
-\caption{ Definition of Essence using Old Syntax } \label{UglyEssence}
+\caption{Definition of Essence using Old Syntax} \label{UglyEssence}
 \end{figure}
 
 In the embedding presented here, in Fig.~\ref{QML_S5U}, advanced
@@ -599,12 +603,20 @@ in combination with a direct call of \textsc{Leo-II} succeeded. In
 other words, without independent experiments directly in TPTP THF the
 inconsistency would thus not have been detected.
 \begin{figure*}
-\centerline{
-\includegraphics[width=.8\textwidth]{./Images/Manuscript2.png} \hfill
-%\includegraphics[width=.35\textwidth]{./Images/Inconsistency_S5U_direct.png}
-}
-\caption{(a) G\"{o}del's manuscript, with mutually inconsistent axioms and
-  definitions highlighted} \label{GoedelScript} 
+  \centering
+  \begin{subfigure}[t]{0.72\textwidth}
+    \includegraphics[width=\textwidth]{./Images/Manuscript2.png}
+    \caption{G\"{o}del's manuscript, with mutually inconsistent axioms and
+      definitions highlighted} \label{GoedelScript} 
+  \end{subfigure}
+   \begin{subfigure}[t]{0.27\textwidth}
+     \includegraphics[width=\textwidth]{./Images/Inconsistency_S5U_direct.png}
+     \caption{ Inconsistency in \SFiveU} \label{Inconsistency_S5U} 
+   \end{subfigure}
+% \includegraphics[width=.73\textwidth]{./Images/Manuscript2.png} \hfill
+% \includegraphics[width=.26\textwidth]{./Images/Inconsistency_S5U_direct.png}
+% \caption{(a) G\"{o}del's manuscript, with mutually inconsistent axioms and
+%   definitions highlighted; (b) Inconsistency in \SFiveU} \label{GoedelScript} \label{Inconsistency_S5U} 
 \end{figure*}
 
 %\marginpar{ToDo: Are we really supposed to use \S instead of ``Sec.''?}
