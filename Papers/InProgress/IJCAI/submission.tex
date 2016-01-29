@@ -142,7 +142,8 @@ previously open problems can now be solved:
 \item Proving automatically the final theorem T3 \textit{Necessarily, there
     exists God} (in Scott's \shortcite{ScottNotes} consistent variant) directly from the axioms
   alone, without relying on the argument's intermediate argumentation
-  steps (i.e., lemmata). \marginpar{ToDo: 2004 is the year of Sobel's book, not of Scott's manuscript. We need to fix this as I fixed the date for Goedel's manuscript. But I don't know the correct date for Scott's manuscript.}
+  steps (i.e., lemmata). 
+% \marginpar{ToDo: 2004 is the year of Sobel's book, not of Scott's manuscript. We need to fix this as I fixed the date for Goedel's manuscript. But I don't know the correct date for Scott's manuscript.}
 \item Verifying automatically (in Isabelle/HOL) the proof of the modal
   collapse \cite{Sobel}, which is one of the most strongly criticized
   `side-effects' of the argument's axioms.
@@ -231,7 +232,7 @@ where the model finder Nitpick \cite{Nitpick} confirms consistency).\footnote{In
 
 For more than four decades, the serious consequences of G\"odel's
 mistake remained unnoticed, despite intense activity on
-criticizing his argument. Especially since the discovery by Sobel
+criticising his argument. Especially since the discovery by Sobel
 \shortcite{Sobel} that modal collapse (MC)\footnote{The modal collapse,
   $\phi\rightarrow \Box \phi$, states that contingent truth implies
   necessary truth; it can be interpreted as \textit{everything is
@@ -566,6 +567,26 @@ theorem provers.
 
 
 \subsection{Argument Reconstruction in Isabelle}  \label{sec:arg2}
+\begin{figure}[t]
+\centerline{\includegraphics[width=1\columnwidth]{./Images/InconsistencyIsabelleK.png}}
+\caption{Inconsistency of G\"odel's Axioms in HOML \K verified in Isabelle/HOL} \label{InconsistencyIsabelleK}
+\end{figure}
+\begin{figure*}[t]
+  \centering
+  \begin{subfigure}[t]{0.715\textwidth}
+    \includegraphics[width=\textwidth]{./Images/Manuscript2.png}
+    \caption{G\"{o}del's manuscript, with mutually inconsistent axioms and
+      definitions highlighted} \label{GoedelScript} 
+  \end{subfigure}
+   \begin{subfigure}[t]{0.28\textwidth}
+     \includegraphics[width=\textwidth,height=7.2cm]{./Images/Inconsistency_S5U_direct.png}
+     \caption{Inconsistency in HOML \SFiveU} \label{Inconsistency_S5U} 
+   \end{subfigure}
+% \includegraphics[width=.73\textwidth]{./Images/Manuscript2.png} \hfill
+% \includegraphics[width=.26\textwidth]{./Images/Inconsistency_S5U_direct.png}
+ \caption{The inconsistency in G\"{o}del's manuscript has been
+   detected and verified by HOL ATPs} 
+\end{figure*}
 To verify the correctness of the informal argument explained above, it
 was reconstructed in Isabelle/HOL, using Metis\footnote{Metis, unlike
   external provers such as \textsc{Leo-II} or Satallax, 
@@ -575,10 +596,7 @@ the other hand, is explicitly stated, to ensure that Isabelle is
 reconstructing the same argument. In fact, without the help of this
 lemma, Metis is still not strong enough to refute G\"odel's
 axioms.
-\begin{figure}[t]
-\centerline{\includegraphics[width=1\columnwidth]{./Images/InconsistencyIsabelleK.png}}
-\caption{Inconsistency of G\"odel's Axioms in HOML \K verified in Isabelle/HOL} \label{InconsistencyIsabelleK}
-\end{figure}
+
 
 \subsection{Mapping the Inconsistency to G\"odel}
 The inconsistency verified in Fig.~\ref{InconsistencyIsabelleK} follows from the definition of
@@ -586,6 +604,7 @@ essence (ess), the definition of necessary existence (NE), the
 axioms A1(a) and A2 (which entail theorem T1), and axiom A5. It remains to show that
 these ingredients are actually present in G\"odel's manuscript in
 Fig.~\ref{GoedelScript}. 
+
 
 This can easily be seen: Axioms A1a in
 Fig.~\ref{InconsistencyIsabelleK} is implied by Axiom Ax2 and the
@@ -597,7 +616,6 @@ inconsistency from Fig.~\ref{InconsistencyIsabelleK} does apply to
 G\"odel's original manuscript.
 
 \subsection{Inconsistency of G\"odel's Axioms in \SFiveU}
-
 Isabelle/HOL's Sledgehammer tool, which orchestrates calls to
 external provers such as \textsc{Leo-II}, still
 fails to detect the inconsistency of G\"odel's axioms (in the standard
@@ -605,22 +623,7 @@ embedding), while a direct modeling of the problem in TPTP THF syntax
 in combination with a direct call of \textsc{Leo-II} succeeded. In
 other words, without independent experiments directly in TPTP THF the
 inconsistency would thus not have been detected.
-\begin{figure*}[t]
-  \centering
-  \begin{subfigure}[t]{0.715\textwidth}
-    \includegraphics[width=\textwidth]{./Images/Manuscript2.png}
-    \caption{G\"{o}del's manuscript, with mutually inconsistent axioms and
-      definitions highlighted} \label{GoedelScript} 
-  \end{subfigure}
-   \begin{subfigure}[t]{0.28\textwidth}
-     \includegraphics[width=\textwidth]{./Images/Inconsistency_S5U_direct.png}
-     \caption{Inconsistency in HOML \SFiveU} \label{Inconsistency_S5U} 
-   \end{subfigure}
-% \includegraphics[width=.73\textwidth]{./Images/Manuscript2.png} \hfill
-% \includegraphics[width=.26\textwidth]{./Images/Inconsistency_S5U_direct.png}
-% \caption{(a) G\"{o}del's manuscript, with mutually inconsistent axioms and
-%   definitions highlighted; (b) Inconsistency in \SFiveU} \label{GoedelScript} \label{Inconsistency_S5U} 
-\end{figure*}
+
 
 %\marginpar{ToDo: Are we really supposed to use \S instead of ``Sec.''?}
 On the other hand (and further confirming the claims from \S\ref{sec:improvedembedding}), 
