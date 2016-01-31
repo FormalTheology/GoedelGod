@@ -470,31 +470,22 @@ In the typical workflow during an attempt to prove a conjecture with a theorem p
 \caption{Lines 115--120 of \textsc{Leo-II}'s refutation. Primitive
   substitutions (e.g. with the empty property) are highlighted. In the
 red part, property variable $\texttt{SV8}$ has been instantiated with the
-$\lambda \texttt{SV16}. \lambda \texttt{SV17}. \bot$, i.e., the empty property.
+$\lambda \texttt{SV16}_{\mu}. \lambda \texttt{SV17}_{\iota}. \bot$, i.e., the (lifted) empty property.
 } \label{LEO-Proof}
 \end{figure*}
 
 Although \textsc{Leo-II}'s resolution refutation is not easy to read
 for humans, it did contain relevant hints to the importance of the
-empty property $\lambda x. \bot$ (respectively $\lambda x. \lambda
-y. \bot$ in the embedding approach, cf. Fig.~\ref{LEO-Proof}; the 
-additional ``$\lambda y.$'' is due to the formula lifting).
+empty property $\lambda x. \bot$ (also denoted $\emptyset$, as in HOL it is customary to think of unary predicates as sets).
 %
-Note that the terms for the empty property ($\lambda x. \bot$) and for the property of self-difference ($\lambda x.  x\not=x$) have identical denotations in a logic setting
+Note that the terms for the empty property\footnote{An additional lambda abstraction occurs in the empty property in LEO-II's proof (and also in the reconstruction in Isabelle) because the embedding approach lifts the boolean type $o$ to $\iota \imp o$.} ($\lambda x. \bot$) and for the property of self-difference ($\lambda x.  x\not=x$) have identical denotations in a logic setting
 with full functional and Boolean extensionality as given
 here. Nevertheless, some philosophers may actually prefer the use of
 self-difference over the empty property\footnote{This occurred in
   a private communication of the authors with Andr\'e Fuhrmann.} in
 the analysis below. However, for the proof to go through it is
 irrelevant which notion we use and the reader may simply replace the
-empty property by self-difference. In HOL it is customary to think of
-a set as a unary predicate that is true for (and only for) elements of
-the set. Therefore, the empty property (i.e. the unary predicate that
-is false for any individual) represents the empty set, and hence we
-use the empty set symbol $\emptyset$ as an abbreviation for the empty
-property. 
-\marginpar{Isabelle proof now uses empty set; the commentary is still convoluted}
-%\marginpar{ToDo: should we use the empty set symbol in the isabelle code in figure 5 as well? Or should we instead stop using the empty set symbol in the informal argument (and use $\lambda x. \bot$ instead) and remove this convoluted commentary that I added here.}
+empty property by self-difference.
 
 
 % Philosophers
