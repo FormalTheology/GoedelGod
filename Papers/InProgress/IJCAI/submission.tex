@@ -436,14 +436,14 @@ significantly from the common style seen in works on modal logics and
 the ontological argument. The following specific issues can be
 enumerated:
 \begin{enumerate}
-\item $\lambda$-abstractions, a typical higher-order feature, appear explicitly in places where they didn't need to in a pure HOML formulation (cf. G\"odel's manuscript, Fig.~\ref{GoedelScript}).
+\item $\lambda$-abstractions, which are typically a HOL feature, appear explicitly in places where they didn't need to in a pure HOML formulation (cf. G\"odel's manuscript, Fig.~\ref{GoedelScript}).
 \item Quantifiers appear as higher-order defined constants, and not as binders. This forces the user to read (and write) formulas of the form $\forall (\lambda x. A(x))$ instead of the more common $\forall x. A(x)$.
 \item The lifted modal connectives are represented by prefixing the
   letter ``m'' (e.g. $m\wedge$ and $m\imp$). The prefix disturbs the
   user, as it constantly reminds him/her that there is something
   unusual about the modal connectives.
 \item Higher-order parenthesis conventions for the application of a predicate to a term are used. 
-Instead of reading $\psi(y)$, as he would expect, he has to read $(\psi ~ y)$. Outside niche areas in computer science, the former syntax is more widely known than the latter.
+Instead of reading $\psi(y)$, as he/she would expect, he/she has to read $(\psi ~ y)$. Outside niche areas in computer science, the former syntax is more widely known than the latter.
 \end{enumerate}
 
 
@@ -454,9 +454,9 @@ Instead of reading $\psi(y)$, as he would expect, he has to read $(\psi ~ y)$. O
 
 In the embedding presented here, in Fig.~\ref{QML_S5U}, advanced
 syntax-sugaring effects provided by Isabelle were used to prevent
-issues as enumerated above. The possibility to define boldface connectives allows us to drop the prefix; ``\texttt{binder}'' annotations enable modal quantifiers to be used in the standard binding way and reduce the need for explicit lambda abstractions; and a careful choice of priorities for infix connectives gives the parenthesis conventions that are more familiar to the user. As desired, the definition of essence in Fig.~\ref{Scott_S5U} is undeniably more immediately recognizable and comprehensible than the definition in Fig.~\ref{UglyEssence}. The embedding technique is now completely transparent to the user.
+issues as those enumerated above. The possibility to define boldface connectives allows us to drop the prefix; ``\texttt{binder}'' annotations enable modal quantifiers to be used in the standard binding way and reduce the need for explicit lambda abstractions; and a careful choice of priorities for infix connectives gives the parenthesis conventions that are more familiar to the user. As desired, the definition of essence in Fig.~\ref{Scott_S5U} is undeniably more immediately recognizable and comprehensible than the definition in Fig.~\ref{UglyEssence}. The embedding technique is now completely transparent to the user.
 
-We hope that the syntax improvements described here will render the computer-assisted analysis of ontological arguments (as well as future works utilizing the embedding of modal logics into HOL) accessible to a wider audience and encourage philosophers to adopt logic-based artificial intelligence tools in order to conduct similar experiments in computational metaphysics.
+The syntax improvements described here render the computer-assisted analysis of ontological arguments accessible to a wider audience and ease the adoption of logic-based artificial intelligence tools by philosophers interested in topics where modal logic reasoning is required.
 
 
 \section{Intuitive Inconsistency Argument} \label{sec:inconsistency}
