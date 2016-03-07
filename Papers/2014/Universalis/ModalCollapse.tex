@@ -1,9 +1,11 @@
-
-\documentclass{birkjour}
+\documentclass{birkmult}
 
 \usepackage[utf8]{inputenc}
 
 \usepackage{url}
+\usepackage{hyperref}
+\usepackage[hyphenbreaks]{breakurl}
+
 \usepackage{commands}
 
  \newtheorem{thm}{Theorem}[section]
@@ -338,7 +340,7 @@ $\collapse{\phi'}$ may not be valid.
 
 \section{Final Remarks}
 
-All results announced in this note have been 
+\sloppy All results announced in this note have been 
 obtained experimentally using interactive and 
 automated theorem provers and model finders
 \cite{LEO,Satallax,Isabelle,Coq,Nitpick}.  
@@ -346,7 +348,7 @@ The source codes of the experiments,
 as well as the resulting proofs and counter-models, 
 are available in
 \url{github.com/FormalTheology/GoedelGod/}
-in the files \texttt{ModalCollapse.thy} and \texttt{ModalSquareOfOpposition.thy} inside the folder \texttt{Formalizations/Isabelle/Meta} as well as in files inside the folder \texttt{Formalizations/Isabelle/Anderson}.
+in the files \url{ModalCollapse.thy} and \texttt{ModalSquareOfOpposition.thy} inside the folder \url{Formalizations/Isabelle/Meta} as well as in files inside the folder \texttt{Formalizations/Isabelle/Anderson}.
 
 The technique enabling these experiments is the embedding of 
 quantified modal logics into higher-order logics 
