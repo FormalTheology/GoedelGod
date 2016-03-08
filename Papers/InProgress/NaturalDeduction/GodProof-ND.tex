@@ -1254,7 +1254,419 @@ On another track, Fitting has argued that greater care has to be taken with the 
 
 Anderson \citep{and90}[p. 292] and Sobel \citep{sobel2}[p. 133] also discuss the idea that the notion of property over which quantification is allowed might be too general and restrictions might be appropriate.  
 
-It is likely that a reduction from {\bf S5} to {\bf KB} is possible for these variants as well, since the technique we used to replace {\bf S5}'s iteration principle by Brouwer's reduction principle depends only on the structure of the final steps of the proof of Theorem 3, but not on details of the axioms.
+A reduction from {\bf S5} to {\bf KB} is possible for these variants as well, since the technique we used to replace {\bf S5}'s iteration principle by Brouwer's reduction principle depends only on the structure of the final steps of the proof of Theorem 3, but not on details of the axioms.
+
+
+\section{A natural deduction proof based on Anderson's axiomatization}
+
+
+\setcounter{axiom}{0}
+\setcounter{lemma}{0}
+\setcounter{theorem}{0}
+\setcounter{corollary}{0}
+\setcounter{definition}{0}
+
+%Anderson modification of the axioms in A1 equivalence removed and definition of essence altered. 
+%Anderson's implication instead of equivalence. 
+\begin{axiom}
+\label{A1}
+Either a property or its negation is positive, but not both:
+$$
+\all \varphi. [P(\neg \varphi) \imp \neg P(\varphi)]
+$$
+\end{axiom}
+
+\begin{axiom}
+\label{A2}
+A property necessarily implied by a positive property is positive:
+$$
+\all \varphi. \all \psi.[(P(\varphi) \wedge \nec \all x.[\varphi(x) \imp \psi(x)]) \imp P(\psi)]
+$$
+\end{axiom}
+
+
+\begin{theorem}
+\label{T1}
+Positive properties are possibly exemplified:
+$$
+\all \varphi. [P(\varphi) \imp \pos \ex x.\varphi(x)]
+$$
+\end{theorem}
+
+The proof is otherwise identical to the proof of theorem \ref{T1} in section \ref{sec:newproof} but the equivalence of axiom \ref{A1} does not need to be reduced to an implication by implication elimination. 
+
+
+
+
+\begin{definition}[Anderson's alternative Godlike]
+\label{D1}
+%A \emph{God-like} being possesses all positive properties:
+$$
+G(x) \biimp \forall \varphi. [P(\varphi) \biimp \nec \varphi(x)]
+$$
+\end{definition}
+
+\begin{axiom}
+\label{A3}
+The property of being god-like is positive:
+$$
+P(G)
+$$
+\end{axiom}
+
+\begin{corollary}
+\label{C1}
+Possibly, a God-like being exists:
+$$
+\pos \ex x. G(x)
+$$
+\end{corollary}
+
+
+
+\begin{axiom}
+\label{A4}
+Positive properties are necessarily positive:
+$$
+\all \varphi.[P(\varphi) \to \Box \; P(\varphi)]
+$$
+\end{axiom}
+
+\begin{definition}[Anderson's alternative essence with Scott's additional conjunct]
+\label{D2}
+%sAn \emph{essence} of an individual is a property possessed by it and necessarily implying any of its properties:
+$$
+\ess{\varphi}{x} \biimp \varphi(x) \wedge \all \psi. (\nec \psi(x) \biimp \nec \all x. (\varphi(x) \imp \psi(x)))
+$$
+\end{definition}
+
+
+%At this point, G\"odel and Scott proceed to prove Theorem 2, which is then used to prove Lemma 1. However, a close inspection of Scott's proof of Lemma 1 reveals that Theorem 2 is an unnecessary detour. Therefore, we do not include it in the new proof.
+
+
+\begin{definition}[Anderson's alternative where G\"odel's definition of essence is replaced by def. \ref{D2}]
+\label{D3}
+\emph{Necessary existence} of an individual is the necessary exemplification of all its essences:
+$$
+E(x) \biimp \all \varphi.[\ess{\varphi}{x} \imp \nec \ex y.\varphi(y)]
+$$
+\end{definition}
+
+
+\begin{axiom}
+\label{A5}
+Necessary existence is a positive property:
+$$
+P(E)
+$$
+\end{axiom}
+
+
+
+\begin{lemma}
+\label{L1}
+If there is a God-like being, then there is a God-like being necessarily:
+$$
+\ex z. G(z) \imp \nec \ex x. G(x)
+$$
+\end{lemma}
+
+\begin{proof} \hfill
+\begin{prooftree}
+\AXC{$ $} \RightLabel{1}
+\UIC{$\ex z. G(z)$}\RightLabel{$\ex_E$}
+\UIC{$[\subproof_6] \quad G(\gamma)$}
+\end{prooftree}
+
+\begin{scriptsize}
+\begin{prooftree}
+\AXC{$\subproof_6$} \dashedLine
+\UIC{$G(\gamma)$}  \dottedLine \RightLabel{D\ref{D1}}
+\UIC{$\forall \varphi. [P(\lambda x.\varphi(x)) \biimp \nec \varphi(\gamma)]$}\RightLabel{$\forall_E$}
+\UIC{$P(\lambda x.\rho(x)) \biimp \nec \rho(\gamma)$}
+\AXC{$ $} \RightLabel{5}
+\UIC{$\nec \rho(\gamma)$} \RightLabel{$\imp_E$}
+\BIC{$P(\lambda x.\rho(x))$} 
+\AXC{$ $} \RightLabel{6}
+\UIC{$G(y) $}\dottedLine \RightLabel{D\ref{D1}}
+\UIC{$\forall \varphi. [P(\lambda x.\varphi(x)) \biimp \nec \varphi(y)]$}
+\UIC{$[P(\lambda x.\rho(x)) \biimp \nec \rho(y)]$}
+\BIC{$\nec \rho(y)$}\RightLabel{$\nec_E$}
+\UIC{$\omega':  \rho(y)$}\RightLabel{$\imp_I^6$}
+\UIC{$\omega':  G(y)\imp \rho(y)$}\RightLabel{$\forall_I$}
+\UIC{$\omega':  \forall y. (G(y)\imp \rho(y))$}\RightLabel{$\nec_I$}
+\UIC{$\nec \forall y. (G(y)\imp \rho(y))$}\RightLabel{$\imp_I^5$}
+\UIC{$\nec \rho(\gamma)\imp \nec \forall y. (G(y)\imp \rho(y))$}
+\end{prooftree}
+\end{scriptsize}
+
+
+
+\begin{scriptsize}
+\begin{prooftree}
+\AXC{$\nec P(\rho)\imp \nec \forall y .(G(y)\imp \rho(y))$} \RightLabel{$\imp_E$}
+\AXC{$ $} \RightLabel{6}
+\UIC{$\nec \rho(\gamma)$} \RightLabel{}
+\UIC{$\rho(\gamma)$} \RightLabel{$\nec_E$}
+\AXC{$\subproof_7$} \dashedLine
+\UIC{$\omega': \rho(\gamma)\imp\Box P(\rho)$}\RightLabel{$\imp_E$}
+\BIC{$\nec P(\rho)$} \RightLabel{$\imp_E$}
+\BIC{$\nec \forall y .(G(y)\imp \rho(y))$}\RightLabel{$\imp_I^6$}
+\UIC{$\rho(\gamma) \imp \nec \forall y.(G(y) \imp \rho(y))$}\RightLabel{$\forall_I$}
+\UIC{$\forall \psi.(\psi(\gamma) \imp \nec \forall y.(G(y) \imp \psi(y)))$}
+\AXC{$\subproof_6$} \dashedLine
+\UIC{$G(\gamma)$}  
+\BIC{$G(\gamma) \wedge \forall \psi.(\psi(\gamma) \imp \nec \forall y.(G(y) \imp \psi(y)))$}\dottedLine \RightLabel{D\ref{D2}}
+\UIC{$[\subproof_8] \qquad \ess{G}{\gamma}$}
+\end{prooftree}
+\end{scriptsize}
+
+%implication for equivalence in essence: 
+\begin{small}
+\begin{prooftree}
+\AXC{$ $} \RightLabel{7}
+\UIC{$\nec  \forall y. [G(y)\imp \varphi(y)]$}\RightLabel{$\nec_E$}
+\UIC{$\omega'':   \forall y. [G(y)\imp \varphi(y)]$}\RightLabel{$\forall_E$}
+\UIC{$\omega'':   G(\gamma)\imp \varphi(\gamma)$}
+\AXC{$\subproof_6$} \dashedLine
+\UIC{$\omega'':  G(\gamma)$}  \RightLabel{$\imp_E$}
+\BIC{$\omega'':   \varphi(\gamma)$}\RightLabel{$\nec_I$}
+\UIC{$\nec \varphi(\gamma)$}\RightLabel{$\imp_I^7$}
+\UIC{$\nec  \forall y. [G(y)\imp \varphi(y)]\imp \nec \varphi(\gamma)$}
+\end{prooftree}
+\end{small}
+
+\begin{small}
+\begin{prooftree}
+\AXC{$\subproof_8$} \dashedLine
+\UIC{$\nec \varphi(\gamma)\biimp \nec  \forall y. [G(y)\imp \varphi(y)] $}
+\AXC{$ $} \RightLabel{6}
+\UIC{$G(x)$}\RightLabel{$\wedge_I$}
+\BIC{$\ess{G}{\gamma}$}
+\AXC{Axiom \ref{A5}} \dashedLine
+\UIC{$P(E)$}\dottedLine 
+\AXC{$\subproof_6$} \dashedLine
+\UIC{$G(\gamma)$}\dottedLine \RightLabel{D\ref{D1}}
+\UIC{$\forall \varphi.(P(\varphi) \biimp \nec \varphi(\gamma))$}\RightLabel{$\forall_E$}
+\UIC{$P(E) \biimp \nec E(\gamma)$}\RightLabel{$\imp_E$}
+\BIC{$\nec E(\gamma)$}\RightLabel{$\nec_E$ (reflexive frame)}
+\UIC{$ E(\gamma)$} \dottedLine \RightLabel{D\ref{D3}}
+\UIC{$ \all \varphi.[\ess{\varphi}{\gamma} \imp \nec \ex x.\varphi(x)] $}\RightLabel{$\all_E$}
+\UIC{$ \ess{G}{\gamma} \imp \nec \ex x. G(x) $}\RightLabel{$\imp_E$}
+\BIC{$\nec \ex x. G(x)$} \RightLabel{$\imp_I^1$}
+\UIC{$\ex z. G(z) \imp \nec \ex x. G(x)$}
+\end{prooftree}
+\end{small}
+\end{proof}
+
+
+
+\setcounter{theorem}{2}
+\begin{theorem}
+\label{T3}
+Necessarily, there exists a God-like being:
+$$
+\nec \ex x. G(x)
+$$
+\end{theorem}
+
+
+
+
+\subsection{Why is the proof of modal collapse prevented?}
+
+The alteration of the definition of essence in Anderson's proof prevents the standard proof of modal collapse \ref{Collapse} 
+$$\vdash A \imp \nec A
+$$ 
+by the additional necessitation, which converts the proof of modal collapse into a proof of a tautology.
+$$
+\vdash \nec A \imp \nec A
+$$ 
+   
+%For all propositions $A$, the following \emph{modal collapse} proposition is not provable with Anderson's alternative definitions with the same proof as G\"odel or Scott's:
+ 
+
+
+
+
+\begin{small}
+\begin{prooftree}
+\AXC{Theorem 2}\dashedLine
+\UIC{$\all y.[G(y) \imp \ess{G}{y}]$} \RightLabel{D2 }\doubleLine
+\UIC{$\all y.[G(y) \imp G(y) \wedge \all \psi. (\nec \psi(y) \biimp \nec \all x. (G(x) \imp \psi(x)))]$}
+\UIC{$\all y.[G(y) \imp \all \psi. (\nec \psi(y) \biimp \nec \all x. (G(x) \imp \psi(x)))]$} \doubleLine
+\UIC{$\all y.[G(y) \imp (\nec A(y) \biimp \nec \all x. (G(x) \imp A(x)))]$} \RightLabel{$A$ is constant}
+\UIC{$\all y.[G(y) \imp (\nec A \biimp \nec \all x. (G(x) \imp A))]$} \doubleLine
+\UIC{$[\subproof_9] \qquad \ex y.G(y) \imp (\nec A \biimp \nec \all x. (G(x) \imp A))$}
+\end{prooftree}
+\end{small}
+
+
+
+\begin{small}
+\begin{prooftree}
+\AXC{$ \subproof_9 $}\dashedLine
+\UIC{$\ex y.G(y) \imp (\nec A \biimp \nec \all x. (G(x) \imp A))$}
+\AXC{Theorem 3}\dashedLine
+\UIC{$\nec \ex y.G(y)$} \RightLabel{$\nec_E$}
+\UIC{$\ex y.G(y)$} \RightLabel{$\imp_E$}
+\BIC{$ \nec A \biimp \nec \all x. (G(x) \imp A)$} \doubleLine
+\UIC{$ \nec A \biimp \nec (\ex x. G(x) \imp A)$}
+\AXC{$ $} \RightLabel{1}
+\UIC{$\nec A$} \RightLabel{$\imp_E$}
+\BIC{$ \nec (\ex x. G(x) \imp A)$} \RightLabel{$\nec_E$}
+\UIC{$ \omega:  \ex x. G(x) \imp A$} \RightLabel{$\imp_E$}
+\AXC{Theorem 3}\dashedLine
+\UIC{$\nec \ex y.G(y)$} \RightLabel{$\nec_E$}
+\UIC{$\omega: \ex x.G(x)$} \RightLabel{$\imp_E$}
+\BIC{$\omega: A$} \RightLabel{$\nec_I$}
+\UIC{$ \nec A$} \RightLabel{$\imp_I^1$}
+   \UIC{$\nec A\imp \nec A$}
+\end{prooftree}
+\end{small}
+
+The exchange of the implication in the G\"odel-Scott definition of essence for an equivalence and the additional  modal necessitation of the property $A$ prevents the implication of a necessary fact from its contingent counterpart as is seen in the second part of the proof above because the hypothetical assumption of the contingent property $A$ has to be exchanged for its necessitation for the proof structure to be preserved. 
+
+
+
+\section{A natural deduction proof based on Bj\o rdal's axiomatization}
+
+
+In Bj\o rdal's axiomatization godlikeness is taken as primitive, $G_B$. 
+
+\begin{definition}
+\label{B:D1}
+A property is positive iff it is necessarily possessed by every God-like being.
+$$
+P_B(\varphi) \equiv \nec \all x. [G_B(x) \imp \varphi(x)]
+$$
+\end{definition}
+
+\begin{definition}
+\label{B:D2}
+A maximal composite of an individual's positive properties is a positive property possessed by the individual and necessarily implying every positive property possessed by the individual.
+$$MCP(\varphi, x) \equiv (\varphi(x) \wedge P_B (\varphi)) \wedge \all\psi.((\psi(x) \wedge P_B (\psi)) \imp \nec\all y.(\varphi(y) \imp \psi(y)))
+$$
+\end{definition}
+
+\begin{definition}
+\label{B:D3}
+Necessary existence of an individual is the necessary exemplification of all its maximal composites.
+$$
+NE_B (x) \equiv \all\varphi. (MCP(\varphi, x) \imp \nec \ex y.\varphi(y))
+$$
+\end{definition}
+
+\begin{axiom}
+\label{A:A1'} If a property is positive, its negation is not positive: 
+$$
+\all \varphi. [P_B (\varphi) \imp \neg P_B (\neg\varphi)]
+$$
+\end{axiom}
+
+\begin{axiom}
+\label{A:A5'} Necessary existence is a positive property. 
+$$
+P_B (NE_B )
+$$
+\end{axiom}
+
+The proof of the possible instantiation of $G_B$ is adjusted by proving Theorem 1 of section \ref{sec:newproof} directly for $G_B$ and not for properties in general. Corollary 1 of section \ref{sec:newproof} follows by proving the positivity of godlikeness as in lemma \ref{B:L1} below. 
+
+\begin{theorem}
+\label{T1}
+Positive properties are possibly exemplified:
+$$
+\all \varphi. [P(G_B) \imp \pos \ex x.G_B(x)]
+$$
+\end{theorem}
+\begin{proof} \hfill
+
+\begin{prooftree}
+\AXC{$ $} \RightLabel{2}
+\UIC{$\nec \neg \ex x.G_B(x) $} \RightLabel{$\nec_E$}
+\UIC{$\omega: \neg \ex x.G_B(x) $} 
+\AXC{$ $} \RightLabel{$1$}
+\UIC{$\omega: G_B(x)$} \RightLabel{$\ex_I$}
+\UIC{$\omega: \ex x.G_B(x) $} \RightLabel{$\imp_E$}
+\BIC{$\omega:  \bot $}\RightLabel{$\imp_I^1$}
+\UIC{$\omega:  \neg G_B(x) $} \RightLabel{$\imp_I$}
+\UIC{$\omega:  G_B(x) \imp \neg G_B(x) $} \RightLabel{$\all_I$}
+\UIC{$\omega:  \all x.(G_B(x) \imp \neg G_B(x)) $}  \RightLabel{$\nec_I$}
+\UIC{$ \nec \all x.(G_B(x) \imp \neg G_B(x)) $}\RightLabel{$\wedge_I$}
+\UIC{$P(\neg G_B)$}
+\AXC{Axiom 6***} \dashedLine
+\UIC{$\all \varphi. [P(\neg G_B) \imp \neg P(G_B)]$} \RightLabel{$\all_E$}
+\UIC{$ P( \neg G_B(x)) \imp \neg P(G_B) $}  \RightLabel{$\imp_E$}
+\BIC{$\neg P(G_B) $} 
+\AXC{$ $} \RightLabel{3} 
+\UIC{$P(G_B)$} 
+\BIC{$\bot$} \RightLabel{$\imp_I^2$}
+\UIC{$ \neg \nec \neg \ex x.G_B(x)$} \doubleLine %\RightLabel{definition of $\pos$}
+\UIC{$ \pos \ex x.G_B(x)$}  \RightLabel{$\imp_I^3$}
+\UIC{$ P(\rho) \imp \pos \ex x.G_B(x) $} \RightLabel{$\all_I$}
+\UIC{$ \all \varphi. [P(G_B) \imp \pos \ex x.G_B(x)] $} 
+
+\end{prooftree}
+
+
+\end{proof}
+
+\begin{lemma}
+\label{B:L1}
+If there is a God-like being, then there is a God-like being necessarily:
+$$
+\ex z. G_B(z) \imp \nec \ex x. G_B(x)
+$$
+\end{lemma}
+
+\begin{small}
+\begin{prooftree}
+\AXC{$ $}
+\UIC{$G_B(x) $} 
+\AXC{$ $}\doubleLine
+\UIC{$\nec \all x. [G_B(x) \imp G_B(x)] $}\RightLabel{ D\ref{B:D1}}\dottedLine
+\UIC{$P_B(G_B) $}\RightLabel{ $\wedge_I$}
+\BIC{$G_B(x) \wedge P_B(G_B) $}
+\end{prooftree}
+\end{small}
+
+\begin{small}
+\begin{prooftree}
+\AXC{$ $}\dashedLine
+\UIC{$G_B(x) \wedge P_B(G_B) $}
+\AXC{$ $}\RightLabel{ $1$}
+\UIC{$(\psi(x) \wedge P_B (\psi))$} \RightLabel{ $\wedge_E$}
+\UIC{$P_B (\psi)$}\RightLabel{ D\ref{B:D1}}\dottedLine
+\UIC{$\nec\all y.(G_B(y) \imp \psi(y))$} \RightLabel{ $\imp_I^1$}
+\UIC{$(\psi(x) \wedge P_B (\psi))\imp \nec\all y.(G_B(y) \imp \psi(y))$}\RightLabel{ $\forall_I$}
+\UIC{$\all\psi.((\psi(x) \wedge P_B (\psi)) \imp \nec\all y.(G_B(y) \imp \psi(y)))$} \RightLabel{ $\wedge_I$}
+\BIC{$MCP(G_B, x) $} 
+
+\end{prooftree}
+\end{small}
+
+
+\begin{small}
+\begin{prooftree}
+\AXC{Axiom \ref{A:A5'}}\dashedLine
+\UIC{$P_B (NE_B)$} \RightLabel{ D\ref{B:D1}}\dottedLine
+\UIC{$\nec \all x. [G_B(x) \imp NE_B(x)]$}\RightLabel{ D\ref{B:D3}}\dottedLine
+\UIC{$\nec \all x. [G_B(x) \imp \all\varphi. (MCP(\varphi, x) \imp \nec \ex y.\varphi(y))]$}  \RightLabel{ $\nec_E$}
+\UIC{$\all x. [G_B(x) \imp \all\varphi. (MCP(\varphi, x) \imp \nec \ex y.\varphi(y))]$}  \RightLabel{ $\forall_E$}
+\UIC{$ [G_B(x) \imp \all\varphi. (MCP(\varphi, x) \imp \nec \ex y.\varphi(y))]$}
+\AXC{$ $} \RightLabel{ $2$}
+\UIC{$G_B(x) $}  \RightLabel{ $\imp_E$}
+\BIC{$\all\varphi. (MCP(\varphi, x) \imp \nec \ex y.\varphi(y))]$} \RightLabel{ $\forall_E$}
+\UIC{$(MCP(G_B, x) \imp \nec \ex y.G_B(y))]$}
+\AXC{$ $}\dashedLine
+\UIC{$MCP(G_B, x) $} \RightLabel{ $\imp_E$}
+\BIC{$\nec \ex y.G_B(y)$}\RightLabel{ $\imp_I^2$}
+\UIC{$G_B(x) \imp \nec \ex y.G_B(y)$}
+\end{prooftree}
+\end{small}
+
+
 
 
 %ToDo: acknowledgements
