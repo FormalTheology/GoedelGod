@@ -90,12 +90,12 @@ text {* Three kinds of Modal Collapse *}
   (* apparently, Leo2 and Satallax succeed, but metis fails. *)
   theorem collapseCN_entails_collapsePN : "[collapseCN] \<longrightarrow> [collapsePN]"
   sledgehammer [provers = remote_satallax remote_leo2, timeout = 30, strict]
-  (* by metis *)
-  oops
-
+  by meson
+ 
   theorem test1 : "[\<forall>(\<lambda>\<psi>. \<forall>(\<lambda>\<Phi>. (\<Phi> m\<rightarrow> \<psi>)) m\<rightarrow> \<forall>(\<lambda>\<Phi>. ((\<diamond> \<Phi>) m\<rightarrow> \<psi>)))]"
   sledgehammer [provers = remote_satallax remote_leo2, timeout = 30, strict]
-  oops
+  by auto
+
 
   theorem test2 : "[\<forall>(\<lambda>\<psi>. \<forall>(\<lambda>\<Phi>. (\<Phi> m\<rightarrow> \<psi>)))] \<longrightarrow> [\<forall>(\<lambda>\<psi>. \<forall>(\<lambda>\<Phi>. ((\<diamond> \<Phi>) m\<rightarrow> \<psi>)))]"
   sledgehammer [provers = remote_satallax remote_leo2, timeout = 30, strict]
@@ -103,6 +103,7 @@ text {* Three kinds of Modal Collapse *}
   oops
 
   (* with the help of symmetry, metis succeeds *)
+  (* not needed anymore since meson already succeeds without symmetry *)
   theorem with_sym_collapseCN_entails_collapsePN : 
           "sym \<longrightarrow> ([collapseCN] \<longrightarrow> [collapsePN])"
   by metis
@@ -128,14 +129,15 @@ text {* Hence, trivially, collapseCN also does not imply collapse *}
 text {* It suffices to require reflexivity of the accesibility relation, 
         to ensure that collapseCN entails collapse *}
 
-  (* apparently Leo2 and Satallax succeed, but metis fails. *)
+
   theorem with_refl_collapseCN_entails_collapse : 
           "refl \<longrightarrow>  ([collapseCN] \<longrightarrow> [collapse])"
-  (* sledgehammer [provers = remote_leo2 remote_satallax, verbose] *)
-  (* by metis *)
-  oops
+  sledgehammer [provers = remote_leo2 remote_satallax, verbose]
+  by meson 
+ 
   
   (* again, with the help of symmetry, metis succeeds *)
+  (* not needed anymore since meson already succeeds without symmetry *)
   theorem with_sym_refl_collapseCN_entails_collapse : 
           "(sym \<and> refl) \<longrightarrow> ([collapseCN] \<longrightarrow> [collapse])"
   by metis
@@ -147,14 +149,14 @@ text {* Moreover, with reflexivity,
   (* Satallax succeeds, but now Leo2 times out. And Metis still fails. *)
   theorem with_refl_collapseCN_implies_collapse : 
           "refl \<longrightarrow>  ([collapseCN m\<rightarrow> collapse])"
-  (* sledgehammer [provers = remote_leo2 remote_satallax, verbose, timeout = 30] *)
+  sledgehammer [provers = remote_leo2 remote_satallax, verbose, timeout = 30] 
   (* by metis *)
   oops
 
   (* now even with the help of symmetry Metis fails. Leo2 still times out. Satallax succeeds. *)
   theorem with_sym_refl_collapseCN_implies_collapse : 
           "(sym \<and> refl) \<longrightarrow> ([collapseCN m\<rightarrow> collapse])"
-  (* sledgehammer [provers = remote_leo2 remote_satallax] *)
+  sledgehammer [provers = remote_leo2 remote_satallax] 
   (* by metis *)
   oops
 
