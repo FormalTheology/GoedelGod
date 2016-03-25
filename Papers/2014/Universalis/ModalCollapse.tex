@@ -87,10 +87,16 @@ Austria
 
 %----------classification, keywords, date
 \subjclass{
-Prim. 03A02;  % Philosophical aspects of logic and foundations
-Sec. 68T02 % Artificial Intelligence
-\marginpar{Change?: 03B15, 03B45, 03B35, 68T15}
+Prim. 03B15; % Higher-order logic and type theory
+Sec. 68T15 % Theorem proving (deduction, resolution, etc.)
 }
+% \marginpar{Change?: 
+% 03A02 % Philosophical aspects of logic and foundations
+% 03B45 % Modal logic (including the logic of norms)
+% 03B35 % Mechanization of proofs and logical operations
+% 68T02 % Artificial Intelligence
+% }
+
 
 \keywords{Modal Logics, Higher-Order Logics, Ontological Argument,
   Interactive and Automated Theorem Proving}
@@ -180,7 +186,7 @@ comprehension principles\footnote{A possible direction to remedy modal
   collapse, as studied e.g. by Koons
   \cite{koons06:_sobel_goedel_ontol_proof} is to impose restrictions
   on the domain of properties.}, 
-\marginpar{added footnote}
+%\marginpar{added footnote}
 they entail a \emph{modal collapse}
 \cite{Sobel1987,sobel2004logic}: everything that is the case is so
 necessarily.  There has been an impressive body of recent and ongoing
@@ -188,8 +194,12 @@ work
 (cf.~\cite{sobel2004logic,Fitting,anderson90:_some_emend_of_goedel_ontol_proof,AndersonGettings,bjordal99,fuhrmann05:_exist_notwen,Hajek2002,Hajek2008,ContemporaryBibliography}
 and the references therein) proposing solutions for the modal
 collapse.  The goal of this contribution is to discuss the modal
-collapse from the point of view of the modal square of opposition.
-\marginpar{@Bruno: Shall we add a sentence or two here?} 
+collapse from the point of view of the modal square of opposition. 
+Ontological arguments typically rely on an inversion of the normal direction of entailment
+in the modal square of opposition for one particular proposition (i.e. God's existence), 
+and the modal collapse shows that this inversion happens for all propositions, resulting in a total collapse of the modal square of opposition.
+
+%\marginpar{@Bruno: Shall we add a sentence or two here?} 
 
 
 \section{A Collapse of the Modal Square}
@@ -320,9 +330,9 @@ quantification, with possibilist and actualist quantifiers.
 \end{figure}
 
 
-Independently of the variant of the ontological argument 
-under consideration, the following can be said about 
-classes of collapsing propositions:
+In any modal logic at least as strong as \textbf{K}, and even without relying on axioms specific to 
+ontological arguments, it is easy to see (and even easier to check with an automated theorem prover) 
+the following facts about classes of collapsing propositions:
 \begin{enumerate}
 \item Valid propositions are collapsing: 
 if $\phi$ is valid, then $\collapse{\phi}$ is valid.
@@ -342,8 +352,12 @@ not generally closed under implication:
 even if $\collapse{\phi}$ is valid and 
 $\phi \imp \phi'$ is valid, 
 $\collapse{\phi'}$ may not be valid.
-\end{enumerate} \marginpar{@Bruno: Shall we respond here to the
-  rewievers criticism?}
+\end{enumerate}
+
+An easy corollary of the second fact above is that any ontological argument relying on Lemma \textbf{L2} will necessarily lead to a modal collapse for all propositions that are logically equivalent to God's existence. The third and fourth facts above indicate that to prove that the modal collapse holds for a larger class of propositions would require using axioms specific to the ontological argument.
+
+% \marginpar{@Bruno: Shall we respond here to the
+%  rewievers criticism?}
 
 
 
@@ -401,5 +415,7 @@ cannot be inferred from the order.
 
 \bibliographystyle{plain}
 \bibliography{Bibliography}
+
+\clearpage
 
 \end{document}
