@@ -1,4 +1,5 @@
-\documentclass [smallextended] {svjour3} [natbib]
+%\documentclass[smallextended]{svjour3}[natbib]
+\documentclass{svjour3}
 
 %\usepackage{setspace}
 %\doublespacing
@@ -22,7 +23,7 @@
 
 \usepackage{calculi}
 \usepackage{theorems}
-\usepackage[numbers]{natbib}
+%\usepackage[numbers]{natbib}
 
 \pagestyle{plain}
 
@@ -1625,7 +1626,7 @@ $$
 
 \begin{small}
 \begin{prooftree}
-\AXC{$ $}
+\AXC{$ $}
 \UIC{$G_B(x) $} 
 \AXC{$ $}\doubleLine
 \UIC{$\nec \all x. [G_B(x) \imp G_B(x)] $}\RightLabel{ D\ref{B:D1}}\dottedLine
@@ -1636,9 +1637,9 @@ $$
 
 \begin{small}
 \begin{prooftree}
-\AXC{$ $}\dashedLine
+\AXC{$ $}\dashedLine
 \UIC{$G_B(x) \wedge P_B(G_B) $}
-\AXC{$ $}\RightLabel{ $1$}
+\AXC{$ $}\RightLabel{ $1$}
 \UIC{$(\psi(x) \wedge P_B (\psi))$} \RightLabel{ $\wedge_E$}
 \UIC{$P_B (\psi)$}\RightLabel{ D\ref{B:D1}}\dottedLine
 \UIC{$\nec\all y.(G_B(y) \imp \psi(y))$} \RightLabel{ $\imp_I^1$}
@@ -1658,11 +1659,11 @@ $$
 \UIC{$\nec \all x. [G_B(x) \imp \all\varphi. (MCP(\varphi, x) \imp \nec \ex y.\varphi(y))]$}  \RightLabel{ $\nec_E$}
 \UIC{$\all x. [G_B(x) \imp \all\varphi. (MCP(\varphi, x) \imp \nec \ex y.\varphi(y))]$}  \RightLabel{ $\forall_E$}
 \UIC{$ [G_B(x) \imp \all\varphi. (MCP(\varphi, x) \imp \nec \ex y.\varphi(y))]$}
-\AXC{$ $} \RightLabel{ $2$}
+\AXC{$ $} \RightLabel{ $2$}
 \UIC{$G_B(x) $}  \RightLabel{ $\imp_E$}
 \BIC{$\all\varphi. (MCP(\varphi, x) \imp \nec \ex y.\varphi(y))]$} \RightLabel{ $\forall_E$}
 \UIC{$(MCP(G_B, x) \imp \nec \ex y.G_B(y))]$}
-\AXC{$ $}\dashedLine
+\AXC{$ $}\dashedLine
 \UIC{$MCP(G_B, x) $} \RightLabel{ $\imp_E$}
 \BIC{$\nec \ex y.G_B(y)$}\RightLabel{ $\imp_I^2$}
 \UIC{$G_B(x) \imp \nec \ex y.G_B(y)$}
