@@ -87,7 +87,6 @@ text {* Three kinds of Modal Collapse *}
   (* by metis *)
   oops
 
-  (* apparently, Leo2 and Satallax succeed, but metis fails. *)
   theorem collapseCN_entails_collapsePN : "[collapseCN] \<longrightarrow> [collapsePN]"
   sledgehammer [provers = remote_satallax remote_leo2, timeout = 30, strict]
   by meson
@@ -95,7 +94,6 @@ text {* Three kinds of Modal Collapse *}
   theorem test1 : "[\<forall>(\<lambda>\<psi>. \<forall>(\<lambda>\<Phi>. (\<Phi> m\<rightarrow> \<psi>)) m\<rightarrow> \<forall>(\<lambda>\<Phi>. ((\<diamond> \<Phi>) m\<rightarrow> \<psi>)))]"
   sledgehammer [provers = remote_satallax remote_leo2, timeout = 30, strict]
   by auto
-
 
   theorem test2 : "[\<forall>(\<lambda>\<psi>. \<forall>(\<lambda>\<Phi>. (\<Phi> m\<rightarrow> \<psi>)))] \<longrightarrow> [\<forall>(\<lambda>\<psi>. \<forall>(\<lambda>\<Phi>. ((\<diamond> \<Phi>) m\<rightarrow> \<psi>)))]"
   sledgehammer [provers = remote_satallax remote_leo2, timeout = 30, strict]
