@@ -1,5 +1,4 @@
-%\documentclass[smallextended]{svjour3}[natbib]
-\documentclass{svjour3}
+\documentclass[smallextended]{svjour3}
 
 %\usepackage{setspace}
 %\doublespacing
@@ -7,7 +6,6 @@
 \usepackage[utf8]{inputenc}
 \usepackage{fancybox}
 \usepackage{latexsym}
-\usepackage{natbib}
 
 
 
@@ -23,7 +21,7 @@
 
 \usepackage{calculi}
 \usepackage{theorems}
-%\usepackage[numbers]{natbib}
+\usepackage[numbers]{natbib}
 
 \pagestyle{plain}
 
@@ -89,7 +87,7 @@ in a Natural Deduction Calculus}
 
 
 \begin{abstract}
-This paper presents two detailed formalizations of ontological arguments in a simple natural deduction calculus. The first formal proof closely follows the hints in Scott's manuscript about G\"odel's argument and fills in the gaps, thus verifying its correctness. The second formal proof improves the first one, by relying on the weaker modal logic {\bf KB} instead of the stronger modal logic {\bf S5}; and by avoiding the introduction of the equality predicate. The second proof is also technically shorter than the first one, because it eliminates unnecessary detours and uses Axiom 1 for the positivity of properties only once.
+This paper presents detailed formalizations of ontological arguments in a simple modal natural deduction calculus. The first formal proof closely follows the hints in Scott's manuscript about G\"odel's argument and fills in the gaps, thus verifying its correctness. The second formal proof improves the first one, by relying on the weaker modal logic {\bf KB} instead of the stronger modal logic {\bf S5}; and by avoiding the introduction of the equality predicate. The second proof is also technically shorter than the first one, because it eliminates unnecessary detours and uses Axiom 1 for the positivity of properties only once. The third and fourth proofs formalize, respectively, Anderson's and Bj{\o}rdal's variants of the ontological argument, which are known to be immune to modal collapse.
 \end{abstract}
 
 \noindent
@@ -113,7 +111,7 @@ which deals with concepts of the highest abstractness; and this is also most hig
 
 \section{Introduction}
 
-Ontological arguments for the existence of God can be traced back at least to St. Anselm (1033-1109). His argument considers a greatest conceivable being, who must exist, because if it did not have the property of existence, then we could conceive of a greater being that, apart from the other properties, also had the property of existence. St. Anselm's argument was further elaborated by Descartes, Leibniz and Kant. 
+Ontological arguments for the existence of God can be traced back at least to St. Anselm (1033-1109). His argument considers a greatest conceivable being, who must exist, because if it did not have the property of existence, then we could conceive of a greater being that, in addition to other properties, also had the property of existence. St. Anselm's argument was criticized and further developed by Descartes, Leibniz and Kant, among many others. 
 
 Leibniz identified the possible existence of God as a critical missing step in St. Anselm's argument. To fill this gap, he argued that the properties of God, the perfections, are compatible. This means that it is possible to satisfy all perfections at once, which implies that the existence of a greatest conceivable being with all these properties is possible. 
 
@@ -125,9 +123,9 @@ The aim of this paper is to present two detailed formalizations of ontological a
 
 The natural deduction style was chosen for three reasons. Firstly, presentations of G\"odel's proof are typically either informal or formalized in other styles of proof calculi (e.g. Fitting's tableaux \citep{fitting} or Sobel's sentential modal calculus \citep{sobel2}). Therefore, a formalization in natural deduction is a valuable complement to the existing presentations. Secondly, it makes the ontological proof accessible to people who are familiar with a natural deduction style. Thirdly, as natural deduction is the style used by proof assistants such as Coq \citep{coq} and Isabelle \citep{isabelle}, natural deduction formalizations can be verified step-by-step in such proof assistants, and we have in fact done this.
 
-The first contribution of this paper is a detailed formalization of Scott's version \citep{scott} of G\"odel's ontological argument \citep{Goedel} (as shown in Section \ref{sec:scott}) in the proposed natural deduction calculus. The second contribution of the paper is a new proof (also in natural deduction style). In contrast to Scott's proof \citep{scott}, which requires the modal logic \textbf{S5}, the new proof requires only the weaker modal logic \textbf{KB}. The new proof also does not rely on the equality predicate and is much shorter.
+The first main contribution of this paper is a detailed formalization of Scott's version \citep{scott} of G\"odel's ontological argument \citep{Goedel} (as shown in Section \ref{sec:scott}) in the proposed natural deduction calculus. The second main contribution of the paper is a new proof (also in natural deduction style). In contrast to Scott's proof \citep{scott}, which requires the modal logic \textbf{S5}, the new proof requires only the weaker modal logic \textbf{KB}. The new proof also does not rely on the equality predicate and is much shorter.
 
-A major criticism against G\"odel's formal argument is an undesirable consequence of the stipulated axioms, called \emph{modal collapse}. This is discussed in greater detail in Section \ref{sec:collapse}, where a natural deduction derivation of the collapse is presented. Although many recent works on the ontological argument have proposed modifications of the argument that do not entail a modal collapse, these solutions are beyond the scope of this paper.
+A major criticism against G\"odel's argument is an undesirable consequence of the stipulated axioms, called \emph{modal collapse}. This is discussed in greater detail in Section \ref{sec:collapse}, where a natural deduction derivation of the collapse is presented. Many recent works on the ontological argument have proposed modifications of the argument that do not entail modal collapse. In this paper we present natural deduction formalizations of two of these solutions: Anderson's emendation (in Section \ref{sec:anderson}) and Bj{\o}rdal's variant (in Section \ref{sec:bjordal}).
 
 
 \section{Natural Deduction}
@@ -1262,7 +1260,7 @@ A reduction from {\bf S5} to {\bf KB} is possible for these variants as well, si
 
 
 \section{A natural deduction proof based on Anderson's axiomatization}
-
+\label{sec:anderson}
 
 \setcounter{axiom}{0}
 \setcounter{lemma}{0}
@@ -1533,8 +1531,8 @@ The exchange of the implication in the G\"odel-Scott definition of essence for a
 
 
 
-\section{A natural deduction proof based on Bj\o rdal's axiomatization}
-
+\section{A natural deduction proof based on Bj{\o}rdal's axiomatization}
+\label{sec:bjordal}
 
 In Bj\o rdal's axiomatization godlikeness is taken as primitive, $G_B$. 
 
