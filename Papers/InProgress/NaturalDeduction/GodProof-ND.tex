@@ -389,15 +389,15 @@ For $n > 1$, the translation is a straightforward generalization:
 
 \end{proof}
 
-Without the restriction that every box must be accessed by exactly one strong modal inference, the calculus would be unsound for the modal logic \textbf{K}. For example, the formula $\all \psi. (\nec \psi \imp \pos \psi)$ is not valid in \textbf{K} but would be provable without this restriction:
+Without the restriction that every box must be accessed by exactly one strong modal inference, the calculus would be unsound for the modal logic \textbf{K}. For example, the formula $\all \phi. (\nec \phi \imp \pos \phi)$ is not valid in \textbf{K} but would be provable without this restriction:
 
 \begin{prooftree}
   \AXC{$ $} \RightLabel{1}
-  \UIC{$\nec \psi$} \RightLabel{$\nec_E$}
-        \UIC{$\omega: \psi$} \RightLabel{$\pos_I$}
-        \UIC{$\pos \psi$} \RightLabel{$\imp_I^1$}
-    \UIC{$\nec \psi \imp \pos \psi$} \RightLabel{$\forall_I$}
-    \UIC{$\all \psi. (\nec \psi \imp \pos \psi)$}
+  \UIC{$\nec \phi$} \RightLabel{$\nec_E$}
+        \UIC{$\omega: \phi$} \RightLabel{$\pos_I$}
+        \UIC{$\pos \phi$} \RightLabel{$\imp_I^1$}
+    \UIC{$\nec \phi \imp \pos \phi$} \RightLabel{$\forall_I$}
+    \UIC{$\all \phi. (\nec \phi \imp \pos \phi)$}
 \end{prooftree}
 
 This example proof is unsound according to the {\NDK} calculus, because the eigen-box condition is violated: the box labelled by $\omega$ is not accessed by any strong inference. 
