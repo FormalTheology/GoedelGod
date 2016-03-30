@@ -1536,41 +1536,47 @@ The exchange of the implication in Scott's definition of essence for an equivale
 
 
 
-\section{A natural deduction proof based on Bj{\o}rdal's axiomatization}
+\section{Bj{\o}rdal's Variant in Natural Deduction}
 \label{sec:bjordal}
 
-In Bj\o rdal's axiomatization godlikeness is taken as primitive, $G_B$. 
+Bj{\o}rdal's variant \citep{bjordal,fuhrmann} is another solution to the Modal Collapse. In striking contrast to other variants, Bj\o rdal's axiomatization takes god-likeness ($G_B$) as a primitive notion, upon which the notion of positive property is defined. This variant also significantly reduces the number of necessary axioms. Scott's variant of Axioms 2, 3 and 4 become unnecessary to prove the final theorem from Bj{\o}rdal's modified definitions 1, 2 and 3 and axioms 1 and 5.
 
-\begin{definition}
+
+\setcounter{definition}{0}
+\begin{definition}[Changed]
 \label{B:D1}
-A property is positive iff it is necessarily possessed by every God-like being.
+A property is \emph{positive} iff it is necessarily possessed by every God-like being.
 $$
 P_B(\varphi) \equiv \nec \all x. [G_B(x) \imp \varphi(x)]
 $$
 \end{definition}
 
-\begin{definition}
+Bj{\o}rdal refines the notion of essence (which he calls maximal composite) by restricting the attention to positive properties only. He calls this refined notion of essence a maximal composite.
+
+\begin{definition}[Changed]
 \label{B:D2}
-A maximal composite of an individual's positive properties is a positive property possessed by the individual and necessarily implying every positive property possessed by the individual.
+A \emph{maximal composite} of an individual's positive properties is a positive property possessed by the individual and necessarily implying every positive property possessed by the individual.
 $$MCP(\varphi, x) \equiv (\varphi(x) \wedge P_B (\varphi)) \wedge \all\psi.((\psi(x) \wedge P_B (\psi)) \imp \nec\all y.(\varphi(y) \imp \psi(y)))
 $$
 \end{definition}
 
-\begin{definition}
+\begin{definition}[Changed]
 \label{B:D3}
-Necessary existence of an individual is the necessary exemplification of all its maximal composites.
+\emph{Necessary existence} of an individual is the necessary exemplification of all its maximal composites.
 $$
 NE_B (x) \equiv \all\varphi. (MCP(\varphi, x) \imp \nec \ex y.\varphi(y))
 $$
 \end{definition}
 
-\begin{axiom}
+\setcounter{axiom}{0}
+\begin{axiom}[Changed]
 \label{A:A1'} If a property is positive, its negation is not positive: 
 $$
 \all \varphi. [P_B (\varphi) \imp \neg P_B (\neg\varphi)]
 $$
 \end{axiom}
 
+\setcounter{axiom}{4}
 \begin{axiom}
 \label{A:A5'} Necessary existence is a positive property. 
 $$
@@ -1578,13 +1584,14 @@ P_B (NE_B )
 $$
 \end{axiom}
 
-The proof of the possible instantiation of $G_B$ is adjusted by proving Theorem 1 of section \ref{sec:newproof} directly for $G_B$ and not for properties in general. Corollary 1 of section \ref{sec:newproof} follows by proving the positivity of godlikeness as in lemma \ref{B:L1} below. 
+The proof of the possible instantiation of $G_B$ is adjusted (as shown below) by proving Theorem 1 of section \ref{sec:newproof} directly for $G_B$ and not for positive properties in general.
+
 
 \begin{theorem}
 \label{T1}
-Positive properties are possibly exemplified:
+If God-likeness is a positive property, then it is possibly exemplified:
 $$
-\all \varphi. [P(G_B) \imp \pos \ex x.G_B(x)]
+P(G_B) \imp \pos \ex x.G_B(x)
 $$
 \end{theorem}
 \begin{proof} \hfill
@@ -1602,7 +1609,7 @@ $$
 \UIC{$\omega:  \all x.(G_B(x) \imp \neg G_B(x)) $}  \RightLabel{$\nec_I$}
 \UIC{$ \nec \all x.(G_B(x) \imp \neg G_B(x)) $}\RightLabel{$\wedge_I$}
 \UIC{$P(\neg G_B)$}
-\AXC{Axiom 6***} \dashedLine
+\AXC{Axiom 1} \dashedLine
 \UIC{$\all \varphi. [P(\neg G_B) \imp \neg P(G_B)]$} \RightLabel{$\all_E$}
 \UIC{$ P( \neg G_B(x)) \imp \neg P(G_B) $}  \RightLabel{$\imp_E$}
 \BIC{$\neg P(G_B) $} 
@@ -1615,9 +1622,14 @@ $$
 \UIC{$ \all \varphi. [P(G_B) \imp \pos \ex x.G_B(x)] $} 
 
 \end{prooftree}
-
-
 \end{proof}
+
+
+ToDo: State corollary and prove it, instead of making a forward reference to lemma L1. Then use the corollary in lemma 1.
+
+Corollary 1 of section \ref{sec:newproof} follows by proving the positivity of godlikeness as in lemma \ref{B:L1} below. 
+
+
 
 \begin{lemma}
 \label{B:L1}
@@ -1626,7 +1638,7 @@ $$
 \ex z. G_B(z) \imp \nec \ex x. G_B(x)
 $$
 \end{lemma}
-
+\begin{proof}
 \begin{small}
 \begin{prooftree}
 \AXC{$ $}
@@ -1672,6 +1684,9 @@ $$
 \UIC{$G_B(x) \imp \nec \ex y.G_B(y)$}
 \end{prooftree}
 \end{small}
+\end{proof}
+
+
 
 
 
@@ -1689,6 +1704,10 @@ Anderson, C. A. 1990. {\itshape Some Emendations of G\"odel's Ontological Proof}
 
 \bibitem[{\itshape Anderson \& Gettings (1996)}]{and}
 Anderson, C. A.\& Gettings, M. 1996.  {\itshape G\"odel's ontological proof revisited}. In: edited by Hajek P. {\itshape G\"odel '96},  Springer. 
+
+\bibitem[{\itshape Benzm\"uller \& Weber \& Woltzenlogel Paleo (2016)}]{controversy}
+Benzm\"uller, C. \& Weber, L. \& Woltzenlogel Paleo, B. 2016. {\itshape Computer-Assisted Analysis of the Anderson-H\'ajek Ontological Controversy}. In: {\itshape Logica Universalis} 10 (2016)
+
 
 \bibitem[{\itshape Bj{\o}rdal(1999)}]{bjordal}
 Bj{\o}rdal, F. 1999. Understanding G\"odel's Ontological Argument, in Timothy Childers (ed.) The Logica Yearbook 1998, pp. 214-217, Filosofia.
@@ -1712,6 +1731,9 @@ Hajek, P. 1996. Magari and others on G\"odel's Ontological Proof, in Ursini et a
 
 \bibitem[{\itshape Kant(1781)}]{kant}
 Kant, I.  original 1781. {\itshape Critique of Pure Reason}, J. M. Dent \& Sons LTD, edition from 1959.
+
+\bibitem[{\itshape Magari(1988)}]{magari}
+Magari, R. 1988. {\itshape Logica e Teofilia}. In: {\itshape Notizie di Logica} VII.4.
 
 \bibitem[{\itshape Negri(2005)}]{negri}
 Negri, S. 2005. {\itshape Proof analysis in modal logic}. J. Philosophical Logic, vol. 34, pp. 507--544. 
