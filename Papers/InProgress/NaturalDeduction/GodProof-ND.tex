@@ -1257,9 +1257,15 @@ Fitting, for instance, has argued that greater care has to be taken with the sem
 
 
 
-
-\section{A natural deduction proof based on Anderson's axiomatization}
+\section{Anderson's Emendation in Natural Deduction}
 \label{sec:anderson}
+
+
+Anderson's solution \citep{and90} modifies the definitions of God-like being and essence, and eliminates half of Axiom 1 (replacing the equivalence by an implication).  
+
+
+
+
 
 \setcounter{axiom}{0}
 \setcounter{lemma}{0}
@@ -1269,15 +1275,15 @@ Fitting, for instance, has argued that greater care has to be taken with the sem
 
 %Anderson modification of the axioms in A1 equivalence removed and definition of essence altered. 
 %Anderson's implication instead of equivalence. 
-\begin{axiom}
+\begin{axiom}[Emended]
 \label{A1}
-Either a property or its negation is positive, but not both:
+If the negation of a property is positive, the property is not positive:
 $$
 \all \varphi. [P(\neg \varphi) \imp \neg P(\varphi)]
 $$
 \end{axiom}
 
-\begin{axiom}
+\begin{axiom}[As in Scott's]
 \label{A2}
 A property necessarily implied by a positive property is positive:
 $$
@@ -1293,21 +1299,21 @@ $$
 \all \varphi. [P(\varphi) \imp \pos \ex x.\varphi(x)]
 $$
 \end{theorem}
+\begin{proof}
+This proof is omitted, because any of the proofs of Theorem 1 in Sections \ref{sec:scott} and \ref{sec:newproof} would suffice to prove this theorem with only small modifications: the equivalence of axiom \ref{A1} would not need to be reduced to an implication by conjunction elimination. 
+\end{proof}
 
-The proof is otherwise identical to the proof of theorem \ref{T1} in section \ref{sec:newproof} but the equivalence of axiom \ref{A1} does not need to be reduced to an implication by implication elimination. 
 
 
-
-
-\begin{definition}[Anderson's alternative Godlike]
+\begin{definition}[Emended]
 \label{D1}
-%A \emph{God-like} being possesses all positive properties:
+A \emph{God-like} being necessarily possesses those and only those properties which are positive:
 $$
 G(x) \biimp \forall \varphi. [P(\varphi) \biimp \nec \varphi(x)]
 $$
 \end{definition}
 
-\begin{axiom}
+\begin{axiom}[As in Scott's]
 \label{A3}
 The property of being god-like is positive:
 $$
@@ -1322,10 +1328,14 @@ $$
 \pos \ex x. G(x)
 $$
 \end{corollary}
+\begin{proof}
+This proof is omitted, because it is identical to the proof of the same corollary shown in Sections \ref{sec:scott} and \ref{sec:newproof}.
+\end{proof}
 
 
 
-\begin{axiom}
+
+\begin{axiom}[As in Scott's]
 \label{A4}
 Positive properties are necessarily positive:
 $$
@@ -1333,19 +1343,17 @@ $$
 $$
 \end{axiom}
 
-\begin{definition}[Anderson's alternative essence with Scott's additional conjunct]
+\begin{definition}[Emended]
 \label{D2}
-%sAn \emph{essence} of an individual is a property possessed by it and necessarily implying any of its properties:
+An \emph{essence} of an individual is a property possessed by it and necessarily implying those and only those properties necessarily possessed by it:
 $$
 \ess{\varphi}{x} \biimp \varphi(x) \wedge \all \psi. (\nec \psi(x) \biimp \nec \all x. (\varphi(x) \imp \psi(x)))
 $$
 \end{definition}
 
 
-%At this point, G\"odel and Scott proceed to prove Theorem 2, which is then used to prove Lemma 1. However, a close inspection of Scott's proof of Lemma 1 reveals that Theorem 2 is an unnecessary detour. Therefore, we do not include it in the new proof.
 
-
-\begin{definition}[Anderson's alternative where G\"odel's definition of essence is replaced by def. \ref{D2}]
+\begin{definition}[As in Scott's]
 \label{D3}
 \emph{Necessary existence} of an individual is the necessary exemplification of all its essences:
 $$
@@ -1354,7 +1362,7 @@ $$
 \end{definition}
 
 
-\begin{axiom}
+\begin{axiom}[As in Scott's]
 \label{A5}
 Necessary existence is a positive property:
 $$
@@ -1363,6 +1371,8 @@ $$
 \end{axiom}
 
 
+Because of Anderson's emendations to Axiom 1 and Definition 1, the proof of Lemma 1 has to be modified as well. The proof shown below uses the modal axiom T to eliminate the extra box modality introduced by Anderson
+in his emended Definition 1.
 
 \begin{lemma}
 \label{L1}
@@ -1371,7 +1381,6 @@ $$
 \ex z. G(z) \imp \nec \ex x. G(x)
 $$
 \end{lemma}
-
 \begin{proof} \hfill
 \begin{prooftree}
 \AXC{$ $} \RightLabel{1}
@@ -1450,8 +1459,10 @@ $$
 \UIC{$G(\gamma)$}\dottedLine \RightLabel{D\ref{D1}}
 \UIC{$\forall \varphi.(P(\varphi) \biimp \nec \varphi(\gamma))$}\RightLabel{$\forall_E$}
 \UIC{$P(E) \biimp \nec E(\gamma)$}\RightLabel{$\imp_E$}
-\BIC{$\nec E(\gamma)$}\RightLabel{$\nec_E$ (reflexive frame)}
-\UIC{$ E(\gamma)$} \dottedLine \RightLabel{D\ref{D3}}
+\BIC{$\nec E(\gamma)$}
+    \AXC{Axiom T} \dashedLine
+    \UIC{$\nec E(\gamma) \imp E(\gamma)$} \RightLabel{$\imp_E$}
+\BIC{$ E(\gamma)$} \dottedLine \RightLabel{D\ref{D3}}
 \UIC{$ \all \varphi.[\ess{\varphi}{\gamma} \imp \nec \ex x.\varphi(x)] $}\RightLabel{$\all_E$}
 \UIC{$ \ess{G}{\gamma} \imp \nec \ex x. G(x) $}\RightLabel{$\imp_E$}
 \BIC{$\nec \ex x. G(x)$} \RightLabel{$\imp_I^1$}
@@ -1470,25 +1481,20 @@ $$
 \nec \ex x. G(x)
 $$
 \end{theorem}
+\begin{proof}
+This proof is identical to the proof of Theorem 3 shown in Section \ref{sec:newproof}.
+\end{proof}
 
 
+We know from \citep{hajek} that Anderson's emendation also makes Axioms 4 and 5 derivable from the other axioms and definitions. Discussions about the redundancy of these two axioms started with an earlier (and wrong claim) claim by Magari \citep{magari} w.r.t. Scott's variant, and the redundancy was the topic of a long controversy \citep{controversy} between H\'ajek and Anderson. The proof presented above still uses Axioms 4 and 5, though, since the intention here was to show that Anderson's emendation requires only a minimal modification of the proofs presented in the previous sections.
 
 
-\subsection{Why is the proof of modal collapse prevented?}
-
-The alteration of the definition of essence in Anderson's proof prevents the standard proof of modal collapse \ref{Collapse} 
-$$\vdash A \imp \nec A
-$$ 
-by the additional necessitation, which converts the proof of modal collapse into a proof of a tautology.
-$$
-\vdash \nec A \imp \nec A
-$$ 
-   
-%For all propositions $A$, the following \emph{modal collapse} proposition is not provable with Anderson's alternative definitions with the same proof as G\"odel or Scott's:
- 
+ToDo: should we try to show here also an alternative proof of T3 using only Anderson's axioms A1, A2 and A3 and definition D1??  I don't know how hard this would be. Hájek1996 could be helpful.
 
 
+\subsection{A Proof-Theoretical Explanation for the Immunity to Modal Collapse}
 
+Anderson's change in the definition of essence adds an extra box modality, which transforms the standard proof (shown in Section \ref{sec:collapse}) of modal collapse (i.e. $\vdash A \imp \nec A$) into a proof of a tautology ($\vdash \nec A \imp \nec A$), as shown below. 
 
 \begin{small}
 \begin{prooftree}
@@ -1526,7 +1532,7 @@ $$
 \end{prooftree}
 \end{small}
 
-The exchange of the implication in the G\"odel-Scott definition of essence for an equivalence and the additional  modal necessitation of the property $A$ prevents the implication of a necessary fact from its contingent counterpart as is seen in the second part of the proof above because the hypothetical assumption of the contingent property $A$ has to be exchanged for its necessitation for the proof structure to be preserved. 
+The exchange of the implication in Scott's definition of essence for an equivalence and the additional necessitation (box) modality before the property $\psi$ (which is instantiated by $\lambda x. A$) prevents the implication of a necessary fact from its contingent counterpart, as seen in the second part of the proof above, because the hypothetical assumption of the contingent property $A$ has to be exchanged for its necessitation $\nec A$ to preserve the proof structure. 
 
 
 
