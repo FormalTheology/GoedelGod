@@ -902,7 +902,7 @@ In this section we present a new proof in {\bf KB}. This proof uses exactly the 
 
 
 \begin{axiom}
-\label{A1}
+\label{N:A1}
 Either a property or its negation is positive, but not both:
 $$
 \all \varphi. [P(\neg \varphi) \biimp \neg P(\varphi)]
@@ -910,14 +910,14 @@ $$
 \end{axiom}
 
 \begin{axiom}
-\label{A2}
+\label{N:A2}
 A property necessarily implied by a positive property is positive:
 $$
 \all \varphi. \all \psi.[(P(\varphi) \wedge \nec \all x.[\varphi(x) \imp \psi(x)]) \imp P(\psi)]
 $$
 \end{axiom}
 \begin{theorem}
-\label{T1}
+\label{N:T1}
 Positive properties are possibly exemplified:
 $$
 \all \varphi. [P(\varphi) \imp \pos \ex x.\varphi(x)]
@@ -975,7 +975,7 @@ Although the simpler proof of Theorem 1 presented here was developed independent
 
 
 \begin{definition}
-\label{D1}
+\label{N:D1}
 A \emph{God-like} being possesses all positive properties:
 $$
 G(x) \biimp \forall \varphi. [P(\varphi) \to \varphi(x)]
@@ -983,7 +983,7 @@ $$
 \end{definition}
 
 \begin{axiom}
-\label{A3}
+\label{N:A3}
 The property of being god-like is positive:
 $$
 P(G)
@@ -991,7 +991,7 @@ $$
 \end{axiom}
 
 \begin{corollary}
-\label{C1}
+\label{N:C1}
 Possibly, a God-like being exists:
 $$
 \pos \ex x. G(x)
@@ -1009,7 +1009,7 @@ $$
 
 
 \begin{axiom}
-\label{A4}
+\label{N:A4}
 Positive properties are necessarily positive:
 $$
 \all \varphi.[P(\varphi) \to \Box \; P(\varphi)]
@@ -1017,7 +1017,7 @@ $$
 \end{axiom}
 
 \begin{definition}
-\label{D2}
+\label{N:D2}
 An \emph{essence} of an individual is a property possessed by it and necessarily implying any of its properties:
 $$
 \ess{\varphi}{x} \biimp \varphi(x) \wedge \all \psi. (\psi(x) \imp \nec \all x. (\varphi(x) \imp \psi(x)))
@@ -1029,7 +1029,7 @@ At this point, G\"odel and Scott proceed to prove Theorem 2, which is then used 
 
 
 \begin{definition}
-\label{D3}
+\label{N:D3}
 \emph{Necessary existence} of an individual is the necessary exemplification of all its essences:
 $$
 E(x) \biimp \all \varphi.[\ess{\varphi}{x} \imp \nec \ex y.\varphi(y)]
@@ -1038,7 +1038,7 @@ $$
 
 
 \begin{axiom}
-\label{A5}
+\label{N:A5}
 Necessary existence is a positive property:
 $$
 P(E)
@@ -1052,7 +1052,7 @@ This phenomenon is very intriguing: the new proof of Lemma 1 is technically simp
 
 
 \begin{lemma}
-\label{L1}
+\label{N:L1}
 If there is a God-like being, then there is a God-like being necessarily:
 $$
 \ex z. G(z) \imp \nec \ex x. G(x)
@@ -1076,7 +1076,7 @@ $$
 \UIC{$\neg P(\rho) \imp P(\lambda x. \neg \rho(x))$}\RightLabel{$\imp_E$}
 \BIC{$P(\lambda x. \neg \rho(x))$}
 \AXC{$\subproof_6$} \dashedLine
-\UIC{$G(\gamma)$}  \dottedLine \RightLabel{D\ref{D1}}
+\UIC{$G(\gamma)$}  \dottedLine \RightLabel{D\ref{N:D1}}
 \UIC{$\forall \varphi.(P(\varphi) \imp \varphi(\gamma))$}\RightLabel{$\forall_E$}
 \UIC{$P(\lambda x. \neg \rho(x)) \imp \neg \rho(\gamma)$}\RightLabel{$\imp_E$}
 \BIC{$\neg \rho(\gamma)$}
@@ -1085,7 +1085,7 @@ $$
 \BIC{$\bot$}\RightLabel{$\imp_I^2$}
 \UIC{$\neg\neg P(\rho)$}\RightLabel{$\neg\neg_E$}
 \UIC{$P(\rho)$}
-\AXC{Axiom \ref{A4}} \dashedLine
+\AXC{Axiom \ref{N:A4}} \dashedLine
 \UIC{$\all \varphi.[P(\varphi) \imp \nec\; P(\varphi)]$}\RightLabel{$\forall_E$}
 \UIC{$P(\rho) \imp \nec\; P(\rho)$}\RightLabel{$\imp_E$}
 \BIC{$\nec P(\rho)$}\RightLabel{$\imp_I^3$}
@@ -1100,7 +1100,7 @@ $$
 \UIC{$\nec P(\rho)$} \RightLabel{$\nec_E$}
 \UIC{$\omega: P(\rho)$}
 \AXC{$ $} \RightLabel{4}
-\UIC{$\omega: G(y)$}  \dottedLine \RightLabel{D\ref{D1}}
+\UIC{$\omega: G(y)$}  \dottedLine \RightLabel{D\ref{N:D1}}
 \UIC{$\omega: \forall \varphi.(P(\varphi) \imp \varphi(y))$}\RightLabel{$\forall_E$}
 \UIC{$\omega: P(\rho) \imp \rho(y)$}\RightLabel{$\imp_E$}
 \BIC{$\omega: \rho(y)$} \RightLabel{$\imp_I^4$}
@@ -1118,7 +1118,7 @@ $$
 \UIC{$\forall \psi.(\psi(\gamma) \imp \nec \forall y.(G(y) \imp \psi(y)))$}
 \AXC{$\subproof_6$} \dashedLine
 \UIC{$G(\gamma)$}  
-\BIC{$G(\gamma) \wedge \forall \psi.(\psi(\gamma) \imp \nec \forall y.(G(y) \imp \psi(y)))$}\dottedLine \RightLabel{D\ref{D2}}
+\BIC{$G(\gamma) \wedge \forall \psi.(\psi(\gamma) \imp \nec \forall y.(G(y) \imp \psi(y)))$}\dottedLine \RightLabel{D\ref{N:D2}}
 \UIC{$[\subproof_8] \qquad \ess{G}{\gamma}$}
 \end{prooftree}
 \end{small}
@@ -1128,12 +1128,12 @@ $$
 \AXC{$\subproof_8$} \dashedLine
 \UIC{$\ess{G}{\gamma}$}
 \AXC{Axiom \ref{A5}} \dashedLine
-\UIC{$P(E)$}\dottedLine \RightLabel{D\ref{D3}}
+\UIC{$P(E)$}\dottedLine \RightLabel{D\ref{N:D3}}
 \AXC{$\subproof_6$} \dashedLine
-\UIC{$G(\gamma)$}\dottedLine \RightLabel{D\ref{D1}}
+\UIC{$G(\gamma)$}\dottedLine \RightLabel{D\ref{N:D1}}
 \UIC{$\forall \varphi.(P(\varphi) \imp \varphi(\gamma))$}\RightLabel{$\forall_E$}
 \UIC{$P(E) \imp E(\gamma)$}\RightLabel{$\imp_E$}
-\BIC{$E(\gamma)$}\dottedLine \RightLabel{D\ref{D3}}
+\BIC{$E(\gamma)$}\dottedLine \RightLabel{D\ref{N:D3}}
 \UIC{$ \all \varphi.[\ess{\varphi}{\gamma} \imp \nec \ex x.\varphi(x)] $}\RightLabel{$\all_E$}
 \UIC{$ \ess{G}{\gamma} \imp \nec \ex x. G(x) $}\RightLabel{$\imp_E$}
 \BIC{$\nec \ex x. G(x)$} \RightLabel{$\imp_I^1$}
@@ -1148,7 +1148,7 @@ Lemma 2 also turns out to be a superfluous detour and therefore the new proof do
 
 \setcounter{theorem}{2}
 \begin{theorem}
-\label{T3}
+\label{N:T3}
 Necessarily, there exists a God-like being:
 $$
 \nec \ex x. G(x)
@@ -1161,7 +1161,7 @@ $$
 \begin{prooftree}
 \AXC{ Distribution Principle} \dashedLine
 \UIC{$\nec [\ex x. G(x)\imp \nec \ex x. G(x)]\imp [\pos \ex x. G(x)\imp \pos\nec \ex x. G(x)]$}
-\AXC{ Lemma \ref{L1} } \dashedLine
+\AXC{ Lemma \ref{N:L1} } \dashedLine
 \UIC{$\ex x. G(x)\imp \nec \ex x. G(x)$}\RightLabel{$\nec_I$}
 \UIC{$\nec[\ex x. G(x)\imp \nec \ex x. G(x)]$}\RightLabel{$\imp_E$}
 \BIC{$\pos \ex x. G(x)\imp \pos\nec \ex x. G(x)$}
@@ -1627,7 +1627,7 @@ The proof of the possible instantiation of $G_B$ is adjusted (as shown below) by
 
 
 \begin{theorem}
-\label{T1}
+\label{B:T1}
 If God-likeness is a positive property, then it is possibly exemplified:
 $$
 P(G_B) \imp \pos \ex x.G_B(x)
