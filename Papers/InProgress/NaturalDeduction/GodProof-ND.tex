@@ -1276,7 +1276,7 @@ Anderson's solution \citep{and90} modifies the definitions of God-like being and
 %Anderson modification of the axioms in A1 equivalence removed and definition of essence altered. 
 %Anderson's implication instead of equivalence. 
 \begin{axiom}[Emended]
-\label{A1}
+\label{A:A1}
 If the negation of a property is positive, the property is not positive:
 $$
 \all \varphi. [P(\neg \varphi) \imp \neg P(\varphi)]
@@ -1284,7 +1284,7 @@ $$
 \end{axiom}
 
 \begin{axiom}[As in Scott's]
-\label{A2}
+\label{A:A2}
 A property necessarily implied by a positive property is positive:
 $$
 \all \varphi. \all \psi.[(P(\varphi) \wedge \nec \all x.[\varphi(x) \imp \psi(x)]) \imp P(\psi)]
@@ -1293,7 +1293,7 @@ $$
 
 
 \begin{theorem}
-\label{T1}
+\label{A:T1}
 Positive properties are possibly exemplified:
 $$
 \all \varphi. [P(\varphi) \imp \pos \ex x.\varphi(x)]
@@ -1306,7 +1306,7 @@ This proof is omitted, because any of the proofs of Theorem 1 in Sections \ref{s
 
 
 \begin{definition}[Emended]
-\label{D1}
+\label{A:D1}
 A \emph{God-like} being necessarily possesses those and only those properties which are positive:
 $$
 G(x) \biimp \forall \varphi. [P(\varphi) \biimp \nec \varphi(x)]
@@ -1314,7 +1314,7 @@ $$
 \end{definition}
 
 \begin{axiom}[As in Scott's]
-\label{A3}
+\label{A:A3}
 The property of being god-like is positive:
 $$
 P(G)
@@ -1322,7 +1322,7 @@ $$
 \end{axiom}
 
 \begin{corollary}
-\label{C1}
+\label{A:C1}
 Possibly, a God-like being exists:
 $$
 \pos \ex x. G(x)
@@ -1336,7 +1336,7 @@ This proof is omitted, because it is identical to the proof of the same corollar
 
 
 \begin{axiom}[As in Scott's]
-\label{A4}
+\label{A:A4}
 Positive properties are necessarily positive:
 $$
 \all \varphi.[P(\varphi) \to \Box \; P(\varphi)]
@@ -1344,7 +1344,7 @@ $$
 \end{axiom}
 
 \begin{definition}[Emended]
-\label{D2}
+\label{A:D2}
 An \emph{essence} of an individual is a property possessed by it and necessarily implying those and only those properties necessarily possessed by it:
 $$
 \ess{\varphi}{x} \biimp \varphi(x) \wedge \all \psi. (\nec \psi(x) \biimp \nec \all x. (\varphi(x) \imp \psi(x)))
@@ -1354,7 +1354,7 @@ $$
 
 
 \begin{definition}[As in Scott's]
-\label{D3}
+\label{A:D3}
 \emph{Necessary existence} of an individual is the necessary exemplification of all its essences:
 $$
 E(x) \biimp \all \varphi.[\ess{\varphi}{x} \imp \nec \ex y.\varphi(y)]
@@ -1363,7 +1363,7 @@ $$
 
 
 \begin{axiom}[As in Scott's]
-\label{A5}
+\label{A:A5}
 Necessary existence is a positive property:
 $$
 P(E)
@@ -1377,7 +1377,7 @@ in his emended Definition 1.
 ToDo: Proof of $\star_7$ is missing in the proof of lemma 1 below.
 
 \begin{lemma}
-\label{L1}
+\label{A:L1}
 If there is a God-like being, then there is a God-like being necessarily:
 $$
 \ex z. G(z) \imp \nec \ex x. G(x)
@@ -1393,14 +1393,14 @@ $$
 \begin{scriptsize}
 \begin{prooftree}
 \AXC{$\subproof_6$} \dashedLine
-\UIC{$G(\gamma)$}  \dottedLine \RightLabel{D\ref{D1}}
+\UIC{$G(\gamma)$}  \dottedLine \RightLabel{D\ref{A:D1}}
 \UIC{$\forall \varphi. [P(\lambda x.\varphi(x)) \biimp \nec \varphi(\gamma)]$}\RightLabel{$\forall_E$}
 \UIC{$P(\lambda x.\rho(x)) \biimp \nec \rho(\gamma)$}
 \AXC{$ $} \RightLabel{5}
 \UIC{$\nec \rho(\gamma)$} \RightLabel{$\imp_E$}
 \BIC{$P(\lambda x.\rho(x))$} 
 \AXC{$ $} \RightLabel{6}
-\UIC{$G(y) $}\dottedLine \RightLabel{D\ref{D1}}
+\UIC{$G(y) $}\dottedLine \RightLabel{D\ref{A:D1}}
 \UIC{$\forall \varphi. [P(\lambda x.\varphi(x)) \biimp \nec \varphi(y)]$}
 \UIC{$[P(\lambda x.\rho(x)) \biimp \nec \rho(y)]$}
 \BIC{$\nec \rho(y)$}\RightLabel{$\nec_E$}
@@ -1408,63 +1408,50 @@ $$
 \UIC{$\omega':  G(y)\imp \rho(y)$}\RightLabel{$\forall_I$}
 \UIC{$\omega':  \forall y. (G(y)\imp \rho(y))$}\RightLabel{$\nec_I$}
 \UIC{$\nec \forall y. (G(y)\imp \rho(y))$}\RightLabel{$\imp_I^5$}
-\UIC{$\nec \rho(\gamma)\imp \nec \forall y. (G(y)\imp \rho(y))$}
+\UIC{$[\subproof_7] \quad \nec \rho(\gamma)\imp \nec \forall y. (G(y)\imp \rho(y))$}
 \end{prooftree}
 \end{scriptsize}
 
 
 
-\begin{scriptsize}
-\begin{prooftree}
-\AXC{$\nec P(\rho)\imp \nec \forall y .(G(y)\imp \rho(y))$} \RightLabel{$\imp_E$}
-\AXC{$ $} \RightLabel{6}
-\UIC{$\nec \rho(\gamma)$} \RightLabel{}
-\UIC{$\rho(\gamma)$} \RightLabel{$\nec_E$}
-\AXC{$\subproof_7$} \dashedLine
-\UIC{$\omega': \rho(\gamma)\imp\Box P(\rho)$}\RightLabel{$\imp_E$}
-\BIC{$\nec P(\rho)$} \RightLabel{$\imp_E$}
-\BIC{$\nec \forall y .(G(y)\imp \rho(y))$}\RightLabel{$\imp_I^6$}
-\UIC{$\rho(\gamma) \imp \nec \forall y.(G(y) \imp \rho(y))$}\RightLabel{$\forall_I$}
-\UIC{$\forall \psi.(\psi(\gamma) \imp \nec \forall y.(G(y) \imp \psi(y)))$}
-\AXC{$\subproof_6$} \dashedLine
-\UIC{$G(\gamma)$}  
-\BIC{$G(\gamma) \wedge \forall \psi.(\psi(\gamma) \imp \nec \forall y.(G(y) \imp \psi(y)))$}\dottedLine \RightLabel{D\ref{D2}}
-\UIC{$[\subproof_8] \qquad \ess{G}{\gamma}$}
-\end{prooftree}
-\end{scriptsize}
 
 %implication for equivalence in essence: 
 \begin{small}
 \begin{prooftree}
+\AXC{Axiom \ref{A:A3}} 
+\UIC{$P(G)$}
 \AXC{$ $} \RightLabel{7}
-\UIC{$\nec  \forall y. [G(y)\imp \varphi(y)]$}\RightLabel{$\nec_E$}
-\UIC{$\omega'':   \forall y. [G(y)\imp \varphi(y)]$}\RightLabel{$\forall_E$}
-\UIC{$\omega'':   G(\gamma)\imp \varphi(\gamma)$}
-\AXC{$\subproof_6$} \dashedLine
-\UIC{$\omega'':  G(\gamma)$}  \RightLabel{$\imp_E$}
-\BIC{$\omega'':   \varphi(\gamma)$}\RightLabel{$\nec_I$}
-\UIC{$\nec \varphi(\gamma)$}\RightLabel{$\imp_I^7$}
-\UIC{$\nec  \forall y. [G(y)\imp \varphi(y)]\imp \nec \varphi(\gamma)$}
+\UIC{$\nec  \forall y. [G(y)\imp \varphi(y)]$}\RightLabel{$\wedge_I$}
+\BIC{$P(G)\wedge \nec  \forall y. [G(y)\imp \varphi(y)]$}\RightLabel{$\imp_E$}
+\AXC{Axiom \ref{A:A2}} 
+\BIC{$P(\varphi)$}
+\AXC{$\subproof_6$} \dashedLine 
+\UIC{$  G(\gamma)$}  \RightLabel{D\ref{A:D1}}
+\UIC{$ \all \varphi. [P(\varphi)\biimp \nec \varphi(\gamma)]$}  \RightLabel{$\all_E$}
+\UIC{$ P(\varphi)\biimp \nec \varphi(\gamma)$}  \RightLabel{$\biimp_E$}
+\BIC{$ \nec \varphi(\gamma)$} \RightLabel{$\nec_I$}
+\UIC{$[\subproof_8] \quad \nec  \forall y. [G(y)\imp \varphi(y)]\imp \nec \varphi(\gamma)$}
 \end{prooftree}
 \end{small}
 
 \begin{small}
 \begin{prooftree}
-\AXC{$\subproof_8$} \dashedLine
+\AXC{$\subproof_7$ and $\subproof_8$} \dashedLine
 \UIC{$\nec \varphi(\gamma)\biimp \nec  \forall y. [G(y)\imp \varphi(y)] $}
+\UIC{$\forall \varphi. (\nec \varphi(\gamma)\biimp \nec  \forall y. [G(y)\imp \varphi(y)]) $}
 \AXC{$ $} \RightLabel{6}
 \UIC{$G(x)$}\RightLabel{$\wedge_I$}
 \BIC{$\ess{G}{\gamma}$}
 \AXC{Axiom \ref{A5}} \dashedLine
 \UIC{$P(E)$}\dottedLine 
 \AXC{$\subproof_6$} \dashedLine
-\UIC{$G(\gamma)$}\dottedLine \RightLabel{D\ref{D1}}
+\UIC{$G(\gamma)$}\dottedLine \RightLabel{D\ref{A:D1}}
 \UIC{$\forall \varphi.(P(\varphi) \biimp \nec \varphi(\gamma))$}\RightLabel{$\forall_E$}
 \UIC{$P(E) \biimp \nec E(\gamma)$}\RightLabel{$\imp_E$}
 \BIC{$\nec E(\gamma)$}
     \AXC{Axiom T} \dashedLine
     \UIC{$\nec E(\gamma) \imp E(\gamma)$} \RightLabel{$\imp_E$}
-\BIC{$ E(\gamma)$} \dottedLine \RightLabel{D\ref{D3}}
+\BIC{$ E(\gamma)$} \dottedLine \RightLabel{D\ref{A:D3}}
 \UIC{$ \all \varphi.[\ess{\varphi}{\gamma} \imp \nec \ex x.\varphi(x)] $}\RightLabel{$\all_E$}
 \UIC{$ \ess{G}{\gamma} \imp \nec \ex x. G(x) $}\RightLabel{$\imp_E$}
 \BIC{$\nec \ex x. G(x)$} \RightLabel{$\imp_I^1$}
@@ -1477,7 +1464,7 @@ $$
 
 \setcounter{theorem}{2}
 \begin{theorem}
-\label{T3}
+\label{A:T3}
 Necessarily, there exists a God-like being:
 $$
 \nec \ex x. G(x)
@@ -1490,8 +1477,58 @@ This proof is identical to the proof of Theorem 3 shown in Section \ref{sec:newp
 
 We know from \citep{hajek} that Anderson's emendation also makes Axioms 4 and 5 derivable from the other axioms and definitions. Discussions about the redundancy of these two axioms started with an earlier (and wrong claim) claim by Magari \citep{magari} w.r.t. Scott's variant, and the redundancy was the topic of a long controversy \citep{controversy} between H\'ajek and Anderson. The proof presented above still uses Axioms 4 and 5, though, since the intention here was to show that Anderson's emendation requires only a minimal modification of the proofs presented in the previous sections.
 
+\subsection{A shorter proof without redundant axioms}
 
-ToDo: should we try to show here also an alternative proof of T3 using only Anderson's axioms A1, A2 and A3 and definition D1??  I don't know how hard this would be. HÃ¡jek1996 could be helpful.
+\setcounter{axiom}{0}
+\setcounter{lemma}{0}
+\setcounter{theorem}{0}
+\setcounter{corollary}{0}
+\setcounter{definition}{0}
+
+There is an alternative proof of theorem \ref{A:T3} using only Anderson's axioms \ref{A:A1}, \ref{A:A2} and \ref{A:A3} as well as definition \ref{A:D1}. %Hájek1996 could be helpful.
+The proof requires only a modification of the proof of lemma \ref{A:L1}. The rest of the dependencies are as in the previous proof. 
+
+Theorem \ref{A:T1} is derived from axiom \ref{A:A1} and axiom \ref{A:A2}. Corollary \ref{A:C1} is derived from axiom \ref{A:A3} and theorem \ref{A:T1}. The proof of lemma \ref{A:L1} can be modified, so as to be derived from axiom \ref{A:A3} using definition \ref{A:D1}. Finally, theorem \ref{A:T3} can be derived from lemma \ref{A:L1} and corollary \ref{A:C1}. 
+
+
+\begin{lemma}
+\label{A2:L1}
+If there is a God-like being, then there is a God-like being necessarily:
+$$
+\ex z. G(z) \imp \nec \ex x. G(x)
+$$
+\end{lemma}
+
+\begin{proof} \hfill
+\begin{prooftree}
+\AXC{$ $} \RightLabel{1}
+\UIC{$\ex z. G(z)$}\RightLabel{$\ex_E$}
+\UIC{$[\subproof_6] \quad G(\gamma)$}
+\end{prooftree}
+
+\begin{scriptsize}
+\begin{prooftree}
+\AXC{$\subproof_6$} \dashedLine
+\UIC{$G(\gamma)$}  \dottedLine \RightLabel{D\ref{D1}}
+\UIC{$\forall \varphi. [P(\lambda x.\varphi(x)) \biimp \nec \varphi(\gamma)]$}\RightLabel{$\forall_E$}
+\UIC{$P(G) \biimp \nec G(\gamma)$}
+\AXC{Axiom \ref{A:A3}} \RightLabel{}
+\UIC{$P(G)$} \RightLabel{$\biimp_E$}
+\BIC{$\nec G(\gamma)$}
+\AXC{$ $} \RightLabel{5}
+\UIC{$G(\gamma)$} \RightLabel{$\ex_I$}
+\UIC{$\ex x.G(x)$}  \RightLabel{$\imp_I^5$}
+\UIC{$G(\gamma)\imp \ex x.G(x)$} \RightLabel{$\nec_I$}
+\UIC{$\nec [G(\gamma)\imp \ex x.G(x)]$}  \RightLabel{Axiom K}
+\UIC{$\nec G(\gamma)\imp \nec \ex x.G(x)$} \RightLabel{$\imp_E$}
+\BIC{$\nec \ex x.G(x)$}\RightLabel{$\imp_I^1$}
+\UIC{$\ex z. G(z)\imp \nec \ex x.G(x)$}
+\end{prooftree}
+\end{scriptsize}
+
+
+
+\end{proof}
 
 
 \subsection{A Proof-Theoretical Explanation for the Immunity to Modal Collapse}
