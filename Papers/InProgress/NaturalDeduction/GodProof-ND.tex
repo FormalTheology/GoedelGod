@@ -1578,6 +1578,12 @@ The exchange of the implication in Scott's definition of essence for an equivale
 \section{Bj{\o}rdal's Variant in Natural Deduction}
 \label{sec:bjordal}
 
+\setcounter{axiom}{0}
+\setcounter{lemma}{0}
+\setcounter{theorem}{0}
+\setcounter{corollary}{0}
+\setcounter{definition}{0}
+
 Bj{\o}rdal's variant \citep{bjordal,fuhrmann} is another solution to the Modal Collapse. In striking contrast to other variants, Bj\o rdal's axiomatization takes god-likeness ($G_B$) as a primitive notion, upon which the notion of positive property is defined. This variant also significantly reduces the number of necessary axioms. Scott's variant of Axioms 2, 3 and 4 become unnecessary to prove the final theorem from Bj{\o}rdal's modified definitions 1, 2 and 3 and axioms 1 and 5.
 
 
@@ -1663,9 +1669,26 @@ $$
 \end{proof}
 
 
-ToDo: State corollary and prove it, instead of making a forward reference to lemma L1. Then use the corollary in lemma 1.
 
-Corollary 1 of section \ref{sec:newproof} follows by proving the positivity of godlikeness as in lemma \ref{B:L1} below. 
+\begin{corollary}
+\label{B:C1}
+Possibly, a God-like being exists:
+$$
+\pos \ex x. G(x)
+$$
+\end{corollary}
+\begin{proof}
+
+\begin{prooftree}
+\AXC{$ $}\doubleLine
+\UIC{$\nec \all x. [G_B(x) \imp G_B(x)] $}\RightLabel{ D\ref{B:D1}}\dottedLine
+\UIC{$P_B(G_B) $}\RightLabel{ $\wedge_I$}
+\AXC{Theorem \ref{T1}}
+\UIC{$ P_B(G_B) \imp \pos \ex x.G_B(x) $} \RightLabel{ $\imp_E$}
+\BIC{$\pos \ex x.G_B(x) $}
+\end{prooftree}
+
+\end{proof}
 
 
 
@@ -1714,8 +1737,8 @@ $$
 \UIC{$ [G_B(x) \imp \all\varphi. (MCP(\varphi, x) \imp \nec \ex y.\varphi(y))]$}
 \AXC{$ $} \RightLabel{ $2$}
 \UIC{$G_B(x) $}  \RightLabel{ $\imp_E$}
-\BIC{$\all\varphi. (MCP(\varphi, x) \imp \nec \ex y.\varphi(y))]$} \RightLabel{ $\forall_E$}
-\UIC{$(MCP(G_B, x) \imp \nec \ex y.G_B(y))]$}
+\BIC{$\all\varphi. (MCP(\varphi, x) \imp \nec \ex y.\varphi(y))$} \RightLabel{ $\forall_E$}
+\UIC{$(MCP(G_B, x) \imp \nec \ex y.G_B(y))$}
 \AXC{$ $}\dashedLine
 \UIC{$MCP(G_B, x) $} \RightLabel{ $\imp_E$}
 \BIC{$\nec \ex y.G_B(y)$}\RightLabel{ $\imp_I^2$}
