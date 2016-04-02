@@ -119,7 +119,7 @@ G\"odel bulit on Leibniz's work \citep{adams} and brought the ontological argume
 
 The increase in formality of the ontological argument has required a development of its basic notions. G\"odel's notion of positive property and Leibniz's notion of perfection differ. A formal distinction is that Leibniz's perfections are atomic whereas G\"odel's positive properties can consist of combinations of atomic properties \citep{fitting}[p.139]. In particular, one of G\"odel's axioms states that any conjunction of positive properties is itself positive. From this axiom, it is immediately deduced that the property of being God-like is positive. Intuitively, a (possibly infinite) conjunction of positive properties is deduced from the universal definition of God-likeness. This deductive inference is not formalizable in a finite first-order calculus. The interplay between universal quantification (in the definition of a God-like being) and infinite conjunctions (in G\"odel's axiom for positive properties) could explain why, starting with Scott \citep{scott}, this axiom of G\"odel has been replaced by another that simply assumes the positivity of the property of being god-like. 
 
-The aim of this paper is to present two detailed formalizations of ontological arguments in a natural deduction calculus. For a comprehensive introduction to natural deduction, the reader can consult \citep{prawitz}. The higher-order modal natural deduction calculus proposed here has special introduction and elimination rules for modalities, as defined in Section \ref{sec:calculus}, and is sound and complete relative to an axiomatic modal calculus, as proven in Section \ref{sec:compl-sound}.
+The aim of this paper is to present detailed formalizations of variants of ontological arguments in a natural deduction calculus. For a comprehensive introduction to natural deduction, the reader can consult \citep{prawitz}. The higher-order modal natural deduction calculus proposed here has special introduction and elimination rules for modalities, as defined in Section \ref{sec:calculus}, and is sound and complete relative to an axiomatic modal calculus, as proven in Section \ref{sec:compl-sound}.
 
 The natural deduction style was chosen for three reasons. Firstly, presentations of G\"odel's proof are typically either informal or formalized in other styles of proof calculi (e.g. Fitting's tableaux \citep{fitting} or Sobel's sentential modal calculus \citep{sobel2}). Therefore, a formalization in natural deduction is a valuable complement to the existing presentations. Secondly, it makes the ontological proof accessible to people who are familiar with a natural deduction style. Thirdly, as natural deduction is the style used by proof assistants such as Coq \citep{coq} and Isabelle \citep{isabelle}, natural deduction formalizations can be verified step-by-step in such proof assistants, and we have in fact done this.
 
@@ -1250,7 +1250,7 @@ $$
 
 
 In G\"odel's ontological proof, we are proving a restricted modal collapse, which applies to one specific formula, the existence of a God-like being. The interest in the proof naturally decreases if a consequence of the axiomatization is a modal collapse for \emph{all} formulas. Therefore, an improvement would be obtained if the modal collapse was limited only to the property of being god-like or at least to a restricted collection of properties. Several solutions to the problem of modal collapse have been proposed.
-Fitting, for instance, has argued that greater care has to be taken with the semantics of higher-order modal logics. Quantified variables may be rigid or flexible; and properties may be treated as intensional or extensional. Making the right choices may prevent the modal collapse \citep{fitting}[Sections 11.9 and 11.10]. Koon \citep{koon}, Anderson \citep{and90}[p. 292] and Sobel \citep{sobel2}[p. 133] also discuss the idea that the notion of property over which quantification is allowed might be too general and restrictions might be appropriate. Two alternative and more conservative solutions, requiring only modifications of the axioms and definitions but no change in the logic, are discussed in greater detail in the next section. 
+Fitting, for instance, has argued that greater care has to be taken with the semantics of higher-order modal logics. Quantified variables may be rigid or flexible; and properties may be treated as intensional or extensional. Making the right choices may prevent the modal collapse \citep{fitting}[Sections 11.9 and 11.10]. Koon \citep{koon}, Anderson \citep{and90}[p. 292] and Sobel \citep{sobel2}[p. 133] also discuss the idea that the notion of property over which quantification is allowed might be too general and restrictions might be appropriate. Two alternative and more conservative solutions, requiring only modifications of the axioms and definitions but no change in the logic, are discussed in greater detail in the next sections. 
 
 %A reduction from {\bf S5} to {\bf KB} is possible for these variants as well, since the technique we used to replace {\bf S5}'s iteration principle by Brouwer's reduction principle depends only on the structure of the final steps of the proof of Theorem 3, but not on details of the axioms.
 
@@ -1374,7 +1374,6 @@ $$
 Because of Anderson's emendations to Axiom 1 and Definition 1, the proof of Lemma 1 has to be modified as well. The proof shown below uses the modal axiom T to eliminate the extra box modality introduced by Anderson
 in his emended Definition 1.
 
-ToDo: Proof of $\star_7$ is missing in the proof of lemma 1 below.
 
 \begin{lemma}
 \label{A:L1}
@@ -1390,29 +1389,39 @@ $$
 \UIC{$[\subproof_6] \quad G(\gamma)$}
 \end{prooftree}
 
+
+
 \begin{scriptsize}
 \begin{prooftree}
+\AXC{$ $} \RightLabel{5}
+\UIC{$\nec P(\rho)$} \RightLabel{$\nec_E$}
+\UIC{$\omega: P(\rho)$}
+\AXC{$ $} \RightLabel{4}
+\UIC{$\omega: G(y)$}  \dottedLine \RightLabel{D\ref{A:D1}}
+\UIC{$\omega: \forall \varphi. [P(\lambda x.\varphi(x)) \biimp \nec \varphi(\gamma)]$}\RightLabel{$\forall_E$}
+\UIC{$\omega: P(\rho) \biimp \nec \rho(y)$}\RightLabel{$\biimp_E$}
+\BIC{$\omega: \nec \rho(y)$}\RightLabel{$\nec_E$}
+\UIC{$\omega: \rho(y)$} \RightLabel{$\imp_I^4$}
+\UIC{$\omega: G(y) \imp \rho(y)$}\RightLabel{$\forall_I$}
+\UIC{$\omega: \forall y.(G(y) \imp \rho(y))$}\RightLabel{$\nec_I$}
+\UIC{$\nec \forall y.(G(y) \imp \rho(y))$} \RightLabel{$\imp_I^5$}
+\UIC{$\nec P(\rho)\imp \nec \forall y .(G(y)\imp \rho(y))$} \RightLabel{$\imp_E$}
+
 \AXC{$\subproof_6$} \dashedLine
-\UIC{$G(\gamma)$}  \dottedLine \RightLabel{D\ref{A:D1}}
+\UIC{$G(\gamma)$} \RightLabel{}\dottedLine \RightLabel{D\ref{A:D1}}
 \UIC{$\forall \varphi. [P(\lambda x.\varphi(x)) \biimp \nec \varphi(\gamma)]$}\RightLabel{$\forall_E$}
 \UIC{$P(\lambda x.\rho(x)) \biimp \nec \rho(\gamma)$}
-\AXC{$ $} \RightLabel{5}
-\UIC{$\nec \rho(\gamma)$} \RightLabel{$\imp_E$}
-\BIC{$P(\lambda x.\rho(x))$} 
 \AXC{$ $} \RightLabel{6}
-\UIC{$G(y) $}\dottedLine \RightLabel{D\ref{A:D1}}
-\UIC{$\forall \varphi. [P(\lambda x.\varphi(x)) \biimp \nec \varphi(y)]$}
-\UIC{$[P(\lambda x.\rho(x)) \biimp \nec \rho(y)]$}
-\BIC{$\nec \rho(y)$}\RightLabel{$\nec_E$}
-\UIC{$\omega':  \rho(y)$}\RightLabel{$\imp_I^6$}
-\UIC{$\omega':  G(y)\imp \rho(y)$}\RightLabel{$\forall_I$}
-\UIC{$\omega':  \forall y. (G(y)\imp \rho(y))$}\RightLabel{$\nec_I$}
-\UIC{$\nec \forall y. (G(y)\imp \rho(y))$}\RightLabel{$\imp_I^5$}
-\UIC{$[\subproof_7] \quad \nec \rho(\gamma)\imp \nec \forall y. (G(y)\imp \rho(y))$}
+\UIC{$\nec\rho(\gamma)$} \RightLabel{}
+\BIC{$P(\rho)$} \RightLabel{$\imp_E$}
+
+\AXC{Axiom \ref{A:A4}} \dashedLine
+\UIC{$P(\rho)\imp \nec P(\rho)$} \RightLabel{$\imp_E$}
+\BIC{$\nec P(\rho)$} \RightLabel{$\imp_E$}
+\BIC{$\nec \forall y .(G(y)\imp \rho(y))$}\RightLabel{$\imp_I^6$}
+\UIC{$[\subproof_7] \qquad \nec\rho(\gamma) \imp \nec \forall y.(G(y) \imp \rho(y))$}\RightLabel{$\forall_I$}
 \end{prooftree}
 \end{scriptsize}
-
-
 
 
 %implication for equivalence in essence: 
@@ -1429,7 +1438,7 @@ $$
 \UIC{$  G(\gamma)$}  \RightLabel{D\ref{A:D1}}
 \UIC{$ \all \varphi. [P(\varphi)\biimp \nec \varphi(\gamma)]$}  \RightLabel{$\all_E$}
 \UIC{$ P(\varphi)\biimp \nec \varphi(\gamma)$}  \RightLabel{$\biimp_E$}
-\BIC{$ \nec \varphi(\gamma)$} \RightLabel{$\nec_I$}
+\BIC{$ \nec \varphi(\gamma)$} \RightLabel{$\imp_I^7$}
 \UIC{$[\subproof_8] \quad \nec  \forall y. [G(y)\imp \varphi(y)]\imp \nec \varphi(\gamma)$}
 \end{prooftree}
 \end{small}
@@ -1447,7 +1456,7 @@ $$
 \AXC{$\subproof_6$} \dashedLine
 \UIC{$G(\gamma)$}\dottedLine \RightLabel{D\ref{A:D1}}
 \UIC{$\forall \varphi.(P(\varphi) \biimp \nec \varphi(\gamma))$}\RightLabel{$\forall_E$}
-\UIC{$P(E) \biimp \nec E(\gamma)$}\RightLabel{$\imp_E$}
+\UIC{$P(E) \biimp \nec E(\gamma)$}\RightLabel{$\biimp_E$}
 \BIC{$\nec E(\gamma)$}
     \AXC{Axiom T} \dashedLine
     \UIC{$\nec E(\gamma) \imp E(\gamma)$} \RightLabel{$\imp_E$}
@@ -1578,11 +1587,11 @@ The exchange of the implication in Scott's definition of essence for an equivale
 \section{Bj{\o}rdal's Variant in Natural Deduction}
 \label{sec:bjordal}
 
-\setcounter{axiom}{0}
+
 \setcounter{lemma}{0}
 \setcounter{theorem}{0}
 \setcounter{corollary}{0}
-\setcounter{definition}{0}
+
 
 Bj{\o}rdal's variant \citep{bjordal,fuhrmann} is another solution to the Modal Collapse. In striking contrast to other variants, Bj\o rdal's axiomatization takes god-likeness ($G_B$) as a primitive notion, upon which the notion of positive property is defined. This variant also significantly reduces the number of necessary axioms. Scott's variant of Axioms 2, 3 and 4 become unnecessary to prove the final theorem from Bj{\o}rdal's modified definitions 1, 2 and 3 and axioms 1 and 5.
 
@@ -1652,7 +1661,7 @@ $$
 \UIC{$\omega:  \neg G_B(x) $} \RightLabel{$\imp_I$}
 \UIC{$\omega:  G_B(x) \imp \neg G_B(x) $} \RightLabel{$\all_I$}
 \UIC{$\omega:  \all x.(G_B(x) \imp \neg G_B(x)) $}  \RightLabel{$\nec_I$}
-\UIC{$ \nec \all x.(G_B(x) \imp \neg G_B(x)) $}\RightLabel{$\wedge_I$}
+\UIC{$ \nec \all x.(G_B(x) \imp \neg G_B(x)) $}\dottedLine  \RightLabel{D\ref{B:D1}}
 \UIC{$P(\neg G_B)$}
 \AXC{Axiom 1} \dashedLine
 \UIC{$\all \varphi. [P(\neg G_B) \imp \neg P(G_B)]$} \RightLabel{$\all_E$}
