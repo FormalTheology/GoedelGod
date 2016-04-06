@@ -1484,9 +1484,11 @@ This proof is identical to the proof of Theorem 3 shown in Section \ref{sec:newp
 \end{proof}
 
 
-We know from \citep{hajek} that Anderson's emendation also makes Axioms 4 and 5 derivable from the other axioms and definitions. Discussions about the redundancy of these two axioms started with an earlier (and wrong claim) claim by Magari \citep{magari} w.r.t. Scott's variant, and the redundancy was the topic of a long controversy \citep{controversy} between H\'ajek and Anderson. The proof presented above still uses Axioms 4 and 5, though, since the intention here was to show that Anderson's emendation requires only a minimal modification of the proofs presented in the previous sections.
+H\'ajek \citep{hajek} claimed that Anderson's emendation makes Axioms 4 and 5 derivable from the other axioms and definitions. Discussions about the redundancy of these two axioms started with an earlier (and wrong claim) claim by Magari \citep{magari} w.r.t. Scott's variant, and the redundancy was the topic of a long controversy \citep{controversy} between H\'ajek and Anderson. As confirmed in Subsection \ref{sec:NonRedundantAnderson}, H\'ajek's claim is correct. Nevertheless, the proof presented above still uses Axioms 4 and 5, since this section's intention is to show that Anderson's emendation requires only a minimal modification of the proofs presented in the previous sections.
 
-\subsection{A shorter proof without redundant axioms}
+\subsection{A Shorter Proof without Superfluous Axioms}
+\label{sec:NonRedundantAnderson}
+
 
 \setcounter{axiom}{0}
 \setcounter{lemma}{0}
@@ -1494,10 +1496,8 @@ We know from \citep{hajek} that Anderson's emendation also makes Axioms 4 and 5 
 \setcounter{corollary}{0}
 \setcounter{definition}{0}
 
-There is an alternative proof of theorem \ref{A:T3} using only Anderson's axioms \ref{A:A1}, \ref{A:A2} and \ref{A:A3} as well as definition \ref{A:D1}. %Hájek1996 could be helpful.
-The proof requires only a modification of the proof of lemma \ref{A:L1}. The rest of the dependencies are as in the previous proof. 
-
-Theorem \ref{A:T1} is derived from axiom \ref{A:A1} and axiom \ref{A:A2}. Corollary \ref{A:C1} is derived from axiom \ref{A:A3} and theorem \ref{A:T1}. The proof of lemma \ref{A:L1} can be modified, so as to be derived from axiom \ref{A:A3} using definition \ref{A:D1}. Finally, theorem \ref{A:T3} can be derived from lemma \ref{A:L1} and corollary \ref{A:C1}. 
+In order to construct a natural deduction proof of theorem \ref{A:T3} using only Anderson's axioms \ref{A:A1}, \ref{A:A2} and \ref{A:A3} as well as Anderson's Definition \ref{A:D1}, it suffices to modify 
+the proof of Lemma \ref{A:L1}, which is the only part of the argument that depended on axioms \ref{A:A4} and \ref{A:A5} and definitions \ref{A:D2} and \ref{A:D3}. Such a modified proof is shown below. 
 
 
 \begin{lemma}
@@ -1528,16 +1528,19 @@ $$
 \UIC{$G(\gamma)$} \RightLabel{$\ex_I$}
 \UIC{$\ex x.G(x)$}  \RightLabel{$\imp_I^5$}
 \UIC{$G(\gamma)\imp \ex x.G(x)$} \RightLabel{$\nec_I$}
-\UIC{$\nec [G(\gamma)\imp \ex x.G(x)]$}  \RightLabel{Axiom K}
+\UIC{$\nec [G(\gamma)\imp \ex x.G(x)]$} \doubleLine  \RightLabel{(using Axiom K)}
 \UIC{$\nec G(\gamma)\imp \nec \ex x.G(x)$} \RightLabel{$\imp_E$}
 \BIC{$\nec \ex x.G(x)$}\RightLabel{$\imp_I^1$}
 \UIC{$\ex z. G(z)\imp \nec \ex x.G(x)$}
 \end{prooftree}
 \end{scriptsize}
 
-
-
 \end{proof}
+
+
+\noindent
+Proofs of other lemmas, theorems and corollaries remain the same as in the previous section. Theorem \ref{A:T1} is derived from axioms \ref{A:A1} and \ref{A:A2}. Corollary \ref{A:C1} is derived from Axiom \ref{A:A3} and Theorem \ref{A:T1}. Finally, Theorem \ref{A:T3} can be derived from Corollary \ref{A:C1} and Lemma \ref{A:L1}, which, as shown above, depends only on Axiom \ref{A:A3} and Definition \ref{A:D1}. Therefore, confirming H\'ajek's claim, axioms \ref{A:A4} and \ref{A:A5} and definitions \ref{A:D2} and \ref{A:D3} are superfluous: they are not needed to prove Theorem \ref{A:T3}. 
+
 
 
 \subsection{A Proof-Theoretical Explanation for the Immunity to Modal Collapse}
