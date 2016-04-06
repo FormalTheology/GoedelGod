@@ -1708,21 +1708,21 @@ $$
 \ex z. G_B(z) \imp \nec \ex x. G_B(x)
 $$
 \end{lemma}
-\begin{proof}
+\begin{proof}\hfill
 \begin{small}
 \begin{prooftree}
-\AXC{$ $}
+\AXC{$ $} \RightLabel{$2$}
 \UIC{$G_B(x) $} 
 \AXC{$ $}\doubleLine
 \UIC{$\nec \all x. [G_B(x) \imp G_B(x)] $}\RightLabel{ D\ref{B:D1}}\dottedLine
 \UIC{$P_B(G_B) $}\RightLabel{ $\wedge_I$}
-\BIC{$G_B(x) \wedge P_B(G_B) $}
+\BIC{$[\subproof_{10}] \qquad G_B(x) \wedge P_B(G_B) $}
 \end{prooftree}
 \end{small}
 
 \begin{small}
 \begin{prooftree}
-\AXC{$ $}\dashedLine
+\AXC{$ \subproof_{10} $}\dashedLine
 \UIC{$G_B(x) \wedge P_B(G_B) $}
 \AXC{$ $}\RightLabel{ $1$}
 \UIC{$(\psi(x) \wedge P_B (\psi))$} \RightLabel{ $\wedge_E$}
@@ -1730,7 +1730,7 @@ $$
 \UIC{$\nec\all y.(G_B(y) \imp \psi(y))$} \RightLabel{ $\imp_I^1$}
 \UIC{$(\psi(x) \wedge P_B (\psi))\imp \nec\all y.(G_B(y) \imp \psi(y))$}\RightLabel{ $\forall_I$}
 \UIC{$\all\psi.((\psi(x) \wedge P_B (\psi)) \imp \nec\all y.(G_B(y) \imp \psi(y)))$} \RightLabel{ $\wedge_I$}
-\BIC{$MCP(G_B, x) $} 
+\BIC{$[\subproof_{11}] \qquad MCP(G_B, x) $} 
 
 \end{prooftree}
 \end{small}
@@ -1748,7 +1748,7 @@ $$
 \UIC{$G_B(x) $}  \RightLabel{ $\imp_E$}
 \BIC{$\all\varphi. (MCP(\varphi, x) \imp \nec \ex y.\varphi(y))$} \RightLabel{ $\forall_E$}
 \UIC{$(MCP(G_B, x) \imp \nec \ex y.G_B(y))$}
-\AXC{$ $}\dashedLine
+\AXC{$ \subproof_{11} $}\dashedLine
 \UIC{$MCP(G_B, x) $} \RightLabel{ $\imp_E$}
 \BIC{$\nec \ex y.G_B(y)$}\RightLabel{ $\imp_I^2$}
 \UIC{$G_B(x) \imp \nec \ex y.G_B(y)$}
