@@ -548,7 +548,7 @@ In this section we present a detailed formalization of Scott's proof in the natu
 
 Scott's version of G\"odel's proof depends on five axioms that circumscribe the notion of \emph{positive} property, with positivity being denoted by the undefined second-order predicate symbol $P$. Additionally, three definitions are used for establishing the notions of \emph{God-like}, \emph{essence} and \emph{necessary existence}. Technically, these definitions only abbreviate certain complex formulas. The argument would still go through if all defined symbols were replaced by the complex formulas they define. This observation is particularly relevant in the case of \emph{necessary existence}. Since this notion of ``existence'' is just an abbreviation, G\"odel's argument is not susceptible to Kant's criticism against Anselm's argument (that existence should not be treated as a predicate). In G\"odel's proof, existence is properly denoted by the existential quantifier. It is, therefore, unfortunately misleading to refer to the defined predicate symbol $E$ as ``necessary existence'', when in fact it is just a convenient abbreviation.
 
-In addition to the five axioms and three definitions that pertain specifically to the argument, the proof also uses {\bf S5}'s iteration principle (in the proof of Lemma 2) and the equality axiom of reflexivity (in the proof of Theorem 1). The use of reflexivity could be avoided, but we chose to use it because it allows the construction of a shorter proof.
+In addition to the five axioms and three definitions that pertain specifically to the argument, the proof also uses {\bf S5}'s iteration principle (in the proof of Lemma 2) and the axiom of reflexivity for equality (in the proof of Theorem 1). The use of reflexivity could be avoided, but we chose to use it because it allows the construction of a shorter proof.
 
 
 \begin{axiom}
@@ -890,7 +890,7 @@ $$
 
 \section{A New Proof}\label{sec:newproof}
 
-In this section we present a new proof in {\bf KB}. This proof uses exactly the same axioms and definitions of Scott's proof shown in the previous sections, but it uses neither the equality axiom of reflexivity nor {\bf S5}'s modal iteration principle. Instead, it relies only on Brouwer's reduction principle (for Theorem 3). The new proof is also shorter than Scott's proof. 
+In this section we present a new proof in {\bf KB}. This proof uses exactly the same axioms and definitions of Scott's proof shown in the previous sections, but it uses neither the axiom of reflexivity for equality nor {\bf S5}'s modal iteration principle. Instead, it relies only on Brouwer's reduction principle (for Theorem 3). The new proof is also shorter than Scott's proof. 
 
 
 
@@ -1300,7 +1300,7 @@ $$
 $$
 \end{theorem}
 \begin{proof}
-This proof is omitted, because any of the proofs of Theorem 1 in Sections \ref{sec:scott} and \ref{sec:newproof} would suffice to prove this theorem with only small modifications: the equivalence of axiom \ref{A1} would not need to be reduced to an implication by conjunction elimination. 
+This proof is omitted, because any of the proofs of Theorem 1 in Sections \ref{sec:scott} and \ref{sec:newproof} would suffice to prove this theorem with only a small modification: the equivalence of axiom \ref{A1} would not need to be reduced to an implication by conjunction elimination. 
 \end{proof}
 
 
@@ -1593,7 +1593,7 @@ The exchange of the implication in Scott's definition of essence for an equivale
 \setcounter{corollary}{0}
 
 
-Bj{\o}rdal's variant \citep{bjordal,fuhrmann} is another solution to the Modal Collapse. In striking contrast to other variants, Bj\o rdal's axiomatization takes god-likeness ($G_B$) as a primitive notion, upon which the notion of positive property is defined. This variant also significantly reduces the number of necessary axioms. Scott's variant of Axioms 2, 3 and 4 become unnecessary to prove the final theorem from Bj{\o}rdal's modified definitions 1, 2 and 3 and axioms 1 and 5.
+Bj{\o}rdal's variant \citep{bjordal,fuhrmann} is another solution to the Modal Collapse. In striking contrast to other variants, Bj\o rdal's axiomatization takes god-likeness ($G_B$) as a primitive notion, upon which the notion of positive property is defined. This variant also significantly reduces the number of necessary axioms. Scott's variants of Axioms 2, 3 and 4 become unnecessary to prove the final theorem from Bj{\o}rdal's modified definitions 1, 2 and 3 and axioms 1 and 5.
 
 
 \setcounter{definition}{0}
@@ -1605,7 +1605,7 @@ P_B(\varphi) \equiv \nec \all x. [G_B(x) \imp \varphi(x)]
 $$
 \end{definition}
 
-Bj{\o}rdal refines the notion of essence (which he calls maximal composite) by restricting the attention to positive properties only. He calls this refined notion of essence a maximal composite.
+Bj{\o}rdal refines the notion of essence by restricting the attention to positive properties only. He calls this refined notion of essence a maximal composite.
 
 \begin{definition}[Changed]
 \label{B:D2}
