@@ -1607,10 +1607,12 @@ $$
 
 Bj{\o}rdal refines the notion of essence by restricting the attention to positive properties only. He calls this refined notion of essence a maximal composite.
 
+\newcommand{\MCP}{\mathit{MCP}}
+
 \begin{definition}[Changed]
 \label{B:D2}
 A \emph{maximal composite} of an individual's positive properties is a positive property possessed by the individual and necessarily implying every positive property possessed by the individual.
-$$MCP(\varphi, x) \equiv (\varphi(x) \wedge P_B (\varphi)) \wedge \all\psi.((\psi(x) \wedge P_B (\psi)) \imp \nec\all y.(\varphi(y) \imp \psi(y)))
+$$\MCP(\varphi, x) \equiv (\varphi(x) \wedge P_B (\varphi)) \wedge \all\psi.((\psi(x) \wedge P_B (\psi)) \imp \nec\all y.(\varphi(y) \imp \psi(y)))
 $$
 \end{definition}
 
@@ -1618,7 +1620,7 @@ $$
 \label{B:D3}
 \emph{Necessary existence} of an individual is the necessary exemplification of all its maximal composites.
 $$
-NE_B (x) \equiv \all\varphi. (MCP(\varphi, x) \imp \nec \ex y.\varphi(y))
+NE_B (x) \equiv \all\varphi. (\MCP(\varphi, x) \imp \nec \ex y.\varphi(y))
 $$
 \end{definition}
 
@@ -1731,7 +1733,7 @@ $$
 \UIC{$(\psi(x) \wedge P_B (\psi))\imp \nec\all y.(G_B(y) \imp \psi(y))$}\RightLabel{ $\forall_I$}
 \UIC{$\all\psi.((\psi(x) \wedge P_B (\psi)) \imp \nec\all y.(G_B(y) \imp \psi(y)))$} \RightLabel{ $\wedge_I$}
 \BIC{$G_B(x) \wedge P_B(G_B) \wedge \all\psi.((\psi(x) \wedge P_B (\psi)) \imp \nec\all y.(G_B(y) \imp \psi(y))) $} \RightLabel{ D\ref{B:D2} }\dottedLine
-\UIC{$[\subproof_{11}] \qquad MCP(G_B, x) $} 
+\UIC{$[\subproof_{11}] \qquad \MCP(G_B, x) $} 
 
 \end{prooftree}
 \end{small}
@@ -1742,15 +1744,15 @@ $$
 \AXC{Axiom \ref{A:A5'}}\dashedLine
 \UIC{$P_B (NE_B)$} \RightLabel{ D\ref{B:D1}}\dottedLine
 \UIC{$\nec \all x. [G_B(x) \imp NE_B(x)]$}\RightLabel{ D\ref{B:D3}}\dottedLine
-\UIC{$\nec \all x. [G_B(x) \imp \all\varphi. (MCP(\varphi, x) \imp \nec \ex y.\varphi(y))]$}  \RightLabel{ $\nec_E$}
-\UIC{$\all x. [G_B(x) \imp \all\varphi. (MCP(\varphi, x) \imp \nec \ex y.\varphi(y))]$}  \RightLabel{ $\forall_E$}
-\UIC{$ [G_B(x) \imp \all\varphi. (MCP(\varphi, x) \imp \nec \ex y.\varphi(y))]$}
+\UIC{$\nec \all x. [G_B(x) \imp \all\varphi. (\MCP(\varphi, x) \imp \nec \ex y.\varphi(y))]$}  \RightLabel{ $\nec_E$}
+\UIC{$\all x. [G_B(x) \imp \all\varphi. (\MCP(\varphi, x) \imp \nec \ex y.\varphi(y))]$}  \RightLabel{ $\forall_E$}
+\UIC{$ [G_B(x) \imp \all\varphi. (\MCP(\varphi, x) \imp \nec \ex y.\varphi(y))]$}
 \AXC{$ $} \RightLabel{ $2$}
 \UIC{$G_B(x) $}  \RightLabel{ $\imp_E$}
-\BIC{$\all\varphi. (MCP(\varphi, x) \imp \nec \ex y.\varphi(y))$} \RightLabel{ $\forall_E$}
-\UIC{$(MCP(G_B, x) \imp \nec \ex y.G_B(y))$}
+\BIC{$\all\varphi. (\MCP(\varphi, x) \imp \nec \ex y.\varphi(y))$} \RightLabel{ $\forall_E$}
+\UIC{$(\MCP(G_B, x) \imp \nec \ex y.G_B(y))$}
 \AXC{$ \subproof_{11} $}\dashedLine
-\UIC{$MCP(G_B, x) $} \RightLabel{ $\imp_E$}
+\UIC{$\MCP(G_B, x) $} \RightLabel{ $\imp_E$}
 \BIC{$\nec \ex y.G_B(y)$}\RightLabel{ $\imp_I^2$}
 \UIC{$G_B(x) \imp \nec \ex y.G_B(y)$}
 \end{prooftree}
