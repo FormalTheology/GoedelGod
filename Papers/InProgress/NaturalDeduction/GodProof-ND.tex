@@ -119,7 +119,7 @@ G\"odel bulit on Leibniz's work \citep{adams} and brought the ontological argume
 
 The increase in formality of the ontological argument has required a development of its basic notions. G\"odel's notion of positive property and Leibniz's notion of perfection differ. A formal distinction is that Leibniz's perfections are atomic whereas G\"odel's positive properties can consist of combinations of atomic properties \citep{fitting}[p.139]. In particular, one of G\"odel's axioms states that any conjunction of positive properties is itself positive. From this axiom, it is immediately deduced that the property of being God-like is positive. Intuitively, a (possibly infinite) conjunction of positive properties is deduced from the universal definition of God-likeness. This deductive inference is not formalizable in a finite first-order calculus. The interplay between universal quantification (in the definition of a God-like being) and infinite conjunctions (in G\"odel's axiom for positive properties) could explain why, starting with Scott \citep{scott}, this axiom of G\"odel has been replaced by another that simply assumes the positivity of the property of being god-like. 
 
-The aim of this paper is to present detailed formalizations of variants of ontological arguments in a natural deduction calculus. For a comprehensive introduction to natural deduction, the reader can consult \citep{prawitz}. The higher-order modal natural deduction calculus proposed here has special introduction and elimination rules for modalities, as defined in Section \ref{sec:calculus}, and is sound and complete relative to an axiomatic modal calculus, as proven in Section \ref{sec:compl-sound}.
+The aim of this paper is to present detailed formalizations of variants of ontological arguments in a natural deduction calculus. For a comprehensive introduction to natural deduction, the reader can consult \citep{prawitz} or \citep{gabbay}. The higher-order modal natural deduction calculus proposed here has special introduction and elimination rules for modalities, as defined in Section \ref{sec:calculus}, and is sound and complete relative to an axiomatic modal calculus, as proven in Section \ref{sec:compl-sound}.
 
 The natural deduction style was chosen for three reasons. Firstly, presentations of G\"odel's proof are typically either informal or formalized in other styles of proof calculi (e.g. Fitting's tableaux \citep{fitting} or Sobel's sentential modal calculus \citep{sobel2}). Therefore, a formalization in natural deduction is a valuable complement to the existing presentations. Secondly, it makes the ontological proof accessible to people who are familiar with a natural deduction style. Thirdly, as natural deduction is the style used by proof assistants such as Coq \citep{coq} and Isabelle \citep{isabelle}, natural deduction formalizations can be verified step-by-step in such proof assistants, and we have in fact done this.
 
@@ -1804,6 +1804,9 @@ Fitting, M. 2002.  {\itshape Types, Tableaus, and G\"odel's God}, Kluwer Academi
 \bibitem[{\itshape Fuhrmann(2005)}]{fuhrmann}
 Fuhrmann, A. 2005.
 Existenz und Notwendigkeit -- Kurt G\"odel's Axiomatische Theologie, in Olsson e.J., Schr\"oder-Heister, P. and Spohn, W. (eds.) Logik in der Philosophie, pp. 349-374, Synchr.-Wissenschafts-Verlag.
+
+\bibitem[{\itshape Gabbay(1996)}]{gabbay}
+Gabbay, D. 1996. {\itshape Labelled Deductive Systems: volume I}. New York: Oxford Science publications. 
 
 \bibitem[{\itshape Goedel(1970)}]{Goedel} 
 G\"odel, K. Ontological Proof. In Kurt G\"odel Collected Works vol. III. Ed. Feferman et al., pp. 403--404, 139, 145 or {\itshape Appendix A. Notes in Kurt G\"odel's hand} in [Sobel 2001]. 
