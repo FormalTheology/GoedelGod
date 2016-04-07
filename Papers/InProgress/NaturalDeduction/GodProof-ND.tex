@@ -182,11 +182,11 @@ The calculus having only the rules shown in Figures \ref{fig:PropositionalRules}
 
 \s\s
 \infer[\bot_E]{A}{ \bot }
-\s
+\s\s
 \infer[\imp_I]{A \imp B}{ B }
-\s
+\s\s
 \infer[\imp_I^n]{A \imp B}{ \infer*{B}{\infer[n]{A}{}} }
-\s
+\s\s
 \infer[\imp_E]{B}{A & A \imp B}
 
 \vspace{2em}
@@ -223,13 +223,13 @@ The calculus having only the rules shown in Figures \ref{fig:PropositionalRules}
 
 \vspace{1em}
 
-\s
+\s\s
 \infer[\all_I]{\all x_{\tau}. A[x]}{ A[\alpha] }
-\s
+\s\s
 \infer[\all_E]{A[t]}{ \all x_{\tau}. A[x] }
 \s\s
 \infer[\ex_I]{\ex x_{\tau}. A[x]}{ A[t] }
-\s
+\s\s
 \infer[\ex_E]{A[\beta]}{ \ex x_{\tau}. A[x] }
 
 \vspace{1em}
@@ -252,14 +252,14 @@ if $\rho$ is a $\ex_E$ inference introducing a variable $\beta$, then any occurr
 
 \vspace{1em}
 
-\s\s\s\s
+\s\s\s\s\s\s
 \infer[\nec_I]{\nec A}{\omega: \fbox{\infer*{A}{}} }
 \s\s\s\s
 \infer[\nec_E]{w: \fbox{ \infer*{}{A} } }{\nec A}
 
 \vspace{2em}
 
-\s\s\s\s
+\s\s\s\s\s\s
 \infer[\pos_I]{\pos A}{w: \fbox{\infer*{A}{}} }
 \s\s\s\s
 \infer[\pos_E]{\omega: \fbox{ \infer*{}{A} } }{\pos A}
@@ -577,7 +577,7 @@ $$
 \end{theorem}
 \begin{proof} \hfill
 
-
+\begin{small}
 \begin{prooftree}
 \AXC{$ $} \RightLabel{5}
 \UIC{$P(\rho)$}
@@ -591,8 +591,9 @@ $$
 	    	\UIC{$P(\rho) \wedge \nec (\all x. \rho(x) \imp x = x) \imp P(\lambda x. x = x)$} 
 		\BIC{$[\subproof_1] \qquad P(\lambda x. x = x)\scott$} 
 \end{prooftree}
+\end{small}
 
-
+\begin{small}
 \begin{prooftree}
 \AXC{$ $} \RightLabel{5}
 \UIC{$P(\rho)$}
@@ -613,8 +614,9 @@ $$
 	    	\UIC{$P(\rho) \wedge \nec (\all x. \rho(x) \imp x \neq x) \imp P(\lambda x. x \neq x)$} 
 		\BIC{$[\subproof_2] \qquad P(\lambda x. x \neq x)\scott$} 
 \end{prooftree}
+\end{small}
 
-
+\begin{small}
 \begin{prooftree}
 		\AXC{$\subproof_2$} \dashedLine
 		\UIC{$P(\lambda x. x \neq x)\scott$}    
@@ -625,8 +627,9 @@ $$
 				\BIC{$\neg P(\lambda x. x \neq x)$} \RightLabel{$\neg_E$}
 			\BIC{$\bot$}
 \end{prooftree}
+\end{small}
 
-
+\begin{small}
 \begin{prooftree}
 \AXC{$ $} \RightLabel{4}
 \UIC{$\nec \neg \ex x. \rho(x)$} \RightLabel{$\nec_E$}
@@ -647,7 +650,7 @@ $$
   		\UIC{$ P(\rho) \imp \pos \ex x.\rho(x)$} \RightLabel{$\all_I$}
       \UIC{$ \all \varphi. [P(\varphi) \imp \pos \ex x.\varphi(x)] $}
 \end{prooftree}
-
+\end{small}
 \end{proof}
 
 
@@ -712,7 +715,7 @@ $$
 \end{theorem}
 \begin{proof}\hfill
 
-\begin{small}
+\begin{scriptsize}
 \begin{prooftree}
 
 
@@ -736,10 +739,10 @@ $$
 	   \UIC{$\neg\neg P(\rho)$} \RightLabel{$\neg\neg_E$}
 	   \UIC{$[\subproof_3] \qquad P(\rho)$}
 	   \end{prooftree}
-\end{small}
+\end{scriptsize}
 
 
-\begin{small}
+\begin{scriptsize}
 \begin{prooftree}
 \AXC{$ $} \RightLabel{1}
 \UIC{$G(\gamma)$}
@@ -771,7 +774,7 @@ $$
 		\UIC{$G(\gamma) \imp \ess{G}{\gamma}$} \RightLabel{$\all_I$}
 		\UIC{$\all x. G(x) \imp \ess{G}{x}$}
 \end{prooftree}
-\end{small}
+\end{scriptsize}
 
 \end{proof}
 
@@ -925,6 +928,7 @@ $$
 \end{theorem}
 \begin{proof} \hfill
 
+\begin{scriptsize}
 \begin{prooftree}
 \AXC{$ $} \RightLabel{3}
 \UIC{$P(\rho)$} 
@@ -944,9 +948,9 @@ $$
 \UIC{$(P(\rho) \wedge \nec \all x.[\rho(x) \imp \neg \rho(x)]) \imp P(\lambda x. \neg \rho(x))$} \RightLabel{$\imp_E$}
 \BIC{$[\subproof_5]\qquad P(\lambda x. \neg \rho(x))$} \RightLabel{$\imp_E$}
 \end{prooftree}
+\end{scriptsize}
 
-
-
+\begin{small}
 \begin{prooftree}
 \AXC{$\subproof_5$} \dashedLine
 \UIC{$P(\lambda x. \neg \rho(x))$} \RightLabel{$\imp_E$}
@@ -964,7 +968,7 @@ $$
 \UIC{$ \all \varphi. [P(\varphi) \imp \pos \ex x.\varphi(x)] $} 
 
 \end{prooftree}
-
+\end{small}
 
 \end{proof}
 
@@ -1066,7 +1070,7 @@ $$
 \UIC{$[\subproof_6] \qquad G(\gamma)$}
 \end{prooftree}
 
-\begin{scriptsize}
+\begin{tiny}
 \begin{prooftree}
 \AXC{$ $} \RightLabel{2}
 \UIC{$\neg P(\rho)$} 
@@ -1091,7 +1095,7 @@ $$
 \BIC{$\nec P(\rho)$}\RightLabel{$\imp_I^3$}
 \UIC{$[\subproof_7] \qquad \rho(\gamma) \imp \nec\; P(\rho)$}
 \end{prooftree}
-\end{scriptsize}
+\end{tiny}
 
 
 \begin{small}
@@ -1389,9 +1393,21 @@ $$
 \UIC{$[\subproof_6] \quad G(\gamma)$}
 \end{prooftree}
 
+\begin{prooftree}
+\AXC{$\subproof_6$} \dashedLine
+\UIC{$G(\gamma)$} \RightLabel{}\dottedLine \RightLabel{D\ref{A:D1}}
+\UIC{$\forall \varphi. [P(\lambda x.\varphi(x)) \biimp \nec \varphi(\gamma)]$}\RightLabel{$\forall_E$}
+\UIC{$P(\lambda x.\rho(x)) \biimp \nec \rho(\gamma)$}
+\AXC{$ $} \RightLabel{6}
+\UIC{$\nec\rho(\gamma)$} \RightLabel{}
+\BIC{$P(\rho)$} \RightLabel{$\imp_E$}
+
+\AXC{Axiom \ref{A:A4}} \dashedLine
+\UIC{$P(\rho)\imp \nec P(\rho)$} \RightLabel{$\imp_E$}
+\BIC{$[\subproof_7] \quad \nec P(\rho)$} \RightLabel{$\imp_E$}
+\end{prooftree}
 
 
-\begin{scriptsize}
 \begin{prooftree}
 \AXC{$ $} \RightLabel{5}
 \UIC{$\nec P(\rho)$} \RightLabel{$\nec_E$}
@@ -1407,25 +1423,16 @@ $$
 \UIC{$\nec \forall y.(G(y) \imp \rho(y))$} \RightLabel{$\imp_I^5$}
 \UIC{$\nec P(\rho)\imp \nec \forall y .(G(y)\imp \rho(y))$} \RightLabel{$\imp_E$}
 
-\AXC{$\subproof_6$} \dashedLine
-\UIC{$G(\gamma)$} \RightLabel{}\dottedLine \RightLabel{D\ref{A:D1}}
-\UIC{$\forall \varphi. [P(\lambda x.\varphi(x)) \biimp \nec \varphi(\gamma)]$}\RightLabel{$\forall_E$}
-\UIC{$P(\lambda x.\rho(x)) \biimp \nec \rho(\gamma)$}
-\AXC{$ $} \RightLabel{6}
-\UIC{$\nec\rho(\gamma)$} \RightLabel{}
-\BIC{$P(\rho)$} \RightLabel{$\imp_E$}
-
-\AXC{Axiom \ref{A:A4}} \dashedLine
-\UIC{$P(\rho)\imp \nec P(\rho)$} \RightLabel{$\imp_E$}
-\BIC{$\nec P(\rho)$} \RightLabel{$\imp_E$}
+\AXC{$\subproof_7$} \dashedLine
+\UIC{$\nec P(\rho)$}
 \BIC{$\nec \forall y .(G(y)\imp \rho(y))$}\RightLabel{$\imp_I^6$}
-\UIC{$[\subproof_7] \qquad \nec\rho(\gamma) \imp \nec \forall y.(G(y) \imp \rho(y))$}\RightLabel{$\forall_I$}
+\UIC{$[\subproof_8] \qquad \nec\rho(\gamma) \imp \nec \forall y.(G(y) \imp \rho(y))$}\RightLabel{$\forall_I$}
 \end{prooftree}
-\end{scriptsize}
+
 
 
 %implication for equivalence in essence: 
-\begin{small}
+%\begin{small}
 \begin{prooftree}
 \AXC{Axiom \ref{A:A3}} 
 \UIC{$P(G)$}
@@ -1439,13 +1446,13 @@ $$
 \UIC{$ \all \varphi. [P(\varphi)\biimp \nec \varphi(\gamma)]$}  \RightLabel{$\all_E$}
 \UIC{$ P(\varphi)\biimp \nec \varphi(\gamma)$}  \RightLabel{$\biimp_E$}
 \BIC{$ \nec \varphi(\gamma)$} \RightLabel{$\imp_I^7$}
-\UIC{$[\subproof_8] \quad \nec  \forall y. [G(y)\imp \varphi(y)]\imp \nec \varphi(\gamma)$}
+\UIC{$[\subproof_9] \quad \nec  \forall y. [G(y)\imp \varphi(y)]\imp \nec \varphi(\gamma)$}
 \end{prooftree}
-\end{small}
+%\end{small}
 
-\begin{small}
+\begin{tiny}
 \begin{prooftree}
-\AXC{$\subproof_7$ and $\subproof_8$} \dashedLine
+\AXC{$\subproof_8$ and $\subproof_9$} \dashedLine
 \UIC{$\nec \varphi(\gamma)\biimp \nec  \forall y. [G(y)\imp \varphi(y)] $}
 \UIC{$\forall \varphi. (\nec \varphi(\gamma)\biimp \nec  \forall y. [G(y)\imp \varphi(y)]) $}
 \AXC{$ $} \RightLabel{6}
@@ -1466,7 +1473,7 @@ $$
 \BIC{$\nec \ex x. G(x)$} \RightLabel{$\imp_I^1$}
 \UIC{$\ex z. G(z) \imp \nec \ex x. G(x)$}
 \end{prooftree}
-\end{small}
+\end{tiny}
 \end{proof}
 
 
