@@ -1562,7 +1562,7 @@ Anderson's change in the definition of essence adds an extra box modality, which
 \UIC{$\all y.[G(y) \imp \all \psi. (\nec \psi(y) \biimp \nec \all x. (G(x) \imp \psi(x)))]$} \doubleLine
 %\UIC{$\all y.[G(y) \imp (\nec A(y) \biimp \nec \all x. (G(x) \imp A(x)))]$} \RightLabel{$A$ is constant}
 \UIC{$\all y.[G(y) \imp (\nec A \biimp \nec \all x. (G(x) \imp A))]$} \doubleLine
-\UIC{$[\subproof_9] \qquad \ex y.G(y) \imp (\nec A \biimp \nec \all x. (G(x) \imp A))$}
+\UIC{$[\subproof_{10}] \qquad \ex y.G(y) \imp (\nec A \biimp \nec \all x. (G(x) \imp A))$}
 \end{prooftree}
 \end{small}
 
@@ -1570,7 +1570,7 @@ Anderson's change in the definition of essence adds an extra box modality, which
 
 \begin{small}
 \begin{prooftree}
-\AXC{$ \subproof_9 $}\dashedLine
+\AXC{$ \subproof_{10} $}\dashedLine
 \UIC{$\ex y.G(y) \imp (\nec A \biimp \nec \all x. (G(x) \imp A))$}
 \AXC{Theorem 3}\dashedLine
 \UIC{$\nec \ex y.G(y)$} \RightLabel{$\nec_E$}
@@ -1728,13 +1728,13 @@ $$
 \AXC{$ $}\doubleLine
 \UIC{$\nec \all x. [G_B(x) \imp G_B(x)] $}\RightLabel{ D\ref{B:D1}}\dottedLine
 \UIC{$P_B(G_B) $}\RightLabel{ $\wedge_I$}
-\BIC{$[\subproof_{10}] \qquad G_B(x) \wedge P_B(G_B) $}
+\BIC{$[\subproof_{11}] \qquad G_B(x) \wedge P_B(G_B) $}
 \end{prooftree}
 \end{small}
 
 \begin{small}
 \begin{prooftree}
-\AXC{$ \subproof_{10} $}\dashedLine
+\AXC{$ \subproof_{11} $}\dashedLine
 \UIC{$G_B(x) \wedge P_B(G_B) $}
 \AXC{$ $}\RightLabel{ $1$}
 \UIC{$(\psi(x) \wedge P_B (\psi))$} \RightLabel{ $\wedge_E$}
@@ -1743,7 +1743,7 @@ $$
 \UIC{$(\psi(x) \wedge P_B (\psi))\imp \nec\all y.(G_B(y) \imp \psi(y))$}\RightLabel{ $\forall_I$}
 \UIC{$\all\psi.((\psi(x) \wedge P_B (\psi)) \imp \nec\all y.(G_B(y) \imp \psi(y)))$} \RightLabel{ $\wedge_I$}
 \BIC{$G_B(x) \wedge P_B(G_B) \wedge \all\psi.((\psi(x) \wedge P_B (\psi)) \imp \nec\all y.(G_B(y) \imp \psi(y))) $} \RightLabel{ D\ref{B:D2} }\dottedLine
-\UIC{$[\subproof_{11}] \qquad \MCP(G_B, x) $} 
+\UIC{$[\subproof_{12}] \qquad \MCP(G_B, x) $} 
 
 \end{prooftree}
 \end{small}
@@ -1761,7 +1761,7 @@ $$
 \UIC{$G_B(x) $}  \RightLabel{ $\imp_E$}
 \BIC{$\all\varphi. (\MCP(\varphi, x) \imp \nec \ex y.\varphi(y))$} \RightLabel{ $\forall_E$}
 \UIC{$(\MCP(G_B, x) \imp \nec \ex y.G_B(y))$}
-\AXC{$ \subproof_{11} $}\dashedLine
+\AXC{$ \subproof_{12} $}\dashedLine
 \UIC{$\MCP(G_B, x) $} \RightLabel{ $\imp_E$}
 \BIC{$\nec \ex y.G_B(y)$}\RightLabel{ $\imp_I^2$}
 \UIC{$G_B(x) \imp \nec \ex y.G_B(y)$}
