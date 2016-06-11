@@ -1,0 +1,18 @@
+%---------------------------------------------------------
+include('Axioms.ax').
+%--- axioms ID and MP
+thf(id,axiom,(vld@(all@^[P:$i>$o]:(cond@P@P)))).
+thf(mp,axiom,
+ (vld@(all@^[P:$i>$o]:(all@^[Q:$i>$o]:
+  (impl@(cond@P@Q)@(impl@P@Q)))))).
+%--- type declarations
+thf(horse,type,(horse:mu>$i>$o)).
+thf(wings,type,(wings:mu>$i>$o)).
+thf(fly,type,(fly:mu>$i>$o)).
+thf(pegasus,type,(pegasus:mu)).
+%--- the statements 
+thf(ax1,axiom,
+ (vld@(all_va@^[X:mu]:(impl@(horse@X)@(not@(wings@X)))))).
+thf(ax2,axiom,(vld@(horse@pegasus))).
+thf(ax3,axiom,(vld@(wings@pegasus))).
+%---------------------------------------------------------

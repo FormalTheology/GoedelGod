@@ -1,0 +1,263 @@
+% this style was created by Martin Weiglhofer and is based on the
+% style written by Philippe Dreuw and Thomas Deselaers from RWTH
+
+\ProvidesPackage{beamerthemeFUBerlin} 
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\RequirePackage{tangocolors}
+\selectcolormodel{cmyk}
+\mode<presentation>
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\def\webpage{\setbeamertemplate{webpage}}
+\def\insertwebpage{\usebeamertemplate*{webpage}}
+
+\def\mail{\setbeamertemplate{mail}}
+\def\insertmail{\usebeamertemplate*{mail}}
+
+\def\logoleft{\setbeamertemplate{logoleft}}
+\def\insertlogoleft{\usebeamertemplate*{logoleft}}
+\def\logoright{\setbeamertemplate{logoright}}
+\def\insertlogoright{\usebeamertemplate*{logoright}}
+
+
+\definecolor{tugred}{rgb}{1.0,0.04,0.43}
+\definecolor{tugblue}{rgb}{0.31,0.51,0.74}
+\definecolor{tuggreen}{rgb}{0.61,0.73,0.35}
+\definecolor{tugmagenta}{rgb}{0.50,0.39,0.64}
+\definecolor{tugorange}{rgb}{0.97,0.59,0.27}
+
+% custom colors
+\definecolor{i6blue}{cmyk}{1,0.305,0,0.06}
+\definecolor{i6bluedark}{rgb}{0.0156,0.2578,0.5625} 
+% http://www.colorsontheweb.com/colorwizard.asp#wizard, used start set: #0066cc
+\definecolor{i6colorscheme1}{HTML}{000000}  % e.g. for block title
+\definecolor{i6colorblockbg}{HTML}{0033cc}
+\definecolor{i6colorblockfg}{HTML}{FCE94F}
+\definecolor{i6colorscheme2}{HTML}{000000}  % e.g. title in headline
+\definecolor{i6colorscheme3}{HTML}{C3DFFF}  % e.g. for poster background
+\definecolor{i6colorscheme4}{HTML}{000000} 
+%\definecolor{i6colorschemeHeadline}{HTML}{0033cc}  % for headline bg
+\definecolor{i6colorschemeHeadline}{HTML}{000000}  % for headline bg
+%\definecolor{i6colorschemeFootline}{HTML}{000000}  % for headline bg
+\definecolor{i6colorschemeFootline}{HTML}{100D09}  % for headline bg
+\definecolor{bluelight}{HTML}{DCE6F2}
+\definecolor{graydark}{HTML}{545152}
+\definecolor{redso}{HTML}{EE2623}
+% headline colors and fonts
+\setbeamercolor{headline}{fg=i6colorschemeHeadline}
+\setbeamercolor{title in headline}{fg=i6colorschemeHeadline}
+\setbeamercolor{author in headline}{fg=i6colorscheme1}
+\setbeamercolor{institute in headline}{fg=graydark}
+\setbeamercolor{logo in headline}{fg=black,bg=lightgray}
+\setbeamercolor{separation line}{bg=i6colorscheme1}
+%End custom colors
+
+\setbeamercolor*{palette primary}{fg=gray!60!black,bg=gray!30!white}
+\setbeamercolor*{palette secondary}{fg=tugred!70!black,bg=gray!15!white}
+\setbeamercolor*{palette tertiary}{bg=tugred!80!black,fg=gray!10!white}
+\setbeamercolor*{palette quaternary}{fg=tugred,bg=gray!5!white}
+
+\setbeamercolor*{sidebar}{fg=tugred,bg=gray!15!white}
+
+\setbeamercolor*{palette sidebar primary}{fg=tugred!10!black}
+\setbeamercolor*{palette sidebar secondary}{fg=white}
+\setbeamercolor*{palette sidebar tertiary}{fg=tugred!50!black}
+\setbeamercolor*{palette sidebar quaternary}{fg=gray!10!white}
+
+\setbeamercolor*{titlelike}{parent=palette primary}
+\setbeamercolor{titlelike}{parent=pallette primary,fg=gray}
+\setbeamercolor{frametitle}{fg=gray,bg=white}
+\setbeamercolor{frametitle right}{bg=gray!60!white}
+
+%\setbeamercolor{headline}{bg=gray!15!white}
+\setbeamercolor{separation line}{bg=black}
+%\setbeamercolor{lower separation line head}{bg=black}
+%
+\setbeamercolor{footline}{bg=gray!15!white}
+\setbeamerfont{footline}{size=\large,series=\tt}
+\setbeamercolor{upper separation line foot}{bg=black}
+\setbeamercolor{lower separation line foot}{bg=black}
+
+\setbeamercolor*{separation line}{}
+\setbeamercolor*{fine separation line}{}
+
+%\setbeamercolor{block title}{size=large,series=bf,use=structure,fg=white,bg=tugblue}
+%\setbeamercolor{block title alerted}{size=large,series=bf,use=alerted text,fg=white,bg=tugorange}
+%\setbeamercolor{block title example}{use=example text,fg=white,bg=example text.fg!75!black}
+
+\setbeamercolor{block body}{parent=normal text,use=block title,bg=block title.bg!10!bg}
+\setbeamercolor{block body alerted}{parent=normal text,use=block title alerted,bg=block title alerted.bg!30!bg}
+\setbeamercolor{block body example}{parent=normal text,use=block title example,bg=block title example.bg!10!bg}
+
+\setbeamercolor{itemize item}{fg=tugblue}
+\setbeamercolor{itemize subitem}{fg=tugblue}
+\setbeamercolor{itemize subsubitem}{fg=tugblue}
+
+%\setbeamercolor{section/subsection in toc}{fg=tugblue}
+\setbeamercolor{section in toc}{fg=black,bg=white}
+\setbeamercolor{subsection in toc}{fg=black,bg=white}
+
+\setbeamercolor{structure}{fg=tugblue}
+\setbeamertemplate{navigation symbols}{}  % no navigation on a poster
+\setbeamertemplate{items}[square]
+
+%\setbeamertemplate{bibliography item}[square]
+\setbeamertemplate{bibliography item}[text]
+
+% \setbeamercolor{headline}{fg=tabutter,bg=gray!15!white}
+% \setbeamercolor{footline}{fg=tabutter, bg=ta3gray}
+% \setbeamerfont{footline}{size=\large,series=\tt}
+% \setbeamercolor{separation line}{bg=ta2orange}
+% \setbeamercolor{title in headline}{fg=tabutter}
+% \setbeamercolor{author in headline}{fg=ta2orange}
+% \setbeamercolor{institute in headline}{fg=ta3orange}
+
+% \setbeamercolor{framesubtitle}{fg=ta3orange, bg=ta2gray}
+% \setbeamercolor{author in head/foot}{fg=ta2orange, bg=black}
+% \setbeamercolor{title in head/foot}{fg=ta2orange, bg=black}
+
+% \setbeamercolor*{normal text}{fg=tachameleon, bg=ta3gray}
+% \setbeamercolor*{block body}{bg=ta3aluminium,fg=black}
+% \setbeamercolor*{block title}{fg=taorange,bg=ta2gray}
+% \setbeamerfont{block title}{size=\large,series=\bf}
+% \setbeamercolor{upper separation line head}{fg=ta2orange}
+
+% \setbeamercolor*{example body}{fg=ta3aluminium,bg=black}
+% \setbeamercolor*{example text}{fg=ta3aluminium,bg=black}
+% \setbeamercolor*{example title}{bg=taorange,fg=ta2gray}
+
+% \setbeamercolor{alerted text}{fg=ta3gray}
+
+% %\setbeamercolor{example text}{fg=taorange}
+% \setbeamercolor{structure}{fg=ta3skyblue}
+
+% \setbeamertemplate{itemize items}[triangle]
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\setbeamertemplate{block begin}{
+  \vskip.75ex
+  \begin{beamercolorbox}[rounded=true,shadow=true,leftskip=1cm,colsep*=.75ex]{block title}%
+    \usebeamerfont*{block title}\insertblocktitle
+  \end{beamercolorbox}%
+  {\ifbeamercolorempty[bg]{block body}{}{\nointerlineskip\vskip-0.5pt}}%
+  \usebeamerfont{block body}%
+  \begin{beamercolorbox}[rounded=true,shadow=true,colsep*=.75ex,sep=.75ex,vmode]{block body}%
+    \ifbeamercolorempty[bg]{block body}{\vskip-.25ex}{\vskip-.75ex}\vbox{}%
+  }
+  \setbeamertemplate{block end}{
+  \end{beamercolorbox}
+}
+
+\setbeamertemplate{block alerted begin}{
+  \vskip.75ex
+  \begin{beamercolorbox}[rounded=true,shadow=true,leftskip=1cm,colsep*=.75ex]{block title alerted}%
+    \usebeamerfont*{block title alerted}\insertblocktitle
+  \end{beamercolorbox}%
+  {\ifbeamercolorempty[bg]{block alerted body}{}{\nointerlineskip\vskip-0.5pt}}%
+  \usebeamerfont{block body alerted}%
+  \begin{beamercolorbox}[rounded=true,shadow=true,colsep*=.75ex,sep=.75ex,vmode]{block body alerted}%
+    \ifbeamercolorempty[bg]{block body alerted}{\vskip-.25ex}{\vskip-.75ex}\vbox{}%
+  }
+
+\setbeamertemplate{block alerted end}{
+  \end{beamercolorbox}
+}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\setbeamertemplate{headline}{  
+  \leavevmode
+
+  \begin{beamercolorbox}[wd=\paperwidth]{headline}
+    \begin{columns}[T]
+      \begin{column}{.01\paperwidth}
+      \end{column} 
+      \begin{column}{.13\paperwidth}
+          \insertlogoleft
+          \includegraphics[height=10cm]{ijcaiLogo.jpg}
+          \insertlogoleft
+      \end{column}
+      \begin{column}{.62\paperwidth}
+        \vskip8ex
+        %\raggedleft
+        \centering
+        \usebeamercolor{title in headline}{\color{fg}\textbf{\LARGE{\inserttitle}}\\[2ex]}
+        \usebeamercolor{author in headline}{\color{fg}\large{\insertauthor}\\[.5ex]}
+        \usebeamercolor{institute in headline}{\color{fg}\large{\insertinstitute}}     
+      \end{column}
+      \begin{column}{.26\paperwidth}
+        \vskip.4cm
+        \begin{center}
+          \insertlogoright
+\includegraphics[height=5cm]{$HOME/chris/trunk/tex/sty/FU/FULogo-RGB}\insertlogoright
+          \\[1.5em]
+          \textcolor{black}{\textbf{\footnotesize Supported by the German Research Foundation \\  (grant BE2501/9-1)}}
+          %\includegraphics[height=4cm]{images/logo}
+          %\includegraphics[width=.7\linewidth]{}
+        \end{center}
+        %\vskip1ex
+      \end{column}
+      \begin{column}{.03\paperwidth}
+      \end{column}
+    \end{columns}
+  \end{beamercolorbox}
+
+  \begin{beamercolorbox}[wd=\paperwidth]{lower separation line head}
+    \rule{0pt}{2pt}
+  \end{beamercolorbox}
+
+  %\vskip-5ex
+}
+
+%  \setbeamertemplate{headline}{  
+%    \leavevmode
+%    \begin{beamercolorbox}[sep=0.5cm,wd=.8\paperwidth]{headline}
+%      \usebeamercolor{title in headline}{\raggedleft\color{fg}\textbf{\LARGE{\inserttitle}}\\[1ex]}
+%      \usebeamercolor{author in headline}{\raggedleft\color{fg}\large{\insertauthor}\\[1ex]}
+%      \usebeamercolor{institute in headline}{\raggedleft\color{fg}\large{\insertinstitute}\\[1ex]}     
+%    \end{beamercolorbox}%
+%    \begin{beamercolorbox}[wd=.2\paperwidth]{logo in headline}
+%      \centering
+%      \LARGE{LOGO}
+%    \end{beamercolorbox}  
+
+
+%}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\setbeamertemplate{footline}{
+  \begin{beamercolorbox}[wd=\paperwidth]{upper separation line foot}
+    \rule{0pt}{2pt}
+  \end{beamercolorbox}
+  
+  \leavevmode%
+  \begin{beamercolorbox}[ht=4ex,leftskip=1cm,rightskip=1cm]{author in head/foot}%
+    \texttt{\bf \textcolor{blue}{http://christoph-benzmueller.de}}
+    \hfill
+    IJCAI 2013, Beijing, China
+    \hfill 
+    \texttt{\bf \textcolor{blue}{c.benzmueller@fu-berlin.de}}
+    \vskip1ex
+  \end{beamercolorbox}
+  \vskip0pt%
+  \begin{beamercolorbox}[wd=\paperwidth]{lower separation line foot}
+    \rule{0pt}{2pt}
+  \end{beamercolorbox}
+}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% Display a grid to help align images ... and it looks nice with this color scheme
+\beamertemplategridbackground[1cm]
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\mode<all>
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%% Local Variables: 
+%%% mode: latex
+%%% TeX-PDF-mode: t
+%%% TeX-master: "poster"
+%%% End: 

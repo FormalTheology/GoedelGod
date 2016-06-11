@@ -1,0 +1,41 @@
+%---- file: Axioms.ax -----------------------------------
+%--- type mu for individuals
+thf(mu,type,(mu:$tType)).
+%--- reserved constant for selection function f
+thf(f,type,(f:$i>($i>$o)>$i>$o)).
+%--- `exists in world' predicate for varying domains;
+%--- for each v we get a non-empty subdomain eiw@v
+thf(eiw,type,(eiw:$i>mu>$o)).
+thf(nonempty,axiom,(![V:$i]:?[X:mu]:(eiw@V@X))).
+%--- negation, disjunction, material implication
+thf(not,type,(not:($i>$o)>$i>$o)).
+thf(or,type,(or:($i>$o)>($i>$o)>$i>$o)).
+thf(impl,type,(impl:($i>$o)>($i>$o)>$i>$o)).
+thf(not_def,definition,(not = (^[A:$i>$o,X:$i]:~(A@X)))).
+thf(or_def,definition,(or 
+ = (^[A:$i>$o,B:$i>$o,X:$i]:((A@X)|(B@X))))).
+thf(impl_def,definition,(impl 
+ = (^[A:$i>$o,B:$i>$o,X:$i]:((A@X)=>(B@X))))).
+%--- conditionality
+thf(cond,type,(cond:($i>$o)>($i>$o)>$i>$o)).
+thf(cond_def,definition,(cond
+ = (^[A:$i>$o,B:$i>$o,X:$i]:![W:$i]:((f@X@A@W)=>(B@W))))).
+%--- quantification (constant dom., varying dom., prop.)
+thf(all_co,type,(all_co: (mu>$i>$o)>$i>$o)).
+thf(all_va,type,(all_va:(mu>$i>$o)>$i>$o)).
+thf(all,type,(all:(($i>$o)>$i>$o)>$i>$o)).
+thf(all_co_def,definition,(all_co 
+ = (^[A:mu>$i>$o,W:$i]:![X:mu]:(A@X@W)))).
+thf(all_va_def,definition,(all_va 
+ = (^[A:mu>$i>$o,W:$i]:![X:mu]:((eiw@W@X)=>(A@X@W))))).
+thf(all_def,definition,(all 
+ = (^[A:($i>$o)>$i>$o,W:$i]:![P:$i>$o]:(A@P@W)))).
+%--- box operator based on conditionality
+thf(box,type,(box:($i>$o)>$i>$o)).
+thf(box_def,definition,(box 
+ = (^[A:$i>$o]:(cond@(not@A)@A)))).
+%--- notion of validity of a conditional logic formula
+thf(vld,type,(vld:($i>$o)>$o)).
+thf(vld_def,definition,(vld 
+ = (^[A:$i>$o]:![S:$i]:(A@S)))).
+%---- end file: Axioms.ax -------------------------------
