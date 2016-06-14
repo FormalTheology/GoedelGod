@@ -34,4 +34,3 @@ begin
  abbreviation valid :: "\<sigma> \<Rightarrow> bool" ("\<lfloor>_\<rfloor>"[7]8) 
   where "\<lfloor>p\<rfloor> \<equiv> \<forall>w. p w"
 end
-\<^bold>\<not>   
