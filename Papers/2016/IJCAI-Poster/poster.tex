@@ -38,434 +38,53 @@
 
   %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%5
   \graphicspath{{figures/}}
-  \title[Automating Quantified Conditional Logics in HOL]{Automating Quantified Conditional Logics in HOL}
-  \author[Benzmüller]{Christoph Benzmüller}
-%  \institute[Freie Universität Berlin]{Freie Universität Berlin,   Germany}
+  \title[Automating Quantified Conditional Logics in HOL]{The
+    Inconsistency in \\ G{\"o}del's Ontological Argument \\
+--- A Success Story for AI in Metaphysics ---}
+  \author[]{Christoph Benzm{\"u}ller$^1$ and Bruno Woltzenlogel Paleo}
+  \institute[]{{\footnotesize $^1$Supported by the German Research Foundation   (grant BE2501/12-1,2)}}
   %\date{Jul. 31th, 2007}
 
 
   %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%5
   \begin{document}
-  \begin{frame}{} 
+  \begin{frame}{}
   \vskip-3ex
     \begin{columns}[t]
-      \begin{column}{.32\linewidth}
-        \begin{block}{\large Abstract} \footnotesize
-          A notion of \textbf{quantified conditional logics (QCLs)} is
-          provided that includes quantification over
-          \textbf{individual and propositional variables}. The former
-          is supported with respect to \textbf{constant and variable
-            domain semantics}. In addition, a \textbf{sound and
-            complete embedding of this framework in classical
-            higher-order logic (HOL)} is presented. Using prominent examples
-          from the literature it is demonstrated how this embedding
-          enables \textbf{effective automation of reasoning} within
-          (object-level) and about (meta-level) quantified conditional
-          logics with \textbf{off-the-shelf higher-order theorem
-            provers and model finders}.
-        \end{block}
-        \begin{block}{\large Overall Motivation and Contribution}
-          \footnotesize QCLs are very expressive non-classical logics;
-          they have many applications; no provers have been
-          available so far.  However,
-          \begin{itemize}
-           \item \textbf{\textcolor{blue}{QCLs are fragments of HOL (with Henkin semantics)}}
-           \item \textbf{\textcolor{blue}{and they can easily be automated as such,}}
-           \item \textbf{\textcolor{blue}{they inherit important meta- resp. proof-theoretical
-             properties (cut-elimination, compactness, etc.), and}}
-           \item \textbf{\textcolor{blue}{they can easily be combined with other logics in 
-             HOL.}}
-           \end{itemize}
-           {This reserach is part of a larger project which
-             takes HOL as starting point for studying classical and
-             non-classical logics and their combinations.} \\[-1.5ex] \ \hfill
- \chriscite{[Benzm\"uller'13]}
-        \vskip.1ex
+      \begin{column}{.49\linewidth}
+        \begin{block}{\large Motivation} 
+          \includegraphics[width=\textwidth]{VisionLeibniz}
         \end{block}
       \end{column}
       \hfill
-      \begin{column}{.32\linewidth}
-        \begin{block}{\large Quantified Conditional Logics (QCLs)}
-          \footnotesize  
-          \colorbox{GreenYellow}{
-            \begin{minipage}{.93\textwidth} 
-              \begin{align*}
-                \textcolor{red}{\varphi},\textcolor{red}{\psi} ::= \quad & \textcolor{red}{P} \mid \textcolor{red}{k(X^1,\ldots,X^n)} \mid \textcolor{red}{\neg \varphi} \mid \textcolor{red}{\varphi \vee \psi} \mid \textcolor{red}{\varphi \Rightarrow \psi} \mid \\
-                & \textcolor{red}{\forall^{co} X \varphi} \mid \textcolor{red}{\forall^{va} X \varphi} \mid  \textcolor{red}{\forall P \varphi}  \\[-1em]
-              \end{align*}
-            \end{minipage}
-          }
-          \vskip1.5ex
-          \textbf{Interpretation}: $M = \langle S,f,D,D',Q,I
-          \rangle$ where $S$ is a set of 'worlds',
-          $f: S \times 2^{S} \mapsto 2^{S}$ is the selection function,
-          $D\not=\emptyset$ is a set of \emph{individuals} (constant
-          domain), $D'$ is a function that assigns a
-          subset $D'(w)\not=\emptyset$ of $D$ to each world $w$
-          (varying domains), $Q\not=\emptyset$ is a collection of subsets
-          of $W$ (prop.~domain), and $I$ is an interpretation function
-          s.t. for each predicate symbol $k$, $I(k,w) \subseteq
-          D^n$. \\
-          \vskip1ex
-          \textbf{Satisfiability} of $\textcolor{red}{\varphi}$ (denoted as $M,g,s
-          \models \textcolor{red}{\varphi}$) for an interpretation $M$, a world $s \in
-          S$, and a variable assignment $g = (g^{i},g^{p})$:
-          \begin{align*}
-            M,g,s \models\;& \textcolor{red}{k(X^1,...\,,X^n)} \text{\;iff\;} \langle g^{i}(\textcolor{red}{X^1}),...\,, g^{i}(\textcolor{red}{X^n}) \rangle \in I(k,w)\\
-            M,g,s \models\;& \textcolor{red}{P}  \text{\;iff\;} s \in g^{p}(\textcolor{red}{P})
-            \\
-            M,g,s \models\;& \textcolor{red}{\neg \varphi} \text{\;iff\;} M,g,s \not\models \textcolor{red}{\varphi} \, (\text{that is, not } M,g,s \models \textcolor{red}{\varphi})
-            \\
-            M,g,s \models\;& \textcolor{red}{\varphi \vee \psi} \text{\;iff\;} M,g,s \models \textcolor{red}{\varphi} \text{ or } M,g,s \models \textcolor{red}{\psi}
-            \\
-            M,g,s \models\;& \textcolor{red}{\forall^{co} X \varphi} \text{\;iff\;} M,([d/X]g^{i},g^{p}), s \models \textcolor{red}{\varphi} \text{ for all } d \in D
-            \\
-            M,g,s \models\;& \textcolor{red}{\forall^{va} X \varphi} \text{\;iff\;} M,([d/X]g^{i},g^{p}), s \models \textcolor{red}{\varphi} \text{ for all } d \in D'(s)
-            \\
-            M,g,s \models\;& \textcolor{red}{\forall P \varphi} \text{\;iff\;} M,(g^{i},[p/P]g^{p}),s \models \textcolor{red}{\varphi} \text{ for all } p \in Q
-            \\
-            M,g,s \models\;& \textcolor{red}{\varphi \Rightarrow \psi} \text{\;iff\;}
-            M,g,t \models \textcolor{red}{\psi} \text{ for all } t \in S \text{ s.t.}  t \in f(s,[\textcolor{red}{\varphi}]) \\ & \text{ where } [\textcolor{red}{\varphi}] = \{u \mid M,g,u \models \textcolor{red}{\varphi}\}
-          \end{align*}
-          $M \models^{\qcl} \textcolor{red}{\varphi}$ iff $M,g,s \models \textcolor{red}{\varphi}$ for all $s$, $g$. $\models \textcolor{red}{\varphi}$
-          iff $M \models^{\qcl} \textcolor{red}{\varphi}$ for all
-          $M$.\\
-          \vskip1ex
-          \chriscite{[Stalnaker'68],[Delgrande'98]}
+      \begin{column}{.48\linewidth}
+        \begin{block}{\large Application: Gödel's Ontological Argument
+          for the Existence of God}
+           \includegraphics[width=\textwidth]{GoedelInconsistency}
         \end{block}
       \end{column}
-      \hfill
-      \begin{column}{.32\linewidth}
-        \begin{block}{\large Classical Higher-order Logic (HOL)}
-          \footnotesize
-
-          Types \hfill ${\alpha,\beta} ::= {\iota}
-          \textcolor{gray}{\,(worlds)}\mid
-          {\mu} \textcolor{gray}{\,(indiv.)} \mid {o}
-          \textcolor{gray}{\,(Booleans)}\mid {\alpha \rightarrow
-            \beta}$ \\[1em]
-          \colorbox{GreenYellow}{
-          \begin{minipage}{.93\textwidth} 
-          \begin{align*}
-            \textcolor{blue}{s},\textcolor{blue}{t} ::=  & \textcolor{blue}{c_{\alpha}} \mid \textcolor{blue}{X_{\alpha}} \mid \textcolor{blue}{(\lambda X_{\alpha}s_{\beta})_{\alpha \typearrow \beta}} \mid 
-            \textcolor{blue}{(s_{\alpha \typearrow \beta}\, t_\alpha)_{\beta}} \mid \\
-            & \textcolor{blue}{(\neg_{o \typearrow o}\;s_{o})_o} \mid \textcolor{blue}{(s_o \vee_{o\typearrow o \typearrow o} t_o)_o}
-            \mid \textcolor{blue}{(\Pi_{(\alpha \typearrow o)\typearrow o}\; s_{\alpha
-              \typearrow o})_o}  \\[-1em]
-          \end{align*}
-          Note:~Binder~notation~\textcolor{blue}{$\forall X_\alpha
-            t_o$}~as~syntactic~sugar~for~\textcolor{blue}{$\Pi_{(\alpha
-              \typearrow o)\typearrow o} \lambda X_\alpha t_o$}\, 
-        \end{minipage}} \vskip2.5ex \textbf{Frame}: collection
-      $\{D_{\alpha}\}_{\alpha \in {T}}$ s.t. $D_{o} = \{T,F\}$,
-      $D_\itype \not= \emptyset$ and $D_\utype \not= \emptyset$
-      arbitrary, and $D_{\alpha \typearrow \beta}$ are collections of
-      total functions from
-      $D_{\alpha}$ to $D_{\beta}$.\\
-      \vskip1.5ex \textbf{Interpretation}: Tuple $\langle
-      \{D_{\alpha}\}_{\alpha \in {T}}, I \rangle$ where
-      $\{D_{\alpha}\}_{\alpha \in {T}}$ is a frame and where function
-      $I$ maps each typed constant symbol $\textcolor{blue}{c_{\alpha}}$ to an
-      appropriate element of $D_{\alpha}$, called the
-      \emph{denotation} of $c_{\alpha}$. The denotations of
-      $\textcolor{blue}{\neg},\textcolor{blue}{\vee}$ and $\textcolor{blue}{\Pi_{(\alpha \typearrow o)\typearrow o}}$ are
-      always chosen as usual.\\
-      \vskip1.5ex 
-      An interpretation is a \textbf{Henkin model} iff there
-      is a valuation function ${V}$ s.t.  ${V}(\phi,\textcolor{blue}{s_{\alpha}}) \in
-      D_{\alpha}$ for each variable assignment $\phi$ and term
-      $\textcolor{blue}{s_{\alpha}}$, and the following conditions are satisfied:
-      ${V}(\phi,\textcolor{blue}{X_{\alpha}}) = \phi(\textcolor{blue}{X_\alpha})$, ${V}(\phi,\textcolor{blue}{c_{\alpha}}) =
-      I(\textcolor{blue}{c_{\alpha}})$, ${V}(\phi,\textcolor{blue}{l_{\alpha \typearrow \beta}\,
-      r_{\alpha}}) = ({V}(\phi,\textcolor{blue}{l_{\alpha \typearrow \beta}})
-      {V}(\phi,\textcolor{blue}{r_{\alpha}}))$, and ${V}(\phi,\textcolor{blue}{\lambda
-      X_{\alpha}s_{\beta}})$ represents the function from $D_{\alpha}$
-      into $D_{\beta}$ whose value for each argument $z \in
-      D_{\alpha}$ is ${V}(\phi[z/\textcolor{blue}{X_{\alpha}}], \textcolor{blue}{s_\beta})$. % , where
-%       $\phi[z/X_\alpha]$ is that assignment
-%       s.t. $\phi[z/X_\alpha](X_\alpha) = z$ and
-%       $\phi[z/X_\alpha]Y_\beta = \phi Y_\beta$ when $Y_\beta
-%       \not=X_\alpha$.
-      If an interpretation is an {Henkin model} the function ${V}$ is
-      uniquely determined. \\
-      \vskip1ex
-      ${H}\models^{HOL} \textcolor{blue}{s}$ iff ${V}(\phi,\textcolor{blue}{s}) = T$ for all $\phi$.
-      $\models \textcolor{blue}{s}$ iff ${H}\models^{HOL} \textcolor{blue}{s}$ for all
-      ${H}$. \\
-      \vskip2.7ex
-        \chriscite{[Church'40],[Andrews'72a/b],[Benzm\"ullerEtAl'04]
-          \vskip.5ex
-        }
-        \end{block}
-      \end{column}
-    \end{columns}
-    \vskip2ex
-    \begin{block}{\large Embedding QCLs in HOL --- In other words: QCLs are simple Fragments of HOL!} \footnotesize
-      \begin{columns}[t]
-        \begin{column}{.31\textwidth}
-          The mapping $\textcolor{blue}{\lfloor \textcolor{red}{\cdot} \rfloor}$ identifies
-          \qcl\ formulas $\textcolor{red}{\varphi}$ with HOL terms $\textcolor{blue}{\lfloor
-          \textcolor{red}{\varphi} \rfloor}$ of type $\proptype:=\itype \typearrow o$. The mapping is recursively defined:
-          \[
-          \begin{array}{lcl}
-            \textcolor{blue}{\lfloor \textcolor{red}{P} \rfloor} &=& \textcolor{blue}{P_\proptype} \\
-            \textcolor{blue}{\lfloor \textcolor{red}{k(X^1,\ldots,X^n)} \rfloor} % &=& \lfloor k \rfloor \lfloor X^1 \rfloor \ldots \lfloor X^n \rfloor \\
-            &=& \textcolor{blue}{k_{u^n \typearrow \proptype}\,X^1_\utype \ldots X^n_\utype}\\
-            \textcolor{blue}{\lfloor \textcolor{red}{\neg \varphi} \rfloor} &=&  \textcolor{blue}{\neg_{\proptype\typearrow \proptype}}\,\lfloor \textcolor{red}{\varphi} \rfloor \\
-            \textcolor{blue}{\lfloor \textcolor{red}{\varphi\vee \psi} \rfloor} &=&  \textcolor{blue}{\vee_{\proptype \typearrow \proptype \typearrow \proptype}}\,\lfloor\textcolor{red}{\varphi} \rfloor \lfloor \textcolor{red}{\psi} \rfloor\\
-            \textcolor{blue}{\lfloor \textcolor{red}{\varphi\Rightarrow \psi} \rfloor} &=&  \textcolor{blue}{\Rightarrow_{\proptype \typearrow \proptype \typearrow \proptype}}\,\lfloor\textcolor{red}{\varphi} \rfloor \lfloor \textcolor{red}{\psi} \rfloor \\
-            \textcolor{blue}{\lfloor \textcolor{red}{\forall^{co} X \varphi} \rfloor} &=&   \textcolor{blue}{\Pi^{co}_{(\utype\typearrow\proptype)\typearrow\proptype}\,\lambda X_\utype} \lfloor\textcolor{red}{\varphi} \rfloor \\
-            \textcolor{blue}{\lfloor \textcolor{red}{\forall^{va} X \varphi} \rfloor} &=&  \textcolor{blue}{\Pi^{va}_{(\utype\typearrow\proptype)\typearrow\proptype}\,\lambda X_\utype} \lfloor\textcolor{red}{\varphi} \rfloor \\
-            % \end{array}\]
-            % \[
-            % \begin{array}{lcl}
-            \textcolor{blue}{\lfloor \textcolor{red}{\forall P \varphi} \rfloor} &=&  \textcolor{blue}{\Pi_{(\proptype\typearrow\proptype)\typearrow\proptype}\,\lambda P_\proptype} \lfloor\textcolor{red}{\varphi} \rfloor
-          \end{array}
-          \]
-          $\textcolor{blue}{P_\proptype}$ and $\textcolor{blue}{X^1_\utype},\ldots,\textcolor{blue}{X^n_\utype}$ are variables and
-          $\textcolor{blue}{k_{u^n \typearrow \proptype}}$ is a 
-          constant symbol.  
-        \end{column}
-        \hfill
-        \begin{column}{.31\textwidth}
-          $\textcolor{blue}{\neg_{\proptype\typearrow \proptype}}$, $\textcolor{blue}{\vee_{\proptype \typearrow
-            \proptype \typearrow \proptype}}$, $\textcolor{blue}{\Rightarrow_{\proptype \typearrow \proptype \typearrow \proptype}}$, $\textcolor{blue}{\Pi^{co,va}_{(\utype\typearrow\proptype)\typearrow\proptype}}$
-          and $\textcolor{blue}{\Pi_{(\proptype\typearrow\proptype)\typearrow\proptype}}$ realize the \qcl\ connectives in
-          HOL. They abbreviate the following HOL terms:% \footnote{Note the predicate argument $A$ of $f$ in the term for $\Rightarrow_{\proptype \typearrow \proptype \typearrow \proptype}$ and the second-order quantifier $\forall P_{\proptype}$ in the term for $\Pi_{(\proptype\typearrow\proptype)\typearrow\proptype}$. FOL encodings of both constructs, if feasible, will be less natural.}
-          \[
-          \begin{array}{ll}
-            \textcolor{blue}{\neg_{\proptype \typearrow \proptype}} &=  \textcolor{blue}{\lambda A_\proptype \lambda X_\itype \neg(A\,X)}\\
-             \textcolor{blue}{\vee_{\proptype \typearrow \proptype \typearrow \proptype}} &=  \textcolor{blue}{\lambda A_\proptype \lambda B_\proptype \lambda X_\itype (A\,X \vee B\,X)}\\
-             \textcolor{blue}{\Rightarrow_{\proptype \typearrow \proptype \typearrow \proptype}} &=  \textcolor{blue}{\lambda A_\proptype \lambda B_\proptype \lambda X_\itype \forall V_\itype (f\, X\, A\, V \rightarrow B\, V)}\\
-             \textcolor{blue}{\Pi^{co}_{(\utype\typearrow\proptype)\typearrow\proptype}} & =  \textcolor{blue}{\lambda {Q_{\utype\typearrow\proptype}}  \lambda {V_\itype}  \forall{X_\utype}  (Q\,X\,V)} \\
-             \textcolor{blue}{\Pi^{va}_{(\utype\typearrow\proptype)\typearrow\proptype}} & =  \textcolor{blue}{\lambda {Q_{\utype\typearrow\proptype}}  \lambda {V_\itype}  \forall{X_\utype}  (\exInW\,V\,X \rightarrow Q\,X\,V)} \\
-             \textcolor{blue}{\Pi_{(\proptype\typearrow\proptype)\typearrow\proptype}} & =  \textcolor{blue}{\lambda {R_{\proptype\typearrow\proptype}}  \lambda {V_\itype}  \forall {P_\proptype}  (R\,P\,V)}
-          \end{array}
-          \]
-          % Constant symbol $f$ in the mapping of $\Rightarrow$ is of type ${i
-%             \typearrow \proptype \typearrow \proptype}$. It realizes the
-%           selection function. Constant symbol $\exInW$ (for 'exists in world'),
-%           which is of type ${\itype\typearrow\utype\typearrow o}$,
-%           is associated with the varying domains. 
-          The interpretations of $\textcolor{blue}{f}$ and $\textcolor{blue}{\exInW}$ are chosen
-          appropriately. %  below,
-%           cf. Def.~\ref{def:hm}. Moreover, f
-          For the varying domains
-          non-emptiness is postulated:
-          % \begin{align*}
-             $\textcolor{blue}{\forall W_\itype \exists X_\utype (\exInW\,W\,X)}$ \\[1em]
-          % \end{align*}
-          Meta-level notion of validity defined as $
-          \textcolor{blue}{\text{vld}_{\proptype\typearrow o}} = \textcolor{blue}{\lambda A_\proptype
-          \forall S_\itype (A\, S)}$. \\
-        \end{column}
-        \hfill
-        \begin{column}{.31\textwidth}
-          \vskip-2ex
-          \colorbox{GreenYellow}{
-            \begin{minipage}{.96\textwidth}
-              \vskip1ex
-              \textbf{Theorem: Soundness and Completeness}
-                $$\models^{\qcl}
-                \textcolor{red}{\varphi} \,\, \text{ iff } \,\, \{\text{NE}\}\models^{HOL} \textcolor{blue}{\text{vld}_{\proptype\typearrow o}}\, \textcolor{blue}{\lfloor \textcolor{red}{\varphi}
-                \rfloor} \text{\,\,(wrt Henkin semantics)}$$
-                (Proof: By relating Kripke structures to Henkin models.)
-                \vskip1ex
-            \end{minipage}
-          } 
-          \vskip2ex
-          \colorbox{GreenYellow}{
-            \begin{minipage}{.96\textwidth}
-              \vskip1ex
-              \textbf{Corollary: Cut-elimination for QCL}
-              $$\text{There are cut-free calculi for QCL.}$$ 
-              (Proof: Take any cut-free calculus for HOL, e.g. the cut-free sequent calculus from [Benzm\"ullerEtAl'09]. Note, however, the potential impact of cut-simulation.) 
-                \vskip2ex
-            \end{minipage}        
-          } 
-          \vskip2ex
-          \chriscite{Earlier work is reported in [Benzm.Genovese'11]}   
-        \end{column}
-      \end{columns}
-      % \vskip2ex      \chriscite{[Benzm.Genovese'11]}
-    \end{block}
-    \vskip0ex
+    \end{columns} \vskip-3ex
     \begin{columns}[t]
-      \begin{column}{.27\textwidth}
-        \begin{block}{\large The Encoding in THF0-Syntax} 
-          \vskip1.2ex 
-          \begin{minipage}{.92\textwidth}
-               \VerbatimInput[frame=single,%
-               commandchars=\\\{\},%
-               fontfamily=courier,fontseries=b,%
-               fontsize=\tiny,%
-               rulecolor=\color{green},%
-               fillcolor=\color{YellowGreen},%
-               formatcom=\color{blue},%
-               framerule=0pt,%
-               framesep=0pt,numbers=right]%
-               {Axioms_annotated.ax}
-%            \textcolor{blue}{\bf\VerbatimInput[fontsize=\tiny]{Axioms.ax}}
-          \end{minipage}
-          \vskip2ex
-          \chriscite{Introduction to THF0-Syntax [SutcliffeBenzm.'10]}
+      \begin{column}{.33\linewidth}
+        \begin{block}{\large Scott's vs. Gödel's Version} 
+          \includegraphics[width=\textwidth]{VisionLeibniz}
         \end{block}
       \end{column}
       \hfill
-      \begin{column}{.70\textwidth}
-        \begin{block}{\large Automating Prominent Examples from the Literature (in \qcl+ID+MP)}
-          \begin{columns}[t]
-            \begin{column}{.30\textwidth} \footnotesize
-              \textbf{Example: Pegasus, the winged horse} \\[1ex]
-              
-              It can be consistently stated (in \qcl+ID+MP) that: \textcolor{green}{\textit{``Horses (h) contingently do not
-              have wings (w) but Pegasus (p) is a winged horse.''}}
-              \textcolor{red}{\begin{align*}
-                & \textcolor{red}{\forall^{va} X (h(X) \rightarrow \neg w(X)),\quad h(p),\quad w(p)}
-              \end{align*}}
-              THF0 encoding of this example:
-              \vskip1ex
-              \begin{minipage}{.92\textwidth}
-                \VerbatimInput[frame=single,%
-                commandchars=\\\{\},%
-                fontfamily=courier,fontseries=b,%
-                fontsize=\tiny,%
-                rulecolor=\color{green},%
-                fillcolor=\color{YellowGreen},%
-                formatcom=\color{blue},%
-                framerule=0pt,%
-                framesep=0pt,numbers=right]%
-                {E1_annotated.thf}
-                \end{minipage}
-              %\textcolor{blue}{\bf \VerbatimInput[fontsize=\tiny]{E1.thf}}
-              \vskip1ex
-              \holp\ confirms the satisfiability of these formulas (with
-              \holpNitpick=7.7). The finite model generated by Nitpick tells us that
-              Pegasus is not 'actual', i.e., does not exist (cf. $\textcolor{blue}{eiw}$) in any world. As expected, when the example problem is formulated
-              with $\textcolor{red}{\forall^{co}}$ instead of\, $\textcolor{red}{\forall^{va}}$ then \holp\ reports
-              unsatisfiability (\holpLS=0.0, \holpIsabelle=5.8).\\
-              %\chriscite{These examples have been discussed (but not automated!) in [Delgrande'98]}
-            \end{column}
-            \begin{column}{.61\textwidth} \footnotesize
-              \vskip-3.6ex
-
-              \, \hfill Notation: \textcolor{red}{$\phi \Rightarrow_X \psi$} := \textcolor{red}{$(\exists^{va} X \phi) \Rightarrow \forall^{va} X
-              (\phi \rightarrow \psi)$} \,
-              \vskip1ex
-
-              \textbf{Example: Opus, the penguin} \\[1ex]
-
-                 \textcolor{green}{\textit{``Birds (b) normally fly (f), but Opus (o) is a bird that normally does not fly.''}}
-                \begin{align*}
-                  &\textcolor{red}{b(X) \Rightarrow_X f(X), \quad b(o), \quad  b(o) \Rightarrow \neg f(o)}
-                \end{align*}
-                \holp\ reports a finite model (\holpNitpick=8.6). When $\textcolor{red}{\forall^{co}}$ is used:  \holp\  says unsatisfiable (\holpSatallax=0.0, \holpIsabelle=7.9).\\[.5em]
-                
-                 \textcolor{green}{\textit{``Birds normally fly and 
-                necessarily Opus the bird does not fly.''}}
-                \begin{align*}
-                  &\textcolor{red}{b(X) \Rightarrow_X f(X), \quad \Box(b(o) \wedge \neg f(o))}
-                \end{align*}
-                \holp\ reports a finite model (\holpNitpick=8.7).  When $\textcolor{red}{\forall^{co}}$ is used:
-                \holp\  says  unsatisfiable
-                (\holpSatallax=0.0, \holpIsabelle=7.6).\\[.5em]
-                
-                \textcolor{green}{\textit{``Birds normally fly and necessarily there is a non-flying bird.''}}
-                \begin{align*}
-                  &\textcolor{red}{b(X) \Rightarrow_X f(X), \quad \Box\exists^{va}(b(X) \wedge \neg f(X))}
-                \end{align*}
-                \holp\ reports unsatisfiability  (\holpSatallax=0.0, \holpIsabelle=8.7), also when $\textcolor{red}{\forall^{co}}$ is used (\holpSatallax=0.0, \holpIsabelle=8.8).\\[.5em]
-                
-                \textcolor{green}{\textit{``Birds normally fly, penguins normally do not fly and that all penguins are necessarily birds.''}}
-                \begin{align*}
-                  &\textcolor{red}{b(X) \Rightarrow_X f(X), \quad p(X) \Rightarrow_X \neg f(X), \quad \forall^{va} \Box (p(X) \rightarrow b(X))} 
-                \end{align*}
-                \holp\ generates a finite model ($\textcolor{red}{\forall^{va}}$: \holpNitpick=8.8; $\textcolor{red}{\forall^{co}}$: \holpNitpick=7.9).\\[.5em]
-
- Moreover, \holp\ can conclude from the
-                statements above  that \textcolor{green}{\textit{``Birds are normally
-                not penguins.''}} ($\textcolor{red}{\forall^{va}}$: \holpSatallax=0.9, \holpLeo=10.2, \holpAgsyhol=9.4; $\textcolor{red}{\forall^{co}}$: \holpSatallax=0.8, \holpLeo=10.1, \holpAgsyhol=0.3):
-                \begin{align*}
-                  \textcolor{red}{b(X) \Rightarrow_X f(X), \quad p(X) \Rightarrow_X \neg f(X), \quad \forall^{va} \Box (p(X) \rightarrow b(X))  \quad \vdash \quad b(X) \Rightarrow_X \neg p(X)}
-                \end{align*}
-                In line with Delgrande, \holp\ reports a
-                countermodel for the following statement (\holpNitpick=8.7):
-                \begin{align*}
-                  \textcolor{red}{b(X) \Rightarrow_X f(X), \quad p(X) \Rightarrow_X \neg f(X), \quad \forall^{va} \Box (p(X) \rightarrow b(X))  \quad \vdash \quad  b(o) \Rightarrow \neg p(o)}
-                \end{align*}
-                However, when $\textcolor{red}{\forall^{co}}$ is used, \holp\ reports a  theorem (\holpSatallax=0.8, \holpAgsyhol=0.4).
- \vskip2ex
-        \chriscite{These examples have been discussed (but not automated) in [Delgrande'98]}
-            \end{column}
-          \end{columns}         
+      \begin{column}{.33\linewidth}
+        \begin{block}{\large Technique: Semantic Embedding in HOL}
+          \includegraphics[width=\textwidth]{SemanticEmbedding}
         \end{block}
       \end{column}
-    \end{columns}
-    \vskip2ex
-    \begin{columns}[t]
-      \begin{column}{.42\linewidth}
-        \begin{block}{The HOL Metaprover $H$
-          %  \holp=(\holpLeo,\holpSatallax,\holpIsabelle,\holpNitpick,\holpAgsyhol)
-          }
-          \footnotesize
-          The \holp\ metaprover for HOL sequentially calls the following prover and model finders: \\[.5em]
-          \quad\textbf{\holpLeo} LEO-II (Benzm\"uller/Sultana/Theiss): \url{http://www.leoprover.org} \\
-          \quad\textbf{\holpSatallax} Satallax (Brown): \url{http://www.ps.uni-saarland.de/~cebrown/satallax/}\\
-          \quad\textbf{\holpIsabelle} Isabelle (Blanchette/Paulson/Nipkow/\ldots): \url{http://isabelle.in.tum.de/} \\
-          \quad\textbf{\holpNitpick} Nitpick (Blanchette): \url{http://www4.in.tum.de/~blanchet/nitpick.html} \\
-          \quad\textbf{\holpAgsyhol} agsyHol (Lindblatt): \url{https://github.com/frelindb/agsyHOL}\\[.6em]
-          These systems support THF0 syntax. These provers are remotely
-          available via \\ SystemOnTPTP:
-          \url{http://www.cs.miami.edu/~tptp/cgi-bin/SystemOnTPTP}
+     \begin{column}{.33\linewidth}
+        \begin{block}{\large Application: Gödel's Ontological Argument
+          for the Existence of God}
+           \includegraphics[width=\textwidth]{GoedelInconsistency}
         \end{block}
       \end{column}
-      \hfill
-      \begin{column}{.56\linewidth}
-        \begin{block}{References and Further Reading} \scriptsize 
-         \vskip1ex
-          \begin{tabular}{ll}
-            [Andrews'72a] & P.B. Andrews.
-            General models, descriptions, and choice in type theory.
-            JSL, 37(2):385-394, 1972. \\
-            
-            [Andrews'72b] & P.B. Andrews.
-            General models and extensionality.
-            JSL, 37(2):395--397, 1972. \\
-            
-            [Benzm\"uller'13] & C. Benzmüller. A top-down approach to 
-            combining logics, Proc. of ICAART 2013, Barcelona, Spain, 2013. \\
-            
-            [Benzm\"ullerEtAl'04] & C. Benzmüller, C. E. Brown, and M. 
-            Kohlhase, Higher order semantics and extensionality. JSL, 69(4):1027-1088, 2004. \\ 
 
-            [Benzm\"ullerEtAl'09] & C. Benzm{\"u}ller, C. E. Brown, and M. Kohlhase.
-            Cut-simulation and impredicativity. LMCS, 5(1:6):1--21, 2009. \\ 
 
-            [Benzm.Genovese'11] & C.~Benzm{\"u}ller and V.~Genovese.
-            Quantified conditional logics are fragments of {HOL}. NCMPL 2011. arXiv:1204.5920v1\\
 
-            [Church'40] & A.~Church. A formulation of the simple theory of types.  
-            JSL, 5:56--68, 1940. \\       
-
-            [Delgrande'98] & J.P. Delgrande. On first-order conditional logics.
- 
-            Artificial Intelligence, 105(1-2):105--137, 1998. \\
-            
- %           [Henkin'50] & \\ 
-
-            [Stalnaker'68] & R.C. Stalnaker.
-            A theory of conditionals.
-            In Studies in Logical Theory, pp. 98--112. Blackwell, 1968.\\ 
-
-            [SutcliffeBenzm.'10] & G.~Sutcliffe and C.~Benzm. 
-            Automated reasoning in HOL using the {TPTP THF}
-            infrastructure.
-            {\em JFR}, 3(1):1--27, 2010. \\[.9em]
-           \end{tabular}
-        \end{block}
-      \end{column}
-    \end{columns}
- 
  \end{frame}
 \end{document}
 
