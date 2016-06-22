@@ -76,7 +76,9 @@ subsection {* Consistency again (now with sym and trans) *}
 subsection {* Immunity to Modal Collapse *}  
  
   lemma MC: "[\<forall>(\<lambda>\<Phi>.(\<Phi> m\<rightarrow> (\<box> \<Phi>)))]"
-  nitpick [user_axioms] oops
+  nitpick [user_axioms]
+  nitpick [user_axioms, satisfy] 
+  oops
 
   lemma PEP: "[\<forall>(\<lambda>\<Phi>. \<forall>(\<lambda>\<Psi>. (P \<Phi> m\<and> (\<lambda>x. (\<Phi> = \<Psi>))) m\<rightarrow> P \<Psi>))]"
   (* sledgehammer [remote_satallax remote_leo2] *)
