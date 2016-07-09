@@ -129,14 +129,8 @@ and older ontological argument.
 
 
 
-\paragraph{A Brief History.}\label{sec:history}
-% St. Anselm's ontological argument \cite{Proslogion} can be regarded as
-% the ancestor of modern ontological arguments such as G\"odel's. In the
-% millenium between Anselm and G\"odel, many philosophers modified and
-% arguably improved Anselm's argument. Of particular importance to
-% G\"odel was the work of Leibniz~\cite{Adams}.  
-% Although G\"odel's notion of positive property is not exactly the same
-% as Leibniz's notion of perfection, 
+\section{An Essential Difference in the Definitions of Essence.}
+\label{sec:history}
 G\"odel's manuscript can be considered a translation of Leibniz's
 ideas on the argument into modern modal logic. G\"odel
 discussed his manuscript with Scott, who shared a slightly different
@@ -144,7 +138,7 @@ version with a larger public. Scott's version of the axioms and
 definitions, formalized in Isabelle, is shown in
 Fig.~\ref{Scott_Goedel}. 
 The main difference to G\"odel's version is an
-extra conjunct in the definition of \emph{essence} (\emph{ess}); cf. Fig.~\ref{Scott_Goedel}. For Scott,
+extra conjunct in the definition of \emph{essence} (\emph{ess}). For Scott,
 an essential property of an individual must be possessed by
 him/her. For G\"odel, this is not required. 
 
@@ -152,75 +146,14 @@ him/her. For G\"odel, this is not required.
 G\"odel's omission has been
 considered inessential and merely an oversight by many. 
 For more than four decades, its serious consequences remained unnoticed, 
-despite numerous analysis and criticisms of the
-argument.%  Especially since the discovery by Sobel
-% \cite{Sobel} that modal collapse (MC)\footnote{The modal collapse,
-%   $\phi\rightarrow \Box \phi$, states that contingent truth implies
-%   necessary truth; it can be interpreted as \textit{everything is
-%     pre-determined} or even \textit{there is no free will}. } is
-% entailed by G\"odel's (or also Scott's) axioms, several variants have
-% been proposed
-% \cite{Anderson,AndersonGettings,Hajek1,Hajek2,Hajek3,Bjordal}
-% attempting to avoid the modal collapse. Many of these variants omit
-% the crucial conjunct in the definition of essence as well.\footnote{As
-%   these variants also change other axioms, on which the inconsistency
-%   of G\"odel's axioms depends, it is not necessarily the case that
-%   these variants are also inconsistent; they must be analyzed
-%   separately.} Opponents of the argument
-% (e.g. Oppy [\cite[p.226--227]{oppy96:_goedel_ontol_argum};
-% \cite[p.364]{oppy00:_respon_gettin};
-% \cite[p.1068]{oppy08:_higher_order_ontol_argum}]) have also proposed
-% parodies and other criticisms, referring to variants where the
-% conjunct is omitted.
-
-% \begin{figure*}
-%   \centering
-%   \begin{subfigure}[t]{0.4\textwidth}
-%     \includegraphics[width=\textwidth]{./Images/Scott_S5U.png}
-%     \caption{Full Automation of T3 in \SFiveU; Consistency of Scott's
-%       Axioms;  Automatic Verification of Modal Collapse} \label{Scott_S5U}
-%   \end{subfigure}
-%   ~ %add desired spacing between images, e. g. ~, \quad, \qquad, \hfill etc. 
-%   % (or a blank line to force the subfigure onto a new line)
-%   \begin{subfigure}[t]{0.4\textwidth}
-%     \includegraphics[width=\textwidth]{./Images/QML_S5U.png}
-%     \caption{Improved Embedding of \SFiveU} \label{QML_S5U}
-%   \end{subfigure}
-%   ~ %add desired spacing between images, e. g. ~, \quad, \qquad, \hfill etc. 
-%   % (or a blank line to force the subfigure onto a new line)
-%   \begin{subfigure}[t]{0.4\textwidth}
-%     \includegraphics[width=\textwidth]{./Images/Inconsistency_S5U_direct.png}
-%     \caption{Inconsistency  in \SFiveU} \label{Inconsistency_S5U} 
-%   \end{subfigure}
-%   \begin{subfigure}[t]{0.4\textwidth}
-%     \centerline{\includegraphics[width=\textwidth]{./Images/InconsistencyIsabelleK.png}}
-%     \caption{Refutation of G\"odel's Axioms in Isabelle/HOL.} \label{InconsistencyIsabelleK}
-%   \end{subfigure}
-% \end{figure*}
-
-
-
-% \begin{figure}[t]{0.48\textwidth}
-% \centerline{\includegraphics[width=\textwidth]{./InconsistencyIsabelleK.png}}
-% \caption{Inconsistency of G\"odel's Axioms in HOML \K verified in Isabelle/HOL} \label{InconsistencyIsabelleK}
-% \end{figure}
-
-
-% \begin{figure}[t]{0.48\textwidth}
-% \centerline{\includegraphics[width=\textwidth]{./Scott_S5U.png}}
-% \caption{Full Automation of T3 in \SFiveU; Consistency of Scott's
-%   Axioms;  Automatic Verification of Modal Collapse} \label{Scott_S5U}
-% \end{figure}
-
-% There is reason to believe that the omission was more than just an oversight. As pointed out by Fuhrmann \cite{Fuhrmann2005}, ``G\"odel vermerkt diese Konsequenz [dass aus der Definition unmittelbar folgt, da\ss alle wesentlichen Eigenschaften notwendig äquivalent sind] in einer Fußnote zur Definition. Die Definition selbst aber l\"a{\ss}t im Definiens das Konjunkt $Xx$ aus. Ohne das Konjunkt folgt jedoch die Konsequenz nicht. Es ist deshalb naheliegend anzunehmen, da\ss G\"odel die Definition so beabsichtigte, wie sie hier notiert ist und wie G\"odel sie selbst in fr\"uheren Notizbucheintragungen formuliert hat.''\footnote{Our translation: ``G\"odel remarks this consequence [that the definition of essence entails that all essences are necessarily equivalent] in a footnote to the definition. The definition, however, omits the conjunct. ... ToDo''} 
-% \marginpar{ToDo: check Fuhrmann's claim. He may be pointing out a second mistake by Gödel.}
-
+despite numerous analyses and criticisms of the
+argument.
 However, as explained here, the extra conjunct is in
 fact crucial. Without it, G\"odel's original axioms are
 inconsistent. With it, Scott's axioms are consistent (cf.~Fig.~\ref{Scott_Goedel}
-where the model finder Nitpick \cite{Nitpick} confirms consistency).\footnote{In
-  personal communication, Dana Scott confirmed that he was unaware
-  at the time that G\"odel's axioms were inconsistent.}
+where the model finder Nitpick \cite{Nitpick} confirms consistency). In
+personal communication, Dana Scott confirmed that he was unaware
+that G\"odel's original axioms were inconsistent.
 
 
 
@@ -301,8 +234,9 @@ the HOML \textbf{K} with rigid terms and constant domains (possibilist
 quantifiers). Other logics (e.g. \textbf{KB}, \textbf{S5}) are
 embedded by adding axioms that restrict the accessibility relation
 $r$. Varying domains and actualist quantifiers can be simulated by
-using an existence predicate to guard the quantifiers. The embedding
-approach is, therefore, very flexible.
+using an existence predicate to guard the quantifiers. 
+%The embedding
+%approach is, therefore, very flexible.
 
 
 % \subsection{Improved Embedding}\label{sec:improvedembedding}
