@@ -157,37 +157,6 @@ that G\"odel's original axioms were inconsistent.
 
 
 
-%  Particularly interesting
-% from the perspective of this paper is that many literature
-% contributions unfortunately work with or refer to G\"odel's original
-% definition of essence
-% $$ todo $$
-% This original version avoids the conjunct added by Scott expressing
-% that essential properties of an individual should be possessed by the
-% individual. 
-
-% We give here a list of examples:
-% \begin{itemize}
-% \item Anderson and Getting's 1996, p. 168 \cite[p.168]{AndersonGettings1968}
-%   use essence without conjunct.
-% \item  
-% \item Look???, p. 514
-% % \item Oppy 1996, p.226-227 \cite[p.226/227]{Oppy1996}, Oppy 2000, p. 364
-% %   \cite[p.364]{Oppy200}, Oppy 2008, p. 1068 \cite[p.1068]{Oppy2008}:
-% %   Oppy uses: ``A is an essence of x iff for every property B, x has B
-% %   neces- sarily iff A entails B'' (this is from Anderson's
-% %   emendation). Check is this leads to inconsistency as well. In this
-% %   case we may write something like: 
-
-% %  Oppy presents an critical
-% %   assessment in order to conclude that G\"odel's argument fails to
-% %   convince. Oppy apparently does not see that he is assessing an
-% %   inconsistent axiom system (and he in fact creates adaptations that
-% %   suffer the same problems).
-% % \item 
-% \end{itemize}
-
-
 
 
 
@@ -196,22 +165,7 @@ that G\"odel's original axioms were inconsistent.
 
 \section{Automating HOML in HOL}\label{sec:homlinhol}
 
-% Logic textbooks % \cite{ToDo:which}
-% commonly utilize higher-order logic in an informal/semi-formal way as
-% a meta-language to introduce the syntax and the semantics of object
-% logics of interest, in which reasoning problems in concrete
-% application domains can be modeled and solved with pen and paper. In
-% fact, this approach can also be followed on the computer (using HOL as
-% a formal meta-language) for even very challenging object logics (such
-% as HOML) to enable interactive and automated theorem proving with
-% existing theorem provers for HOL.
 
-% Just as commonly the case in logic textbooks, in the embeddings
-% approach classical higher-order logic is utilised as a meta-language
-% to encode the syntax and the semantics of object logics in which the
-% proof problems of interest are then modeled in. Modulo the embedding
-% state of the art automated theorem provers for classical higher-order
-% logic can then be utilised as object logic reasoning tools.
 
 In our experiments in this branch of metaphysics we
 utilise an embedding of HOMLs, such as \textbf{K}, \textbf{KB} and
@@ -235,127 +189,7 @@ quantifiers). Other logics (e.g. \textbf{KB}, \textbf{S5}) are
 embedded by adding axioms that restrict the accessibility relation
 $r$. Varying domains and actualist quantifiers can be simulated by
 using an existence predicate to guard the quantifiers. 
-%The embedding
-%approach is, therefore, very flexible.
 
-
-% \subsection{Improved Embedding}\label{sec:improvedembedding}
-% \begin{figure}[t]
-% \centerline{\includegraphics[width=1\columnwidth,height=10cm]{./QML_S5U.png}}
-% \caption{Improved Embedding of \SFiveU} \label{QML_S5U}
-% \end{figure}
-
-% The modal logic \SFive requires that the accessibility relation be
-% reflexive, symmetric and transitive. The usual approach to embed
-% \SFive would be to use the standard translation for \textbf{K} described above
-% and to state that $r$ is an equivalence relation, e.g., by postulating
-% the following axioms:
-% \begin{itemize}
-% \item Reflexivity: $\forall x. (r~x~x)$
-% \item Symmetry: $\forall x. \forall y. (r~x~y) \rightarrow (r~y~x)$ 
-% \item Transitivity: $\forall x. \forall y. \forall z. (r~x~y) \wedge (r~y~z) \rightarrow (r~x~z)$
-% \end{itemize}
-% Instead, we consider here an alternative description, that we call \SFiveU, based on the following condition on $r$:
-% \begin{itemize}
-% \item Universality: $\forall x. \forall y. (r~x~y)$
-% \end{itemize}
-
-% It is important to note that $\vDash_{\SFive} \varphi$ iff $\vDash_{\SFiveU} \varphi$ 
-% \cite{Blackburn}, and therefore \SFive and \SFiveU are traditionally considered to be 
-% two different descriptions of the same modal logic. Nevertheless, \SFive and \SFiveU 
-% differ in the shapes of frames they admit:
-% %It is easy to see that \SFiveU is at least as strong as \SFive:
-% %universality entails that $r$ is an equivalence relation. \SFiveU is,
-% %in fact, \emph{strictly stronger} than \SFive. 
-% \SFiveU only admits
-% complete\footnote{A graph is \emph{complete} iff there is a directed
-%   edge connecting every ordered pair of vertices.} frames, whereas
-% \SFive admits non-complete frames as long as all their components are
-% complete. In other words, in \SFiveU we face one single equivalence
-% class of possible worlds, while in \SFive we may face several
-% disconnected equivalence classes. In fact, for this reason, \SFiveU is
-% considered as metaphysically more appropriate by some philosophers;
-% cf. \cite[p.~127]{williamson13}.
-
-% Furthermore, for \SFiveU an improved embedding is possible. Universality implies
-% that the guarding predicates in the definitions of $\Box$ and
-% $\Diamond$ always hold. Therefore, they can be omitted and the
-% accessibility relation can be dispensed altogether. The modal
-% operators can then be defined merely as:
-% % \begin{itemize}
-% % \item $\BlackBox \varphi \equiv \forall w. (\varphi w)$ 
-% % \item $\BlackDia \varphi \equiv \exists w. (\varphi w)$
-% % \end{itemize}
-% \[\Box \varphi \equiv \lambda w. \forall v.  \varphi(v) \qquad \text{and}
-% \qquad \Dia \varphi \equiv \lambda w.\exists v. \varphi(v)\]
-
-
-% The new embedding of \SFiveU in Isabelle/HOL is shown in
-% Fig.~\ref{QML_S5U}.
-% With this improved embedding, the final theorem T3
-% (\textit{Necessarily, there exists God}) can be derived from
-% Scott's consistent version of the axioms fully automatically.  The fully
-% automatic proof has been generated (in about 2.5 seconds) by the theorem prover
-% \textsc{Leo-II}~\cite{leo2} and subsequently verified in the proof
-% assistant Isabelle/HOL~\cite{NPW02}, as shown in Fig.~\ref{Scott_S5U}.
-% The collaboration between the two systems has been orchestrated by
-% Isabelle's Sledgehammer tool \cite{Sledgehammer}.
-
-% With the embedding used by Benzm\"uller and Woltzenlogel-Paleo \cite{C40}, the
-% provers still had to be given the intermediate theorem T2 and the corollary
-% C in order to manage to prove T3.
-
-% Another evidence that the new embedding provides a significant performance boost 
-% is the successful automatic verification in Isabelle/HOL (with its automatic tactic Meson) of the modal
-% collapse \cite{Sobel}, which is one of the most strongly criticized
-% `side-effects' of G\"odel's and Scott's variants of the proof. In previous work \cite{C40}
-% the modal collapse has been proven by the higher-order provers
-% \textsc{Satallax} \cite{Satallax} and \textsc{Leo-II}, but a fully automatic
-% verification in the highly trusted Isabelle/HOL system still failed
-% \cite{J28}.  The success with the new embedding can be seen in Fig.~\ref{Scott_S5U}.
-
-
-
-
-% \subsection{Improved Syntax in Isabelle}\label{sec:improvedsyntax}
-
-% Wider adoption of HOL theorem proving technology for
-% reasoning about and within embedded object logics, especially among
-% non-expert users, is still hindered by the gap between the syntax used
-% by people, when they write logical formulas with pen and paper, and
-% the syntax used by HOL theorem provers. Even when the syntax of the
-% underlying higher-order system is elegant (as is the case in
-% Isabelle/HOL), the embedding of HOML into HOL may easily expose
-% details of HOL that may be uncommon to the user, disturbing his/her
-% experience while using the system. To illustrate this point,
-% Fig.~\ref{UglyEssence} shows how the definition of essence looked like
-% in previous work \cite{J28}, where advanced syntax-sugaring features
-% were not used. It looks notably higher-order, and its style differs
-% significantly from the common style seen in works on modal logics and
-% the ontological argument. The following specific issues can be
-% enumerated:
-% \begin{enumerate}
-% \item $\lambda$-abstractions, which are typically a HOL feature, appear explicitly in places where they did not need to in a pure HOML formulation (cf. G\"odel's manuscript, Fig.~\ref{GoedelScript}).
-% \item Quantifiers appear as higher-order defined constants, and not as binders. This forces the user to read (and write) formulas of the form $\forall (\lambda x. A(x))$ instead of the more common $\forall x. A(x)$.
-% \item The lifted modal connectives are represented by prefixing the
-%   letter ``m'' (e.g. $m\wedge$ and $m\imp$). The prefix disturbs the
-%   user, as it constantly reminds him/her that there is something
-%   unusual about the modal connectives.
-% \item Higher-order parenthesis conventions for the application of a predicate to a term are used. 
-% Instead of reading $\psi(y)$, as he/she would expect, he/she has to read $(\psi ~ y)$. Outside niche areas in computer science, the former syntax is more widely known than the latter.
-% \end{enumerate}
-
-
-% \begin{figure}
-% \centerline{\includegraphics[width=1\columnwidth]{./UglyEssence.png}}
-% \caption{Definition of Essence using Old Syntax} \label{UglyEssence}
-% \end{figure}
-
-% In the embedding presented here, in Fig.~\ref{QML_S5U}, advanced
-% syntax-sugaring effects provided by Isabelle were used to prevent
-% issues as those enumerated above. The possibility to define boldface connectives allows us to drop the prefix; ``\texttt{binder}'' annotations enable modal quantifiers to be used in the standard binding way and reduce the need for explicit lambda abstractions; and a careful choice of priorities for infix connectives gives the parenthesis conventions that are more familiar to the user. As desired, the definition of essence in Fig.~\ref{Scott_S5U} is undeniably more immediately recognizable and comprehensible than the definition in Fig.~\ref{UglyEssence}. The embedding technique is now completely transparent to the user.
-
-% The syntax improvements described here render the computer-assisted analysis of ontological arguments accessible to a wider audience and ease the adoption of logic-based artificial intelligence tools by philosophers interested in topics where modal logic reasoning is required.
 
 
 \section{Intuitive Inconsistency Argument} \label{sec:inconsistency}
