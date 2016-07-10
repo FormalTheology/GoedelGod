@@ -345,10 +345,8 @@ contradiction.
 
 \begin{Verbatim}[commandchars=\\\{\},fontsize=\verbsize]
 \Lemma mimplies_to_mnot: [mforall p:o, (p m-> mFalse) m-> (m~ p)].
-\Proof. mv.
-intro p. intro H. intro H0.
-destruct (H H0) as [p0 [H1 H2]].
-apply H2. exact H1.
+\Proof. mv. intro p. intro H. intro H0. 
+destruct (H H0) as [p0 [H1 H2]]. apply H2. exact H1.
 \Qed.
 
 \Lemma dia_not_not_box: [ mforall p, (dia (m~ p)) m-> (m~ (box p)) ].
