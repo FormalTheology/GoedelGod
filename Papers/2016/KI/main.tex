@@ -21,6 +21,40 @@
 \usepackage{color}
 \usepackage{xcolor}
 
+\usepackage{proof}
+
+\usepackage{fancyvrb}
+\newcommand{\red}[1]{\textcolor[rgb]{1,0,0}{#1}}
+\newcommand{\blue}[1]{\textcolor[rgb]{0,0,1}{#1}}
+\newcommand{\brown}[1]{\textcolor[rgb]{0.8,0.6,0.4}{#1}}
+
+\newcommand{\Parameter}{\red{Parameter}}
+\newcommand{\Ltac}{\red{Ltac}}
+\newcommand{\Axiom}{\red{Axiom}}
+\newcommand{\Lemma}{\red{Lemma}}
+\newcommand{\Theorem}{\red{Theorem}}
+\newcommand{\Definition}{\red{Definition}}
+\newcommand{\Notation}{\blue{Notation}}
+\newcommand{\Prop}{\blue{Prop}}
+\newcommand{\Type}{\blue{Type}}
+\newcommand{\llet}{\blue{let}}
+\newcommand{\match}{\blue{match}}
+\newcommand{\with}{\blue{with}}
+\newcommand{\eend}{\blue{end}}
+\newcommand{\iin}{\blue{in}}
+\newcommand{\as}{\blue{as}}
+\newcommand{\Require}{\blue{Require}}
+\newcommand{\Import}{\blue{Import}}
+\newcommand{\fforall}{\blue{forall}}
+\newcommand{\fun}{\blue{fun}}
+\newcommand{\Proof}{\blue{Proof}}
+\newcommand{\Qed}{\blue{Qed}}
+\newcommand{\Hint}{\blue{Hint}}
+\newcommand{\com}[1]{\brown{#1}}
+\newcommand{\bslash}{\symbol{92}}
+
+
+
 %\usepackage{modallogics}
 \newcommand{\logic}[1]{\textbf{#1}\xspace}
 \newcommand{\KB}{\logic{KB}}
@@ -263,16 +297,74 @@ empty property (or self-difference) is an essence of every individual
 } with a reflexive or symmetric accessibility relation (e.g. \KB), it is easy to see that there must be a world $w'$ accessible from $w$: either $w'$ itself, in case of a reflexive relation, or $w_0$, in case of a symmetric relation. In fact, even in \K, with no accessibility condition, there must be a world $w'$ accessible from $w$. The reason is that $\pos \nec \bot$ should be \emph{valid} (true in all worlds). Therefore, it is true in $w$ as well, where the existence of an accessible world $w'$ is forced by the $\pos$ operator. As a model for $\pos \nec \bot$ (which is a consequence of G\"odel's axioms) cannot be built, G\"odel's axioms are inconsistent.
 \end{enumerate}
 
+If we were to convert the informal proof above to a formal proof, the semantic reasoning in step 8 would require a leap to the meta-logic (HOL), in order to expand the definitions of the modal operators and reason directly about possible worlds. The following alternative derivation avoids this leap and remains purely within the object logic (HOML \K):
+
+\begin{enumerate}
+\item[8\textsuperscript{*}.] We must derive $\bot$ from $\pos \nec \bot$. In order to derive $\bot$, it suffices to show that there exists a derivable proposition such that its negation is also derivable. We choose $\pos \pos \bot$ as a candidate proposition, and hence we must show that:
+\begin{itemize}
+\item $\neg \pos \pos \bot$ \emph{is derivable:} this proposition is logically equivalent to $\nec \nec \top$, which is trivially derivable from $\top$ by two applications of the necessitation inference rule.
+
+\item $\pos \pos \bot$ \emph{is derivable:} and indeed, it can be derived (using a recently developed natural deduction calculus for modal logic \K \cite{CSR}) as follows:
+
+\includegraphics[width=0.7\textwidth]{Derivation}
+
+% $$
+% \infer[\pos_I]{\pos \pos \bot}{
+% \infer[\pos_I]{\pos \bot}{  
+% \infer[\nec_E]{\bot}{
+% \infer[\pos_E]{\nec \bot}{
+%   \pos \nec \bot
+% }
+% }
+% }
+% }
+% $$
+\end{itemize}
+
+\end{enumerate}
+
+An interesting, unusual and noticeable feature of the derivation shown above is that the leftmost $\pos_E$ (diamond elimination) inference derives a formula ($\nec \bot$) that is never used as a premise. This is necessary because of the \emph{eigen-box} condition, which requires that every box must be accessed by exactly one \emph{strong} modal rule. The purpose of the \emph{strong} $\pos_E$ inference is merely to create and access the innermost box that is needed by the \emph{weak} $\nec_E$ and $\pos_I$ inferences inside the outermost box.
 
 
+\newcommand{\verbsize}{\small}
 
-\textbf{Bruno: Here we should present the syntactical argument for the
-  inconsistency of $\pos \nec \bot $.}
+\begin{Verbatim}[commandchars=\\\{\},fontsize=\verbsize]
+\Theorem dia_box_false_to_false_meta: [(dia (box mFalse))] -> [mFalse].
+\Proof. 
+intro H. intro w.
+destruct (H w) as [w0 [R0 H0]]. destruct (H w0) as [w1 [R1 H1]].
+box_elim H0 w1 HF.
+unfold mFalse in HF. destruct HF as [p [HF1 HF2]].
+contradiction.
+\Qed.
+\end{Verbatim}
 
 
+\begin{Verbatim}[commandchars=\\\{\},fontsize=\verbsize]
+\Lemma mimplies_to_mnot: [mforall p:o, (p m-> mFalse) m-> (m~ p)].
+\Proof. mv.
+intro p. intro H. intro H0.
+destruct (H H0) as [p0 [H1 H2]].
+apply H2. exact H1.
+\Qed.
 
+\Lemma dia_not_not_box: [ mforall p, (dia (m~ p)) m-> (m~ (box p)) ].
+\Proof. mv.
+intro p. intro H1. intro H2. dia_e H1. apply H. box_e H2 H3. exact H3.
+\Qed.
 
+\Theorem dia_box_false_to_false_object: [(dia (box mFalse))] -> [mFalse].
+\Proof.
+intro H. intro w.
+exists (dia (dia mFalse)).
+split.
+  dia_e (H w). dia_e (H w0). dia_i w0. dia_i w1. box_e H0 H3. exact H3.
 
+  apply box_not_not_dia. box_i. apply box_not_not_dia. box_i.
+  apply mimplies_to_mnot. intro H4. exact H4.
+\Qed.
+
+\end{Verbatim}
 
 
 
