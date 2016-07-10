@@ -81,7 +81,10 @@ Ltac box_elim H w1 H1 := match type of H with
 
 Ltac box_e H H1:= match goal with | [ |- (_ ?w) ] => box_elim H w H1 end.
 
-Ltac dia_e H := let w := fresh "w" in let R := fresh "R" in (destruct H as [w [R H]]; move w at top; move R at top).
+Ltac dia_e H := let w := fresh "w" in
+                 let R := fresh "R" in
+                 let H0 := fresh "H" in
+                 (destruct H as [w [R H0]]; move w at top; move R at top).
 
 Ltac dia_i w := (exists w; split; [auto | idtac]).
 
@@ -97,7 +100,7 @@ dia_e H1.
 dia_i w0.
 box_e H2 H3.
 apply H3.
-exact H1.
+exact H.
 Qed.
 
 Lemma not_dia_box_not: [mforall p, (m~ (dia p)) m-> (box (m~ p))].
@@ -121,7 +124,7 @@ intro H2.
 dia_e H2.
 box_elim H1 w0 H3.
 apply H3.
-exact H2.
+exact H.
 Qed.
 
 Lemma dia_not_not_box: [ mforall p, (dia (m~ p)) m-> (m~ (box p)) ].
@@ -131,7 +134,7 @@ intro p.
 intro H1.
 intro H2.
 dia_e H1.
-apply H1.
+apply H.
 box_e H2 H3.
 exact H3.
 Qed.
@@ -214,7 +217,7 @@ intro p.
 intro H1.
 dia_e H1.
 box_i.
-box_e H1 H2. exact H2.
+box_e H H2. exact H2.
 eapply transitivity.
   apply symmetry.
   exact R.
@@ -227,7 +230,7 @@ Proof.
 mv.
 intros p H.
 dia_e H.
-box_e H H1.
+box_e H0 H1.
   exact H1.
 
   apply symmetry.
