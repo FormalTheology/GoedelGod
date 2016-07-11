@@ -114,8 +114,6 @@
 \end{abstract}
 
 
-% ToDo: Use \textsc for all system names
-
 
 \section{Introduction}\label{sec:introduction}
 % Without exaggeration 
@@ -127,7 +125,7 @@ discuss, assess, criticize, modify and improve G\"{o}del's original
 work (see e.g.~Sobel~\cite{sobel2004logic} and Oppy~\cite{sep-ontological-arguments} and the
 references therein). 
 
-Scott's version of G\"odel's argument was automatically reconstructed by the higher-order theorem prover \textsc{Leo-II} \cite{C40} and its correctness was verified step-by-step in the Coq proof assistant \cite{CSR}. To bridge the gap between higher-order logics (HOL; cf.~\cite{andrewsSEP} and the references
+Scott's version of G\"odel's argument was automatically reconstructed by the higher-order theorem prover \textsc{Leo-II} \cite{C40} and its correctness was verified step-by-step in the \textsc{Coq} proof assistant \cite{CSR}. To bridge the gap between higher-order logics (HOL; cf.~\cite{andrewsSEP} and the references
 therein), as used by these systems, and higher-order \emph{modal} logics (HOML; cf.~\cite{homl} and the
 references therein), on which the ontological argument argument, the logic embedding approach \cite{J23,C40} was used.
 
@@ -137,7 +135,7 @@ remained unnoticed to philosophers until 2013,
 when \textsc{Leo-II} found a surprising refutation of the axioms.
 
 In \cite{C55}, we have extracted from Leo-II's machine-oriented refutation an informal and human-oriented intuitive explanation for the inconsistency, and we have reconstructed and
-verified it in the Isabelle proof assistant. However, that explanation relied on reasoning at the meta-logic (HOL) level, which was only possible because of the embedding. Here we complement that work with a purely object-logic (HOML) explanation.
+verified it in the \textsc{Isabelle} proof assistant. However, that explanation relied on reasoning at the meta-logic (HOL) level, which was only possible because of the embedding. Here we complement that work with a purely object-logic (HOML) explanation.
 
 Applications of (first-order) theorem proving technology in
 metaphysics were first reported by Fitelson, Oppenheimer and
@@ -170,7 +168,7 @@ G\"odel's manuscript can be considered a translation of Leibniz's
 ideas on the argument into modern modal logic. G\"odel
 discussed his manuscript with Scott, who shared a slightly different
 version with a larger public. Scott's version of the axioms and
-definitions, formalized in Isabelle, is shown in
+definitions, formalized in \textsc{Isabelle}, is shown in
 Fig.~\ref{Scott_Goedel}. 
 The main difference to G\"odel's version is an
 extra conjunct in the definition of \emph{essence} (\emph{ess}). For Scott,
@@ -249,12 +247,9 @@ empty property\footnote{
   Note that the terms for the empty property ($\lambda x. \bot$) and for the property of self-difference ($\lambda x.  x\not=x$) have identical denotations in the logic setting
   with functional and Boolean extensionality assumed
   here. 
-  %Nevertheless, some philosophers may actually prefer the use of
-  %self-difference over the empty property in
-  %the analysis below. 
   For the proof to go through it is
   irrelevant which property is used.
-} $\lambda x. \bot$ (also denoted $\emptyset$, as in HOL it is customary to think of unary predicates as sets)\footnote{An additional lambda abstraction occurs in the empty property in \textsc{Leo-II}'s proof (and also in the reconstruction in Isabelle) because the embedding approach lifts the boolean type $o$ to $\iota \imp o$.}. Based on this hint, we conceived the following informal explanation for the inconsistency of G\"odel's axioms (reproduced without change from \cite{C55}):
+} $\lambda x. \bot$ (also denoted $\emptyset$, as in HOL it is customary to think of unary predicates as sets)\footnote{An additional lambda abstraction occurs in the empty property in \textsc{Leo-II}'s proof (and also in the reconstruction in \textsc{Isabelle}) because the embedding approach lifts the boolean type $o$ to $\iota \imp o$.}. Based on this hint, we conceived the following informal explanation for the inconsistency of G\"odel's axioms (reproduced without change from \cite{C55}):
 %
 
 
@@ -391,138 +386,9 @@ and this is also most highly fruitful for science.'' \cite{Wang1996}[p. 316]. In
 
 
 
-% We have also presented several technical improvements regarding the
-% semantic embedding approach. In particular, we have achieved a
-% nearly perfect match between pen and paper presentations in HOML and
-% the syntax in Isabelle/HOL. As a result, the embedding of HOML in HOL
-% is now fully transparent, more user-friendly and ready for wider adoption.
-
-% On the other hand, there is still room for many pragmatical
-% improvements in Isabelle; just one example: in default setting,
-% Sledgehammer does not immediately inform the user when a proof has
-% been found and instead silently first executes a series of
-% time-consuming proof analysis processes (e.g. its dependency
-% minimization), before it eventually reports success. For G\"odel's
-% theorem T3 (\textit{Necessarily, there exists God}), for example, this
-% phase of silence takes several minutes --- during which the user might
-% actually give up on the proof attempt --- even though \textsc{Leo-II} already
-% reported success to Sledgehammer after 2.5 seconds.
-
-% Our work reveals a challenge for automated reasoning:
-% the (so far partially manual) extraction of an informal argument from a formal proof. 
-% Without accompanying human-understandable explanations,
-% the proofs generated by provers such as \textsc{Leo-II} or Metis, will
-% presumably be only of limited value for philosophers, for whom intuitive
-% arguments remain crucial for the acceptance of novel results.
-
-% Another open problem that we solved in this paper is a fully automatic
-% proof of T3 directly from Scott's axioms. Again, this proof was
-% contributed by \textsc{Leo-II}. This has become possible only
-% after we provided a more efficient embedding for HOML \SFiveU (instead of \SFive) in HOL.
-
-
-% Both the automated detection of the inconsistency in G\"odel's axioms
-% and the fully automatic proof of T3 from Scott's axioms
-% Our work 
-% demonstrates
-% the potential of higher-order automated theorem proving and the
-% semantic embeddings approach for philosophy: this technology is,
-% in its current state of development, already capable of contributing novel results to
-% metaphysics and to conduct reasoning steps at granularity-levels
-% beyond common human capabilities.  
-% \vfill
-
-% \noindent\textbf{Acknowledgments:} We thank Chad Brown, who contributed to the rational  reconstruction
-% of the inconsistency argument.
-
-%\pagebreak
-%A discussion between Chad Brown and Benzm\"uller
-% significantly influenced the rational reconstruction of the inconsistency reported by \textsc{LEO-II}.
-
-%\pagebreak
-
-%German Research Foundation DFG, Chad Brown
-
-
-%ToDo: reduce paper length to 7 pages
-
-%ToDo: use \textsc for all systems. Not only for LEO-II.
-
-%\small 
-%% The file named.bst is a bibliography style file for BibTeX 0.99c
-
 \bibliographystyle{plain}
 \bibliography{Bibliography}
 
-
-
-% \pagebreak
-
-% \paragraph{Argument Reconstruction in Isabelle.}  \label{sec:arg2}
-% \begin{figure*}[t]
-%   \centering
-%   \begin{subfigure}[t]{0.715\textwidth}
-%     \includegraphics[width=\textwidth]{./Manuscript2.png}
-%     \caption{G\"{o}del's manuscript, with mutually inconsistent axioms and
-%       definitions highlighted (with permission from the Kurt G\"odel Papers, Shelby White and Leon Levy Archives Center, Princeton, NJ, USA, on deposit at Princeton University)} \label{GoedelScript} 
-%   \end{subfigure}
-%    \begin{subfigure}[t]{0.28\textwidth}
-%      \includegraphics[width=\textwidth,height=7.2cm]{./Inconsistency_S5U_direct.png}
-%      \caption{Inconsistency in HOML \SFiveU} \label{Inconsistency_S5U} 
-%    \end{subfigure}
-% % \includegraphics[width=.73\textwidth]{./Images/Manuscript2.png} \hfill
-% % \includegraphics[width=.26\textwidth]{./Images/Inconsistency_S5U_direct.png}
-%  \caption{The inconsistency in G\"{o}del's manuscript has been
-%    detected and verified by HOL ATPs} 
-% \end{figure*}
-% To verify the correctness of the informal argument explained above, it
-% was reconstructed in Isabelle/HOL, using Metis\footnote{Metis, unlike
-%   external provers such as \textsc{Leo-II} or Satallax, 
-%   constructs proofs in Isabelle's highly trusted kernel calculus.} to automate the
-% inessential parts (cf. Fig.~\ref {InconsistencyIsabelleK}). The essential use of the Empty Essence Lemma, on
-% the other hand, is explicitly stated, to ensure that Isabelle is
-% reconstructing the same argument. In fact, without the help of this
-% lemma, Metis is still not strong enough to refute G\"odel's
-% axioms.
-
-
-% \paragraph{Mapping the Inconsistency to G\"odel.}
-% The inconsistency verified in Fig.~\ref{InconsistencyIsabelleK} follows from the definition of
-% essence (ess), the definition of necessary existence (NE), the
-% axioms A1a and A2 (which entail theorem T1), and axiom A5. It remains to show that
-% these ingredients are actually present in G\"odel's manuscript in
-% Fig.~\ref{GoedelScript}. 
-
-
-% This can be easily seen: Axiom A1a in
-% Fig.~\ref{InconsistencyIsabelleK} is implied by Axiom Ax2 and the
-% highlighted footnote remark in Fig.~\ref{GoedelScript}. Axioms A2 and
-% A5 in Fig.~\ref{InconsistencyIsabelleK} correspond to Ax4 and Ax3 in
-% Fig.~\ref{GoedelScript}. The definitions of essence and necessary
-% existence are easy to identify. Therefore, the verified
-% inconsistency from Fig.~\ref{InconsistencyIsabelleK} does apply to 
-% G\"odel's original manuscript.
-
-
-% \paragraph{Inconsistency of G\"odel's Axioms in \SFiveU.}
-% Isabelle/HOL's Sledgehammer tool, which orchestrates calls to
-% external provers such as \textsc{Leo-II}, still
-% fails to detect the inconsistency of G\"odel's axioms in the standard
-% embedding of \SFive, while a direct modeling of the problem in TPTP THF syntax
-% in combination with a direct call of \textsc{Leo-II} succeeded. In
-% other words, without independent experiments with no mediation through Sledgehammer, the
-% inconsistency would not have been detected.
-
-
-% %\marginpar{ToDo: Are we really supposed to use \S instead of ``Sec.''?}
-% On the other hand (and further confirming the claims from \S\ref{sec:improvedembedding}), 
-% the reconstruction in Isabelle/HOL with the improved embedding for \SFiveU was more efficient: 
-% the inconsistency could be detected
-% by \textsc{Leo-II} also when called via
-% Sledgehammer. Moreover, the result could subsequently be verified with
-% Metis even without the Empty Essence Lemma (cf. Fig.~\ref{Inconsistency_S5U}). 
-% % Interestingly, Metis' argument is different from that of
-% % \S\ref{sec:arg1} and \S\ref{sec:arg2}, since axiom A1b is not used.
 
 
 \end{document}
