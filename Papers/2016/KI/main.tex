@@ -53,6 +53,7 @@
 \newcommand{\com}[1]{\brown{#1}}
 \newcommand{\bslash}{\symbol{92}}
 
+\newcommand{\verbsize}{\small}
 
 
 %\usepackage{modallogics}
@@ -80,6 +81,7 @@
 \newcommand{\ess}[2]{#1\ \mathit{ess}\ #2}
 \newcommand{\nec}{\Box}
 \newcommand{\pos}{\Dia}
+
 
 
 
@@ -263,13 +265,13 @@ empty property\footnote{
 empty property (or self-difference) is an essence of every individual
 (\textbf{Empty Essence Lemma}): \hfill $\allq x\; (\ess{\emptyset}{x})$
 
-\item From theorem T1 (\textit{Positive properties are possibly
+\item From axiom A5 (`necessary existence' is a positive
+  property: $P(\NE)$ ) and theorem T1 (\textit{Positive properties are possibly
   exemplified}: ${\allq \phi} [P(\phi) \imp {\pos}  \exq x
-  \phi(x)]$) and axiom A5 (``necessary existence'' is a positive
-  property: $P(\NE)$ ), it follows that $\NE$ is possibly exemplified:
+  \phi(x)]$), it follows that $\NE$ is possibly exemplified:
   \hfill $  \pos \exq x [\NE(x)] $
  
-\item Expanding the definition of ``necessary existence''
+\item Expanding the definition of `necessary existence'
   (${\NE(x) \equiv \allq \phi [\ess{\phi}{x} \imp \nec \exq y
     \phi(y)]}$), the following is obtained: \hfill $  \pos \exq x
   [\allq \varphi [ \ess{\varphi}{x} \imp \nec \exq y [\varphi(y)] ] ] $
@@ -297,12 +299,12 @@ empty property (or self-difference) is an essence of every individual
 } with a reflexive or symmetric accessibility relation (e.g. \KB), it is easy to see that there must be a world $w'$ accessible from $w$: either $w'$ itself, in case of a reflexive relation, or $w_0$, in case of a symmetric relation. In fact, even in \K, with no accessibility condition, there must be a world $w'$ accessible from $w$. The reason is that $\pos \nec \bot$ should be \emph{valid} (true in all worlds). Therefore, it is true in $w$ as well, where the existence of an accessible world $w'$ is forced by the $\pos$ operator. As a model for $\pos \nec \bot$ (which is a consequence of G\"odel's axioms) cannot be built, G\"odel's axioms are inconsistent.
 \end{enumerate}
 
-If we were to convert the informal proof above to a formal proof, the semantic reasoning in step 8 would require a leap to the meta-logic (HOL), in order to expand the definitions of the modal operators and reason directly about possible worlds. The following alternative derivation avoids this leap and remains purely within the object logic (HOML \K):
+If we were to convert the informal proof above to a formal proof, the semantic reasoning in step 8 would require a leap to the meta-logic (HOL), in order to expand the definitions of the modal operators and reason directly about possible worlds. The following alternative proof avoids this leap and remains purely within the object logic (HOML \K):
 
 \begin{enumerate}
 \item[8\textsuperscript{*}.] We must derive $\bot$ from $\pos \nec \bot$. In order to derive $\bot$, it suffices to show that there exists a derivable proposition such that its negation is also derivable. We choose $\pos \pos \bot$ as a candidate proposition, and hence we must show that:
-\begin{itemize}
-\item $\neg \pos \pos \bot$ \emph{is derivable:} this proposition is logically equivalent to $\nec \nec \top$, which is trivially derivable from $\top$ by two applications of the necessitation inference rule.
+\begin{enumerate}
+\item $\neg \pos \pos \bot$ \emph{is derivable:} this proposition is equi-valid to $\nec \nec \top$, which is trivially derivable from $\top$ by two applications of the necessitation inference rule.
 
 \item $\pos \pos \bot$ \emph{is derivable:} and indeed, it can be derived (using a recently developed natural deduction calculus for modal logic \K \cite{CSR}) as follows:
 \smallskip
@@ -322,17 +324,16 @@ If we were to convert the informal proof above to a formal proof, the semantic r
 % }
 % }
 % $$
-\end{itemize}
+\end{enumerate}
 
 \end{enumerate}
 
-An interesting, unusual and noticeable feature of the derivation shown above is that the leftmost $\pos_E$ (diamond elimination) inference derives a formula ($\nec \bot$) that is never used as a premise. This is necessary because of the \emph{eigen-box} condition, which requires that every box must be accessed by exactly one \emph{strong} modal rule. The purpose of the \emph{strong} $\pos_E$ inference is merely to create and access the innermost box that is needed by the \emph{weak} $\nec_E$ and $\pos_I$ inferences inside the outermost box.
+An interesting and unusual feature of the derivation shown above is that the leftmost $\pos_E$ (diamond elimination) inference derives a formula ($\nec \bot$) that is never used as a premise. This is necessary because of the \emph{eigen-box} condition, which requires that every box must be accessed by exactly one \emph{strong} modal rule. The purpose of the \emph{strong} $\pos_E$ inference is merely to create and access the innermost box that is needed by the \emph{weak} $\nec_E$ and $\pos_I$ inferences inside the outermost box.
 
-
-\newcommand{\verbsize}{\small}
+The proofs above have been formalized and verified step-by-step in \textsc{Coq}\footnote{The complete formal proofs can be found in: \url{https://github.com/FormalTheology/GoedelGod}.}. The following \textsc{Coq} script shows the formalization of step 8 of the meta-logic proof.
 
 \begin{Verbatim}[commandchars=\\\{\},fontsize=\verbsize]
-\Theorem dia_box_false_to_false_meta: [(dia (box mFalse))] -> [mFalse].
+\Lemma dia_box_false_to_false_meta: [(dia (box mFalse))] -> [mFalse].
 \Proof. 
 intro H. intro w.
 destruct (H w) as [w0 [R0 H0]]. destruct (H w0) as [w1 [R1 H1]].
@@ -342,6 +343,8 @@ contradiction.
 \Qed.
 \end{Verbatim}
 
+\noindent
+The other \textsc{Coq} scripts below show the formalization of step 8\textsuperscript{*} of the object-logic proof.
 
 \begin{Verbatim}[commandchars=\\\{\},fontsize=\verbsize]
 \Lemma mimplies_to_mnot: [mforall p:o, (p m-> mFalse) m-> (m~ p)].
@@ -354,7 +357,7 @@ destruct (H H0) as [p0 [H1 H2]]. apply H2. exact H1.
 intro p. intro H1. intro H2. dia_e H1. apply H. box_e H2 H3. exact H3.
 \Qed.
 
-\Theorem dia_box_false_to_false_object: [(dia (box mFalse))] -> [mFalse].
+\Lemma dia_box_false_to_false_object: [(dia (box mFalse))] -> [mFalse].
 \Proof.
 intro H. intro w.
 exists (dia (dia mFalse)).
@@ -364,27 +367,35 @@ split.
   apply box_not_not_dia. box_i. apply box_not_not_dia. box_i.
   apply mimplies_to_mnot. intro H4. exact H4.
 \Qed.
-
 \end{Verbatim}
 
+Due to a deliberate and disciplined use of only 
+the simplest (and non-automatic) \textsc{Coq} tactics, 
+there is a straightforward correspondence between the tactics used 
+in the scripts above and the inference rules of the modal natural 
+deduction calculus \cite{CSR}. Therefore, the lengths of the proof 
+scripts (in number of tactic applications) can serve as estimations 
+for the lengths of the corresponding natural deduction proof. 
+It is noticeable that the meta-logic proof is significantly shorter 
+than the pure object-logic proof. An in-depth analysis 
+reveals that the reasoning about the possible worlds semantics in 
+the meta-logic proof acts as a short-cut: when it becomes impossible (in step 8) to build the third world $w'$ (because $\bot$ would have to hold in it, and thus $w'$ would be contradictory), a contradiction at the HOL level can be immediately derived, completing the proof. In the object-level proof, on the other hand, such a contradiction had to be found in the arbitrary initial world $w$. This not only requires additional tedious logical inferences (cf. the proofs of the lemmas \texttt{mimplies\_to\_mnot} and \texttt{dia\_not\_not\_box}), but also a non-trivial guessing of the instantiating contradictory proposition $\pos \pos \bot$, whose purpose is precisely to carry over the contradiction from $w'$ back to $w$.
 
 
 
 \section{Conclusion}\label{sec:conclusion}
 
 
-
-The axioms and definitions in G\"odel's manuscript are inconsistent;
+The axioms and definitions in G\"odel's manuscript are inconsistent (even in the weakest modal logic \K);
 this was detected automatically by the prover
-\textsc{Leo-II}. We presented a rational reconstruction and
-verification of the inconsistency argument in Isabelle/HOL. This
-argument is valid in all normal HOMLs including base logic \K.
+\textsc{Leo-II}. In our previous work \cite{C55}, we presented a human-readable and intuitive meta-logic explanation for the inconsistency, and we formalized and semi-automatically reconstructed it in the \textsc{Isabelle} proof assistant. Here this work was extended with an object-level explanation, and both explanations were formalized step-by-step in \textsc{Coq} proof assistant. A comparison of the formal \textsc{Coq} proofs of both explanations revealed that the meta-logic reasoning is more powerful, because it enables shortcuts and, therefore, requires fewer inferences and guesses. We conjecture that this is not an accident, but rather a fundamental reason why the embedding approach is effective in practice. 
 
-Extending the presentation in our IJCAI 2016 paper \cite{C55}, we have added
-a syntactical proof for the inconsistency of  $\pos \nec \bot$.  Previously we had reduced the inconsistency
-analysis to exactly this proposition and we had then argued
-semantically that this proposition must be false already in modal
-logic \K. 
+It is entertaining to notice that, although our work reveals a mistake in G\"odel's manuscript, it does substantiate G\"odel's belief that 
+``there is a scientific (exact) philosophy and theology,
+which deals with concepts of the highest abstractness; 
+and this is also most highly fruitful for science.'' \cite{Wang1996}[p. 316]. Indeed, through the investigation of G\"odel's mistake, we have been led to a fruitful conjecture in the fields of automated reasoning and proof theory.
+
+
 
 % We have also presented several technical improvements regarding the
 % semantic embedding approach. In particular, we have achieved a
@@ -403,12 +414,12 @@ logic \K.
 % actually give up on the proof attempt --- even though \textsc{Leo-II} already
 % reported success to Sledgehammer after 2.5 seconds.
 
-Our work reveals a challenge for automated reasoning:
-the (so far partially manual) extraction of an informal argument from a formal proof. 
-Without accompanying human-understandable explanations,
-the proofs generated by provers such as \textsc{Leo-II} or Metis, will
-presumably be only of limited value for philosophers, for whom intuitive
-arguments remain crucial for the acceptance of novel results.
+% Our work reveals a challenge for automated reasoning:
+% the (so far partially manual) extraction of an informal argument from a formal proof. 
+% Without accompanying human-understandable explanations,
+% the proofs generated by provers such as \textsc{Leo-II} or Metis, will
+% presumably be only of limited value for philosophers, for whom intuitive
+% arguments remain crucial for the acceptance of novel results.
 
 % Another open problem that we solved in this paper is a fully automatic
 % proof of T3 directly from Scott's axioms. Again, this proof was
@@ -418,14 +429,14 @@ arguments remain crucial for the acceptance of novel results.
 
 % Both the automated detection of the inconsistency in G\"odel's axioms
 % and the fully automatic proof of T3 from Scott's axioms
-Our work 
-demonstrates
-the potential of higher-order automated theorem proving and the
-semantic embeddings approach for philosophy: this technology is,
-in its current state of development, already capable of contributing novel results to
-metaphysics and to conduct reasoning steps at granularity-levels
-beyond common human capabilities.  
-\vfill
+% Our work 
+% demonstrates
+% the potential of higher-order automated theorem proving and the
+% semantic embeddings approach for philosophy: this technology is,
+% in its current state of development, already capable of contributing novel results to
+% metaphysics and to conduct reasoning steps at granularity-levels
+% beyond common human capabilities.  
+% \vfill
 
 % \noindent\textbf{Acknowledgments:} We thank Chad Brown, who contributed to the rational  reconstruction
 % of the inconsistency argument.
