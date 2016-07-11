@@ -330,17 +330,14 @@ If we were to convert the informal proof above to a formal proof, the semantic r
 
 An interesting and unusual feature of the derivation shown above is that the leftmost $\pos_E$ (diamond elimination) inference derives a formula ($\nec \bot$) that is never used as a premise. This is necessary because of the \emph{eigen-box} condition, which requires that every box must be accessed by exactly one \emph{strong} modal rule. The purpose of the \emph{strong} $\pos_E$ inference is merely to create and access the innermost box that is needed by the \emph{weak} $\nec_E$ and $\pos_I$ inferences inside the outermost box.
 
-The proofs above have been formalized and verified step-by-step in \textsc{Coq}\footnote{The complete formal proofs can be found in: \url{https://github.com/FormalTheology/GoedelGod}.}. The following \textsc{Coq} script shows the formalization of step 8 of the meta-logic proof.
+The proofs above have been formalized and verified step-by-step in \textsc{Coq}. The complete proofs can be found in \url{https://github.com/FormalTheology/GoedelGod}. The following \textsc{Coq} script shows the formalization of step 8 of the meta-logic proof.
 
 \begin{Verbatim}[commandchars=\\\{\},fontsize=\verbsize]
 \Lemma dia_box_false_to_false_meta: [(dia (box mFalse))] -> [mFalse].
-\Proof. 
-intro H. intro w.
+\Proof. intro H. intro w.
 destruct (H w) as [w0 [R0 H0]]. destruct (H w0) as [w1 [R1 H1]].
-box_elim H0 w1 HF.
-unfold mFalse in HF. destruct HF as [p [HF1 HF2]].
-contradiction.
-\Qed.
+box_elim H0 w1 HF. unfold mFalse in HF. destruct HF as [p [HF1 HF2]].
+contradiction. \Qed.
 \end{Verbatim}
 
 \noindent
@@ -349,18 +346,14 @@ The other \textsc{Coq} scripts below show the formalization of step 8\textsupers
 \begin{Verbatim}[commandchars=\\\{\},fontsize=\verbsize]
 \Lemma mimplies_to_mnot: [mforall p:o, (p m-> mFalse) m-> (m~ p)].
 \Proof. mv. intro p. intro H. intro H0. 
-destruct (H H0) as [p0 [H1 H2]]. apply H2. exact H1.
-\Qed.
+destruct (H H0) as [p0 [H1 H2]]. apply H2. exact H1. \Qed.
 
 \Lemma dia_not_not_box: [ mforall p, (dia (m~ p)) m-> (m~ (box p)) ].
-\Proof. mv.
-intro p. intro H1. intro H2. dia_e H1. apply H. box_e H2 H3. exact H3.
-\Qed.
+\Proof. mv. intro p. intro H1. intro H2. 
+dia_e H1. apply H. box_e H2 H3. exact H3. \Qed.
 
 \Lemma dia_box_false_to_false_object: [(dia (box mFalse))] -> [mFalse].
-\Proof.
-intro H. intro w.
-exists (dia (dia mFalse)).
+\Proof. intro H. intro w. exists (dia (dia mFalse)).
 split.
   dia_e (H w). dia_e (H w0). dia_i w0. dia_i w1. box_e H0 H3. exact H3.
 
@@ -369,6 +362,7 @@ split.
 \Qed.
 \end{Verbatim}
 
+\noindent
 Due to a deliberate and disciplined use of only 
 the simplest (and non-automatic) \textsc{Coq} tactics, 
 there is a straightforward correspondence between the tactics used 
