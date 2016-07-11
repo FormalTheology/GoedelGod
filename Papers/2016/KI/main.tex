@@ -133,9 +133,8 @@ However, G\"odel's original axioms, as used in his
 manuscript \cite{GoedelNotes}, are inconsistent. This fact has
 remained unnoticed to philosophers until 2013, 
 when \textsc{Leo-II} found a surprising refutation of the axioms.
-
-In \cite{C55}, we have extracted from Leo-II's machine-oriented refutation an informal and human-oriented intuitive explanation for the inconsistency, and we have reconstructed and
-verified it in the \textsc{Isabelle} proof assistant. However, that explanation relied on reasoning at the meta-logic (HOL) level, which was only possible because of the embedding. Here we complement that work with a purely object-logic (HOML) explanation.
+In \cite{C55} we extracted from Leo-II's machine-oriented refutation an informal and human-oriented intuitive explanation for the inconsistency, and we reconstructed and
+verified it in the \textsc{Isabelle} proof assistant. But that explanation relied on reasoning at the meta-logic (HOL) level, which was only possible because of the embedding. Here we complement that work with a purely object-logic (HOML) explanation, and we compare and formalize both explanations in the \textsc{Coq} proof assistant.
 
 Applications of (first-order) theorem proving technology in
 metaphysics were first reported by Fitelson, Oppenheimer and
@@ -249,7 +248,7 @@ empty property\footnote{
   here. 
   For the proof to go through it is
   irrelevant which property is used.
-} $\lambda x. \bot$ (also denoted $\emptyset$, as in HOL it is customary to think of unary predicates as sets)\footnote{An additional lambda abstraction occurs in the empty property in \textsc{Leo-II}'s proof (and also in the reconstruction in \textsc{Isabelle}) because the embedding approach lifts the boolean type $o$ to $\iota \imp o$.}. Based on this hint, we conceived the following informal explanation for the inconsistency of G\"odel's axioms (reproduced without change from \cite{C55}):
+} $\lambda x. \bot$ (also denoted $\emptyset$, as in HOL it is customary to think of unary predicates as sets)\footnote{An additional lambda abstraction occurs in the empty property in \textsc{Leo-II}'s proof (and in the reconstruction in \textsc{Isabelle}) because the embedding approach lifts the boolean type $o$ to $\iota \imp o$.}. Based on this hint, we conceived the following informal explanation for the inconsistency of G\"odel's axioms (reproduced without change from \cite{C55}):
 %
 
 
@@ -302,11 +301,11 @@ If we were to convert the informal proof above to a formal proof, the semantic r
 \item $\neg \pos \pos \bot$ \emph{is derivable:} this proposition is equi-valid to $\nec \nec \top$, which is trivially derivable from $\top$ by two applications of the necessitation inference rule.
 
 \item $\pos \pos \bot$ \emph{is derivable:} and indeed, it can be derived (using a recently developed natural deduction calculus for modal logic \K \cite{CSR}) as follows:
-\smallskip
+%\smallskip
 \begin{center}
 \includegraphics[width=0.5\textwidth]{Derivation}
 \end{center}
-\smallskip
+%\smallskip
 
 % $$
 % \infer[\pos_I]{\pos \pos \bot}{
@@ -353,8 +352,7 @@ split.
   dia_e (H w). dia_e (H w0). dia_i w0. dia_i w1. box_e H0 H3. exact H3.
 
   apply box_not_not_dia. box_i. apply box_not_not_dia. box_i.
-  apply mimplies_to_mnot. intro H4. exact H4.
-\Qed.
+  apply mimplies_to_mnot. intro H4. exact H4. \Qed.
 \end{Verbatim}
 
 \noindent
