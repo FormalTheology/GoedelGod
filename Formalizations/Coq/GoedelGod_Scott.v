@@ -15,6 +15,8 @@
 
 Require Import Coq.Logic.Classical.
 
+(* Add LoadPath "/Users/Bruno/Dropbox/Pesquisa/Projects/GoedelGod/Formalizations/Coq/". *) (* Needed for compilation only*)
+
 Require Import Modal.
 
 Ltac proof_by_contradiction H := apply NNPP; intro H.

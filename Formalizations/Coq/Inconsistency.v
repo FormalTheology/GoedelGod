@@ -56,3 +56,68 @@ split.
   exact H4.
 Qed.
 
+Require Import GoedelGod_Scott.
+
+(* Goedel's Definition D2: essence: an essence of an individual is a property necessarily implying any of its properties *)
+Definition EssenceGoedel(p: u -> o)(x: u) := mforall q, ((q x) m-> box (mforall y, (p y) m-> (q y))).
+Notation "p 'essG' x" := (EssenceGoedel p x) (at level 69).
+
+Definition empty := fun x: u => fun w: i => False.
+
+Lemma EmptyEssence: [ mforall x, (empty essG x) ].
+Proof. mv.
+intro x.
+unfold EssenceGoedel.
+intro q.
+intro H.
+box_i.
+intro y.
+intro H1.
+unfold empty in H1.
+contradiction.
+Qed.
+
+(* Goedel's Definition D3: necessary existence: necessary existence of an individual is the necessary exemplification of all its essences *)
+Definition NEG(x: u) := mforall p, (p essG x) m-> box (mexists y, (p y)).
+
+(* Goedel's Axiom A5: necessary existence is a positive property *)
+Axiom axiom5G: [ Positive NEG ].
+
+Lemma NEG_possibly_exemplified: [ dia (mexists x, NEG x) ]. 
+Proof. mv.
+apply theorem1.
+apply axiom5G.
+Qed.
+
+
+Lemma aux: [(mexists x, (NEG x)) m-> (box mFalse)].
+Proof. mv.
+intro H.
+destruct H as [x H1].
+unfold NEG in H1.
+assert ((empty essG x
+        m-> box
+              (mexists y : u, empty y))
+       w); [apply H1 | clear H1].
+unfold empty in H. unfold mimplies in H.
+assert (box (mexists _ : u, fun _ : i => False) w).
+  apply H.
+  apply EmptyEssence.
+
+  clear H.
+  box_i.
+  box_e H0 H1.
+  destruct H1 as [y H2].
+  contradiction.
+Qed.
+
+Theorem inconsistency: [mFalse].
+Proof.
+apply dia_box_false_leads_to_inconsistency_metalevel.
+mv.
+assert ((dia (mexists x, NEG x)) w); [apply NEG_possibly_exemplified | idtac].
+dia_e H.
+dia_i w0.
+apply aux.
+apply H0.
+Qed.
