@@ -126,14 +126,20 @@ discuss, assess, criticize, modify and improve G\"{o}del's original
 work (see e.g.~Sobel~\cite{sobel2004logic} and Oppy~\cite{sep-ontological-arguments} and the
 references therein). 
 
-Scott's version of G\"odel's argument was automatically reconstructed by the higher-order theorem prover \textsc{Leo-II} \cite{C40} and its correctness was verified step-by-step in the \textsc{Coq} proof assistant \cite{CSR}. To bridge the gap between higher-order logics (HOL; cf.~\cite{andrewsSEP} and the references
-therein), as used by these systems, and higher-order \emph{modal} logics (HOML; cf.~\cite{homl} and the
-references therein), on which the ontological argument argument, the logic embedding approach \cite{J23,C40} was used.
+Scott's version of G\"odel's argument was automatically reconstructed
+by higher-order automated theorem provers \cite{C40} and its
+correctness was verified step-by-step in the \textsc{Coq} proof
+assistant \cite{CSR}. To bridge the gap between higher-order logics
+(HOL; cf.~\cite{andrewsSEP} and the references therein), as used by
+these systems, and higher-order \emph{modal} logics (HOML;
+cf.~\cite{homl} and the references therein), on which the ontological
+argument argument, the logic embedding approach \cite{J23,C40} was
+used.
 
 However, G\"odel's original axioms, as used in his
 manuscript \cite{GoedelNotes}, are inconsistent. This fact has
 remained unnoticed to philosophers until 2013, 
-when \textsc{Leo-II} found a surprising refutation of the axioms.
+when \textsc{Leo-II} \cite{J30} found a surprising refutation of the axioms.
 In \cite{C55} we extracted from Leo-II's machine-oriented refutation an informal and human-oriented intuitive explanation for the inconsistency, and we reconstructed and
 verified it in the \textsc{Isabelle} proof assistant. But that explanation relied on reasoning at the meta-logic (HOL) level, which was only possible because of the embedding. Here we complement that work with a purely object-logic (HOML) explanation, and we compare and formalize both explanations in the \textsc{Coq} proof assistant.
 
@@ -382,12 +388,17 @@ the meta-logic proof acts as a short-cut: when it becomes impossible (in step 8)
 
 The axioms and definitions in G\"odel's manuscript are inconsistent (even in the weakest modal logic \K);
 this was detected automatically by the prover
-\textsc{Leo-II}. In our previous work \cite{C55}, we presented a human-readable and intuitive meta-logic explanation for the inconsistency, and we formalized and semi-automatically reconstructed it in the \textsc{Isabelle} proof assistant. Here this work was extended with an object-level explanation, and both explanations were formalized step-by-step in \textsc{Coq} proof assistant. A comparison of the formal \textsc{Coq} proofs of both explanations revealed that the meta-logic reasoning is more powerful, because it enables shortcuts and, therefore, requires fewer inferences and guesses. We conjecture that this is not an accident, but rather a fundamental reason why the embedding approach is effective in practice. 
+\textsc{Leo-II}. In our previous work \cite{C55}, we presented a human-readable and intuitive meta-logic explanation for the inconsistency, and we formalized and semi-automatically reconstructed it in the \textsc{Isabelle} proof assistant. Here this work was extended with an object-level explanation, and both explanations were formalized step-by-step in \textsc{Coq} proof assistant. A comparison of the formal \textsc{Coq} proofs of both explanations revealed that the meta-logic reasoning is more powerful, because it enables shortcuts and, therefore, requires fewer inferences and guesses. We conjecture that this is not accidental, but rather a fundamental reason why the embedding approach is effective in practice. 
 
-It is entertaining to notice that, although our work reveals a mistake in G\"odel's manuscript, it does substantiate G\"odel's belief that 
-``there is a scientific (exact) philosophy and theology,
-which deals with concepts of the highest abstractness; 
-and this is also most highly fruitful for science.'' \cite{Wang1996}[p. 316]. Indeed, through the investigation of G\"odel's mistake, we have been led to a fruitful conjecture in the fields of automated reasoning and proof theory.
+It is kind of entertaining that our work reveals a mistake in
+G\"odel's manuscript and at same time further substantiates G\"odel's
+belief that ``there is a scientific (exact) philosophy and theology,
+which deals with concepts of the highest abstractness; and this is
+also most highly fruitful for science.''
+\cite{Wang1996}[p. 316]. Indeed, through the investigation of
+G\"odel's mistake, we have been led to an interesting little
+conjecture in automated reasoning and proof theory (the global axiom
+$\pos \nec \bot$ is inconsistent).
 
 
 
