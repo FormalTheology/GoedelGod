@@ -132,16 +132,14 @@ correctness was verified step-by-step in the \textsc{Coq} proof
 assistant \cite{CSR}. To bridge the gap between higher-order logics
 (HOL; cf.~\cite{andrewsSEP} and the references therein), as used by
 these systems, and higher-order \emph{modal} logics (HOML;
-cf.~\cite{homl} and the references therein), on which the ontological
-argument argument, the logic embedding approach \cite{J23,C40} was
-used.
+cf.~\cite{homl} and the references therein), on which the ontological argument is based, the logic embedding approach \cite{J23,C40} was used.
 
 However, G\"odel's original axioms, as used in his
 manuscript \cite{GoedelNotes}, are inconsistent. This fact has
 remained unnoticed to philosophers until 2013, 
 when \textsc{Leo-II} \cite{J30} found a surprising refutation of the axioms.
 In \cite{C55} we extracted from Leo-II's machine-oriented refutation an informal and human-oriented intuitive explanation for the inconsistency, and we reconstructed and
-verified it in the \textsc{Isabelle} proof assistant. But that explanation relied on reasoning at the meta-logic (HOL) level, which was only possible because of the embedding. Here we complement that work with a purely object-logic (HOML) explanation, and we compare and formalize both explanations in the \textsc{Coq} proof assistant.
+verified it in the \textsc{Isabelle} proof assistant. But that explanation relied on reasoning at the \emph{meta-logic} (HOL) level, which was only possible because of the embedding. Here we complement that work with a purely \emph{object-logic} (HOML) explanation, and we compare and formalize both explanations in the \textsc{Coq} proof assistant.
 
 Applications of (first-order) theorem proving technology in
 metaphysics were first reported by Fitelson, Oppenheimer and
@@ -168,8 +166,9 @@ and older ontological argument.
 
 
 
-\section{An Essential Difference in the Definitions of Essence.}
+\section{An Essential Difference in the Definitions of Essence}
 \label{sec:history}
+
 G\"odel's manuscript can be considered a translation of Leibniz's
 ideas on the argument into modern modal logic. G\"odel
 discussed his manuscript with Scott, who shared a slightly different
@@ -207,7 +206,7 @@ that G\"odel's original axioms were inconsistent.
 
 
 In our experiments in this branch of metaphysics we
-utilise an embedding of HOMLs, such as \textbf{K}, \textbf{KB} and
+utilize an embedding of HOMLs, such as \textbf{K}, \textbf{KB} and
 \textbf{S5} with various domain conditions (possibilist and actualist
 quantification), in HOL. More precisely, formulas in HOML are \emph{lifted}, i.e., converted
 into predicates over worlds, which are themselves explicitly
@@ -222,7 +221,7 @@ precisely the well-known standard translation,
 %\cite{DBLP:journals/logcom/Ohlbach91}, 
 which is here intra-logically realized --- and extended for
 quantifiers --- in HOL by stating a set of equations defining the
-logical constants. The resulting object logic is
+logical constants. The resulting logic is
 the HOML \textbf{K} with rigid terms and constant domains (possibilist
 quantifiers). Other logics (e.g. \textbf{KB}, \textbf{S5}) are
 embedded by adding axioms that restrict the accessibility relation
@@ -254,7 +253,7 @@ empty property\footnote{
   Note that the terms for the empty property ($\lambda x. \bot$) and for the property of self-difference ($\lambda x.  x\not=x$) have identical denotations in the logic setting
   with functional and Boolean extensionality assumed
   here. 
-  For the proof to go through it is
+  For the proof to go through, it is
   irrelevant which property is used.
 } $\lambda x. \bot$ (also denoted $\emptyset$, as in HOL it is customary to think of unary predicates as sets)\footnote{An additional lambda abstraction occurs in the empty property in \textsc{Leo-II}'s proof (and in the reconstruction in \textsc{Isabelle}) because the embedding approach lifts the boolean type $o$ to $\iota \imp o$.}. Based on this hint, we conceived the following informal explanation for the inconsistency of G\"odel's axioms (reproduced without change from \cite{C55}):
 %
@@ -301,10 +300,10 @@ empty property (or self-difference) is an essence of every individual
 } with a reflexive or symmetric accessibility relation (e.g. \KB), it is easy to see that there must be a world $w'$ accessible from $w$: either $w'$ itself, in case of a reflexive relation, or $w_0$, in case of a symmetric relation. In fact, even in \K, with no accessibility condition, there must be a world $w'$ accessible from $w$. The reason is that $\pos \nec \bot$ should be \emph{valid} (true in all worlds). Therefore, it is true in $w$ as well, where the existence of an accessible world $w'$ is forced by the $\pos$ operator. As a model for $\pos \nec \bot$ (which is a consequence of G\"odel's axioms) cannot be built, G\"odel's axioms are inconsistent.
 \end{enumerate}
 
-If we were to convert the informal proof above to a formal proof, the semantic reasoning in step 8 would require a leap to the meta-logic (HOL), in order to expand the definitions of the modal operators and reason directly about possible worlds. The following alternative proof avoids this leap and remains purely within the object logic (HOML \K):
+If we were to convert the informal proof above to a formal proof, the semantic reasoning in step 8 would require a leap to the meta-logic (HOL), in order to expand the definitions of modal operators and reason directly about possible worlds. The alternative proof below avoids this leap and remains purely within the object logic (HOML \K):
 
 \begin{enumerate}
-\item[8\textsuperscript{*}.] We must derive $\bot$ from $\pos \nec \bot$. In order to derive $\bot$, it suffices to show that there exists a derivable proposition such that its negation is also derivable. We choose $\pos \pos \bot$ as a candidate proposition, and hence we must show that:
+\item[8\textsuperscript{*}.] We must derive $\bot$ from $\pos \nec \bot$. In order to derive $\bot$, it suffices to show that there exists a derivable proposition such that its negation is also derivable. We choose $\pos \pos \bot$ as the candidate proposition, and hence we must show that:
 \begin{enumerate}
 \item $\neg \pos \pos \bot$ \emph{is derivable:} this proposition is equi-valid to $\nec \nec \top$, which is trivially derivable from $\top$ by two applications of the necessitation inference rule.
 
@@ -379,7 +378,7 @@ for the lengths of the corresponding natural deduction proof.
 It is noticeable that the meta-logic proof is significantly shorter 
 than the pure object-logic proof. An in-depth analysis 
 reveals that the reasoning about the possible worlds semantics in 
-the meta-logic proof acts as a short-cut: when it becomes impossible (in step 8) to build the third world $w'$ (because $\bot$ would have to hold in it, and thus $w'$ would be contradictory), a contradiction at the HOL level can be immediately derived, completing the proof. In the object-level proof, on the other hand, such a contradiction had to be found in the arbitrary initial world $w$. This not only requires additional tedious logical inferences (cf. the proofs of the lemmas \texttt{mimplies\_to\_mnot} and \texttt{dia\_not\_not\_box}), but also a non-trivial guessing of the instantiating contradictory proposition $\pos \pos \bot$, whose purpose is precisely to carry over the contradiction from $w'$ back to $w$.
+the meta-logic proof acts as a short-cut: when it becomes impossible (in step 8) to build the third world $w'$ (because $\bot$ would have to hold in it, and thus $w'$ would be contradictory), a contradiction at the HOL level can be immediately derived, completing the proof. In the object-level proof, on the other hand, such a contradiction has to be found in the arbitrary initial world $w$. This requires not only additional tedious logical inferences (cf. the proofs of the lemmas \texttt{mimplies\_to\_mnot} and \texttt{dia\_not\_not\_box}), but also a non-trivial guessing of the contradictory proposition $\pos \pos \bot$, whose purpose is precisely to carry over the contradiction from $w'$ back to $w$.
 
 
 
