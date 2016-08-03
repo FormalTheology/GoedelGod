@@ -1063,13 +1063,8 @@ $$
 \end{lemma}
 
 \begin{proof} \hfill
-\begin{prooftree}
-\AXC{$ $} \RightLabel{1}
-\UIC{$\ex z. G(z)$}\RightLabel{$\ex_E$}
-\UIC{$[\subproof_6] \qquad G(\gamma)$}
-\end{prooftree}
 
-\begin{tiny}
+\begin{small}
 \begin{prooftree}
 \AXC{$ $} \RightLabel{2}
 \UIC{$\neg P(\rho)$} 
@@ -1078,7 +1073,8 @@ $$
 \UIC{$P(\lambda x. \neg \rho(x)) \biimp \neg P(\rho)$} \RightLabel{$\wedge_E$}
 \UIC{$\neg P(\rho) \imp P(\lambda x. \neg \rho(x))$}\RightLabel{$\imp_E$}
 \BIC{$P(\lambda x. \neg \rho(x))$}
-\AXC{$\subproof_6$} \dashedLine
+\AXC{$ $} \RightLabel{1}
+\UIC{$\ex z. G(z)$}\RightLabel{$\ex_E$}
 \UIC{$G(\gamma)$}  \dottedLine \RightLabel{D\ref{N:D1}}
 \UIC{$\forall \varphi.(P(\varphi) \imp \varphi(\gamma))$}\RightLabel{$\forall_E$}
 \UIC{$P(\lambda x. \neg \rho(x)) \imp \neg \rho(\gamma)$}\RightLabel{$\imp_E$}
@@ -1094,7 +1090,7 @@ $$
 \BIC{$\nec P(\rho)$}\RightLabel{$\imp_I^3$}
 \UIC{$[\subproof_7] \qquad \rho(\gamma) \imp \nec\; P(\rho)$}
 \end{prooftree}
-\end{tiny}
+\end{small}
 
 
 \begin{small}
@@ -1119,8 +1115,9 @@ $$
 \BIC{$\nec \forall y .(G(y)\imp \rho(y))$}\RightLabel{$\imp_I^6$}
 \UIC{$\rho(\gamma) \imp \nec \forall y.(G(y) \imp \rho(y))$}\RightLabel{$\forall_I$}
 \UIC{$\forall \psi.(\psi(\gamma) \imp \nec \forall y.(G(y) \imp \psi(y)))$}
-\AXC{$\subproof_6$} \dashedLine
-\UIC{$G(\gamma)$}  
+\AXC{$ $} \RightLabel{1}
+\UIC{$\ex z. G(z)$}\RightLabel{$\ex_E$}
+\UIC{$G(\gamma)$}  \RightLabel{$\wedge_I$}
 \BIC{$G(\gamma) \wedge \forall \psi.(\psi(\gamma) \imp \nec \forall y.(G(y) \imp \psi(y)))$}\dottedLine \RightLabel{D\ref{N:D2}}
 \UIC{$[\subproof_8] \qquad \ess{G}{\gamma}$}
 \end{prooftree}
@@ -1131,8 +1128,9 @@ $$
 \AXC{$\subproof_8$} \dashedLine
 \UIC{$\ess{G}{\gamma}$}
 \AXC{Axiom \ref{A5}} \dashedLine
-\UIC{$P(E)$}\dottedLine \RightLabel{D\ref{N:D3}}
-\AXC{$\subproof_6$} \dashedLine
+\UIC{$P(E)$}\dottedLine 
+\AXC{$ $} \RightLabel{1}
+\UIC{$\ex z. G(z)$}\RightLabel{$\ex_E$}
 \UIC{$G(\gamma)$}\dottedLine \RightLabel{D\ref{N:D1}}
 \UIC{$\forall \varphi.(P(\varphi) \imp \varphi(\gamma))$}\RightLabel{$\forall_E$}
 \UIC{$P(E) \imp E(\gamma)$}\RightLabel{$\imp_E$}
