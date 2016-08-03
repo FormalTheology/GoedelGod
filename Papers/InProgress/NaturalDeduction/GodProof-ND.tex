@@ -720,10 +720,10 @@ $$
 \begin{prooftree}
 
 
-	\AXC{$ $} \RightLabel{5}
+	\AXC{$ $} \RightLabel{4}
 	\UIC{$\rho(\gamma)$}
 
-		\AXC{$ $} \RightLabel{2}
+		\AXC{$ $} \RightLabel{1}
 		\UIC{$\neg P(\rho)$} 
 				\AXC{Axiom 1} \dashedLine
         \UIC{$\all \varphi. [P(\neg \varphi) \biimp \neg P(\varphi)]$} \RightLabel{$\all_E$}
@@ -731,12 +731,12 @@ $$
         \UIC{$\neg P(\rho) \imp P(\lambda x. \neg \rho(x))$} \RightLabel{$\imp_E$}
 			\BIC{$P(\lambda x. \neg \rho(x))$}  
 
-					\AXC{$ $} \RightLabel{1}
+					\AXC{$ $} \RightLabel{5}
 					\UIC{$G(\gamma)$} \dottedLine
 					\UIC{$\all \varphi. P(\varphi) \imp \varphi(\gamma)$} \RightLabel{$\all_E$}
 					\UIC{$P(\lambda x. \neg \rho(x)) \imp \neg \rho(\gamma)$} \RightLabel{$\imp_E$}
 				\BIC{$\neg \rho(\gamma)$} \RightLabel{$\neg_E$}      
-	   \BIC{$\bot$} \RightLabel{$\neg_I^2$}
+	   \BIC{$\bot$} \RightLabel{$\neg_I^1$}
 	   \UIC{$\neg\neg P(\rho)$} \RightLabel{$\neg\neg_E$}
 	   \UIC{$[\subproof_3] \qquad P(\rho)$}
 	   \end{prooftree}
@@ -745,7 +745,7 @@ $$
 
 \begin{scriptsize}
 \begin{prooftree}
-\AXC{$ $} \RightLabel{1}
+\AXC{$ $} \RightLabel{5}
 \UIC{$G(\gamma)$}
 
  \AXC{$\subproof_3$}\dashedLine
@@ -754,24 +754,24 @@ $$
         \UIC{$\all \varphi.[P(\varphi) \to \Box \; P(\varphi)]$} \RightLabel{$\all_E$}
 	   	  \UIC{$P(\rho) \imp \nec P(\rho)$} \RightLabel{$\imp_E$}
 		 \BIC{$\nec P(\rho)\scott$}
-			\AXC{$ $} \RightLabel{4}
+			\AXC{$ $} \RightLabel{3}
 			\UIC{$\omega: P(\rho)$}
-					\AXC{$ $} \RightLabel{3}
+					\AXC{$ $} \RightLabel{2}
 					\UIC{$\omega: G(\delta) $} \dottedLine
 					\UIC{$\omega: \all \varphi. P(\varphi) \imp \varphi(\delta)$} \RightLabel{$\all_E$} 
 					\UIC{$\omega: P(\rho) \imp \rho(\delta)$} \RightLabel{$\imp_E$}
-				\BIC{$\omega: \rho(\delta) $} \RightLabel{$\imp_I^3$}
+				\BIC{$\omega: \rho(\delta) $} \RightLabel{$\imp_I^2$}
 				\UIC{$\omega: G(\delta) \imp \rho(\delta) $} \RightLabel{$\all_I$}
-				\UIC{$\omega: \all y. G(y) \imp \rho(y) $} \RightLabel{$\imp_I^4$}
+				\UIC{$\omega: \all y. G(y) \imp \rho(y) $} \RightLabel{$\imp_I^3$}
 				\UIC{$\omega: P(\rho) \imp (\all y. G(y) \imp \rho(y) )$} \RightLabel{$\nec_I$}
 				\UIC{$\nec (P(\rho) \imp (\all y. G(y) \imp \rho(y) ))$} \RightLabel{$\imp_E$}
-						\AXC{ K} \RightLabel{$\imp_E$}
-					\BIC{$\nec P(\rho) \imp \nec (\all y. G(y) \imp \rho(y) )$}
-			\BIC{$\nec (\all y. G(y) \imp \rho(y) )$} \RightLabel{$\imp_I^5$}
+						\AXC{Axiom K} \RightLabel{$\imp_E$}
+					\BIC{$\nec P(\rho) \imp \nec (\all y. G(y) \imp \rho(y) )$} \RightLabel{$\imp_E$}
+			\BIC{$\nec (\all y. G(y) \imp \rho(y) )$} \RightLabel{$\imp_I^4$}
 			\UIC{$\rho(\gamma) \imp \nec (\all y. G(y) \imp \rho(y) )$} \RightLabel{$\all_I$}
 			\UIC{$\all \varphi. \varphi(\gamma) \imp \nec (\all y. G(y) \imp \varphi(y) )$} \RightLabel{$\wedge_I$}
 		\BIC{$ G(\gamma) \wedge (\all \varphi. \varphi(\gamma) \imp \nec (\all y. G(y) \imp \varphi(y) ))$} \dottedLine
-		\UIC{$\ess{G}{\gamma}$} \RightLabel{$ \imp_I^1$}
+		\UIC{$\ess{G}{\gamma}$} \RightLabel{$ \imp_I^5$}
 		\UIC{$G(\gamma) \imp \ess{G}{\gamma}$} \RightLabel{$\all_I$}
 		\UIC{$\all x. G(x) \imp \ess{G}{x}$}
 \end{prooftree}
@@ -1399,7 +1399,7 @@ $$
 \UIC{$G(\gamma)$} \RightLabel{}\dottedLine \RightLabel{D\ref{A:D1}}
 \UIC{$\forall \varphi. [P(\lambda x.\varphi(x)) \biimp \nec \varphi(\gamma)]$}\RightLabel{$\forall_E$}
 \UIC{$P(\lambda x.\rho(x)) \biimp \nec \rho(\gamma)$}
-\AXC{$ $} \RightLabel{6}
+\AXC{$ $} \RightLabel{4}
 \UIC{$\nec\rho(\gamma)$} \RightLabel{}
 \BIC{$P(\rho)$} \RightLabel{$\imp_E$}
 
@@ -1410,23 +1410,23 @@ $$
 
 
 \begin{prooftree}
-\AXC{$ $} \RightLabel{5}
+\AXC{$ $} \RightLabel{3}
 \UIC{$\nec P(\rho)$} \RightLabel{$\nec_E$}
 \UIC{$\omega: P(\rho)$}
-\AXC{$ $} \RightLabel{4}
+\AXC{$ $} \RightLabel{2}
 \UIC{$\omega: G(y)$}  \dottedLine \RightLabel{D\ref{A:D1}}
 \UIC{$\omega: \forall \varphi. [P(\lambda x.\varphi(x)) \biimp \nec \varphi(\gamma)]$}\RightLabel{$\forall_E$}
 \UIC{$\omega: P(\rho) \biimp \nec \rho(y)$}\RightLabel{$\biimp_E$}
 \BIC{$\omega: \nec \rho(y)$}\RightLabel{$\nec_E$}
-\UIC{$\omega: \rho(y)$} \RightLabel{$\imp_I^4$}
+\UIC{$\omega: \rho(y)$} \RightLabel{$\imp_I^2$}
 \UIC{$\omega: G(y) \imp \rho(y)$}\RightLabel{$\forall_I$}
 \UIC{$\omega: \forall y.(G(y) \imp \rho(y))$}\RightLabel{$\nec_I$}
-\UIC{$\nec \forall y.(G(y) \imp \rho(y))$} \RightLabel{$\imp_I^5$}
+\UIC{$\nec \forall y.(G(y) \imp \rho(y))$} \RightLabel{$\imp_I^3$}
 \UIC{$\nec P(\rho)\imp \nec \forall y .(G(y)\imp \rho(y))$} \RightLabel{$\imp_E$}
 
 \AXC{$\subproof_7$} \dashedLine
 \UIC{$\nec P(\rho)$}
-\BIC{$\nec \forall y .(G(y)\imp \rho(y))$}\RightLabel{$\imp_I^6$}
+\BIC{$\nec \forall y .(G(y)\imp \rho(y))$}\RightLabel{$\imp_I^4$}
 \UIC{$[\subproof_8] \qquad \nec\rho(\gamma) \imp \nec \forall y.(G(y) \imp \rho(y))$}\RightLabel{$\forall_I$}
 \end{prooftree}
 
@@ -1437,7 +1437,7 @@ $$
 \begin{prooftree}
 \AXC{Axiom \ref{A:A3}} 
 \UIC{$P(G)$}
-\AXC{$ $} \RightLabel{7}
+\AXC{$ $} \RightLabel{5}
 \UIC{$\nec  \forall y. [G(y)\imp \varphi(y)]$}\RightLabel{$\wedge_I$}
 \BIC{$P(G)\wedge \nec  \forall y. [G(y)\imp \varphi(y)]$}\RightLabel{$\imp_E$}
 \AXC{Axiom \ref{A:A2}} 
@@ -1446,7 +1446,7 @@ $$
 \UIC{$  G(\gamma)$}  \RightLabel{D\ref{A:D1}}
 \UIC{$ \all \varphi. [P(\varphi)\biimp \nec \varphi(\gamma)]$}  \RightLabel{$\all_E$}
 \UIC{$ P(\varphi)\biimp \nec \varphi(\gamma)$}  \RightLabel{$\biimp_E$}
-\BIC{$ \nec \varphi(\gamma)$} \RightLabel{$\imp_I^7$}
+\BIC{$ \nec \varphi(\gamma)$} \RightLabel{$\imp_I^5$}
 \UIC{$[\subproof_9] \quad \nec  \forall y. [G(y)\imp \varphi(y)]\imp \nec \varphi(\gamma)$}
 \end{prooftree}
 %\end{small}
@@ -1456,7 +1456,7 @@ $$
 \AXC{$\subproof_8$ and $\subproof_9$} \dashedLine
 \UIC{$\nec \varphi(\gamma)\biimp \nec  \forall y. [G(y)\imp \varphi(y)] $}
 \UIC{$\forall \varphi. (\nec \varphi(\gamma)\biimp \nec  \forall y. [G(y)\imp \varphi(y)]) $}
-\AXC{$ $} \RightLabel{6}
+\AXC{$ \subproof_6 $} \dashedLine
 \UIC{$G(\gamma)$}\RightLabel{$\wedge_I$}
 \BIC{$\ess{G}{\gamma}$}
 \AXC{Axiom \ref{A5}} \dashedLine
@@ -1532,9 +1532,9 @@ $$
 \AXC{Axiom \ref{A:A3}} \RightLabel{}
 \UIC{$P(G)$} \RightLabel{$\biimp_E$}
 \BIC{$\nec G(\gamma)$}
-\AXC{$ $} \RightLabel{5}
+\AXC{$ $} \RightLabel{2}
 \UIC{$G(\gamma)$} \RightLabel{$\ex_I$}
-\UIC{$\ex x.G(x)$}  \RightLabel{$\imp_I^5$}
+\UIC{$\ex x.G(x)$}  \RightLabel{$\imp_I^2$}
 \UIC{$G(\gamma)\imp \ex x.G(x)$} \RightLabel{$\nec_I$}
 \UIC{$\nec [G(\gamma)\imp \ex x.G(x)]$} \doubleLine  \RightLabel{(using Axiom K)}
 \UIC{$\nec G(\gamma)\imp \nec \ex x.G(x)$} \RightLabel{$\imp_E$}
