@@ -809,29 +809,27 @@ $$
 
 \begin{proof}\hfill
 
+
+
+
 \begin{prooftree}
 \AXC{$ $} \RightLabel{1}
 \UIC{$\ex z. G(z)$} \RightLabel{$\ex_E$}
-\UIC{$[\subproof_4] \qquad G(\gamma)$}
-\end{prooftree}
-
-
-\begin{prooftree}
-\AXC{$\subproof_4$} \dashedLine
 \UIC{$G(\gamma)$}
 		\AXC{Theorem 2} \dashedLine 
 		\UIC{$\all x. G(x) \imp \ess{G}{x}$} \RightLabel{$\all_E$}
-		\UIC{$G(\gamma) \imp \ess{G}{\gamma}$}
+		\UIC{$G(\gamma) \imp \ess{G}{\gamma}$}  \RightLabel{$\imp_E$}
 	\BIC{$\ess{G}{\gamma}\scott$}
 				\AXC{Axiom 5} \dashedLine
 				\UIC{$P(E)$}
-						\AXC{$\subproof_4$} \dashedLine
+						\AXC{$ $} \RightLabel{1}
+						\UIC{$\ex z. G(z)$} \RightLabel{$\ex_E$}
 						\UIC{$G(\gamma)$} \dottedLine
 						\UIC{$\all \varphi. P(\varphi) \imp \varphi(\gamma)$} \RightLabel{$\all_E$}
-						\UIC{$P(E) \imp E(\gamma)$} 
+						\UIC{$P(E) \imp E(\gamma)$} \RightLabel{$\imp_E$}
 					\BIC{$E(\gamma)\scott$} \dottedLine
 					\UIC{$\all \varphi. \ess{\varphi}{\gamma} \imp \nec \ex x. \varphi(x)$} \RightLabel{$\all_E$}
-					\UIC{$\ess{G}{\gamma} \imp \nec \ex x. G(x)$}
+					\UIC{$\ess{G}{\gamma} \imp \nec \ex x. G(x)$} \RightLabel{$\imp_E$}
 		\BIC{$\nec \ex x. G(x)$} \RightLabel{$\imp_I^1$}
 		\UIC{$\ex z. G(z) \imp \nec \ex x. G(x)$}
 
