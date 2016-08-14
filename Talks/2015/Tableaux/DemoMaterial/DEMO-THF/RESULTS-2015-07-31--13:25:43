@@ -1,9 +1,0 @@
-Asking various HOL-ATPs in Miami remotely (thanks to Geoff Sutcliffe)
-
-T3.p---LEO-II------RESULT: SOT__gICsM - LEO-II---1.6.2 says Theorem - CPU = 0.00 WC = 0.08
-T3.p---Satallax------RESULT: SOT_oGKJWr - Satallax---2.8 says GaveUp - CPU = 0.33 WC = 0.42 RESULT: SOT_oGKJWr - Satallax---2.7 says Theorem - CPU = 0.00 WC = 0.03
-T3.p---cocATP------RESULT: SOT_a3fZjX - cocATP---0.2.0 says Unknown - CPU = 2.27 WC = 2.39
-T3.p---Nitpick------RESULT: SOT_jT87tc - Nitpick---2015 says Unknown - CPU = 16.47 WC = 12.08
-T3.p---Isabelle------RESULT: SOT_arArCR - Isabelle---2TH0 says Success - CPU = 6.88 WC = 6.13 RESULT: SOT_arArCR - Isabelle---2TF0 says Success - CPU = 7.49 WC = 6.56 RESULT: SOT_arArCR - Isabelle---2FOF says Success - CPU = 7.09 WC = 6.11 RESULT: SOT_arArCR - Isabelle---2015 says Theorem - CPU = 22.77 WC = 21.77 SolvedBy = auto
-T3.p---TPS------RESULT: SOT_Q5mdDU - TPS---3.120601S1b says Timeout - CPU = 200.09 WC = 148.83
-Done
