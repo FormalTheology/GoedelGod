@@ -148,6 +148,7 @@ where $\mu$ is the atomic type for individuals, $o$ is the atomic type for propo
   X_\tau \ \mid \
   (\lambda X_\theta.s_\tau)_{\theta\imp\tau} \ \mid \ 
   (s_{\theta\imp\tau}\, t_\theta)_\tau \ \mid \\
+  & s_{\tau} = t_{\tau} \ \mid \\
 & \bot_o \ \mid \
   \imp_{o\imp o\imp o} \ \mid \ 
   \wedge_{o\imp o\imp o} \ \mid \
@@ -157,7 +158,7 @@ where $\mu$ is the atomic type for individuals, $o$ is the atomic type for propo
   \nec_{o\imp o} \ \mid \
   \pos_{o\imp o}
 \end{align*}
-where $p_\tau$ and $X_\tau$ range over, respectively, constants and variables of type $\tau$. Parenthesis conventions, infix notation for propositional connectives and binding notation for quantifiers are assumed. Furthermore, subscript types are omitted when they are clear from the context. Negation ($\neg_{o\imp o}$) and equivalence ($\biimp_{o\imp o\imp o}$) are defined by $\neg A\equiv A\imp \bot$ and $ (A\biimp B)\equiv (A\imp B)\wedge (B\imp A)$.
+where $p_\tau$ and $X_\tau$ range over, respectively, constants and variables of type $\tau$. Parenthesis conventions, infix notation for propositional connectives and binding notation for quantifiers are assumed. Furthermore, subscript types are omitted when they are clear from the context. Inequality ($\neq_{\tau\imp\tau\imp o}$), negation ($\neg_{o\imp o}$) and equivalence ($\biimp_{o\imp o\imp o}$) are defined by $s \neq t\equiv \neg (s=t)$, $\neg A\equiv A\imp \bot$ and $ (A\biimp B)\equiv (A\imp B)\wedge (B\imp A)$.
 \end{definition}
 
 The natural deduction calculus used here has standard rules for propositional connectives and quantifiers, as shown in Figures \ref{fig:PropositionalRules} and \ref{fig:QuantifierRules}. The extension to classical logic is achieved by adding a rule for double negation elimination, shown in Figure \ref{fig:Classical}. Finally, modal operators are handled by special rules that insert or remove formulas from boxes, as shown in Figure \ref{fig:NDK}.
@@ -549,7 +550,7 @@ In this section we present a detailed formalization of Scott's proof in the natu
 
 Scott's version of G\"odel's proof depends on five axioms that circumscribe the notion of \emph{positive} property, with positivity being denoted by the undefined second-order predicate symbol $P$. Additionally, three definitions are used for establishing the notions of \emph{God-like}, \emph{essence} and \emph{necessary existence}. Technically, these definitions only abbreviate certain complex formulas. The argument would still go through if all defined symbols were replaced by the complex formulas they define. This observation is particularly relevant in the case of \emph{necessary existence}. Since this notion of ``existence'' is just an abbreviation, G\"odel's argument is not susceptible to Kant's criticism against Anselm's argument (that existence should not be treated as a predicate). In G\"odel's proof, existence is properly denoted by the existential quantifier. It is, therefore, unfortunately misleading to refer to the defined predicate symbol $E$ as ``necessary existence'', when in fact it is just a convenient abbreviation.
 
-In addition to the five axioms and three definitions that pertain specifically to the argument, the proof also uses {\bf S5}'s iteration principle (in the proof of Lemma 2) and the axiom of reflexivity for equality (in the proof of Theorem 1). The use of reflexivity could be avoided, but we chose to use it because it allows the construction of a shorter proof.
+In addition to the five axioms and three definitions that pertain specifically to the argument, the proof also uses {\bf S5}'s iteration principle (in the proof of Lemma 2) and the axiom of reflexivity for equality (in the proof of Theorem 1). The use of reflexivity could be avoided, but we chose to use it because it allows the construction of a shorter proof. 
 
 
 \begin{axiom}
@@ -626,7 +627,7 @@ $$
 					\AXC{Half of Axiom 1} \dashedLine
 					\UIC{$P(\lambda x. x = x) \imp \neg P(\lambda x. x \neq x)$} \RightLabel{$\imp_E$}
 				\BIC{$\neg P(\lambda x. x \neq x)$} \RightLabel{$\neg_E$}
-			\BIC{$\bot$}
+			\BIC{$[\subproof_3] \qquad \bot$}
 \end{prooftree}
 \end{small}
 
@@ -636,13 +637,13 @@ $$
 \UIC{$\nec \neg \ex x. \rho(x)$} \RightLabel{$\nec_E$}
 \UIC{$\omega: \neg \ex x. \rho(x)$}
         \AXC{$ $} \RightLabel{2}
-        \UIC{$\rho(\alpha)$} \RightLabel{$\ex_I$}
+        \UIC{$\omega: \rho(\alpha)$} \RightLabel{$\ex_I$}
 		\UIC{$\omega: \ex x. \rho(x)$} \RightLabel{$\neg_E$}
     \BIC{$\omega: \bot$} \RightLabel{$\neg_I^2$}
 	\UIC{$\omega: \neg \rho(\alpha)$} \RightLabel{$\all_I$}
 	\UIC{$\omega: \all x. \neg \rho(x)$} \RightLabel{$\nec_I$}
 	\UIC{$\nec \all x. \neg \rho(x) \scott$}
-	        \AXC{$ $} \dashedLine
+	        \AXC{$\subproof_3 $} \dashedLine
 	        \UIC{$\bot$} \RightLabel{$\neg_I^3$}
     		\UIC{$\neg \nec \all x. \neg \rho(x)$} \RightLabel{$\neg_E$}
   		\BIC{$\bot$} \RightLabel{$\neg_I^4$}
@@ -738,7 +739,7 @@ $$
 				\BIC{$\neg \rho(\gamma)$} \RightLabel{$\neg_E$}      
 	   \BIC{$\bot$} \RightLabel{$\neg_I^1$}
 	   \UIC{$\neg\neg P(\rho)$} \RightLabel{$\neg\neg_E$}
-	   \UIC{$[\subproof_3] \qquad P(\rho)$}
+	   \UIC{$[\subproof_4] \qquad P(\rho)$}
 	   \end{prooftree}
 \end{scriptsize}
 
@@ -748,7 +749,7 @@ $$
 \AXC{$ $} \RightLabel{5}
 \UIC{$G(\gamma)$}
 
- \AXC{$\subproof_3$}\dashedLine
+ \AXC{$\subproof_4$}\dashedLine
  \UIC{$P(\rho)$}
 	      \AXC{Axiom 4} \dashedLine
         \UIC{$\all \varphi.[P(\varphi) \to \Box \; P(\varphi)]$} \RightLabel{$\all_E$}
