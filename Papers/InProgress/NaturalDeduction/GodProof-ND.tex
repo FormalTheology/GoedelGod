@@ -167,12 +167,28 @@ Beta-reduction is implicit; all rules are assumed to operate modulo beta-reducti
 
 \newcommand{\subproof}{\star}
 
-Double lines are used to abbreviate tedious propositional reasoning steps in the derivations. Dashed lines are used to refer to an axiom or theorem with the proof shown elsewhere. When proof trees are too large to fit on the page, some branches may be displayed separately. In such cases, the conclusion of the branch and the location in the main proof tree where the branch belongs are annotated with the same symbol (a subscripted $\subproof$). Dotted lines are used to indicate folding and unfolding of definitions. Furthermore, as it is inconvenient to draw boxes around large derivations in \LaTeX, formulas inside boxes are labeled with the names of the boxes surrounding them. Therefore, the boxes can be omitted without loss of information. 
+Double lines are used to abbreviate tedious propositional reasoning steps in the derivations where the reasoning is otherwise clear. Dashed lines are used to refer to an axiom or theorem with the proof shown elsewhere. When proof trees are too large to fit on the page, some branches may be displayed separately. In such cases, the conclusion of the branch and the location in the main proof tree where the branch belongs are annotated with the same symbol (a subscripted $\subproof$). Dotted lines are used to indicate folding and unfolding of definitions. Furthermore, as it is inconvenient to draw boxes around large derivations in \LaTeX, formulas inside boxes are labeled with the names of the boxes surrounding them. Therefore, the boxes can be omitted without loss of information. 
 
 The calculus having only the rules shown in Figures \ref{fig:PropositionalRules}, \ref{fig:Classical} and \ref{fig:QuantifierRules} is named \ND, while the calculus with the additional rules shown in Figure \ref{fig:NDK} is named \NDK.
 
 \newcommand{\s}{\qquad}
 
+\begin{calculus}
+{Equality rules}
+{fig:EqualityRules}
+
+\vspace{1em}
+
+\s\s\s\s
+\infer[Ref]{t=t}{}
+\s\s
+\infer[Sym]{s=t}{ t=s }
+\s\s
+\infer[Trans]{s=t}{s=u & u=t}
+
+
+\vspace{1em}
+\end{calculus}
 
 
 
@@ -413,7 +429,7 @@ The straightforward combinations of the quantifier rules of {\ND} either with th
 
 From an axiomatic point of view, modal logics differ with respect to which additional axiom schemas they admit. Some common axiom schemas of relevance to the ontological argument are T ($\nec A \imp A$), B ($A \imp \nec \pos A$), 4 ($\nec A \imp \nec \nec A $) and 5 ($\pos A \imp \nec \pos A$). From a semantic point of view, these axioms correspond to geometric frame conditions that must be satisfied by the accessibility relation in Kripke models (See for example \citep{fitting2}): T corresponds to reflexivity, B corresponds to symmetry, 4 corresponds to transitivity and 5 corresponds to euclidianity. In the models of logic {\bf S5}, all these axioms are satisfied; in the models of logic {\bf KB}, K and B are satisfied; and in the models of logic {\bf B}, K, T and B are satisfied.
 
-In this section, natural deduction proofs of three convenient derived modal principles are presented. These principles are used in the ontological proofs formalized in the next sections. Although they are well-known among modal logicians, we include their proofs here in order to have a self-contained and fully formal presentation of the ontological proofs, without any gaps.
+In this section, natural deduction proofs of three convenient derived modal principles are presented. These principles are used in the ontological proofs formalized in the next sections. Although they are well-known among modal logicians, we include their proofs here in order to have a self-contained and fully formal presentation of the ontological proofs. 
 
 \bigskip
 
