@@ -148,6 +148,7 @@ where $\mu$ is the atomic type for individuals, $o$ is the atomic type for propo
   X_\tau \ \mid \
   (\lambda X_\theta.s_\tau)_{\theta\imp\tau} \ \mid \ 
   (s_{\theta\imp\tau}\, t_\theta)_\tau \ \mid \\
+  & s_{\tau} = t_{\tau} \ \mid \\
 & \bot_o \ \mid \
   \imp_{o\imp o\imp o} \ \mid \ 
   \wedge_{o\imp o\imp o} \ \mid \
@@ -157,7 +158,7 @@ where $\mu$ is the atomic type for individuals, $o$ is the atomic type for propo
   \nec_{o\imp o} \ \mid \
   \pos_{o\imp o}
 \end{align*}
-where $p_\tau$ and $X_\tau$ range over, respectively, constants and variables of type $\tau$. Parenthesis conventions, infix notation for propositional connectives and binding notation for quantifiers are assumed. Furthermore, subscript types are omitted when they are clear from the context. Negation ($\neg_{o\imp o}$) and equivalence ($\biimp_{o\imp o\imp o}$) are defined by $\neg A\equiv A\imp \bot$ and $ (A\biimp B)\equiv (A\imp B)\wedge (B\imp A)$.
+where $p_\tau$ and $X_\tau$ range over, respectively, constants and variables of type $\tau$. Parenthesis conventions, infix notation for propositional connectives and binding notation for quantifiers are assumed. Furthermore, subscript types are omitted when they are clear from the context. Inequality ($\neq_{\tau\imp\tau\imp o}$), negation ($\neg_{o\imp o}$) and equivalence ($\biimp_{o\imp o\imp o}$) are defined by $s \neq t\equiv \neg (s=t)$, $\neg A\equiv A\imp \bot$ and $ (A\biimp B)\equiv (A\imp B)\wedge (B\imp A)$.
 \end{definition}
 
 The natural deduction calculus used here has standard rules for propositional connectives and quantifiers, as shown in Figures \ref{fig:PropositionalRules} and \ref{fig:QuantifierRules}. The extension to classical logic is achieved by adding a rule for double negation elimination, shown in Figure \ref{fig:Classical}. Finally, modal operators are handled by special rules that insert or remove formulas from boxes, as shown in Figure \ref{fig:NDK}.
@@ -166,12 +167,28 @@ Beta-reduction is implicit; all rules are assumed to operate modulo beta-reducti
 
 \newcommand{\subproof}{\star}
 
-Double lines are used to abbreviate tedious propositional reasoning steps in the derivations. Dashed lines are used to refer to an axiom or theorem with the proof shown elsewhere. When proof trees are too large to fit on the page, some branches may be displayed separately. In such cases, the conclusion of the branch and the location in the main proof tree where the branch belongs are annotated with the same symbol (a subscripted $\subproof$). Dotted lines are used to indicate folding and unfolding of definitions. Furthermore, as it is inconvenient to draw boxes around large derivations in \LaTeX, formulas inside boxes are labeled with the names of the boxes surrounding them. Therefore, the boxes can be omitted without loss of information. 
+Double lines are used to abbreviate tedious propositional reasoning steps in the derivations where the reasoning is otherwise clear. Dashed lines are used to refer to an axiom or theorem with the proof shown elsewhere. When proof trees are too large to fit on the page, some branches may be displayed separately. In such cases, the conclusion of the branch and the location in the main proof tree where the branch belongs are annotated with the same symbol (a subscripted $\subproof$). Dotted lines are used to indicate folding and unfolding of definitions. Furthermore, as it is inconvenient to draw boxes around large derivations in \LaTeX, formulas inside boxes are labeled with the names of the boxes surrounding them. Therefore, the boxes can be omitted without loss of information. 
 
 The calculus having only the rules shown in Figures \ref{fig:PropositionalRules}, \ref{fig:Classical} and \ref{fig:QuantifierRules} is named \ND, while the calculus with the additional rules shown in Figure \ref{fig:NDK} is named \NDK.
 
 \newcommand{\s}{\qquad}
 
+\begin{calculus}
+{Equality rules}
+{fig:EqualityRules}
+
+\vspace{1em}
+
+\s\s\s\s
+\infer[Ref]{t=t}{}
+\s\s
+\infer[Sym]{s=t}{ t=s }
+\s\s
+\infer[Trans]{s=t}{s=u & u=t}
+
+
+\vspace{1em}
+\end{calculus}
 
 
 
@@ -410,9 +427,9 @@ The straightforward combinations of the quantifier rules of {\ND} either with th
 \section{Some Useful Derivable Modal Principles}
 \label{sec:ModalLogics}
 
-From an axiomatic point of view, modal logics differ with respect to which additional axiom schemas they admit. Some common axiom schemas of relevance to the ontological argument are T ($\nec A \imp A$), B ($A \imp \nec \pos A$), 4 ($\nec A \imp \nec \nec A $) and 5 ($\pos A \imp \nec \pos A$). From a semantic point of view, these axioms correspond to geometric frame conditions that must be satisfied by the accessibility relation in Kripke models \citep{negri}: T corresponds to reflexivity, B corresponds to symmetry, 4 corresponds to transitivity and 5 corresponds to euclidianity. In the models of logic {\bf S5}, all these axioms are satisfied; in the models of logic {\bf KB}, K and B are satisfied; and in the models of logic {\bf B}, K, T and B are satisfied.
+From an axiomatic point of view, modal logics differ with respect to which additional axiom schemas they admit. Some common axiom schemas of relevance to the ontological argument are T ($\nec A \imp A$), B ($A \imp \nec \pos A$), 4 ($\nec A \imp \nec \nec A $) and 5 ($\pos A \imp \nec \pos A$). From a semantic point of view, these axioms correspond to geometric frame conditions that must be satisfied by the accessibility relation in Kripke models (See for example \citep{fitting2}): T corresponds to reflexivity, B corresponds to symmetry, 4 corresponds to transitivity and 5 corresponds to euclidianity. In the models of logic {\bf S5}, all these axioms are satisfied; in the models of logic {\bf KB}, K and B are satisfied; and in the models of logic {\bf B}, K, T and B are satisfied.
 
-In this section, natural deduction proofs of three convenient derived modal principles are presented. These principles are used in the ontological proofs formalized in the next sections. Although they are well-known among modal logicians, we include their proofs here in order to have a self-contained and fully formal presentation of the ontological proofs, without any gaps.
+In this section, natural deduction proofs of three convenient derived modal principles are presented. These principles are used in the ontological proofs formalized in the next sections. Although they are well-known among modal logicians, we include their proofs here in order to have a self-contained and fully formal presentation of the ontological proofs. 
 
 \bigskip
 
@@ -549,7 +566,7 @@ In this section we present a detailed formalization of Scott's proof in the natu
 
 Scott's version of G\"odel's proof depends on five axioms that circumscribe the notion of \emph{positive} property, with positivity being denoted by the undefined second-order predicate symbol $P$. Additionally, three definitions are used for establishing the notions of \emph{God-like}, \emph{essence} and \emph{necessary existence}. Technically, these definitions only abbreviate certain complex formulas. The argument would still go through if all defined symbols were replaced by the complex formulas they define. This observation is particularly relevant in the case of \emph{necessary existence}. Since this notion of ``existence'' is just an abbreviation, G\"odel's argument is not susceptible to Kant's criticism against Anselm's argument (that existence should not be treated as a predicate). In G\"odel's proof, existence is properly denoted by the existential quantifier. It is, therefore, unfortunately misleading to refer to the defined predicate symbol $E$ as ``necessary existence'', when in fact it is just a convenient abbreviation.
 
-In addition to the five axioms and three definitions that pertain specifically to the argument, the proof also uses {\bf S5}'s iteration principle (in the proof of Lemma 2) and the axiom of reflexivity for equality (in the proof of Theorem 1). The use of reflexivity could be avoided, but we chose to use it because it allows the construction of a shorter proof.
+In addition to the five axioms and three definitions that pertain specifically to the argument, the proof also uses {\bf S5}'s iteration principle (in the proof of Lemma 2) and the axiom of reflexivity for equality (in the proof of Theorem 1). The use of reflexivity could be avoided, but we chose to use it because it allows the construction of a shorter proof. 
 
 
 \begin{axiom}
@@ -626,7 +643,7 @@ $$
 					\AXC{Half of Axiom 1} \dashedLine
 					\UIC{$P(\lambda x. x = x) \imp \neg P(\lambda x. x \neq x)$} \RightLabel{$\imp_E$}
 				\BIC{$\neg P(\lambda x. x \neq x)$} \RightLabel{$\neg_E$}
-			\BIC{$\bot$}
+			\BIC{$[\subproof_3] \qquad \bot$}
 \end{prooftree}
 \end{small}
 
@@ -636,13 +653,13 @@ $$
 \UIC{$\nec \neg \ex x. \rho(x)$} \RightLabel{$\nec_E$}
 \UIC{$\omega: \neg \ex x. \rho(x)$}
         \AXC{$ $} \RightLabel{2}
-        \UIC{$\rho(\alpha)$} \RightLabel{$\ex_I$}
+        \UIC{$\omega: \rho(\alpha)$} \RightLabel{$\ex_I$}
 		\UIC{$\omega: \ex x. \rho(x)$} \RightLabel{$\neg_E$}
     \BIC{$\omega: \bot$} \RightLabel{$\neg_I^2$}
 	\UIC{$\omega: \neg \rho(\alpha)$} \RightLabel{$\all_I$}
 	\UIC{$\omega: \all x. \neg \rho(x)$} \RightLabel{$\nec_I$}
 	\UIC{$\nec \all x. \neg \rho(x) \scott$}
-	        \AXC{$ $} \dashedLine
+	        \AXC{$\subproof_3 $} \dashedLine
 	        \UIC{$\bot$} \RightLabel{$\neg_I^3$}
     		\UIC{$\neg \nec \all x. \neg \rho(x)$} \RightLabel{$\neg_E$}
   		\BIC{$\bot$} \RightLabel{$\neg_I^4$}
@@ -738,7 +755,7 @@ $$
 				\BIC{$\neg \rho(\gamma)$} \RightLabel{$\neg_E$}      
 	   \BIC{$\bot$} \RightLabel{$\neg_I^1$}
 	   \UIC{$\neg\neg P(\rho)$} \RightLabel{$\neg\neg_E$}
-	   \UIC{$[\subproof_3] \qquad P(\rho)$}
+	   \UIC{$[\subproof_4] \qquad P(\rho)$}
 	   \end{prooftree}
 \end{scriptsize}
 
@@ -748,7 +765,7 @@ $$
 \AXC{$ $} \RightLabel{5}
 \UIC{$G(\gamma)$}
 
- \AXC{$\subproof_3$}\dashedLine
+ \AXC{$\subproof_4$}\dashedLine
  \UIC{$P(\rho)$}
 	      \AXC{Axiom 4} \dashedLine
         \UIC{$\all \varphi.[P(\varphi) \to \Box \; P(\varphi)]$} \RightLabel{$\all_E$}
@@ -1794,6 +1811,9 @@ Bj{\o}rdal, F. 1999. Understanding G\"odel's Ontological Argument, in Timothy Ch
 \bibitem[{\itshape Church(1940)}]{church}
 Church, A. 1940. {\itshape A Formulation of the Simple Theory of Types}, Journal of Symbolic Logic, 5: 56--68. 
 
+\bibitem[{\itshape Fitting \& Mendelsohn(1998)}]{fitting2}
+Fitting, M. \& Mendelsohn, R. 1998.  {\itshape First-order Modal Logic}, Synthese Library vol. 277. Kluwer Academic Publishers.  
+
 \bibitem[{\itshape Fitting(2002)}]{fitting}
 Fitting, M. 2002.  {\itshape Types, Tableaus, and G\"odel's God}, Kluwer Academic Publishers.  
 
@@ -1820,8 +1840,8 @@ Koons, R. 2006. Sobel on G\"odel's Ontological Proof. {\itshape Philosophia Chri
 \bibitem[{\itshape Magari(1988)}]{magari}
 Magari, R. 1988. {\itshape Logica e Teofilia}. In: {\itshape Notizie di Logica} VII.4.
 
-\bibitem[{\itshape Negri(2005)}]{negri}
-Negri, S. 2005. {\itshape Proof analysis in modal logic}. J. Philosophical Logic, vol. 34, pp. 507--544. 
+%\bibitem[{\itshape Negri(2005)}]{negri}
+%Negri, S. 2005. {\itshape Proof analysis in modal logic}. J. Philosophical Logic, vol. 34, pp. 507--544. 
 
 \bibitem[{\itshape Nipkow \& Paulson \& Wenzel(2002)}]{isabelle} Nipkow, T. \& Paulson, L.C. \& Wenzel, M. 2002. {\itshape Isabelle/HOL: A Proof Assistant for
 Higher-Order Logic}. Number 2283 in LNCS, Springer.
