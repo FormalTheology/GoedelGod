@@ -30,12 +30,12 @@ definition indforall :: "(c \<Rightarrow> bool) \<Rightarrow> bool" (binder "\<^
 axiomatization where
 IDEN2: "\<And>A B. A \<^bold>= B \<longrightarrow> (\<forall>\<alpha>. \<alpha> A \<longleftrightarrow> \<alpha> B)" and
 CONT2: "\<And>A B C. A \<^bold>\<in> B \<Longrightarrow> B \<^bold>\<in> C \<Longrightarrow> A \<^bold>\<in> C" and
-(*Lenzen uses conjunction here. For computational reasons implications are used*)
+(*Lenzen uses conjunction here. For computational reasons implication is used*)
 
 CONJ1: "\<And>A B C. A \<^bold>\<in> B \<^bold>+ C \<equiv> A \<^bold>\<in> B \<and> A \<^bold>\<in> C" and
 NEG1: "\<And>A. (\<^bold>~ \<^bold>~ A) \<^bold>= A" and
 NEG2: "\<And>A B. A \<^bold>\<in> B \<equiv> (\<^bold>~ B) \<^bold>\<in> \<^bold>~ A" and
-NEG3: "\<And>A.\<not> (A \<^bold>= \<^bold>~ A)" and
+NEG3: "\<And>A.\<not> (A \<^bold>= \<^bold>~ A)" and (*Lenzen seems to think this is a theorem. It isn't.*)
 POSS2: "\<And>A B. A \<^bold>\<in> B \<equiv> \<not> P(A \<^bold>+ \<^bold>~ B)" and
 MAX: "\<And>B. P B \<Longrightarrow> \<exists>C. \<forall>A. ((B \<^bold>\<in> A) \<longrightarrow> (C \<^bold>\<in> A \<and> C \<^bold>\<notin> \<^bold>~ A))
      \<and> ((B \<^bold>\<in> \<^bold>~ A) \<longrightarrow>(C \<^bold>\<notin> A \<and> C \<^bold>\<in> \<^bold>~ A))
@@ -50,10 +50,6 @@ by blast
 
 lemma IDEN1: "A \<^bold>= A" (* This is not needed as an axiom. Lenzen explicitly lists it as one.*)
 by(simp add: CONT1 equal_def)
-
-lemma equal_sym: "A \<^bold>= B \<equiv> B \<^bold>= A" (*As far as i can tell: we don't need this*)
-using equal_def
-by smt
 
 lemma CONJ2: "A \<^bold>+ A \<^bold>= A"
 using CONJ1 CONT1 equal_def
@@ -84,7 +80,7 @@ using CONT2 possible_def notcontains_def
 by blast
 (*Lenzen uses conjunction, for computational purposes we use implication*)
 
-lemma NEG7: "(A \<^bold>+ \<^bold>~ A) \<^bold>\<in> B" sledgehammer[remote_leo2, verbose]
+lemma NEG7: "(A \<^bold>+ \<^bold>~ A) \<^bold>\<in> B" 
 using CONJ4 CONT1 POSS1 POSS2 by blast
 (*Lenzen perhaps thinks this should not be a theorem (p.14).
 It is not clear whether this is a mistake on Lenzens part or if it follows
