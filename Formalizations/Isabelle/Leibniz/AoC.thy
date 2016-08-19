@@ -15,7 +15,7 @@ definition equal :: "c \<Rightarrow> c \<Rightarrow> bool" (infixr "\<^bold>=" 4
           "equal A B \<equiv> A \<^bold>\<in> B \<and> B \<^bold>\<in> A"
 definition notequal :: "c \<Rightarrow> c \<Rightarrow> bool" (infixr "\<^bold>\<noteq>" 40) where
           "notequal A B \<equiv>  \<not> equal A B"
-definition possible :: "c \<Rightarrow> bool" ("P _" 74) where
+definition possible :: "c \<Rightarrow> bool" ("P _" 108) where
           "P B \<equiv> \<forall>A. B \<^bold>\<notin> A \<^bold>+ \<^bold>~ A" 
 (*Note that possible does not mean possible propositions but possible concepts*)
 definition disjunction :: "c \<Rightarrow> c \<Rightarrow> c" (infixr "\<^bold>\<or>" 71) where
@@ -189,7 +189,7 @@ So this axiomatization implies flying elephants  *)
 (*Also note that MAX is used in this proof*)
 
 
-lemma CONT5: "B \<^bold>\<in> C \<equiv> \<^bold>\<forall>X. (X \<^bold>\<in> B) \<longrightarrow> X \<^bold>\<in> C"
+lemma CONT5': "B \<^bold>\<in> C \<equiv> \<^bold>\<forall>X. (X \<^bold>\<in> B) \<longrightarrow> X \<^bold>\<in> C"
 proof -
 have "B \<^bold>\<in> C \<Longrightarrow> \<^bold>\<forall>X. (X \<^bold>\<in> B) \<longrightarrow> X \<^bold>\<in> C"
   using CONT2 indforall_def
