@@ -5,13 +5,21 @@ begin
 consts
   E :: "c" ("E") (*Concept of existence*)
   G :: "c" ("G") (*Concept god/being godlike*)
-
+axiomatization where 
+GnotE:"G \<^bold>\<noteq> E" and
+GnotnotE: "G \<^bold>\<noteq> \<^bold>~E"
 
 (*Proof attempt fails, if necessity is understood as "N G"*)
 definition N :: "c \<Rightarrow> bool" where "N A \<equiv> \<not> P (\<^bold>~ A) "
 
 axiomatization where
   NG: "N G"
+
+lemma L7: "\<not>(N (G \<^bold>\<longrightarrow> E)) \<longrightarrow> \<not>(P G)" 
+    nitpick [user_axioms, format = 2] oops
+
+
+
 
 lemma L2: "\<not>(X \<^bold>\<sqsupset> E) \<longrightarrow> (P (X \<^bold>+ \<^bold>~E))"
  by (simp add: POSS2)

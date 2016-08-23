@@ -5,6 +5,9 @@ begin
 consts
   E :: "c" ("E")
   G :: "c" ("G")
+axiomatization where 
+GnotE:"G \<^bold>\<noteq> E" and
+GnotnotE: "G \<^bold>\<noteq> \<^bold>~E"
 
 definition N :: "c \<Rightarrow> bool" where "N A \<equiv> \<not> P (\<^bold>~ A) "
 
@@ -56,5 +59,4 @@ Therefore, any impossible object contains existence *)
 lemma God: "(G \<^bold>\<sqsupset> E)"
   using L5' NG notcontains_def by auto
 
-end
 end
