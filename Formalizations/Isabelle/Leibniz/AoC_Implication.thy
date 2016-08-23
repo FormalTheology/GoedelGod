@@ -3,44 +3,46 @@ imports Main
 
 begin
 
-typedecl c (*Type for concepts*)
+typedecl c (* Type for concepts *)
 
-consts contains :: "c\<Rightarrow>c\<Rightarrow>bool" (infix "\<^bold>\<in>" 65)
-consts conjunction :: "c\<Rightarrow>c\<Rightarrow>c" (infixr"\<^bold>+" 70)
-consts not :: "c\<Rightarrow>c" ("\<^bold>~ _" 75)
+consts contains :: "c \<Rightarrow> c \<Rightarrow> bool" (infix "\<^bold>\<in>" 65)
+consts conjunction :: "c \<Rightarrow> c \<Rightarrow> c" (infixr"\<^bold>+" 70)
+consts not :: "c \<Rightarrow> c" ("\<^bold>~ _" 75)
 
-definition notcontains :: "c\<Rightarrow>c\<Rightarrow>bool" (infix "\<^bold>\<notin>" 65) where
+definition notcontains :: "c \<Rightarrow> c \<Rightarrow> bool" (infix "\<^bold>\<notin>" 65) where
           "notcontains A B  \<equiv> \<not> (A \<^bold>\<in> B) "
 definition equal :: "c \<Rightarrow> c \<Rightarrow> bool" (infixr "\<^bold>=" 40) where
           "equal A B \<equiv> A \<^bold>\<in> B \<and> B \<^bold>\<in> A"
 definition notequal :: "c \<Rightarrow> c \<Rightarrow> bool" (infixr "\<^bold>\<noteq>" 40) where
-          "notequal A B \<equiv>  \<not> equal A B"
-definition possible :: "c \<Rightarrow> bool" ("P _" 108) where
-          "P B \<equiv> \<forall>A. B \<^bold>\<notin> A \<^bold>+ \<^bold>~ A" 
-(*Note that possible does not mean possible propositions but possible concepts*)
+          "notequal A B \<equiv>  \<not> (A = B)"
+definition possible :: "c \<Rightarrow> bool" ("P _" 74) where
+          "P B \<equiv> \<forall> A. B \<^bold>\<notin> A \<^bold>+ \<^bold>~ A" 
+(* Note that possible does not mean possible propositions but possible concepts *)
 definition disjunction :: "c \<Rightarrow> c \<Rightarrow> c" (infixr "\<^bold>\<or>" 71) where
           "A \<^bold>\<or> B \<equiv>  \<^bold>~ ((\<^bold>~A) \<^bold>+ \<^bold>~B)"
+definition implication :: "c \<Rightarrow> c \<Rightarrow> c" (infixr "\<^bold>\<longrightarrow>" 74) where
+          "A \<^bold>\<longrightarrow> B \<equiv> ((\<^bold>~ A) \<^bold>\<or> B)"
+(* Note that implication is not introduced by Leibniz or Lenzen *)
 definition indconcept :: "c \<Rightarrow> bool" ("Ind _" 75) where 
           "indconcept A  \<equiv> (P A) \<and> (\<forall>Y. (P (A \<^bold>+ Y)) \<longrightarrow> A \<^bold>\<in> Y)"
-definition indexists :: "(c \<Rightarrow> bool) \<Rightarrow> bool" (binder "\<^bold>\<exists>" 10) where(*Lenzen uses different symbol*)
+definition indexists :: "(c  \<Rightarrow>  bool)  \<Rightarrow>  bool" (binder "\<^bold>\<exists>" 10) where (* Lenzen uses a different symbol *)
           "\<^bold>\<exists>x. A x  \<equiv> \<exists>(X::c). (Ind X) \<and> A X" 
-definition indforall :: "(c \<Rightarrow> bool) \<Rightarrow> bool" (binder "\<^bold>\<forall>" 10) where (*Lenzen uses different symbol*)
+definition indforall :: "(c  \<Rightarrow>  bool)  \<Rightarrow>  bool" (binder "\<^bold>\<forall>" 10) where (* Lenzen uses a different symbol *)
           "\<^bold>\<forall>x. A x \<equiv> \<forall>(X::c). (Ind X) \<longrightarrow> A X"
 
 axiomatization where
 IDEN2: "\<And>A B. A \<^bold>= B \<longrightarrow> (\<forall>\<alpha>. \<alpha> A \<longleftrightarrow> \<alpha> B)" and
 CONT2: "\<And>A B C. A \<^bold>\<in> B \<Longrightarrow> B \<^bold>\<in> C \<Longrightarrow> A \<^bold>\<in> C" and
-(*Lenzen uses conjunction here. For computational reasons implication is used*)
-
+(* Lenzen uses conjunction here. For computational reasons implications are used *)
 CONJ1: "\<And>A B C. A \<^bold>\<in> B \<^bold>+ C \<equiv> A \<^bold>\<in> B \<and> A \<^bold>\<in> C" and
 NEG1: "\<And>A. (\<^bold>~ \<^bold>~ A) \<^bold>= A" and
 NEG2: "\<And>A B. A \<^bold>\<in> B \<equiv> (\<^bold>~ B) \<^bold>\<in> \<^bold>~ A" and
-NEG3: "\<And>A.\<not> (A \<^bold>= \<^bold>~ A)" and (*Lenzen seems to think this is a theorem. It isn't.*)
+NEG3: "\<And>A. A \<^bold>\<noteq> \<^bold>~ A" and
 POSS2: "\<And>A B. A \<^bold>\<in> B \<equiv> \<not> P(A \<^bold>+ \<^bold>~ B)" and
 MAX: "\<And>B. P B \<Longrightarrow> \<exists>C. \<forall>A. ((B \<^bold>\<in> A) \<longrightarrow> (C \<^bold>\<in> A \<and> C \<^bold>\<notin> \<^bold>~ A))
      \<and> ((B \<^bold>\<in> \<^bold>~ A) \<longrightarrow>(C \<^bold>\<notin> A \<and> C \<^bold>\<in> \<^bold>~ A))
      \<and> ((B \<^bold>\<notin> A \<and> B \<^bold>\<notin> \<^bold>~ A) \<longrightarrow> (((C \<^bold>\<in> \<^bold>~ A) \<or> C \<^bold>\<in> A) \<and> (C \<^bold>\<notin> A \<^bold>+ \<^bold>~ A)))"
-(*MAX is an axiom which does not occur in Lenzens paper. 
+(* MAX is an axiom which does not occur in Lenzens paper. 
 It turns out to be equivalent to POSS3 and can thus, in principle, be replaced by it *)
 
 
@@ -50,6 +52,10 @@ by blast
 
 lemma IDEN1: "A \<^bold>= A" (* This is not needed as an axiom. Lenzen explicitly lists it as one.*)
 by(simp add: CONT1 equal_def)
+
+lemma equal_sym: "A \<^bold>= B \<equiv> B \<^bold>= A" (* As far as I can see, we don't use this. *)
+using equal_def
+by smt
 
 lemma CONJ2: "A \<^bold>+ A \<^bold>= A"
 using CONJ1 CONT1 equal_def
@@ -66,8 +72,9 @@ lemma CONJ5: "A \<^bold>+ B \<^bold>\<in> B"
 using CONJ1 CONT1
 by auto
 
-lemma NEG4: "A \<^bold>= B \<Longrightarrow> (A \<^bold>\<noteq> \<^bold>~B)" 
-by (meson IDEN2 NEG3 notequal_def)
+lemma NEG4: "A \<^bold>= B \<Longrightarrow> (A \<^bold>\<noteq> \<^bold>~ B)"
+using CONT2 NEG3 equal_def notequal_def IDEN2
+by meson
 
 lemma NEG5: "P A \<Longrightarrow> (A \<^bold>\<notin> \<^bold>~ A)"
 by(simp add: CONJ1 CONT1 possible_def notcontains_def)
@@ -78,13 +85,43 @@ by(simp add: CONJ1 possible_def notcontains_def)
 lemma POSS1: "A \<^bold>\<in> B \<Longrightarrow> P(A) \<Longrightarrow> P(B)"
 using CONT2 possible_def notcontains_def
 by blast
-(*Lenzen uses conjunction, for computational purposes we use implication*)
+(* Lenzen uses conjunction, for computational purposes we use implication *)
 
-lemma NEG7: "(A \<^bold>+ \<^bold>~ A) \<^bold>\<in> B" 
-using CONJ4 CONT1 POSS1 POSS2 by blast
-(*Lenzen perhaps thinks this should not be a theorem (p.14).
-It is not clear whether this is a mistake on Lenzens part or if it follows
-out of some extensional principle where Lenzen wants intensionality.*)
+lemma NEG7: "(A \<^bold>+ \<^bold>~ A) \<^bold>\<in> B"
+proof -
+have "A \<^bold>\<in> A"
+  by(rule CONT1)
+hence f1: "\<not> P(A \<^bold>+ \<^bold>~ A)"
+  by(simp add: POSS2)
+moreover have "(A \<^bold>+ (\<^bold>~ A)) \<^bold>+ (\<^bold>~ B) \<^bold>\<in> (A \<^bold>+ (\<^bold>~ A))"
+  by(simp add: CONJ4)
+ultimately have "\<not> P((A \<^bold>+ (\<^bold>~ A)) \<^bold>+ (\<^bold>~ B))"
+  using POSS1
+  by blast (* contraposition in the meta-logic *)
+thus ?thesis 
+  by(simp add: POSS2)
+qed
+
+(* Extensionality of the meta-logic. Instead one could use lemma POSS1' below.
+I'm not sure, whether extensionality is used there, but I listed all 
+of the rules Isabelle uses to prove POSS1' and someone with a deeper understanding
+can judge on that.
+*)
+
+lemma POSS1': "A \<^bold>\<in> B \<Longrightarrow> \<not> P(B) \<Longrightarrow> \<not> P(A)"
+proof -
+{
+  assume a1: "A \<^bold>\<in> B"
+  assume a2: "\<not> P B"
+  hence "\<not> (\<forall>A. B \<^bold>\<notin> (A \<^bold>+ \<^bold>~ A))" by(simp add: possible_def)
+  hence "\<exists>A. B \<^bold>\<in> (A \<^bold>+ \<^bold>~ A)" by(simp add: notcontains_def) (* \<not> \<forall> = \<exists> \<not> *)
+  then obtain C where "B \<^bold>\<in> (C \<^bold>+ \<^bold>~ C)" by blast (* obtain *)
+  with a1 have "A \<^bold>\<in> (C \<^bold>+ \<^bold>~ C)" by(rule CONT2)
+  hence "\<exists>C. A \<^bold>\<in> (C \<^bold>+ \<^bold>~ C)" by fast (* P A \<Longrightarrow> \<exists>X. P X*)
+  hence "\<not> (\<forall>C. A \<^bold>\<notin> (C \<^bold>+ \<^bold>~ C))" by(simp add: notcontains_def) (* \<not> \<forall> = \<exists> \<not> *)
+  thus ?thesis by(simp add: possible_def)
+}
+qed
 
 lemma DISJ1: "A \<^bold>\<in> (A \<^bold>\<or> B)"
 by(metis CONJ3 CONJ4 NEG2 POSS1 POSS2 disjunction_def equal_def)
@@ -109,14 +146,14 @@ have "(\<^bold>~ C) \<^bold>\<in> (\<^bold>~ A) \<^bold>+ (\<^bold>~ B)"
 thus "A \<^bold>\<or> B \<^bold>\<in> C"
   by(metis CONJ3 POSS1 POSS2 disjunction_def equal_def)
 qed
-(*Lenzen uses conjunction, for computational purposes we use implication*)
+(* Lenzen uses conjunction, for computational purposes we use implication *)
 
 
 lemma cont3: "A \<^bold>\<in> B \<longleftrightarrow> (\<exists>Y. A \<^bold>= (B \<^bold>+ Y))"
 using CONJ1 CONT1 equal_def
 by blast
-(*used for computation reasons, since Isabelle is not able to show
-CONT3 in one step; at least on our machines*)
+(* used for computation reasons, since Isabelle is not able to show
+CONT3 in one step; at least on our machines *)
 
 lemma CONT3: "A \<^bold>\<in> B \<equiv> (\<exists>Y. A \<^bold>= (B \<^bold>+ Y))"
 by (simp add: cont3)
@@ -125,7 +162,7 @@ lemma CONJ6: "\<exists>Y. Y \<^bold>+ A \<^bold>\<in> B"
 using CONJ1 CONT1
 by blast
 
-lemma CONJ7: "\<exists>Y. \<exists>Z. Y  \<^bold>+  A  \<^bold>=  Z  \<^bold>+  B"
+lemma CONJ7: "\<exists>Y. \<exists>Z. Y \<^bold>+ A \<^bold>= Z \<^bold>+ B"
 using CONJ3
 by blast
 
@@ -136,7 +173,7 @@ lemma CONT4: "A \<^bold>\<in> B \<equiv> (\<forall>Y. Y \<^bold>\<in> A \<longri
 by(smt CONT1 CONT2)
 
 lemma CONT5: "A \<^bold>\<notin> B \<equiv> (\<forall>Y. A \<^bold>\<noteq> Y \<^bold>+ B)"
-by(smt CONJ1 CONT1 equal_def notcontains_def notequal_def)
+by(smt CONJ1 CONT1 equal_def notcontains_def notequal_def IDEN2)
 
 lemma IND1: "(Ind A) \<equiv> (\<forall>Y. (A \<^bold>\<in> \<^bold>~ Y) \<longleftrightarrow> A \<^bold>\<notin> Y)"
 proof -
@@ -183,10 +220,15 @@ have "\<^bold>\<exists>x. x \<^bold>\<in> B \<Longrightarrow> P B"
 with f1 show "P B \<equiv> \<^bold>\<exists>x. x \<^bold>\<in> B"
   by linarith
 qed
-(*As a side note: It follows from this that everything that is a non-contradictory 
+(* As a side note: It follows from this that everything that is a non-contradictory 
 concept sans (non-)existence predicate does in fact exist.
 So this axiomatization implies flying elephants  *)
-(*Also note that MAX is used in this proof*)
+
+(* I think the comment above should be revisited, because we use X \<^bold>\<longrightarrow> E! as existence and not \<^bold>\<exists>X.
+\<^bold>\<exists>X. states something like there is an (maximal) concept which describes an individual which is
+consistent. Whether or not E! is contained in X is still unclear. *)
+
+(* Also note that MAX is used in this proof *)
 
 
 lemma CONT5': "B \<^bold>\<in> C \<equiv> \<^bold>\<forall>X. (X \<^bold>\<in> B) \<longrightarrow> X \<^bold>\<in> C"
@@ -245,9 +287,7 @@ moreover have "\<^bold>\<forall>X. (X \<^bold>\<in> B) \<longrightarrow> X \<^bo
 ultimately show "B \<^bold>\<in> C \<equiv> \<^bold>\<forall>X. (X \<^bold>\<in> B) \<longrightarrow> X \<^bold>\<in> C"
   by linarith
 qed
-(*Note that MAX is used in this proof *)
+(* Note that MAX is used in this proof *)
 
 lemma True nitpick[user_axioms, expect=genuine, satisfy] oops 
-(*Nitpick finds a model; however it is the "empty assignment". Not sure about nitpicks inner workings
-to determine if that is a problem.*)
 end

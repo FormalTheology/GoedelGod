@@ -95,7 +95,7 @@ end
 
 
 
-context (* Proof Version 1: with axiom (N G) *)
+context (* Proof Version 1: with axiom N(disjunction (not G)  E!) *)
 assumes 
 NG: "N(disjunction (not G)  E!)"
 begin
