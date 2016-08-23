@@ -16,7 +16,7 @@ axiomatization where
   NG: "N G"
 
 lemma L7: "\<not>(N (G \<^bold>\<longrightarrow> E)) \<longrightarrow> \<not>(P G)" 
-    nitpick [user_axioms, format = 2] oops
+  nitpick [user_axioms, show_all, format = 2] oops
 
 
 
