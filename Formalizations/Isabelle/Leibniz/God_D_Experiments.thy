@@ -23,9 +23,9 @@ context (* Short proof with axiom "N(G \<^bold>\<longrightarrow> E)" *)
     by (metis CONT2 NEG1 NG N_def POSS1 POSS2 disjunction_def equal_def implication_def)
 
   (* Necessity of concept implication and concept containment *)
-  lemma L12: "\<forall>X.\<forall>Y.(N(Y \<^bold>\<longrightarrow> Y) \<longrightarrow> (X \<^bold>\<sqsupset> Y))"
-    nitpick [user_axioms, show_all, format = 2] sorry  --{* Countermodel *}
-  lemma L13: "\<forall>X.\<forall>Y.(X \<^bold>\<sqsupset> Y) \<longrightarrow>  (N(Y \<^bold>\<longrightarrow> Y) )"
+  lemma L12: "\<forall>X.\<forall>Y.(N(X \<^bold>\<longrightarrow> Y) \<longrightarrow> (X \<^bold>\<sqsupset> Y))"
+    by (metis CONT2 NEG1 N_def POSS1 POSS2 disjunction_def equal_def implication_def)
+  lemma L13: "\<forall>X.\<forall>Y.(X \<^bold>\<sqsupset> Y) \<longrightarrow>  (N(X \<^bold>\<longrightarrow> Y) )"
     by (smt CONT2 DISJ1 DISJ2 NEG2 NEG5 N_def implication_def notcontains_def)
 
  
