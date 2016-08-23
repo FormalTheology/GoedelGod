@@ -53,8 +53,6 @@ lemma CONT1: "A \<^bold>\<sqsupset> A"
 (* INDEN1 is not needed as an axiom. Lenzen explicitly lists it as one.*)
 lemma IDEN1: "A \<^bold>= A" 
   by(simp add: CONT1 equal_def)
-lemma equal_sym: "A \<^bold>= B \<equiv> B \<^bold>= A" (* As far as I can see, we don't use this. *)
-  using equal_def by smt
 lemma CONJ2: "A \<^bold>+ A \<^bold>= A"
   using CONJ1 CONT1 equal_def by auto
 lemma CONJ3: "A \<^bold>+ B \<^bold>= B \<^bold>+ A"
@@ -84,25 +82,6 @@ lemma NEG7: "(A \<^bold>+ \<^bold>~ A) \<^bold>\<sqsupset> B"
     using POSS1  by blast (* contraposition in the meta-logic *)
   thus ?thesis 
     by(simp add: POSS2)
-  qed
-
-(* Extensionality of the meta-logic. Instead one could use lemma POSS1' below.
-I'm not sure, whether extensionality is used there, but I listed all 
-of the rules Isabelle uses to prove POSS1' and someone with a deeper understanding
-can judge on that.
-*)
-
-lemma POSS1': "A \<^bold>\<sqsupset> B \<Longrightarrow> \<not> P(B) \<Longrightarrow> \<not> P(A)"
-proof -
-  { assume a1: "A \<^bold>\<sqsupset> B"
-  assume a2: "\<not> P B"
-  hence "\<not> (\<forall>A. B \<^bold>\<notin> (A \<^bold>+ \<^bold>~ A))" by(simp add: possible_def)
-  hence "\<exists>A. B \<^bold>\<sqsupset> (A \<^bold>+ \<^bold>~ A)" by(simp add: notcontains_def) (* \<not> \<forall> = \<exists> \<not> *)
-  then obtain C where "B \<^bold>\<sqsupset> (C \<^bold>+ \<^bold>~ C)" by blast (* obtain *)
-  with a1 have "A \<^bold>\<sqsupset> (C \<^bold>+ \<^bold>~ C)" by(rule CONT2)
-  hence "\<exists>C. A \<^bold>\<sqsupset> (C \<^bold>+ \<^bold>~ C)" by fast (* P A \<Longrightarrow> \<exists>X. P X*)
-  hence "\<not> (\<forall>C. A \<^bold>\<notin> (C \<^bold>+ \<^bold>~ C))" by(simp add: notcontains_def) (* \<not> \<forall> = \<exists> \<not> *)
-  thus ?thesis by(simp add: possible_def) }
   qed
 lemma DISJ1: "A \<^bold>\<sqsupset> (A \<^bold>\<or> B)"
   by(metis CONJ3 CONJ4 NEG2 POSS1 POSS2 disjunction_def equal_def)
