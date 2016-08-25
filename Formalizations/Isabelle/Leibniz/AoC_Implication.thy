@@ -17,6 +17,9 @@ definition notequal :: "c \<Rightarrow> c \<Rightarrow> bool" (infixr "\<^bold>\
 (* Note that possible does not mean possible propositions but possible concepts *)
 definition possible :: "c \<Rightarrow> bool" ("P _" 74) where
           "P B \<equiv> \<forall> A. B \<^bold>\<notin> A \<^bold>+ \<^bold>~ A" 
+definition necessary :: "c \<Rightarrow> bool" ("N _" 74) where 
+          "N A \<equiv> \<not> P (\<^bold>~ A) "
+
 definition disjunction :: "c \<Rightarrow> c \<Rightarrow> c" (infixr "\<^bold>\<or>" 71) where
           "A \<^bold>\<or> B \<equiv>  \<^bold>~ ((\<^bold>~A) \<^bold>+ \<^bold>~B)"
 (* Note that implication is not introduced by Leibniz or Lenzen *)
