@@ -1,110 +1,44 @@
 theory God
 imports AoC
-
 begin
-consts E :: "c" ("E!")
-consts G :: "c" ("G")
+consts  E :: "c" ("E")   
+        G :: "c" ("G")
 
-definition NESS :: "c \<Rightarrow> bool" where "NESS A \<equiv> \<not> P (\<^bold>~ A) "
-definition PE1 :: "bool" where "PE1 \<equiv> \<forall>X. (\<not> (X \<^bold>\<in> E!)) \<longrightarrow> P (\<^bold>~ X)"
-definition PE2 :: "bool" where "PE2 \<equiv> \<forall>X. (\<not> (X \<^bold>\<in> E!)) \<longrightarrow> \<not> P X"
+axiomatization where NG: "N(G \<^bold>\<longrightarrow> E)" and 
+  GnotE: "G \<^bold>\<noteq> E" and GnotnotE: "G \<^bold>\<noteq> \<^bold>~E"
+                     
+(* Nitpick finds a model. Therefore, the axiomatization is consistent. *)
+lemma True 
+nitpick[user_axioms, show_all, format=2, expect=genuine, satisfy] 
+oops 
 
-axiomatization where
-NG: "NESS G" and
-PE1: "PE1"
+(* 2)	For whatever doesn’t exist, for it is possible not to exist. *)
+lemma L2': "(X \<^bold>\<notin> E) \<longrightarrow> (P (X \<^bold>+ \<^bold>~E))" by (simp add: POSS2 notcontains_def)
+(* 3)	For whatever it’s possible not to exist, of it it’s false to say that 
+it cannot not exist.  *)
+lemma L3': "(P (X \<^bold>+ \<^bold>~E)) \<longrightarrow> \<not>\<not>(P (X \<^bold>+ \<^bold>~E))" by simp
+(* 4)	Of whatever it is false to say that it is not possible not to exist, of 
+it’s false to say that it is necessary. (For necessary is what cannot not exist.) *)
+lemma L4': "\<not>\<not>(P (X \<^bold>+ \<^bold>~E)) \<longrightarrow> \<not>(N (X \<^bold>\<longrightarrow> E))" by (smt CONJ1 CONJ4 CONJ5 CONT2 IDEN2 
+  NEG1 necessary_def POSS1 disjunction_def equal_def implication_def) 
+(* 5)	Therefore, of the necessary being it’s false to say it is necessary.  *)
+lemma L5': "(G \<^bold>\<notin> E) \<longrightarrow> \<not>(N (G \<^bold>\<longrightarrow> E))" using L2' L4' by auto
+(* 6)	This conclusion is either true or false.  *)
+lemma L6': "\<not>(N (G \<^bold>\<longrightarrow> E)) \<or> \<not>\<not>(N (G \<^bold>\<longrightarrow> E))" by simp
+(* 7)	If it is true, it follows that the necessary being contains a contradiction, i.e. 
+is impossible, because contradictory assertions have been proved about it, namely that it 
+is not necessary. For a contradictory conclusion can only be shown about a thing which 
+contains a contradiction.  *)
+lemma L7': "\<not>(N (G \<^bold>\<longrightarrow> E)) \<longrightarrow> \<not>(P G)" by (simp add: NG)
+(* 8)	If it is false, necessarily one of the premises must be false. But the only premise 
+that might be false is the hypothesis that the necessary being doesn’t exist.  *)
+lemma L8': "\<not>\<not>(N (G \<^bold>\<longrightarrow> E)) \<longrightarrow> \<not>(G \<^bold>\<notin> E)" using L5' by blast
+(* 9)	Hence we conclude that  the necessary being either is impossible, or exists.  *)
+lemma L9': "\<not>(P G) \<or> (G \<^bold>\<sqsupset> E)" using L6' L7' L8' notcontains_def by metis
+(* 10)	So if we define God as an “Ens a se”, i.e. a being from whose essence its existence 
+follows, i.e. a necessary being, it follows that God, if It is possible, actually exists. *)
+lemma L10': "(P G) \<longrightarrow> (G \<^bold>\<sqsupset> E)"  using L9' by auto
 
-lemma PE2ImpPE1: "PE2 \<Longrightarrow> PE1" by (meson CONJ5 NEG6 PE1_def PE2_def POSS2)
-lemma PE1ImpPE2: "PE1 \<Longrightarrow> PE2" by (meson PE1 CONJ4 POSS1 POSS2 PE1_def NEG2 NESS_def NG PE2_def)
-
-theorem GOD2: "(P G) \<longrightarrow> (G \<^bold>\<in> E!)" using PE1 PE1ImpPE2 PE2_def by auto
-(*
-proof -
-{
-  (*(i) By hypothesis, the necessary being doesn‘t exist.*)
-  assume i: "\<not> G \<^bold>\<in> E"
-  (* (ii) Whenever something doesn’t exist, it possibly doesn’t exist. *)
-  have ii: "\<forall>X. (\<not> (X \<^bold>\<in> E!)) \<longrightarrow> P (X)" by (simp add: POSS2)
-  (* (iii) Whenever something possibly doesn’t exist, it is falsely maintained to be impossible not to exist. *)
-  have iii: "\<forall>X. P (X \<^bold>+ \<^bold>~ E!) \<longrightarrow> \<not> \<not> P (X \<^bold>+ \<^bold>~ E!)" by simp
-  (* (iv) Whenever something is falsely maintained to be impossible not to exist,
-then it is falsely maintained to be necessary. (For necessary is what is
-impossible not to exist.) *)
-  have iv: "\<forall>X. \<not> \<not> P (X \<^bold>+ \<^bold>~ E!) \<longrightarrow> \<not> NESS ()"
-  (* (v) Therefore the necessary being is falsely maintained to be necessary. *)
-  
-  (* (vi) This conclusion is either true or false. *)
-  
-  (* (vii) If it is true, it follows that the necessary being contains a contradiction,
-or is impossible, because contradictory assertions have been proved about it,
-namely that it is not necessary. For a contradictory conclusion can only be
-shown about a thing which implies a contradiction. *)
-  
-  (* (viii) If it is false, necessarily one of the premises must be false. But the only
-premise that might be false is the hypothesis saying that the necessary being
-doesn’t exist. *)
-  
-  (* (ix) Hence we conclude that the necessary being either is impossible, or it
-exists. *)
-  
-  (* (x) So if we define GOD as an “Ens a se”, i.e. a being from whose essence
-its existence follows, i.e. a necessary being, it follows that GOD, if he is
-possible, actually exists. *)
-  
-}
-*)
-
-theorem GOD1: "P G" nitpick[user_axioms, satisfy] oops
-
-theorem NOTGOD1: "\<not> P G" nitpick[user_axioms, satisfy] oops (* Not any more? ... timeout 120 is not enough for my PC*)
-
-(*
-GOD1 and its negation are both satisfiable in this logic.
-Therefore non of them can be theorems in this logic,
-unless one adds more axioms to it. *)
-
-theorem GOD: "G \<^bold>\<in> E!" using CONT1 GOD3 M by blast
-
-(*
-Caution: Leibniz logic states all concepts for impossible objects.
-This can be seen in:
-theorem assumes "\<lfloor>\<^bold>\<not> P A\<rfloor>" shows "\<lfloor>A \<^bold>\<in> B\<rfloor>"
-using CONJ4 POSS1 POSS2 assms
-by blast
-*)
-
-(* We can prove that unicorns exists 
-if it is possible that unicorns might exists. *)
-
-consts uni :: "c" --"being a unicorn"
-
-theorem unicorn:
-assumes "P (uni \<^bold>+ E!)"
-shows "\<^bold>\<exists>X. X \<^bold>\<in> (uni \<^bold>+ E!)"
-using POSS3 assms
-by auto
-
-(* Furthermore, we can prove that unicorns exists
-if being a unicorn is possible for non-existing concepts
-under the assumption that being a unicorn does not include
-being non-existing. *)
-
-theorem unicorn2:
-assumes "P uni" and "uni \<^bold>\<notin> \<^bold>~ E!"
-shows "\<^bold>\<exists>X. X \<^bold>\<in> (uni \<^bold>+ E!)"
-proof -
-have "\<exists>C. \<forall>A. ((uni \<^bold>\<in> A) \<longrightarrow> (C \<^bold>\<in> A \<and> C \<^bold>\<notin> \<^bold>~ A))
-     \<and> ((uni \<^bold>\<in> \<^bold>~ A) \<longrightarrow>(C \<^bold>\<notin> A \<and> C \<^bold>\<in> \<^bold>~ A))
-     \<and> ((uni \<^bold>\<notin> A \<and> uni \<^bold>\<notin> \<^bold>~ A) \<longrightarrow> (((C \<^bold>\<in> \<^bold>~ A) \<or> C \<^bold>\<in> A) \<and> (C \<^bold>\<notin> A \<^bold>+ \<^bold>~ A)))"
-  using assms MAX
-  by simp
-hence "\<exists>C. C \<^bold>\<in> (uni \<^bold>+ E!) \<and> P C"
-  by (smt CONJ1 CONJ5 IDEN2 NEG1 NEG8 assms(2))
-then obtain X where "X \<^bold>\<in> (uni \<^bold>+ E!) \<and> P X"
-  by blast
-thus ?thesis
-  using POSS1 POSS3
-  by auto
-qed
-
+lemma God: "(G \<^bold>\<sqsupset> E)" using L5' NG notcontains_def by auto
 
 end
