@@ -34,16 +34,15 @@ definition indforall :: "(c  \<Rightarrow>  bool)  \<Rightarrow>  bool" (binder 
 
 axiomatization where
  IDEN2: "\<And>A B. A \<^bold>= B \<longrightarrow> (\<forall>\<alpha>. \<alpha> A \<longleftrightarrow> \<alpha> B)" and
- (* Lenzen uses conjunction here. For computational reasons implications are used *)
+ (* Lenzen uses conjunction. For computational reasons, we use implication. *)
  CONT2: "\<And>A B C. A \<^bold>\<sqsupset> B \<Longrightarrow> B \<^bold>\<sqsupset> C \<Longrightarrow> A \<^bold>\<sqsupset> C" and
  CONJ1: "\<And>A B C. A \<^bold>\<sqsupset> B \<^bold>+ C \<equiv> A \<^bold>\<sqsupset> B \<and> A \<^bold>\<sqsupset> C" and
  NEG1: "\<And>A. (\<^bold>~ \<^bold>~ A) \<^bold>= A" and
  NEG2: "\<And>A B. A \<^bold>\<sqsupset> B \<equiv> (\<^bold>~ B) \<^bold>\<sqsupset> \<^bold>~ A" and
- (*NEG3 is, contrary to Lenzens paper, not a theorem*)
+ (*NEG3 is, contrary to Lenzen's paper, not a theorem. *)
  NEG3: "\<And>A. A \<^bold>\<noteq> \<^bold>~ A" and
  POSS2: "\<And>A B. A \<^bold>\<sqsupset> B \<equiv> \<not> P(A \<^bold>+ \<^bold>~ B)" and
- (* MAX is an axiom which does not occur in Lenzens paper. 
- It turns out to be equivalent to POSS3 and can thus, in principle, be replaced by it *)
+ (* MAX is equivalent to Lenzen's POSS3. *)
  MAX: "\<And>B. P B \<Longrightarrow> \<exists>C. \<forall>A. ((B \<^bold>\<sqsupset> A) \<longrightarrow> (C \<^bold>\<sqsupset> A \<and> C \<^bold>\<notin> \<^bold>~ A))
      \<and> ((B \<^bold>\<sqsupset> \<^bold>~ A) \<longrightarrow>(C \<^bold>\<notin> A \<and> C \<^bold>\<sqsupset> \<^bold>~ A))
      \<and> ((B \<^bold>\<notin> A \<and> B \<^bold>\<notin> \<^bold>~ A) \<longrightarrow> (((C \<^bold>\<sqsupset> \<^bold>~ A) \<or> C \<^bold>\<sqsupset> A) \<and> (C \<^bold>\<notin> A \<^bold>+ \<^bold>~ A)))"
@@ -51,7 +50,7 @@ axiomatization where
 (* CONT1 is not needed as an axiom. *)
 lemma CONT1: "A \<^bold>\<sqsupset> A" 
   using CONT2 NEG1 equal_def by blast
-(* INDEN1 is not needed as an axiom. Lenzen explicitly lists it as one.*)
+(* IDEN1 is not needed as an axiom. Lenzen explicitly lists it as one.*)
 lemma IDEN1: "A \<^bold>= A" 
   by(simp add: CONT1 equal_def)
 lemma CONJ2: "A \<^bold>+ A \<^bold>= A"
@@ -68,7 +67,7 @@ lemma NEG5: "P A \<Longrightarrow> (A \<^bold>\<notin> \<^bold>~ A)"
   by(simp add: CONJ1 CONT1 possible_def notcontains_def)
 lemma NEG6: "P A \<Longrightarrow> A \<^bold>\<sqsupset> B \<Longrightarrow> (A \<^bold>\<notin> \<^bold>~ B)"
   by(simp add: CONJ1 possible_def notcontains_def)
-(* Lenzen uses conjunction, for computational purposes we use implication *)
+(* Lenzen uses conjunction. For computational reasons, we use implication. *)
 lemma POSS1: "A \<^bold>\<sqsupset> B \<Longrightarrow> P(A) \<Longrightarrow> P(B)"
   using CONT2 possible_def notcontains_def by blast
 lemma NEG7: "(A \<^bold>+ \<^bold>~ A) \<^bold>\<sqsupset> B"
@@ -77,7 +76,7 @@ lemma DISJ1: "A \<^bold>\<sqsupset> (A \<^bold>\<or> B)"
   by(metis CONJ3 CONJ4 NEG2 POSS1 POSS2 disjunction_def equal_def)
 lemma DISJ2: "B \<^bold>\<sqsupset> (A \<^bold>\<or> B)"
   by(metis CONJ3 CONJ5 NEG2 POSS1 POSS2 disjunction_def equal_def)
-(* Lenzen uses conjunction, for computational purposes we use implication *)
+(* Lenzen uses conjunction. For computational reasons, we use implication. *)
 lemma DISJ3: "A \<^bold>\<sqsupset> C \<Longrightarrow> B \<^bold>\<sqsupset> C \<Longrightarrow> (A \<^bold>\<or> B) \<^bold>\<sqsupset> C" 
   by (smt CONJ1 IDEN2 NEG1 NEG2 disjunction_def)
 lemma CONT3: "A \<^bold>\<sqsupset> B \<equiv> (\<exists>Y. A \<^bold>= (B \<^bold>+ Y))"
