@@ -161,10 +161,10 @@ More recently, this line of research ventured into other types of
 ontological arguments, and a computer-assisted reconstruction of an
 argument by Leibniz will appear as a chapter in a book dedicated to
 the 300th anniversary of Leibniz's death
-\citep{LeibnizOntologicalProof}. The automatic verification of GÃ¶del's
+\citep{LeibnizOntologicalProof}. The automatic verification of G\"odel's
 and Scott's variants \citep{ECAI2014} was preceded by an automatic
 verification of (a non-modal version of) Anselm's ontological argument
-\citep{ZaltaOppenheimer}. However, whereas the complexity of GÃ¶del's
+\citep{ZaltaOppenheimer}. However, whereas the complexity of G\"odel's
 and Scott's arguments required the embedding of higher-order modal
 logics into higher-order logics and the use of higher-order automated
 reasoners, Anselm's argument greater simplicity enabled it to be
@@ -781,7 +781,7 @@ $$
 \end{theorem}
 \begin{proof}\hfill
 
-\begin{scriptsize}
+\begin{small}
 \begin{prooftree}
 
 
@@ -805,10 +805,10 @@ $$
 	   \UIC{$\neg\neg P(\rho)$} \RightLabel{$\neg\neg_E$}
 	   \UIC{$[\subproof_4] \qquad P(\rho)$}
 	   \end{prooftree}
-\end{scriptsize}
+\end{small}
 
 
-\begin{scriptsize}
+\begin{small}
 \begin{prooftree}
 \AXC{$ $} \RightLabel{5}
 \UIC{$G(\gamma)$}
@@ -829,9 +829,9 @@ $$
 				\UIC{$\omega: G(\delta) \imp \rho(\delta) $} \RightLabel{$\all_I$}
 				\UIC{$\omega: \all y. G(y) \imp \rho(y) $} \RightLabel{$\imp_I^3$}
 				\UIC{$\omega: P(\rho) \imp (\all y. G(y) \imp \rho(y) )$} \RightLabel{$\nec_I$}
-				\UIC{$\nec (P(\rho) \imp (\all y. G(y) \imp \rho(y) ))$} \RightLabel{$\imp_E$}
-						\AXC{Axiom K} \RightLabel{$\imp_E$}
-					\BIC{$\nec P(\rho) \imp \nec (\all y. G(y) \imp \rho(y) )$} \RightLabel{$\imp_E$}
+				\UIC{$\nec (P(\rho) \imp (\all y. G(y) \imp \rho(y) ))$} \doubleLine \RightLabel{Axiom K}
+						
+					\UIC{$\nec P(\rho) \imp \nec (\all y. G(y) \imp \rho(y) )$} \RightLabel{$\imp_E$}
 			\BIC{$\nec (\all y. G(y) \imp \rho(y) )$} \RightLabel{$\imp_I^4$}
 			\UIC{$\rho(\gamma) \imp \nec (\all y. G(y) \imp \rho(y) )$} \RightLabel{$\all_I$}
 			\UIC{$\all \varphi. \varphi(\gamma) \imp \nec (\all y. G(y) \imp \varphi(y) )$} \RightLabel{$\wedge_I$}
@@ -840,7 +840,7 @@ $$
 		\UIC{$G(\gamma) \imp \ess{G}{\gamma}$} \RightLabel{$\all_I$}
 		\UIC{$\all x. G(x) \imp \ess{G}{x}$}
 \end{prooftree}
-\end{scriptsize}
+\end{small}
 
 \end{proof}
 
@@ -1148,14 +1148,12 @@ $$
 \UIC{$\rho(\gamma)$} \RightLabel{$\imp_E$}
 \BIC{$\bot$}\RightLabel{$\imp_I^2$}
 \UIC{$\neg\neg P(\rho)$}\RightLabel{$\neg\neg_E$}
-\UIC{$P(\rho)$}
-\AXC{Axiom \ref{N:A4}} \dashedLine
-\UIC{$\all \varphi.[P(\varphi) \imp \nec\; P(\varphi)]$}\RightLabel{$\forall_E$}
-\UIC{$P(\rho) \imp \nec\; P(\rho)$}\RightLabel{$\imp_E$}
-\BIC{$\nec P(\rho)$}\RightLabel{$\imp_I^3$}
-\UIC{$[\subproof_7] \qquad \rho(\gamma) \imp \nec\; P(\rho)$}
+\UIC{$[\subproof_7] \qquad P(\rho)$}
 \end{prooftree}
 \end{small}
+
+
+
 
 
 \begin{small}
@@ -1171,12 +1169,22 @@ $$
 \UIC{$\omega: G(y) \imp \rho(y)$}\RightLabel{$\forall_I$}
 \UIC{$\omega: \forall y.(G(y) \imp \rho(y))$}\RightLabel{$\nec_I$}
 \UIC{$\nec \forall y.(G(y) \imp \rho(y))$} \RightLabel{$\imp_I^5$}
-\UIC{$\nec P(\rho)\imp \nec \forall y .(G(y)\imp \rho(y))$} \RightLabel{$\imp_E$}
-\AXC{$ $} \RightLabel{6}
-\UIC{$\rho(\gamma)$} \RightLabel{}
-\AXC{$\subproof_7$} \dashedLine
-\UIC{$\rho(\gamma)\imp\Box P(\rho)$}\RightLabel{$\imp_E$}
-\BIC{$\nec P(\rho)$} \RightLabel{$\imp_E$}
+\UIC{$\nec P(\rho)\imp \nec \forall y .(G(y)\imp \rho(y))$} 
+
+
+%\AXC{$ $} \RightLabel{6}
+%\UIC{$\rho(\gamma)$} \RightLabel{}
+\AXC{$ \subproof_7$} \dashedLine
+\UIC{$P(\rho)$} %\RightLabel{$\nec_E$}
+\AXC{Axiom \ref{N:A4}} \dashedLine
+\UIC{$\all \varphi.[P(\varphi) \imp \nec\; P(\varphi)]$}\RightLabel{$\forall_E$}
+\UIC{$P(\rho) \imp \nec\; P(\rho)$}\RightLabel{$\imp_E$}
+\BIC{$\nec P(\rho)$}\RightLabel{$\imp_E$}%\RightLabel{$\imp_I^3$}
+%\UIC{$[\subproof_7] \qquad \rho(\gamma) \imp \nec\; P(\rho)$}
+%\UIC{$\rho(\gamma)\imp\Box P(\rho)$}\RightLabel{$\imp_E$}
+%\BIC{$\nec P(\rho)$} \RightLabel{$\imp_E$}
+
+
 \BIC{$\nec \forall y .(G(y)\imp \rho(y))$}\RightLabel{$\imp_I^6$}
 \UIC{$\rho(\gamma) \imp \nec \forall y.(G(y) \imp \rho(y))$}\RightLabel{$\forall_I$}
 \UIC{$\forall \psi.(\psi(\gamma) \imp \nec \forall y.(G(y) \imp \psi(y)))$}
@@ -1461,8 +1469,8 @@ $$
 \UIC{$\forall \varphi. [P(\lambda x.\varphi(x)) \biimp \nec \varphi(\gamma)]$}\RightLabel{$\forall_E$}
 \UIC{$P(\lambda x.\rho(x)) \biimp \nec \rho(\gamma)$}
 \AXC{$ $} \RightLabel{4}
-\UIC{$\nec\rho(\gamma)$} \RightLabel{}
-\BIC{$P(\rho)$} \RightLabel{$\imp_E$}
+\UIC{$\nec\rho(\gamma)$} \RightLabel{$\biimp_E$}
+\BIC{$P(\rho)$} \RightLabel{$\forall_E$}
 
 \AXC{Axiom \ref{A:A4}} \dashedLine
 \UIC{$P(\rho)\imp \nec P(\rho)$} \RightLabel{$\imp_E$}
@@ -1483,10 +1491,10 @@ $$
 \UIC{$\omega: G(y) \imp \rho(y)$}\RightLabel{$\forall_I$}
 \UIC{$\omega: \forall y.(G(y) \imp \rho(y))$}\RightLabel{$\nec_I$}
 \UIC{$\nec \forall y.(G(y) \imp \rho(y))$} \RightLabel{$\imp_I^3$}
-\UIC{$\nec P(\rho)\imp \nec \forall y .(G(y)\imp \rho(y))$} \RightLabel{$\imp_E$}
+\UIC{$\nec P(\rho)\imp \nec \forall y .(G(y)\imp \rho(y))$} 
 
 \AXC{$\subproof_7$} \dashedLine
-\UIC{$\nec P(\rho)$}
+\UIC{$\nec P(\rho)$}\RightLabel{$\imp_E$}
 \BIC{$\nec \forall y .(G(y)\imp \rho(y))$}\RightLabel{$\imp_I^4$}
 \UIC{$[\subproof_8] \qquad \nec\rho(\gamma) \imp \nec \forall y.(G(y) \imp \rho(y))$}\RightLabel{$\forall_I$}
 \end{prooftree}
@@ -1496,7 +1504,7 @@ $$
 %implication for equivalence in essence: 
 %\begin{small}
 \begin{prooftree}
-\AXC{Axiom \ref{A:A3}} 
+\AXC{Axiom \ref{A:A3}} \dashedLine
 \UIC{$P(G)$}
 \AXC{$ $} \RightLabel{5}
 \UIC{$\nec  \forall y. [G(y)\imp \varphi(y)]$}\RightLabel{$\wedge_I$}
@@ -1512,10 +1520,10 @@ $$
 \end{prooftree}
 %\end{small}
 
-\begin{tiny}
+\begin{small}
 \begin{prooftree}
 \AXC{$\subproof_8$ and $\subproof_9$} \dashedLine
-\UIC{$\nec \varphi(\gamma)\biimp \nec  \forall y. [G(y)\imp \varphi(y)] $}
+\UIC{$\nec \varphi(\gamma)\biimp \nec  \forall y. [G(y)\imp \varphi(y)] $} \RightLabel{$\forall_I$}
 \UIC{$\forall \varphi. (\nec \varphi(\gamma)\biimp \nec  \forall y. [G(y)\imp \varphi(y)]) $}
 \AXC{$ \subproof_6 $} \dashedLine
 \UIC{$G(\gamma)$}\RightLabel{$\wedge_I$}
@@ -1526,16 +1534,17 @@ $$
 \UIC{$G(\gamma)$}\dottedLine \RightLabel{D\ref{A:D1}}
 \UIC{$\forall \varphi.(P(\varphi) \biimp \nec \varphi(\gamma))$}\RightLabel{$\forall_E$}
 \UIC{$P(E) \biimp \nec E(\gamma)$}\RightLabel{$\biimp_E$}
-\BIC{$\nec E(\gamma)$}
-    \AXC{Axiom T} \dashedLine
-    \UIC{$\nec E(\gamma) \imp E(\gamma)$} \RightLabel{$\imp_E$}
-\BIC{$ E(\gamma)$} \dottedLine \RightLabel{D\ref{A:D3}}
+\BIC{$\nec E(\gamma)$}\RightLabel{$\nec_E$}
+   % \AXC{Axiom T} \dashedLine
+    %\UIC{$\nec E(\gamma) \imp E(\gamma)$} \RightLabel{$\imp_E$}
+\UIC{$ E(\gamma)$} \dottedLine \RightLabel{D\ref{A:D3}}
 \UIC{$ \all \varphi.[\ess{\varphi}{\gamma} \imp \nec \ex x.\varphi(x)] $}\RightLabel{$\all_E$}
 \UIC{$ \ess{G}{\gamma} \imp \nec \ex x. G(x) $}\RightLabel{$\imp_E$}
 \BIC{$\nec \ex x. G(x)$} \RightLabel{$\imp_I^1$}
 \UIC{$\ex z. G(z) \imp \nec \ex x. G(x)$}
 \end{prooftree}
-\end{tiny}
+\end{small}
+%\end{tiny}
 \end{proof}
 
 
@@ -1584,7 +1593,7 @@ $$
 \UIC{$[\subproof_6] \quad G(\gamma)$}
 \end{prooftree}
 
-\begin{scriptsize}
+%\begin{scriptsize}
 \begin{prooftree}
 \AXC{$\subproof_6$} \dashedLine
 \UIC{$G(\gamma)$}  \dottedLine \RightLabel{D\ref{D1}}
@@ -1597,12 +1606,12 @@ $$
 \UIC{$G(\gamma)$} \RightLabel{$\ex_I$}
 \UIC{$\ex x.G(x)$}  \RightLabel{$\imp_I^2$}
 \UIC{$G(\gamma)\imp \ex x.G(x)$} \RightLabel{$\nec_I$}
-\UIC{$\nec [G(\gamma)\imp \ex x.G(x)]$} \doubleLine  \RightLabel{(using Axiom K)}
+\UIC{$\nec [G(\gamma)\imp \ex x.G(x)]$} \doubleLine  \RightLabel{(Axiom K)}
 \UIC{$\nec G(\gamma)\imp \nec \ex x.G(x)$} \RightLabel{$\imp_E$}
 \BIC{$\nec \ex x.G(x)$}\RightLabel{$\imp_I^1$}
 \UIC{$\ex z. G(z)\imp \nec \ex x.G(x)$}
 \end{prooftree}
-\end{scriptsize}
+%\end{scriptsize}
 
 \end{proof}
 
@@ -1642,7 +1651,7 @@ Anderson's change in the definition of essence adds an extra box modality, which
 \AXC{$ $} \RightLabel{1}
 \UIC{$\nec A$} \RightLabel{$\imp_E$}
 \BIC{$ \nec (\ex x. G(x) \imp A)$} \RightLabel{$\nec_E$}
-\UIC{$ \omega:  \ex x. G(x) \imp A$} \RightLabel{$\imp_E$}
+\UIC{$ \omega:  \ex x. G(x) \imp A$} %\RightLabel{$\imp_E$}
 \AXC{Theorem 3}\dashedLine
 \UIC{$\nec \ex y.G(y)$} \RightLabel{$\nec_E$}
 \UIC{$\omega: \ex x.G(x)$} \RightLabel{$\imp_E$}
@@ -1940,7 +1949,7 @@ Rushby, J. 2013. {\itshape The Ontological Argument in PVS}. CAV Workshop ``Fun 
 % }
 
 % @inproceedings{IJCAI2016,
-%   author = {BenzmÃ¼ller, C. and Woltzenlogel Paleo, B.},
+%   author = {Benzmüller, C. and Woltzenlogel Paleo, B.},
 %   title  = {The Inconsistency in G\"odel's Ontological Argument: A Success Story for AI in Metaphysics},
 %   booktitle = {International Joint Conference on Artificial Intelligence - IJCAI},
 %   keywords ={HOML,Bruno,COREA*},
@@ -1948,8 +1957,8 @@ Rushby, J. 2013. {\itshape The Ontological Argument in PVS}. CAV Workshop ``Fun 
 % }
 
 % @article{AndersonHajekControversy,
-%     author = {BenzmÃ¼ller, Christoph and Weber, Leon and Woltzenlogel Paleo, Bruno},
-%     title  = {Computer-Assisted Analysis of the Anderson-HÃ¡jek Ontological Controversy},
+%     author = {Benzmüller, Christoph and Weber, Leon and Woltzenlogel Paleo, Bruno},
+%     title  = {Computer-Assisted Analysis of the Anderson-Hájek Ontological Controversy},
 %     journal = {Logica Universalis},
 %     publisher = {Springer},
 %     issn = {1661-8297},
@@ -1961,8 +1970,8 @@ Rushby, J. 2013. {\itshape The Ontological Argument in PVS}. CAV Workshop ``Fun 
 % }
 
 % @inproceedings{WorldCongressLogicAndReligion,
-%     author = {BenzmÃ¼ller, Christoph and Weber, Leon and Woltzenlogel Paleo, Bruno},
-%     title  = {Computer-Assisted Analysis of the Anderson-HÃ¡jek Ontological Controversy},
+%     author = {Benzmüller, Christoph and Weber, Leon and Woltzenlogel Paleo, Bruno},
+%     title  = {Computer-Assisted Analysis of the Anderson-Hájek Ontological Controversy},
 %     booktitle = {1st World Congress on Logic and Religion},
 %     year = {2015},
 %     keywords = {Bruno,Abstract,HOML},
@@ -1970,8 +1979,8 @@ Rushby, J. 2013. {\itshape The Ontological Argument in PVS}. CAV Workshop ``Fun 
 % }
 
 % @inproceeding{WADT,
-%    author = {BenzmÃ¼ller, Christoph and Woltzenlogel Paleo, Bruno},
-%    title  = {On Logic Embeddings and GÃ¶del's God},
+%    author = {Benzmüller, Christoph and Woltzenlogel Paleo, Bruno},
+%    title  = {On Logic Embeddings and Gödel's God},
 %    booktitle = {Recent Trends in Algebraic Development Techniques},
 %    year = {2014},
 %    crossref = {ADT},
@@ -1980,8 +1989,8 @@ Rushby, J. 2013. {\itshape The Ontological Argument in PVS}. CAV Workshop ``Fun 
 % }
 
 % @inproceedings{SpiritualQuest,
-%   author    = {Christoph BenzmÃ¼ller and Bruno Woltzenlogel Paleo},
-%   title     = {Experiments in Computational Metaphysics: GÃ¶del's Proof of God's Existence},
+%   author    = {Christoph Benzmüller and Bruno Woltzenlogel Paleo},
+%   title     = {Experiments in Computational Metaphysics: Gödel's Proof of God's Existence},
 %   booktitle = {Science and Spiritual Quest: Proceedings of the 9th All India Students' Conference on Science and Spiritual Quest (IIT Kharagpur, 30th October -- 1st November)},
 %   year      = {2015},
 %   crossref  = {SpiritualQuest},
@@ -2045,8 +2054,8 @@ Rushby, J. 2013. {\itshape The Ontological Argument in PVS}. CAV Workshop ``Fun 
 % }
 
 % @inproceedings{SquareOfOpposition,
-%    author = {BenzmÃ¼ller, Christoph and Woltzenlogel Paleo, Bruno},
-%    title  = {Formalization and Automated Verification of GÃ¶del's Proof of God's Existence},
+%    author = {Benzmüller, Christoph and Woltzenlogel Paleo, Bruno},
+%    title  = {Formalization and Automated Verification of Gödel's Proof of God's Existence},
 %    booktitle = {4th World Congress on the Square of Opposition},
 %    year = {2014},
 %    keywords = {Bruno,Abstract,HOML},
@@ -2056,8 +2065,8 @@ Rushby, J. 2013. {\itshape The Ontological Argument in PVS}. CAV Workshop ``Fun 
 
 
 % @inworkshopinvited{WADTPreProceedings,
-%    author = {BenzmÃ¼ller, Christoph and Woltzenlogel Paleo, Bruno},
-%    title  = {On Logic Embeddings and GÃ¶del's God},
+%    author = {Benzmüller, Christoph and Woltzenlogel Paleo, Bruno},
+%    title  = {On Logic Embeddings and Gödel's God},
 %    booktitle = {22nd International Workshop on Algebraic Development Techniques},
 %    year = {2014},
 %    keywords = {Bruno,Abstract,Invited,HOML},
@@ -2068,7 +2077,7 @@ Rushby, J. 2013. {\itshape The Ontological Argument in PVS}. CAV Workshop ``Fun 
 
 
 % @article{ModalCollapse,
-%    author = {BenzmÃ¼ller, Christoph and Woltzenlogel Paleo, Bruno},
+%    author = {Benzmüller, Christoph and Woltzenlogel Paleo, Bruno},
 %    title  = {The Modal Collapse as a Collapse of the Modal Square of Opposition},
 %    journal = {Studies in Universal Logic},
 %    publisher = {Springer},
@@ -2082,7 +2091,7 @@ Rushby, J. 2013. {\itshape The Ontological Argument in PVS}. CAV Workshop ``Fun 
 
 
 % @article{IsabelleGod,
-%   author    = {BenzmÃ¼ller, Christoph and Woltzenlogel Paleo, Bruno},
+%   author    = {Benzmüller, Christoph and Woltzenlogel Paleo, Bruno},
 %   title     = {G{\"{o}}del's God in Isabelle/HOL},
 %   journal   = {Archive of Formal Proofs},
 %   year      = {2013},
@@ -2095,8 +2104,8 @@ Rushby, J. 2013. {\itshape The Ontological Argument in PVS}. CAV Workshop ``Fun 
 % }
 
 % @inworkshopinvited{IWIL,
-%    author = {BenzmÃ¼ller, Christoph and Woltzenlogel Paleo, Bruno},
-%    title  = {GÃ¶del's God on the Computer},
+%    author = {Benzmüller, Christoph and Woltzenlogel Paleo, Bruno},
+%    title  = {Gödel's God on the Computer},
 %    booktitle = {10th International Workshop on the Implementation of Logics},
 %    year = {2013},
 %    keywords = {Bruno,Abstract,Invited,HOML},
@@ -2106,7 +2115,7 @@ Rushby, J. 2013. {\itshape The Ontological Argument in PVS}. CAV Workshop ``Fun 
 
 % @article{AustrianComputerSociety,
 %    author = {Woltzenlogel Paleo, Bruno},
-%    title  = {Automated Verification and Reconstruction of GÃ¶del's Proof of God's Existence},
+%    title  = {Automated Verification and Reconstruction of Gödel's Proof of God's Existence},
 %    journal = {Journal of the Austrian Computer Society},
 %    year = {2013},
 %    keywords = {Bruno,Invited,S,HOML},
