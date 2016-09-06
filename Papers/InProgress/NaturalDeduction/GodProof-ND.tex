@@ -128,6 +128,54 @@ The first main contribution of this paper is a detailed formalization of Scott's
 
 A major criticism against G\"odel's argument is an undesirable consequence of the stipulated axioms, called \emph{modal collapse}. This is discussed in greater detail in Section \ref{sec:collapse}, where a natural deduction derivation of the collapse is presented. Many recent works on the ontological argument have proposed modifications of the argument that do not entail modal collapse. In this paper we present natural deduction formalizations of two of these solutions: Anderson's emendation (in Section \ref{sec:anderson}) and Bj{\o}rdal's variant (in Section \ref{sec:bjordal}).
 
+An early unpublished draft of Section \ref{newproof} of this paper,
+prepared by Woltzenlogel Paleo in March 2013, served as the starting
+point for two distinct but complementary research endeavours. Siders
+and Woltzenlogel Paleo transformed that early draft into this paper,
+aiming for human-readable and yet formal natural deduction proofs.
+Benzm\"uller and Woltzenlogel Paleo, on the other hand, focused on the
+verification of variants of G\"odel's ontological arguments using
+higher-order automated reasoning tools, which quickly led to many
+publications. The main automatically obtained results about G\"odel's
+and Scott's proofs appeared in the European Conference on Artificial
+Intelligence \citep{ECAI2014} and, two years later, a detailed
+analysis of an inconsistency found in G\"odel's axioms was published
+in the International Joint Conference on Artificial Intelligence
+\citep{IJCAI2016}. The automatic verification of variants by Anderson,
+Bjordal and H\'ajek, on the other hand were presented in the First
+World Congress on Logic and Religion
+\citep{WorldCongressLogicAndReligion} and published in
+\citep{AndersonHajekControversy} and results related to the modal
+collapse were reported in the 4th Word Congress on the Square of
+Opposition \citep{SquareOfOpposition} and later published in
+\citep{ModalCollapse}. More detailed reconstructions of Scott's
+variant within the interactive proof assistants Isabelle and Coq were
+relesed, respectively, in Isabellle's Archive of Formal Proofs
+\citep{IsabelleGod} and in the Symposium of Computer Science in Russia
+\citep{CSRModalLogicInCoq}. The popularity of the topic led to invited
+talks and corresponding invited abstracts in the proceedings of
+workshops \citep{WADT,WADTPreProceedings,IWIL} and summer schools
+\citep{SpiritualQuest,ReasoningWebSummerSchool} as well as articles
+targeting a more general audience \citep{AustrianComputerSociety}.
+More recently, this line of research ventured into other types of
+ontological arguments, and a computer-assisted reconstruction of an
+argument by Leibniz will appear as a chapter in a book dedicated to
+the 300th anniversary of Leibniz's death
+\citep{LeibnizOntologicalProof}. The automatic verification of Gödel's
+and Scott's variants \citep{ECAI2014} was preceded by an automatic
+verification of (a non-modal version of) Anselm's ontological argument
+\citep{ZaltaOppenheimer}. However, whereas the complexity of Gödel's
+and Scott's arguments required the embedding of higher-order modal
+logics into higher-order logics and the use of higher-order automated
+reasoners, Anselm's argument greater simplicity enabled it to be
+verified with a first-order prover. Anselm's argument has also been
+formalized within the interactive proof assistant PVS \citep{Rushby}
+and there has been a so far failed attempt to formalize Avicenna's
+argument in PVS as well.
+
+
+
+
 
 \section{Natural Deduction}
 \label{sec:calculus}
@@ -1867,12 +1915,203 @@ Sobel, J. H. 2001. {\itshape Logic and Theism: Arguments for and against Beliefs
 \bibitem[{\itshape Wang(1996)}]{Wang1996}
 Wang, H. 1996. {\itshape A Logical Journey: From G\"odel to Philosophy}, The MIT Press. 
 
+\bibitem[{\itshape Oppenheimer \& Zalta(2011)}]{ZaltaOppenheimer}
+Oppenheimer, P. \& Zalta, E. 2011. {\itshape A Computationally-Discovered Simplification of the Ontological Argument}. Australasian Journal of Philosophy, 89(2), 333-349.
+
+\bibitem[{\itshape Rushby(2013)}]{Rushby}
+Rushby, J. 2013. {\itshape The Ontological Argument in PVS}. CAV Workshop ``Fun with Formal Methods''. St. Petersburg.
 
 
 
+% TODO: transform the following bibtex entries into bibitems
+
+% @incollection{LeibnizOntologicalProof,
+%   author      = {Bentert, Matthias and Benzm\"uller, Christoph and Streit, David and Woltzenlogel Paleo, Bruno},
+%   title       = {Analysis of an Ontological Proof Proposed by Leibniz},
+%   editor      = {Tandy, Charles},
+%   booktitle   = {[to appear in] Death and Anti-Death, Volume 14: Four Decades after Michael Polanyi, Three Centuries after G. W. Leibniz},
+%   publisher   = {Ria University Press},
+%   address     = {},
+%   isbn        = {978-1-934297-25-4},
+%   pages       = {},
+%   chapter     = {},
+%   year = {2016},
+%   note = {\textbf{[Invited]} }
+% }
+
+% @inproceedings{IJCAI2016,
+%   author = {Benzmüller, C. and Woltzenlogel Paleo, B.},
+%   title  = {The Inconsistency in G\"odel's Ontological Argument: A Success Story for AI in Metaphysics},
+%   booktitle = {International Joint Conference on Artificial Intelligence - IJCAI},
+%   keywords ={HOML,Bruno,COREA*},
+%   year = {2016}
+% }
+
+% @article{AndersonHajekControversy,
+%     author = {Benzmüller, Christoph and Weber, Leon and Woltzenlogel Paleo, Bruno},
+%     title  = {Computer-Assisted Analysis of the Anderson-Hájek Ontological Controversy},
+%     journal = {Logica Universalis},
+%     publisher = {Springer},
+%     issn = {1661-8297},
+%     volume = {10},
+%     year = {2016},
+%     keywords = {Bruno,HOML},
+%     pages = {1--10},
+%     note = {\emph{Accepted for publication on the 28th of February 2016}}
+% }
+
+% @inproceedings{WorldCongressLogicAndReligion,
+%     author = {Benzmüller, Christoph and Weber, Leon and Woltzenlogel Paleo, Bruno},
+%     title  = {Computer-Assisted Analysis of the Anderson-Hájek Ontological Controversy},
+%     booktitle = {1st World Congress on Logic and Religion},
+%     year = {2015},
+%     keywords = {Bruno,Abstract,HOML},
+%     pages = {49--50}
+% }
+
+% @inproceeding{WADT,
+%    author = {Benzmüller, Christoph and Woltzenlogel Paleo, Bruno},
+%    title  = {On Logic Embeddings and Gödel's God},
+%    booktitle = {Recent Trends in Algebraic Development Techniques},
+%    year = {2014},
+%    crossref = {ADT},
+%    keywords = {Bruno,Invited,HOML},
+%    note = {\textbf{[Invited]} }
+% }
+
+% @inproceedings{SpiritualQuest,
+%   author    = {Christoph Benzmüller and Bruno Woltzenlogel Paleo},
+%   title     = {Experiments in Computational Metaphysics: Gödel's Proof of God's Existence},
+%   booktitle = {Science and Spiritual Quest: Proceedings of the 9th All India Students' Conference on Science and Spiritual Quest (IIT Kharagpur, 30th October -- 1st November)},
+%   year      = {2015},
+%   crossref  = {SpiritualQuest},
+%   volume    = {9},
+%   keywords  = {Bruno,Invited,HOML},
+%   note = {\textbf{[Invited]} },
+%   pages = {23--40}
+% }
+
+% @incollection{ReasoningWebSummerSchool,
+%   author    = {Christoph Benzm{\"{u}}ller and
+%                Bruno Woltzenlogel Paleo},
+%   title     = {Higher-Order Modal Logics: Automation and Applications},
+%   booktitle = {Reasoning Web. Web Logic Rules - 11th International Summer School
+%                2015, Berlin, Germany, July 31 - August 4, 2015, Tutorial Lectures},
+%   pages     = {32--74},
+%   year      = {2015},
+%   crossref  = {DBLP:conf/rweb/2015},
+%   url       = {http://dx.doi.org/10.1007/978-3-319-21768-0_2},
+%   doi       = {10.1007/978-3-319-21768-0_2},
+%   timestamp = {Sat, 25 Jul 2015 15:58:28 +0200},
+%   biburl    = {http://dblp.uni-trier.de/rec/bib/conf/rweb/BenzmullerP15},
+%   bibsource = {dblp computer science bibliography, http://dblp.org},
+%   keywords = {Bruno,HOML,Invited,DBLP}
+% }
+
+
+% @inproceedings{CSRModalLogicInCoq,
+%   author    = {Christoph Benzm{\"{u}}ller and
+%                Bruno Woltzenlogel Paleo},
+%   title     = {Interacting with Modal Logics in the Coq Proof Assistant},
+%   booktitle = {Computer Science - Theory and Applications - 10th International Computer
+%                Science Symposium in Russia, {CSR} 2015, Listvyanka, Russia, July
+%                13-17, 2015, Proceedings},
+%   pages     = {398--411},
+%   year      = {2015},
+%   crossref  = {DBLP:conf/csr/2015},
+%   url       = {http://dx.doi.org/10.1007/978-3-319-20297-6_25},
+%   doi       = {10.1007/978-3-319-20297-6_25},
+%   timestamp = {Tue, 23 Jun 2015 13:05:11 +0200},
+%   biburl    = {http://dblp.uni-trier.de/rec/bib/conf/csr/BenzmullerP15},
+%   bibsource = {dblp computer science bibliography, http://dblp.org},
+%   keywords  = {Bruno,HOML,COREC,DBLP}
+% }
+
+% @inproceedings{ECAI2014,
+%   Author = {Christoph Benzm{\"{u}}ller and Bruno Woltzenlogel Paleo},
+%   Bibsource = {dblp computer science bibliography, http://dblp.org},
+%   Biburl = {http://dblp.uni-trier.de/rec/bib/conf/ecai/BenzmullerP14},
+%   Booktitle = {{ECAI} 2014 - 21st European Conference on Artificial Intelligence, 18-22 August 2014, Prague, Czech Republic - Including Prestigious Applications of Intelligent Systems {(PAIS} 2014)},
+%   Crossref = {DBLP:conf/ecai/2014},
+%   Date-Modified = {2014-10-14 07:42:43 +0000},
+%   Doi = {10.3233/978-1-61499-419-0-93},
+%   Keywords = {Bruno,DBLP,COREA,HOML},
+%   Pages = {93--98},
+%   Timestamp = {Mon, 13 Oct 2014 13:39:42 +0200},
+%   Title = {Automating G{\"{o}}del's Ontological Proof of God's Existence with Higher-order Automated Theorem Provers},
+%   Url = {http://dx.doi.org/10.3233/978-1-61499-419-0-93},
+%   Year = {2014},
+%     note = {\textbf{[Nominated for Best Paper]} }
+% }
+
+% @inproceedings{SquareOfOpposition,
+%    author = {Benzmüller, Christoph and Woltzenlogel Paleo, Bruno},
+%    title  = {Formalization and Automated Verification of Gödel's Proof of God's Existence},
+%    booktitle = {4th World Congress on the Square of Opposition},
+%    year = {2014},
+%    keywords = {Bruno,Abstract,HOML},
+%    pages = {24--25}
+% }
 
 
 
+% @inworkshopinvited{WADTPreProceedings,
+%    author = {Benzmüller, Christoph and Woltzenlogel Paleo, Bruno},
+%    title  = {On Logic Embeddings and Gödel's God},
+%    booktitle = {22nd International Workshop on Algebraic Development Techniques},
+%    year = {2014},
+%    keywords = {Bruno,Abstract,Invited,HOML},
+%    note = {\textbf{[Invited]} },
+%    pages = {8--9},
+%    url = {http://wadt2014.cs.ovgu.de/pre-proceedings.pdf}
+% }
+
+
+% @article{ModalCollapse,
+%    author = {Benzmüller, Christoph and Woltzenlogel Paleo, Bruno},
+%    title  = {The Modal Collapse as a Collapse of the Modal Square of Opposition},
+%    journal = {Studies in Universal Logic},
+%    publisher = {Springer},
+%    issn = {2297-0282},
+%    year = {2016},
+%    keywords = {Bruno,HOML},
+%    pages   =  {1--7},
+%    note    = {\emph{Submitted in November 2014. Accepted for publication on the 28th of February 2016}}
+% }
+
+
+
+% @article{IsabelleGod,
+%   author    = {Benzmüller, Christoph and Woltzenlogel Paleo, Bruno},
+%   title     = {G{\"{o}}del's God in Isabelle/HOL},
+%   journal   = {Archive of Formal Proofs},
+%   year      = {2013},
+%   volume    = {},
+%   keywords  = {Bruno,DBLP,HOML},
+%   url       = {http://afp.sourceforge.net/entries/GoedelGod.shtml},
+%   timestamp = {Wed, 15 Oct 2014 15:14:28 +0200},
+%   biburl    = {http://dblp.uni-trier.de/rec/bib/journals/afp/Benzmueller13},
+%   bibsource = {dblp computer science bibliography, http://dblp.org}
+% }
+
+% @inworkshopinvited{IWIL,
+%    author = {Benzmüller, Christoph and Woltzenlogel Paleo, Bruno},
+%    title  = {Gödel's God on the Computer},
+%    booktitle = {10th International Workshop on the Implementation of Logics},
+%    year = {2013},
+%    keywords = {Bruno,Abstract,Invited,HOML},
+%    note = {\textbf{[Invited]} },
+%    pages = {1--2}
+% }
+
+% @article{AustrianComputerSociety,
+%    author = {Woltzenlogel Paleo, Bruno},
+%    title  = {Automated Verification and Reconstruction of Gödel's Proof of God's Existence},
+%    journal = {Journal of the Austrian Computer Society},
+%    year = {2013},
+%    keywords = {Bruno,Invited,S,HOML},
+%    pages    = {4--6}
+% }
 
 \end{thebibliography}
 
