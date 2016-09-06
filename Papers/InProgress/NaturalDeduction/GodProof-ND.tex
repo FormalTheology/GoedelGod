@@ -1148,7 +1148,7 @@ $$
 \UIC{$\rho(\gamma)$} \RightLabel{$\imp_E$}
 \BIC{$\bot$}\RightLabel{$\imp_I^2$}
 \UIC{$\neg\neg P(\rho)$}\RightLabel{$\neg\neg_E$}
-\UIC{$[\subproof_7] \qquad P(\rho)$}
+\UIC{$[\subproof_6] \qquad P(\rho)$}
 \end{prooftree}
 \end{small}
 
@@ -1174,7 +1174,7 @@ $$
 
 %\AXC{$ $} \RightLabel{6}
 %\UIC{$\rho(\gamma)$} \RightLabel{}
-\AXC{$ \subproof_7$} \dashedLine
+\AXC{$ \subproof_6$} \dashedLine
 \UIC{$P(\rho)$} %\RightLabel{$\nec_E$}
 \AXC{Axiom \ref{N:A4}} \dashedLine
 \UIC{$\all \varphi.[P(\varphi) \imp \nec\; P(\varphi)]$}\RightLabel{$\forall_E$}
@@ -1192,13 +1192,13 @@ $$
 \UIC{$\ex z. G(z)$}\RightLabel{$\ex_E$}
 \UIC{$G(\gamma)$}  \RightLabel{$\wedge_I$}
 \BIC{$G(\gamma) \wedge \forall \psi.(\psi(\gamma) \imp \nec \forall y.(G(y) \imp \psi(y)))$}\dottedLine \RightLabel{D\ref{N:D2}}
-\UIC{$[\subproof_8] \qquad \ess{G}{\gamma}$}
+\UIC{$[\subproof_7] \qquad \ess{G}{\gamma}$}
 \end{prooftree}
 \end{small}
 
 \begin{small}
 \begin{prooftree}
-\AXC{$\subproof_8$} \dashedLine
+\AXC{$\subproof_7$} \dashedLine
 \UIC{$\ess{G}{\gamma}$}
 \AXC{Axiom \ref{A5}} \dashedLine
 \UIC{$P(E)$}\dottedLine 
@@ -1293,7 +1293,7 @@ $$
 \UIC{$\all y.[G(y) \imp \all \psi. (\psi(y) \imp \nec \all x. (G(x) \imp \psi(x)))]$} \doubleLine
 %\UIC{$\all y.[G(y) \imp (A(y) \imp \nec \all x. (G(x) \imp A(x)))]$} \RightLabel{$A$ is constant}
 \UIC{$\all y.[G(y) \imp (A \imp \nec \all x. (G(x) \imp A))]$} \doubleLine
-\UIC{$[\subproof_9] \qquad \ex y.G(y) \imp (A \imp \nec \all x. (G(x) \imp A))$}
+\UIC{$[\subproof_8] \qquad \ex y.G(y) \imp (A \imp \nec \all x. (G(x) \imp A))$}
 \end{prooftree}
 \end{small}
 
@@ -1301,7 +1301,7 @@ $$
 
 \begin{small}
 \begin{prooftree}
-\AXC{$ \subproof_9 $}\dashedLine
+\AXC{$ \subproof_8 $}\dashedLine
 \UIC{$\ex y.G(y) \imp (A \imp \nec \all x. (G(x) \imp A))$}
 \AXC{Theorem 3}\dashedLine
 \UIC{$\nec \ex y.G(y)$} \RightLabel{$\nec_E$}
@@ -1460,11 +1460,11 @@ $$
 \begin{prooftree}
 \AXC{$ $} \RightLabel{1}
 \UIC{$\ex z. G(z)$}\RightLabel{$\ex_E$}
-\UIC{$[\subproof_6] \quad G(\gamma)$}
+\UIC{$[\subproof_9] \quad G(\gamma)$}
 \end{prooftree}
 
 \begin{prooftree}
-\AXC{$\subproof_6$} \dashedLine
+\AXC{$\subproof_9$} \dashedLine
 \UIC{$G(\gamma)$} \RightLabel{}\dottedLine \RightLabel{D\ref{A:D1}}
 \UIC{$\forall \varphi. [P(\lambda x.\varphi(x)) \biimp \nec \varphi(\gamma)]$}\RightLabel{$\forall_E$}
 \UIC{$P(\lambda x.\rho(x)) \biimp \nec \rho(\gamma)$}
@@ -1474,7 +1474,7 @@ $$
 
 \AXC{Axiom \ref{A:A4}} \dashedLine
 \UIC{$P(\rho)\imp \nec P(\rho)$} \RightLabel{$\imp_E$}
-\BIC{$[\subproof_7] \quad \nec P(\rho)$} \RightLabel{$\imp_E$}
+\BIC{$[\subproof_{10}] \quad \nec P(\rho)$} \RightLabel{$\imp_E$}
 \end{prooftree}
 
 
@@ -1493,10 +1493,10 @@ $$
 \UIC{$\nec \forall y.(G(y) \imp \rho(y))$} \RightLabel{$\imp_I^3$}
 \UIC{$\nec P(\rho)\imp \nec \forall y .(G(y)\imp \rho(y))$} 
 
-\AXC{$\subproof_7$} \dashedLine
+\AXC{$\subproof_{10}$} \dashedLine
 \UIC{$\nec P(\rho)$}\RightLabel{$\imp_E$}
 \BIC{$\nec \forall y .(G(y)\imp \rho(y))$}\RightLabel{$\imp_I^4$}
-\UIC{$[\subproof_8] \qquad \nec\rho(\gamma) \imp \nec \forall y.(G(y) \imp \rho(y))$}\RightLabel{$\forall_I$}
+\UIC{$[\subproof_{11}] \qquad \nec\rho(\gamma) \imp \nec \forall y.(G(y) \imp \rho(y))$}\RightLabel{$\forall_I$}
 \end{prooftree}
 
 
@@ -1511,26 +1511,26 @@ $$
 \BIC{$P(G)\wedge \nec  \forall y. [G(y)\imp \varphi(y)]$}\RightLabel{$\imp_E$}
 \AXC{Axiom \ref{A:A2}} 
 \BIC{$P(\varphi)$}
-\AXC{$\subproof_6$} \dashedLine 
+\AXC{$\subproof_9$} \dashedLine 
 \UIC{$  G(\gamma)$}  \RightLabel{D\ref{A:D1}}
 \UIC{$ \all \varphi. [P(\varphi)\biimp \nec \varphi(\gamma)]$}  \RightLabel{$\all_E$}
 \UIC{$ P(\varphi)\biimp \nec \varphi(\gamma)$}  \RightLabel{$\biimp_E$}
 \BIC{$ \nec \varphi(\gamma)$} \RightLabel{$\imp_I^5$}
-\UIC{$[\subproof_9] \quad \nec  \forall y. [G(y)\imp \varphi(y)]\imp \nec \varphi(\gamma)$}
+\UIC{$[\subproof_{12}] \quad \nec  \forall y. [G(y)\imp \varphi(y)]\imp \nec \varphi(\gamma)$}
 \end{prooftree}
 %\end{small}
 
 \begin{small}
 \begin{prooftree}
-\AXC{$\subproof_8$ and $\subproof_9$} \dashedLine
+\AXC{$\subproof_{11}$ and $\subproof_{12}$} \dashedLine
 \UIC{$\nec \varphi(\gamma)\biimp \nec  \forall y. [G(y)\imp \varphi(y)] $} \RightLabel{$\forall_I$}
 \UIC{$\forall \varphi. (\nec \varphi(\gamma)\biimp \nec  \forall y. [G(y)\imp \varphi(y)]) $}
-\AXC{$ \subproof_6 $} \dashedLine
+\AXC{$ \subproof_{9}$} \dashedLine
 \UIC{$G(\gamma)$}\RightLabel{$\wedge_I$}
 \BIC{$\ess{G}{\gamma}$}
 \AXC{Axiom \ref{A5}} \dashedLine
 \UIC{$P(E)$}\dottedLine 
-\AXC{$\subproof_6$} \dashedLine
+\AXC{$\subproof_9$} \dashedLine
 \UIC{$G(\gamma)$}\dottedLine \RightLabel{D\ref{A:D1}}
 \UIC{$\forall \varphi.(P(\varphi) \biimp \nec \varphi(\gamma))$}\RightLabel{$\forall_E$}
 \UIC{$P(E) \biimp \nec E(\gamma)$}\RightLabel{$\biimp_E$}
@@ -1588,27 +1588,21 @@ $$
 
 \begin{proof} \hfill
 \begin{prooftree}
-\AXC{$ $} \RightLabel{1}
+\AXC{$ $} \RightLabel{2}
 \UIC{$\ex z. G(z)$}\RightLabel{$\ex_E$}
-\UIC{$[\subproof_6] \quad G(\gamma)$}
-\end{prooftree}
-
-%\begin{scriptsize}
-\begin{prooftree}
-\AXC{$\subproof_6$} \dashedLine
 \UIC{$G(\gamma)$}  \dottedLine \RightLabel{D\ref{D1}}
 \UIC{$\forall \varphi. [P(\lambda x.\varphi(x)) \biimp \nec \varphi(\gamma)]$}\RightLabel{$\forall_E$}
 \UIC{$P(G) \biimp \nec G(\gamma)$}
 \AXC{Axiom \ref{A:A3}} \RightLabel{}
 \UIC{$P(G)$} \RightLabel{$\biimp_E$}
 \BIC{$\nec G(\gamma)$}
-\AXC{$ $} \RightLabel{2}
+\AXC{$ $} \RightLabel{1}
 \UIC{$G(\gamma)$} \RightLabel{$\ex_I$}
-\UIC{$\ex x.G(x)$}  \RightLabel{$\imp_I^2$}
+\UIC{$\ex x.G(x)$}  \RightLabel{$\imp_I^1$}
 \UIC{$G(\gamma)\imp \ex x.G(x)$} \RightLabel{$\nec_I$}
 \UIC{$\nec [G(\gamma)\imp \ex x.G(x)]$} \doubleLine  \RightLabel{(Axiom K)}
 \UIC{$\nec G(\gamma)\imp \nec \ex x.G(x)$} \RightLabel{$\imp_E$}
-\BIC{$\nec \ex x.G(x)$}\RightLabel{$\imp_I^1$}
+\BIC{$\nec \ex x.G(x)$}\RightLabel{$\imp_I^2$}
 \UIC{$\ex z. G(z)\imp \nec \ex x.G(x)$}
 \end{prooftree}
 %\end{scriptsize}
@@ -1633,7 +1627,7 @@ Anderson's change in the definition of essence adds an extra box modality, which
 \UIC{$\all y.[G(y) \imp \all \psi. (\nec \psi(y) \biimp \nec \all x. (G(x) \imp \psi(x)))]$} \doubleLine
 %\UIC{$\all y.[G(y) \imp (\nec A(y) \biimp \nec \all x. (G(x) \imp A(x)))]$} \RightLabel{$A$ is constant}
 \UIC{$\all y.[G(y) \imp (\nec A \biimp \nec \all x. (G(x) \imp A))]$} \doubleLine
-\UIC{$[\subproof_{10}] \qquad \ex y.G(y) \imp (\nec A \biimp \nec \all x. (G(x) \imp A))$}
+\UIC{$[\subproof_{13}] \qquad \ex y.G(y) \imp (\nec A \biimp \nec \all x. (G(x) \imp A))$}
 \end{prooftree}
 \end{small}
 
@@ -1641,7 +1635,7 @@ Anderson's change in the definition of essence adds an extra box modality, which
 
 \begin{small}
 \begin{prooftree}
-\AXC{$ \subproof_{10} $}\dashedLine
+\AXC{$ \subproof_{13} $}\dashedLine
 \UIC{$\ex y.G(y) \imp (\nec A \biimp \nec \all x. (G(x) \imp A))$}
 \AXC{Theorem 3}\dashedLine
 \UIC{$\nec \ex y.G(y)$} \RightLabel{$\nec_E$}
@@ -1799,13 +1793,13 @@ $$
 \AXC{$ $}\doubleLine
 \UIC{$\nec \all x. [G_B(x) \imp G_B(x)] $}\RightLabel{ D\ref{B:D1}}\dottedLine
 \UIC{$P_B(G_B) $}\RightLabel{ $\wedge_I$}
-\BIC{$[\subproof_{11}] \qquad G_B(x) \wedge P_B(G_B) $}
+\BIC{$[\subproof_{14}] \qquad G_B(x) \wedge P_B(G_B) $}
 \end{prooftree}
 \end{small}
 
 \begin{small}
 \begin{prooftree}
-\AXC{$ \subproof_{11} $}\dashedLine
+\AXC{$ \subproof_{14} $}\dashedLine
 \UIC{$G_B(x) \wedge P_B(G_B) $}
 \AXC{$ $}\RightLabel{ $1$}
 \UIC{$(\psi(x) \wedge P_B (\psi))$} \RightLabel{ $\wedge_E$}
@@ -1814,7 +1808,7 @@ $$
 \UIC{$(\psi(x) \wedge P_B (\psi))\imp \nec\all y.(G_B(y) \imp \psi(y))$}\RightLabel{ $\forall_I$}
 \UIC{$\all\psi.((\psi(x) \wedge P_B (\psi)) \imp \nec\all y.(G_B(y) \imp \psi(y)))$} \RightLabel{ $\wedge_I$}
 \BIC{$G_B(x) \wedge P_B(G_B) \wedge \all\psi.((\psi(x) \wedge P_B (\psi)) \imp \nec\all y.(G_B(y) \imp \psi(y))) $} \RightLabel{ D\ref{B:D2} }\dottedLine
-\UIC{$[\subproof_{12}] \qquad \MCP(G_B, x) $} 
+\UIC{$[\subproof_{15}] \qquad \MCP(G_B, x) $} 
 
 \end{prooftree}
 \end{small}
@@ -1832,7 +1826,7 @@ $$
 \UIC{$G_B(x) $}  \RightLabel{ $\imp_E$}
 \BIC{$\all\varphi. (\MCP(\varphi, x) \imp \nec \ex y.\varphi(y))$} \RightLabel{ $\forall_E$}
 \UIC{$(\MCP(G_B, x) \imp \nec \ex y.G_B(y))$}
-\AXC{$ \subproof_{12} $}\dashedLine
+\AXC{$ \subproof_{15} $}\dashedLine
 \UIC{$\MCP(G_B, x) $} \RightLabel{ $\imp_E$}
 \BIC{$\nec \ex y.G_B(y)$}\RightLabel{ $\imp_I^2$}
 \UIC{$G_B(x) \imp \nec \ex y.G_B(y)$}
