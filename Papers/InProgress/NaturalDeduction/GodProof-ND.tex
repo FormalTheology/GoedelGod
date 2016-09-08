@@ -209,7 +209,6 @@ Negation ($\neg_{o\imp o}$), disjunction ($\vee_{o\imp o\imp o}$), equivalence (
 \end{definition}
 
 The natural deduction calculus used here has standard rules for propositional connectives and quantifiers, as shown in Figures \ref{fig:PropositionalRules} and \ref{fig:QuantifierRules}. The extension to classical logic is achieved by adding a rule for double negation elimination, shown in Figure \ref{fig:Classical}. Finally, modal operators are handled by special rules that insert or remove formulas from boxes, as shown in Figure \ref{fig:NDK}.
-%Apart from the use of labels and the dual rules for `$\pos$', these rules are essentially the modal rules from \cite{todo}. 
 Beta-reduction and alpha-conversion are implicit: all rules are assumed to operate modulo these operations. A \emph{derivation} is a directed acyclic graph whose nodes are formulas and whose edges correspond to applications of the inference rules. A \emph{proof} of a formula $F$ is a derivation without open assumptions and having $F$ as root not inside any box. 
 
 \newcommand{\subproof}{\star}
