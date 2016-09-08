@@ -199,14 +199,13 @@ where $\mu$ is the atomic type for individuals, $o$ is the atomic type for propo
   & s_{\tau} = t_{\tau} \ \mid \\
 & \bot_o \ \mid \
   \imp_{o\imp o\imp o} \ \mid \ 
-  \wedge_{o\imp o\imp o} \ \mid \
-  \vee_{o\imp o\imp o} \ \mid \\
+  \wedge_{o\imp o\imp o} \ \mid \\
 & \all_{(\tau\imp o)\imp o} \ \mid \ 
   \ex_{(\tau\imp o)\imp o} \ \mid \
   \nec_{o\imp o} \ \mid \
   \pos_{o\imp o}
 \end{align*}
-where $p_\tau$ and $X_\tau$ range over, respectively, constants and variables of type $\tau$. Parenthesis conventions, infix notation for propositional connectives and binding notation for quantifiers are assumed. Furthermore, subscript types are omitted when they are clear from the context. Inequality ($\neq_{\tau\imp\tau\imp o}$), negation ($\neg_{o\imp o}$) and equivalence ($\biimp_{o\imp o\imp o}$) are defined by $s \neq t\equiv \neg (s=t)$, $\neg A\equiv A\imp \bot$ and $ (A\biimp B)\equiv (A\imp B)\wedge (B\imp A)$.
+where $p_\tau$ and $X_\tau$ range over, respectively, constants and variables of type $\tau$. Parenthesis conventions, infix notation for propositional connectives and binding notation for quantifiers are assumed. Furthermore, subscript types are omitted when they are clear from the context. Inequality ($\neq_{\tau\imp\tau\imp o}$), negation ($\neg_{o\imp o}$), disjunction ($\vee_{o\imp o\imp o}$) and equivalence ($\biimp_{o\imp o\imp o}$) are defined by $s \neq t\equiv \neg (s=t)$, $\neg A\equiv A\imp \bot$, $(A \vee B) \equiv \neg (\neg A \wedge \neg B)$ and $ (A\biimp B)\equiv (A\imp B)\wedge (B\imp A)$.
 \end{definition}
 
 The natural deduction calculus used here has standard rules for propositional connectives and quantifiers, as shown in Figures \ref{fig:PropositionalRules} and \ref{fig:QuantifierRules}. The extension to classical logic is achieved by adding a rule for double negation elimination, shown in Figure \ref{fig:Classical}. Finally, modal operators are handled by special rules that insert or remove formulas from boxes, as shown in Figure \ref{fig:NDK}.
