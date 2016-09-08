@@ -196,7 +196,6 @@ where $\mu$ is the atomic type for individuals, $o$ is the atomic type for propo
   X_\tau \ \mid \
   (\lambda X_\theta.s_\tau)_{\theta\imp\tau} \ \mid \ 
   (s_{\theta\imp\tau}\, t_\theta)_\tau \ \mid \\
-  & s_{\tau} = t_{\tau} \ \mid \\
 & \bot_o \ \mid \
   \imp_{o\imp o\imp o} \ \mid \ 
   \wedge_{o\imp o\imp o} \ \mid \\
@@ -205,18 +204,18 @@ where $\mu$ is the atomic type for individuals, $o$ is the atomic type for propo
   \nec_{o\imp o} \ \mid \
   \pos_{o\imp o}
 \end{align*}
-where $p_\tau$ and $X_\tau$ range over, respectively, constants and variables of type $\tau$. Parenthesis conventions, infix notation for propositional connectives and binding notation for quantifiers are assumed. Furthermore, subscript types are omitted when they are clear from the context. Inequality ($\neq_{\tau\imp\tau\imp o}$), negation ($\neg_{o\imp o}$), disjunction ($\vee_{o\imp o\imp o}$) and equivalence ($\biimp_{o\imp o\imp o}$) are defined by $s \neq t\equiv \neg (s=t)$, $\neg A\equiv A\imp \bot$, $(A \vee B) \equiv \neg (\neg A \wedge \neg B)$ and $ (A\biimp B)\equiv (A\imp B)\wedge (B\imp A)$.
+where $p_\tau$ and $X_\tau$ range over, respectively, constants and variables of type $\tau$. Parenthesis conventions, infix notation for propositional connectives and binding notation for quantifiers are assumed. Furthermore, subscript types are omitted when they are clear from the context. Negation ($\neg_{o\imp o}$), disjunction ($\vee_{o\imp o\imp o}$), equivalence ($\biimp_{o\imp o\imp o}$), equality ($=_{\tau\imp\tau\imp o}$), inequality ($\neq_{\tau\imp\tau\imp o}$), are defined by $\neg A\equiv A\imp \bot$, $(A \vee B) \equiv \neg (\neg A \wedge \neg B)$, $ (A\biimp B)\equiv (A\imp B)\wedge (B\imp A)$, $s = t \equiv \forall P. (P \ s) \biimp (P \ t)$ (Leibniz's equality) and $s \neq t\equiv \neg (s=t)$, .
 \end{definition}
 
 The natural deduction calculus used here has standard rules for propositional connectives and quantifiers, as shown in Figures \ref{fig:PropositionalRules} and \ref{fig:QuantifierRules}. The extension to classical logic is achieved by adding a rule for double negation elimination, shown in Figure \ref{fig:Classical}. Finally, modal operators are handled by special rules that insert or remove formulas from boxes, as shown in Figure \ref{fig:NDK}.
 %Apart from the use of labels and the dual rules for `$\pos$', these rules are essentially the modal rules from \cite{todo}. 
-Beta-reduction, alpha-conversion and eta-expansion are implicit: all rules (and especially quantifier rules) are assumed to operate modulo these operations. A \emph{derivation} is a directed acyclic graph whose nodes are formulas and whose edges correspond to applications of the inference rules. A \emph{proof} of a formula $F$ is a derivation without open assumptions and having $F$ as root not inside any box. 
+Beta-reduction and alpha-conversion are implicit: all rules are assumed to operate modulo these operations. A \emph{derivation} is a directed acyclic graph whose nodes are formulas and whose edges correspond to applications of the inference rules. A \emph{proof} of a formula $F$ is a derivation without open assumptions and having $F$ as root not inside any box. 
 
 \newcommand{\subproof}{\star}
 
 Double lines are used to abbreviate tedious propositional reasoning steps in the derivations where the reasoning is otherwise clear. Dashed lines are used to refer to an axiom or theorem with the proof shown elsewhere. When proof trees are too large to fit on the page, some branches may be displayed separately. In such cases, the conclusion of the branch and the location in the main proof tree where the branch belongs are annotated with the same symbol (a subscripted $\subproof$). Dotted lines are used to indicate folding and unfolding of definitions. Furthermore, as it is inconvenient to draw boxes around large derivations in \LaTeX, formulas inside boxes are labeled with the names of the boxes surrounding them. Therefore, the boxes can be omitted without loss of information. 
 
-The calculus having only the rules shown in Figures \ref{fig:PropositionalRules}, \ref{fig:Classical}, \ref{fig:QuantifierRules} and \ref{fig:EqualityRules} is named \ND, while the calculus with the additional rules shown in Figure \ref{fig:NDK} is named \NDK.
+The calculus having only the rules shown in Figures \ref{fig:PropositionalRules}, \ref{fig:Classical} and \ref{fig:QuantifierRules} is named \ND, while the calculus with the additional rules shown in Figure \ref{fig:NDK} is named \NDK.
 
 \newcommand{\s}{\qquad}
 
