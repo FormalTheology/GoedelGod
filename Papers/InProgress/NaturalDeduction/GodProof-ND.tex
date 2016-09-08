@@ -285,8 +285,8 @@ The calculus having only the rules shown in Figures \ref{fig:PropositionalRules}
 
 \begin{center}
 \textbf{eigen-variable conditions:} \\
-if $\rho$ is a $\all_I$ inference eliminating a variable $\alpha$, then any occurrence of $\alpha$ in the proof should be an ancestor of the occurrence of $\alpha$ eliminated by $\rho$; \\
-if $\rho$ is a $\ex_E$ inference introducing a variable $\beta$, then any occurrence of $\beta$ in the proof should be a descendant of the occurrence of $\beta$ introduced by $\rho$.
+if $\rho$ is a $\all_I$ inference eliminating a variable $\alpha$, then any occurrence of $\alpha$ in the proof should be an ancestor of the occurrence of $\alpha$ eliminated by $\rho$ and not a descendant of a variable introduced by a $\ex_E$ inference; \\
+if $\rho$ is a $\ex_E$ inference introducing a variable $\beta$, then any occurrence of $\beta$ in the proof should be a descendant of the occurrence of $\beta$ introduced by $\rho$ and not an ancestor of a variable eliminated by a $\all_I$ inference.
 \end{center}
 
 \vspace{1em}
