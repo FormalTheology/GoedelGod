@@ -204,7 +204,7 @@ where $\mu$ is the atomic type for individuals, $o$ is the atomic type for propo
   \nec_{o\imp o} \ \mid \
   \pos_{o\imp o}
 \end{align*}
-where $p_\tau$ and $X_\tau$ range over, respectively, constants and variables of type $\tau$. Parenthesis conventions, infix notation for propositional connectives and binding notation for quantifiers are assumed. Furthermore, subscript types are omitted when they are clear from the context. Implicit alpha-conversion is assumed: two expressions are considered to be the same modulo renaming of their bound variables.
+where $p_\tau$ and $X_\tau$ range over, respectively, constants and variables of type $\tau$. Parenthesis conventions, infix notation for propositional connectives and binding notation\footnote{$\forall x. F[x]$ and $\exists x. F[x]$ are assumed to be abbreviations for, respectively, $\forall (\lambda x. F[x])$ and $\exists (\lambda x. F[x])$.} for quantifiers are assumed. Furthermore, subscript types are omitted when they are clear from the context. Implicit alpha-conversion is assumed: two expressions are considered to be the same modulo renaming of their bound variables.
 Negation ($\neg_{o\imp o}$), disjunction ($\vee_{o\imp o\imp o}$), equivalence ($\biimp_{o\imp o\imp o}$), equality ($=_{\tau\imp\tau\imp o}$), inequality ($\neq_{\tau\imp\tau\imp o}$), are defined by $\neg A\equiv A\imp \bot$, $(A \vee B) \equiv \neg (\neg A \wedge \neg B)$, $ (A\biimp B)\equiv (A\imp B)\wedge (B\imp A)$, $s = t \equiv \forall P. (P \ s) \biimp (P \ t)$ (Leibniz's equality) and $s \neq t\equiv \neg (s=t)$, .
 \end{definition}
 
