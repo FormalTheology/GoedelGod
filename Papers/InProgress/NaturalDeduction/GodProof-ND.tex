@@ -604,6 +604,30 @@ $$
 
 \end{proof}
 
+\begin{lemma*}[Reflexivity]
+$$
+s=s
+$$
+\end{lemma*}
+
+\begin{proof}\hfill
+
+\begin{footnotesize}
+\begin{prooftree}
+\AXC{}\RightLabel{$1$}
+\UIC{$P s$}\RightLabel{$\imp_I^1$}
+\UIC{$P s\imp P s$}
+\AXC{}\RightLabel{$2$}
+\UIC{$P s$}\RightLabel{$\imp_I^2$}
+\UIC{$P s\imp P s$}\RightLabel{$\wedge_I$}
+\BIC{$P s\biimp P s$}\RightLabel{$\forall_I$}
+\UIC{$\forall P. P s\biimp P s$}\dottedLine
+\UIC{$s=s$}
+\end{prooftree}
+\end{footnotesize}
+
+
+\end{proof}
 
 
 \section{Scott's Proof in Natural Deduction}\label{sec:scott}
@@ -625,7 +649,7 @@ In this section we present a detailed formalization of Scott's proof in the natu
 
 Scott's version of G\"odel's proof depends on five axioms that circumscribe the notion of \emph{positive} property, with positivity being denoted by the undefined second-order predicate symbol $P$. Additionally, three definitions are used for establishing the notions of \emph{God-like}, \emph{essence} and \emph{necessary existence}. Technically, these definitions only abbreviate certain complex formulas. The argument would still go through if all defined symbols were replaced by the complex formulas they define. This observation is particularly relevant in the case of \emph{necessary existence}. Since this notion of ``existence'' is just an abbreviation, G\"odel's argument is not susceptible to Kant's criticism against Anselm's argument (that existence should not be treated as a predicate). In G\"odel's proof, existence is properly denoted by the existential quantifier. It is, therefore, unfortunately misleading to refer to the defined predicate symbol $E$ as ``necessary existence'', when in fact it is just a convenient abbreviation.
 
-In addition to the five axioms and three definitions that pertain specifically to the argument, the proof also uses {\bf S5}'s iteration principle (in the proof of Lemma 2) and the axiom of reflexivity for equality (in the proof of Theorem 1). The use of reflexivity could be avoided, but we chose to use it because it allows the construction of a shorter proof. 
+In addition to the five axioms and three definitions that pertain specifically to the argument, the proof also uses {\bf S5}'s iteration principle (in the proof of Lemma 2) and the lemma of reflexivity for equality (in the proof of Theorem 1). The use of reflexivity could be avoided, but we chose to use it because it allows the construction of a shorter proof. 
 
 
 \begin{axiom}
@@ -1864,7 +1888,7 @@ Anderson, C. A. 1990. {\itshape Some Emendations of G\"odel's Ontological Proof}
 Anderson, C. A.\& Gettings, M. 1996.  {\itshape G\"odel's ontological proof revisited}. In: edited by Hajek P. {\itshape G\"odel '96},  Springer. 
 
 \bibitem[{\itshape Benzm\"uller \& Brown \& Kohlhase(2004)}]{BenzmuellerBrownKohlhase}
-Benzm\"uller, C. \& Brown C. \& Kohlhase, M. In: {\ishape Journal of Symbolic Logic}, Vol. 69, N. 4, pp. 1027--1088.
+Benzm\"uller, C. \& Brown C. \& Kohlhase, M. In: {\itshape Journal of Symbolic Logic}, Vol. 69, N. 4, pp. 1027--1088.
 
 \bibitem[{\itshape Benzm\"uller \& Weber \& Woltzenlogel Paleo(2016)}]{controversy}
 Benzm\"uller, C. \& Weber, L. \& Woltzenlogel Paleo, B. 2016. {\itshape Computer-Assisted Analysis of the Anderson-H\'ajek Ontological Controversy}. In: {\itshape Logica Universalis} 10 (2016)
