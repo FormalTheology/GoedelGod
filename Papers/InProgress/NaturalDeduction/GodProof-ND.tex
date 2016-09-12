@@ -122,13 +122,13 @@ The increase in formality of the ontological argument has required a development
 
 The aim of this paper is to present detailed formalizations of variants of ontological arguments in a natural deduction calculus. For a comprehensive introduction to natural deduction, the reader can consult \citep{prawitz} or \citep{gabbay}. The natural deduction calculus proposed and used in this paper is an extension of a standard natural deduction calculus for (non-modal) higher-order logic \citep{BenzmuellerBrownKohlhase} with new introduction and elimination rules for modal operators (as presented in Section \ref{sec:calculus}). This calculus is sound and complete relative to the non-modal calculus extended with Axiom K and the Necessitation rule (as demonstrated in Subsection \ref{sec:compl-sound}). There are various higher-order logics \citep{BenzmuellerBrownKohlhase} and various higher-order modal logics \citep{Muskens}. The calculus proposed here can be regarded as a minimalistic calculus for a rigid higher-order modal logic K without extensionality principles. With additional axioms for stronger modal logics, such as KB and S5, this calculus is sufficient to achieve the stated aim.
 
-The natural deduction style was chosen for four reasons. Firstly, presentations of G\"odel's proof are typically either informal or formalized in other styles of proof calculi (e.g. Fitting's tableaux \citep{fitting} or Sobel's sentential modal calculus \citep{sobel2}). Therefore, a formalization in natural deduction is a valuable complement to the existing presentations. Secondly, it makes the ontological proof accessible to people who are familiarized with a natural deduction style. Thirdly, as natural deduction is the style used by proof assistants such as Coq \citep{coq} and Isabelle \citep{isabelle}, natural deduction formalizations can be verified step-by-step in such proof assistants, and we have in fact done this \citep{CSRModalLogicCoq}. And finally, in comparison to other kinds of proof systems (e.g. resolution, tableaux, sequent calculi), natural deduction can be considered less technical, more human-readable and more intuitive, because it relies on natural principles of reasoning such as modus ponens (implication elimination) and reasoning by assumption (implication introduction); these qualities are conducive to rendering the formalizations of ontological arguments accessible to a wider audience.
+The natural deduction style was chosen for four reasons. Firstly, presentations of G\"odel's proof are typically either informal or formalized in other styles of proof calculi (e.g. Fitting's tableaux \citep{fitting} or Sobel's sentential modal calculus \citep{sobel2}). Therefore, a formalization in natural deduction is a valuable complement to the existing presentations. Secondly, it makes the ontological proof accessible to people who are familiarized with a natural deduction style. Thirdly, as natural deduction is the style used by proof assistants such as Coq \citep{coq} and Isabelle \citep{isabelle}, natural deduction formalizations can be verified step-by-step in such proof assistants, and we have in fact done this \citep{CSRModalLogicInCoq}. And finally, in comparison to other kinds of proof systems (e.g. resolution, tableaux, sequent calculi), natural deduction can be considered less technical, more human-readable and more intuitive, because it relies on natural principles of reasoning such as modus ponens (implication elimination) and reasoning by assumption (implication introduction); these qualities are conducive to rendering the formalizations of ontological arguments accessible to a wider audience.
 
 The first main contribution of this paper is a detailed formalization of Scott's version \citep{scott} of G\"odel's ontological argument \citep{Goedel} (as shown in Section \ref{sec:scott}) in the proposed natural deduction calculus. The second main contribution of the paper is a new proof (shown in Section \ref{sec:newproof}), also in natural deduction style. In contrast to Scott's proof \citep{scott}, which requires the modal logic \textbf{S5}, the new proof requires only the weaker modal logic \textbf{KB}. The new proof also does not rely on the equality predicate and is much shorter. Although there have been claims (as discussed in more detail in Section \ref{sec:newproof}) that \textbf{KB} is sufficent and the equality predicate is superfluous, formal proofs substantiating these claims were missing up to now.
 
 A major criticism against G\"odel's argument is an undesirable consequence of the stipulated axioms, called \emph{modal collapse}. This is discussed in greater detail in Section \ref{sec:collapse}, where a natural deduction derivation of the collapse is presented. Many recent works on the ontological argument have proposed modifications of the argument that do not entail modal collapse. In this paper we present natural deduction formalizations of two of these solutions: Anderson's emendation (in Section \ref{sec:anderson}) and Bj{\o}rdal's variant (in Section \ref{sec:bjordal}).
 
-An early unpublished draft of Section \ref{newproof} of this paper,
+An early unpublished draft of Section \ref{sec:newproof} of this paper,
 prepared by Woltzenlogel Paleo in March 2013, served as the starting
 point for two distinct but complementary research endeavours. Siders
 and Woltzenlogel Paleo transformed that early draft into this paper,
@@ -145,7 +145,7 @@ in the International Joint Conference on Artificial Intelligence
 Bjordal and H\'ajek, on the other hand were presented in the First
 World Congress on Logic and Religion
 \citep{WorldCongressLogicAndReligion} and published in
-\citep{AndersonHajekControversy} and results related to the modal
+\citep{controversy} and results related to the modal
 collapse were reported in the 4th Word Congress on the Square of
 Opposition \citep{SquareOfOpposition} and later published in
 \citep{ModalCollapse}. More detailed reconstructions of Scott's
@@ -1895,12 +1895,54 @@ Anderson, C. A. 1990. {\itshape Some Emendations of G\"odel's Ontological Proof}
 \bibitem[{\itshape Anderson \& Gettings (1996)}]{and}
 Anderson, C. A.\& Gettings, M. 1996.  {\itshape G\"odel's ontological proof revisited}. In: edited by Hajek P. {\itshape G\"odel '96},  Springer. 
 
+\bibitem[{\itshape Bentert \& Benzm\"uller \& Streit \& Woltzenlogel Paleo(2016)}]{LeibnizOntologicalProof}
+Bentert, M. \& Benzm\"uller, C. \& Streit, D. \& Woltzenlogel Paleo, B. 2016. {\itshape Analysis of an Ontological Proof Proposed by Leibniz}. [to appear in]  Death and Anti-Death, Volume 14: Four Decades after Michael Polanyi, Three Centuries after G. W. Leibniz. ed. Tandy, C. Ria University Press. 
+
 \bibitem[{\itshape Benzm\"uller \& Brown \& Kohlhase(2004)}]{BenzmuellerBrownKohlhase}
 Benzm\"uller, C. \& Brown C. \& Kohlhase, M. In: {\itshape Journal of Symbolic Logic}, Vol. 69, N. 4, pp. 1027--1088.
+
+\bibitem[{\itshape Benzm\"uller \& Weber \& Woltzenlogel Paleo(2015)}]{WorldCongressLogicAndReligion}
+Benzm\"uller, C. \& Weber, L. \& Woltzenlogel Paleo, B. 2015. {\itshape Computer-Assisted Analysis of the Anderson-Hajek Ontological Controversy}. 1st World Congress on Logic and Religion. 
 
 \bibitem[{\itshape Benzm\"uller \& Weber \& Woltzenlogel Paleo(2016)}]{controversy}
 Benzm\"uller, C. \& Weber, L. \& Woltzenlogel Paleo, B. 2016. {\itshape Computer-Assisted Analysis of the Anderson-H\'ajek Ontological Controversy}. In: {\itshape Logica Universalis} 10 (2016)
 
+%\bibitem[{\itshape Benzm\"uller \& Weber \& Woltzenlogel Paleo(2016)}]{AndersonHajekControversy}
+%Benzm\"uller, C. \& Weber, L. \& Woltzenlogel Paleo, B. 2016. {\itshape Computer-Assisted Analysis of the Anderson-Hajek Ontological Controversy}. Logica Universalis. Springer. 
+
+\bibitem[{\itshape Benzm\"uller \& Woltzenlogel Paleo(2013a)}]{IWIL}
+Benzm\"uller, C. \& Woltzenlogel Paleo, B. 2013a. {\itshape G{\"{o}}del's God on the Computer}. 10th International Workshop on the Implementation of Logics. pp. 1--2.
+
+\bibitem[{\itshape Benzm\"uller \& Woltzenlogel Paleo(2013b)}]{IsabelleGod}
+Benzm\"uller, C. \& Woltzenlogel Paleo, B. 2013b. {\itshape G{\"{o}}del's God in Isabelle/HOL}. Archive of Formal Proofs. 
+
+\bibitem[{\itshape Benzm\"uller \& Woltzenlogel Paleo(2014a)}]{WADT}
+Benzm\"uller, C. \& Woltzenlogel Paleo, B. 2014a. {\itshape On Logic Embeddings and G\"odel's God}. Recent Trends in Algebraic Development Techniques. 
+
+\bibitem[{\itshape Benzm\"uller \& Woltzenlogel Paleo(2014b)}]{WADTPreProceedings}
+Benzm\"uller, C. \& Woltzenlogel Paleo, B. 2014b. {\itshape On Logic Embeddings and G\"odel's God}. 22nd International Workshop on Algebraic Development Techniques, pp. 8--9. 
+
+
+\bibitem[{\itshape Benzm\"uller \& Woltzenlogel Paleo(2014c)}]{SquareOfOpposition}
+Benzm\"uller, C. \& Woltzenlogel Paleo, B. 2014c. {\itshape Formalization and Automated Verification of G\"odel's Proof of God's Existence}. 4th World Congress on the Square of Opposition, pp. 24--25. 
+
+\bibitem[{\itshape Benzm\"uller \& Woltzenlogel Paleo(2014d)}]{ECAI2014}
+Benzm\"uller, C. \& Woltzenlogel Paleo, B. 2014d. {\itshape Automating G{\"{o}}del's Ontological Proof of God's Existence with Higher-order Automated Theorem Provers}. ECAI 2014 - 21st European Conference on Artificial Intelligence, 18-22 August 2014, Prague, Czech Republic - Including Prestigious Applications of Intelligent Systems (PAIS 2014), pp. 93--98. 
+
+\bibitem[{\itshape Benzm\"uller \& Woltzenlogel Paleo(2015a)}]{CSRModalLogicInCoq}
+Benzm\"uller, C. \& Woltzenlogel Paleo, B. 2015a. {\itshape Interacting with Modal Logics in the Coq Proof Assistant}. Computer Science - Theory and Applications - 10th International Computer Science Symposium in Russia, {CSR} 2015, Listvyanka, Russia, July   13-17, 2015, Proceedings. pp. 398--411. 
+
+\bibitem[{\itshape Benzm\"uller \& Woltzenlogel Paleo(2015b)}]{ReasoningWebSummerSchool}
+Benzm\"uller, C. \& Woltzenlogel Paleo, B. 2015b. {\itshape Higher-Order Modal Logics: Automation and Applications}. Reasoning Web. Web Logic Rules - 11th International Summer School 2015, Berlin, Germany, July 31 - August 4, 2015, Tutorial Lectures. pp. 32--74. 
+
+\bibitem[{\itshape Benzm\"uller \& Woltzenlogel Paleo(2015c)}]{SpiritualQuest}
+Benzm\"uller, C. \& Woltzenlogel Paleo, B. 2015c. {\itshape Experiments in Computational Metaphysics: G\"odel's Proof of God's Existence}. Science and Spiritual Quest: Proceedings of the 9th All India Students' Conference on Science and Spiritual Quest (IIT Kharagpur, 30th October -- 1st November). vol. 9. pp. 23--40. 
+
+\bibitem[{\itshape Benzm\"uller \& Woltzenlogel Paleo(2016a)}]{IJCAI2016}
+Benzm\"uller, C. \& Woltzenlogel Paleo, B. 2016a. {\itshape The Inconsistency in G\"odel's Ontological Argument: A Success Story for AI in Metaphysics}. International Joint Conference on Artificial Intelligence - IJCAI. 
+
+\bibitem[{\itshape Benzm\"uller \& Woltzenlogel Paleo(2016b)}]{ModalCollapse}
+Benzm\"uller, C. \& Woltzenlogel Paleo, B. 2016b. {\itshape The Modal Collapse as a Collapse of the Modal Square of Opposition}. Studies in Universal Logic, Springer. pp. 1--7. 
 
 \bibitem[{\itshape Bj{\o}rdal(1999)}]{bjordal}
 Bj{\o}rdal, F. 1999. Understanding G\"odel's Ontological Argument, in Timothy Childers (ed.) The Logica Yearbook 1998, pp. 214-217, Filosofia.
@@ -1924,7 +1966,7 @@ Existenz und Notwendigkeit -- Kurt G\"odel's Axiomatische Theologie, in Olsson e
 \bibitem[{\itshape Gabbay(1996)}]{gabbay}
 Gabbay, D. 1996. {\itshape Labelled Deductive Systems: volume I}. New York: Oxford Science publications. 
 
-\bibitem[{\itshape Goedel(1970)}]{Goedel} 
+\bibitem[{\itshape G\"odel(1970)}]{Goedel} 
 G\"odel, K. Ontological Proof. In Kurt G\"odel Collected Works vol. III. Ed. Feferman et al., pp. 403--404, 139, 145 or {\itshape Appendix A. Notes in Kurt G\"odel's hand} in [Sobel 2001]. 
 
 \bibitem[{\itshape Hajek(1996)}]{hajek}
@@ -1946,12 +1988,19 @@ Muskens, R. 2006. {\itshape Higher Order Modal Logic}. In P. Blackburn, J.F.A.K.
 \bibitem[{\itshape Nipkow \& Paulson \& Wenzel(2002)}]{isabelle} Nipkow, T. \& Paulson, L.C. \& Wenzel, M. 2002. {\itshape Isabelle/HOL: A Proof Assistant for
 Higher-Order Logic}. Number 2283 in LNCS, Springer.
 
+\bibitem[{\itshape Oppenheimer \& Zalta(2011)}]{ZaltaOppenheimer}
+Oppenheimer, P. \& Zalta, E. 2011. {\itshape A Computationally-Discovered Simplification of the Ontological Argument}. Australasian Journal of Philosophy, 89(2), 333-349.
+
 \bibitem[{\itshape Paulin-Mohring(2015)}]{coq} Paulin-Mohring, C. 2015. {\itshape Introduction to the calculus of inductive constructions}. In %D. Delahaye and B. Woltzenlogel Paleo, editors, 
 All about Proofs, Proofs for All,
 Mathematical Logic and Foundations. College Publications, London.
 
 \bibitem[{\itshape Prawitz(2006)}]{prawitz}
 Prawitz, D. 2006 (1st ed. 1965). {\itshape Natural deduction: a proof-theoretical study}. Mineola, New York: Dover publications. 
+
+\bibitem[{\itshape Rushby(2013)}]{Rushby}
+Rushby, J. 2013. {\itshape The Ontological Argument in PVS}. CAV Workshop ``Fun with Formal Methods''. St. Petersburg.
+
 
 \bibitem[{\itshape Scott(2001)}]{scott}
 Scott, D. {\itshape Appendix B. Notes in Dana Scott's hand} in Logic and Theism: Arguments for and against Beliefs in God by Sobel, J. H. 
@@ -1967,18 +2016,17 @@ Sobel, J. H. 2001. {\itshape Logic and Theism: Arguments for and against Beliefs
 \bibitem[{\itshape Wang(1996)}]{Wang1996}
 Wang, H. 1996. {\itshape A Logical Journey: From G\"odel to Philosophy}, The MIT Press. 
 
-\bibitem[{\itshape Oppenheimer \& Zalta(2011)}]{ZaltaOppenheimer}
-Oppenheimer, P. \& Zalta, E. 2011. {\itshape A Computationally-Discovered Simplification of the Ontological Argument}. Australasian Journal of Philosophy, 89(2), 333-349.
+\bibitem[{\itshape Woltzenlogel Paleo(2013)}]{AustrianComputerSociety}
+ Woltzenlogel Paleo, B. 2013. {\itshape Automated Verification and Reconstruction of G\"odel's Proof of God's Existence}. Journal of the Austrian Computer Society. pp. 4--6.
 
-\bibitem[{\itshape Rushby(2013)}]{Rushby}
-Rushby, J. 2013. {\itshape The Ontological Argument in PVS}. CAV Workshop ``Fun with Formal Methods''. St. Petersburg.
+
+
 
 
 
 % TODO: transform the following bibtex entries into bibitems
 
-\bibitem[{\itshape Bentert \& Benzm\"uller \& Streit \& Woltzenlogel Paleo(2016)}]{LeibnizOntologicalProof}
-Bentert, M. \& Benzm\"uller, C. \& Streit, D. \& Woltzenlogel Paleo, B. 2016. {\itshape Analysis of an Ontological Proof Proposed by Leibniz}. [to appear in]  Death and Anti-Death, Volume 14: Four Decades after Michael Polanyi, Three Centuries after G. W. Leibniz. ed. Tandy, C. Ria University Press. 
+
 % @incollection{LeibnizOntologicalProof,
 %   author      = {Bentert, Matthias and Benzm\"uller, Christoph and Streit, David and Woltzenlogel Paleo, Bruno},
 %   title       = {Analysis of an Ontological Proof Proposed by Leibniz},
@@ -1993,8 +2041,7 @@ Bentert, M. \& Benzm\"uller, C. \& Streit, D. \& Woltzenlogel Paleo, B. 2016. {\
 %   note = {\textbf{[Invited]} }
 % }
 
-\bibitem[{\itshape Benzm\"uller \& Woltzenlogel Paleo(2016)}]{IJCAI2016}
-Benzm\"uller, C. \& Woltzenlogel Paleo, B. 2016. {\itshape The Inconsistency in G\"odel's Ontological Argument: A Success Story for AI in Metaphysics}. International Joint Conference on Artificial Intelligence - IJCAI. 
+
 % @inproceedings{IJCAI2016,
 %   author = {Benzm?ller, C. and Woltzenlogel Paleo, B.},
 %   title  = {The Inconsistency in G\"odel's Ontological Argument: A Success Story for AI in Metaphysics},
@@ -2003,8 +2050,7 @@ Benzm\"uller, C. \& Woltzenlogel Paleo, B. 2016. {\itshape The Inconsistency in 
 %   year = {2016}
 % }
 
-\bibitem[{\itshape Benzm\"uller \& Weber \& Woltzenlogel Paleo(2016)}]{AndersonHajekControversy}
-Benzm\"uller, C. \& Weber, L. \& Woltzenlogel Paleo, B. 2016. {\itshape Computer-Assisted Analysis of the Anderson-Hajek Ontological Controversy}. Logica Universalis. Springer. 
+
 % @article{AndersonHajekControversy,
 %     author = {Benzm?ller, Christoph and Weber, Leon and Woltzenlogel Paleo, Bruno},
 %     title  = {Computer-Assisted Analysis of the Anderson-H?jek Ontological Controversy},
@@ -2018,8 +2064,7 @@ Benzm\"uller, C. \& Weber, L. \& Woltzenlogel Paleo, B. 2016. {\itshape Computer
 %     note = {\emph{Accepted for publication on the 28th of February 2016}}
 % }
 
-\bibitem[{\itshape Benzm\"uller \& Weber \& Woltzenlogel Paleo(2015)}]{WorldCongressLogicAndReligion}
-Benzm\"uller, C. \& Weber, L. \& Woltzenlogel Paleo, B. 2015. {\itshape Computer-Assisted Analysis of the Anderson-Hajek Ontological Controversy}. 1st World Congress on Logic and Religion. 
+
 % @inproceedings{WorldCongressLogicAndReligion,
 %     author = {Benzm?ller, Christoph and Weber, Leon and Woltzenlogel Paleo, Bruno},
 %     title  = {Computer-Assisted Analysis of the Anderson-H?jek Ontological Controversy},
@@ -2029,8 +2074,7 @@ Benzm\"uller, C. \& Weber, L. \& Woltzenlogel Paleo, B. 2015. {\itshape Computer
 %     pages = {49--50}
 % }
 
-\bibitem[{\itshape Benzm\"uller \& Woltzenlogel Paleo(2014)}]{WADT}
-Benzm\"uller, C. \& Woltzenlogel Paleo, B. 2014. {\itshape On Logic Embeddings and G\"odel's God}. Recent Trends in Algebraic Development Techniques. 
+
 % @inproceeding{WADT,
 %    author = {Benzm?ller, Christoph and Woltzenlogel Paleo, Bruno},
 %    title  = {On Logic Embeddings and G?del's God},
@@ -2041,8 +2085,7 @@ Benzm\"uller, C. \& Woltzenlogel Paleo, B. 2014. {\itshape On Logic Embeddings a
 %    note = {\textbf{[Invited]} }
 % }
 
-\bibitem[{\itshape Benzm\"uller \& Woltzenlogel Paleo(2015)}]{SpiritualQuest}
-Benzm\"uller, C. \& Woltzenlogel Paleo, B. 2015. {\itshape Experiments in Computational Metaphysics: G\"odel's Proof of God's Existence}. Science and Spiritual Quest: Proceedings of the 9th All India Students' Conference on Science and Spiritual Quest (IIT Kharagpur, 30th October -- 1st November). vol. 9. pp. 23--40. 
+
 % @inproceedings{SpiritualQuest,
 %   author    = {Christoph Benzm?ller and Bruno Woltzenlogel Paleo},
 %   title     = {Experiments in Computational Metaphysics: G?del's Proof of God's Existence},
@@ -2055,8 +2098,7 @@ Benzm\"uller, C. \& Woltzenlogel Paleo, B. 2015. {\itshape Experiments in Comput
 %   pages = {23--40}
 % }
 
-\bibitem[{\itshape Benzm\"uller \& Woltzenlogel Paleo(2015)}]{ReasoningWebSummerSchool}
-Benzm\"uller, C. \& Woltzenlogel Paleo, B. 2015. {\itshape Higher-Order Modal Logics: Automation and Applications}. Reasoning Web. Web Logic Rules - 11th International Summer School 2015, Berlin, Germany, July 31 - August 4, 2015, Tutorial Lectures. pp. 32--74. 
+
 % @incollection{ReasoningWebSummerSchool,
 %   author    = {Christoph Benzm{\"{u}}ller and
 %                Bruno Woltzenlogel Paleo},
@@ -2074,8 +2116,7 @@ Benzm\"uller, C. \& Woltzenlogel Paleo, B. 2015. {\itshape Higher-Order Modal Lo
 %   keywords = {Bruno,HOML,Invited,DBLP}
 % }
 
-\bibitem[{\itshape Benzm\"uller \& Woltzenlogel Paleo(2015)}]{CSRModalLogicInCoq}
-Benzm\"uller, C. \& Woltzenlogel Paleo, B. 2015. {\itshape Interacting with Modal Logics in the Coq Proof Assistant}. Computer Science - Theory and Applications - 10th International Computer Science Symposium in Russia, {CSR} 2015, Listvyanka, Russia, July   13-17, 2015, Proceedings. pp. 398--411. 
+
 % @inproceedings{CSRModalLogicInCoq,
 %   author    = {Christoph Benzm{\"{u}}ller and
 %                Bruno Woltzenlogel Paleo},
@@ -2094,8 +2135,7 @@ Benzm\"uller, C. \& Woltzenlogel Paleo, B. 2015. {\itshape Interacting with Moda
 %   keywords  = {Bruno,HOML,COREC,DBLP}
 % }
 
-\bibitem[{\itshape Benzm\"uller \& Woltzenlogel Paleo(2014)}]{ECAI2014}
-Benzm\"uller, C. \& Woltzenlogel Paleo, B. 2014. {\itshape Automating G{\"{o}}del's Ontological Proof of God's Existence with Higher-order Automated Theorem Provers}. ECAI 2014 - 21st European Conference on Artificial Intelligence, 18-22 August 2014, Prague, Czech Republic - Including Prestigious Applications of Intelligent Systems (PAIS 2014), pp. 93--98. 
+
 % @inproceedings{ECAI2014,
 %   Author = {Christoph Benzm{\"{u}}ller and Bruno Woltzenlogel Paleo},
 %   Bibsource = {dblp computer science bibliography, http://dblp.org},
@@ -2113,8 +2153,6 @@ Benzm\"uller, C. \& Woltzenlogel Paleo, B. 2014. {\itshape Automating G{\"{o}}de
 %     note = {\textbf{[Nominated for Best Paper]} }
 % }
 
-\bibitem[{\itshape Benzm\"uller \& Woltzenlogel Paleo(2014)}]{SquareOfOpposition}
-Benzm\"uller, C. \& Woltzenlogel Paleo, B. 2014. {\itshape Formalization and Automated Verification of G\"odel's Proof of God's Existence}. 4th World Congress on the Square of Opposition, pp. 24--25. 
 % @inproceedings{SquareOfOpposition,
 %    author = {Benzm?ller, Christoph and Woltzenlogel Paleo, Bruno},
 %    title  = {Formalization and Automated Verification of G?del's Proof of God's Existence},
@@ -2125,8 +2163,7 @@ Benzm\"uller, C. \& Woltzenlogel Paleo, B. 2014. {\itshape Formalization and Aut
 % }
 
 
-\bibitem[{\itshape Benzm\"uller \& Woltzenlogel Paleo(2014)}]{WADTPreProceedings}
-Benzm\"uller, C. \& Woltzenlogel Paleo, B. 2014. {\itshape On Logic Embeddings and G\"odel's God}. 22nd International Workshop on Algebraic Development Techniques, pp. 8--9. 
+
 % @inworkshopinvited{WADTPreProceedings,
 %    author = {Benzm?ller, Christoph and Woltzenlogel Paleo, Bruno},
 %    title  = {On Logic Embeddings and G?del's God},
@@ -2138,8 +2175,7 @@ Benzm\"uller, C. \& Woltzenlogel Paleo, B. 2014. {\itshape On Logic Embeddings a
 %    url = {http://wadt2014.cs.ovgu.de/pre-proceedings.pdf}
 % }
 
-\bibitem[{\itshape Benzm\"uller \& Woltzenlogel Paleo(2016)}]{ModalCollapse}
-Benzm\"uller, C. \& Woltzenlogel Paleo, B. 2016. {\itshape The Modal Collapse as a Collapse of the Modal Square of Opposition}. Studies in Universal Logic, Springer. pp. 1--7. 
+
 % @article{ModalCollapse,
 %    author = {Benzm?ller, Christoph and Woltzenlogel Paleo, Bruno},
 %    title  = {The Modal Collapse as a Collapse of the Modal Square of Opposition},
@@ -2153,8 +2189,7 @@ Benzm\"uller, C. \& Woltzenlogel Paleo, B. 2016. {\itshape The Modal Collapse as
 % }
 
 
-\bibitem[{\itshape Benzm\"uller \& Woltzenlogel Paleo(2013)}]{IsabelleGod}
-Benzm\"uller, C. \& Woltzenlogel Paleo, B. 2013. {\itshape G{\"{o}}del's God in Isabelle/HOL}. Archive of Formal Proofs. 
+
 % @article{IsabelleGod,
 %   author    = {Benzm?ller, Christoph and Woltzenlogel Paleo, Bruno},
 %   title     = {G{\"{o}}del's God in Isabelle/HOL},
@@ -2168,8 +2203,7 @@ Benzm\"uller, C. \& Woltzenlogel Paleo, B. 2013. {\itshape G{\"{o}}del's God in 
 %   bibsource = {dblp computer science bibliography, http://dblp.org}
 % }
 
-\bibitem[{\itshape Benzm\"uller \& Woltzenlogel Paleo(2013)}]{IWIL}
-Benzm\"uller, C. \& Woltzenlogel Paleo, B. 2013. {\itshape G{\"{o}}del's God on the Computer}. 10th International Workshop on the Implementation of Logics. pp. 1--2.
+
 % @inworkshopinvited{IWIL,
 %    author = {Benzm?ller, Christoph and Woltzenlogel Paleo, Bruno},
 %    title  = {G?del's God on the Computer},
@@ -2180,8 +2214,7 @@ Benzm\"uller, C. \& Woltzenlogel Paleo, B. 2013. {\itshape G{\"{o}}del's God on 
 %    pages = {1--2}
 % }
 
-\bibitem[{\itshape Woltzenlogel Paleo(2013)}]{AustrianComputerSociety}
-Benzm\"uller, C. \& Woltzenlogel Paleo, B. 2013. {\itshape Automated Verification and Reconstruction of G\"odel's Proof of God's Existence}. Journal of the Austrian Computer Society. pp. 4--6.
+
 % @article{AustrianComputerSociety,
 %    author = {Woltzenlogel Paleo, Bruno},
 %    title  = {Automated Verification and Reconstruction of G?del's Proof of God's Existence},
