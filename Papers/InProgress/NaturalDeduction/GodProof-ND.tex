@@ -662,7 +662,7 @@ In addition to the five axioms and three definitions that pertain specifically t
 \label{A1}
 Either a property or its negation is positive, but not both:
 $$
-\all \varphi. [P(\neg \varphi) \biimp \neg P(\varphi)]
+\all \varphi. (P(\neg \varphi) \biimp \neg P(\varphi))
 $$
 \end{axiom}
 
@@ -670,7 +670,7 @@ $$
 \label{A2}
 A property necessarily implied by a positive property is positive:
 $$
-\all \varphi. \all \psi.[(P(\varphi) \wedge \nec \all x.[\varphi(x) \imp \psi(x)]) \imp P(\psi)]
+\all \varphi. \all \psi.((P(\varphi) \wedge \nec \all x.(\varphi(x) \imp \psi(x))) \imp P(\psi))
 $$
 \end{axiom}
 
@@ -679,7 +679,7 @@ $$
 \label{T1}
 Positive properties are possibly exemplified:
 $$
-\all \varphi. [P(\varphi) \imp \pos \ex x.\varphi(x)]
+\all \varphi. (P(\varphi) \imp \pos \ex x.\varphi(x))
 $$
 \end{theorem}
 \begin{proof} \hfill
@@ -756,7 +756,7 @@ $$
   		\UIC{$ \neg \nec \neg \ex x.\rho(x)$} \doubleLine %\RightLabel{definition of $\pos$}
   		\UIC{$ \pos \ex x.\rho(x)$}  \RightLabel{$\imp_I^5$}
   		\UIC{$ P(\rho) \imp \pos \ex x.\rho(x)$} \RightLabel{$\all_I$}
-      \UIC{$ \all \varphi. [P(\varphi) \imp \pos \ex x.\varphi(x)] $}
+      \UIC{$ \all \varphi. (P(\varphi) \imp \pos \ex x.\varphi(x)) $}
 \end{prooftree}
 \end{small}
 \end{proof}
@@ -766,7 +766,7 @@ $$
 \label{D1}
 A \emph{God-like} being possesses all positive properties:
 $$
-G(x) \equiv \forall \varphi. [P(\varphi) \to \varphi(x)]
+G(x) \equiv \forall \varphi. (P(\varphi) \to \varphi(x))
 $$
 \end{definition}
 
@@ -801,7 +801,7 @@ $$
 \label{A4}
 Positive properties are necessarily positive:
 $$
-\all \varphi.[P(\varphi) \to \Box \; P(\varphi)]
+\all \varphi.(P(\varphi) \to \Box \; P(\varphi))
 $$
 \end{axiom}
 
@@ -833,7 +833,7 @@ $$
 		\AXC{$ $} \RightLabel{1}
 		\UIC{$\neg P(\rho)$} 
 				\AXC{Axiom 1} \dashedLine
-        \UIC{$\all \varphi. [P(\neg \varphi) \biimp \neg P(\varphi)]$} \RightLabel{$\all_E$}
+        \UIC{$\all \varphi. (P(\neg \varphi) \biimp \neg P(\varphi))$} \RightLabel{$\all_E$}
         \UIC{$P(\lambda x. \neg \rho(x)) \biimp \neg P(\rho)$} \RightLabel{$\wedge_E$}
         \UIC{$\neg P(\rho) \imp P(\lambda x. \neg \rho(x))$} \RightLabel{$\imp_E$}
 			\BIC{$P(\lambda x. \neg \rho(x))$}  
@@ -858,7 +858,7 @@ $$
  \AXC{$\subproof_4$}\dashedLine
  \UIC{$P(\rho)$}
 	      \AXC{Axiom 4} \dashedLine
-        \UIC{$\all \varphi.[P(\varphi) \to \Box \; P(\varphi)]$} \RightLabel{$\all_E$}
+        \UIC{$\all \varphi.(P(\varphi) \to \Box \; P(\varphi))$} \RightLabel{$\all_E$}
 	   	  \UIC{$P(\rho) \imp \nec P(\rho)$} \RightLabel{$\imp_E$}
 		 \BIC{$\nec P(\rho)\scott$}
 			\AXC{$ $} \RightLabel{3}
@@ -891,7 +891,7 @@ $$
 \label{D3}
 \emph{Necessary existence} of an individual is the necessary exemplification of all its essences:
 $$
-E(x) \equiv \all \varphi.[\ess{\varphi}{x} \imp \nec \ex y.\varphi(y)]
+E(x) \equiv \all \varphi.(\ess{\varphi}{x} \imp \nec \ex y.\varphi(y))
 $$
 \end{definition}
 
@@ -1014,7 +1014,7 @@ In this section we present a new proof in {\bf KB}. This proof uses exactly the 
 \label{N:A1}
 Either a property or its negation is positive, but not both:
 $$
-\all \varphi. [P(\neg \varphi) \biimp \neg P(\varphi)]
+\all \varphi. (P(\neg \varphi) \biimp \neg P(\varphi))
 $$
 \end{axiom}
 
@@ -1022,14 +1022,14 @@ $$
 \label{N:A2}
 A property necessarily implied by a positive property is positive:
 $$
-\all \varphi. \all \psi.[(P(\varphi) \wedge \nec \all x.[\varphi(x) \imp \psi(x)]) \imp P(\psi)]
+\all \varphi. \all \psi.((P(\varphi) \wedge \nec \all x.(\varphi(x) \imp \psi(x))) \imp P(\psi))
 $$
 \end{axiom}
 \begin{theorem}
 \label{N:T1}
 Positive properties are possibly exemplified:
 $$
-\all \varphi. [P(\varphi) \imp \pos \ex x.\varphi(x)]
+\all \varphi. (P(\varphi) \imp \pos \ex x.\varphi(x))
 $$
 \end{theorem}
 \begin{proof} \hfill
@@ -1049,9 +1049,9 @@ $$
 \UIC{$\omega:  \rho(x) \imp \neg \rho(x) $} \RightLabel{$\all_I$}
 \UIC{$\omega:  \all x.(\rho(x) \imp \neg \rho(x)) $}  \RightLabel{$\nec_I$}
 \UIC{$ \nec \all x.(\rho(x) \imp \neg \rho(x)) $}\RightLabel{$\wedge_I$}
-\BIC{$ P(\rho) \wedge \nec \all x.[\rho(x) \imp \neg \rho(x)]$}
+\BIC{$ P(\rho) \wedge \nec \all x.(\rho(x) \imp \neg \rho(x))$}
 \AXC{Axiom \ref{A2} for $\rho$ and $\lambda x. \neg \rho(x)$} \dashedLine
-\UIC{$(P(\rho) \wedge \nec \all x.[\rho(x) \imp \neg \rho(x)]) \imp P(\lambda x. \neg \rho(x))$} \RightLabel{$\imp_E$}
+\UIC{$(P(\rho) \wedge \nec \all x.(\rho(x) \imp \neg \rho(x))) \imp P(\lambda x. \neg \rho(x))$} \RightLabel{$\imp_E$}
 \BIC{$[\subproof_5]\qquad P(\lambda x. \neg \rho(x))$} \RightLabel{$\imp_E$}
 \end{prooftree}
 \end{scriptsize}
@@ -1061,7 +1061,7 @@ $$
 \AXC{$\subproof_5$} \dashedLine
 \UIC{$P(\lambda x. \neg \rho(x))$} \RightLabel{$\imp_E$}
 \AXC{Axiom 1} \dashedLine
-\UIC{$\all \varphi. [P(\neg \varphi) \biimp \neg P(\varphi)]$} \RightLabel{$\all_E$}
+\UIC{$\all \varphi. (P(\neg \varphi) \biimp \neg P(\varphi))$} \RightLabel{$\all_E$}
 \UIC{$P(\lambda x. \neg \rho(x)) \biimp \neg P(\rho)$} \RightLabel{$\wedge_E$}
 \UIC{$ P(\lambda x. \neg \rho(x)) \imp \neg P(\rho) $}  \RightLabel{$\imp_E$}
 \BIC{$\neg P(\rho) $} 
@@ -1071,7 +1071,7 @@ $$
 \UIC{$ \neg \nec \neg \ex x.\rho(x)$} \doubleLine %\RightLabel{definition of $\pos$}
 \UIC{$ \pos \ex x.\rho(x)$}  \RightLabel{$\imp_I^3$}
 \UIC{$ P(\rho) \imp \pos \ex x.\rho(x) $} \RightLabel{$\all_I$}
-\UIC{$ \all \varphi. [P(\varphi) \imp \pos \ex x.\varphi(x)] $} 
+\UIC{$ \all \varphi. (P(\varphi) \imp \pos \ex x.\varphi(x)) $} 
 
 \end{prooftree}
 \end{small}
@@ -1088,7 +1088,7 @@ Although the simpler proof of Theorem 1 presented here was developed independent
 \label{N:D1}
 A \emph{God-like} being possesses all positive properties:
 $$
-G(x) \equiv \forall \varphi. [P(\varphi) \to \varphi(x)]
+G(x) \equiv \forall \varphi. (P(\varphi) \to \varphi(x))
 $$
 \end{definition}
 
@@ -1122,7 +1122,7 @@ $$
 \label{N:A4}
 Positive properties are necessarily positive:
 $$
-\all \varphi.[P(\varphi) \to \Box \; P(\varphi)]
+\all \varphi.(P(\varphi) \to \Box \; P(\varphi))
 $$
 \end{axiom}
 
@@ -1142,7 +1142,7 @@ At this point, G\"odel and Scott proceed to prove Theorem 2, which is then used 
 \label{N:D3}
 \emph{Necessary existence} of an individual is the necessary exemplification of all its essences:
 $$
-E(x) \equiv \all \varphi.[\ess{\varphi}{x} \imp \nec \ex y.\varphi(y)]
+E(x) \equiv \all \varphi.(\ess{\varphi}{x} \imp \nec \ex y.\varphi(y))
 $$
 \end{definition}
 
@@ -1176,7 +1176,7 @@ $$
 \AXC{$ $} \RightLabel{2}
 \UIC{$\neg P(\rho)$} 
 \AXC{Axiom 1} \dashedLine
-\UIC{$\all \varphi. [P(\neg \varphi) \biimp \neg P(\varphi)]$} \RightLabel{$\all_E$}
+\UIC{$\all \varphi. (P(\neg \varphi) \biimp \neg P(\varphi))$} \RightLabel{$\all_E$}
 \UIC{$P(\lambda x. \neg \rho(x)) \biimp \neg P(\rho)$} \RightLabel{$\wedge_E$}
 \UIC{$\neg P(\rho) \imp P(\lambda x. \neg \rho(x))$}\RightLabel{$\imp_E$}
 \BIC{$P(\lambda x. \neg \rho(x))$}
@@ -1219,7 +1219,7 @@ $$
 \AXC{$ \subproof_6$} \dashedLine
 \UIC{$P(\rho)$} %\RightLabel{$\nec_E$}
 \AXC{Axiom \ref{N:A4}} \dashedLine
-\UIC{$\all \varphi.[P(\varphi) \imp \nec\; P(\varphi)]$}\RightLabel{$\forall_E$}
+\UIC{$\all \varphi.(P(\varphi) \imp \nec\; P(\varphi))$}\RightLabel{$\forall_E$}
 \UIC{$P(\rho) \imp \nec\; P(\rho)$}\RightLabel{$\imp_E$}
 \BIC{$\nec P(\rho)$}\RightLabel{$\imp_E$}%\RightLabel{$\imp_I^3$}
 %\UIC{$[\subproof_7] \qquad \rho(\gamma) \imp \nec\; P(\rho)$}
@@ -1250,7 +1250,7 @@ $$
 \UIC{$\forall \varphi.(P(\varphi) \imp \varphi(\gamma))$}\RightLabel{$\forall_E$}
 \UIC{$P(E) \imp E(\gamma)$}\RightLabel{$\imp_E$}
 \BIC{$E(\gamma)$}\dottedLine \RightLabel{D\ref{N:D3}}
-\UIC{$ \all \varphi.[\ess{\varphi}{\gamma} \imp \nec \ex x.\varphi(x)] $}\RightLabel{$\all_E$}
+\UIC{$ \all \varphi.(\ess{\varphi}{\gamma} \imp \nec \ex x.\varphi(x)) $}\RightLabel{$\all_E$}
 \UIC{$ \ess{G}{\gamma} \imp \nec \ex x. G(x) $}\RightLabel{$\imp_E$}
 \BIC{$\nec \ex x. G(x)$} \RightLabel{$\imp_I^1$}
 \UIC{$\ex z. G(z) \imp \nec \ex x. G(x)$}
@@ -1276,16 +1276,16 @@ $$
 \begin{small}
 \begin{prooftree}
 \AXC{ Distribution Principle} \dashedLine
-\UIC{$\nec [\ex x. G(x)\imp \nec \ex x. G(x)]\imp [\pos \ex x. G(x)\imp \pos\nec \ex x. G(x)]$}
+\UIC{$\nec (\ex x. G(x)\imp \nec \ex x. G(x)) \imp (\pos \ex x. G(x)\imp \pos\nec \ex x. G(x))$}
 \AXC{ Lemma \ref{N:L1} } \dashedLine
 \UIC{$\ex x. G(x)\imp \nec \ex x. G(x)$}\RightLabel{$\nec_I$}
-\UIC{$\nec[\ex x. G(x)\imp \nec \ex x. G(x)]$}\RightLabel{$\imp_E$}
+\UIC{$\nec(\ex x. G(x)\imp \nec \ex x. G(x))$}\RightLabel{$\imp_E$}
 \BIC{$\pos \ex x. G(x)\imp \pos\nec \ex x. G(x)$}
 \end{prooftree}
 \end{small}
 \begin{small}
 \begin{prooftree}
-\AXC{$[\pos \ex x. G(x)\imp \pos\nec \ex x. G(x)]$}
+\AXC{$\pos \ex x. G(x)\imp \pos\nec \ex x. G(x)$}
 \AXC{ Corollary \ref{C1} } \dashedLine
 \UIC{$\pos \ex x. G(x)$}\RightLabel{$\imp_E$}
 \BIC{$\pos\nec \ex x. G(x)$}
@@ -1330,11 +1330,11 @@ $$
 \begin{small}
 \begin{prooftree}
 \AXC{Theorem 2}\dashedLine
-\UIC{$\all y.[G(y) \imp \ess{G}{y}]$} \RightLabel{D2 }\dottedLine
-\UIC{$\all y.[G(y) \imp G(y) \wedge \all \psi. (\psi(y) \imp \nec \all x. (G(x) \imp \psi(x)))]$}\doubleLine
-\UIC{$\all y.[G(y) \imp \all \psi. (\psi(y) \imp \nec \all x. (G(x) \imp \psi(x)))]$} \doubleLine
-%\UIC{$\all y.[G(y) \imp (A(y) \imp \nec \all x. (G(x) \imp A(x)))]$} \RightLabel{$A$ is constant}
-\UIC{$\all y.[G(y) \imp (A \imp \nec \all x. (G(x) \imp A))]$} \doubleLine
+\UIC{$\all y.(G(y) \imp \ess{G}{y})$} \RightLabel{D2 }\dottedLine
+\UIC{$\all y.(G(y) \imp G(y) \wedge \all \psi. (\psi(y) \imp \nec \all x. (G(x) \imp \psi(x))))$}\doubleLine
+\UIC{$\all y.(G(y) \imp \all \psi. (\psi(y) \imp \nec \all x. (G(x) \imp \psi(x))))$} \doubleLine
+%\UIC{$\all y.(G(y) \imp (A(y) \imp \nec \all x. (G(x) \imp A(x))))$} \RightLabel{$A$ is constant}
+\UIC{$\all y.(G(y) \imp (A \imp \nec \all x. (G(x) \imp A)))$} \doubleLine
 \UIC{$[\subproof_8] \qquad \ex y.G(y) \imp (A \imp \nec \all x. (G(x) \imp A))$}
 \end{prooftree}
 \end{small}
@@ -1395,7 +1395,7 @@ Anderson's solution \citep{and90} modifies the definitions of God-like being and
 \label{A:A1}
 If the negation of a property is positive, the property is not positive:
 $$
-\all \varphi. [P(\neg \varphi) \imp \neg P(\varphi)]
+\all \varphi. (P(\neg \varphi) \imp \neg P(\varphi))
 $$
 \end{axiom}
 
@@ -1403,7 +1403,7 @@ $$
 \label{A:A2}
 A property necessarily implied by a positive property is positive:
 $$
-\all \varphi. \all \psi.[(P(\varphi) \wedge \nec \all x.[\varphi(x) \imp \psi(x)]) \imp P(\psi)]
+\all \varphi. \all \psi.((P(\varphi) \wedge \nec \all x.(\varphi(x) \imp \psi(x))) \imp P(\psi))
 $$
 \end{axiom}
 
@@ -1412,7 +1412,7 @@ $$
 \label{A:T1}
 Positive properties are possibly exemplified:
 $$
-\all \varphi. [P(\varphi) \imp \pos \ex x.\varphi(x)]
+\all \varphi. (P(\varphi) \imp \pos \ex x.\varphi(x))
 $$
 \end{theorem}
 \begin{proof}
@@ -1425,7 +1425,7 @@ This proof is omitted, because any of the proofs of Theorem 1 in Sections \ref{s
 \label{A:D1}
 A \emph{God-like} being necessarily possesses those and only those properties which are positive:
 $$
-G(x) \equiv \forall \varphi. [P(\varphi) \biimp \nec \varphi(x)]
+G(x) \equiv \forall \varphi. (P(\varphi) \biimp \nec \varphi(x))
 $$
 \end{definition}
 
@@ -1455,7 +1455,7 @@ This proof is omitted, because it is identical to the proof of the same corollar
 \label{A:A4}
 Positive properties are necessarily positive:
 $$
-\all \varphi.[P(\varphi) \to \Box \; P(\varphi)]
+\all \varphi.(P(\varphi) \to \Box \; P(\varphi))
 $$
 \end{axiom}
 
@@ -1473,7 +1473,7 @@ $$
 \label{A:D3}
 \emph{Necessary existence} of an individual is the necessary exemplification of all its essences:
 $$
-E(x) \equiv \all \varphi.[\ess{\varphi}{x} \imp \nec \ex y.\varphi(y)]
+E(x) \equiv \all \varphi.(\ess{\varphi}{x} \imp \nec \ex y.\varphi(y))
 $$
 \end{definition}
 
@@ -1508,7 +1508,7 @@ $$
 \begin{prooftree}
 \AXC{$\subproof_9$} \dashedLine
 \UIC{$G(\gamma)$} \RightLabel{}\dottedLine \RightLabel{D\ref{A:D1}}
-\UIC{$\forall \varphi. [P(\lambda x.\varphi(x)) \biimp \nec \varphi(\gamma)]$}\RightLabel{$\forall_E$}
+\UIC{$\forall \varphi. (P(\lambda x.\varphi(x)) \biimp \nec \varphi(\gamma))$}\RightLabel{$\forall_E$}
 \UIC{$P(\lambda x.\rho(x)) \biimp \nec \rho(\gamma)$}\RightLabel{$\wedge_E$}
 \UIC{$P(\lambda x.\rho(x)) \imp \nec \rho(\gamma)$}
 \AXC{$ $} \RightLabel{4}
@@ -1527,7 +1527,7 @@ $$
 \UIC{$\omega: P(\rho)$}
 \AXC{$ $} \RightLabel{2}
 \UIC{$\omega: G(y)$}  \dottedLine \RightLabel{D\ref{A:D1}}
-\UIC{$\omega: \forall \varphi. [P(\lambda x.\varphi(x)) \biimp \nec \varphi(\gamma)]$}\RightLabel{$\forall_E$}
+\UIC{$\omega: \forall \varphi. (P(\lambda x.\varphi(x)) \biimp \nec \varphi(\gamma))$}\RightLabel{$\forall_E$}
 \UIC{$\omega: P(\rho) \biimp \nec \rho(y)$}\RightLabel{$\wedge_E$}
 \UIC{$\omega: P(\rho) \imp \nec \rho(y)$}\RightLabel{$\imp_E$}
 \BIC{$\omega: \nec \rho(y)$}\RightLabel{$\nec_E$}
@@ -1551,25 +1551,25 @@ $$
 \AXC{Axiom \ref{A:A3}} \dashedLine
 \UIC{$P(G)$}
 \AXC{$ $} \RightLabel{5}
-\UIC{$\nec  \forall y. [G(y)\imp \varphi(y)]$}\RightLabel{$\wedge_I$}
-\BIC{$P(G)\wedge \nec  \forall y. [G(y)\imp \varphi(y)]$}\RightLabel{$\imp_E$}
+\UIC{$\nec  \forall y. (G(y)\imp \varphi(y))$}\RightLabel{$\wedge_I$}
+\BIC{$P(G)\wedge \nec  \forall y. (G(y)\imp \varphi(y))$}\RightLabel{$\imp_E$}
 \AXC{Axiom \ref{A:A2}} 
 \BIC{$P(\varphi)$}
 \AXC{$\subproof_9$} \dashedLine 
 \UIC{$  G(\gamma)$}  \RightLabel{D\ref{A:D1}}
-\UIC{$ \all \varphi. [P(\varphi)\biimp \nec \varphi(\gamma)]$}  \RightLabel{$\all_E$}
+\UIC{$ \all \varphi. (P(\varphi)\biimp \nec \varphi(\gamma))$}  \RightLabel{$\all_E$}
 \UIC{$ P(\varphi)\biimp \nec \varphi(\gamma)$}  \RightLabel{$\wedge_E$}
 \UIC{$ P(\varphi)\imp \nec \varphi(\gamma)$}  \RightLabel{$\imp_E$}
 \BIC{$ \nec \varphi(\gamma)$} \RightLabel{$\imp_I^5$}
-\UIC{$[\subproof_{12}] \quad \nec  \forall y. [G(y)\imp \varphi(y)]\imp \nec \varphi(\gamma)$}
+\UIC{$[\subproof_{12}] \quad \nec  \forall y. (G(y)\imp \varphi(y))\imp \nec \varphi(\gamma)$}
 \end{prooftree}
 %\end{small}
 
 \begin{small}
 \begin{prooftree}
 \AXC{$\subproof_{11}$ and $\subproof_{12}$} \dashedLine \RightLabel{$\wedge_I$}
-\UIC{$\nec \varphi(\gamma)\biimp \nec  \forall y. [G(y)\imp \varphi(y)] $} \RightLabel{$\forall_I$}
-\UIC{$\forall \varphi. (\nec \varphi(\gamma)\biimp \nec  \forall y. [G(y)\imp \varphi(y)]) $}
+\UIC{$\nec \varphi(\gamma)\biimp \nec  \forall y. (G(y)\imp \varphi(y)) $} \RightLabel{$\forall_I$}
+\UIC{$\forall \varphi. (\nec \varphi(\gamma)\biimp \nec  \forall y. (G(y)\imp \varphi(y))) $}
 \AXC{$ \subproof_{9}$} \dashedLine
 \UIC{$G(\gamma)$}\RightLabel{$\wedge_I$}
 \BIC{$\ess{G}{\gamma}$}
@@ -1584,7 +1584,7 @@ $$
    % \AXC{Axiom T} \dashedLine
     %\UIC{$\nec E(\gamma) \imp E(\gamma)$} \RightLabel{$\imp_E$}
 \UIC{$ E(\gamma)$} \dottedLine \RightLabel{D\ref{A:D3}}
-\UIC{$ \all \varphi.[\ess{\varphi}{\gamma} \imp \nec \ex x.\varphi(x)] $}\RightLabel{$\all_E$}
+\UIC{$ \all \varphi.(\ess{\varphi}{\gamma} \imp \nec \ex x.\varphi(x)) $}\RightLabel{$\all_E$}
 \UIC{$ \ess{G}{\gamma} \imp \nec \ex x. G(x) $}\RightLabel{$\imp_E$}
 \BIC{$\nec \ex x. G(x)$} \RightLabel{$\imp_I^1$}
 \UIC{$\ex z. G(z) \imp \nec \ex x. G(x)$}
@@ -1669,11 +1669,11 @@ Anderson's change in the definition of essence adds an extra box modality, which
 \begin{small}
 \begin{prooftree}
 \AXC{Theorem 2}\dashedLine
-\UIC{$\all y.[G(y) \imp \ess{G}{y}]$} \RightLabel{D2 }\doubleLine
-\UIC{$\all y.[G(y) \imp G(y) \wedge \all \psi. (\nec \psi(y) \biimp \nec \all x. (G(x) \imp \psi(x)))]$}
-\UIC{$\all y.[G(y) \imp \all \psi. (\nec \psi(y) \biimp \nec \all x. (G(x) \imp \psi(x)))]$} \doubleLine
-%\UIC{$\all y.[G(y) \imp (\nec A(y) \biimp \nec \all x. (G(x) \imp A(x)))]$} \RightLabel{$A$ is constant}
-\UIC{$\all y.[G(y) \imp (\nec A \biimp \nec \all x. (G(x) \imp A))]$} \doubleLine
+\UIC{$\all y.(G(y) \imp \ess{G}{y})$} \RightLabel{D2 }\doubleLine
+\UIC{$\all y.(G(y) \imp G(y) \wedge \all \psi. (\nec \psi(y) \biimp \nec \all x. (G(x) \imp \psi(x))))$}
+\UIC{$\all y.(G(y) \imp \all \psi. (\nec \psi(y) \biimp \nec \all x. (G(x) \imp \psi(x))))$} \doubleLine
+%\UIC{$\all y.(G(y) \imp (\nec A(y) \biimp \nec \all x. (G(x) \imp A(x))))$} \RightLabel{$A$ is constant}
+\UIC{$\all y.(G(y) \imp (\nec A \biimp \nec \all x. (G(x) \imp A)))$} \doubleLine
 \UIC{$[\subproof_{13}] \qquad \ex y.G(y) \imp (\nec A \biimp \nec \all x. (G(x) \imp A))$}
 \end{prooftree}
 \end{small}
@@ -1723,7 +1723,7 @@ Bj{\o}rdal's variant \citep{bjordal,fuhrmann} is another solution to the Modal C
 \label{B:D1}
 A property is \emph{positive} iff it is necessarily possessed by every God-like being.
 $$
-P_B(\varphi) \equiv \nec \all x. [G_B(x) \imp \varphi(x)]
+P_B(\varphi) \equiv \nec \all x. (G_B(x) \imp \varphi(x))
 $$
 \end{definition}
 
@@ -1750,7 +1750,7 @@ $$
 \begin{axiom}[Changed]
 \label{A:A1'} If a property is positive, its negation is not positive: 
 $$
-\all \varphi. [P_B (\varphi) \imp \neg P_B (\neg\varphi)]
+\all \varphi. (P_B (\varphi) \imp \neg P_B (\neg\varphi))
 $$
 \end{axiom}
 
@@ -1789,7 +1789,7 @@ $$
 \UIC{$ \nec \all x.(G_B(x) \imp \neg G_B(x)) $}\dottedLine  \RightLabel{D\ref{B:D1}}
 \UIC{$P(\neg G_B)$}
 \AXC{Axiom 1} \dashedLine
-\UIC{$\all \varphi. [P(\neg G_B) \imp \neg P(G_B)]$} \RightLabel{$\all_E$}
+\UIC{$\all \varphi. (P(\neg G_B) \imp \neg P(G_B))$} \RightLabel{$\all_E$}
 \UIC{$ P( \neg G_B(x)) \imp \neg P(G_B) $}  \RightLabel{$\imp_E$}
 \BIC{$\neg P(G_B) $} 
 \AXC{$ $} \RightLabel{3} 
@@ -1817,7 +1817,7 @@ $$
 
 \begin{prooftree}
 \AXC{$ $}\doubleLine
-\UIC{$\nec \all x. [G_B(x) \imp G_B(x)] $}\RightLabel{ D\ref{B:D1}}\dottedLine
+\UIC{$\nec \all x. (G_B(x) \imp G_B(x)) $}\RightLabel{ D\ref{B:D1}}\dottedLine
 \UIC{$P_B(G_B) $}\RightLabel{ $\wedge_I$}
 \AXC{Theorem \ref{T1}}
 \UIC{$ P_B(G_B) \imp \pos \ex x.G_B(x) $} \RightLabel{ $\imp_E$}
@@ -1841,7 +1841,7 @@ $$
 \AXC{$ $} \RightLabel{$2$}
 \UIC{$G_B(x) $} 
 \AXC{$ $}\doubleLine
-\UIC{$\nec \all x. [G_B(x) \imp G_B(x)] $}\RightLabel{ D\ref{B:D1}}\dottedLine
+\UIC{$\nec \all x. (G_B(x) \imp G_B(x)) $}\RightLabel{ D\ref{B:D1}}\dottedLine
 \UIC{$P_B(G_B) $}\RightLabel{ $\wedge_I$}
 \BIC{$[\subproof_{14}] \qquad G_B(x) \wedge P_B(G_B) $}
 \end{prooftree}
@@ -1868,10 +1868,10 @@ $$
 \begin{prooftree}
 \AXC{Axiom \ref{A:A5'}}\dashedLine
 \UIC{$P_B (NE_B)$} \RightLabel{ D\ref{B:D1}}\dottedLine
-\UIC{$\nec \all x. [G_B(x) \imp NE_B(x)]$}\RightLabel{ D\ref{B:D3}}\dottedLine
-\UIC{$\nec \all x. [G_B(x) \imp \all\varphi. (\MCP(\varphi, x) \imp \nec \ex y.\varphi(y))]$}  \RightLabel{ $\nec_E$}
-\UIC{$\all x. [G_B(x) \imp \all\varphi. (\MCP(\varphi, x) \imp \nec \ex y.\varphi(y))]$}  \RightLabel{ $\forall_E$}
-\UIC{$ [G_B(x) \imp \all\varphi. (\MCP(\varphi, x) \imp \nec \ex y.\varphi(y))]$}
+\UIC{$\nec \all x. (G_B(x) \imp NE_B(x))$}\RightLabel{ D\ref{B:D3}}\dottedLine
+\UIC{$\nec \all x. (G_B(x) \imp \all\varphi. (\MCP(\varphi, x) \imp \nec \ex y.\varphi(y)))$}  \RightLabel{ $\nec_E$}
+\UIC{$\all x. (G_B(x) \imp \all\varphi. (\MCP(\varphi, x) \imp \nec \ex y.\varphi(y)))$}  \RightLabel{ $\forall_E$}
+\UIC{$ [G_B(x) \imp \all\varphi. (\MCP(\varphi, x) \imp \nec \ex y.\varphi(y)))$}
 \AXC{$ $} \RightLabel{ $2$}
 \UIC{$G_B(x) $}  \RightLabel{ $\imp_E$}
 \BIC{$\all\varphi. (\MCP(\varphi, x) \imp \nec \ex y.\varphi(y))$} \RightLabel{ $\forall_E$}
@@ -1889,7 +1889,7 @@ $$
 
 \section{Conclusions}
 
-The formal proofs presented here are short and accessible because of the choice of a natural deduction calculus. The new proof of section \ref{sec:newproof} shows explicitly that the weaker modal logic {\bf KB} is sufficient for the ontological argument. The stronger modal logic {\bf S5}, which is usually taken for granted in discussions of G\"odel's ontological argument, is not necessary. This weakening of the underlying logic confirms a claim briefly mentioned by Anderson \citep[footnote 2]{and90}. {\bf KB} is also sufficient for the variants of Anderson and Bj\o rdal, which address Sobel's criticism of the modal collapse.
+The formal proofs presented here are short and accessible because of the choice of a natural deduction calculus. The new proof of section \ref{sec:newproof} shows explicitly that the weaker modal logic {\bf KB} is sufficient for the ontological argument. The stronger modal logic {\bf S5}, which is usually taken for granted in discussions of G\"odel's ontological argument, is not necessary. This weakening of the underlying logic confirms a claim briefly mentioned by Anderson \citep[footnote 2]{and90}. {\bf KB} is also sufficient for the variants of Anderson and Bj{\o}rdal, which address Sobel's criticism of the modal collapse.
 
 \begin{thebibliography}{9}
 
