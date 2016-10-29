@@ -86,7 +86,7 @@ begin
  axiomatization where sym: "x r y \<longrightarrow> y r x" 
 
 
-(* Consistency is confirmed by Nitpick *)
+ (* Nitpick doens't find a model *)
  lemma True nitpick [satisfy, user_axioms] oops  
 
 

@@ -63,7 +63,7 @@ begin
   by (metis (lifting, full_types) 
      A1a A1b A2 A3 A4 A5 G_def NE_def ess_def)
 
-(* Nitpick doesn't find a model *)
+ (* Nitpick doesn't find a model *)
  lemma True nitpick [satisfy,user_axioms] oops  
 
 

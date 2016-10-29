@@ -117,8 +117,7 @@ qed
   qed
 
 
-
-(* Nitpick doesn't find a model *)
+(* Nitpick finds a model *)
  lemma True nitpick [satisfy, user_axioms] oops  
 
 
