@@ -71,7 +71,7 @@ begin
 (* Ess: An essence of an individual is a property possessed by 
         it and necessarily implying any of its properties: *)
  definition ess (infixr "ess" 85) where
-    "\<Phi> ess x = (\<^bold>\<forall>\<Psi>. \<Psi>(x) \<^bold>\<rightarrow> \<^bold>\<box>(\<^bold>\<forall>y. \<Phi>(y) \<^bold>\<rightarrow> \<Psi>(y)))"
+    "\<Phi> ess x = \<Phi>(x) \<^bold>\<and> (\<^bold>\<forall>\<Psi>. \<Psi>(x) \<^bold>\<rightarrow> \<^bold>\<box>(\<^bold>\<forall>y. \<Phi>(y) \<^bold>\<rightarrow> \<Psi>(y)))"
 
 (* T2: Being God-like is an essence of any God-like being *)
  theorem T2: "\<lfloor>\<^bold>\<forall>x. G(x) \<^bold>\<rightarrow> G ess x\<rfloor>\<^sup>c\<^sup>w" by (smt A1b A4 G_def ess_def)
@@ -120,16 +120,13 @@ qed
 
 
 
-(* Nitpick doesn't find a model *)
+(* Consistency is confirmed by Nitpick *)
  lemma True nitpick [satisfy, user_axioms] oops  
 
+(*
+ lemma False sledgehammer [remote_leo2, verbose](A1a A1b A2 A3 A4 A5 C G_def NE_def sym trans T1 T2 T3 ess_def ref)
+*)
 
- lemma False 
-  (* sledgehammer [provers = remote_leo2,verbose] *) (* LEO-II can prove this *)
-  proof -
-   have   "\<lfloor>\<^bold>\<forall>x. (\<lambda>x w. \<not>(x = x)) ess x\<rfloor>\<^sup>c\<^sup>w" by (simp add: ess_def)
-   thus ?thesis by (smt A5 G_def NE_def T3 ref)
-  qed
-
-lemma MC: "\<lfloor>\<^bold>\<forall>\<Phi>. \<Phi> \<^bold>\<rightarrow> (\<^bold>\<box> \<Phi>)\<rfloor>\<^sup>c\<^sup>w"  sledgehammer
+lemma MC: "\<lfloor>\<^bold>\<forall>\<Phi>. \<Phi> \<^bold>\<rightarrow> (\<^bold>\<box> \<Phi>)\<rfloor>\<^sup>c\<^sup>w"  
+  by (meson T2 T3 ess_def)
 end
