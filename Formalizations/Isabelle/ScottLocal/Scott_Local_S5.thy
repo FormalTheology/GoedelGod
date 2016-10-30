@@ -121,12 +121,13 @@ qed
  lemma True nitpick [satisfy, user_axioms] oops  
 
 
-lemma MC: "\<lfloor>\<^bold>\<forall>\<Phi>. \<Phi> \<^bold>\<rightarrow> (\<^bold>\<box> \<Phi>)\<rfloor>\<^sup>c\<^sup>w"  
+lemma MC_pre: "\<lfloor>\<Phi> \<^bold>\<rightarrow> (\<^bold>\<box> \<Phi>)\<rfloor>\<^sup>c\<^sup>w"  
   proof-
-   fix \<psi>
-   assume "\<psi> cw"
-   have L1: "\<lfloor>\<^bold>\<exists>x. G(x)\<rfloor>\<^sup>c\<^sup>w" by (simp add: T3 ref) 
-   then have "(\<^bold>\<box> \<psi>) cw" sledgehammer  (* todo *)
-   thus ?thesis sledgehammer (* todo *)
+   have L1: "\<lfloor>\<^bold>\<forall>z. G(z) \<^bold>\<rightarrow> (\<^bold>\<forall>\<psi>. (\<psi>(z) \<^bold>\<rightarrow> \<^bold>\<box>(\<^bold>\<forall>x. G(x) \<^bold>\<rightarrow> \<psi>(x))))\<rfloor>\<^sup>c\<^sup>w" by (smt T2 ess_def)
+   hence L2: "\<lfloor>\<^bold>\<forall>z. G(z) \<^bold>\<rightarrow> (\<Phi> \<^bold>\<rightarrow> \<^bold>\<box>(\<^bold>\<forall>x. G(x) \<^bold>\<rightarrow> \<Phi>))\<rfloor>\<^sup>c\<^sup>w" by meson
+   thus ?thesis using T3 ref by auto
   qed
+
+lemma MC: "\<lfloor>\<^bold>\<forall>\<Phi>. \<Phi> \<^bold>\<rightarrow> (\<^bold>\<box> \<Phi>)\<rfloor>\<^sup>c\<^sup>w" using MC_pre by blast
+
 end

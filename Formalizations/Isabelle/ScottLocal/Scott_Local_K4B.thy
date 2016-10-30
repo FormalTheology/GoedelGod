@@ -118,6 +118,13 @@ qed
  lemma True nitpick [satisfy, user_axioms] oops  
 
 
-lemma MC: "\<lfloor>\<^bold>\<forall>\<Phi>. \<Phi> \<^bold>\<rightarrow> (\<^bold>\<box> \<Phi>)\<rfloor>\<^sup>c\<^sup>w"  
-  todo
+lemma MC_pre: "\<lfloor>\<Phi> \<^bold>\<rightarrow> (\<^bold>\<box> \<Phi>)\<rfloor>\<^sup>c\<^sup>w"  
+  proof-
+   have L1: "\<lfloor>\<^bold>\<forall>z. G(z) \<^bold>\<rightarrow> (\<^bold>\<forall>\<psi>. (\<psi>(z) \<^bold>\<rightarrow> \<^bold>\<box>(\<^bold>\<forall>x. G(x) \<^bold>\<rightarrow> \<psi>(x))))\<rfloor>\<^sup>c\<^sup>w" by (smt T2 ess_def)
+   hence L2: "\<lfloor>\<^bold>\<forall>z. G(z) \<^bold>\<rightarrow> (\<Phi> \<^bold>\<rightarrow> \<^bold>\<box>(\<^bold>\<forall>x. G(x) \<^bold>\<rightarrow> \<Phi>))\<rfloor>\<^sup>c\<^sup>w" by meson
+   thus ?thesis by (meson sym trans T3)
+  qed
+
+lemma MC: "\<lfloor>\<^bold>\<forall>\<Phi>. \<Phi> \<^bold>\<rightarrow> (\<^bold>\<box> \<Phi>)\<rfloor>\<^sup>c\<^sup>w" using MC_pre by blast
+
 end
