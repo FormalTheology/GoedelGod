@@ -152,7 +152,7 @@ collapse were reported in the 4th Word Congress on the Square of
 Opposition \citep{SquareOfOpposition} and later published in
 \citep{ModalCollapse}. More detailed reconstructions of Scott's
 variant within the interactive proof assistants Isabelle and Coq were
-released, respectively, in Isabellle's Archive of Formal Proofs
+released, respectively, in Isabelle's Archive of Formal Proofs
 \citep{IsabelleGod} and in the Symposium of Computer Science in Russia
 \citep{CSRModalLogicInCoq}. The popularity of the topic led to invited
 talks and corresponding invited abstracts in the proceedings of
@@ -210,11 +210,11 @@ where $p_\tau$ and $X_\tau$ range over, respectively, constants and variables of
 Negation ($\neg_{o\imp o}$), disjunction ($\vee_{o\imp o\imp o}$), equivalence ($\biimp_{o\imp o\imp o}$), equality ($=_{\tau\imp\tau\imp o}$), inequality ($\neq_{\tau\imp\tau\imp o}$), are defined by $\neg A\equiv A\imp \bot$, $(A \vee B) \equiv \neg (\neg A \wedge \neg B)$, $ (A\biimp B)\equiv (A\imp B)\wedge (B\imp A)$, $s = t \equiv \forall P. (P \ s) \biimp (P \ t)$ (Leibniz's equality) and $s \neq t\equiv \neg (s=t)$, .
 \end{definition}
 
-The natural deduction calculus proposed and used here has standard rules for propositional connectives and quantifiers, as shown in Figures \ref{fig:PropositionalRules} and \ref{fig:QuantifierRules}. The extension to classical logic is achieved by adding a rule for double negation elimination, shown in Figure \ref{fig:Classical}, and $\beta$-reduction\footnote{Rules for $\eta$-expansion \citep{BenzmuellerBrownKohlhase} are not included here, because they are not needed in the ontological arguments.} is handled by the $\beta$ rule shown in Figure \ref{fig:ReductionRules}.
+The natural deduction calculus proposed and used here has standard rules for propositional connectives and quantifiers, as shown in Figures \ref{fig:PropositionalRules} and \ref{fig:QuantifierRules}. The extension to classical logic is achieved by adding a rule for double negation elimination, shown in Figure \ref{fig:Classical}, and $\beta$-reduction\footnote{Rules for $\eta$-expansion \citep{BenzmuellerBrownKohlhase} are not included here, because they are not needed in the ontological arguments studied here.} is handled by the $\beta$ rule shown in Figure \ref{fig:ReductionRules}.
 Finally, modal operators are handled by special new rules that insert or remove formulas from boxes, as shown in Figure \ref{fig:NDK}.
 A \emph{derivation} is a directed acyclic graph whose nodes are formulas and whose edges correspond to applications of the inference rules. A \emph{proof} of a formula $F$ is a derivation without open assumptions and having $F$ as root not inside any box. 
 
-In every inference rule, (sub-)formulas in the conclusion correspond\footnote{This correspondence could be defined formally, but it would be tedious to do so.} to formulas in the premises (even in the case of quantifier rules, where the formulas differ due to substitution). For any expression occurring both in a formula in the premise and in its corresponding (sub-)formula in the conclusion, the occurrence in the premise is said to be an \emph{ancestor} of the occurrence in the conclusion, and the occurrence in the conclusion is said to be a \emph{descendant} of the occurrence in the premise.
+In every inference rule, (sub-)formulas in the conclusion correspond\footnote{This correspondence could be defined formally, but it would be tedious to do so.} to formulas in the premises (even in the case of quantifier rules, where the formulas differ due to substitution). For any expression occurring both in a formula in the premise and in its corresponding (sub-) formula in the conclusion, the occurrence in the premise is said to be an \emph{ancestor} of the occurrence in the conclusion, and the occurrence in the conclusion is said to be a \emph{descendant} of the occurrence in the premise.
 
 
 \newcommand{\subproof}{\star}
@@ -362,7 +362,7 @@ only if $B$ and $A$ are $\beta$-equivalent \\ (i.e. there is a $C$ such that bot
 
 \begin{center}
 \textbf{eigen-box condition:}\\ 
-An modal inference is said to \emph{access}\\
+a modal inference is said to \emph{access}\\
  the box immediately above or below it. \\
 $\nec_I$ and $\pos_E$ are \emph{strong} modal rules: \\
 $\omega$ must be a fresh name for the box they access \\ 
@@ -641,8 +641,8 @@ $$
 \AXC{}\RightLabel{$2$}
 \UIC{$P(\alpha)$}\RightLabel{$\imp_I^2$}
 \UIC{$P(\alpha) \imp P(\alpha)$}\RightLabel{$\wedge_I$}
-\UIC{$(P(\alpha) \imp P(\alpha)) \wedge (P(\alpha) \imp P(\alpha))$} \dottedLine
-\BIC{$P(\alpha) \biimp P(\alpha)$}\RightLabel{$\forall_I$}
+\BIC{$(P(\alpha) \imp P(\alpha)) \wedge (P(\alpha) \imp P(\alpha))$} \dottedLine
+\UIC{$P(\alpha) \biimp P(\alpha)$}\RightLabel{$\forall_I$}
 \UIC{$\forall P. P(\alpha) \biimp P(\alpha)$}\dottedLine
 \UIC{$\alpha=\alpha$} \RightLabel{$\forall_I$}
 \UIC{$\forall x. x=x$} 
