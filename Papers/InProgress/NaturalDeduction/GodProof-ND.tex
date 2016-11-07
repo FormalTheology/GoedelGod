@@ -214,7 +214,7 @@ The natural deduction calculus proposed and used here has standard rules for pro
 Finally, modal operators are handled by special new rules that insert or remove formulas from boxes, as shown in Figure \ref{fig:NDK}.
 A \emph{derivation} is a directed acyclic graph whose nodes are formulas and whose edges correspond to applications of the inference rules. A \emph{proof} of a formula $F$ is a derivation without open assumptions and having $F$ as root not inside any box. 
 
-In every inference rule, (sub-)formulas in the conclusion correspond\footnote{This correspondence could be defined formally, but it would be tedious to do so.} to formulas in the premises (even in the case of quantifier rules, where the formulas differ due to substitution). For any expression occurring both in a formula in the premise and in its corresponding (sub-)formula in the conclusion, the occurrence in the premise is said to be an \emph{ancestor} of the occurrence in the conclusion, and the occurrence in the conclusion is said to be a \emph{descendant} of the occurrence in the premise.
+In every inference rule, (sub)formulas in the conclusion correspond\footnote{This correspondence could be defined formally, but it would be tedious to do so.} to formulas in the premises (even in the case of quantifier rules, where the formulas differ due to substitution). For any expression occurring both in a formula in the premise and in its corresponding (sub)formula in the conclusion, the occurrence in the premise is said to be an \emph{ancestor} of the occurrence in the conclusion, and the occurrence in the conclusion is said to be a \emph{descendant} of the occurrence in the premise.
 
 
 \newcommand{\subproof}{\star}
@@ -677,7 +677,7 @@ In addition to the five axioms and three definitions that pertain specifically t
 
 \begin{axiom}
 \label{A1}
-Either a property or its negation is positive, but not both:
+Either a property or its negation\footnote{Throughout the paper, $\neg \varphi$ is an abbreviation for $\lambda x. \neg \varphi(x)$} is positive, but not both:
 $$
 \all \varphi. (P(\neg \varphi) \biimp \neg P(\varphi))
 $$
@@ -747,7 +747,7 @@ $$
 		\UIC{$P(\lambda x. x \neq x)\scott$}    
     		\AXC{$\subproof_1$} \dashedLine
 			  \UIC{$P(\lambda x. x = x)\scott$} 
-					\AXC{Half of Axiom 1} \dashedLine
+					\AXC{Contraposition of Half of Axiom 1} \dashedLine
 					\UIC{$P(\lambda x. x = x) \imp \neg P(\lambda x. x \neq x)$} \RightLabel{$\imp_E$}
 				\BIC{$\neg P(\lambda x. x \neq x)$} \RightLabel{$\neg_E$}
 			\BIC{$[\subproof_3] \qquad \bot$}
@@ -1469,15 +1469,15 @@ This proof is omitted, because it is identical to the proof of the same corollar
 \label{A:A4}
 Positive properties are necessarily positive:
 $$
-\all \varphi.(P(\varphi) \to \Box \; P(\varphi))
+\all \varphi.(P(\varphi) \to \Box P(\varphi))
 $$
 \end{axiom}
 
 \begin{definition}[Emended]
 \label{A:D2}
-An \emph{essence} of an individual is a property possessed by it and necessarily implying those and only those properties necessarily possessed by it:
+An \emph{essence} of an individual is a property necessarily implying those and only those properties necessarily possessed by it:
 $$
-\ess{\varphi}{x} \equiv \varphi(x) \wedge \all \psi. (\nec \psi(x) \biimp \nec \all x. (\varphi(x) \imp \psi(x)))
+\ess{\varphi}{x} \equiv \all \psi. (\nec \psi(x) \biimp \nec \all x. (\varphi(x) \imp \psi(x)))
 $$
 \end{definition}
 
@@ -1569,7 +1569,7 @@ $$
 \AXC{Axiom \ref{A:A2}} 
 \BIC{$P(\varphi)$}
 \AXC{$\subproof_9$} \dashedLine 
-\UIC{$  G(\gamma)$}  \RightLabel{D\ref{A:D1}}
+\UIC{$  G(\gamma)$} \dottedLine \RightLabel{D\ref{A:D1}}
 \UIC{$ \all \varphi. (P(\varphi)\biimp \nec \varphi(\gamma))$}  \RightLabel{$\all_E$}
 \UIC{$ P(\varphi)\biimp \nec \varphi(\gamma)$}  \RightLabel{$\biimp_E$}
 \BIC{$ \nec \varphi(\gamma)$} \RightLabel{$\imp_I^5$}
@@ -1582,9 +1582,8 @@ $$
 \AXC{$\subproof_{11}$ and $\subproof_{12}$} \dashedLine \RightLabel{$\wedge_I$}
 \UIC{$\nec \varphi(\gamma)\biimp \nec  \forall y. (G(y)\imp \varphi(y)) $} \RightLabel{$\forall_I$}
 \UIC{$\forall \varphi. (\nec \varphi(\gamma)\biimp \nec  \forall y. (G(y)\imp \varphi(y))) $}
-\AXC{$ \subproof_{9}$} \dashedLine
-\UIC{$G(\gamma)$}\RightLabel{$\wedge_I$}
-\BIC{$\ess{G}{\gamma}$}
+\dottedLine \RightLabel{D\ref{A:D2}}
+\UIC{$\ess{G}{\gamma}$}
 \AXC{Axiom \ref{A5}} \dashedLine
 \UIC{$P(E)$}\dottedLine 
 \AXC{$\subproof_9$} \dashedLine
@@ -1651,7 +1650,7 @@ $$
 \UIC{$\forall \varphi. (P(\lambda x.\varphi(x)) \biimp \nec \varphi(\gamma))$}\RightLabel{$\forall_E$}
 \UIC{$P(G) \biimp \nec G(\gamma)$} \RightLabel{$\biimp_E$}
 \AXC{Axiom \ref{A:A3}} \RightLabel{}
-\UIC{$P(G)$} \RightLabel{$\imp_E$}
+\UIC{$P(G)$} \RightLabel{$\biimp_E$}
 \BIC{$\nec G(\gamma)$}
 \AXC{$ $} \RightLabel{1}
 \UIC{$G(\gamma)$} \RightLabel{$\ex_I$}
@@ -1668,7 +1667,7 @@ $$
 
 
 \noindent
-Proofs of other lemmas, theorems and corollaries remain the same as in the previous section. Theorem \ref{A:T1} is derived from axioms \ref{A:A1} and \ref{A:A2}. Corollary \ref{A:C1} is derived from Axiom \ref{A:A3} and Theorem \ref{A:T1}. Finally, Theorem \ref{A:T3} can be derived from Corollary \ref{A:C1} and Lemma \ref{A:L1}, which, as shown above, depends only on Axiom \ref{A:A3} and Definition \ref{A:D1}. Therefore, confirming H\'ajek's claim, axioms \ref{A:A4} and \ref{A:A5} and definitions \ref{A:D2} and \ref{A:D3} are superfluous: they are not needed to prove Theorem \ref{A:T3}. 
+Proofs of other lemmas, theorems and corollaries remain the same as in the previous section. Theorem \ref{A:T1} is derived from Axioms \ref{A:A1} and \ref{A:A2}. Corollary \ref{A:C1} is derived from Axiom \ref{A:A3} and Theorem \ref{A:T1}. Finally, Theorem \ref{A:T3} can be derived from Corollary \ref{A:C1} and Lemma \ref{A:L1}, which, as shown above, depends only on Axiom \ref{A:A3} and Definition \ref{A:D1}. Therefore, confirming H\'ajek's claim, axioms \ref{A:A4} and \ref{A:A5} and definitions \ref{A:D2} and \ref{A:D3} are superfluous: they are not needed to prove Theorem \ref{A:T3}. 
 
 
 
@@ -1680,7 +1679,6 @@ Anderson's change in the definition of essence adds an extra box modality, which
 \begin{prooftree}
 \AXC{Theorem 2}\dashedLine
 \UIC{$\all y.(G(y) \imp \ess{G}{y})$} \RightLabel{D2 }\doubleLine
-\UIC{$\all y.(G(y) \imp G(y) \wedge \all \psi. (\nec \psi(y) \biimp \nec \all x. (G(x) \imp \psi(x))))$}
 \UIC{$\all y.(G(y) \imp \all \psi. (\nec \psi(y) \biimp \nec \all x. (G(x) \imp \psi(x))))$} \doubleLine
 %\UIC{$\all y.(G(y) \imp (\nec A(y) \biimp \nec \all x. (G(x) \imp A(x))))$} \RightLabel{$A$ is constant}
 \UIC{$\all y.(G(y) \imp (\nec A \biimp \nec \all x. (G(x) \imp A)))$} \doubleLine
@@ -1799,7 +1797,7 @@ $$
 \UIC{$ \nec \all x.(G_B(x) \imp \neg G_B(x)) $}\dottedLine  \RightLabel{D\ref{B:D1}}
 \UIC{$P(\neg G_B)$}
 \AXC{Axiom 1} \dashedLine
-\UIC{$\all \varphi. (P(\neg G_B) \imp \neg P(G_B))$} \RightLabel{$\all_E$}
+\UIC{$\all \varphi. (P(\neg \varphi) \imp \neg P(\varphi))$} \RightLabel{$\all_E$}
 \UIC{$ P( \neg G_B(x)) \imp \neg P(G_B) $}  \RightLabel{$\imp_E$}
 \BIC{$\neg P(G_B) $} 
 \AXC{$ $} \RightLabel{3} 
@@ -1820,7 +1818,7 @@ $$
 \label{B:C1}
 Possibly, a God-like being exists:
 $$
-\pos \ex x. G(x)
+\pos \ex x. G_B(x)
 $$
 \end{corollary}
 \begin{proof}
@@ -1828,8 +1826,8 @@ $$
 \begin{prooftree}
 \AXC{$ $}\doubleLine
 \UIC{$\nec \all x. (G_B(x) \imp G_B(x)) $}\RightLabel{ D\ref{B:D1}}\dottedLine
-\UIC{$P_B(G_B) $}\RightLabel{ $\wedge_I$}
-\AXC{Theorem \ref{T1}}
+\UIC{$P_B(G_B) $} 
+\AXC{Theorem \ref{T1}} \dashedLine
 \UIC{$ P_B(G_B) \imp \pos \ex x.G_B(x) $} \RightLabel{ $\imp_E$}
 \BIC{$\pos \ex x.G_B(x) $}
 \end{prooftree}
@@ -1900,6 +1898,8 @@ $$
 \section{Conclusions}
 
 The formal proofs presented here are short and accessible because of the choice of a natural deduction calculus. The new proof of section \ref{sec:newproof} shows explicitly that the weaker modal logic {\bf KB} is sufficient for the ontological argument. The stronger modal logic {\bf S5}, which is usually taken for granted in discussions of G\"odel's ontological argument, is not necessary. This weakening of the underlying logic confirms a claim briefly mentioned by Anderson \citep[footnote 2]{and90}. {\bf KB} is also sufficient for the variants of Anderson and Bj{\o}rdal, which address Sobel's criticism of the modal collapse.
+
+\paragraph{Acknowledgements:} This work was supported by an Stipendium of the \"Osterreichische Akademie der Wissenschaften (APART). We thank Christoph Benzm\"uller for collaborations on several related works.
 
 
 \begin{thebibliography}{9}
