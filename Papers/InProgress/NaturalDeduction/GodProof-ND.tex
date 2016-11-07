@@ -382,12 +382,12 @@ assumptions should be discharged within the box where they are created.
 
 {\ND} is a calculus for a (non-modal) higher-order logic without 
 functional and boolean extensionality principles \citep{BenzmuellerBrownKohlhase}.
-Adding the modal rules results in a calculus that is suitable for a basic rigid modal logic \textbf{K}, in the sense that {\NDK} is sound and complete relative to {\ND} extended with axiom K ($\nec(A\imp B)\imp (\nec A\imp \nec B)$) and the necessitation rule (which establishes that $\nec A$ is a theorem if $A$ is a theorem).
+Adding the modal rules results in a calculus that is suitable for a basic rigid modal logic \textbf{K}, in the sense that {\NDK} is sound and complete relative to {\ND} extended with Axiom K ($\nec(A\imp B)\imp (\nec A\imp \nec B)$) and the necessitation rule (which establishes that $\nec A$ is a theorem if $A$ is a theorem).
 
 
 \begin{theorem}
 \label{theorem:completeness}
-{\NDK} is complete relative to {\ND} extended with axiom K and necessitation.
+{\NDK} is complete relative to {\ND} extended with Axiom K and necessitation.
 \end{theorem}
 \begin{proof}
 The necessitation rule can be immediately simulated with the $\nec_I$ rule. Axiom K can be derived in {\NDK} as shown below:
@@ -413,10 +413,10 @@ The necessitation rule can be immediately simulated with the $\nec_I$ rule. Axio
 
 \begin{theorem}
 \label{theorem:soundness}
-{\NDK} is sound relative to {\ND} extended with axiom K and necessitation.
+{\NDK} is sound relative to {\ND} extended with Axiom K and necessitation.
 \end{theorem}
 \begin{proof}
-It is necessary to show that {\NDK} proofs of the following form can be translated to proofs in {\ND} extended with the axiom K and the necessitation rule.
+It is necessary to show that {\NDK} proofs of the following form can be translated to proofs in {\ND} extended with the Axiom K and the necessitation rule.
 
 \begin{small}
 $$
@@ -430,7 +430,7 @@ $$
 \end{small}
 
 \noindent
-A translation to {\ND} extended with axiom K and necessitation is shown below for the case when $n=1$:
+A translation to {\ND} extended with Axiom K and necessitation is shown below for the case when $n=1$:
 
  % Assuming the axiom K and the necessitation rule $\Box_I$, the open formula $\nec A $ and the existence of a derivation of $ B$ from the open assumption $ A$, then we can derive $\nec B$ without the rules for boxed parts of derivations.
 
@@ -498,7 +498,7 @@ Without the restriction that every box must be accessed by exactly one strong mo
 
 This example proof is unsound according to the {\NDK} calculus, because the eigen-box condition is violated: the box labelled by $\omega$ is not accessed by any strong inference. 
 
-The straightforward combinations of the quantifier rules of {\ND} either with the modal rules of {\NDK} or with axiom K and the necessitation rule are suitable for a higher-order modal logic where constants and variables are \emph{rigid}. From the point of view of a \emph{possible world semantics}, rigidity means that their interpretation is independent of the world in which they are being interpreted. Rigidity is tacitly assumed by most works investigating the ontological argument, and is explicitly assumed here. Nevertheless, it should be noted that its adequacy for the ontological argument has already been contested \citep{fitting}. Another assumption made here is that the quantification domains are constant (i.e. independent of the possible worlds). Neither G\"odel's manuscript nor Scott's manuscript reveal whether they use constant or varying domains, and this is also the case for many variants \citetext{e.g. \citealt{hajek}}. Nevertheless, some authors of variants of G\"odel's ontological argument do explicitly state a preference for varying domains. Our choice of constant domains is motivated by simplicity \citep[footnotes 11 and 14]{and90}. As is well-known, varying domain quantifiers (also known as \emph{actualistic} quantifiers) can be simulated by constant domain quantifiers (also known as \emph{possibilistic} quantifiers) guarded by a primitive \emph{existence} predicate\footnote{Formally, $\forall^e x. F[x] \equiv \forall x. E(x) \imp F[x]$ and $\exists^e x. F[x] \equiv \exists x. E(x) \wedge F[x]$.}; therefore, the formalization of ontological arguments with varying domain quantification would be feasible in the natural deduction calculus presented here as well.
+The straightforward combinations of the quantifier rules of {\ND} either with the modal rules of {\NDK} or with Axiom K and the necessitation rule are suitable for a higher-order modal logic where constants and variables are \emph{rigid}. From the point of view of a \emph{possible world semantics}, rigidity means that their interpretation is independent of the world in which they are being interpreted. Rigidity is tacitly assumed by most works investigating the ontological argument, and is explicitly assumed here. Nevertheless, it should be noted that its adequacy for the ontological argument has already been contested \citep{fitting}. Another assumption made here is that the quantification domains are constant (i.e. independent of the possible worlds). Neither G\"odel's manuscript nor Scott's manuscript reveal whether they use constant or varying domains, and this is also the case for many variants \citetext{e.g. \citealt{hajek}}. Nevertheless, some authors of variants of G\"odel's ontological argument do explicitly state a preference for varying domains. Our choice of constant domains is motivated by simplicity \citep[footnotes 11 and 14]{and90}. As is well-known, varying domain quantifiers (also known as \emph{actualistic} quantifiers) can be simulated by constant domain quantifiers (also known as \emph{possibilistic} quantifiers) guarded by a primitive \emph{existence} predicate\footnote{Formally, $\forall^e x. F[x] \equiv \forall x. E(x) \imp F[x]$ and $\exists^e x. F[x] \equiv \exists x. E(x) \wedge F[x]$.}; therefore, the formalization of ontological arguments with varying domain quantification would be feasible in the natural deduction calculus presented here as well.
 
 
 
@@ -542,7 +542,7 @@ $$\nec (A\imp B)\imp(\pos A\imp \pos B)$$
 \bigskip
 
 \noindent
-\emph{Brouwer's reduction principle} is derivable in modal logic {\bf KB}, using axiom B. The proofs of G\"odel and Scott (Section \ref{sec:scott}) do not make direct use of this principle, but the new proof presented in Section \ref{sec:newproof} does.
+\emph{Brouwer's reduction principle} is derivable in modal logic {\bf KB}, using Axiom B. The proofs of G\"odel and Scott (Section \ref{sec:scott}) do not make direct use of this principle, but the new proof presented in Section \ref{sec:newproof} does.
 
 
 \begin{lemma*}[Brouwer's Reduction Principle]
@@ -971,25 +971,50 @@ $$
 
 \begin{proof}\hfill
 
-\begin{scriptsize}
+\begin{small}
 \begin{prooftree}
 
-\AXC{$ $} \RightLabel{1}
-\UIC{$\pos \ex x. G(x)$} 
+
 		\AXC{Lemma 1} \dashedLine
 		\UIC{$\omega: \ex x. G(x) \imp \nec \ex x. G(x)$} \RightLabel{$\nec_I$}
-		\UIC{$\nec (\ex x. G(x) \imp \nec \ex x. G(x)) $}
-				\AXC{Distribution Principle}
-			\BIC{$\pos \ex x. G(x) \imp \pos \nec \ex x. G(x)$} \RightLabel{$\imp_E$}
-	\BIC{$\pos \nec \ex x. G(x)\scott$}
+		\UIC{$\nec (\ex x. G(x) \imp \nec \ex x. G(x)) $} 
+				\AXC{Distribution Principle}\dashedLine
+				\UIC{$ \nec (\ex x. G(x) \imp \nec \ex x. G(x))\imp (\pos \ex x. G(x) \imp \pos \nec \ex x. G(x))$} \RightLabel{$\imp_E$}
+			\BIC{$[\subproof_5] \qquad \pos \ex x. G(x) \imp \pos \nec \ex x. G(x)$} \RightLabel{$\imp_E$}
+
+\end{prooftree}
+\end{small}
+
+\begin{small}
+\begin{prooftree}
+\AXC{$ $} \RightLabel{1}
+\UIC{$\pos \ex x. G(x)$} 
+ \AXC{$\subproof_5$}\dashedLine
+ 	\UIC{$\pos \ex x. G(x) \imp \pos \nec \ex x. G(x)$} \RightLabel{$\imp_E$}
+ \BIC{$\pos \nec \ex x. G(x)\scott$} 
 			\AXC{S5 Iteration Principle} \dashedLine
 			\UIC{$\pos \nec \ex x. G(x) \imp \nec \ex x. G(x)$}\RightLabel{$\imp_E$}
 		\BIC{$\nec \ex x. G(x)$} \RightLabel{$\imp_I^1$}
 		\UIC{$\pos \ex z. G(z) \imp \nec \ex x. G(x)$}
 \end{prooftree}
-\end{scriptsize}
+\end{small}
 
 \end{proof}
+
+
+
+
+ 
+ 
+ 
+ 
+ 
+
+
+
+
+
+
 
 \begin{theorem}
 \label{T3}
@@ -1015,7 +1040,7 @@ $$
 
 \section{A New Proof}\label{sec:newproof}
 
-In this section we present a new proof in {\bf KB}. This proof uses exactly the same axioms and definitions of Scott's proof shown in the previous sections, but it uses neither the axiom of reflexivity for equality nor {\bf S5}'s modal iteration principle. Instead, it relies only on Brouwer's reduction principle (for Theorem 3). The new proof is also shorter than Scott's proof. 
+In this section we present a new proof in {\bf KB}. This proof uses exactly the same axioms and definitions of Scott's proof shown in the previous sections, but it uses neither the Axiom of reflexivity for equality nor {\bf S5}'s Modal iteration principle. Instead, it relies only on Brouwer's reduction principle (for Theorem 3). The new proof is also shorter than Scott's proof. 
 
 
 
@@ -1068,13 +1093,13 @@ $$
 \BIC{$ P(\rho) \wedge \nec \all x.(\rho(x) \imp \neg \rho(x))$}
 \AXC{Axiom \ref{A2} for $\rho$ and $\lambda x. \neg \rho(x)$} \dashedLine
 \UIC{$(P(\rho) \wedge \nec \all x.(\rho(x) \imp \neg \rho(x))) \imp P(\lambda x. \neg \rho(x))$} \RightLabel{$\imp_E$}
-\BIC{$[\subproof_5]\qquad P(\lambda x. \neg \rho(x))$} \RightLabel{$\imp_E$}
+\BIC{$[\subproof_6]\qquad P(\lambda x. \neg \rho(x))$} \RightLabel{$\imp_E$}
 \end{prooftree}
 \end{scriptsize}
 
 \begin{small}
 \begin{prooftree}
-\AXC{$\subproof_5$} \dashedLine
+\AXC{$\subproof_6$} \dashedLine
 \UIC{$P(\lambda x. \neg \rho(x))$} %\RightLabel{$\imp_E$}
 \AXC{Axiom 1} \dashedLine
 \UIC{$\all \varphi. (P(\neg \varphi) \biimp \neg P(\varphi))$} \RightLabel{$\all_E$}
@@ -1204,7 +1229,7 @@ $$
 \UIC{$\rho(\gamma)$} \RightLabel{$\neg_E$}
 \BIC{$\bot$}\RightLabel{$\imp_I^2$}
 \UIC{$\neg\neg P(\rho)$}\RightLabel{$\neg\neg_E$}
-\UIC{$[\subproof_6] \qquad P(\rho)$}
+\UIC{$[\subproof_7] \qquad P(\rho)$}
 \end{prooftree}
 \end{small}
 
@@ -1230,7 +1255,7 @@ $$
 
 %\AXC{$ $} \RightLabel{6}
 %\UIC{$\rho(\gamma)$} \RightLabel{}
-\AXC{$ \subproof_6$} \dashedLine
+\AXC{$ \subproof_7$} \dashedLine
 \UIC{$P(\rho)$} %\RightLabel{$\nec_E$}
 \AXC{Axiom \ref{N:A4}} \dashedLine
 \UIC{$\all \varphi.(P(\varphi) \imp \nec\; P(\varphi))$}\RightLabel{$\forall_E$}
@@ -1248,13 +1273,13 @@ $$
 \UIC{$\ex z. G(z)$}\RightLabel{$\ex_E$}
 \UIC{$G(\gamma)$}  \RightLabel{$\wedge_I$}
 \BIC{$G(\gamma) \wedge \forall \psi.(\psi(\gamma) \imp \nec \forall y.(G(y) \imp \psi(y)))$}\dottedLine \RightLabel{D\ref{N:D2}}
-\UIC{$[\subproof_7] \qquad \ess{G}{\gamma}$}
+\UIC{$[\subproof_8] \qquad \ess{G}{\gamma}$}
 \end{prooftree}
 \end{small}
 
 \begin{small}
 \begin{prooftree}
-\AXC{$\subproof_7$} \dashedLine
+\AXC{$\subproof_8$} \dashedLine
 \UIC{$\ess{G}{\gamma}$}
 \AXC{Axiom \ref{A5}} \dashedLine
 \UIC{$P(E)$}\dottedLine 
@@ -1294,12 +1319,13 @@ $$
 \AXC{ Lemma \ref{N:L1} } \dashedLine
 \UIC{$\ex x. G(x)\imp \nec \ex x. G(x)$}\RightLabel{$\nec_I$}
 \UIC{$\nec(\ex x. G(x)\imp \nec \ex x. G(x))$}\RightLabel{$\imp_E$}
-\BIC{$\pos \ex x. G(x)\imp \pos\nec \ex x. G(x)$}
+\BIC{$[\subproof_9] \qquad \pos \ex x. G(x)\imp \pos\nec \ex x. G(x)$}
 \end{prooftree}
 \end{small}
 \begin{small}
 \begin{prooftree}
-\AXC{$\pos \ex x. G(x)\imp \pos\nec \ex x. G(x)$}
+\AXC{$\subproof_9$}\dashedLine
+\UIC{$\pos \ex x. G(x)\imp \pos\nec \ex x. G(x)$}
 \AXC{ Corollary \ref{C1} } \dashedLine
 \UIC{$\pos \ex x. G(x)$}\RightLabel{$\imp_E$}
 \BIC{$\pos\nec \ex x. G(x)$}
@@ -1316,7 +1342,7 @@ $$
 Since the iteration principle requires the strong modal logic {\bf S5} while Brouwer's reduction principle requires only the much weaker modal logic {\bf KB},  the possibility of proving Theorem 3 using Brouwer's reduction principle instead of {\bf S5}'s iteration principle is philosophically profound. There have been many discussions of what modal axioms are needed for the ontological argument. In their manuscripts, G\"odel and Scott do not write explicitly which logic they use. However, a proof step in their notes clearly relies on {\bf S5}'s \emph{iteration principle}.
 Anderson \citep[footnote 5]{and90} cites several articles questioning the adequacy of {\bf S5} for the ontological argument and conjectures that the ontological argument could be restricted to the weaker modal logic {\bf B}. Sobel \citep[p. 152]{sobel2} acknowledges Anderson's conjecture, claims that it is correct and tries to informally explain how his formal proofs could be modified to rely on {\bf B} instead of {\bf S5}. Nevertheless, neither Anderson nor Sobel presented any formal proof relying only on {\bf B}. The new formal proof presented in this section relies on {\bf KB}, which is weaker than {\bf B}. 
 
-Curiously, in the new proof of Theorem 3, the actual existence of a God-like being ($\ex x. G(x)$) is proven \emph{before} its necessity ($\nec \ex x. G(x)$). This contrasts with G\"odel's proof, where the actual existence is never actually proven (although it could, nevertheless, be derived as a trivial corollary by applying the modal axiom T).
+Curiously, in the new proof of Theorem 3, the actual existence of a God-like being ($\ex x. G(x)$) is proven \emph{before} its necessity ($\nec \ex x. G(x)$). This contrasts with G\"odel's proof, where the actual existence is never actually proven (although it could, nevertheless, be derived as a trivial corollary by applying the modal Axiom T).
 
 
 
@@ -1349,7 +1375,7 @@ $$
 \UIC{$\all y.(G(y) \imp \all \psi. (\psi(y) \imp \nec \all x. (G(x) \imp \psi(x))))$} \doubleLine
 %\UIC{$\all y.(G(y) \imp (A(y) \imp \nec \all x. (G(x) \imp A(x))))$} \RightLabel{$A$ is constant}
 \UIC{$\all y.(G(y) \imp (A \imp \nec \all x. (G(x) \imp A)))$} \doubleLine
-\UIC{$[\subproof_8] \qquad \ex y.G(y) \imp (A \imp \nec \all x. (G(x) \imp A))$}
+\UIC{$[\subproof_{10}] \qquad \ex y.G(y) \imp (A \imp \nec \all x. (G(x) \imp A))$}
 \end{prooftree}
 \end{small}
 
@@ -1357,7 +1383,7 @@ $$
 
 \begin{small}
 \begin{prooftree}
-\AXC{$ \subproof_8 $}\dashedLine
+\AXC{$ \subproof_{10} $}\dashedLine
 \UIC{$\ex y.G(y) \imp (A \imp \nec \all x. (G(x) \imp A))$}
 \AXC{Theorem 3}\dashedLine
 \UIC{$\nec \ex y.G(y)$} \RightLabel{$\nec_E$}
@@ -1430,7 +1456,7 @@ $$
 $$
 \end{theorem}
 \begin{proof}
-This proof is omitted, because any of the proofs of Theorem 1 in Sections \ref{sec:scott} and \ref{sec:newproof} would suffice to prove this theorem with only a small modification: the equivalence of axiom \ref{A1} would not need to be reduced to an implication by conjunction elimination. 
+This proof is omitted, because any of the proofs of Theorem 1 in Sections \ref{sec:scott} and \ref{sec:newproof} would suffice to prove this theorem with only a small modification: the equivalence of Axiom \ref{A1} would not need to be reduced to an implication by conjunction elimination. 
 \end{proof}
 
 
@@ -1501,8 +1527,7 @@ $$
 \end{axiom}
 
 
-Because of Anderson's emendations to Axiom 1 and Definition 1, the proof of Lemma 1 has to be modified as well. The proof shown below uses the modal axiom T to eliminate the extra box modality introduced by Anderson
-in his emended Definition 1.
+Because of Anderson's emendations to Axiom 1 and Definition 1, the proof of Lemma 1 has to be modified as well. 
 
 
 \begin{lemma}
@@ -1516,11 +1541,11 @@ $$
 \begin{prooftree}
 \AXC{$ $} \RightLabel{1}
 \UIC{$\ex z. G(z)$}\RightLabel{$\ex_E$}
-\UIC{$[\subproof_9] \quad G(\gamma)$}
+\UIC{$[\subproof_{11}] \quad G(\gamma)$}
 \end{prooftree}
 
 \begin{prooftree}
-\AXC{$\subproof_9$} \dashedLine
+\AXC{$\subproof_{11}$} \dashedLine
 \UIC{$G(\gamma)$} \dottedLine \RightLabel{D\ref{A:D1}}
 \UIC{$\forall \varphi. (P(\lambda x.\varphi(x)) \biimp \nec \varphi(\gamma))$}\RightLabel{$\forall_E$}
 \UIC{$P(\lambda x.\rho(x)) \biimp \nec \rho(\gamma)$}
@@ -1530,7 +1555,7 @@ $$
 
 \AXC{Axiom \ref{A:A4}} \dashedLine
 \UIC{$P(\rho)\imp \nec P(\rho)$} \RightLabel{$\imp_E$}
-\BIC{$[\subproof_{10}] \quad \nec P(\rho)$} %\RightLabel{$\imp_E$}
+\BIC{$[\subproof_{12}] \quad \nec P(\rho)$} %\RightLabel{$\imp_E$}
 \end{prooftree}
 
 
@@ -1550,10 +1575,10 @@ $$
 \UIC{$\nec \forall y.(G(y) \imp \rho(y))$} \RightLabel{$\imp_I^3$}
 \UIC{$\nec P(\rho)\imp \nec \forall y .(G(y)\imp \rho(y))$} 
 
-\AXC{$\subproof_{10}$} \dashedLine
+\AXC{$\subproof_{12}$} \dashedLine
 \UIC{$\nec P(\rho)$}\RightLabel{$\imp_E$}
 \BIC{$\nec \forall y .(G(y)\imp \rho(y))$}\RightLabel{$\imp_I^4$}
-\UIC{$[\subproof_{11}] \qquad \nec\rho(\gamma) \imp \nec \forall y.(G(y) \imp \rho(y))$}\RightLabel{$\forall_I$}
+\UIC{$[\subproof_{13}] \qquad \nec\rho(\gamma) \imp \nec \forall y.(G(y) \imp \rho(y))$}\RightLabel{$\forall_I$}
 \end{prooftree}
 
 
@@ -1568,25 +1593,25 @@ $$
 \BIC{$P(G)\wedge \nec  \forall y. (G(y)\imp \varphi(y))$}\RightLabel{$\imp_E$}
 \AXC{Axiom \ref{A:A2}} 
 \BIC{$P(\varphi)$}
-\AXC{$\subproof_9$} \dashedLine 
+\AXC{$\subproof_{11}$} \dashedLine 
 \UIC{$  G(\gamma)$} \dottedLine \RightLabel{D\ref{A:D1}}
 \UIC{$ \all \varphi. (P(\varphi)\biimp \nec \varphi(\gamma))$}  \RightLabel{$\all_E$}
 \UIC{$ P(\varphi)\biimp \nec \varphi(\gamma)$}  \RightLabel{$\biimp_E$}
 \BIC{$ \nec \varphi(\gamma)$} \RightLabel{$\imp_I^5$}
-\UIC{$[\subproof_{12}] \quad \nec  \forall y. (G(y)\imp \varphi(y))\imp \nec \varphi(\gamma)$}
+\UIC{$[\subproof_{14}] \quad \nec  \forall y. (G(y)\imp \varphi(y))\imp \nec \varphi(\gamma)$}
 \end{prooftree}
 %\end{small}
 
 \begin{small}
 \begin{prooftree}
-\AXC{$\subproof_{11}$ and $\subproof_{12}$} \dashedLine \RightLabel{$\wedge_I$}
+\AXC{$\subproof_{13}$ and $\subproof_{14}$} \dashedLine \RightLabel{$\wedge_I$}
 \UIC{$\nec \varphi(\gamma)\biimp \nec  \forall y. (G(y)\imp \varphi(y)) $} \RightLabel{$\forall_I$}
 \UIC{$\forall \varphi. (\nec \varphi(\gamma)\biimp \nec  \forall y. (G(y)\imp \varphi(y))) $}
 \dottedLine \RightLabel{D\ref{A:D2}}
 \UIC{$\ess{G}{\gamma}$}
 \AXC{Axiom \ref{A5}} \dashedLine
 \UIC{$P(E)$}\dottedLine 
-\AXC{$\subproof_9$} \dashedLine
+\AXC{$\subproof_{11}$} \dashedLine
 \UIC{$G(\gamma)$}\dottedLine \RightLabel{D\ref{A:D1}}
 \UIC{$\forall \varphi.(P(\varphi) \biimp \nec \varphi(\gamma))$}\RightLabel{$\forall_E$}
 \UIC{$P(E) \biimp \nec E(\gamma)$}\RightLabel{$\biimp_E$}
@@ -1630,8 +1655,8 @@ H\'ajek \citep{hajek} claimed that Anderson's emendation makes Axioms 4 and 5 de
 \setcounter{corollary}{0}
 \setcounter{definition}{0}
 
-In order to construct a natural deduction proof of theorem \ref{A:T3} using only Anderson's axioms \ref{A:A1}, \ref{A:A2} and \ref{A:A3} as well as Anderson's Definition \ref{A:D1}, it suffices to modify 
-the proof of Lemma \ref{A:L1}, which is the only part of the argument that depended on axioms \ref{A:A4} and \ref{A:A5} and definitions \ref{A:D2} and \ref{A:D3}. The modified proof is shown below. 
+In order to construct a natural deduction proof of theorem \ref{A:T3} using only Anderson's Axioms \ref{A:A1}, \ref{A:A2} and \ref{A:A3} as well as Anderson's Definition \ref{A:D1}, it suffices to modify 
+the proof of Lemma \ref{A:L1}, which is the only part of the argument that depended on Axioms \ref{A:A4} and \ref{A:A5} and Definitions \ref{A:D2} and \ref{A:D3}. The modified proof is shown below. 
 
 
 \begin{lemma}
@@ -1667,7 +1692,7 @@ $$
 
 
 \noindent
-Proofs of other lemmas, theorems and corollaries remain the same as in the previous section. Theorem \ref{A:T1} is derived from Axioms \ref{A:A1} and \ref{A:A2}. Corollary \ref{A:C1} is derived from Axiom \ref{A:A3} and Theorem \ref{A:T1}. Finally, Theorem \ref{A:T3} can be derived from Corollary \ref{A:C1} and Lemma \ref{A:L1}, which, as shown above, depends only on Axiom \ref{A:A3} and Definition \ref{A:D1}. Therefore, confirming H\'ajek's claim, axioms \ref{A:A4} and \ref{A:A5} and definitions \ref{A:D2} and \ref{A:D3} are superfluous: they are not needed to prove Theorem \ref{A:T3}. 
+Proofs of other lemmas, theorems and corollaries remain the same as in the previous section. Theorem \ref{A:T1} is derived from Axioms \ref{A:A1} and \ref{A:A2}. Corollary \ref{A:C1} is derived from Axiom \ref{A:A3} and Theorem \ref{A:T1}. Finally, Theorem \ref{A:T3} can be derived from Corollary \ref{A:C1} and Lemma \ref{A:L1}, which, as shown above, depends only on Axiom \ref{A:A3} and Definition \ref{A:D1}. Therefore, confirming H\'ajek's claim, Axioms \ref{A:A4} and \ref{A:A5} and Definitions \ref{A:D2} and \ref{A:D3} are superfluous: they are not needed to prove Theorem \ref{A:T3}. 
 
 
 
@@ -1682,7 +1707,7 @@ Anderson's change in the definition of essence adds an extra box modality, which
 \UIC{$\all y.(G(y) \imp \all \psi. (\nec \psi(y) \biimp \nec \all x. (G(x) \imp \psi(x))))$} \doubleLine
 %\UIC{$\all y.(G(y) \imp (\nec A(y) \biimp \nec \all x. (G(x) \imp A(x))))$} \RightLabel{$A$ is constant}
 \UIC{$\all y.(G(y) \imp (\nec A \biimp \nec \all x. (G(x) \imp A)))$} \doubleLine
-\UIC{$[\subproof_{13}] \qquad \ex y.G(y) \imp (\nec A \biimp \nec \all x. (G(x) \imp A))$}
+\UIC{$[\subproof_{15}] \qquad \ex y.G(y) \imp (\nec A \biimp \nec \all x. (G(x) \imp A))$}
 \end{prooftree}
 \end{small}
 
@@ -1690,7 +1715,7 @@ Anderson's change in the definition of essence adds an extra box modality, which
 
 \begin{small}
 \begin{prooftree}
-\AXC{$ \subproof_{13} $}\dashedLine
+\AXC{$ \subproof_{15} $}\dashedLine
 \UIC{$\ex y.G(y) \imp (\nec A \biimp \nec \all x. (G(x) \imp A))$}
 \AXC{Theorem 3}\dashedLine
 \UIC{$\nec \ex y.G(y)$} \RightLabel{$\nec_E$}
@@ -1723,7 +1748,7 @@ The exchange of the implication in Scott's definition of essence for an equivale
 \setcounter{corollary}{0}
 
 
-Bj{\o}rdal's variant \citep{bjordal,fuhrmann} is another solution to the Modal Collapse. In striking contrast to other variants, Bj\o rdal's axiomatization takes god-likeness ($G_B$) as a primitive notion, upon which the notion of positive property is defined. This variant also significantly reduces the number of necessary axioms. Scott's variants of Axioms 2, 3 and 4 become unnecessary to prove the final theorem from Bj{\o}rdal's modified definitions 1, 2 and 3 and axioms 1 and 5.
+Bj{\o}rdal's variant \citep{bjordal,fuhrmann} is another solution to the Modal Collapse. In striking contrast to other variants, Bj\o rdal's axiomatization takes god-likeness ($G_B$) as a primitive notion, upon which the notion of positive property is defined. This variant also significantly reduces the number of necessary axioms. Scott's variants of Axioms 2, 3 and 4 become unnecessary to prove the final theorem from Bj{\o}rdal's modified Definitions 1, 2 and 3 and Axioms 1 and 5.
 
 
 \setcounter{definition}{0}
@@ -1847,17 +1872,18 @@ $$
 \begin{small}
 \begin{prooftree}
 \AXC{$ $} \RightLabel{$2$}
+\UIC{$\ex x.G_B(x) $} \RightLabel{ $\ex_E$}
 \UIC{$G_B(x) $} 
 \AXC{$ $}\doubleLine
 \UIC{$\nec \all x. (G_B(x) \imp G_B(x)) $}\RightLabel{ D\ref{B:D1}}\dottedLine
 \UIC{$P_B(G_B) $}\RightLabel{ $\wedge_I$}
-\BIC{$[\subproof_{14}] \qquad G_B(x) \wedge P_B(G_B) $}
+\BIC{$[\subproof_{16}] \qquad G_B(x) \wedge P_B(G_B) $}
 \end{prooftree}
 \end{small}
 
 \begin{small}
 \begin{prooftree}
-\AXC{$ \subproof_{14} $}\dashedLine
+\AXC{$ \subproof_{16} $}\dashedLine
 \UIC{$G_B(x) \wedge P_B(G_B) $}
 \AXC{$ $}\RightLabel{ $1$}
 \UIC{$(\psi(x) \wedge P_B (\psi))$} \RightLabel{ $\wedge_E$}
@@ -1866,7 +1892,7 @@ $$
 \UIC{$(\psi(x) \wedge P_B (\psi))\imp \nec\all y.(G_B(y) \imp \psi(y))$}\RightLabel{ $\forall_I$}
 \UIC{$\all\psi.((\psi(x) \wedge P_B (\psi)) \imp \nec\all y.(G_B(y) \imp \psi(y)))$} \RightLabel{ $\wedge_I$}
 \BIC{$G_B(x) \wedge P_B(G_B) \wedge \all\psi.((\psi(x) \wedge P_B (\psi)) \imp \nec\all y.(G_B(y) \imp \psi(y))) $} \RightLabel{ D\ref{B:D2} }\dottedLine
-\UIC{$[\subproof_{15}] \qquad \MCP(G_B, x) $} 
+\UIC{$[\subproof_{17}] \qquad \MCP(G_B, x) $} 
 
 \end{prooftree}
 \end{small}
@@ -1881,13 +1907,14 @@ $$
 \UIC{$\all x. (G_B(x) \imp \all\varphi. (\MCP(\varphi, x) \imp \nec \ex y.\varphi(y)))$}  \RightLabel{ $\forall_E$}
 \UIC{$ (G_B(x) \imp \all\varphi. (\MCP(\varphi, x) \imp \nec \ex y.\varphi(y)))$}
 \AXC{$ $} \RightLabel{ $2$}
+\UIC{$\ex x.G_B(x) $}\RightLabel{ $\ex_E$}
 \UIC{$G_B(x) $}  \RightLabel{ $\imp_E$}
 \BIC{$\all\varphi. (\MCP(\varphi, x) \imp \nec \ex y.\varphi(y))$} \RightLabel{ $\forall_E$}
 \UIC{$(\MCP(G_B, x) \imp \nec \ex y.G_B(y))$}
-\AXC{$ \subproof_{15} $}\dashedLine
+\AXC{$ \subproof_{17} $}\dashedLine
 \UIC{$\MCP(G_B, x) $} \RightLabel{ $\imp_E$}
 \BIC{$\nec \ex y.G_B(y)$}\RightLabel{ $\imp_I^2$}
-\UIC{$G_B(x) \imp \nec \ex y.G_B(y)$}
+\UIC{$\ex x.G_B(x) \imp \nec \ex y.G_B(y)$}
 \end{prooftree}
 \end{small}
 \end{proof}
