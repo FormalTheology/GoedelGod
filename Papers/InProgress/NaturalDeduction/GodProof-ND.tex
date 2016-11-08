@@ -134,7 +134,7 @@ A major criticism against G\"odel's argument is an undesirable consequence of th
 
 An early unpublished draft of Section \ref{sec:newproof} of this paper,
 prepared by Woltzenlogel Paleo in March 2013, served as the starting
-point for two distinct but complementary research endeavours. Siders
+point for two distinct but complementary research endeavours. Kanckos
 and Woltzenlogel Paleo transformed that early draft into this paper,
 aiming for human-readable and yet formal natural deduction proofs.
 Benzm\"uller and Woltzenlogel Paleo, on the other hand, focused on the
@@ -146,7 +146,7 @@ Intelligence \citep{ECAI2014} and, two years later, a detailed
 analysis of an inconsistency found in G\"odel's axioms was published
 in the International Joint Conference on Artificial Intelligence
 \citep{IJCAI2016}. The automatic verification of variants by Anderson,
-Bjordal and H\'ajek were presented in the First
+Bj\o rdal and H\'ajek were presented in the First
 World Congress on Logic and Religion
 \citep{WorldCongressLogicAndReligion} and published in
 \citep{controversy} and results related to the modal
@@ -221,7 +221,7 @@ In every inference rule, (sub)formulas in the conclusion correspond\footnote{Thi
 
 \newcommand{\subproof}{\star}
 
-Applications of the $\beta$ rule are silently ommitted. Double lines are used to abbreviate propositional reasoning steps when they are tedious and too space-consuming. Dashed lines are used to refer to an axiom or theorem with the proof shown elsewhere. When proof trees are too large to fit on the page, some branches may be displayed separately. In such cases, the conclusion of the branch and the location in the main proof tree where the branch belongs are annotated with the same symbol (a subscripted $\subproof$). Dotted lines are used to indicate folding and unfolding of definitions. Furthermore, as it is inconvenient to draw boxes around large derivations in \LaTeX, formulas inside boxes are labeled with the names of the boxes surrounding them. Therefore, the boxes can be omitted without loss of information. 
+Applications of the $\beta$ rule are silently omitted. Double lines are used to abbreviate propositional reasoning steps when they are tedious and too space-consuming. Dashed lines are used to refer to an axiom or theorem with the proof shown elsewhere. When proof trees are too large to fit on the page, some branches may be displayed separately. In such cases, the conclusion of the branch and the location in the main proof tree where the branch belongs are annotated with the same symbol (a subscripted $\subproof$). Dotted lines are used to indicate folding and unfolding of definitions. Furthermore, as it is inconvenient to draw boxes around large derivations in \LaTeX, formulas inside boxes are labeled with the names of the boxes surrounding them. Therefore, the boxes can be omitted without loss of information. 
 
 The calculus having only the rules shown in Figures \ref{fig:PropositionalRules}, \ref{fig:Classical}, \ref{fig:QuantifierRules} and \ref{fig:ReductionRules} is named \ND. This calculus is essentially the same as the simplest natural deduction calculus in the family of calculi discussed in \citep{BenzmuellerBrownKohlhase}. The main difference is that they take disjunction as a primitive connective instead of conjunction, and they use a sequent notation, where the assumptions are listed in the left side of the sequent. The calculus with the new rules for modal operators shown in Figure \ref{fig:NDK} is named \NDK.
 
@@ -671,7 +671,7 @@ In this section we present a detailed formalization of Scott's proof in the natu
 
 Scott's version of G\"odel's proof depends on five axioms that circumscribe the notion of \emph{positive} property, with positivity being denoted by the undefined second-order predicate symbol $P$. Additionally, three definitions are used for establishing the notions of \emph{God-like}, \emph{essence} and \emph{necessary existence}. Technically, these definitions only abbreviate certain complex formulas. The argument would still go through if all defined symbols were replaced by the complex formulas they define. This observation is particularly relevant in the case of \emph{necessary existence}. Since this notion of ``existence'' is just an abbreviation, G\"odel's argument is not susceptible to Kant's criticism against Anselm's argument (that existence should not be treated as a predicate). In G\"odel's proof, existence is properly denoted by the existential quantifier. It is, therefore, unfortunately misleading to refer to the defined predicate symbol $E$ as ``necessary existence'', when in fact it is just a convenient abbreviation.
 
-In addition to the five axioms and three definitions that pertain specifically to the argument, the proof also uses {\bf S5}'s iteration principle (in the proof of Lemma 2) and the lemma of reflexivity for equality (in the proof of Theorem 1). The use of reflexivity could be avoided, but we chose to use it because it allows the construction of a shorter proof. 
+In addition to the five axioms and three definitions that pertain specifically to the argument, the proof also uses {\bf S5}'s Iteration principle (in the proof of Lemma 2) and the lemma of reflexivity for equality (in the proof of Theorem 1). The use of reflexivity could be avoided, but we chose to use it because it allows the construction of a shorter proof. 
 
 
 \begin{axiom}
@@ -1300,7 +1300,7 @@ $$
 \end{proof}
 
 
-Lemma 2 also turns out to be a superfluous detour and therefore the new proof does not include it. Inspecting Scott's proof of Lemma 2, we see that an important step is the derivation of $\nec \ex x. G(x)$ from $\pos \nec \ex x. G(x)$ and {\bf S5}'s iteration principle. Instead, we can derive $\ex x. G(x)$ from $\pos \nec \ex x. G(x)$ and Brouwer's reduction theorem and then derive $\nec \ex x. G(x)$ from $\ex x. G(x)$ by the $\nec_I$ (necessitation) inference rule. This is precisely what the new proof of Theorem 3 does.
+Lemma 2 also turns out to be a superfluous detour and therefore the new proof does not include it. Inspecting Scott's proof of Lemma 2, we see that an important step is the derivation of $\nec \ex x. G(x)$ from $\pos \nec \ex x. G(x)$ and {\bf S5}'s Iteration principle. Instead, we can derive $\ex x. G(x)$ from $\pos \nec \ex x. G(x)$ and Brouwer's reduction theorem and then derive $\nec \ex x. G(x)$ from $\ex x. G(x)$ by the $\nec_I$ (necessitation) inference rule. This is precisely what the new proof of Theorem 3 does.
 
 
 \setcounter{theorem}{2}
@@ -1341,7 +1341,7 @@ $$
 \end{proof}
 
 
-Since the iteration principle requires the strong modal logic {\bf S5} while Brouwer's reduction principle requires only the much weaker modal logic {\bf KB},  the possibility of proving Theorem 3 using Brouwer's reduction principle instead of {\bf S5}'s iteration principle is philosophically profound. There have been many discussions of what modal axioms are needed for the ontological argument. In their manuscripts, G\"odel and Scott do not write explicitly which logic they use. However, a proof step in their notes clearly relies on {\bf S5}'s \emph{iteration principle}.
+Since the Iteration principle requires the strong modal logic {\bf S5} while Brouwer's reduction principle requires only the much weaker modal logic {\bf KB},  the possibility of proving Theorem 3 using Brouwer's reduction principle instead of {\bf S5}'s Iteration principle is philosophically profound. There have been many discussions of what modal axioms are needed for the ontological argument. In their manuscripts, G\"odel and Scott do not write explicitly which logic they use. However, a proof step in their notes clearly relies on {\bf S5}'s \emph{Iteration principle}.
 Anderson \citep[footnote 5]{and90} cites several articles questioning the adequacy of {\bf S5} for the ontological argument and conjectures that the ontological argument could be restricted to the weaker modal logic {\bf B}. Sobel \citep[p. 152]{sobel2} acknowledges Anderson's conjecture, claims that it is correct and tries to informally explain how his formal proofs could be modified to rely on {\bf B} instead of {\bf S5}. Nevertheless, neither Anderson nor Sobel presented any formal proof relying only on {\bf B}. The new formal proof presented in this section relies on {\bf KB}, which is weaker than {\bf B}. 
 
 Curiously, in the new proof of Theorem 3, the actual existence of a God-like being ($\ex x. G(x)$) is proven \emph{before} its necessity ($\nec \ex x. G(x)$). This contrasts with G\"odel's proof, where the actual existence is never actually proven (although it could, nevertheless, be derived as a trivial corollary by applying the modal Axiom T).
@@ -1529,7 +1529,7 @@ $$
 \end{axiom}
 
 
-Because of Anderson's emendations to Axiom 1 and Definitions 1 and 2, the proof of Lemma 1 has to be modified\footnote{Due to lack of space, the instantiation of Axiom \ref{A:A2} is ommitted in the emended proof of Lemma \ref{A:L1}.} as well.
+Because of Anderson's emendations to Axiom 1 and Definitions 1 and 2, the proof of Lemma 1 has to be modified\footnote{Due to lack of space, the instantiation of Axiom \ref{A:A2} is omitted in the emended proof of Lemma \ref{A:L1}.} as well.
 The proof shown below has been modified as little as possible. Interestingly, in order to eliminate 
 the extra box modality in Anderson's emended Definition \ref{A:D1}, the modified proof below uses the modal axiom T. 
 Likewise, to obtain the extra box in the emended Definition \ref{A:D2}, Axioms 2 and 3 were used.
@@ -1597,10 +1597,10 @@ $$
 \UIC{$P(G)$}
 \AXC{$ $} \RightLabel{5}
 \UIC{$\nec  \forall y. (G(y)\imp \varphi(y))$}\RightLabel{$\wedge_I$}
-\BIC{$P(G)\wedge \nec  \forall y. (G(y)\imp \varphi(y))$}\RightLabel{$\imp_E$}
+\BIC{$P(G)\wedge \nec  \forall y. (G(y)\imp \varphi(y))$}
 \AXC{Axiom \ref{A:A2}} \dashedLine
 \UIC{.} \doubleLine \RightLabel{$\all_E$ x 2}
-\UIC{.}
+\UIC{.}\RightLabel{$\imp_E$}
 \BIC{$P(\varphi)$}
 \AXC{$\subproof_{11}$} \dashedLine 
 \UIC{$  G(\gamma)$} \dottedLine \RightLabel{D\ref{A:D1}}
@@ -1946,7 +1946,7 @@ Adams, R. M. 1995. Introductory note to [G\"odel 1970].
 Anderson, C. A. 1990. {\itshape Some Emendations of G\"odel's Ontological Proof}. Faith and Philosophy, Vol. 7, Issue 3, pp. 291-303. 
 
 \bibitem[{\itshape Anderson \& Gettings (1996)}]{and}
-Anderson, C. A.\& Gettings, M. 1996.  {\itshape G\"odel's ontological proof revisited}. In: edited by Hajek P. {\itshape G\"odel '96},  Springer. 
+Anderson, C. A.\& Gettings, M. 1996.  {\itshape G\"odel's ontological proof revisited}. In: edited by H\'ajek P. {\itshape G\"odel '96},  Springer. 
 
 \bibitem[{\itshape Bentert \& Benzm\"uller \& Streit \& Woltzenlogel Paleo(2016)}]{LeibnizOntologicalProof}
 Bentert, M. \& Benzm\"uller, C. \& Streit, D. \& Woltzenlogel Paleo, B. 2016. {\itshape Analysis of an Ontological Proof Proposed by Leibniz}. [to appear in]  Death and Anti-Death, Volume 14: Four Decades after Michael Polanyi, Three Centuries after G. W. Leibniz. Ed. Tandy, C. Ria University Press. 
@@ -1955,7 +1955,7 @@ Bentert, M. \& Benzm\"uller, C. \& Streit, D. \& Woltzenlogel Paleo, B. 2016. {\
 Benzm\"uller, C. \& Brown C. \& Kohlhase, M. In: {\itshape Journal of Symbolic Logic}, Vol. 69, N. 4, pp. 1027--1088.
 
 \bibitem[{\itshape Benzm\"uller \& Weber \& Woltzenlogel Paleo(2015)}]{WorldCongressLogicAndReligion}
-Benzm\"uller, C. \& Weber, L. \& Woltzenlogel Paleo, B. 2015. {\itshape Computer-Assisted Analysis of the Anderson-Hajek Ontological Controversy}. Handbook of the 1st World Congress on Logic and Religion. Eds. Silvestre, R. S. \& B\'{e}ziau, J-Y. 
+Benzm\"uller, C. \& Weber, L. \& Woltzenlogel Paleo, B. 2015. {\itshape Computer-Assisted Analysis of the Anderson-H\'ajek Ontological Controversy}. Handbook of the 1st World Congress on Logic and Religion. Eds. Silvestre, R. S. \& B\'{e}ziau, J-Y. 
 
 \bibitem[{\itshape Benzm\"uller \& Weber \& Woltzenlogel Paleo(2017)}]{controversy}
 Benzm\"uller, C. \& Weber, L. \& Woltzenlogel Paleo, B. 2017. {\itshape Computer-Assisted Analysis of the Anderson-H\'ajek Ontological Controversy}. To appear in: {\itshape Logica Universalis} Volume 11, Issue 1. Eds. Silvestre, R. S. \& B\'{e}ziau, J-Y. Springer. pp. 1--11.
@@ -2022,8 +2022,8 @@ Gabbay, D. 1996. {\itshape Labelled Deductive Systems: volume I}. New York: Oxfo
 \bibitem[{\itshape G\"odel(1970)}]{Goedel} 
 G\"odel, K. Ontological Proof. In Kurt G\"odel Collected Works vol. III. Ed. Feferman, S. et al., pp. 403--404, 139, 145 or {\itshape Appendix A. Notes in Kurt G\"odel's hand} in [Sobel 2001]. 
 
-\bibitem[{\itshape Hajek(1996)}]{hajek}
-Hajek, P. 1996. Magari and others on G\"odel's Ontological Proof. Eds. Ursini et al. Logic and Logical Algebra, pp. 125--136, Marcel Dekker.
+\bibitem[{\itshape H\'ajek(1996)}]{hajek}
+H\'ajek, P. 1996. Magari and others on G\"odel's Ontological Proof. Eds. Ursini et al. Logic and Logical Algebra, pp. 125--136, Marcel Dekker.
 
 \bibitem[{\itshape Kant(1781)}]{kant}
 Kant, I.  original 1781. {\itshape Critique of Pure Reason}, J. M. Dent \& Sons LTD, edition from 1959.
