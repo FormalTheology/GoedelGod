@@ -43,7 +43,7 @@
 in a Natural Deduction Calculus}
 
 
-\author{Annika Kanckos \and Bruno Woltzenlogel Paleo}
+\author{Annika Kanckos \and Bruno Woltzenlogel Paleo\thanks{Author order is alphabetical by surname.}}
 
 \authorrunning{A.\~Kanckos \and B.\~Woltzenlogel Paleo}
 
@@ -60,7 +60,7 @@ in a Natural Deduction Calculus}
   Theory and Logic Group \\ 
   Vienna University of Technology \\ 
   Austria \\
-   \email{bruno@logic.at} \\
+   \email{bruno@logic.at}
   \and
     Bruno Woltzenlogel Paleo \at 
   Logic and Computation Group \\
@@ -88,8 +88,10 @@ in a Natural Deduction Calculus}
 
 
 \begin{abstract}
-This paper presents detailed formalizations of ontological arguments in a simple modal natural deduction calculus. The first formal proof closely follows the hints in Scott's manuscript about G\"odel's argument and fills in the gaps, thus verifying its correctness. The second formal proof improves the first one, by relying on the weaker modal logic {\bf KB} instead of the stronger modal logic {\bf S5}; and by avoiding the equality relation. The second proof is also technically shorter than the first one, because it eliminates unnecessary detours and uses Axiom 1 for the positivity of properties only once. The third and fourth proofs formalize, respectively, Anderson's and Bj{\o}rdal's variants of the ontological argument, which are known to be immune to modal collapse.
+This paper presents detailed formalizations of ontological arguments in a simple modal natural deduction calculus. The first formal proof closely follows the hints in Scott's manuscript about G\"odel's argument and fills in the gaps, thus verifying its correctness. The second formal proof improves the first one, by relying on the weaker modal logic {\bf KB} instead of {\bf S5} and by avoiding the equality relation. The second proof is also technically shorter than the first one, because it eliminates unnecessary detours and uses Axiom 1 for the positivity of properties only once. The third and fourth proofs formalize, respectively, Anderson's and Bj{\o}rdal's variants of the ontological argument, which are known to be immune to modal collapse.
 \end{abstract}
+
+\smallskip
 
 \noindent
 \textbf{Keywords: } Ontological Argument, Higher-Order Logics, Modal Logics, Natural Deduction.
@@ -118,15 +120,15 @@ Leibniz identified the possible existence of God as a critical missing step in S
 
 G\"odel built on Leibniz's work \citep{adams} and brought the ontological argument to a modern form using a modal logic with higher-order quantification over properties. In this setting, he gave precise axioms describing the notion of \emph{positive} property and defined God as a being that has all positive properties. G\"odel's work was saved in his own notes \citep{Goedel} as well as in notes by Scott \citep{scott}, to whom he confided his proof. 
 
-The increase in formality of the ontological argument has required a development of its basic notions. G\"odel's notion of positive property and Leibniz's notion of perfection differ. A formal distinction is that Leibniz's perfections are atomic whereas G\"odel's positive properties can consist of combinations of atomic properties \citep{fitting}[p.139]. In particular, one of G\"odel's axioms states that any conjunction of positive properties is itself positive. From this axiom, it is immediately deduced that the property of being God-like is positive. Intuitively, a (possibly infinite) conjunction of positive properties is deduced from the universal definition of God-likeness. This deductive inference is not formalizable in a finite first-order calculus. The interplay between universal quantification (in the definition of a God-like being) and infinite conjunctions (in G\"odel's axiom for positive properties) could explain why, starting with Scott \citep{scott}, this axiom of G\"odel has been replaced by another that simply assumes the positivity of the property of being god-like. 
+The increase in formality of the ontological argument has required a development of its basic notions. G\"odel's notion of positive property and Leibniz's notion of perfection differ. A formal distinction is that Leibniz's perfections are atomic whereas G\"odel's positive properties can consist of combinations of atomic properties \citep{fitting}[p.139]. In particular, one of G\"odel's axioms states that any conjunction of positive properties is itself positive. From this axiom, it is immediately deduced that the property of being God-like is positive. Intuitively, a (possibly infinite) conjunction of positive properties is deduced from the universal definition of God-likeness. This deductive inference is not formalizable in a finite first-order calculus. The interplay between universal quantification (in the definition of a God-like being) and infinite conjunctions (in G\"odel's axiom for positive properties) could explain why, starting with Scott \citep{scott}, this axiom of G\"odel has been replaced by another that simply states the positivity of the property of being god-like. 
 
-The aim of this paper is to present detailed formalizations of variants of ontological arguments in a natural deduction calculus. For a comprehensive introduction to natural deduction, the reader can consult \citep{prawitz} or \citep{gabbay}. The natural deduction calculus proposed and used in this paper is an extension of a standard natural deduction calculus for (non-modal) higher-order logic \citep{BenzmuellerBrownKohlhase} with new introduction and elimination rules for modal operators (as presented in Section \ref{sec:calculus}). This calculus is sound and complete relative to the non-modal calculus extended with Axiom K and the Necessitation rule (as demonstrated in Subsection \ref{sec:compl-sound}). There are many higher-order logics \citep{BenzmuellerBrownKohlhase} and higher-order modal logics \citep{Muskens}. The calculus proposed here can be regarded as a minimalistic calculus for a rigid higher-order modal logic {\bf K} without extensionality principles. With additional axioms for stronger modal logics, such as {\bf KB} and {\bf S5}, this calculus is sufficient to achieve the stated aim.
+The aim of this paper is to present detailed formalizations of variants of ontological arguments in a natural deduction calculus. For a comprehensive introduction to natural deduction, the reader can consult \citep{prawitz} or \citep{gabbay}. The natural deduction calculus proposed and used in this paper is an extension of a standard natural deduction calculus for (non-modal) higher-order logic \citep{BenzmuellerBrownKohlhase} with new introduction and elimination rules for modal operators (as presented in Section \ref{sec:calculus}). This calculus is sound and complete relative to the non-modal calculus extended with Axiom K and the Necessitation rule (as demonstrated in Subsection \ref{sec:compl-sound}). There are many higher-order logics \citep{BenzmuellerBrownKohlhase} and higher-order modal logics \citep{Muskens}. The calculus proposed here can be regarded as a minimalistic calculus for a rigid higher-order modal logic {\bf K} without extensionality principles. By adding axioms for stronger modal logics (e.g. {\bf KB} and {\bf S5}), this calculus is sufficient to achieve this paper's aim.
 
 The natural deduction style was chosen for four reasons. Firstly, presentations of G\"odel's proof are typically either informal or formalized in other styles of proof calculi (e.g. Fitting's tableaux \citep{fitting} or Sobel's sentential modal calculus \citep{sobel2}). Therefore, a formalization in natural deduction is a valuable complement to the existing presentations. Secondly, it makes the ontological proof accessible to people who are familiarized with the natural deduction style. Thirdly, as natural deduction is the style used by proof assistants such as Coq \citep{coq} and Isabelle \citep{isabelle}, natural deduction formalizations can be verified step-by-step in such proof assistants, and we have in fact done this \citep{CSRModalLogicInCoq}. And finally, in comparison to other kinds of proof systems (e.g. resolution, tableaux, sequent calculi), natural deduction can be considered less technical, more human-readable and more intuitive, because it relies on natural principles of reasoning such as modus ponens (implication elimination) and reasoning by assumption (implication introduction); these qualities are conducive to rendering the formalizations of ontological arguments accessible to a wider audience.
 
-The first main contribution of this paper is a detailed formalization of Scott's version \citep{scott} of G\"odel's ontological argument \citep{Goedel} (as shown in Section \ref{sec:scott}) in the proposed natural deduction calculus. The second main contribution of the paper is a new proof (shown in Section \ref{sec:newproof}), also in natural deduction style. In contrast to Scott's proof \citep{scott}, which requires the modal logic \textbf{S5}, the new proof requires only the weaker modal logic \textbf{KB}. The new proof also does not rely on the equality relation and is much shorter. Although there have been claims (as discussed in more detail in Section \ref{sec:newproof}) about the sufficiency of \textbf{KB} and the superfluousness of the equality relation, formal proofs substantiating these claims were missing up to now.
+The first main contribution of this paper is a detailed formalization of Scott's version \citep{scott} of G\"odel's ontological argument \citep{Goedel} (as shown in Section \ref{sec:scott}) in the proposed natural deduction calculus. The second main contribution of the paper is a new proof (shown in Section \ref{sec:newproof}), also in natural deduction style. In contrast to Scott's proof \citep{scott}, which requires the modal logic \textbf{S5}, the new proof requires only the weaker modal logic \textbf{KB}. The new proof also does not rely on the equality relation and is much shorter. Although there have been claims (as discussed in more detail in Section \ref{sec:newproof}) about the sufficiency of weaker modal logics and the superfluousness of the equality relation, formal proofs substantiating these claims were missing up to now.
 
-A major criticism against G\"odel's argument is an undesirable consequence of the stipulated axioms called \emph{modal collapse}. This is discussed in greater detail in Section \ref{sec:collapse}, where a natural deduction derivation of the collapse is presented. Many recent works on the ontological argument have proposed modifications of the argument that do not entail modal collapse. In this paper we present natural deduction formalizations of two of these solutions: Anderson's emendation (in Section \ref{sec:anderson}) and Bj{\o}rdal's variant (in Section \ref{sec:bjordal}).
+A major criticism against G\"odel's argument is an undesirable consequence of the stipulated axioms known as \emph{modal collapse}. This is discussed in greater detail in Section \ref{sec:collapse}, where a natural deduction derivation of the collapse is presented. Many recent works on the ontological argument have proposed modifications of the argument that do not entail modal collapse. In this paper we present natural deduction formalizations of two of these solutions: Anderson's emendation (in Section \ref{sec:anderson}) and Bj{\o}rdal's variant (in Section \ref{sec:bjordal}).
 
 \subsection{Related Work}
 
@@ -498,7 +500,7 @@ Without the restriction that every box must be accessed by exactly one strong mo
 
 This example proof is unsound according to the {\NDK} calculus, because the eigen-box condition is violated: the box labelled by $\omega$ is not accessed by any strong inference. 
 
-The straightforward combinations of the quantifier rules of {\ND} either with the modal rules of {\NDK} or with Axiom K and the necessitation rule are suitable for a higher-order modal logic where constants and variables are \emph{rigid}. From the point of view of a \emph{possible world semantics}, rigidity means that their interpretation is independent of the world in which they are being interpreted. Rigidity is tacitly assumed by most works investigating the ontological argument, and is explicitly assumed here. Nevertheless, it should be noted that its adequacy for the ontological argument has already been contested \citep{fitting}. Another assumption made here is that the quantification domains are constant (i.e. independent of the possible worlds). Neither G\"odel's manuscript nor Scott's manuscript reveal whether they use constant or varying domains, and this is also the case for many variants \citetext{e.g. \citealt{hajek}}. Nevertheless, some authors of variants of G\"odel's ontological argument do explicitly state a preference for varying domains. Our choice of constant domains is motivated by simplicity \citep[footnotes 11 and 14]{and90}. As is well-known, varying domain quantifiers (also known as \emph{actualistic} quantifiers) can be simulated by constant domain quantifiers (also known as \emph{possibilistic} quantifiers) guarded by a primitive \emph{existence} predicate\footnote{Formally, $\forall^e x. F[x] \equiv \forall x. E(x) \imp F[x]$ and $\exists^e x. F[x] \equiv \exists x. E(x) \wedge F[x]$.}; therefore, the formalization of ontological arguments with varying domain quantification would be feasible in the natural deduction calculus presented here as well.
+The straightforward combinations of the quantifier rules of {\ND} either with the modal rules of {\NDK} or with Axiom K and the necessitation rule are suitable for a higher-order modal logic where constants and variables are \emph{rigid}. From the point of view of a \emph{possible world semantics}, rigidity means that their interpretation is independent of the world in which they are being interpreted. Rigidity is tacitly assumed by most works investigating the ontological argument, and is explicitly assumed here. Nevertheless, it should be noted that its adequacy for the ontological argument has already been contested \citep{fitting}. Another assumption made here is that the quantification domains are constant (i.e. independent of the possible worlds). Neither G\"odel's manuscript nor Scott's manuscript reveal whether they use constant or varying domains, and this is also the case for many variants \citetext{e.g. \citealt{hajek}}. Nevertheless, some authors of variants of G\"odel's ontological argument do explicitly state a preference for varying domains \citep[footnotes 11 and 14]{and90}. Our choice of constant domains is motivated by simplicity. As is well-known, varying domain quantifiers (also known as \emph{actualistic} quantifiers) can be simulated by constant domain quantifiers (also known as \emph{possibilistic} quantifiers) guarded by a primitive \emph{existence} predicate\footnote{Formally, $\forall^e x. F[x] \equiv \forall x. E(x) \imp F[x]$ and $\exists^e x. F[x] \equiv \exists x. E(x) \wedge F[x]$.}; therefore, the formalization of ontological arguments with varying domain quantification would be feasible in the natural deduction calculus presented here as well.
 
 
 
@@ -667,9 +669,6 @@ $$
 
 In this section we present a detailed formalization of Scott's proof in the natural deduction calculus defined in Section \ref{sec:calculus}. The reasoning in Scott's manuscript has been reproduced step-by-step and reasoning gaps are completed by using the deduction steps considered most natural. All derived formulas that do appear in Scott's manuscript are marked with a $\dagger$ here. Unmarked formulas were derived in the process of filling the gaps between the marked formulas. 
 
-% ToDo: uncomment this post-acceptance: the journal uses double blind reviewing.
-%The formal natural deduction proof presented here was verified in the Coq proof assistant\footnote{\url{https://github.com/FormalTheology/GoedelGod/blob/master/Formalizations/Coq/GoedelGod_Scott.v}}. 
-
 Scott's version of G\"odel's proof depends on five axioms that circumscribe the notion of \emph{positive} property, with positivity being denoted by the undefined second-order predicate symbol $P$. Additionally, three definitions are used for establishing the notions of \emph{God-like}, \emph{essence} and \emph{necessary existence}. Technically, these definitions only abbreviate certain complex formulas. The argument would still go through if all defined symbols were replaced by the complex formulas they define. This observation is particularly relevant in the case of \emph{necessary existence}. Since this notion of ``existence'' is just an abbreviation, G\"odel's argument is not susceptible to Kant's criticism against Anselm's argument (that existence should not be treated as a predicate). In G\"odel's proof, existence is properly denoted by the existential quantifier. It is, therefore, unfortunately misleading to refer to the defined predicate symbol $E$ as ``necessary existence'', when in fact it is just a convenient abbreviation.
 
 In addition to the five axioms and three definitions that pertain specifically to the argument, the proof also uses {\bf S5}'s iteration principle (in the proof of Lemma 2) and the lemma of reflexivity for equality (in the proof of Theorem 1). The use of reflexivity could be avoided, but we chose to use it because it allows the construction of a shorter proof. 
@@ -803,6 +802,9 @@ $$
 \pos \ex x. G(x)
 $$
 \end{corollary}
+
+\clearpage
+
 \begin{proof} \hfill
 \begin{prooftree}
 \AXC{Axiom \ref{A3}} \dashedLine
@@ -1120,7 +1122,7 @@ $$
 
 Comparing this new proof of Theorem 1 with the proof of Theorem 1 indicated by G\"odel and Scott, it is noticeable that the new proof is significantly shorter. The key idea to obtain a shorter proof is to instantiate the second universally quantified property of Axiom 2 by $\lambda x. \neg \rho(x)$ instead of using the relation symbols $=$ or $\neq$ as G\"odel and Scott did. This eliminates the reliance of the ontological argument on the presence of $=$ and $\neq$ in the logical language. Furthermore, Axiom 2 is then needed only once.
 
-Although the simpler proof of Theorem 1 presented here was developed independently, it seems conceptually related to a possible simplification briefly described by Anderson \citep[footnote 2]{and90} and attributed by him to an anonymous referee. The simpler proof of Theorem 1 is not particularly special. In fact, it is probably the most likely proof that any well-trained logician would construct, if asked to derive Theorem 1 from Axioms 1 and 2 using methodical formal proof search techniques. Modern techniques usually rely on unification to compute or guess good instances for weakly quantified variables, and therefore they would never result in instantiations containing $=$ and $\neq$, which are symbols that do not appear anywhere in the axioms or in the theorems to be proved. We may wonder why G\"odel preferred to use those unusual instantiations. It might be an interesting question from a historical point of view, as it might suggest that there was an evolution in the way logicians construct formal proofs; or from a philosophical point of view, if G\"odel's preference was philosophically motivated.
+Although the simpler proof of Theorem 1 presented here was developed independently, it seems conceptually related to a possible simplification briefly described by Anderson \citep[footnote 2]{and90} and attributed by him to an anonymous referee. The simpler proof of Theorem 1 is not particularly special. In fact, it is probably the most likely proof that any well-trained logician would construct, if asked to derive Theorem 1 from Axioms 1 and 2 using methodical proof search techniques. Modern techniques usually rely on unification to compute or guess good instances for weakly quantified variables, and therefore they would never result in instantiations containing $=$ and $\neq$, which are symbols that do not appear anywhere in the axioms or in the theorems to be proved. We may wonder why G\"odel preferred to use those unusual instantiations. It might be an interesting question from a historical point of view, suggesting that there may have been an evolution in the way logicians construct formal proofs, or from a philosophical point of view, if G\"odel's preference was philosophically motivated.
 
 
 
@@ -1355,7 +1357,7 @@ $$
 A \biimp \pos A \biimp \nec A
 $$
 
-Below we show natural deduction derivations of the modal collapse, thereby confirming that it holds\footnote{It is well-known and uncontroversial that the modal collapse holds. We show a natural deduction proof here merely for the sake of self-containment and so that the proof becomes more accessible to readers who might be more familiarized with natural deduction than with Sobel's proof system.} for the axioms used in the previous sections. We show only the strongest implication above. The others are easy corollaries in modal logics where T holds. % ToDo: do we really need T?
+Below we show natural deduction derivations of the modal collapse, thereby confirming that it holds\footnote{It is well-known and uncontroversial that the modal collapse holds. We show a natural deduction proof here merely for the sake of self-containment and so that the proof becomes more accessible to readers who might be more familiarized with natural deduction than with Sobel's proof system.} for the axioms used in the previous sections. We show only the strongest implication above. The others are easy corollaries in modal logics where, for instance, $\nec A \imp \pos A$ or $\pos \top$ holds.
 
 \begin{theorem}
 \label{Collapse}
@@ -1527,7 +1529,7 @@ $$
 \end{axiom}
 
 
-Because of Anderson's emendations to Axiom 1 and Definitions 1 and 2, the proof of Lemma 1 has to be modified\footnote{Due to lack of space, the instantiation of Axiom \ref{A:A2} are ommitted in the emended proof of Lemma \ref{A:L1}.} as well.
+Because of Anderson's emendations to Axiom 1 and Definitions 1 and 2, the proof of Lemma 1 has to be modified\footnote{Due to lack of space, the instantiation of Axiom \ref{A:A2} is ommitted in the emended proof of Lemma \ref{A:L1}.} as well.
 The proof shown below has been modified as little as possible. Interestingly, in order to eliminate 
 the extra box modality in Anderson's emended Definition \ref{A:D1}, the modified proof below uses the modal axiom T. 
 Likewise, to obtain the extra box in the emended Definition \ref{A:D2}, Axioms 2 and 3 were used.
@@ -1928,13 +1930,11 @@ $$
 \end{proof}
 
 
-%ToDo: acknowledgements
-
 \section{Conclusions}
 
 The formal proofs presented here are short and accessible because of the choice of a natural deduction calculus. The new proof of section \ref{sec:newproof} shows explicitly that the weaker modal logic {\bf KB} is sufficient for the ontological argument. The stronger modal logic {\bf S5}, which is usually taken for granted in discussions of G\"odel's ontological argument, is not necessary. This weakening of the underlying logic confirms and strengthens a claim briefly mentioned by Anderson \citep[footnote 2]{and90}. {\bf KB} is also sufficient for the variants of Anderson and Bj{\o}rdal, which address Sobel's criticism of the modal collapse.
 
-\paragraph{Acknowledgements:} We thank Padre Edvaldo (from Piracicaba, Brazil) for assisting Bruno and his family in a moment of need. Gratitude for his assistance is what triggered the production of an initial draft of this article in early 2013. We are thankful to Christoph Benzm\"uller for collaborations on several related articles. This work was supported by an Stipendium of the \"Osterreichische Akademie der Wissenschaften (APART). 
+\paragraph{Acknowledgements:} We thank Padre Edvaldo (from Piracicaba, Brazil) for assisting Bruno and his family in a moment of need. Gratitude for his assistance is what triggered the production of an initial draft of this article in early 2013. We are thankful to Christoph Benzm\"uller for collaborations on several related articles. This work was supported by a Stipendium of the \"Osterreichische Akademie der Wissenschaften (APART). 
 
 
 \begin{thebibliography}{9}
