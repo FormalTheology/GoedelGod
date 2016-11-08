@@ -1527,7 +1527,9 @@ $$
 \end{axiom}
 
 
-Because of Anderson's emendations to Axiom 1 and Definition 1, the proof of Lemma 1 has to be modified as well. 
+Because of Anderson's emendations to Axiom 1 and Definition 1, the proof of Lemma 1 has to be modified as well.
+The proof shown below has been modified as little as possible. Interestingly, in order to eliminate 
+the extra box modality in Anderson's emended Definition D\ref{A:D1}, the modified proof below uses the modal axiom T.
 
 
 \begin{lemma}
@@ -1558,7 +1560,7 @@ $$
 \BIC{$[\subproof_{12}] \quad \nec P(\rho)$} %\RightLabel{$\imp_E$}
 \end{prooftree}
 
-
+\begin{small}
 \begin{prooftree}
 \AXC{$ $} \RightLabel{3}
 \UIC{$\nec P(\rho)$} \RightLabel{$\nec_E$}
@@ -1568,8 +1570,10 @@ $$
 \UIC{$\omega: \forall \varphi. (P(\lambda x.\varphi(x)) \biimp \nec \varphi(\gamma))$}\RightLabel{$\forall_E$}
 \UIC{$\omega: P(\rho) \biimp \nec \rho(y)$}\RightLabel{$\biimp_E$}
 \UIC{$\omega: P(\rho) \imp \nec \rho(y)$}\RightLabel{$\imp_E$}
-\BIC{$\omega: \nec \rho(y)$}\RightLabel{$\nec_E$}
-\UIC{$\omega: \rho(y)$} \RightLabel{$\imp_I^2$}
+\BIC{$\omega: \nec \rho(y)$}  
+    \AXC{$\omega:$ Axiom T} \dashedLine
+    \UIC{$\omega: \nec \rho(y) \imp \rho(y)$} \RightLabel{$\imp_E$}
+\BIC{$\omega: \rho(y)$} \RightLabel{$\imp_I^2$}
 \UIC{$\omega: G(y) \imp \rho(y)$}\RightLabel{$\forall_I$}
 \UIC{$\omega: \forall y.(G(y) \imp \rho(y))$}\RightLabel{$\nec_I$}
 \UIC{$\nec \forall y.(G(y) \imp \rho(y))$} \RightLabel{$\imp_I^3$}
@@ -1580,7 +1584,7 @@ $$
 \BIC{$\nec \forall y .(G(y)\imp \rho(y))$}\RightLabel{$\imp_I^4$}
 \UIC{$[\subproof_{13}] \qquad \nec\rho(\gamma) \imp \nec \forall y.(G(y) \imp \rho(y))$}\RightLabel{$\forall_I$}
 \end{prooftree}
-
+\end{small}
 
 
 %implication for equivalence in essence: 
@@ -1659,7 +1663,7 @@ H\'ajek \citep{hajek} claimed that Anderson's emendation makes Axioms 4 and 5 de
 \setcounter{definition}{0}
 
 In order to construct a natural deduction proof of theorem \ref{A:T3} using only Anderson's Axioms \ref{A:A1}, \ref{A:A2} and \ref{A:A3} as well as Anderson's Definition \ref{A:D1}, it suffices to modify 
-the proof of Lemma \ref{A:L1}, which is the only part of the argument that depended on Axioms \ref{A:A4} and \ref{A:A5} and Definitions \ref{A:D2} and \ref{A:D3}. The modified proof is shown below. 
+the proof of Lemma \ref{A:L1}, which is the only part of the argument that depended on Axioms \ref{A:A4} and \ref{A:A5} and Definitions \ref{A:D2} and \ref{A:D3}. The modified proof is shown below. In contrast to the previous proof, the shorter proof does not use the modal axiom T. Therefore, modal logic \textbf{KB} is sufficient for Anderson's emendation as well.
 
 
 \begin{lemma}
@@ -1927,7 +1931,7 @@ $$
 
 \section{Conclusions}
 
-The formal proofs presented here are short and accessible because of the choice of a natural deduction calculus. The new proof of section \ref{sec:newproof} shows explicitly that the weaker modal logic {\bf KB} is sufficient for the ontological argument. The stronger modal logic {\bf S5}, which is usually taken for granted in discussions of G\"odel's ontological argument, is not necessary. This weakening of the underlying logic confirms a claim briefly mentioned by Anderson \citep[footnote 2]{and90}. {\bf KB} is also sufficient for the variants of Anderson and Bj{\o}rdal, which address Sobel's criticism of the modal collapse.
+The formal proofs presented here are short and accessible because of the choice of a natural deduction calculus. The new proof of section \ref{sec:newproof} shows explicitly that the weaker modal logic {\bf KB} is sufficient for the ontological argument. The stronger modal logic {\bf S5}, which is usually taken for granted in discussions of G\"odel's ontological argument, is not necessary. This weakening of the underlying logic confirms and strengthens a claim briefly mentioned by Anderson \citep[footnote 2]{and90}. {\bf KB} is also sufficient for the variants of Anderson and Bj{\o}rdal, which address Sobel's criticism of the modal collapse.
 
 \paragraph{Acknowledgements:} We thank Padre Edvaldo (from Piracicaba, Brazil) for assisting Bruno and his family in a moment of need. Gratitude for his assistance is what triggered the production of an initial draft of this article in early 2013. We are thankful to Christoph Benzm\"uller for collaborations on several related articles. This work was supported by an Stipendium of the \"Osterreichische Akademie der Wissenschaften (APART). 
 
