@@ -1527,9 +1527,10 @@ $$
 \end{axiom}
 
 
-Because of Anderson's emendations to Axiom 1 and Definition 1, the proof of Lemma 1 has to be modified as well.
+Because of Anderson's emendations to Axiom 1 and Definitions 1 and 2, the proof of Lemma 1 has to be modified\footnote{Due to lack of space, the instantiation of Axiom \ref{A:A2} are ommitted in the emended proof of Lemma \ref{A:L1}.} as well.
 The proof shown below has been modified as little as possible. Interestingly, in order to eliminate 
-the extra box modality in Anderson's emended Definition D\ref{A:D1}, the modified proof below uses the modal axiom T.
+the extra box modality in Anderson's emended Definition \ref{A:D1}, the modified proof below uses the modal axiom T. 
+Likewise, to obtain the extra box in the emended Definition \ref{A:D2}, Axioms 2 and 3 were used.
 
 
 \begin{lemma}
@@ -1596,8 +1597,8 @@ $$
 \UIC{$\nec  \forall y. (G(y)\imp \varphi(y))$}\RightLabel{$\wedge_I$}
 \BIC{$P(G)\wedge \nec  \forall y. (G(y)\imp \varphi(y))$}\RightLabel{$\imp_E$}
 \AXC{Axiom \ref{A:A2}} \dashedLine
-\UIC{\ldots\footnote{The formulas are ommitted here due to lack of space.}} \doubleLine \RightLabel{$\all_E$ x 2}
-\UIC{\ldots}
+\UIC{.} \doubleLine \RightLabel{$\all_E$ x 2}
+\UIC{.}
 \BIC{$P(\varphi)$}
 \AXC{$\subproof_{11}$} \dashedLine 
 \UIC{$  G(\gamma)$} \dottedLine \RightLabel{D\ref{A:D1}}
