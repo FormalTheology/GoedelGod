@@ -1592,7 +1592,7 @@ $$
 \UIC{$\nec  \forall y. (G(y)\imp \varphi(y))$}\RightLabel{$\wedge_I$}
 \BIC{$P(G)\wedge \nec  \forall y. (G(y)\imp \varphi(y))$}\RightLabel{$\imp_E$}
 \AXC{Axiom \ref{A:A2}} \dashedLine
-\UIC{\ldots\footnote{The formulas are ommitted here due to lack fo space.}} \doubleLine \RightLabel{$\all_E$ x 2}
+\UIC{\ldots\footnote{The formulas are ommitted here due to lack of space.}} \doubleLine \RightLabel{$\all_E$ x 2}
 \UIC{\ldots}
 \BIC{$P(\varphi)$}
 \AXC{$\subproof_{11}$} \dashedLine 
@@ -1606,8 +1606,9 @@ $$
 
 \begin{small}
 \begin{prooftree}
-\AXC{$\subproof_{13}$ and $\subproof_{14}$} \dashedLine \RightLabel{$\wedge_I$}
-\UIC{$\nec \varphi(\gamma)\biimp \nec  \forall y. (G(y)\imp \varphi(y)) $} \RightLabel{$\forall_I$}
+\AXC{$\subproof_{13}$}
+\AXC{$\subproof_{14}$} \RightLabel{$\wedge_I$}
+\BIC{$\nec \varphi(\gamma)\biimp \nec  \forall y. (G(y)\imp \varphi(y)) $} \RightLabel{$\forall_I$}
 \UIC{$\forall \varphi. (\nec \varphi(\gamma)\biimp \nec  \forall y. (G(y)\imp \varphi(y))) $}
 \dottedLine \RightLabel{D\ref{A:D2}}
 \UIC{$\ess{G}{\gamma}$}
@@ -1676,7 +1677,7 @@ $$
 \UIC{$G(\gamma)$}  \dottedLine \RightLabel{D\ref{D1}}
 \UIC{$\forall \varphi. (P(\lambda x.\varphi(x)) \biimp \nec \varphi(\gamma))$}\RightLabel{$\forall_E$}
 \UIC{$P(G) \biimp \nec G(\gamma)$} \RightLabel{$\biimp_E$}
-\AXC{Axiom \ref{A:A3}} \RightLabel{}
+\AXC{Axiom \ref{A:A3}} \dashedLine \RightLabel{}
 \UIC{$P(G)$} \RightLabel{$\biimp_E$}
 \BIC{$\nec G(\gamma)$}
 \AXC{$ $} \RightLabel{1}
