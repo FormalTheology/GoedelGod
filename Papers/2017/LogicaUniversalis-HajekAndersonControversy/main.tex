@@ -141,26 +141,39 @@ We present an exemplary study in \emph{Computational Metaphysics},
 which is an emerging, interdisciplinary field aiming at the rigorous
 formalisation and deep logical assessment of rational, philosophical
 arguments on the computer.  The particular focus here is on the
-ontological argument for the existence of God. More precisely, we
-further expand our studies on modern (modal) variants of the
-ontological argument that are essentially emendations of Kurt Gödel's
-seminal contribution \citep{GoedelNotes}, respectively, Dana Scott's
-variant of it \cite{ScottNotes}. In related experiments
-\citep{C55,C40,J30}, we have already demonstrated that our technology
-is suited not only to formally assess the logical quality of the
-presented arguments, but it may even generate new knowledge about
-it. For example, the theorem prover Leo-II \cite{Leo-II} detected an
-inconsistency in Gödel's original variant \citep{GoedelNotes} of the
-argument, which is not the case for Scott \citep{ScottNotes}.  
-We here assume some familiarity with these related experiments. 
+ontological argument for the existence of God.  While related work
+\citep{oppenheimer11,rushby13} has concentrated on Anselm's simpler original
+version of the ontological argument and formalized it in classical
+predicate logic, we here focus on modern variants of it requiring
+higher-order modal logic. More precisely, the variants studied here are
+all emendations of Kurt Gödel's seminal contribution
+\citep{GoedelNotes}, respectively, Dana Scott's variant of it
+\cite{ScottNotes} (cf. Fig.~\ref{fig:Goedel}). 
 
-The particular motivation and context for work presented in this
-article is as follows: The axioms in G\"odel's ontological proof
-\citep{GoedelNotes,ScottNotes} (cf. Fig. \ref{fig:Goedel}) entail what
-is called \emph{modal collapse} \citep{Sobel1987,SobelBook2004}: the
-formula $\varphi \rightarrow \Box \varphi$, abbreviated as MC, holds
-for any formula $\varphi$ and not just for
-$\exists x. \mathit{God}(x)$ as intended.
+In preceding experiments \citep{C55,C40,J30}, we have already
+demonstrated that the technology we employ is well suited for the
+task. In fact, computers may even contribute philosophically relevant
+new knowledge. For example, the theorem prover Leo-II \cite{Leo-II}
+detected an inconsistency in Gödel's original script
+\citep{GoedelNotes} of the argument, which was undetected by
+philosophers before.  This inconsistency obviously renders Gödel's
+original version of the argument as pointless.  However, as our
+preceding experiments also confirmed, Scott's variant
+\citep{ScottNotes} from Fig.~\ref{fig:Goedel} is immune to this
+issue.\footnote{Gödel avoids the first conjunct $\varphi(x)$ in the
+  definition of \emph{essence (D2)}, which Scott added for cosmetic
+  reason. However, as Leo-II detected, one can prove from Gödel's
+  definition that the empty property becomes an essence of every
+  individual, which, together with theorem T1, axiom A5 and the
+  defintion of \emph{necessary existence (D3)} causes the
+  inconsistency. For more details see \citet{C55}.} Hence, in the
+remainder of this article the term \emph{Gödel's ontological argument}
+actually refers to Scott's variant of it, whose soundness has been
+formally 
+verified with our technology (for logics entailing higher-order modal
+logic KB with constant domain or varying domain semantics). We here
+assume some familiarity with these related experiments and papers.
+
 \begin{figure}[t]
 \noindent \framebox[\columnwidth][r]{
 \begin{minipage}{.94\columnwidth}\small
@@ -200,10 +213,22 @@ $\exists x. \mathit{God}(x)$ as intended.
 } \vskip-.5em
 \caption{Scott's version of G\"odel's ontological argument\label{fig:Goedel}}
 \end{figure}
-This fact, which has been confirmed with higher-order automated
-theorem provers \citep{C40,J30} in our previous experiments, has led
-to strong criticism of the argument and stimulated attempts to remedy
-the problem.
+
+The particular motivation and context for the work presented in the given
+article is as follows: It is well known that the axioms in G\"odel's
+ontological proof (cf. Fig. \ref{fig:Goedel}) entail what is called
+\emph{modal collapse} \citep{Sobel1987,SobelBook2004}. This means that
+the formula $\varphi \rightarrow \Box \varphi$, abbreviated as MC,
+holds for any formula $\varphi$ and not just for
+$\exists x. \mathit{God}(x)$ as intended.  Hence, contingent truth
+implies necessary truth, or, in other words, there are no unnecessary
+contingent truths. In fact, one may even go as far and interpret MC as a result
+against free will.
+%
+The fact that MC follows from Gödel's axioms, which has also been
+confirmed with higher-order automated theorem provers in our previous
+experiments \citep{C40,J30}, has led to strong criticism of the
+argument and stimulated attempts to remedy the problem.
 \citet{Hajek_Magari_and_others_1996,Hajek_der_Mathematiker_2001}
 proposed the use of cautious instead of full comprehension principles,
 and \citet{fitting02:_types_tableaus_god} took greater care of the
@@ -212,62 +237,90 @@ modalities. Others, such as
 \citet{anderson90:_some_emend_of_goedel_ontol_proof},
 \citet{Hajek2002} and \citet{bjordal99}, proposed emendations of
 G\"odel's axioms and definitions. They require neither comprehension
-restrictions nor more complex semantics. Therefore, they are
-technically simpler to analyze with computer support. We have
-formalized those using the proof assistant Isabelle/HOL
+restrictions nor more complex semantics and are therefore technically
+simpler to analyze with computer support. Hence, we here concentrate
+on the latter emendations of Gödel's argument and leave the former
+ones for future work.  Again, familiarity with the papers by
+\citet{anderson90:_some_emend_of_goedel_ontol_proof},
+\citet{Hajek2002} and \citet{bjordal99} is assumed, since we here are only
+briefly commenting/assessing various claims made in there.
+
+
+
+Our formalizations employ the embedding of higher-order modal logic
+(HOML) in classical higher-order logic (HOL) as introduced in previous
+work \citep{C40,J23} as enabling technology.  We explored the effect
+of different domain conditions on the provability of lemmas, theorems
+and even axioms.  This was motivated by a controversy between Hájek
+and Anderson regarding the redundancy of some axioms in Anderson's
+emendation. In \emph{constant domain semantics} (\emph{possibilist
+  notion of quantification}), the individual domains are the same in
+all possible worlds. In \emph{varying domain semantics}
+(\emph{actualist notion of quantification}), the domains may vary from
+world to world. The latter notion is technically encoded in our
+approach with the help of an existence relation expressing which
+individuals actually exist in each world. In other words, actualist
+quantification is formalized as possibilist quantification guarded by
+the existence relation.\footnote{EDNOTE: This part was
+  misleading/wrong before; I reworded it.} This technical solution
+enables us to flexibly switch between these different notions of
+quantification and to even mix them. When we mention varying
+domain semantics (actualist quantification) below, we in fact mean
+varying domain semantics for the domain of individuals only, while for
+the other types we still assume the standard constant domain semantics
+(possibilist quantification).  This is, to our best knowledge, in line 
+with the intention of the authors (it would of course be easily
+possible in our approach to study other combinations).  
+
+In our
+experiments we have utilized the proof assistant Isabelle/HOL
 \citep{Isabelle} together with the automated higher-order reasoners
-Leo-II \citep{Leo-II}, Satallax \citep{brown2012satallax}, Metis
-\citep{Hurd03first-orderproof}, and Nitpick \citep{Nitpick}.  Our
-formalizations employ the embedding of higher-order modal logic (HOML)
-in classical higher-order logic (HOL) as introduced in previous work
-\citep{C40,J23}. We explored the effect of different domain conditions
-on the provability of lemmas, theorems and even axioms.  This was
-motivated by a controversy between Hájek and Anderson regarding the
-redundancy of some axioms in Anderson's emendation. In \emph{constant
-  domain semantics}, the individual domains are the same in all
-possible worlds. In \emph{varying domain semantics}, the domains may
-vary from world to world. This variation is technically encoded with
-the help of an existence relation expressing which individuals
-actually exist in each world. Quantifiers are then uniformly
-formalized as \emph{actualistic quantifiers} (i.e. guarded by the
-existence relation). \footnote{EDNOTE: This is misleading statement;
-  we need to reword}
-Our main results, which we have presented at the
-1st World Congress on Logic and Religion \citep{C41}, are summarized
-below. The corresponding formalizations, containing all the details,
-are available in the subdirectories \url{Anderson}, \url{Hajek} and
-\url{Bjordal} at
+Leo-II \citep{Leo-II}, Satallax \citep{Satallax}, Metis
+\citep{Hurd03first-orderproof}, and Nitpick \citep{Nitpick}.
+
+Our main results, which we have
+presented at the 1st World Congress on Logic and Religion \citep{C41},
+are presented in more detail below. The corresponding formalizations,
+containing all the details, are available online: see the
+subdirectories \url{Anderson}, \url{Hajek} and \url{Bjordal} at
 \url{github.com/FormalTheology/GoedelGod/blob/master/Formalizations/Isabelle/}.
+\footnote{Ideally, Logica Universalis should provide means for
+  permanent storing of such additional material.}
 
 
 
-\section{Results from our Experiments}
-For all emendations and variants discussed here, the axioms and
+\section{Results of the Experiments}
+For \emph{all emendations and variants} discussed here, the axioms and
 definitions have been shown to be consistent and not to entail modal
 collapse. 
 
-\begin{samepage}
+Next, we address some controversially debated claims regarding the redundancy,
+superfluousness and independence of particular axioms in the
+investigated emendations and variants. Several novel findings are
+reported.
+
+%\begin{samepage}
 The following definitions of redundancy, superfluousness and independence are used throughout this paper:
 
 \begin{definition}
-An axiom $A$ is \textbf{redundant} w.r.t. a set of axioms $S$ iff $S$ entails $A$. 
+An axiom $A$ is \emph{redundant} w.r.t. a set of axioms $S$ iff $S$ entails $A$. 
 \end{definition}
 
 \begin{definition}
-An axiom $A$ is \textbf{superfluous} w.r.t. axiom set $S$ iff $S \setminus \{ A \}$ entails T3.
+An axiom $A$ is \emph{superfluous} w.r.t. axiom set $S$ iff $S \setminus \{ A \}$ entails T3.
 \end{definition}
 
 \begin{definition}
-  An axiom $A$ is \textbf{independent} of a set of axioms $S$ iff
+  An axiom $A$ is \emph{independent} of a set of axioms $S$ iff
   there are models of $S$ where $A$ is true and other models of
   $S$ where $A$ if false.
 \end{definition}
-\end{samepage}
+%\end{samepage}
 
 %\clearpage
 
-For both \textbf{constant domain semantics} and \textbf{varying domain
-semantics}, the following results hold for \emph{Anderson's
+For both {constant domain semantics} (possibilist quantification) and {varying domain
+semantics} (actualist quantification), the following results hold for \emph{Anderson's
 Emendation} (cf. Fig. \ref{fig:Anderson}): T1, C
 and T3$'$ can be quickly automated (in logics \K, \K and \KB,
 respectively); the axioms A4 and A5$'$ are proven redundant (the former in logic \KFourB and the latter
@@ -330,12 +383,12 @@ work\footnote{Although \citep{Hajek_der_Mathematiker_2001} precedes
 he claims (in Theorem 5.3) that for Anderson's emended theory
 \citep{anderson90:_some_emend_of_goedel_ontol_proof}, A4 and A5 are
 not only superfluous, but also redundant. \citet[footnote 1 in
-p.~1]{AndersonGettings}, in a footnote, rebutted Hájek's claim,
+p.~1]{AndersonGettings} rebutted Hájek's claim,
 arguing that the redundancy of A4 and A5 holds only under constant
 domain semantics, while Anderson's emended theory ought to be taken
 under Cocchiarella's semantics \citep{Cocchiarella} (a varying domain
 semantics). Our results show that Hájek was originally right, under
-both constant and varying domain semantics.
+both constant and varying domain semantics (for the domain of individuals).
 
 Nevertheless, \citet[p.~7]{Hajek2002} acknowledges Anderson's rebuttal,
 and apparently accepts it, as evidenced by his use\footnote{
@@ -575,11 +628,12 @@ varying domain semantics.
 
 \begin{figure}
 \begin{sideways}
-\includegraphics[width=1.2\textwidth]{Summary.png} (to be removed)
+%\includegraphics[width=1.2\textwidth]{Summary.png} \fbox{EDNOTE: to be removed}
 \end{sideways}
 %
 \begin{sideways}
-\scalebox{.9}{
+%\scalebox{.9}{
+\resizebox{19cm}{4.5cm}{
 \begin{tabular}{lccccccccccccc} 
 \toprule
 Investigated Variant & D1$'$ & A:A1$'$ & A2$'$ & A3$'$ & A4 & A4$'$ & H:A4 & A5 & A5$'$
@@ -621,17 +675,19 @@ to obtain the same results as humans, but using weaker modal logics.
 
 
 \section{Conclusion}
-Using our approach (semantical embeddings of variants of higher-order
-modal logics in classical higher-order logic), the formalization and
+Using our approach, that is, semantical embeddings of variants of higher-order
+modal logics in classical higher-order logic, the formalization and
 (partly) automated analysis of several variants of G\"odel's
 ontological argument has been surprisingly straightforward. The
-provers not only confirmed many claimed results, but also exposed a
+higher-order provers we employed not only confirmed many claimed results, but also exposed a
 few mistakes and novel insights in a long standing controversy.  We
 believe the technology employed in this work is ready to be fruitfully
-adopted in larger scale by philosophers. Moreover, the technology is
-by now means restricted to metaphysics or philosophy, and further work
+adopted in larger scale by philosophers.  Moreover, our approach is
+by no means restricted to metaphysics or philosophy, and further work
 includes similar applications in other areas, including, for example,
-law, politics and ethics. 
+law, politics and ethics. In fact, we claim, that our approach, at
+least to some degree, a realises Leibniz' dream of a characteristica universalis
+and calculus ratiocinator.
 
 
 
