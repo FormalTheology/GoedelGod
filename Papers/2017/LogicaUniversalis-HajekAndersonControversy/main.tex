@@ -136,12 +136,31 @@ Room HA0402, Favoritenstra{\ss}e 9, 1040 Wien, Austria
 %\tableofcontents
 
 
-\noindent The axioms in G\"odel's ontological proof
-\citep{GoedelNotes,ScottNotes} (cf. Fig. \ref{fig:Goedel}) entail what is called \emph{modal collapse}
-\citep{Sobel1987,SobelBook2004}: the formula $\varphi \rightarrow \Box
-\varphi$, abbreviated as MC, holds for any formula $\varphi$ and not
-just for $\exists x. \mathit{God}(x)$ as intended.
+\section{Introduction}
+We present an exemplary study in \emph{Computational Metaphysics},
+which is an emerging, interdisciplinary field aiming at the rigorous
+formalisation and deep logical assessment of rational, philosophical
+arguments on the computer.  The particular focus here is on the
+ontological argument for the existence of God. More precisely, we
+further expand our studies on modern (modal) variants of the
+ontological argument that are essentially emendations of Kurt Gödel's
+seminal contribution \citep{GoedelNotes}, respectively, Dana Scott's
+variant of it \cite{ScottNotes}. In related experiments
+\citep{C55,C40,J30}, we have already demonstrated that our technology
+is suited not only to formally assess the logical quality of the
+presented arguments, but it may even generate new knowledge about
+it. For example, the theorem prover Leo-II \cite{Leo-II} detected an
+inconsistency in Gödel's original variant \citep{GoedelNotes} of the
+argument, which is not the case for Scott \citep{ScottNotes}.  
+We here assume some familiarity with these related experiments. 
 
+The particular motivation and context for work presented in this
+article is as follows: The axioms in G\"odel's ontological proof
+\citep{GoedelNotes,ScottNotes} (cf. Fig. \ref{fig:Goedel}) entail what
+is called \emph{modal collapse} \citep{Sobel1987,SobelBook2004}: the
+formula $\varphi \rightarrow \Box \varphi$, abbreviated as MC, holds
+for any formula $\varphi$ and not just for
+$\exists x. \mathit{God}(x)$ as intended.
 \begin{figure}[t]
 \noindent \framebox[\columnwidth][r]{
 \begin{minipage}{.94\columnwidth}\small
@@ -181,42 +200,48 @@ just for $\exists x. \mathit{God}(x)$ as intended.
 } \vskip-.5em
 \caption{Scott's version of G\"odel's ontological argument\label{fig:Goedel}}
 \end{figure}
-
-This fact, which
-has recently been confirmed with higher-order automated theorem
-provers \citep{C40,J30}, has led to strong criticism of the argument
-and stimulated attempts to remedy the problem.
+This fact, which has been confirmed with higher-order automated
+theorem provers \citep{C40,J30} in our previous experiments, has led
+to strong criticism of the argument and stimulated attempts to remedy
+the problem.
 \citet{Hajek_Magari_and_others_1996,Hajek_der_Mathematiker_2001}
 proposed the use of cautious instead of full comprehension principles,
-and \citet{fitting02:_types_tableaus_god} took
-greater care of the semantics of higher-order quantifiers
-in the presence of modalities. Others, such as
-\citet{anderson90:_some_emend_of_goedel_ontol_proof}, \citet{Hajek2002}
-and \citet{bjordal99}, proposed emendations of G\"odel's
-axioms and definitions. They require neither comprehension
+and \citet{fitting02:_types_tableaus_god} took greater care of the
+semantics of higher-order quantifiers in the presence of
+modalities. Others, such as
+\citet{anderson90:_some_emend_of_goedel_ontol_proof},
+\citet{Hajek2002} and \citet{bjordal99}, proposed emendations of
+G\"odel's axioms and definitions. They require neither comprehension
 restrictions nor more complex semantics. Therefore, they are
 technically simpler to analyze with computer support. We have
-formalized those using the proof assistant Isabelle/HOL \citep{Isabelle}
-together with the automated higher-order reasoners Leo-II \citep{C26},
-Satallax \citep{brown2012satallax}, Metis
-\citep{Hurd03first-orderproof}, and Nitpick \citep{Nitpick}.   Our
-formalizations\footnote{The   formalizations are available in the
-subdirectories \url{Anderson}, \url{Hajek} and \url{Bjordal} at \url{gi
-thub.com/FormalTheology/GoedelGod/blob/master/Formalizations/Isabelle/
-}.} employ the embedding of higher-order modal logic (HOML) in
-classical higher-order logic (HOL) as introduced in previous work
-\citep{C40,J30,J23}. We explored the effect of different domain
-conditions on the provability of lemmas, theorems and even axioms.
-This was motivated by a controversy between Hájek and Anderson
-regarding the redundancy of some axioms in Anderson's emendation. In
-\emph{constant domain semantics}, the individual domains are the same
-in all possible worlds. In \emph{varying domain semantics}, the
-domains may vary from world to world. This variation is technically
-encoded with the help of an existence relation expressing which
-individuals actually exist in each world. Quantifiers are then
-uniformly formalized as \emph{actualistic quantifiers} (i.e. guarded by
-the existence relation). Our main results are summarized here.
+formalized those using the proof assistant Isabelle/HOL
+\citep{Isabelle} together with the automated higher-order reasoners
+Leo-II \citep{Leo-II}, Satallax \citep{brown2012satallax}, Metis
+\citep{Hurd03first-orderproof}, and Nitpick \citep{Nitpick}.  Our
+formalizations employ the embedding of higher-order modal logic (HOML)
+in classical higher-order logic (HOL) as introduced in previous work
+\citep{C40,J23}. We explored the effect of different domain conditions
+on the provability of lemmas, theorems and even axioms.  This was
+motivated by a controversy between Hájek and Anderson regarding the
+redundancy of some axioms in Anderson's emendation. In \emph{constant
+  domain semantics}, the individual domains are the same in all
+possible worlds. In \emph{varying domain semantics}, the domains may
+vary from world to world. This variation is technically encoded with
+the help of an existence relation expressing which individuals
+actually exist in each world. Quantifiers are then uniformly
+formalized as \emph{actualistic quantifiers} (i.e. guarded by the
+existence relation). \footnote{EDNOTE: This is misleading statement;
+  we need to reword}
+Our main results, which we have presented at the
+1st World Congress on Logic and Religion \citep{C41}, are summarized
+below. The corresponding formalizations, containing all the details,
+are available in the subdirectories \url{Anderson}, \url{Hajek} and
+\url{Bjordal} at
+\url{github.com/FormalTheology/GoedelGod/blob/master/Formalizations/Isabelle/}.
 
+
+
+\section{Results from our Experiments}
 For all emendations and variants discussed here, the axioms and
 definitions have been shown to be consistent and not to entail modal
 collapse. 
@@ -239,7 +264,7 @@ An axiom $A$ is \textbf{superfluous} w.r.t. axiom set $S$ iff $S \setminus \{ A 
 \end{definition}
 \end{samepage}
 
-\clearpage
+%\clearpage
 
 For both \textbf{constant domain semantics} and \textbf{varying domain
 semantics}, the following results hold for \emph{Anderson's
@@ -595,15 +620,18 @@ to obtain the same results as humans, but using weaker modal logics.
 \footnote{EDNOTE: What is the difference between - and empty cells?}
 
 
-
-Using our approach, the formalization and (partly) automated analysis
-of several variants of G\"odel's ontological argument has been
-surprisingly straightforward. The provers not only confirmed many
-claimed results, but also exposed a few mistakes and novel insights
-in a long standing controversy.
-We believe the technology employed in
-this work is ready to be fruitfully adopted in larger scale by
-philosophers.
+\section{Conclusion}
+Using our approach (semantical embeddings of variants of higher-order
+modal logics in classical higher-order logic), the formalization and
+(partly) automated analysis of several variants of G\"odel's
+ontological argument has been surprisingly straightforward. The
+provers not only confirmed many claimed results, but also exposed a
+few mistakes and novel insights in a long standing controversy.  We
+believe the technology employed in this work is ready to be fruitfully
+adopted in larger scale by philosophers. Moreover, the technology is
+by now means restricted to metaphysics or philosophy, and further work
+includes similar applications in other areas, including, for example,
+law, politics and ethics. 
 
 
 
