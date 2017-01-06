@@ -78,7 +78,7 @@ section {* Anderson's Simplification *}
   by (metis P_def)
 
   theorem  A4:  "[\<forall>(\<lambda>\<Phi>. (P \<Phi>) m\<rightarrow> \<box> (P \<Phi>))]"
-  by (metis P_def sym trans)
+  by (smt P_def sym trans)
 
 (*<*) 
 end
