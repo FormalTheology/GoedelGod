@@ -11,11 +11,11 @@ text {* This is the theory called AOE' in Section 4 of Hajek (2002)  *}
   consts P :: "(\<mu> \<Rightarrow> \<sigma>) \<Rightarrow> \<sigma>"  
 
   definition G :: "\<mu> \<Rightarrow> \<sigma>" where 
-            "G = (\<lambda>x. \<forall>(\<lambda>\<Phi>. (\<box> (\<Phi> x ))  m\<equiv>  ( \<exists>(\<lambda>\<Psi>.( (P \<Psi>) m\<and> (\<box> (\<forall>e(\<lambda>x. \<Psi> x m\<rightarrow> \<Phi> x))) )))  ))" 
+            "G = (\<lambda>x. \<^bold>\<forall>(\<lambda>\<Phi>. (\<^bold>\<box> (\<Phi> x ))  \<^bold>\<leftrightarrow>  ( \<^bold>\<exists>(\<lambda>\<Psi>.( (P \<Psi>) \<^bold>\<and> (\<^bold>\<box> (\<^bold>\<forall>\<^sup>E(\<lambda>x. \<Psi> x \<^bold>\<rightarrow> \<Phi> x))) )))  ))" 
 
   axiomatization where
-    A12:  "[\<forall>(\<lambda>\<Phi>. \<forall>(\<lambda>\<Psi>. ( (P \<Phi>) m\<and> \<box> (\<forall>e(\<lambda>x. \<Phi> x m\<rightarrow> \<Psi> x))) m\<rightarrow>  (m\<not> (P (\<lambda>y.( m\<not> (\<Psi> y)) ) ) )   ))]" and
-    A3:  "[P G]" 
+    A12:  "\<lfloor>\<^bold>\<forall>(\<lambda>\<Phi>. \<^bold>\<forall>(\<lambda>\<Psi>. ( (P \<Phi>) \<^bold>\<and> \<^bold>\<box> (\<^bold>\<forall>\<^sup>E(\<lambda>x. \<Phi> x \<^bold>\<rightarrow> \<Psi> x))) \<^bold>\<rightarrow>  (\<^bold>\<not> (P (\<lambda>y.( \<^bold>\<not> (\<Psi> y)) ) ) )   ))\<rfloor>" and
+    A3:  "\<lfloor>P G\<rfloor>" 
 
 
 subsection {* Consistency *}
@@ -28,13 +28,13 @@ subsection {* Provability of A1 *}
 
 text {* This appears as Lemma 3.1 in Section 4 of Hajek (2002) *} 
 
-  theorem A1: "[\<forall>(\<lambda>\<Phi>. ((P \<Phi>) m\<rightarrow> m\<not> (P (\<lambda>x. m\<not> (\<Phi> x))) )  )]"
+  theorem A1: "\<lfloor>\<^bold>\<forall>(\<lambda>\<Phi>. ((P \<Phi>) \<^bold>\<rightarrow> \<^bold>\<not> (P (\<lambda>x. \<^bold>\<not> (\<Phi> x))) )  )\<rfloor>"
   by (metis A12)
 
 
 subsection {* Counter-Satisfiability of A2 *}
 
-  theorem A2: "[\<forall>(\<lambda>\<Phi>. \<forall>(\<lambda>\<Psi>. ( (P \<Phi>) m\<and> \<box> (\<forall>e(\<lambda>x. \<Phi> x m\<rightarrow> \<Psi> x))) m\<rightarrow> P \<Psi>))]"
+  theorem A2: "\<lfloor>\<^bold>\<forall>(\<lambda>\<Phi>. \<^bold>\<forall>(\<lambda>\<Psi>. ( (P \<Phi>) \<^bold>\<and> \<^bold>\<box> (\<^bold>\<forall>\<^sup>E(\<lambda>x. \<Phi> x \<^bold>\<rightarrow> \<Psi> x))) \<^bold>\<rightarrow> P \<Psi>))\<rfloor>"
   nitpick [user_axioms, expect = genuine] oops
 
 
@@ -44,15 +44,15 @@ text {* T1 and L1 appear as Lemmas 3.2 and 3.3 in Hajek 2002 *}
 
 (* Satallax succeeds, but Leo2 and Metis fail *)
 
-  theorem T1: "[\<forall>(\<lambda>\<Phi>. P \<Phi> m\<rightarrow> \<diamond> (\<exists>e \<Phi>))]"
+  theorem T1: "\<lfloor>\<^bold>\<forall>(\<lambda>\<Phi>. P \<Phi> \<^bold>\<rightarrow> \<^bold>\<diamond> (\<^bold>\<exists>\<^sup>E \<Phi>))\<rfloor>"
   (* sledgehammer [remote_satallax remote_leo2] (A12) *)
   (* by (metis A12) *)
   sorry
   
-  corollary C1: "[\<diamond> (\<exists>e G)]"
+  corollary C1: "\<lfloor>\<^bold>\<diamond> (\<^bold>\<exists>\<^sup>E G)\<rfloor>"
   by (metis T1 A3)
 
-  lemma L1: "[\<forall>e(\<lambda>u.( (G u) m\<rightarrow> (\<box> (G u) ) ) ) ]"
+  lemma L1: "\<lfloor>\<^bold>\<forall>\<^sup>E(\<lambda>u.( (G u) \<^bold>\<rightarrow> (\<^bold>\<box> (G u) ) ) ) \<rfloor>"
   by (metis (erased, lifting) A3 G_def)
 
 
@@ -63,7 +63,7 @@ subsection {* Provability of T3 *}
 (* Satallax succeeds, but Leo2 and Metis fail on the full list of facts.
    Metis succeeds, but Satallax and Leo2 fail on the minimized list of facts. *)
   
-  theorem T3: "[\<box> (\<exists>e G)]"
+  theorem T3: "\<lfloor>\<^bold>\<box> (\<^bold>\<exists>\<^sup>E G)\<rfloor>"
   (* sledgehammer min [remote_satallax, verbose] (T1 L3 A3 A4 sym trans G_def) *)
   (* sledgehammer min [remote_leo2, verbose] (T1 L3 A3 A4 sym trans G_def) *)
   (* sledgehammer min [remote_satallax, verbose] (T1 A3 sym G_def) *)
@@ -75,23 +75,23 @@ text {* Interesting fact: A4 and A5 were not needed to prove T3 above! *}
 
 subsection {* Independence of A4 *}
  
-  lemma A4:  "[\<forall>(\<lambda>\<Phi>. P \<Phi> m\<rightarrow> \<box> (P \<Phi>))]" 
+  lemma A4:  "\<lfloor>\<^bold>\<forall>(\<lambda>\<Phi>. P \<Phi> \<^bold>\<rightarrow> \<^bold>\<box> (P \<Phi>))\<rfloor>" 
   nitpick [user_axioms, expect = genuine]
   nitpick [user_axioms, expect = genuine, satisfy]
   oops
 
 text {* But A4 seems necessary to prove the interesting lemma L3 *}
 
-  axiomatization where A4:  "[\<forall>(\<lambda>\<Phi>. P \<Phi> m\<rightarrow> \<box> (P \<Phi>))]" 
+  axiomatization where A4:  "\<lfloor>\<^bold>\<forall>(\<lambda>\<Phi>. P \<Phi> \<^bold>\<rightarrow> \<^bold>\<box> (P \<Phi>))\<rfloor>" 
 
   axiomatization where trans: "((x r y) \<and> (y r z)) \<longrightarrow> (x r z)"
 
 text {* Lemma L3 appears as Lemma 3.4 in Hajek 2002 and Aux1 appears in the proof of Lemma 3.4 *}
 
-  lemma Aux1: "[\<forall>(\<lambda>\<Phi>. (P \<Phi>) m\<rightarrow> (\<forall>e(\<lambda>y.((G y) m\<rightarrow> (\<box>(\<Phi> y)) )) ) ) ]"
+  lemma Aux1: "\<lfloor>\<^bold>\<forall>(\<lambda>\<Phi>. (P \<Phi>) \<^bold>\<rightarrow> (\<^bold>\<forall>\<^sup>E(\<lambda>y.((G y) \<^bold>\<rightarrow> (\<^bold>\<box>(\<Phi> y)) )) ) ) \<rfloor>"
   by (metis G_def)
 
-  lemma L3: "[\<forall>(\<lambda>\<Phi>. (P \<Phi>) m\<rightarrow> (\<box> (\<forall>e(\<lambda>y.((G y) m\<rightarrow> (\<Phi> y))) ) ) )]"
+  lemma L3: "\<lfloor>\<^bold>\<forall>(\<lambda>\<Phi>. (P \<Phi>) \<^bold>\<rightarrow> (\<^bold>\<box> (\<^bold>\<forall>\<^sup>E(\<lambda>y.((G y) \<^bold>\<rightarrow> (\<Phi> y))) ) ) )\<rfloor>"
   (* sledgehammer min [remote_satallax] (Aux1 trans sym A4) *)
   (* sledgehammer min [remote_satallax] (Aux1 trans sym) *)
   (* sledgehammer min [remote_leo2] (Aux1 trans sym) *)
@@ -109,19 +109,19 @@ subsection {* Consistency again (now with sym, trans and refl) *}
 
 subsection {* Immunity to Modal Collapse *}  
  
-  lemma MC: "[\<forall>(\<lambda>\<Phi>.(\<Phi> m\<rightarrow> (\<box> \<Phi>)))]"
+  lemma MC: "\<lfloor>\<^bold>\<forall>(\<lambda>\<Phi>.(\<Phi> \<^bold>\<rightarrow> (\<^bold>\<box> \<Phi>)))\<rfloor>"
   nitpick [user_axioms] oops
 
 
 subsection {* Independence of A5 *}
 
   definition ess :: "(\<mu> \<Rightarrow> \<sigma>) \<Rightarrow> \<mu> \<Rightarrow> \<sigma>" where 
-            "ess = (\<lambda>\<Phi>. \<lambda>x. (( (\<forall>(\<lambda>\<Psi>. ((\<box> (\<Psi> x )) m\<equiv>  \<box>(\<forall>e(\<lambda>y. \<Phi> y m\<rightarrow> \<Psi> y))))))))" 
+            "ess = (\<lambda>\<Phi>. \<lambda>x. (( (\<^bold>\<forall>(\<lambda>\<Psi>. ((\<^bold>\<box> (\<Psi> x )) \<^bold>\<leftrightarrow>  \<^bold>\<box>(\<^bold>\<forall>\<^sup>E(\<lambda>y. \<Phi> y \<^bold>\<rightarrow> \<Psi> y))))))))" 
        
   definition NE :: "\<mu> \<Rightarrow> \<sigma>" where 
-            "NE = (\<lambda>x. \<forall>(\<lambda>\<Phi>. ess \<Phi> x m\<rightarrow> (\<box> (\<exists>e(\<lambda>y. \<Phi> y)))))"
+            "NE = (\<lambda>x. \<^bold>\<forall>(\<lambda>\<Phi>. ess \<Phi> x \<^bold>\<rightarrow> (\<^bold>\<box> (\<^bold>\<exists>\<^sup>E(\<lambda>y. \<Phi> y)))))"
 
-  lemma A5: "[P NE]"
+  lemma A5: "\<lfloor>P NE\<rfloor>"
   nitpick [satisfy, user_axioms, expect = genuine]
   nitpick [user_axioms, expect = genuine]
   oops

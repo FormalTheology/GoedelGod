@@ -20,16 +20,16 @@ here as a primitive constant. Then P is defined using G. This
 is Bjordal's definition D. *}
 
  consts G :: "\<mu> \<Rightarrow> \<sigma>"   
- definition P :: "(\<mu> \<Rightarrow> \<sigma>) \<Rightarrow> \<sigma>"  where "P = (\<lambda>\<Phi>. \<box>(\<forall>(\<lambda>x. G x m\<rightarrow> \<Phi> x)))" 
+ definition P :: "(\<mu> \<Rightarrow> \<sigma>) \<Rightarrow> \<sigma>"  where "P = (\<lambda>\<Phi>. \<^bold>\<box>(\<^bold>\<forall>(\<lambda>x. G x \<^bold>\<rightarrow> \<Phi> x)))" 
 
 text {* Gödel's axioms A2, A3 and A4, and even his definition D1 
 can actually be derived from this alternative definition. *}
 
- theorem A2: "[\<forall>(\<lambda>\<Phi>. \<forall>(\<lambda>\<Psi>. (P \<Phi> m\<and> \<box> (\<forall>(\<lambda>x. \<Phi> x m\<rightarrow> \<Psi> x))) m\<rightarrow> P \<Psi>))]" 
+ theorem A2: "\<lfloor>\<^bold>\<forall>(\<lambda>\<Phi>. \<^bold>\<forall>(\<lambda>\<Psi>. (P \<Phi> \<^bold>\<and> \<^bold>\<box> (\<^bold>\<forall>(\<lambda>x. \<Phi> x \<^bold>\<rightarrow> \<Psi> x))) \<^bold>\<rightarrow> P \<Psi>))\<rfloor>" 
  (* sledgehammer [provers = remote_leo2] *)
  by (simp add: P_def) 
 
- theorem A3: "[P G]"
+ theorem A3: "\<lfloor>P G\<rfloor>"
  (* sledgehammer [provers = remote_leo2] *)
  by (metis P_def)
 
@@ -38,7 +38,7 @@ text {* For proving A4 we need transitivity. *}
  axiomatization where 
   trans: "x r y \<and> y r z \<longrightarrow> x r z"
  
- theorem A4: "[\<forall>(\<lambda>\<Phi>. P \<Phi> m\<rightarrow> \<box> (P \<Phi>))]"
+ theorem A4: "\<lfloor>\<^bold>\<forall>(\<lambda>\<Phi>. P \<Phi> \<^bold>\<rightarrow> \<^bold>\<box> (P \<Phi>))\<rfloor>"
  (* sledgehammer [provers = remote_leo2 remote_satallax] *)
  by (metis trans P_def)
 
@@ -47,7 +47,7 @@ text {* For proving D1 we need reflexivity . *}
  axiomatization where 
   refl: "x r x" 
 
- theorem D1: "G = (\<lambda>x. \<forall>(\<lambda>\<Phi>. P \<Phi> m\<rightarrow> \<Phi> x))"
+ theorem D1: "G = (\<lambda>x. \<^bold>\<forall>(\<lambda>\<Phi>. P \<Phi> \<^bold>\<rightarrow> \<Phi> x))"
  (* sledgehammer [provers = remote_leo2 remote_satallax] *)
  by (metis refl P_def)
 

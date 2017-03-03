@@ -1,6 +1,6 @@
 
 theory Bjordal_D_const
-imports Main "../QML"
+imports Main "../QML_S5"
 
 begin
 
@@ -14,28 +14,25 @@ text {* Here we investigate whether the remarks in the last paragraph of Bjordal
 
  consts G :: "\<mu> \<Rightarrow> \<sigma>"   
  definition P :: "(\<mu> \<Rightarrow> \<sigma>) \<Rightarrow> \<sigma>"  
- where "P = (\<lambda>\<Phi>. \<box>(\<forall>(\<lambda>x. G x m\<rightarrow> \<Phi> x)))" 
+ where "P = (\<lambda>\<Phi>. \<^bold>\<box>(\<^bold>\<forall>(\<lambda>x. G x \<^bold>\<rightarrow> \<Phi> x)))" 
  
  definition MCP :: "(\<mu> \<Rightarrow> \<sigma>) \<Rightarrow> \<mu> \<Rightarrow> \<sigma>"  
- where "MCP = (\<lambda>\<Phi> x. \<Phi> x m\<and> P \<Phi> m\<and> 
-   \<forall>(\<lambda>\<Psi>. (\<Psi> x m\<and> P \<Psi>) m\<rightarrow> \<box> (\<forall>(\<lambda>y. \<Phi> y m\<rightarrow> \<Psi> y))))"
+ where "MCP = (\<lambda>\<Phi> x. \<Phi> x \<^bold>\<and> P \<Phi> \<^bold>\<and> 
+   \<^bold>\<forall>(\<lambda>\<Psi>. (\<Psi> x \<^bold>\<and> P \<Psi>) \<^bold>\<rightarrow> \<^bold>\<box> (\<^bold>\<forall>(\<lambda>y. \<Phi> y \<^bold>\<rightarrow> \<Psi> y))))"
 
  definition N :: "\<mu> \<Rightarrow> \<sigma>"  
- where "N = (\<lambda>x. \<forall>(\<lambda>\<Phi>. MCP \<Phi> x m\<rightarrow> \<box> (\<exists>(\<lambda>y. \<Phi> y))))"  
+ where "N = (\<lambda>x. \<^bold>\<forall>(\<lambda>\<Phi>. MCP \<Phi> x \<^bold>\<rightarrow> \<^bold>\<box> (\<^bold>\<exists>(\<lambda>y. \<Phi> y))))"  
 
- axiomatization where A1: "[\<forall>(\<lambda>\<Phi>. P \<Phi> m\<rightarrow> m\<not> (P (\<lambda>x. m\<not> (\<Phi> x))))]"
+ axiomatization where A1: "\<lfloor>\<^bold>\<forall>(\<lambda>\<Phi>. P \<Phi> \<^bold>\<rightarrow> \<^bold>\<not> (P (\<lambda>x. \<^bold>\<not> (\<Phi> x))))\<rfloor>"
 
-text {* To make our upcoming negative result stronger, we add all the following axioms. *}
+text {* To make our upcoming negative result stronger, we use S5U *}
 
- axiomatization where  sym:   "x r y \<longrightarrow> y r x" 
-                  and  trans: "x r y \<and> y r z \<longrightarrow> x r y"
-                  and  refl:  "x r x"
 
 text {* Without A5, T3 is independent. Nitpick finds both a model and a counter-model.
         Therefore, A5 is not superfluous.        
 *}
 
- theorem T3: "[\<box> (\<exists> G)]"
+ theorem T3: "\<lfloor>\<^bold>\<box> (\<^bold>\<exists> G)\<rfloor>"
  nitpick [user_axioms]
  nitpick [user_axioms, satisfy]
  oops

@@ -1,6 +1,6 @@
 
 theory Bjordal_D_var
-imports Main "../QML_var"
+imports Main "../QML_S5_var"
 
 begin
 
@@ -12,32 +12,28 @@ text {* Here we investigate whether the remarks in the last paragraph of Bjordal
 
  consts G :: "\<mu> \<Rightarrow> \<sigma>"   
  definition P :: "(\<mu> \<Rightarrow> \<sigma>) \<Rightarrow> \<sigma>"  
- where "P = (\<lambda>\<Phi>. \<box>(\<forall>e(\<lambda>x. G x m\<rightarrow> \<Phi> x)))" 
+ where "P = (\<lambda>\<Phi>. \<^bold>\<box>(\<^bold>\<forall>\<^sup>E(\<lambda>x. G x \<^bold>\<rightarrow> \<Phi> x)))" 
  
  definition MCP :: "(\<mu> \<Rightarrow> \<sigma>) \<Rightarrow> \<mu> \<Rightarrow> \<sigma>"  
- where "MCP = (\<lambda>\<Phi> x. \<Phi> x m\<and> P \<Phi> m\<and> 
-   \<forall>(\<lambda>\<Psi>. (\<Psi> x m\<and> P \<Psi>) m\<rightarrow> \<box> (\<forall>e(\<lambda>y. \<Phi> y m\<rightarrow> \<Psi> y))))"
+ where "MCP = (\<lambda>\<Phi> x. \<Phi> x \<^bold>\<and> P \<Phi> \<^bold>\<and> 
+   \<^bold>\<forall>(\<lambda>\<Psi>. (\<Psi> x \<^bold>\<and> P \<Psi>) \<^bold>\<rightarrow> \<^bold>\<box> (\<^bold>\<forall>\<^sup>E(\<lambda>y. \<Phi> y \<^bold>\<rightarrow> \<Psi> y))))"
 
  definition N :: "\<mu> \<Rightarrow> \<sigma>"  
- where "N = (\<lambda>x. \<forall>(\<lambda>\<Phi>. MCP \<Phi> x m\<rightarrow> \<box> (\<exists>e(\<lambda>y. \<Phi> y))))"  
+ where "N = (\<lambda>x. \<^bold>\<forall>(\<lambda>\<Phi>. MCP \<Phi> x \<^bold>\<rightarrow> \<^bold>\<box> (\<^bold>\<exists>\<^sup>E(\<lambda>y. \<Phi> y))))"  
 
- axiomatization where A1: "[\<forall>(\<lambda>\<Phi>. P \<Phi> m\<rightarrow> m\<not> (P (\<lambda>x. m\<not> (\<Phi> x))))]"
+ axiomatization where A1: "\<lfloor>\<^bold>\<forall>(\<lambda>\<Phi>. P \<Phi> \<^bold>\<rightarrow> \<^bold>\<not> (P (\<lambda>x. \<^bold>\<not> (\<Phi> x))))\<rfloor>"
 
- corollary C1: "[\<diamond> (\<exists>e G)]"  
+ corollary C1: "\<lfloor>\<^bold>\<diamond> (\<^bold>\<exists>\<^sup>E G)\<rfloor>"  
  by (metis A1 P_def)
 
-text {* To make our upcoming negative result stronger, we add all the following axioms. *}
-
- axiomatization where  sym:   "x r y \<longrightarrow> y r x" 
-                  and  trans: "x r y \<and> y r z \<longrightarrow> x r y"
-                  and  refl:  "x r x"
+text {* To make our upcoming negative result stronger, we add use S5U *}
 
 
 text {* Without A5, T3 is independent. Nitpick finds both a model and a counter-model.
         Therefore, A5 is not superfluous.        
 *}
 
- theorem T3: "[\<box> (\<exists>e G)]"
+ theorem T3: "\<lfloor>\<^bold>\<box> (\<^bold>\<exists>\<^sup>E G)\<rfloor>"
  nitpick [user_axioms]
  nitpick [user_axioms, satisfy]
  oops
