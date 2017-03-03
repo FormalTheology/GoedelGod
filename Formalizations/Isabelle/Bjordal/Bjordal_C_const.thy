@@ -24,22 +24,22 @@ is Bjordal's definition D. *}
 
  consts G :: "\<mu> \<Rightarrow> \<sigma>"   
  definition P :: "(\<mu> \<Rightarrow> \<sigma>) \<Rightarrow> \<sigma>"  
- where "P = (\<lambda>\<Phi>. \<box>(\<forall>(\<lambda>x. G x m\<rightarrow> \<Phi> x)))" 
+ where "P = (\<lambda>\<Phi>. \<^bold>\<box>(\<^bold>\<forall>(\<lambda>x. G x \<^bold>\<rightarrow> \<Phi> x)))" 
 
 text {* We introduce Bjordal's definitions MCP and N. *}
  
  definition MCP :: "(\<mu> \<Rightarrow> \<sigma>) \<Rightarrow> \<mu> \<Rightarrow> \<sigma>"  
- where "MCP = (\<lambda>\<Phi> x. \<Phi> x m\<and> P \<Phi> m\<and> 
-   \<forall>(\<lambda>\<Psi>. (\<Psi> x m\<and> P \<Psi>) m\<rightarrow> \<box> (\<forall>(\<lambda>y. \<Phi> y m\<rightarrow> \<Psi> y))))"
+ where "MCP = (\<lambda>\<Phi> x. \<Phi> x \<^bold>\<and> P \<Phi> \<^bold>\<and> 
+   \<^bold>\<forall>(\<lambda>\<Psi>. (\<Psi> x \<^bold>\<and> P \<Psi>) \<^bold>\<rightarrow> \<^bold>\<box> (\<^bold>\<forall>(\<lambda>y. \<Phi> y \<^bold>\<rightarrow> \<Psi> y))))"
 
  definition N :: "\<mu> \<Rightarrow> \<sigma>"  
- where "N = (\<lambda>x. \<forall>(\<lambda>\<Phi>. MCP \<Phi> x m\<rightarrow> \<box> (\<exists>(\<lambda>y. \<Phi> y))))"  
+ where "N = (\<lambda>x. \<^bold>\<forall>(\<lambda>\<Phi>. MCP \<Phi> x \<^bold>\<rightarrow> \<^bold>\<box> (\<^bold>\<exists>(\<lambda>y. \<Phi> y))))"  
 
 text {* We postulate Bjordal's axioms Ax1 and Ax2. *}
 
  axiomatization where
-  A1: "[\<forall>(\<lambda>\<Phi>. P \<Phi> m\<rightarrow> m\<not> (P (\<lambda>x. m\<not> (\<Phi> x))))]" and
-  A5: "[P N]"
+  A1: "\<lfloor>\<^bold>\<forall>(\<lambda>\<Phi>. P \<Phi> \<^bold>\<rightarrow> \<^bold>\<not> (P (\<lambda>x. \<^bold>\<not> (\<Phi> x))))\<rfloor>" and
+  A5: "\<lfloor>P N\<rfloor>"
 
 text {* We add axiom B (symmetry). *}
 
@@ -47,46 +47,46 @@ text {* We add axiom B (symmetry). *}
 
 text {* We prove necessarily God exists. *}
  
- theorem T3: "[\<box> (\<exists> G)]" 
+ theorem T3: "\<lfloor>\<^bold>\<box> (\<^bold>\<exists> G)\<rfloor>" 
  (* nitpick [user_axioms = true] *)
  (* sledgehammer [provers = remote_leo2 remote_satallax] *)
  by (metis A1 A5 sym MCP_def N_def P_def) 
 
 text {* Nitpick generates a countermodel to Modal Collapse. *}
 
- lemma MC: "[\<forall>(\<lambda>\<Phi>.(\<Phi> m\<rightarrow> (\<box> \<Phi>)))]"  
+ lemma MC: "\<lfloor>\<^bold>\<forall>(\<lambda>\<Phi>.(\<Phi> \<^bold>\<rightarrow> (\<^bold>\<box> \<Phi>)))\<rfloor>"  
  nitpick [user_axioms = true] oops
 
 
   abbreviation f_collapse_contingent_to_necessary :: "\<sigma> \<Rightarrow> \<sigma>" ("cCN")
-         where "cCN \<Phi> \<equiv> \<Phi> m\<rightarrow> (\<box> \<Phi>)"
+         where "cCN \<Phi> \<equiv> \<Phi> \<^bold>\<rightarrow> (\<^bold>\<box> \<Phi>)"
 
   abbreviation f_collapse_possible_to_necessary :: "\<sigma> \<Rightarrow> \<sigma>" ("cPN") 
-         where "cPN \<Phi> \<equiv> (\<diamond> \<Phi>) m\<rightarrow> (\<box> \<Phi>)" 
+         where "cPN \<Phi> \<equiv> (\<^bold>\<diamond> \<Phi>) \<^bold>\<rightarrow> (\<^bold>\<box> \<Phi>)" 
 
   abbreviation f_collapse :: "\<sigma> \<Rightarrow> \<sigma>" ("c") 
-         where "c \<Phi> \<equiv> (\<Phi> m\<equiv> (\<box> \<Phi>)) m\<and> ((\<box> \<Phi>) m\<equiv> (\<diamond> \<Phi>)) "
+         where "c \<Phi> \<equiv> (\<Phi> \<^bold>\<leftrightarrow> (\<^bold>\<box> \<Phi>)) \<^bold>\<and> ((\<^bold>\<box> \<Phi>) \<^bold>\<leftrightarrow> (\<^bold>\<diamond> \<Phi>)) "
 
-  abbreviation collapseCN  :: "\<sigma>" ("collapseCN") where "collapseCN \<equiv> \<forall>(\<lambda>\<Phi>. (cCN \<Phi>))"
-  abbreviation collapsePN :: "\<sigma>" ("collapsePN") where "collapsePN \<equiv> \<forall>(\<lambda>\<Phi>. (cPN \<Phi>))"
-  abbreviation collapse :: "\<sigma>" ("collapse") where "collapse \<equiv> \<forall>(\<lambda>\<Phi>. (c \<Phi>))"
+  abbreviation collapseCN  :: "\<sigma>" ("collapseCN") where "collapseCN \<equiv> \<^bold>\<forall>(\<lambda>\<Phi>. (cCN \<Phi>))"
+  abbreviation collapsePN :: "\<sigma>" ("collapsePN") where "collapsePN \<equiv> \<^bold>\<forall>(\<lambda>\<Phi>. (cPN \<Phi>))"
+  abbreviation collapse :: "\<sigma>" ("collapse") where "collapse \<equiv> \<^bold>\<forall>(\<lambda>\<Phi>. (c \<Phi>))"
 
-  lemma "[collapseCN]"
+  lemma "\<lfloor>collapseCN\<rfloor>"
   nitpick [user_axioms] oops
   
-  lemma "[collapsePN]"
+  lemma "\<lfloor>collapsePN\<rfloor>"
   nitpick [user_axioms] oops
   
-  lemma "[collapse]"
+  lemma "\<lfloor>collapse\<rfloor>"
   nitpick [user_axioms] oops
   
-  lemma MC1: "[\<forall>(\<lambda>\<phi>.\<forall>(\<lambda>x.(((P \<phi>) m\<and> (G x) ) m\<rightarrow> ((\<phi> x) m\<rightarrow> (\<box> (\<phi> x))))))]"
+  lemma MC1: "\<lfloor>\<^bold>\<forall>(\<lambda>\<phi>.\<^bold>\<forall>(\<lambda>x.(((P \<phi>) \<^bold>\<and> (G x) ) \<^bold>\<rightarrow> ((\<phi> x) \<^bold>\<rightarrow> (\<^bold>\<box> (\<phi> x))))))\<rfloor>"
   nitpick [user_axioms] oops
  
-  lemma MC2: "[\<forall>(\<lambda>\<phi>.\<forall>(\<lambda>x.((G x) m\<rightarrow> ((\<phi> x) m\<rightarrow> (\<box> (\<phi> x))))))]"
+  lemma MC2: "\<lfloor>\<^bold>\<forall>(\<lambda>\<phi>.\<^bold>\<forall>(\<lambda>x.((G x) \<^bold>\<rightarrow> ((\<phi> x) \<^bold>\<rightarrow> (\<^bold>\<box> (\<phi> x))))))\<rfloor>"
   nitpick [user_axioms] oops
 
-  lemma MC3: "[\<forall>(\<lambda>\<phi>.\<forall>(\<lambda>x.((P \<phi>) m\<rightarrow> ((\<phi> x) m\<rightarrow> (\<box> (\<phi> x))))))]"
+  lemma MC3: "\<lfloor>\<^bold>\<forall>(\<lambda>\<phi>.\<^bold>\<forall>(\<lambda>x.((P \<phi>) \<^bold>\<rightarrow> ((\<phi> x) \<^bold>\<rightarrow> (\<^bold>\<box> (\<phi> x))))))\<rfloor>"
   nitpick [user_axioms] oops
 
 

@@ -15,12 +15,12 @@ text {* Here we explore Anderson's remark, in footnote 14 of his 1990 article,
   consts P :: "(\<mu> \<Rightarrow> \<sigma>) \<Rightarrow> \<sigma>"  
 
   definition G :: "\<mu> \<Rightarrow> \<sigma>" where 
-            "G = (\<lambda>x. \<forall>(\<lambda>\<Phi>. P \<Phi> m\<equiv>  ( (\<box> (\<Phi> x ))) ))" 
+            "G = (\<lambda>x. \<^bold>\<forall>(\<lambda>\<Phi>. P \<Phi> \<^bold>\<leftrightarrow>  ( (\<^bold>\<box> (\<Phi> x ))) ))" 
 
   axiomatization where
-    A1:  "[\<forall>(\<lambda>\<Phi>. ((P \<Phi>) m\<rightarrow> m\<not> (P (\<lambda>x. m\<not> (\<Phi> x))) )  )]"  and
-    A2:  "[\<forall>(\<lambda>\<Phi>. \<forall>(\<lambda>\<Psi>. ( (P \<Phi>) m\<and> \<box> (\<forall>(\<lambda>x. \<Phi> x m\<rightarrow> \<Psi> x))) m\<rightarrow> P \<Psi>))]" and
-    A3:  "[P G]" 
+    A1:  "\<lfloor>\<^bold>\<forall>(\<lambda>\<Phi>. ((P \<Phi>) \<^bold>\<rightarrow> \<^bold>\<not> (P (\<lambda>x. \<^bold>\<not> (\<Phi> x))) )  )\<rfloor>"  and
+    A2:  "\<lfloor>\<^bold>\<forall>(\<lambda>\<Phi>. \<^bold>\<forall>(\<lambda>\<Psi>. ( (P \<Phi>) \<^bold>\<and> \<^bold>\<box> (\<^bold>\<forall>(\<lambda>x. \<Phi> x \<^bold>\<rightarrow> \<Psi> x))) \<^bold>\<rightarrow> P \<Psi>))\<rfloor>" and
+    A3:  "\<lfloor>P G\<rfloor>" 
 
 
 subsection {* Consistency *}
@@ -31,7 +31,7 @@ subsection {* Consistency *}
 
 subsection {* Provability of C1 *}
   
-  corollary C1: "[\<diamond> (\<exists> G)]"
+  corollary C1: "\<lfloor>\<^bold>\<diamond> (\<^bold>\<exists> G)\<rfloor>"
   (* sledgehammer [remote_satallax remote_leo2] *)
   by (metis A1 A2 A3)
 
@@ -45,11 +45,11 @@ text {* As claimed by HÃ¡jek (1996) and contrary to footnote 1 in Anderson-Getti
     sym: "x r y \<longrightarrow> y r x" and
     trans: "((x r y) \<and> (y r z)) \<longrightarrow> (x r z)"
     
-  lemma AuxLemma1: "[\<box> (\<exists> G)]"
+  lemma AuxLemma1: "\<lfloor>\<^bold>\<box> (\<^bold>\<exists> G)\<rfloor>"
   (* sledgehammer [remote_satallax remote_leo2] *)
   by (metis A1 A2 A3 sym G_def)
 
-  theorem A4:  "[\<forall>(\<lambda>\<Phi>. P \<Phi> m\<rightarrow> \<box> (P \<Phi>))]" 
+  theorem A4:  "\<lfloor>\<^bold>\<forall>(\<lambda>\<Phi>. P \<Phi> \<^bold>\<rightarrow> \<^bold>\<box> (P \<Phi>))\<rfloor>" 
   (* sledgehammer [remote_satallax remote_leo2] *)
   by (metis A3 G_def sym trans AuxLemma1)
 
@@ -66,12 +66,12 @@ text {* As claimed by Anderson-Gettings (1996) in footnote 1 and contrary to  HÃ
         A5 is not redundant. Nitpick finds a counter-model. *}
 
   definition ess :: "(\<mu> \<Rightarrow> \<sigma>) \<Rightarrow> \<mu> \<Rightarrow> \<sigma>" where 
-            "ess = (\<lambda>\<Phi>. \<lambda>x. (( (\<forall>(\<lambda>\<Psi>. ((\<box> (\<Psi> x )) m\<equiv>  \<box>(\<forall>(\<lambda>y. \<Phi> y m\<rightarrow> \<Psi> y))))))))" 
+            "ess = (\<lambda>\<Phi>. \<lambda>x. (( (\<^bold>\<forall>(\<lambda>\<Psi>. ((\<^bold>\<box> (\<Psi> x )) \<^bold>\<leftrightarrow>  \<^bold>\<box>(\<^bold>\<forall>(\<lambda>y. \<Phi> y \<^bold>\<rightarrow> \<Psi> y))))))))" 
        
   definition NE :: "\<mu> \<Rightarrow> \<sigma>" where 
-            "NE = (\<lambda>x. \<forall>(\<lambda>\<Phi>. ess \<Phi> x m\<rightarrow> (\<box> (\<exists>e(\<lambda>y. \<Phi> y)))))"
+            "NE = (\<lambda>x. \<^bold>\<forall>(\<lambda>\<Phi>. ess \<Phi> x \<^bold>\<rightarrow> (\<^bold>\<box> (\<^bold>\<exists>\<^sup>E(\<lambda>y. \<Phi> y)))))"
 
-  theorem A5: "[P NE]"
+  theorem A5: "\<lfloor>P NE\<rfloor>"
   nitpick [user_axioms] 
   nitpick [user_axioms, satisfy] oops
 
@@ -81,7 +81,7 @@ subsection {* Immunity to Modal Collapse *}
 text {* As claimed by Anderson, the modal collapse is not provable. 
         Nitpick finds a counter-model. *}
 
-  theorem MC: "[\<forall>(\<lambda>\<Phi>.(\<Phi> m\<rightarrow> (\<box> \<Phi>)))]"
+  theorem MC: "\<lfloor>\<^bold>\<forall>(\<lambda>\<Phi>.(\<Phi> \<^bold>\<rightarrow> (\<^bold>\<box> \<Phi>)))\<rfloor>"
   nitpick [user_axioms, expect = genuine]
   oops
 
@@ -91,15 +91,15 @@ subsection {* Counter-Satisfiability of the Main Theorem *}
 text {* Unfortunately, with actualistic quantifiers only for NE and T3, 
         T3 is not provable. Nitpick finds a counter-model. *}
 
-  theorem T3: "[\<box> (\<exists>e G)]"
+  theorem T3: "\<lfloor>\<^bold>\<box> (\<^bold>\<exists>\<^sup>E G)\<rfloor>"
   nitpick [user_axioms] oops
 
-  lemma PEP: "[\<forall>(\<lambda>\<Phi>. \<forall>(\<lambda>\<Psi>. (P \<Phi> m\<and> (\<lambda>x. (\<Phi> = \<Psi>))) m\<rightarrow> P \<Psi>))]"
+  lemma PEP: "\<lfloor>\<^bold>\<forall>(\<lambda>\<Phi>. \<^bold>\<forall>(\<lambda>\<Psi>. (P \<Phi> \<^bold>\<and> (\<lambda>x. (\<Phi> = \<Psi>))) \<^bold>\<rightarrow> P \<Psi>))\<rfloor>"
   (* sledgehammer [remote_satallax remote_leo2] *)
   (* nitpick *)
   by metis
 
-  lemma PEP_Leibniz: "[\<forall>(\<lambda>\<Phi>. \<forall>(\<lambda>\<Psi>. (P \<Phi> m\<and> \<forall>(\<lambda>Q. Q \<Phi> m\<rightarrow> Q \<Psi>)) m\<rightarrow> P \<Psi>))]"
+  lemma PEP_Leibniz: "\<lfloor>\<^bold>\<forall>(\<lambda>\<Phi>. \<^bold>\<forall>(\<lambda>\<Psi>. (P \<Phi> \<^bold>\<and> \<^bold>\<forall>(\<lambda>Q. Q \<Phi> \<^bold>\<rightarrow> Q \<Psi>)) \<^bold>\<rightarrow> P \<Psi>))\<rfloor>"
   (* sledgehammer [remote_satallax remote_leo2] *)
   (* nitpick *)
   by metis
