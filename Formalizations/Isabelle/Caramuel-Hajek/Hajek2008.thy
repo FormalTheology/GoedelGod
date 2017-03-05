@@ -1,6 +1,6 @@
 theory Hajek2008
   
-imports Main QML_S5
+imports Main "../QML_S5"
     
 begin
 

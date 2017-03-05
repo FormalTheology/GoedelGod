@@ -1,6 +1,6 @@
 theory InconsistencyVar
   
-imports Main QML_S5_var
+imports Main "../QML_S5_var"
     
 begin
 text {*
