@@ -61,7 +61,7 @@ qed
 theorem Argument2: (*Caramueloid argument AGAINST the existence of god*)
 assumes  *: "\<And>u.\<lfloor>(G u) \<^bold>\<rightarrow> \<^bold>\<box>(G u \<^bold>\<and> E u) \<rfloor>" (*follows from Ax1a/b and Ax2; see above*)
 and Ax4: "\<lfloor>\<^bold>\<diamond> (\<^bold>\<forall>x. (\<^bold>\<not> E x  )) \<rfloor>"
-shows "\<lfloor>\<^bold>\<not>\<^bold>\<box> (\<exists>\<^sup>E u. G u)\<rfloor>" 
+shows "\<lfloor>\<^bold>\<box> ( \<^bold>\<not>(\<exists>\<^sup>E u. G u))\<rfloor>" 
 proof -
 (*Nitpick proves consistency of assumptions; Uncomment to confir)
   have True nitpick [satisfy, user_axioms, expect = genuine]  *)
