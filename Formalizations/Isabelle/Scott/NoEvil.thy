@@ -10,8 +10,8 @@ begin
   consts P :: "(\<mu> \<Rightarrow> \<sigma>) \<Rightarrow> \<sigma>"  
   
   axiomatization where
-    A1a: "[\<forall>(\<lambda>\<Phi>. P (\<lambda>x. m\<not> (\<Phi> x)) m\<rightarrow> m\<not> (P \<Phi>))]" and
-    A2:  "[\<forall>(\<lambda>\<Phi>. \<forall>(\<lambda>\<Psi>. (P \<Phi> m\<and> \<box> (\<forall>(\<lambda>x. \<Phi> x m\<rightarrow> \<Psi> x))) m\<rightarrow> P \<Psi>))]"
+    A1a: "\<lfloor>\<^bold>\<forall>\<Phi>.( P (\<^sup>\<not>\<Phi>) \<^bold>\<rightarrow> \<^bold>\<not> (P \<Phi>))\<rfloor>" and
+    A2:  "\<lfloor>\<^bold>\<forall>\<Phi>.( \<^bold>\<forall>\<Psi>.( (P \<Phi> \<^bold>\<and> \<^bold>\<box> (\<^bold>\<forall>x.( \<Phi> x \<^bold>\<rightarrow> \<Psi> x))) \<^bold>\<rightarrow> P \<Psi>))\<rfloor>"
  
 section {* There is no Evil *}    
 
@@ -25,13 +25,13 @@ section {* There is no Evil *}
  have the empty property at world u. That is, we have a proof of false. QED."*}
  
  text {* An property if negative if and only if it is not positive. *}  
- definition N :: "(\<mu> \<Rightarrow> \<sigma>) \<Rightarrow> \<sigma>"  where "N = (\<lambda>\<Phi>. m\<not> (P \<Phi>))" 
+ definition N :: "(\<mu> \<Rightarrow> \<sigma>) \<Rightarrow> \<sigma>"  where "N \<Phi> \<equiv> \<^bold>\<not> (P \<Phi>)" 
  
  text {* An entity is Evil-like if  and only if it has all negative properties. *} 
-  definition E :: "\<mu> \<Rightarrow> \<sigma>" where "E = (\<lambda>x. \<forall>(\<lambda>\<Phi>. (N \<Phi>) m\<rightarrow> \<Phi> x))"   
+  definition E :: "\<mu> \<Rightarrow> \<sigma>" where "E x \<equiv> \<^bold>\<forall>\<Phi>.( (N \<Phi>) \<^bold>\<rightarrow> \<Phi> x)"   
 
  text {* The argument can be proven by leo2, however, proof reconstruction fails. *}
-  theorem NoEvil: "[\<box> (m\<not>(\<exists> E))]" 
+  theorem NoEvil: "\<lfloor>\<^bold>\<box> (\<^bold>\<not>(\<^bold>\<exists>x. E x))\<rfloor>" 
   -- {* sledgehammer [provers = remote\_leo2](N_def E_def A1a A2) *}
   -- {* by (metis N_def E_def A1a A2) *}
   oops
