@@ -14,16 +14,16 @@ text {* Here we investigate whether the remarks in the last paragraph of Bjordal
 
  consts G :: "\<mu> \<Rightarrow> \<sigma>"   
  definition P :: "(\<mu> \<Rightarrow> \<sigma>) \<Rightarrow> \<sigma>"  
- where "P = (\<lambda>\<Phi>. \<^bold>\<box>(\<^bold>\<forall>(\<lambda>x. G x \<^bold>\<rightarrow> \<Phi> x)))" 
+ where "P \<Phi> \<equiv> \<^bold>\<box>(\<^bold>\<forall>x.( G x \<^bold>\<rightarrow> \<Phi> x))" 
  
  definition MCP :: "(\<mu> \<Rightarrow> \<sigma>) \<Rightarrow> \<mu> \<Rightarrow> \<sigma>"  
- where "MCP = (\<lambda>\<Phi> x. \<Phi> x \<^bold>\<and> P \<Phi> \<^bold>\<and> 
-   \<^bold>\<forall>(\<lambda>\<Psi>. (\<Psi> x \<^bold>\<and> P \<Psi>) \<^bold>\<rightarrow> \<^bold>\<box> (\<^bold>\<forall>(\<lambda>y. \<Phi> y \<^bold>\<rightarrow> \<Psi> y))))"
+ where "MCP \<Phi> x \<equiv> \<Phi> x \<^bold>\<and> P \<Phi> \<^bold>\<and> 
+  ( \<^bold>\<forall>\<Psi>. ((\<Psi> x \<^bold>\<and> P \<Psi>) \<^bold>\<rightarrow> \<^bold>\<box> (\<^bold>\<forall>y.( \<Phi> y \<^bold>\<rightarrow> \<Psi> y))))"
 
  definition N :: "\<mu> \<Rightarrow> \<sigma>"  
- where "N = (\<lambda>x. \<^bold>\<forall>(\<lambda>\<Phi>. MCP \<Phi> x \<^bold>\<rightarrow> \<^bold>\<box> (\<^bold>\<exists>(\<lambda>y. \<Phi> y))))"  
+ where "N x \<equiv> ( \<^bold>\<forall>\<Phi>.( MCP \<Phi> x \<^bold>\<rightarrow> \<^bold>\<box> (\<^bold>\<exists>y.( \<Phi> y))))"  
 
- axiomatization where A1: "\<lfloor>\<^bold>\<forall>(\<lambda>\<Phi>. P \<Phi> \<^bold>\<rightarrow> \<^bold>\<not> (P (\<lambda>x. \<^bold>\<not> (\<Phi> x))))\<rfloor>"
+ axiomatization where A1: "\<lfloor>\<^bold>\<forall>\<Phi>.( P \<Phi> \<^bold>\<rightarrow> \<^bold>\<not> (P ( \<^sup>\<not>\<Phi>)))\<rfloor>"
 
 text {* To make our upcoming negative result stronger, we use S5U *}
 
@@ -32,7 +32,7 @@ text {* Without A5, T3 is independent. Nitpick finds both a model and a counter-
         Therefore, A5 is not superfluous.        
 *}
 
- theorem T3: "\<lfloor>\<^bold>\<box> (\<^bold>\<exists> G)\<rfloor>"
+ theorem T3: "\<lfloor>\<^bold>\<box> (\<^bold>\<exists>x. G x)\<rfloor>"
  nitpick [user_axioms]
  nitpick [user_axioms, satisfy]
  oops

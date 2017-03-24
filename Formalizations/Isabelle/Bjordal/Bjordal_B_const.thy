@@ -20,28 +20,28 @@ here as a primitive constant. Then G is defined using P. This is
 Gödel's definition D1. *}  
 
   consts P :: "(\<mu> \<Rightarrow> \<sigma>) \<Rightarrow> \<sigma>"  
-  definition G :: "\<mu> \<Rightarrow> \<sigma>"  where "G = (\<lambda>x. \<^bold>\<forall>(\<lambda>\<Phi>. P \<Phi> \<^bold>\<rightarrow> \<Phi> x))" 
+  definition G :: "\<mu> \<Rightarrow> \<sigma>"  where "G x \<equiv> \<^bold>\<forall>\<Phi>. (P \<Phi> \<^bold>\<rightarrow> \<Phi> x)" 
 
 text {* We postulate Gödel's axioms A2, A3 and A4. *}
 
  axiomatization where
-  A2: "\<lfloor>\<^bold>\<forall>(\<lambda>\<Phi>. \<^bold>\<forall>(\<lambda>\<Psi>. (P \<Phi> \<^bold>\<and> \<^bold>\<box> (\<^bold>\<forall>(\<lambda>x. \<Phi> x \<^bold>\<rightarrow> \<Psi> x))) \<^bold>\<rightarrow> P \<Psi>))\<rfloor>" and     
+  A2: "\<lfloor>\<^bold>\<forall>\<Phi>.( \<^bold>\<forall>\<Psi>.( (P \<Phi> \<^bold>\<and> \<^bold>\<box> (\<^bold>\<forall>x. (\<Phi> x \<^bold>\<rightarrow> \<Psi> x))) \<^bold>\<rightarrow> P \<Psi>))\<rfloor>" and     
   A3: "\<lfloor>P G\<rfloor>" and
-  A4: "\<lfloor>\<^bold>\<forall>(\<lambda>\<Phi>. P \<Phi> \<^bold>\<rightarrow> \<^bold>\<box> (P \<Phi>))\<rfloor>"
+  A4: "\<lfloor>\<^bold>\<forall>\<Phi>.( P \<Phi> \<^bold>\<rightarrow> \<^bold>\<box> (P \<Phi>))\<rfloor>"
 
 
 text {* We then show, using two lemmas, that Bjordal's definition 
 D is implied. *}
 
- lemma Case1: "\<lfloor>\<^bold>\<forall>(\<lambda>\<Phi>. (\<^bold>\<box>(\<^bold>\<forall>(\<lambda>x. G x \<^bold>\<rightarrow> \<Phi> x))) \<^bold>\<rightarrow> P \<Phi>)\<rfloor>"
+ lemma Case1: "\<lfloor>\<^bold>\<forall>\<Phi>. ((\<^bold>\<box>(\<^bold>\<forall>x.( G x \<^bold>\<rightarrow> \<Phi> x))) \<^bold>\<rightarrow> P \<Phi>)\<rfloor>"
  (* sledgehammer [provers = remote_leo2 remote_satallax] *)
  by (metis A2 A3) 
 
- lemma Case2: "\<lfloor>\<^bold>\<forall>(\<lambda>\<Phi>. P \<Phi> \<^bold>\<rightarrow> (\<^bold>\<box>(\<^bold>\<forall>(\<lambda>x. G x \<^bold>\<rightarrow> \<Phi> x))))\<rfloor>"
+ lemma Case2: "\<lfloor>\<^bold>\<forall>\<Phi>.( P \<Phi> \<^bold>\<rightarrow> (\<^bold>\<box>(\<^bold>\<forall>x.( G x \<^bold>\<rightarrow> \<Phi> x))))\<rfloor>"
  (* sledgehammer [provers = remote_leo2 remote_satallax] *)
  by (metis A4 G_def) 
 
- theorem D1: "P = (\<lambda>\<Phi>. \<^bold>\<box>(\<^bold>\<forall>(\<lambda>x. G x \<^bold>\<rightarrow> \<Phi> x)))"
+ theorem D1: "\<lfloor>P \<Phi> \<^bold>\<leftrightarrow>  \<^bold>\<box>(\<^bold>\<forall>x.( G x \<^bold>\<rightarrow> \<Phi> x))\<rfloor>"
  (* sledgehammer [provers = remote_leo2 remote_satallax] *)
  by (metis Case1 Case2) 
 

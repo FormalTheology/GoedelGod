@@ -15,15 +15,15 @@ section {* Anderson's Simplification *}
   consts Defective :: "\<mu> \<Rightarrow> \<sigma>" 
   
   definition P :: "(\<mu> \<Rightarrow> \<sigma>) \<Rightarrow> \<sigma>" where
-  "P = (\<lambda>\<Phi>. (\<^bold>\<box> (\<^bold>\<forall>\<^sup>E(\<lambda>x. (\<^bold>\<not> (\<Phi>(x))) \<^bold>\<rightarrow> Defective(x)))) \<^bold>\<and> (\<^bold>\<not> (\<^bold>\<box>(\<^bold>\<forall>\<^sup>E(\<lambda>x. (\<Phi>(x)) \<^bold>\<rightarrow> Defective(x))) )))"
+  "P \<Phi> \<equiv> (\<^bold>\<box> (\<^bold>\<forall>\<^sup>Ex. ((\<^bold>\<not> (\<Phi>(x))) \<^bold>\<rightarrow> Defective(x)))) \<^bold>\<and> (\<^bold>\<not> (\<^bold>\<box>(\<^bold>\<forall>\<^sup>Ex.( (\<Phi>(x)) \<^bold>\<rightarrow> Defective(x))) ))"
 
-  theorem A1:  "\<lfloor>\<^bold>\<forall>(\<lambda>\<Phi>. ((P \<Phi>) \<^bold>\<rightarrow> \<^bold>\<not> (P (\<lambda>x. \<^bold>\<not> (\<Phi> x))) )  )\<rfloor>"
+  theorem A1:  "\<lfloor>\<^bold>\<forall>\<Phi>. (((P \<Phi>) \<^bold>\<rightarrow> \<^bold>\<not> (P (\<^sup>\<not> \<Phi>)) )  )\<rfloor>"
   by (metis P_def)
 
-  theorem A2:  "\<lfloor>\<^bold>\<forall>(\<lambda>\<Phi>. \<^bold>\<forall>(\<lambda>\<Psi>. ( (P \<Phi>) \<^bold>\<and> \<^bold>\<box> (\<^bold>\<forall>\<^sup>E(\<lambda>x. (\<Phi> x) \<^bold>\<rightarrow> (\<Psi> x) ))) \<^bold>\<rightarrow> (P \<Psi>)))\<rfloor>"
+  theorem A2:  "\<lfloor>\<^bold>\<forall>\<Phi>.( \<^bold>\<forall>\<Psi>. (( (P \<Phi>) \<^bold>\<and> \<^bold>\<box> (\<^bold>\<forall>\<^sup>Ex. ((\<Phi> x) \<^bold>\<rightarrow> (\<Psi> x) ))) \<^bold>\<rightarrow> (P \<Psi>)))\<rfloor>"
   by (metis P_def)
 
-  theorem  A4:  "\<lfloor>\<^bold>\<forall>(\<lambda>\<Phi>. (P \<Phi>) \<^bold>\<rightarrow> \<^bold>\<box> (P \<Phi>))\<rfloor>"
+  theorem  A4:  "\<lfloor>\<^bold>\<forall>\<Phi>.( (P \<Phi>) \<^bold>\<rightarrow> \<^bold>\<box> (P \<Phi>))\<rfloor>"
   by (smt P_def sym trans)
 
 (*<*) 
