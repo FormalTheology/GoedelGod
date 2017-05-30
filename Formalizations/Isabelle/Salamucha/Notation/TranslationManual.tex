@@ -1,0 +1,89 @@
+\documentclass[english,ngerman,paper=a4,]{scrartcl}%
+\input{Praeambel}%
+%
+\usepackage%
+%[hidelinks]%
+{hyperref} %%%% HYPERREF SOLLTE BIS AUF AUSNAHMEN IMMER DAS LETZTE PAKET SEIN %%%%
+%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\begin{document}%
+%
+%
+%
+%
+%
+%
+\renewcommand{\baselinestretch}{1.50}\normalsize%
+%\tableofcontents\newpage%
+%
+%%%%%%%%%%%%%%%%%%%%%
+
+\makeatletter
+% Remove \@date and spacing following it from \@maketitle
+\patchcmd{\@maketitle}% <cmd>
+  {{\usekomafont{date}{\@date \par}}%
+    \vskip \z@ \@plus 1em}% <search>
+  {}% <replace>
+  {}{}% <success><failure>
+\makeatother
+%
+\title{Translation Manual for Salamuchas Formalization of the Ex Motu Argument}
+\maketitle
+\section{Logical Notation}
+%%
+%
+
+\begin{tabular}{|c|c|c|c|}
+\hline 
+\textbf{Name of Operator} & \textbf{Samalamucha first variant} & \textbf{Second variant} & \textbf{\enquote{Standard notation}} \\ 
+\hline 
+Conjunction & $p . q$ & $p \wedge q$ & $p \wedge q$ \\ 
+\hline 
+Disjunction & $p \vee q$ & $p \vee q$  & $p \vee q$ \\ 
+\hline 
+Negation & $\sim p$ & $\sim p$ & $\neg p$ \\ 
+\hline 
+(Material) Implication & $p \supset q$ & $p \rightarrow q$ & $p \rightarrow q$ \\ 
+\hline 
+Biconditional & $p \equiv q$ & $p \equiv q$ & $p \leftrightarrow q$ \\ 
+\hline 
+Universal Quantifier & $[x]. \phi (x)$ & $\wedge x \phi (x)$ & $\forall x. \phi (x)$ \\ 
+\hline 
+Existential Quantifier & $[\exists x]. \phi (x)$& $\vee x \phi (x)$ & $\exists x. \phi (x)$ \\ 
+\hline 
+\end{tabular} 
+
+\section{Definitions of relations, predicates, etc.}
+\begin{tabular}{|c|c|c|}
+\hline 
+\textbf{Notation} & \textbf{Name/Description} & \textbf{Definition} \\ 
+\hline 
+$x R y$ & Relation (at first!) & the usual \\ 
+\hline 
+$C'R$& Set of all elements of a relation & $x \in C'R \Leftrightarrow \exists t. (t R x \vee x R t)$ \\ 
+\hline 
+$K(R)$ & Ordering relation & transitive, irreflexive, connected relation \\ 
+\hline 
+$f x$ & x is in motion &  - \\ 
+\hline 
+$x R y$ & x moves y&  - \\ 
+\hline 
+$M_{x}(a)$ or $a M x$ & a is the proper part of x [sic] & -  \\ 
+\hline
+$xA_{s}y$ & x is in aspect S \emph{in actu} to y [emph. orig.] & -  \\ 
+\hline 
+$C x$ & x is a body & -  \\ 
+\hline 
+ $t_{i}Fx$ $t_i$ & $t_i$ is the duration of movement of x [sic] & -  \\ 
+\hline 
+ $F(t_i)$ or $Ht_i$ & $t_i$ is the finite period of time [sic]& -  \\ 
+\hline 
+\end{tabular}
+%
+%%%%%%%%%%%%%%%%%%%%%%
+\bibliographystyle{jurabib}
+\bibliography{/home/knork/Dokumente/Latex/Philosophie.bib}
+
+
+\end{document}
