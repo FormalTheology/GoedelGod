@@ -1,23 +1,25 @@
-\documentclass[english,ngerman,paper=a4,]{scrartcl}%
-\input{Praeambel}%
+\documentclass[english,paper=a4,]{scrartcl}%
 %
-\usepackage%
-%[hidelinks]%
-{hyperref} %%%% HYPERREF SOLLTE BIS AUF AUSNAHMEN IMMER DAS LETZTE PAKET SEIN %%%%
-%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\usepackage[T1]{fontenc}
+\usepackage[utf8]{inputenc}
+\usepackage{kpfonts}
+\usepackage{microtype}
+\usepackage{babel}
+\usepackage{geometry}%Alternativ typearea (KOMA)
+\geometry{lmargin=2cm,tmargin=2cm,rmargin=1.5cm,bmargin=2cm}
+\usepackage{marvosym}
+\usepackage{tabularx}% Tabellen bestimmter Breite
+\usepackage{csquotes}
+\usepackage{amsmath}
+\usepackage{xspace}
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \begin{document}%
-%
-%
-%
-%
-%
-%
-\renewcommand{\baselinestretch}{1.50}\normalsize%
-%\tableofcontents\newpage%
-%
-%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%
+\renewcommand{\baselinestretch}{1.50}\normalsize%%
 
 \makeatletter
 % Remove \@date and spacing following it from \@maketitle
@@ -28,7 +30,9 @@
   {}{}% <success><failure>
 \makeatother
 %
-\title{Translation Manual for Salamuchas Formalization of the Ex Motu Argument}
+\title{Translation Manual for Salamucha's Formalization of the \emph{Ex Motu} Argument}
+%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%
 \maketitle
 \section{Logical Notation}
 %%
@@ -36,7 +40,7 @@
 
 \begin{tabular}{|c|c|c|c|}
 \hline 
-\textbf{Name of Operator} & \textbf{Samalamucha first variant} & \textbf{Second variant} & \textbf{\enquote{Standard notation}} \\ 
+\textbf{Name of Operator} & \textbf{Samalamucha's first version} & \textbf{Second version} & \textbf{\enquote{Standard notation}} \\ 
 \hline 
 Conjunction & $p . q$ & $p \wedge q$ & $p \wedge q$ \\ 
 \hline 
@@ -82,8 +86,4 @@ $C x$ & x is a body & -  \\
 \end{tabular}
 %
 %%%%%%%%%%%%%%%%%%%%%%
-\bibliographystyle{jurabib}
-\bibliography{/home/knork/Dokumente/Latex/Philosophie.bib}
-
-
 \end{document}
