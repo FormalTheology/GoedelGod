@@ -1,0 +1,89 @@
+\documentclass[english,paper=a4,]{scrartcl}%
+%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\usepackage[T1]{fontenc}
+\usepackage[utf8]{inputenc}
+\usepackage{kpfonts}
+\usepackage{microtype}
+\usepackage{babel}
+\usepackage{geometry}%Alternativ typearea (KOMA)
+\geometry{lmargin=2cm,tmargin=2cm,rmargin=1.5cm,bmargin=2cm}
+\usepackage{marvosym}
+\usepackage{tabularx}% Tabellen bestimmter Breite
+\usepackage{csquotes}
+\usepackage{amsmath}
+\usepackage{xspace}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\begin{document}%
+%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%
+\renewcommand{\baselinestretch}{1.50}\normalsize%%
+
+\makeatletter
+% Remove \@date and spacing following it from \@maketitle
+\patchcmd{\@maketitle}% <cmd>
+  {{\usekomafont{date}{\@date \par}}%
+    \vskip \z@ \@plus 1em}% <search>
+  {}% <replace>
+  {}{}% <success><failure>
+\makeatother
+%
+\title{Translation Manual for Salamucha's Formalization of the \emph{Ex Motu} Argument}
+%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%
+\maketitle
+\section{Logical Notation}
+%%
+%
+
+\begin{tabular}{|c|c|c|c|}
+\hline 
+\textbf{Name of Operator} & \textbf{Samalamucha's first version} & \textbf{Second version} & \textbf{\enquote{Standard notation}} \\ 
+\hline 
+Conjunction & $p . q$ & $p \wedge q$ & $p \wedge q$ \\ 
+\hline 
+Disjunction & $p \vee q$ & $p \vee q$  & $p \vee q$ \\ 
+\hline 
+Negation & $\sim p$ & $\sim p$ & $\neg p$ \\ 
+\hline 
+(Material) Implication & $p \supset q$ & $p \rightarrow q$ & $p \rightarrow q$ \\ 
+\hline 
+Biconditional & $p \equiv q$ & $p \equiv q$ & $p \leftrightarrow q$ \\ 
+\hline 
+Universal Quantifier & $[x]. \phi (x)$ & $\wedge x \phi (x)$ & $\forall x. \phi (x)$ \\ 
+\hline 
+Existential Quantifier & $[\exists x]. \phi (x)$& $\vee x \phi (x)$ & $\exists x. \phi (x)$ \\ 
+\hline 
+\end{tabular} 
+
+\section{Definitions of relations, predicates, etc.}
+\begin{tabular}{|c|c|c|}
+\hline 
+\textbf{Notation} & \textbf{Name/Description} & \textbf{Definition} \\ 
+\hline 
+$x R y$ & Relation (at first!) & the usual \\ 
+\hline 
+$C'R$& Set of all elements of a relation & $x \in C'R \Leftrightarrow \exists t. (t R x \vee x R t)$ \\ 
+\hline 
+$K(R)$ & Ordering relation & transitive, irreflexive, connected relation \\ 
+\hline 
+$f x$ & x is in motion &  - \\ 
+\hline 
+$x R y$ & x moves y&  - \\ 
+\hline 
+$M_{x}(a)$ or $a M x$ & a is the proper part of x [sic] & -  \\ 
+\hline
+$xA_{s}y$ & x is in aspect S \emph{in actu} to y [emph. orig.] & -  \\ 
+\hline 
+$C x$ & x is a body & -  \\ 
+\hline 
+ $t_{i}Fx$  & $t_i$ is the duration of movement of x [sic] & -  \\ 
+\hline 
+ $F(t_i)$ or $Ht_i$ & $t_i$ is the finite period of time [sic]& -  \\ 
+\hline 
+\end{tabular}
+%
+%%%%%%%%%%%%%%%%%%%%%%
+\end{document}
