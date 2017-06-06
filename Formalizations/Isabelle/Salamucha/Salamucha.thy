@@ -92,7 +92,7 @@ lemma T23: "( (K R) \<and> (\<exists>y. (y \<in> (CC R) \<and> (\<forall>u. ((u 
     nitpick[verbose] (*nitpick finds a counterexample*)   
 oops
 
-  
+
 section "Proof of Thesis T1"  
 
 text "fast can prove T1 in ~ 1s"  
@@ -131,7 +131,7 @@ text "12 does not imply two"
 lemma "(\<forall>x. ((\<exists>a b. (((a M x) \<and> (b M x)) \<and> (((\<not> f a) \<and> (f b)) \<or> ((\<not> f a) \<longrightarrow> (\<not> f b))))) \<longrightarrow> (\<not> R x x))) \<longrightarrow> (\<forall>x. ((f x \<and> (R x x)) \<longrightarrow> (\<not> (\<exists>a b. (a M x \<and> b M x) \<and> ((\<not> f a) \<and> f b) \<or> ((\<not> f a) \<longrightarrow> (\<not> f b))))   ))"
 nitpick[verbose]
   oops
-    
+   
 text "Are all assumptions necessary?"    
 lemma T1wo1:
 assumes 12: "\<forall>x. ((\<exists>a b. (((a M x) \<and> (b M x)) \<and> (((\<not> f a) \<and> (f b)) \<or> ((\<not> f a) \<longrightarrow> (\<not> f b))))) \<longrightarrow> (\<not> R x x))"
@@ -146,6 +146,7 @@ x M y := False
 13 is trivally true (for t = x)
 The thesis doesn\<acute>t hold.
 *)  
+
 oops  
 
 lemma T1wo2:
@@ -159,7 +160,7 @@ x M y := True
 f x := \<exists>t. (R t x)
 then both 11 and 13 hold but clearly the thesis is wrong*)
 oops
-    
+
 lemma T1wo3:    
 assumes 11: "\<forall>x. ((f x) \<longrightarrow> (\<exists>a b. (a M x \<and> b M x)))"
 and 12: "\<forall>x. ((\<exists>a b. (((a M x) \<and> (b M x)) \<and> (((\<not> f a) \<and> (f b)) \<or> ((\<not> f a) \<longrightarrow> (\<not> f b))))) \<longrightarrow> (\<not> R x x))"
@@ -179,13 +180,14 @@ oops
 section "Irreflexivity of R"
 
 text "first automated"
-  
+
 lemma irreflexivityRauto:
 assumes 11: "\<forall>x. ((f x) \<longrightarrow> (\<exists>a b. (a M x \<and> b M x)))"
 and 12: "\<forall>x. ((\<exists>a b. (((a M x) \<and> (b M x)) \<and> (((\<not> f a) \<and> (f b)) \<or> ((\<not> f a) \<longrightarrow> (\<not> f b))))) \<longrightarrow> (\<not> R x x))"
 and 14: "\<forall>x y.(x R y \<longrightarrow> f y)"
 shows  "irreflexive R" using 11 12 14 by presburger  
 
+    
 text "then using the steps in Salamuchas book"
   
 lemma irreflexivityR:
@@ -195,7 +197,7 @@ and 14: "\<forall>x y.(x R y \<longrightarrow> f y)"
 shows  "irreflexive R"    
 proof -
   (*have True nitpick [satisfy, user_axioms, expect = genuine] (*Nitpick runs out of time*) *)
-
+  (*For a Model consider: x R y := false; x M y := False; f x := false; Domain nonempty*)
   (*Steps until threea are the same as in the proof of T1*)
   have onea: "\<forall>x. ((f x \<and> (R x x)) \<longrightarrow> (\<exists>a b. (a M x \<and> b M x)))" using 11 by blast
   have oneb: "\<forall>x. ((f x \<and> (R x x)) \<longrightarrow> (\<exists>a b. (a M x \<and> b M x) \<and> ((\<not> f a) \<and> f b) \<or> (f a \<or> (\<not> f b))))" using onea by auto
@@ -358,15 +360,15 @@ and 23: "\<forall>x y. ((f x \<and> (R y x)) \<longrightarrow> (y A\<^sub> R x))
 shows "irreflexive R"  
 nitpick[verbose] (*Nitpick finds a counterexample*) 
 oops  
-  
+
   
 section "Arguments for there being a first element"
 
 
 (*N.B. my local sledgehammer (and try0 etc.) can t prove the following theorem; the only remote prover
 that finds a proof is vampire but proof reconstruction fails even here.
-I would be interested if sledgehammer finds a proof on a faster machine.
-Useful theorems to add are mem_Collect_eq and perhaps Tauto*)   
+I would be interested if sledgehammer find a proof on a faster machine
+useful theorems to add are mem_Collect_eq and perhaps Tauto*)  
   
 lemma TpThenNotC3:
 assumes Tp: "\<forall>x y. ((R x y) \<longrightarrow> (f x \<and> f y))"
@@ -416,17 +418,233 @@ qed
   
 text "whether the assumptions are all necessary is irrelevant here (since it\<acute>s supposed to be a reductio)."
 
-(*To Be Continued (p. 126*)
+text "Arguments for Tp (for a reductio)"
+
+text "Automated:"  
+
+lemma Tpauto:
+assumes c2: "K R"  
+and NotC3: "\<not> (\<exists>y. (y \<in> (CC R) \<and> (\<forall>u. ((u \<in> (CC R) \<and> u \<noteq> y) \<longrightarrow> (R y u)))))"
+and 35: "\<forall>x. ((\<exists>t. (t R x)) \<longrightarrow> f x)"
+shows  "\<forall>x y. ((R x y) \<longrightarrow> (f x \<and> f y))"  using c2 NotC3 35 by meson
+
+text "With Salamucha\<acute>s steps:"
+
+lemma Tp:
+assumes c2: "K R"  
+and NotC3: "\<not> (\<exists>y. (y \<in> (CC R) \<and> (\<forall>u. ((u \<in> (CC R) \<and> u \<noteq> y) \<longrightarrow> (R y u)))))"
+and 35: "\<forall>x. ((\<exists>t. (t R x)) \<longrightarrow> f x)"
+shows  "\<forall>x y. ((R x y) \<longrightarrow> (f x \<and> f y))"  
+proof -
+  (*slight differences between both notational variants of Salamucha; Probably typos;
+the more intuitive version is used*)
+  have one: "\<forall>x y. ((R x y) \<longrightarrow> (x \<in> (CC R) \<and> y \<in> (CC R)))" by auto
+  have twoa: "(\<not> (\<exists>y. (y \<in> (CC R) \<and> (\<forall>u. ((u \<in> (CC R) \<and> u \<noteq>y) \<longrightarrow> (R y u))))))
+ \<longrightarrow> (\<forall>y. (y \<in> (CC R) \<longrightarrow> (\<exists>u. (u \<in> (CC R) \<and> u \<noteq> y \<and> \<not>(R y u)))))" by presburger    
+  have twob: "(\<not> (\<exists>y. (y \<in> (CC R) \<and> (\<forall>u. ((u \<in> (CC R) \<and> u \<noteq> y) \<longrightarrow> (R y u)))   )))
+ \<longrightarrow> (\<forall>y. (y \<in> (CC R) \<longrightarrow> (\<exists>u. (R u y))))" using c2 by meson (*twoa is not really necessary*)
+  have twoc: "(\<not> (\<exists>y. (y \<in> (CC R) \<and> (\<forall>u. ((u \<in> (CC R) \<and> u \<noteq> y) \<longrightarrow> (R y u)))   )))
+ \<longrightarrow> (\<forall>y. (y \<in> (CC R) \<longrightarrow> f y))" using 35 by meson (*twob is not really necessary*)
+  have twod: "(\<not> (\<exists>y. (y \<in> (CC R) \<and> (\<forall>u. ((u \<in> (CC R) \<and> u \<noteq> y) \<longrightarrow> (R y u)))   )))
+\<longrightarrow> (\<forall>x y. (R x y \<longrightarrow> (f x \<and> f y)))" using twoc by blast (*one is not really necessary*)
+thus ?thesis using NotC3 by blast
+qed 
+
+
+text "Are all assumptions necessary?" (*Kind of an academic question, since this is supposed to be a reductio*)
+text "No!"
   
-(*
- 
+lemma Tpwo1:
+assumes NotC3: "\<not> (\<exists>y. (y \<in> (CC R) \<and> (\<forall>u. ((u \<in> (CC R) \<and> u \<noteq> y) \<longrightarrow> (R y u)))))"
+and 35: "\<forall>x. ((\<exists>t. (t R x)) \<longrightarrow> f x)"
+shows  "\<forall>x y. ((R x y) \<longrightarrow> (f x \<and> f y))"  using NotC3 35 by meson
+
+text "A"    
+
+lemma Tpo2:
+assumes c2: "K R"  
+and 35: "\<forall>x. ((\<exists>t. (t R x)) \<longrightarrow> f x)"
+shows  "\<forall>x y. ((R x y) \<longrightarrow> (f x \<and> f y))"    
+nitpick[verbose]  (*Nitpick doesn\<acute>t find a counterexample*)
+(*For a counterexample consider:
+let R be a relation on the natural numbers (n \<ge> 0) where:
+x R y := x = 0 \<and> y = 1
+R is transitive irreflexive and connected hence c2 holds.
+let f x := \<exists>t. (t < x)
+then, if t R x holds then t = 0 and x = 1 and there is a smaller number than 1, namely 0.
+hence 35 holds.
+however for x = 0 and y = 1 x R y holds but it is not true that f 0, since by definition
+there is no smaller natural number*)
+oops
+    
+lemma Tpwo3:
+assumes c2: "K R"  
+and NotC3: "\<not> (\<exists>y. (y \<in> (CC R) \<and> (\<forall>u. ((u \<in> (CC R) \<and> u \<noteq> y) \<longrightarrow> (R y u)))))"
+shows  "\<forall>x y. ((R x y) \<longrightarrow> (f x \<and> f y))"       
+nitpick[verbose] (*Nitpick doesn\<acute>t find a counterexample*)
+(*For a (trivial) counterexample consider:
+let R be the less-than relation on the natural numbers. It is obviously an Ordering Relation.
+There is also no smalles element. therefore c2 and NotC3 hold.
+let f x := False
+then the conclusion is wrong for all x y.
+*)
+oops      
+
+
+(*Again we have to declare the type of the "time" elements explicitly; we will just use 
+type a here*)  
+
+(*For the following lemma sledgehammer proof reconstruction fails, but the results strongly suggest
+that the set of assumptions are inconsistent.
+This is however not a problem since the intention of this lemma is to show 
+that Tp should be rejected*)  
+(*Again we have to declare the type of the "time" elements explicitly; we will just use 
+type a here*)  
+lemma Unwantedconsequences: 
+assumes 31: "\<forall>x. (f x \<longrightarrow> C x)"
+and 32: "\<forall>x. ((C x \<and> f x) \<longrightarrow> (\<exists>(t\<^sub>1::a). (t\<^sub>1 F x)))"
+and 33: "\<forall>x (t\<^sub>2::a). (C x \<longrightarrow> ((t\<^sub>2 F x) \<longrightarrow> (H t\<^sub>2)))"
+and 34: "\<forall>x y (t\<^sub>1::a) (t\<^sub>2::a). (((R x y) \<and> ((t\<^sub>1 F x) \<and> (t\<^sub>2 F y))) \<longrightarrow> (t\<^sub>1 = t\<^sub>2))"
+and c2: "K R"  
+and Tp: "\<forall>x y. ((R x y) \<longrightarrow> (f x \<and> f y))"
+shows "\<forall>x y (t\<^sub>1::a) (t\<^sub>2::a).((x \<in> (CC R) \<and> y \<in> (CC R) \<and> (x \<noteq> y) \<and> (t\<^sub>1 F x) \<and> (t\<^sub>2 F y))   \<longrightarrow> t\<^sub>1 = t\<^sub>2)"
+proof -
+  have one: "\<forall>x y. ((R x y \<or> R y x) \<longrightarrow> (f x \<and> f y))" using Tp by auto  
+  have twoa: "\<forall>x. (x \<in> (CC R) \<longrightarrow> (\<exists>z. (R z x \<or> R x z)))" by auto
+  have twob: "\<forall>x. (x \<in> (CC R) \<longrightarrow> (\<exists>z. (f z \<and> f x)))" using twoa one by meson
+  have twoc: "\<forall>x. (x \<in> (CC R) \<longrightarrow> f x)" using twob by simp
+  have three: "\<forall>x. (x \<in> (CC R) \<longrightarrow> C x)" using twoc 31 by blast
+  have four: "\<forall>x. (x \<in> (CC R) \<longrightarrow> (C x \<and> f x))" using three twoc by simp    
+  have five: "\<forall>x. (x \<in> (CC R) \<longrightarrow> (\<exists>(t\<^sub>1::a). (t\<^sub>1 F x)))" using four 32 by blast
+  have six: "\<forall>x. (x \<in> (CC R) \<longrightarrow> (\<forall>(t\<^sub>2::a). ((t\<^sub>2 F x) \<longrightarrow> (H t\<^sub>2))))" using three 33 by blast   
+  (*step seven has a typo in the second notational variant!*)
+  have seven: "\<forall>x. (x \<in> (CC R) \<longrightarrow> (\<exists>(t\<^sub>1::a). ((t\<^sub>1 F x) \<and> (H t\<^sub>1))))" using five six by blast
+  have eight: "\<forall>x y (t\<^sub>1::a) (t\<^sub>2::a). (((R x y \<or> R y x) \<and> ((t\<^sub>1 F x) \<and> (t\<^sub>2 F y))) \<longrightarrow> t\<^sub>1 = t\<^sub>2)" using 34 by blast
+  have nine: "\<forall>x y (t\<^sub>1::a) (t\<^sub>2::a).((x \<in> (CC R) \<and> y \<in> (CC R) \<and> (x \<noteq> y) \<and> (t\<^sub>1 F x) \<and> (t\<^sub>2 F y))   \<longrightarrow> t\<^sub>1 = t\<^sub>2)" using eight c2 by meson (*slow*) 
+  thus ?thesis by blast
+qed      
+(*N.B. Salamucha mentions that for some definitions of identity (e.g. a Leibnizian)
+the x \<noteq> y can be omitted in none. He argues that this is however not very helpful
+and leads to more problems than the apparent simplification solves. I tend to agree.*)  
+  
+section "The Consequens of Thesis T"
+  
+text "Ex Motu implies Monotheism"  
+
+lemma monotheismauto:
+assumes god: "(\<exists>v. (\<not> (f v) \<and> (\<forall>u. (u \<in> (CC R) \<and> u \<noteq> v) \<longrightarrow> (R v u))))"  
+and c2: "K R"
+and c3: "(\<exists>y. (y \<in> (CC R) \<and> (\<forall>u. ((u \<in> (CC R) \<and> u \<noteq> y) \<longrightarrow> (R y u)))))"
+shows "((\<not> (f v) \<and> (\<forall>u. (u \<in> (CC R) \<and> u \<noteq> v) \<longrightarrow> (R v u))) \<and> (\<not> (f w) \<and> (\<forall>u. (u \<in> (CC R) \<and> u \<noteq> w) \<longrightarrow> (R w u))))
+\<longrightarrow> v = w" using c2 c3 god  by (metis (full_types, lifting) mem_Collect_eq)
+
+lemma monotheism:
+assumes god: "(\<exists>v. (\<not> (f v) \<and> (\<forall>u. (u \<in> (CC R) \<and> u \<noteq> v) \<longrightarrow> (R v u))))"  
+and c2: "K R"
+and c3: "(\<exists>y. (y \<in> (CC R) \<and> (\<forall>u. ((u \<in> (CC R) \<and> u \<noteq> y) \<longrightarrow> (R y u)))))"
+shows "((\<not> (f v) \<and> (\<forall>u. (u \<in> (CC R) \<and> u \<noteq> v) \<longrightarrow> (R v u))) \<and> (\<not> (f w) \<and> (\<forall>u. (u \<in> (CC R) \<and> u \<noteq> w) \<longrightarrow> (R w u))))
+\<longrightarrow> v = w"
+proof -
+  {assume asm1: "(\<not> (f v) \<and> (\<forall>u. (u \<in> (CC R) \<and> u \<noteq> v) \<longrightarrow> (R v u)))"
+   and asm2: "(\<not> (f w) \<and> (\<forall>u. (u \<in> (CC R) \<and> u \<noteq> w) \<longrightarrow> (R w u)))"
+    {assume poly: "v \<noteq> w"
+     from asm1 have v1: "\<forall>x. ((x \<in> (CC R) \<and> (x \<noteq> v)) \<longrightarrow> (R v x))" by auto    
+     from asm2 have w1: "\<forall>x. ((x \<in> (CC R) \<and> (x \<noteq> w)) \<longrightarrow> (R w x))" by auto
+      (*next step is not part of Salamucha\<acute>s outline*)     
+     have vwin: "v \<in> (CC R) \<and> w \<in> (CC R)"
+       proof - 
+       from c3 obtain y where obty: "y \<in> (CC R)" by auto
+       {assume "y \<noteq> v"   
+         hence "v \<in> (CC R)" using v1 obty by auto}
+       moreover
+       {assume "y = v"
+         hence "v \<in> (CC R)" using obty by simp}
+       ultimately have "v \<in> (CC R)" by fastforce
+       thus ?thesis using w1 obty by blast qed
+     hence "(R v w) \<or> (R w v)" using c2 poly by blast  
+    moreover
+    {assume "R v w"
+     hence "\<not> (R w v)" using c2 by blast   
+     hence False using w1 vwin poly by auto}
+    moreover 
+    {assume "R w v"
+     hence "\<not> (R v w)" using c2 by blast
+     hence False using v1 vwin poly by auto}     
+    ultimately have False by blast}
+  hence "v = w" by blast}
+thus ?thesis by fast
+qed      
+
+section "The entire proof(s) (as specified on p.131ff)"  
+  
+lemma AC:
+assumes one: "\<forall>x. (f x \<longrightarrow> (\<exists>t. (R t x)))"
+and two: "\<forall>x y z. (((R x y) \<and>  (R y z)) \<longrightarrow> (R x z))"    
+and three: "\<forall>x y. ((x \<in> (CC R) \<and> y \<in> (CC R) \<and> (x \<noteq> y)) \<longrightarrow> ((R x y) \<or> (R y x)))"
+(*A*)
+and 11: "\<forall>x. ((f x) \<longrightarrow> (\<exists>a b. (a M x \<and> b M x)))"
+and 12: "\<forall>x. ((\<exists>a b. (((a M x) \<and> (b M x)) \<and> (((\<not> f a) \<and> (f b)) \<or> ((\<not> f a) \<longrightarrow> (\<not> f b))))) \<longrightarrow> (\<not> R x x))"
+and 14: "\<forall>x y.(x R y \<longrightarrow> f y)" 
+(*C*)
 and 31: "\<forall>x. (f x \<longrightarrow> C x)"
-and 32: "\<forall>x. ((C x \<and> f x) \<longrightarrow> (\<exists>t\<^sub>1. (t\<^sub>1 F x)))"
-and 33: "\<forall>x t\<^sub>2. (C x \<longrightarrow> ((t\<^sub>2 F x) \<longrightarrow> (H t\<^sub>2)))"
-and 34: "\<forall>x y t\<^sub>1 t\<^sub>2. (((R x y) \<and> ((t\<^sub>1 F x) \<and> (t\<^sub>2 F y))) \<longrightarrow> (t\<^sub>1 = t\<^sub>2))"
-*)  
-
-
-
-
+and 32: "\<forall>x. ((C x \<and> f x) \<longrightarrow> (\<exists>(t\<^sub>1::a). (t\<^sub>1 F x)))"
+and 33: "\<forall>x (t\<^sub>2::a). (C x \<longrightarrow> ((t\<^sub>2 F x) \<longrightarrow> (H t\<^sub>2)))"
+and 34: "\<forall>x y (t\<^sub>1::a) (t\<^sub>2::a). (((R x y) \<and> ((t\<^sub>1 F x) \<and> (t\<^sub>2 F y))) \<longrightarrow> (t\<^sub>1 = t\<^sub>2))"
+and 35: "\<forall>x. ((\<exists>t. (t R x)) \<longrightarrow> f x)"
+(*A*)
+and A: "\<not> (\<forall>x. (x \<in> (CC R) \<longrightarrow> (\<exists>t\<^sub>1::a. ((t\<^sub>1 F x) \<and> (H t\<^sub>1)))))" (*It is not the case that all moving bodies
+move only a (the?) limited period of time (negation of "seven" from unwanted consequences*)
+shows "\<exists>v. (\<not> (f v) \<and> (\<forall>u. (u \<in> (CC R) \<and> u \<noteq> v) \<longrightarrow> (R v u)))" 
+proof -
+(*nitpick [satisfy, user_axioms, expect = genuine] (*Nitpick runs out of time!*) *) 
+(*This should really be investigated further*)
+  from 11 12 14 have "irreflexive R" using irreflexivityR by blast
+  hence c2: "K R" using one two three by blast
+  have T1: "\<forall>x. ((f x) \<longrightarrow> (\<exists>t. ((R t x) \<and> t \<noteq> x)))" using 11 12 14 T1auto one by blast
+  hence c1: "\<forall>x. (f x \<longrightarrow> (\<exists>t. (R t x)))" by blast
+  {assume Tp: "\<forall>x y. ((R x y) \<longrightarrow> (f x \<and> f y))"
+   have seven: "\<forall>x. (x \<in> (CC R) \<longrightarrow> (\<exists>(t\<^sub>1::a). ((t\<^sub>1 F x) \<and> (H t\<^sub>1))))" using Tp 31 32 33 by blast
+   hence False using A by blast}
+  hence NOTTp: "\<not> (\<forall>x y. ((R x y) \<longrightarrow> (f x \<and> f y)))" by blast
+  {assume NOTC3:  "\<not> ((\<exists>y. (y \<in> (CC R) \<and> (\<forall>u. ((u \<in> (CC R) \<and> u \<noteq> y) \<longrightarrow> (R y u))))))"    
+    have False using Tpauto 35 NOTTp c2 NOTC3 by blast}
+  hence c3: "((\<exists>y. (y \<in> (CC R) \<and> (\<forall>u. ((u \<in> (CC R) \<and> u \<noteq> y) \<longrightarrow> (R y u))))))" by blast   
+show ?thesis using  c1 c2 c3 Tauto by blast
+qed
+lemma BC:
+assumes one: "\<forall>x. (f x \<longrightarrow> (\<exists>t. (R t x)))"
+and two: "\<forall>x y z. (((R x y) \<and>  (R y z)) \<longrightarrow> (R x z))"    
+and three: "\<forall>x y. ((x \<in> (CC R) \<and> y \<in> (CC R) \<and> (x \<noteq> y)) \<longrightarrow> ((R x y) \<or> (R y x)))"
+(*B*)
+and 21: "\<forall>x y (S::a \<Rightarrow> a \<Rightarrow> bool). ((x A\<^sub> S y) \<longrightarrow> \<not>(x P\<^sub> S y))"
+and 22: "\<forall>x y. ((f x \<and> (R y x)) \<longrightarrow> (x P\<^sub> R y))"  
+and 23: "\<forall>x y. ((f x \<and> (R y x)) \<longrightarrow> (y A\<^sub> R x))"
+and 14: "\<forall>x y.(x R y \<longrightarrow> f y)"
+(*C*)
+and 31: "\<forall>x. (f x \<longrightarrow> C x)"
+and 32: "\<forall>x. ((C x \<and> f x) \<longrightarrow> (\<exists>(t\<^sub>1::a). (t\<^sub>1 F x)))"
+and 33: "\<forall>x (t\<^sub>2::a). (C x \<longrightarrow> ((t\<^sub>2 F x) \<longrightarrow> (H t\<^sub>2)))"
+and 34: "\<forall>x y (t\<^sub>1::a) (t\<^sub>2::a). (((R x y) \<and> ((t\<^sub>1 F x) \<and> (t\<^sub>2 F y))) \<longrightarrow> (t\<^sub>1 = t\<^sub>2))"
+and 35: "\<forall>x. ((\<exists>t. (t R x)) \<longrightarrow> f x)"
+(*A*)
+and A: "\<not> (\<forall>x. (x \<in> (CC R) \<longrightarrow> (\<exists>t\<^sub>1::a. ((t\<^sub>1 F x) \<and> (H t\<^sub>1)))))" 
+shows "\<exists>v. (\<not> (f v) \<and> (\<forall>u. (u \<in> (CC R) \<and> u \<noteq> v) \<longrightarrow> (R v u)))" 
+(*nitpick [satisfy, user_axioms, expect = genuine] (*Nitpick runs out of time again*)*)
+proof -
+  from 21 22 23 14 have "irreflexive R" using  IrreflexivityRv2 by blast
+  hence c2: "K R" using one two three by blast
+  have T1: "\<forall>x. ((f x) \<longrightarrow> (\<exists>t. ((R t x) \<and> t \<noteq> x)))" using 21 22 23 one thirdproof by blast
+  hence c1: "\<forall>x. (f x \<longrightarrow> (\<exists>t. (R t x)))" by blast
+  {assume Tp: "\<forall>x y. ((R x y) \<longrightarrow> (f x \<and> f y))"
+   have seven: "\<forall>x. (x \<in> (CC R) \<longrightarrow> (\<exists>(t\<^sub>1::a). ((t\<^sub>1 F x) \<and> (H t\<^sub>1))))" using Tp 31 32 33 by blast
+   hence False using A by blast}
+  hence NOTTp: "\<not> (\<forall>x y. ((R x y) \<longrightarrow> (f x \<and> f y)))" by blast
+  {assume NOTC3:  "\<not> ((\<exists>y. (y \<in> (CC R) \<and> (\<forall>u. ((u \<in> (CC R) \<and> u \<noteq> y) \<longrightarrow> (R y u))))))"    
+    have False using Tpauto 35 NOTTp c2 NOTC3 by blast}
+  hence c3: "((\<exists>y. (y \<in> (CC R) \<and> (\<forall>u. ((u \<in> (CC R) \<and> u \<noteq> y) \<longrightarrow> (R y u))))))" by blast   
+show ?thesis using  c1 c2 c3 Tauto by blast
+qed      
+      
+      
+ 
 end
