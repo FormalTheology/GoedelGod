@@ -592,7 +592,7 @@ and 33: "\<forall>x (t\<^sub>2::a). (C x \<longrightarrow> ((t\<^sub>2 F x) \<lo
 and 34: "\<forall>x y (t\<^sub>1::a) (t\<^sub>2::a). (((R x y) \<and> ((t\<^sub>1 F x) \<and> (t\<^sub>2 F y))) \<longrightarrow> (t\<^sub>1 = t\<^sub>2))"
 and 35: "\<forall>x. ((\<exists>t. (t R x)) \<longrightarrow> f x)"
 (*A*)
-and A: "\<not> (\<forall>x. (x \<in> (CC R) \<longrightarrow> (\<exists>t\<^sub>1::a. ((t\<^sub>1 F x) \<and> (H t\<^sub>1)))))" (*It is not the case that all moving bodies
+and A: "\<not> (\<forall>x. (x \<in> {y. (y \<in> (CC R) \<and> (C y))} \<longrightarrow> (\<exists>t\<^sub>1::a. ((t\<^sub>1 F x) \<and> (H t\<^sub>1)))))" (*It is not the case that all moving bodies
 move only a (the?) limited period of time (negation of "seven" from unwanted consequences*)
 shows "\<exists>v. (\<not> (f v) \<and> (\<forall>u. (u \<in> (CC R) \<and> u \<noteq> v) \<longrightarrow> (R v u)))" 
 proof -
@@ -627,7 +627,7 @@ and 33: "\<forall>x (t\<^sub>2::a). (C x \<longrightarrow> ((t\<^sub>2 F x) \<lo
 and 34: "\<forall>x y (t\<^sub>1::a) (t\<^sub>2::a). (((R x y) \<and> ((t\<^sub>1 F x) \<and> (t\<^sub>2 F y))) \<longrightarrow> (t\<^sub>1 = t\<^sub>2))"
 and 35: "\<forall>x. ((\<exists>t. (t R x)) \<longrightarrow> f x)"
 (*A*)
-and A: "\<not> (\<forall>x. (x \<in> (CC R) \<longrightarrow> (\<exists>t\<^sub>1::a. ((t\<^sub>1 F x) \<and> (H t\<^sub>1)))))" 
+and A: "\<not> (\<forall>x. (x \<in> {y. (y \<in> (CC R) \<and> (C y))} \<longrightarrow> (\<exists>t\<^sub>1::a. ((t\<^sub>1 F x) \<and> (H t\<^sub>1)))))"
 shows "\<exists>v. (\<not> (f v) \<and> (\<forall>u. (u \<in> (CC R) \<and> u \<noteq> v) \<longrightarrow> (R v u)))" 
 (*nitpick [satisfy, user_axioms, expect = genuine] (*Nitpick runs out of time again*)*)
 proof -
@@ -642,7 +642,7 @@ proof -
   {assume NOTC3:  "\<not> ((\<exists>y. (y \<in> (CC R) \<and> (\<forall>u. ((u \<in> (CC R) \<and> u \<noteq> y) \<longrightarrow> (R y u))))))"    
     have False using Tpauto 35 NOTTp c2 NOTC3 by blast}
   hence c3: "((\<exists>y. (y \<in> (CC R) \<and> (\<forall>u. ((u \<in> (CC R) \<and> u \<noteq> y) \<longrightarrow> (R y u))))))" by blast   
-show ?thesis using  c1 c2 c3 Tauto by blast
+  show ?thesis using  c1 c2 c3 Tauto by blast
 qed      
       
       
