@@ -3,22 +3,27 @@ theory Salamucha
 imports Main
 
 begin
+declare [[smt_timeout = 300]]
+text {*High timeout for smt, so that there is a high probability that smt terminates.
+Not using this setting makes pdf creation really annoying.*}
   
 section "Types and Definitions"  
-typedecl a (*things and stuff in the world*) 
-consts R:: "a \<Rightarrow> a \<Rightarrow> bool" (*(infixr "R"52)*) (*_ moves _*)
-consts f :: "a \<Rightarrow> bool" (*is in motion*)
-consts partof :: "a \<Rightarrow> a \<Rightarrow> bool" (infixr "M"52) (*_ is a proper part of _*)  
-consts aspactu :: "a \<Rightarrow> 'a \<Rightarrow> a \<Rightarrow> bool" ("_A\<^sub>_ _")
+typedecl a 
+text "things and stuff in the world"
+consts R:: "a \<Rightarrow> a \<Rightarrow> bool" (*(infixr "R"52)*) text "_ moves _"
+consts f :: "a \<Rightarrow> bool" text "is in motion"
+consts partof :: "a \<Rightarrow> a \<Rightarrow> bool" (infixr "M"52) text "_ is a proper part of _"  
+consts aspactu :: "a \<Rightarrow> 'a \<Rightarrow> a \<Rightarrow> bool" ("_A\<^sub>_ _") 
 consts asppot :: "a \<Rightarrow> 'a \<Rightarrow> a \<Rightarrow> bool" ("_ P\<^sub>_ _") 
 consts body:: "a \<Rightarrow> bool" ("C")
-consts duration :: "'a \<Rightarrow> a \<Rightarrow> bool" ("_ F _") (*not entirely sure if we need a "time type" here; I don\<acute>t think it will change anything*)  
+consts duration :: "'a \<Rightarrow> a \<Rightarrow> bool" ("_ F _") text "not entirely sure if we need a /time type/ here; I don\<acute>t think it will change anything"  
 consts finitetime :: "'a \<Rightarrow> bool" ("H") 
   
   
-abbreviation CC:: "('a \<Rightarrow> 'a \<Rightarrow> bool) \<Rightarrow> 'a set" (*Salamucha has C\<acute>R*)
+abbreviation CC:: "('a \<Rightarrow> 'a \<Rightarrow> bool) \<Rightarrow> 'a set" 
   where "CC r \<equiv> {a. \<exists>t. ((r a t) \<or> (r t a))}"
-
+text "Salamucha has C\<acute>R"
+  
 abbreviation irreflexive :: "('a \<Rightarrow> 'a \<Rightarrow> bool) \<Rightarrow> bool"
   where "irreflexive r \<equiv> (\<forall>x. \<not> (r x x))"   
 
@@ -39,20 +44,23 @@ lemma Tauto: "((\<forall>x. (f x \<longrightarrow> (\<exists>t. (R t x))))   \<a
 
 text "Using the steps from Salamucha is actually worse performancewise (and needs smt)"
 
+text "Note that in the second version of Salamuchas notation (the boxed one) there is a consistent typo.
+The y in the Consequens of almost all formulas should be a v"  
+
+text "Note that in step threeb neither threea nor twob is used"    
+  
+text "(*Warning: Stepseven is an smt proof. Other proof methods fail here [but if need be the proof can be made explicit*)"  
+  
 lemma T: "((\<forall>x. (f x \<longrightarrow> (\<exists>t. (R t x))))   \<and>  (K R) \<and> (\<exists>y. (y \<in> (CC R) \<and> (\<forall>u. ((u \<in> (CC R) \<and> u \<noteq> y) \<longrightarrow> (R y u))))))
 \<longrightarrow>  (\<exists>v. (\<not> (f v) \<and> (\<forall>u. (u \<in> (CC R) \<and> u \<noteq> v) \<longrightarrow> (R v u))))"
 proof -
     have  one: "(\<forall>x. ((f x ) \<longrightarrow> (\<exists>t. (R t x)))) \<longrightarrow> (\<forall>x. ((\<forall>t. (\<not> R t x)) \<longrightarrow> (\<not> f x)))"  by blast 
     have twoa: "(K R) \<longrightarrow> (\<forall>y u. (R y u \<longrightarrow> \<not> R u y))" by blast
-    have twob: "(K R) \<longrightarrow> (\<forall>y u. ((u \<in> (CC R) \<and> u \<noteq> y \<and> R y u) \<longrightarrow> (\<not> R u y) ))" by meson
- 
-(*Note that in the second version of Salamuchas notation (the boxed one) there is a consistent typo.
-The y in the Consequens of almost all formulas should be a v*)    
+    have twob: "(K R) \<longrightarrow> (\<forall>y u. ((u \<in> (CC R) \<and> u \<noteq> y \<and> R y u) \<longrightarrow> (\<not> R u y) ))" by meson  
     have threea: "((K R) \<and> (\<exists>y. (y \<in> (CC R) \<and> (\<forall>u. ((u \<in> (CC R) \<and> u \<noteq> y) \<longrightarrow> (R y u))))))  \<longrightarrow> 
 (\<exists>v. (\<forall>u. ((u \<in> (CC R) \<and> u \<noteq> v) \<longrightarrow> (R v u)))) " by meson  
     have threeb: "((K R) \<and> (\<exists>y. (y \<in> (CC R) \<and> (\<forall>u. ( (u \<in> (CC R) \<and> u \<noteq> y ) \<longrightarrow> (R y u))))))
 \<longrightarrow> (\<exists>v. (\<forall>u. ( (u \<in> (CC R) \<and> u \<noteq> v) \<longrightarrow> (\<not> R u v) )))" by (metis (mono_tags, lifting))  
-    (*Note that neither threea nor twob is used*)    
     have threec: "((K R) \<and> (\<exists>y. (y \<in> (CC R) \<and> (\<forall>u. ( (u \<in> (CC R) \<and> u \<noteq> y ) \<longrightarrow> (R y u))))))
 \<longrightarrow> (\<exists>v. (\<forall>u. ( (u \<in> (CC R) \<and> u \<noteq> v) \<longrightarrow> (\<not> R u v \<and> R v u))))" by meson
     have four:  "((K R) \<and> (\<exists>y. (y \<in> (CC R) \<and> (\<forall>u. ( (u \<in> (CC R) \<and> u \<noteq> y ) \<longrightarrow> (R y u))))))
@@ -61,7 +69,7 @@ The y in the Consequens of almost all formulas should be a v*)
     have six: "(K R) \<longrightarrow> (\<forall>u v. (u = v \<longrightarrow> (\<not> R u v)))" by simp   
     have seven: "((K R) \<and> (\<exists>y. (y \<in> (CC R) \<and> (\<forall>u. ( (u \<in> (CC R) \<and> u \<noteq> y ) \<longrightarrow> (R y u))))))
 \<longrightarrow> (\<exists>v. ((\<forall>u. ((\<not> R u v) )) \<and> (\<forall>u.((u \<in> (CC R) \<and> (u \<noteq> v)) \<longrightarrow> (R v u)))))" using five six four 
-      by (smt ext) (*Warning: this is an smt proof other proof methods fail here [but if need be the proof can be made explicit*)
+      by (smt ext) 
     have eigth:  "((\<forall>x. (f x \<longrightarrow> (\<exists>t. (R t x)))) \<and> (K R) \<and> (\<exists>y. (y \<in> (CC R) \<and> (\<forall>u. ( (u \<in> (CC R) \<and> u \<noteq> y ) \<longrightarrow> (R y u))))))
 \<longrightarrow> (\<exists>v. (((\<not> f v) \<and> (\<forall>u. ((u \<in> (CC R) \<and> u \<noteq> v) \<longrightarrow> (R v u))))))" using seven one by meson
     then show ?thesis by blast
@@ -77,20 +85,26 @@ text "Are the conjuncts of the antecedent of Thesis T all necessary?"
   
 lemma T12: "((\<forall>x. (f x \<longrightarrow> (\<exists>t. (R t x))))   \<and>  (K R) )
 \<longrightarrow>  (\<exists>v. (\<not> (f v) \<and> (\<forall>u. (u \<in> (CC R) \<and> u \<noteq> v) \<longrightarrow> (R v u))))"
-  nitpick[verbose] (*Nitpick does NOT find a counterexample; perhaps someone with more computing power could run this again*)
+  nitpick[verbose] 
+  oops
+text "Nitpick does NOT find a counterexample; perhaps someone with more computing power could run this again*)
 (*Salamucha gives the following counterexample (p.115f): Let R be the greater-than relation on
 the positive natural numbers. Let f x mean that x is a positive number (hold trivially).
 Since > is an ordering relation and there always is a bigger number the antecedents hold.
-There is however no positive number that is not positive therefore the conditional is false.*)
-oops
+There is however no positive number that is not positive therefore the conditional is false."    
+    
+    
 lemma T13: "((\<forall>x. (f x \<longrightarrow> (\<exists>t. (R t x))))   \<and> (\<exists>y. (y \<in> (CC R) \<and> (\<forall>u. ((u \<in> (CC R) \<and> u \<noteq> y) \<longrightarrow> (R y u))))))
 \<longrightarrow>  (\<exists>v. (\<not> (f v) \<and> (\<forall>u. (u \<in> (CC R) \<and> u \<noteq> v) \<longrightarrow> (R v u))))"
-  nitpick[verbose] (*nitpick finds a counterexample*)
-oops    
+  nitpick[verbose] 
+  oops
+
+    
 lemma T23: "( (K R) \<and> (\<exists>y. (y \<in> (CC R) \<and> (\<forall>u. ((u \<in> (CC R) \<and> u \<noteq> y) \<longrightarrow> (R y u))))))
 \<longrightarrow>  (\<exists>v. (\<not> (f v) \<and> (\<forall>u. (u \<in> (CC R) \<and> u \<noteq> v) \<longrightarrow> (R v u))))"
-    nitpick[verbose] (*nitpick finds a counterexample*)   
+nitpick[verbose]   
 oops
+text "nitpick finds a counterexample"
 
 
 section "Proof of Thesis T1"  
@@ -101,11 +115,13 @@ assumes onea: "\<forall>x. ((f x) \<longrightarrow> (\<exists>a b. (a M x \<and>
 and oneb: "\<forall>x. ((\<exists>a b. ((a M x \<and> b M x) \<and> ((\<not> f a \<and> f b) \<or> ((\<not> f a) \<longrightarrow> (\<not> f b))) )) \<longrightarrow> (\<not> R x x))"
 and onec: "\<forall>x. ((f x) \<longrightarrow> (\<exists>t. (R t x)))"
 shows  "\<forall>x. ((f x) \<longrightarrow> (\<exists>t. ((R t x) \<and> t \<noteq> x)))" using onea oneb onec by fast
-(*N.B.: Salamucha implies that this proof hold for other definitions of identities as well*)
+text "N.B.: Salamucha implies that this proof hold for other definitions of identities as well"
     
     
     
-text "Now with Salamuchas more expicit proof"    
+text "Now with Salamuchas more expicit proof"
+text "Nitpick confirms consistency"
+text "Contrary to what Salamucha thinks, for step two both 11 and 12 are needed, not just 12; see below."  
 lemma T1:
 assumes 11: "\<forall>x. ((f x) \<longrightarrow> (\<exists>a b. (a M x \<and> b M x)))"
 and 12: "\<forall>x. ((\<exists>a b. (((a M x) \<and> (b M x)) \<and> (((\<not> f a) \<and> (f b)) \<or> ((\<not> f a) \<longrightarrow> (\<not> f b))))) \<longrightarrow> (\<not> R x x))"
@@ -131,51 +147,36 @@ text "12 does not imply two"
 lemma "(\<forall>x. ((\<exists>a b. (((a M x) \<and> (b M x)) \<and> (((\<not> f a) \<and> (f b)) \<or> ((\<not> f a) \<longrightarrow> (\<not> f b))))) \<longrightarrow> (\<not> R x x))) \<longrightarrow> (\<forall>x. ((f x \<and> (R x x)) \<longrightarrow> (\<not> (\<exists>a b. (a M x \<and> b M x) \<and> ((\<not> f a) \<and> f b) \<or> ((\<not> f a) \<longrightarrow> (\<not> f b))))   ))"
 nitpick[verbose]
   oops
-   
+text "Nitpick finds a counterexample"
+    
+    
 text "Are all assumptions necessary?"    
 lemma T1wo1:
 assumes 12: "\<forall>x. ((\<exists>a b. (((a M x) \<and> (b M x)) \<and> (((\<not> f a) \<and> (f b)) \<or> ((\<not> f a) \<longrightarrow> (\<not> f b))))) \<longrightarrow> (\<not> R x x))"
 and 13: "\<forall>x. ((f x) \<longrightarrow> (\<exists>t. (R t x)))"
 shows  "\<forall>x. ((f x) \<longrightarrow> (\<exists>t. ((R t x) \<and> t \<noteq> x)))" 
-nitpick[verbose] (*Nitpick doesn\<acute>t find a counterexample *)
-(*For a counterexample consider:
-x R y := x = y
-f x := True
-x M y := False
-12 then simlifies to: "\<forall>x. (False \<longrightarrow> (\<not> R x x))" which holds
-13 is trivally true (for t = x)
-The thesis doesn\<acute>t hold.
-*)  
-
-oops  
+nitpick[verbose] 
+  oops
+text {*Nitpick finds a counterexample*}    
 
 lemma T1wo2:
 assumes 11: "\<forall>x. ((f x) \<longrightarrow> (\<exists>a b. (a M x \<and> b M x)))"
 and 13: "\<forall>x. ((f x) \<longrightarrow> (\<exists>t. (R t x)))"
 shows  "\<forall>x. ((f x) \<longrightarrow> (\<exists>t. ((R t x) \<and> t \<noteq> x)))" 
-nitpick[verbose] (*Nitpick doesn\<acute>t find a counterexample*)
-(*For an easy counterexample consider
-x R y := x = y
-x M y := True
-f x := \<exists>t. (R t x)
-then both 11 and 13 hold but clearly the thesis is wrong*)
+nitpick[verbose] 
 oops
+text {*Nitpick finds a counterexample*}    
+
+
 
 lemma T1wo3:    
 assumes 11: "\<forall>x. ((f x) \<longrightarrow> (\<exists>a b. (a M x \<and> b M x)))"
 and 12: "\<forall>x. ((\<exists>a b. (((a M x) \<and> (b M x)) \<and> (((\<not> f a) \<and> (f b)) \<or> ((\<not> f a) \<longrightarrow> (\<not> f b))))) \<longrightarrow> (\<not> R x x))"
 shows  "\<forall>x. ((f x) \<longrightarrow> (\<exists>t. ((R t x) \<and> t \<noteq> x)))"     
-nitpick[verbose] (*Nitpick doesn\<acute>t find a counterexample*)   
-(*
-For a counterexample consider:
-x R y := False
-x M y := True
-f x : = True
-11 holds trivially and the thesis is false
-for 12 we have: "\<forall>x. (\<exists>a b. ((True \<and> (False \<or> True)) \<longrightarrow> True)"
-ergo: "\<forall>x. \<exists>a b. (True)" which is a theorem.
-*)
+nitpick[verbose] 
 oops
+text {*Nitpick finds a counterexample*}    
+
   
 section "Irreflexivity of R"
 
@@ -189,15 +190,15 @@ shows  "irreflexive R" using 11 12 14 by presburger
 
     
 text "then using the steps in Salamuchas book"
-  
+
+text "Nitpick runs out of time trying to find a model"
+text "N.B.: steps until threea are the same as in the proof of T1"  
 lemma irreflexivityR:
 assumes 11: "\<forall>x. ((f x) \<longrightarrow> (\<exists>a b. (a M x \<and> b M x)))"
 and 12: "\<forall>x. ((\<exists>a b. (((a M x) \<and> (b M x)) \<and> (((\<not> f a) \<and> (f b)) \<or> ((\<not> f a) \<longrightarrow> (\<not> f b))))) \<longrightarrow> (\<not> R x x))"
 and 14: "\<forall>x y.(x R y \<longrightarrow> f y)"
 shows  "irreflexive R"    
 proof -
-  (*have True nitpick [satisfy, user_axioms, expect = genuine] (*Nitpick runs out of time*) *)
-  (*For a Model consider: x R y := false; x M y := False; f x := false; Domain nonempty*)
   (*Steps until threea are the same as in the proof of T1*)
   have onea: "\<forall>x. ((f x \<and> (R x x)) \<longrightarrow> (\<exists>a b. (a M x \<and> b M x)))" using 11 by blast
   have oneb: "\<forall>x. ((f x \<and> (R x x)) \<longrightarrow> (\<exists>a b. (a M x \<and> b M x) \<and> ((\<not> f a) \<and> f b) \<or> (f a \<or> (\<not> f b))))" using onea by auto
@@ -215,25 +216,26 @@ lemma irreflexivityRwo1:
 assumes 12: "\<forall>x. ((\<exists>a b. (((a M x) \<and> (b M x)) \<and> (((\<not> f a) \<and> (f b)) \<or> ((\<not> f a) \<longrightarrow> (\<not> f b))))) \<longrightarrow> (\<not> R x x))"
 and 14: "\<forall>x y.(x R y \<longrightarrow> f y)"
 shows  "irreflexive R" 
-nitpick[verbose] (*Nitpick runs out of time*)
-(*For a counterexample consider: x R y := x = y; x M y := False; f x := False*)    
-oops    
+nitpick[verbose]     
+  oops    
+text {*Nitpick finds a counterexample*}
 
 lemma irreflexivityRwo2:
 assumes 11: "\<forall>x. ((f x) \<longrightarrow> (\<exists>a b. (a M x \<and> b M x)))"
 and 14: "\<forall>x y.(x R y \<longrightarrow> f y)"
 shows  "irreflexive R" 
-nitpick[verbose] (*Nitpick runs out of time*)
-(*For a counterexample consider: x R y := x = y; f x := False; x M y := False*)
+nitpick[verbose] 
 oops  
+text {*Nitpick finds a counterexample*}
 
+  
 lemma irreflexivityRwo4:
 assumes 11: "\<forall>x. ((f x) \<longrightarrow> (\<exists>a b. (a M x \<and> b M x)))"
 and 12: "\<forall>x. ((\<exists>a b. (((a M x) \<and> (b M x)) \<and> (((\<not> f a) \<and> (f b)) \<or> ((\<not> f a) \<longrightarrow> (\<not> f b))))) \<longrightarrow> (\<not> R x x))"
 shows  "irreflexive R"   
-nitpick[verbose] (*Nitpick finds a counterexample*)
+nitpick[verbose] 
 oops
-
+text "Nitpick finds a counterexample"
 
 text "Show that the weaker assumption doesn\<acute>t work to prove irreflexivity"  
 lemma weaker12:
@@ -241,9 +243,9 @@ assumes 11: "\<forall>x. ((f x) \<longrightarrow> (\<exists>a b. (a M x \<and> b
 and w12: "\<forall>x.((\<exists>a b. ( (a M x \<and> b M x) \<and> \<not> (f a \<longleftrightarrow> f b)  )) \<longrightarrow> (\<not> R x x))"
 and 14: "\<forall>x y.(x R y \<longrightarrow> f y)"
 shows  "irreflexive R"  
-nitpick[verbose] (*Nitpick finds a counterexample*) 
+nitpick[verbose] 
 oops
-
+text "Nitpick finds a counterexample"
   
 section "The third proof"
   
@@ -258,6 +260,8 @@ and 23: "\<forall>x y. ((f x \<and> (R y x)) \<longrightarrow> (y A\<^sub> R x))
 and 24: "\<forall>x. (f x \<longrightarrow> (\<exists>t. (R t x)))"
 shows "\<forall>x. (f x \<longrightarrow> (\<exists>t. ((R t x) \<and> t \<noteq> x)))" using 21 22 23 24 by blast
   
+text "Nitpick confirms consistency (see commented call below)"    
+    
 lemma thirdproof:
 assumes 21: "\<forall>x y (S::a \<Rightarrow> a \<Rightarrow> bool). ((x A\<^sub> S y) \<longrightarrow> \<not>(x P\<^sub> S y))"
 and 22: "\<forall>x y. ((f x \<and> (R y x)) \<longrightarrow> (x P\<^sub> R y))"  
@@ -288,7 +292,8 @@ and 24: "\<forall>x. (f x \<longrightarrow> (\<exists>t. (R t x)))"
 shows "\<forall>x. (f x \<longrightarrow> (\<exists>t. ((R t x) \<and> t \<noteq> x)))"
 nitpick[verbose] (*Nitpick finds a counterexample*)
   oops
-    
+text "Nitpick finds a counterexample"   
+
 lemma thirdproofwo2:
 assumes 21: "\<forall>x y (S::a \<Rightarrow> a \<Rightarrow> bool). ((x A\<^sub> S y) \<longrightarrow> \<not>(x P\<^sub> S y))"
 and 23: "\<forall>x y. ((f x \<and> (R y x)) \<longrightarrow> (y A\<^sub> R x))"
@@ -296,7 +301,9 @@ and 24: "\<forall>x. (f x \<longrightarrow> (\<exists>t. (R t x)))"
 shows "\<forall>x. (f x \<longrightarrow> (\<exists>t. ((R t x) \<and> t \<noteq> x)))"
 nitpick[verbose] (*Nitpick finds a counterexample*)
 oops
-
+text "Nitpick finds a counterexample"
+  
+  
 lemma thirdproofwo3:
 assumes 21: "\<forall>x y (S::a \<Rightarrow> a \<Rightarrow> bool). ((x A\<^sub> S y) \<longrightarrow> \<not>(x P\<^sub> S y))"
 and 22: "\<forall>x y. ((f x \<and> (R y x)) \<longrightarrow> (x P\<^sub> R y))"  
@@ -304,6 +311,7 @@ and 24: "\<forall>x. (f x \<longrightarrow> (\<exists>t. (R t x)))"
 shows "\<forall>x. (f x \<longrightarrow> (\<exists>t. ((R t x) \<and> t \<noteq> x)))"  
 nitpick[verbose] (*Nitpick finds a counterexample*)
 oops
+text "Nitpick finds a counterexample"
 
 lemma thirdproofwo4:
 assumes 21: "\<forall>x y (S::a \<Rightarrow> a \<Rightarrow> bool). ((x A\<^sub> S y) \<longrightarrow> \<not>(x P\<^sub> S y))"
@@ -312,6 +320,7 @@ and 23: "\<forall>x y. ((f x \<and> (R y x)) \<longrightarrow> (y A\<^sub> R x))
 shows "\<forall>x. (f x \<longrightarrow> (\<exists>t. ((R t x) \<and> t \<noteq> x)))"  
 nitpick[verbose] (*Nitpick finds a counterexample*) 
 oops    
+text "Nitpick finds a counterexample"
 
 
 text "Next we show that also assumptions 21 22 23 and 14 imply irreflexivity"  
@@ -324,7 +333,7 @@ and 14: "\<forall>x y.(x R y \<longrightarrow> f y)"
 shows "irreflexive R"
 (*proof -  nitpick [satisfy, user_axioms, expect = genuine] (*Nitpick confirms consistency*) *) 
 using 21 22 23 14 by meson
-
+text "Nitpick confirms consistency"
 
 
 text "Are the assumptions all necessary?"
@@ -336,7 +345,9 @@ and 14: "\<forall>x y.(x R y \<longrightarrow> f y)"
 shows "irreflexive R"
 nitpick[verbose] (*Nitpick finds a counterexample*) 
 oops
-    
+text "Nitpick finds a counterexample"
+  
+  
 lemma IrreflexivityRv2wo2:
 assumes 21: "\<forall>x y (S::a \<Rightarrow> a \<Rightarrow> bool). ((x A\<^sub> S y) \<longrightarrow> \<not>(x P\<^sub> S y))"
 and 23: "\<forall>x y. ((f x \<and> (R y x)) \<longrightarrow> (y A\<^sub> R x))"
@@ -344,7 +355,9 @@ and 14: "\<forall>x y.(x R y \<longrightarrow> f y)"
 shows "irreflexive R"
 nitpick[verbose] (*Nitpick finds a counterexample*) 
 oops  
- 
+text "Nitpick finds a counterexample"
+  
+  
 lemma IrreflexivityRv2wo3:
 assumes 21: "\<forall>x y (S::a \<Rightarrow> a \<Rightarrow> bool). ((x A\<^sub> S y) \<longrightarrow> \<not>(x P\<^sub> S y))"
 and 22: "\<forall>x y. ((f x \<and> (R y x)) \<longrightarrow> (x P\<^sub> R y))"  
@@ -352,6 +365,7 @@ and 14: "\<forall>x y.(x R y \<longrightarrow> f y)"
 shows "irreflexive R"  
 nitpick[verbose] (*Nitpick finds a counterexample*) 
 oops
+text "Nitpick finds a counterexample"
 
 lemma IrreflexivityRv2wo4:
 assumes 21: "\<forall>x y (S::a \<Rightarrow> a \<Rightarrow> bool). ((x A\<^sub> S y) \<longrightarrow> \<not>(x P\<^sub> S y))"
@@ -360,15 +374,16 @@ and 23: "\<forall>x y. ((f x \<and> (R y x)) \<longrightarrow> (y A\<^sub> R x))
 shows "irreflexive R"  
 nitpick[verbose] (*Nitpick finds a counterexample*) 
 oops  
+text "Nitpick finds a counterexample"
 
   
 section "Arguments for there being a first element"
 
 
-(*N.B. my local sledgehammer (and try0 etc.) can t prove the following theorem; the only remote prover
+text {*N.B. my local sledgehammer (and try0 etc.) can t prove the following theorem; the only remote prover
 that finds a proof is vampire but proof reconstruction fails even here.
 I would be interested if sledgehammer find a proof on a faster machine
-useful theorems to add are mem_Collect_eq and perhaps Tauto*)  
+useful theorems to add are mem_Collect_eq and perhaps Tauto*}  
   
 lemma TpThenNotC3:
 assumes Tp: "\<forall>x y. ((R x y) \<longrightarrow> (f x \<and> f y))"
@@ -415,6 +430,10 @@ That is however not really of importance since this is (sort of) supposed to be 
     by (metis (lifting)) (* 15 ms *) qed
 thus ?thesis by blast
 qed
+text {*Nitpick doesn\<acute>t find a model.
+That is however not really of importance since this is (sort of) supposed to be a reductio*) *}
+
+
   
 text "whether the assumptions are all necessary is irrelevant here (since it\<acute>s supposed to be a reductio)."
 
@@ -429,7 +448,8 @@ and 35: "\<forall>x. ((\<exists>t. (t R x)) \<longrightarrow> f x)"
 shows  "\<forall>x y. ((R x y) \<longrightarrow> (f x \<and> f y))"  using c2 NotC3 35 by meson
 
 text "With Salamucha\<acute>s steps:"
-
+text "slight differences between both notational variants of Salamucha; Probably typos;
+the more intuitive version is used"
 lemma Tp:
 assumes c2: "K R"  
 and NotC3: "\<not> (\<exists>y. (y \<in> (CC R) \<and> (\<forall>u. ((u \<in> (CC R) \<and> u \<noteq> y) \<longrightarrow> (R y u)))))"
@@ -451,7 +471,7 @@ thus ?thesis using NotC3 by blast
 qed 
 
 
-text "Are all assumptions necessary?" (*Kind of an academic question, since this is supposed to be a reductio*)
+text "Are all assumptions necessary? (Kind of an academic question, since this is supposed to be a reductio)"
 text "No!"
   
 lemma Tpwo1:
@@ -465,7 +485,9 @@ lemma Tpo2:
 assumes c2: "K R"  
 and 35: "\<forall>x. ((\<exists>t. (t R x)) \<longrightarrow> f x)"
 shows  "\<forall>x y. ((R x y) \<longrightarrow> (f x \<and> f y))"    
-nitpick[verbose]  (*Nitpick doesn\<acute>t find a counterexample*)
+nitpick[verbose]  
+oops
+text {*Nitpick doesn\<acute>t find a counterexample*)
 (*For a counterexample consider:
 let R be a relation on the natural numbers (n \<ge> 0) where:
 x R y := x = 0 \<and> y = 1
@@ -474,32 +496,37 @@ let f x := \<exists>t. (t < x)
 then, if t R x holds then t = 0 and x = 1 and there is a smaller number than 1, namely 0.
 hence 35 holds.
 however for x = 0 and y = 1 x R y holds but it is not true that f 0, since by definition
-there is no smaller natural number*)
-oops
-    
+there is no smaller natural number*}
+
+  
 lemma Tpwo3:
 assumes c2: "K R"  
 and NotC3: "\<not> (\<exists>y. (y \<in> (CC R) \<and> (\<forall>u. ((u \<in> (CC R) \<and> u \<noteq> y) \<longrightarrow> (R y u)))))"
 shows  "\<forall>x y. ((R x y) \<longrightarrow> (f x \<and> f y))"       
-nitpick[verbose] (*Nitpick doesn\<acute>t find a counterexample*)
+nitpick[verbose] 
+oops      
+text {*Nitpick doesn\<acute>t find a counterexample*)
 (*For a (trivial) counterexample consider:
 let R be the less-than relation on the natural numbers. It is obviously an Ordering Relation.
 There is also no smalles element. therefore c2 and NotC3 hold.
 let f x := False
 then the conclusion is wrong for all x y.
-*)
-oops      
+*}
 
+text "Again for the following proof  we have to declare the type of the /time/ elements explicitly; we will just use 
+type a here"
 
-(*Again we have to declare the type of the "time" elements explicitly; we will just use 
-type a here*)  
-
-(*For the following lemma sledgehammer proof reconstruction fails, but the results strongly suggest
+text {*For the following lemma sledgehammer proof reconstruction fails, but the results strongly suggest
 that the set of assumptions are inconsistent.
 This is however not a problem since the intention of this lemma is to show 
-that Tp should be rejected*)  
-(*Again we have to declare the type of the "time" elements explicitly; we will just use 
-type a here*)  
+that Tp should be rejected*}  
+
+text "N.B. Step seven has a typo in the second notational variant!"  
+
+text {*N.B. Salamucha mentions that for some definitions of identity (e.g. a Leibnizian)
+the x \<noteq> y can be omitted in none. He argues that this is however not very helpful
+and leads to more problems than the apparent simplification solves. I tend to agree.*}  
+    
 lemma Unwantedconsequences: 
 assumes 31: "\<forall>x. (f x \<longrightarrow> C x)"
 and 32: "\<forall>x. ((C x \<and> f x) \<longrightarrow> (\<exists>(t\<^sub>1::a). (t\<^sub>1 F x)))"
@@ -538,6 +565,9 @@ and c3: "(\<exists>y. (y \<in> (CC R) \<and> (\<forall>u. ((u \<in> (CC R) \<and
 shows "((\<not> (f v) \<and> (\<forall>u. (u \<in> (CC R) \<and> u \<noteq> v) \<longrightarrow> (R v u))) \<and> (\<not> (f w) \<and> (\<forall>u. (u \<in> (CC R) \<and> u \<noteq> w) \<longrightarrow> (R w u))))
 \<longrightarrow> v = w" using c2 c3 god  by (metis (full_types, lifting) mem_Collect_eq)
 
+
+text "the step /vwin/ is not part of Salamucha\<acute>s outline, but needed for Isabelle\<acute>s provers*)     
+"
 lemma monotheism:
 assumes god: "(\<exists>v. (\<not> (f v) \<and> (\<forall>u. (u \<in> (CC R) \<and> u \<noteq> v) \<longrightarrow> (R v u))))"  
 and c2: "K R"
@@ -577,6 +607,18 @@ qed
 
 section "The entire proof(s) (as specified on p.131ff)"  
   
+  
+text {*
+Salamucha offers several different ways to combine sets of assumptions to get the conclusion. Only those that have been formalized in the paper (and are not just natural language assumptions) are proven here.
+Even those two possible combinations however rely on an additional assumption "A" [that Salamucha claims follows from two other assumptions that are only stated in natural language].
+
+In the (apparently somewhat sloppy) translation A is stated as:
+"An infinite and ordered set of moving bodies and bodies that move is not in motion for the limited period of time [sic]."
+
+The best fit for this seems to be the formula "A" below. 
+ makes the argument valid, uses the same concepts and fits neatly in the dialectic the previous reductio arguments provide.
+*}  
+
 lemma AC:
 assumes one: "\<forall>x. (f x \<longrightarrow> (\<exists>t. (R t x)))"
 and two: "\<forall>x y z. (((R x y) \<and>  (R y z)) \<longrightarrow> (R x z))"    
@@ -611,6 +653,9 @@ proof -
   hence c3: "((\<exists>y. (y \<in> (CC R) \<and> (\<forall>u. ((u \<in> (CC R) \<and> u \<noteq> y) \<longrightarrow> (R y u))))))" by blast   
 show ?thesis using  c1 c2 c3 Tauto by blast
 qed
+  
+  
+  
 lemma BC:
 assumes one: "\<forall>x. (f x \<longrightarrow> (\<exists>t. (R t x)))"
 and two: "\<forall>x y z. (((R x y) \<and>  (R y z)) \<longrightarrow> (R x z))"    
@@ -644,7 +689,10 @@ proof -
   hence c3: "((\<exists>y. (y \<in> (CC R) \<and> (\<forall>u. ((u \<in> (CC R) \<and> u \<noteq> y) \<longrightarrow> (R y u))))))" by blast   
   show ?thesis using  c1 c2 c3 Tauto by blast
 qed      
-      
+
+text {*Nitpick times out while trying to find a model for both proofs.
+Sledgehammer and remote provers can\<acute>t prove false, but consistency is still an open 
+question.*}  
       
  
 end

@@ -157,14 +157,7 @@ and 13: "\<forall>x. ((f x) \<longrightarrow> (\<exists>t. (R t x)))"
 shows  "\<forall>x. ((f x) \<longrightarrow> (\<exists>t. ((R t x) \<and> t \<noteq> x)))" 
 nitpick[verbose] 
   oops
-text {*Nitpick doesn\<acute>t find a counterexample
-For a counterexample consider:
-x R y := x = y
-f x := True
-x M y := False
-12 then simlifies to: "\<forall>x. (False \<longrightarrow> (\<not> R x x))" which holds
-13 is trivally true (for t = x)
-The thesis doesn\<acute>t hold.*}    
+text {*Nitpick finds a counterexample*}    
 
 lemma T1wo2:
 assumes 11: "\<forall>x. ((f x) \<longrightarrow> (\<exists>a b. (a M x \<and> b M x)))"
@@ -172,12 +165,7 @@ and 13: "\<forall>x. ((f x) \<longrightarrow> (\<exists>t. (R t x)))"
 shows  "\<forall>x. ((f x) \<longrightarrow> (\<exists>t. ((R t x) \<and> t \<noteq> x)))" 
 nitpick[verbose] 
 oops
-text {*Nitpick doesn\<acute>t find a counterexample*)
-(*For an easy counterexample consider
-x R y := x = y
-x M y := True
-f x := \<exists>t. (R t x)
-then both 11 and 13 hold but clearly the thesis is wrong*}
+text {*Nitpick finds a counterexample*}
 
 
 lemma T1wo3:    
@@ -186,16 +174,7 @@ and 12: "\<forall>x. ((\<exists>a b. (((a M x) \<and> (b M x)) \<and> (((\<not> 
 shows  "\<forall>x. ((f x) \<longrightarrow> (\<exists>t. ((R t x) \<and> t \<noteq> x)))"     
 nitpick[verbose] 
 oops
-text {*Nitpick doesn\<acute>t find a counterexample*)   
-(*
-For a counterexample consider:
-x R y := False
-x M y := True
-f x : = True
-11 holds trivially and the thesis is false
-for 12 we have: "\<forall>x. (\<exists>a b. ((True \<and> (False \<or> True)) \<longrightarrow> True)"
-ergo: "\<forall>x. \<exists>a b. (True)" which is a theorem.
-*}
+text {*Nitpick finds a counterexample*}
   
 section "Irreflexivity of R"
 
@@ -237,9 +216,7 @@ and 14: "\<forall>x y.(x R y \<longrightarrow> f y)"
 shows  "irreflexive R" 
 nitpick[verbose]     
   oops    
-text {*Nitpick runs out of time*)
-(*For a counterexample consider: x R y := x = y; x M y := False; f x := False*}   
-    
+text {*Nitpick finds a counterexample*}
 
 lemma irreflexivityRwo2:
 assumes 11: "\<forall>x. ((f x) \<longrightarrow> (\<exists>a b. (a M x \<and> b M x)))"
@@ -247,8 +224,8 @@ and 14: "\<forall>x y.(x R y \<longrightarrow> f y)"
 shows  "irreflexive R" 
 nitpick[verbose] 
 oops  
-text {*Nitpick runs out of time*)
-(*For a counterexample consider: x R y := x = y; f x := False; x M y := False*}
+text {*Nitpick finds a counterexample*}
+
   
 lemma irreflexivityRwo4:
 assumes 11: "\<forall>x. ((f x) \<longrightarrow> (\<exists>a b. (a M x \<and> b M x)))"
@@ -281,7 +258,7 @@ and 23: "\<forall>x y. ((f x \<and> (R y x)) \<longrightarrow> (y A\<^sub> R x))
 and 24: "\<forall>x. (f x \<longrightarrow> (\<exists>t. (R t x)))"
 shows "\<forall>x. (f x \<longrightarrow> (\<exists>t. ((R t x) \<and> t \<noteq> x)))" using 21 22 23 24 by blast
   
-text "Nitpick confirms consistency"    
+text "Nitpick confirms consistency (see commented call below)."    
     
 lemma thirdproof:
 assumes 21: "\<forall>x y (S::a \<Rightarrow> a \<Rightarrow> bool). ((x A\<^sub> S y) \<longrightarrow> \<not>(x P\<^sub> S y))"
@@ -627,6 +604,19 @@ thus ?thesis by fast
 qed      
 
 section "The entire proof(s) (as specified on p.131ff)"  
+  
+text {*
+Salamucha offers several different ways to combine sets of assumptions to get the conclusion. Only those that have been formalized in the paper (and are not just natural language assumptions) are proven here.
+Even those two possible combinations however rely on an additional assumption "A" [that Salamucha claims follows from two other assumptions that are only stated in natural language].
+
+In the (apparently somewhat sloppy) translation A is stated as:
+"An infinite and ordered set of moving bodies and bodies that move is not in motion for the limited period of time [sic]."
+
+The best fit for this seems to be the formula "A" below. 
+ makes the argument valid, uses the same concepts and fits neatly in the dialectic the previous reductio arguments provide.
+*}  
+  
+  
   
 lemma AC:
 assumes one: "\<forall>x. (f x \<longrightarrow> (\<exists>t. (R t x)))"
