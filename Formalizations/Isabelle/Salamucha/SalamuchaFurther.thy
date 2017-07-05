@@ -1,6 +1,6 @@
 theory SalamuchaFurther
 
-imports Main
+imports Main ExMotu
 
 begin
 text {*
@@ -8,54 +8,6 @@ This file is for further investigation and automation of Salamucha\<acute>s Ex M
 For a reconstruction of the steps in Salamucha\<acute>s paper see the Salamucha.thy theory file.
 *}
 
-section "Types and Definitions"
-
-text "We will use a single type a for all objects"
-typedecl a 
-
-text "We will write (x R y) or (R x y) for \<acute>x moves y\<acute>"  
-consts R:: "a \<Rightarrow> a \<Rightarrow> bool" (*(infixr "R"52)*)
-
-text "We will write (f x) for x is in motion\<acute>"  
-consts f :: "a \<Rightarrow> bool"
-  
-text "We will write (p M Q) for \<acute>p is a proper part of Q\<acute>"  
-consts partof :: "a \<Rightarrow> a \<Rightarrow> bool" (infixr "M"52)
- 
-text "we will write (x A_S Y) for \<acute>x is in aspect S in actu to y\<acute>"  
-consts aspactu :: "a \<Rightarrow> 'a \<Rightarrow> a \<Rightarrow> bool" ("_A\<^sub>_ _") 
-
-text "we will write (x P_S Y) for \<acute>x is in aspect S in potentia to y\<acute>"  
-consts asppot :: "a \<Rightarrow> 'a \<Rightarrow> a \<Rightarrow> bool" ("_ P\<^sub>_ _") 
-
-text "Let (C x) mean \<acute>x is a body\<acute>"
-consts body:: "a \<Rightarrow> bool" ("C")
-  
-text "Next let (t F x) stand for \<acute>t is the duration of movement of x\<acute>"  
-consts duration :: "'a \<Rightarrow> a \<Rightarrow> bool" ("_ F _") (*we could use a "time type". But I don\<acute>t see much use*)
-
-text "Similarly, we will write (H t) for \<acute>t is the finite period of time\<acute>[sic]."  
-consts finitetime :: "'a \<Rightarrow> bool" ("H") 
-  
-text "We abbreviate the set of things that move something or are moved by something as follows"  
-abbreviation CC:: "('a \<Rightarrow> 'a \<Rightarrow> bool) \<Rightarrow> 'a set" 
-  where "CC r \<equiv> {a. \<exists>t. ((r a t) \<or> (r t a))}"
-(*Salamucha has C\<acute>R *)
-  
-abbreviation irreflexive :: "('a \<Rightarrow> 'a \<Rightarrow> bool) \<Rightarrow> bool"
-  where "irreflexive r \<equiv> (\<forall>x. \<not> (r x x))"   
-
-abbreviation transitive :: "('a \<Rightarrow> 'a \<Rightarrow> bool) \<Rightarrow> bool"
-  where "transitive r \<equiv> (\<forall>x y z. ((r x y) \<and> (r y z) \<longrightarrow> ( r x z)))"   
-
-abbreviation connected :: "('a \<Rightarrow> 'a \<Rightarrow> bool) \<Rightarrow> bool"
-  where "connected r \<equiv> \<forall>x y. ((x \<in> (CC r) \<and> y \<in> (CC r) \<and> (x \<noteq> y)) \<longrightarrow> (r x y \<or> r y x))"    
-  
-text "We call a relation an Ordering Relation if it is connected, transitive and irreflexive; or K for short."
-abbreviation K:: "('a \<Rightarrow> 'a \<Rightarrow> bool) \<Rightarrow> bool" ("K_")
-where "K r \<equiv> ((connected r) \<and> (transitive r) \<and> (irreflexive r))"
-
-  
 section "Proof of Lemma T"  
   
 lemma T: "((\<forall>x. (f x \<longrightarrow> (\<exists>t. (R t x))))   \<and>  (K R) \<and> (\<exists>y. (y \<in> (CC R) \<and> (\<forall>u. ((u \<in> (CC R) \<and> u \<noteq> y) \<longrightarrow> (R y u))))))
@@ -170,7 +122,7 @@ oops
   
 section "The third proof"
   
-(*If we don\<acute>t give Isabelle a type for S the proof won\<acute>t work. I don\<acute>t know why that is.
+(*If we don\<acute>t give Isabelle a type for S the provers won\<acute>t find a proof. I don\<acute>t know why that is.
 Perhaps someone who knows more about the inner workings of Isabelle\<acute>s typed logic can help me out here*)
 
 lemma thirdproof:
