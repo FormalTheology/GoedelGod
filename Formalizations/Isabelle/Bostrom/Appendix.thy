@@ -6,7 +6,13 @@ begin
 typedecl b (*Things in the world*)
 
 section "Useful Lemmas for the upcoming proofs"  
-  
+
+lemma choiceit: "finite (A:: 'a set set set) \<Longrightarrow> \<forall>S\<in>A. finite S \<Longrightarrow> (\<forall>C \<in> A. (\<forall>D \<in> A. (C \<noteq> D \<longrightarrow> C \<inter> D = {})))
+ \<longrightarrow> (C \<in> A \<longrightarrow> S \<in> C \<longrightarrow> T \<in> C \<longrightarrow> C \<noteq> D \<longrightarrow> C \<inter> D = {})
+ \<longrightarrow> (\<exists>M. (\<forall>C\<in>A. (\<exists>S\<in>C. (S \<subseteq> M \<and> (\<forall>T\<in>C. (T \<noteq> S \<longrightarrow> T \<inter> M = {}))))))"  
+proof -
+  {assume asm1: "(\<forall>C \<in> (A:: 'a set set set). (\<forall>D \<in> A. (C \<noteq> D \<longrightarrow> C \<inter> D = {})))" 
+oops
 
 lemma relbig: "y \<ge> 0 \<Longrightarrow> z \<ge> 0 \<Longrightarrow> (yy::real) \<ge> y \<Longrightarrow> yy / (yy + z) \<ge> y /(y + z)" 
 proof -
@@ -43,7 +49,8 @@ proof -
 thus "y \<ge> 0 \<Longrightarrow> z \<ge> 0 \<Longrightarrow> (yy::real) \<ge> y \<Longrightarrow> yy / (yy + z) \<ge> y /(y + z)"  by simp  
 qed         
 
-  
+lemma relsmall: "yy \<ge> 0 \<Longrightarrow> z \<ge> 0 \<Longrightarrow> (yy::real) \<le> y \<Longrightarrow> yy / (yy + z) \<le> y /(y + z)" using relbig by meson
+
 lemma bigfinite: "finite (U::'a set set) \<Longrightarrow> (\<And>T. T \<in> U \<Longrightarrow> finite T) \<Longrightarrow> finite (\<Union>U)" by auto  
 
 lemma meancard: 
@@ -141,11 +148,15 @@ abbreviation real :: "b \<Rightarrow> bool"
 text "For the argument we need that every simulated being belongs to one and only one simulation."
 axiomatization where everysiminasim: "\<forall>B. (being B \<and> simulated B) \<longrightarrow> (\<exists>S. simulation S \<and> B \<in> S \<and> (\<forall>T. ((simulation T \<and> B \<in> T) \<longrightarrow> (S = T))))"  
 
-text "Conversely we need that a simulation contains only beings (see above)."  
+text "Next we need the fact that (all) simulated things are in fact conscious beings.
+The following Axiom is therefore more or less equivalent to Bostroms substrate independence thesis." 
 axiomatization where onlyBeingsInSims: "(B \<in> S \<and> simulation S) \<longrightarrow> being B"  
 
-text "The same goes for civilizations"
+text "The same goes (without any metaphysical worries) for civilizations"
 axiomatization where onlyBeingsInCivs: "(B \<in> C \<and> civilization C) \<longrightarrow> being B"  
+
+text "We also need to make sure that no simulation is a civilization and vice versa" (*word this better?*)
+axiomatization where diffSimCiv: "real X \<longleftrightarrow> \<not> simulated X"
   
 text "Next we need to make sure that the number of simulated people in an ancestor simulation
 is equal to the preposthuman population of the simulation." (*N.B.: It is not clear whether this is the correct approach.
@@ -164,8 +175,9 @@ axiomatization where finiteuniverse: "finite {B. being B}"
 axiomatization where civreal: "(\<forall>B. (\<exists> C. (B::b) \<in> C \<and> civilization C) \<longleftrightarrow> real B)"
 axiomatization where civnotempt: "civilization S \<Longrightarrow> (\<exists>b. (being b \<and> b \<in> S))"  
 *)
-axiomatization where citizenship: "\<forall>B. (real B \<longrightarrow> (\<exists>C. (civilization C \<and> B \<in> C)) \<and> (\<forall>D. ((civilization D \<and> B \<in> D) \<longrightarrow> B = C)))"
+axiomatization where citizenship: "\<forall>B. (real B \<longrightarrow> (\<exists>C. ((civilization C \<and> B \<in> C)) \<and> (\<forall>D. ((civilization D \<and> B \<in> D) \<longrightarrow> D = C))))"
 
+lemma citizenship2: "real B \<Longrightarrow> (B \<in> C \<and> civilization C) \<Longrightarrow> (B \<in> D \<and> civilization D) \<Longrightarrow> C = D" using citizenship by auto  
   
 text "Let N be a very large number such that there have been s civilizations 
 that have run at least N ancestor simulations each"   
@@ -173,7 +185,7 @@ consts N::nat
 axiomatization where prettybig: "N > 0"  
 
 text "We also need that two different societies cannot run the same simulation."
-axiomatization where DiffVivDiffSim: "(A \<noteq> B) \<Longrightarrow> ((A Runs S) \<and> (B Runs T)) \<Longrightarrow> (S \<noteq> T)"
+axiomatization where DiffVivDiffSim: "(A \<noteq> B) \<Longrightarrow> ((A Runs S) \<and> (B Runs T)) \<Longrightarrow> (S \<inter> T  = {})"
 
 text "We will call a society posthuman iff there is a member in it that is posthuman."  
 abbreviation posthumansoc:: "b set \<Rightarrow> bool"
@@ -266,7 +278,24 @@ proof -
   then show ?thesis using s1 sum by (metis (mono_tags, lifting) mult_of_nat_commute of_nat_add)
 qed    
    
-lemma "card {B. being B \<and> simulated B} \<ge> N * s * H\<^sub>s" sorry(*Something went wrong; I will fix this ASAP*)
+lemma simineq: "card {B. being B \<and> simulated B \<and> preposthuman B} \<ge> N * s * H\<^sub>s"(*added an extra preposthuman here; Bostroms original "lemma" follows trivially*)
+(*proof -
+  have "card {B. being B \<and> simulated B \<and> preposthuman B} \<ge> N * card {B. being B \<and>  preposthuman B \<and> (\<exists>C. (B \<in> C \<and> civilization C \<and> (C runs N sims)))}"
+  proof (induct N)
+    case 0
+    then show ?case by simp
+  next
+    case (Suc x)
+    have "\<forall>C. (C runs (Suc x) sims \<longrightarrow> (\<exists>S. (C Runs S)))" by (metis Suc.hyps(2) card.empty empty_Collect_eq leD prettybig)
+    hence "\<exists>M. (\<forall>C. (C runs (Suc x) sims) \<longrightarrow> (\<exists>S. (C Runs S) \<and> S \<subseteq> M \<and> (\<forall>T. (T \<noteq> S \<and> (C Runs T)) \<longrightarrow> T \<inter> M = {} )))"
+    proof -
+      {assume "\<not>(\<exists>M. (\<forall>C. (C runs (Suc x) sims) \<longrightarrow> (\<exists>S. (C Runs S) \<and> S \<subseteq> M \<and> (\<forall>T. (T \<noteq> S \<and> (C Runs T)) \<longrightarrow> T \<inter> M = {} ))))"
+      hence "\<forall>M. (\<forall>C. (C runs (Suc x) sims) \<longrightarrow> (\<exists>S. (C Runs S) \<and> S \<subseteq> M \<and> (\<forall>T. (T \<noteq> S \<and> (C Runs T)) \<longrightarrow> T \<inter> M = {} )))"
+        
+        
+then show ?case*) sorry
+ 
+(*Something went wrong; I will fix this ASAP*)
 (*proof-
   let ?civs = "{C. civilization C \<and> C runs N sims}"
   have car1: "card ?civs = s" by simp
@@ -393,7 +422,8 @@ have alm: "card (\<Union>?U) = (card ?U) * (card {B. \<exists>S\<in>?U. (B \<in>
     ultimately show ?thesis by linarith qed
   have "{B. \<exists>S\<in>?U. (B \<in> S)} =  {B. being B \<and>  preposthuman B \<and> (\<exists>C. (B \<in> C \<and> civilization C \<and> (C runs N sims)))}"
 *)  
-     
+    
+    
 section "The math parts"    
 text "First, a couple of lemmas that make life easier later on"
 
@@ -428,14 +458,40 @@ lemma leql5: "(a::real) > 0 \<Longrightarrow> b > 0 \<Longrightarrow>(a \<ge> b 
 lemma ll5: "(a::real) > 0 \<Longrightarrow> b > 0 \<Longrightarrow>(a > b \<longleftrightarrow> 1 /a < (1 / b))" using ll4 by (smt frac_less2) (*Warning: Uses SMT*)
   
 
-text "We will introduce the fraction of simulated beings vs. real beings"
+text "We will introduce the fraction of simulated beings vs. real beings" (*only use preposthumans here; contrary to Bostrom*)
 abbreviation fsim:: real
-  where "fsim \<equiv> card {B. simulated B} / card {B. preposthuman B}"
+  where "fsim \<equiv> card {B. being B \<and> simulated B \<and> preposthuman B} / card {B. being B \<and>  preposthuman B}"
     
 lemma fsimmi: "fsim \<ge> (N * s * H\<^sub>s) / (N*s*H\<^sub>s + n * H\<^sub>n + s * H\<^sub>s)"
-  sorry (*see above*)
+proof -  
+  let ?sim = "card {B. being B \<and> simulated B \<and> preposthuman B }"
+ from allbeings have denom: "card {B. being B \<and> real B \<and> preposthuman B } =  n * H\<^sub>n + s * H\<^sub>s" by algebra
+  have  "card {B. being B \<and>  preposthuman B} = card {B. being B \<and> simulated B \<and> preposthuman B} + card {B. being B \<and> real B \<and> preposthuman B}"
+  proof -
+    have interb: "{B. being B \<and> simulated B \<and> preposthuman B} \<inter> {B. being B \<and>  preposthuman B \<and> real B} = {}" using diffSimCiv by auto
+    have unionb: "{B. being B \<and> simulated B \<and> preposthuman B} \<union> {B. being B \<and> real B \<and> preposthuman B} = {B. being B \<and>  preposthuman B}" using diffSimCiv by fastforce     
+    have finb: "finite {B. being B \<and> simulated B \<and> preposthuman B}" using finiteuniverse by simp
+    have finb2: "finite {B. being B \<and> real B \<and> preposthuman B}" using finiteuniverse by simp
+    from card_Un_disjoint have  "finite {B. being B \<and> simulated B \<and> preposthuman B} \<Longrightarrow> finite {B. being B \<and> real B \<and> preposthuman B} \<Longrightarrow> {B. being B \<and> simulated B \<and> preposthuman B} \<inter> {B. being B \<and>  preposthuman B \<and> real B} = {}
+      \<Longrightarrow> card ({B. being B \<and> simulated B \<and> preposthuman B} \<union> {B. being B \<and>  real B \<and> preposthuman B}) =  card {B. being B \<and> simulated B \<and> preposthuman B} + card {B. being B \<and> real B \<and> preposthuman B }" by fast
+      hence " card ({B. being B \<and> simulated B \<and> preposthuman B} \<union> {B. being B \<and>  real B \<and> preposthuman B}) =  card {B. being B \<and> simulated B \<and> preposthuman B} + card {B. being B \<and>  real B \<and> preposthuman B}" using interb finb finb2 by blast 
+      thus ?thesis using unionb by argo qed   
+  hence  "card {B. being B \<and> preposthuman B} = ?sim +  n * H\<^sub>n + s * H\<^sub>s" using denom by linarith
+  hence eq1: "?sim /card {B. being B \<and> preposthuman B}  = ?sim / (?sim +  n * H\<^sub>n + s * H\<^sub>s)" by presburger
+  from relbig have "\<And>y yy. y \<ge> 0 \<Longrightarrow> (n * H\<^sub>n + s * H\<^sub>s) \<ge> 0 \<Longrightarrow> (yy::real) \<ge> y \<Longrightarrow> yy / (yy + (n * H\<^sub>n + s * H\<^sub>s)) \<ge> y /(y + (n * H\<^sub>n + s * H\<^sub>s))" by blast 
+  hence "\<And>yy.  N * s * H\<^sub>s \<ge> 0 \<Longrightarrow> (n * H\<^sub>n + s * H\<^sub>s) \<ge> 0 \<Longrightarrow> (yy::real) \<ge>  N * s * H\<^sub>s \<Longrightarrow> yy / (yy + (n * H\<^sub>n + s * H\<^sub>s)) \<ge>  N * s * H\<^sub>s /( N * s * H\<^sub>s + (n * H\<^sub>n + s * H\<^sub>s))" by blast 
+  hence relbiginst: "N * s * H\<^sub>s \<ge> 0 \<Longrightarrow> (n * H\<^sub>n + s * H\<^sub>s) \<ge> 0 \<Longrightarrow> (?sim::real) \<ge> N * s * H\<^sub>s \<Longrightarrow> ?sim / (?sim + (n * H\<^sub>n + s * H\<^sub>s)) \<ge> N * s * H\<^sub>s /(N * s * H\<^sub>s + (n * H\<^sub>n + s * H\<^sub>s))" by blast
+  have a: "n * H\<^sub>n + s * H\<^sub>s \<ge> 0" using diffex by force
+  have b: "N * s * H\<^sub>s \<ge> 0" by force                                               
+  hence inst2: "(?sim::real) \<ge> N * s * H\<^sub>s \<Longrightarrow> ?sim / (?sim + (n * H\<^sub>n + s * H\<^sub>s)) \<ge> N * s * H\<^sub>s /(N * s * H\<^sub>s + (n * H\<^sub>n + s * H\<^sub>s))" using relbiginst a by blast   
+  from simineq have "(?sim::real) \<ge> N * s * H\<^sub>s" by blast
+  hence "?sim / (?sim + (n * H\<^sub>n + s * H\<^sub>s)) \<ge> N * s * H\<^sub>s /(N * s * H\<^sub>s + (n * H\<^sub>n + s * H\<^sub>s))" using inst2 by blast  
+  thus ?thesis using eq1 by argo
+qed      
+    
     
 text "Now the (problematic!) assumptions for the math parts are introduced"
+
 axiomatization where Hsnot0: "H\<^sub>s  > 0"
 lemma Hnnotneg: "H\<^sub>n \<ge> 0" by simp 
 axiomatization where snot0: "s > 0"
@@ -508,7 +564,7 @@ from flow fsimineq have a1: "1 / (1 + (1/N) * (1 + (n / s) * (N / 1000000))) < (
   hence "1 / 99 - 1/ N <  ((1/N) * (n / s) * (N / 1000000))" by linarith   
   hence "1 / 99 - 1/ N <  ( (n / s) * (1/N) *(N / 1000000))" by simp
   hence "1 / 99 - 1/ N <  ( (n / s) * (1 / 1000000))" using prettybig by simp
-  hence a4: "1 / 99 - 1/ N <  n / (s * 1000000)" by fastforce 
+  hence a4: "1 / 99 - 1/ N <  n / (s * 1000000)"  by fastforce 
   (*Try0 says: Trying "simp", "auto", "blast", "metis", "argo", "linarith", "presburger", "algebra", "fast", "fastforce", "force", "meson", and "satx"... 
 Assumptions:
 1 / 99 - 1 / real N < real n / real s * (1 / 1000000)
@@ -604,7 +660,7 @@ lemma fsimfrac:
 assumes flow: "fsim < (99/100)"  
 and Nhuge: "N > 9900"
 and blow: "b < 99 * s"
-shows "card {C. civilization C \<and> \<not> posthumansoc C} / card {C. civilization C} \<ge> ((99::real)/100)" 
+shows "card {C. civilization C \<and> \<not> posthumansoc C} / card {C. civilization C} \<ge> (99/100)" 
 proof -  
   have "card {C. civilization C} = s + n"
   proof -
@@ -618,8 +674,9 @@ proof -
   have "s \<ge> 0" by auto
   hence on: "(s + a + b) < (s + a + 99 * s)" using blow by linarith    
   have tw: "a \<ge> 0" by simp
-  hence ine: "a / (s + a + b) \<ge> a / (s + a + 99 * s)" using on by (simp add: add_gr_0 frac_le)
-  have "9901 * s < a" using fsimb flow Nhuge blow by blast
+  hence "a / (s + a + b) \<ge> a / (s + a + 99 * s)" using on by (simp add: add_gr_0 frac_le)
+  hence ine: "a / (s + a + b) \<ge> a / (100 * s + a)" by fastforce
+  have three: "9901 * s \<le> a" using fsimb flow Nhuge blow by auto
   (*Try0 says: Trying "simp", "auto", "blast", "metis", "argo", "linarith", "presburger", "algebra", "fast", "fastforce", "force", "meson", and "satx"... 
 Assumptions:
 9900 < N
@@ -661,10 +718,25 @@ Proved:
  
 Linear arithmetic should have refuted the assumptions.
 Please inform Tobias Nipkow. *)
-  hence "a / (s + a + 99 * s) \<ge> a / (s + 9901 * s + 99 * s)"
-  (*Vampire says: "remote_vampire": The prover derived "False" from "Hsnot0", "OnlyPostSim", "all_not_in_conv", "card.empty", "citizenship", "div_0", "empty_Collect_eq", "leD", "less_numeral_extra(3)", "of_nat_0", and "prettybig", which could be due to inconsistent axioms (including "sorry"s) or to a bug in Sledgehammer*)  
- (*Somehow there is an inconsistency; but I don\<acute>t see it; This needs to be fixed*)   
- 
+  have one: "a \<ge> 0" by force   
+  have two: "(9901::real) * s \<ge> 0" by simp
+  have four: "100 * s \<ge> 0" by blast
+  let ?z = "100 * s"    
+  from relsmall have "\<And>y z. 9901 * s \<ge> 0 \<Longrightarrow> z \<ge> 0 \<Longrightarrow> (9901::real) * s \<le> y \<Longrightarrow> (9901 * s) / ((9901 * s) + z) \<le> y /(y + z)" by force  
+  hence "\<And>z. 9901 * s \<ge> 0 \<Longrightarrow> z \<ge> 0 \<Longrightarrow> (9901::real) * s \<le> a \<Longrightarrow> (9901 * s) / ((9901 * s) + z) \<le> a /(a + z)" by force      
+  hence "9901 * s \<ge> 0 \<Longrightarrow> ?z \<ge> 0 \<Longrightarrow> (9901::real) * s \<le> a \<Longrightarrow> ((9901::real) * s) / ((9901 * s) + ?z) \<le> a /(a + ?z)" by blast         
+  hence ine2: "(9901 * s) / (((9901::real) * s) + 100 * s) \<le> a / (a + 100 * s )" using one two three by force  
+  hence "(9901 * s) / ((10001::real) * s) \<le> a / (a + 100 * s )" by auto
+  hence "9901 / (10001::real) \<le> a / (a + 100 * s )" using diffex by force
+  hence "99 / 100 \<le>  a / (a + 100 * s )" by argo
+  hence ff:"a / (a + 100 * s ) \<ge> 99 / 100" by blast
+  from blow have one: "(a + 100 * s ) >  (s + a + b)" by presburger
+  have "a \<ge> 0" by simp   
+  hence "a / (a + 100 * s ) \<le>  a/ (s + a + b)" using one by (smt ine of_nat_add)
+  hence "a/ (s + a + b) \<ge>  99 / 100" using ff by argo (*Again try0 gives a weird error(?) message*)
+  thus ?thesis using cardfin by presburger
+qed      
+
   
 end
   
