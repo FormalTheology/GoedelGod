@@ -122,7 +122,7 @@ oops
   
 section "The third proof"
   
-(*If we don\<acute>t give Isabelle a type for S the provers won\<acute>t find a proof. I don\<acute>t know why that is.
+(*If we don\<acute>t give Isabelle a type for S the standard proof methods (simp, auto, etc.)/provers called through sledgehammer won\<acute>t find a proof. I don\<acute>t know why that is.
 Perhaps someone who knows more about the inner workings of Isabelle\<acute>s typed logic can help me out here*)
 
 lemma thirdproof:
