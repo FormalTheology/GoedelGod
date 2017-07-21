@@ -141,7 +141,7 @@ text "Nitpick finds a counterexample"
   
 section "The third proof"
   
-(*If we do not give Isabelle a type for S the provers won\<acute>t find a proof. I do not know why that is.
+(*If we do not give Isabelle a type for S the standard proof methods (simp, auto, etc.)/provers called through sledgehammer won\<acute>t find a proof. I do not know why that is.
 Perhaps someone who knows more about the inner workings of Isabelle\<acute>s typed logic can help me out here*)
 
 lemma thirdproof:
