@@ -27,7 +27,24 @@ abbreviation Substance :: "\<mu> \<Rightarrow> bool" where "Substance x \<equiv>
 abbreviation God :: "\<mu> \<Rightarrow> bool" where "God x \<equiv> incorporeal x \<and> Substance x \<and> infinitePower x"
   
   
-
+section "Some reasons for accepting Add2"
+text "Without Add2 it is consistent with all other axioms that every moving body moves itself.
+Thus, there is no need for god."
+  
+lemma Cons:
+assumes inf: "\<And>y x. has_infinite_parts y \<Longrightarrow> x moves y \<Longrightarrow> moves_the_infinite x"  
+and  Postulate_a: "\<And>P. (\<exists>x. P x) \<Longrightarrow> (\<exists>t. (\<forall>x.(P x \<longleftrightarrow> (x ispartof t))))"
+and  Axiom1: " \<And>x. (is_moved(x)) \<longrightarrow> ( \<exists>y. (y moves x))"  
+and Axiom2: "\<forall>x. (moving x \<and> body x) \<longrightarrow> is_moved x"
+and Axiom3: "\<And>y. (\<forall>x. (x ispartof y \<longrightarrow> is_moved x)) \<longrightarrow> is_moved y" 
+and  Axiom4: "\<forall>x. ((body x) \<longrightarrow> (has_infinite_parts x))" 
+and Observation: "\<exists>x. (body x \<and> moving x)"
+and AntiAdd2: "\<And>x. body x \<Longrightarrow>  x moves x" 
+and nogod: "\<not> (\<exists>x. God x)"
+shows True nitpick[satisfy, verbose, timeout=300] (*Nitpick finds a model*)  
+  oops
+      
+  
 section "Consistency"
 
 lemma Cons:
