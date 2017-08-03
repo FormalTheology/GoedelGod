@@ -109,15 +109,16 @@ qed
 section "Irreflexivity of R"    
 
 text "For this proof the steps until threea are the same as those for the proof of T1"  
- 
-lemma irreflexivityR:
+
+  
+ lemma irreflexivityR:
 assumes 11: "\<forall>x. ((f x) \<longrightarrow> (\<exists>a b. (a M x \<and> b M x)))"
 and 12: "\<forall>x. ((\<exists>a b. (((a M x) \<and> (b M x)) \<and> (((\<not> f a) \<and> (f b)) \<or> ((\<not> f a) \<longrightarrow> (\<not> f b))))) \<longrightarrow> (\<not> R x x))"
 and 14: "\<forall>x y.(x R y \<longrightarrow> f y)"
 shows  "irreflexive R"    
-proof -
-(*Nitpick can\<acute>t find a model; Consistency is still an open question*)  
-(*Steps until threea are the same as in the proof of T1*)
+ proof -
+  (* have True nitpick [satisfy, user_axioms, expect = genuine, show_all] (*Nitpick finds a model, Consistency *) *)
+(*Steps until three are the same as in the proof of T1*)
   have onea: "\<forall>x. ((f x \<and> (R x x)) \<longrightarrow> (\<exists>a b. (a M x \<and> b M x)))" using 11 by blast
   have oneb: "\<forall>x. ((f x \<and> (R x x)) \<longrightarrow> (\<exists>a b. (a M x \<and> b M x) \<and> ((\<not> f a) \<and> f b) \<or> (f a \<or> (\<not> f b))))" using onea by auto
   have onec: "\<forall>x. ((f x \<and> (R x x)) \<longrightarrow> (\<exists>a b. (a M x \<and> b M x) \<and> ((\<not> f a) \<and> f b) \<or> ((\<not> f a) \<longrightarrow> (\<not> f b))))" using oneb by blast           
@@ -188,8 +189,7 @@ and c1: "\<forall>x. (f x \<longrightarrow> (\<exists>t. (R t x)))"
 and c2: "K R"
 shows "\<forall>x. (x \<in> (CC R) \<longrightarrow> (\<exists>u. ((u \<in> (CC R) \<and> u \<noteq> x) \<and> (\<not> R x u))))" 
 proof -
-(*  nitpick [satisfy, user_axioms, expect = genuine] (*Nitpick doesn\<acute>t find a model.
-That is however not really of importance since this is (sort of) supposed to be a reductio*) *)
+  (* nitpick [satisfy, user_axioms, expect = genuine] (*Nitpick confirms consistency *) *) 
   have one: "\<forall>x y. ((R y x) \<longrightarrow> (f y \<and> f x))" using Tp by fastforce
   have two: "\<forall>x y. ((R x y \<or> R y x) \<longrightarrow> (f x \<and> f y))" using one Tp by blast
   have threea: "\<forall>x. (x \<in> (CC R) \<longrightarrow> (\<exists>t. (R t x \<or> R x t)))" by auto
