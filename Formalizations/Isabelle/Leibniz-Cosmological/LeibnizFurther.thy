@@ -10,12 +10,12 @@ Instead we define the constants once more."
 typedecl \<mu> (*Things in the World*)
   
 consts moving :: "\<mu> \<Rightarrow> bool"
-consts moves :: "\<mu> \<Rightarrow> \<mu> \<Rightarrow> bool" (infixr "moves"52) 
+consts moves :: "\<mu> \<Rightarrow> \<mu> \<Rightarrow> bool" (infix "moves"52) 
 abbreviation is_mover :: "\<mu> \<Rightarrow> bool"  where "(is_mover x) \<equiv> (\<exists>y. (x moves y))"  
 consts is_moved :: "\<mu> \<Rightarrow> bool"
 consts body :: "\<mu> \<Rightarrow> bool"
 abbreviation incorporeal :: "\<mu> \<Rightarrow> bool" where "incorporeal x \<equiv> \<not> body x"
-consts is_part_of :: "\<mu> \<Rightarrow> \<mu> \<Rightarrow> bool" (infixr "ispartof"52)
+consts is_part_of :: "\<mu> \<Rightarrow> \<mu> \<Rightarrow> bool" (infix "ispartof"52)
 consts has_infinite_parts :: "\<mu> \<Rightarrow> bool" 
 consts moves_the_infinite :: "\<mu> \<Rightarrow> bool"  
 
@@ -33,7 +33,7 @@ Thus, there is no need for god."
   
 lemma Cons:
 assumes inf: "\<And>y x. has_infinite_parts y \<Longrightarrow> x moves y \<Longrightarrow> moves_the_infinite x"  
-and  Postulate_a: "\<And>P. (\<exists>x. P x) \<Longrightarrow> (\<exists>t. (\<forall>x.(P x \<longleftrightarrow> (x ispartof t))))"
+and  Postulate_a: "\<And>P. (\<exists>x. P x) \<Longrightarrow> (\<exists>w. (\<forall>x.(P x \<longleftrightarrow> (x ispartof w))))"
 and  Axiom1: " \<And>x. (is_moved(x)) \<longrightarrow> ( \<exists>y. (y moves x))"  
 and Axiom2: "\<forall>x. (moving x \<and> body x) \<longrightarrow> is_moved x"
 and Axiom3: "\<And>y. (\<forall>x. (x ispartof y \<longrightarrow> is_moved x)) \<longrightarrow> is_moved y" 
@@ -49,7 +49,7 @@ section "Consistency"
 
 lemma Cons:
 assumes inf: "\<And>y x. has_infinite_parts y \<Longrightarrow> x moves y \<Longrightarrow> moves_the_infinite x"  
-and  Postulate_a: "\<And>P. (\<exists>x. P x) \<Longrightarrow> (\<exists>t. (\<forall>x.(P x \<longleftrightarrow> (x ispartof t))))"
+and  Postulate_a: "\<And>P. (\<exists>x. P x) \<Longrightarrow> (\<exists>w. (\<forall>x.(P x \<longleftrightarrow> (x ispartof w))))"
 and  Axiom1: " \<And>x. (is_moved(x)) \<longrightarrow> ( \<exists>y. (y moves x))"  
 and Axiom2: "\<forall>x. (moving x \<and> body x) \<longrightarrow> is_moved x"
 and Axiom3: "\<And>y. (\<forall>x. (x ispartof y \<longrightarrow> is_moved x)) \<longrightarrow> is_moved y" 
@@ -64,7 +64,7 @@ shows True nitpick[satisfy, verbose, timeout=300] (*Nitpick finds NO model*)
     
 lemma Inc1:
 assumes inf: "\<And>y x. has_infinite_parts y \<Longrightarrow> x moves y \<Longrightarrow> moves_the_infinite x"  
-and  Postulate_a: "\<And>P. (\<exists>x. P x) \<Longrightarrow> (\<exists>t. (\<forall>x.(P x \<longleftrightarrow> (x ispartof t))))"
+and  Postulate_a: "\<And>P. (\<exists>x. P x) \<Longrightarrow> (\<exists>w. (\<forall>x.(P x \<longleftrightarrow> (x ispartof w))))"
 and  Axiom1: " \<And>x. (is_moved(x)) \<longrightarrow> ( \<exists>y. (y moves x))"  
 and Axiom2: "\<forall>x. (moving x \<and> body x) \<longrightarrow> is_moved x"
 and Axiom3: "\<And>y. (\<forall>x. (x ispartof y \<longrightarrow> is_moved x)) \<longrightarrow> is_moved y" 
@@ -79,7 +79,7 @@ shows False sledgehammer[verbose, timeout = 300] (*local provers can\<acute>t pr
 
 lemma Inc1:
 assumes inf: "\<And>y x. has_infinite_parts y \<Longrightarrow> x moves y \<Longrightarrow> moves_the_infinite x"  
-and  Postulate_a: "\<And>P. (\<exists>x. P x) \<Longrightarrow> (\<exists>t. (\<forall>x.(P x \<longleftrightarrow> (x ispartof t))))"
+and  Postulate_a: "\<And>P. (\<exists>x. P x) \<Longrightarrow> (\<exists>w. (\<forall>x.(P x \<longleftrightarrow> (x ispartof w))))"
 and  Axiom1: " \<And>x. (is_moved(x)) \<longrightarrow> ( \<exists>y. (y moves x))"  
 and Axiom2: "\<forall>x. (moving x \<and> body x) \<longrightarrow> is_moved x"
 and Axiom3: "\<And>y. (\<forall>x. (x ispartof y \<longrightarrow> is_moved x)) \<longrightarrow> is_moved y" 
@@ -99,7 +99,7 @@ shows False sledgehammer[remote_leo2 remote_satallax remote_vampire, remote_e, v
 section "Are all axioms necessary?"
   
 lemma WOinf:
-assumes Postulate_a: "\<And>P. (\<exists>x. P x) \<Longrightarrow> (\<exists>t. (\<forall>x.(P x \<longleftrightarrow> (x ispartof t))))"
+assumes Postulate_a: "\<And>P. (\<exists>x. P x) \<Longrightarrow> (\<exists>w. (\<forall>x.(P x \<longleftrightarrow> (x ispartof w))))"
 and  Axiom1: " \<And>x. (is_moved(x)) \<longrightarrow> ( \<exists>y. (y moves x))"  
 and Axiom2: "\<forall>x. (moving x \<and> body x) \<longrightarrow> is_moved x"
 and Axiom3: "\<And>y. (\<forall>x. (x ispartof y \<longrightarrow> is_moved x)) \<longrightarrow> is_moved y" 
@@ -130,7 +130,7 @@ shows "\<exists>x. God x" nitpick[verbose] (*Nitpick finds a counterexample*)
       
 lemma WOAx1:
 assumes inf: "\<And>y x. has_infinite_parts y \<Longrightarrow> x moves y \<Longrightarrow> moves_the_infinite x"  
-and  Postulate_a: "\<And>P. (\<exists>x. P x) \<Longrightarrow> (\<exists>t. (\<forall>x.(P x \<longleftrightarrow> (x ispartof t))))"
+and  Postulate_a: "\<And>P. (\<exists>x. P x) \<Longrightarrow> (\<exists>w. (\<forall>x.(P x \<longleftrightarrow> (x ispartof w))))"
 and Axiom2: "\<forall>x. (moving x \<and> body x) \<longrightarrow> is_moved x"
 and Axiom3: "\<And>y. (\<forall>x. (x ispartof y \<longrightarrow> is_moved x)) \<longrightarrow> is_moved y" 
 and  Axiom4: "\<forall>x. ((body x) \<longrightarrow> (has_infinite_parts x))" 
@@ -144,7 +144,7 @@ shows "\<exists>x. God x" nitpick[verbose] (*Nitpick finds a counterexample*)
    
 lemma WOAx2:
 assumes inf: "\<And>y x. has_infinite_parts y \<Longrightarrow> x moves y \<Longrightarrow> moves_the_infinite x"  
-and  Postulate_a: "\<And>P. (\<exists>x. P x) \<Longrightarrow> (\<exists>t. (\<forall>x.(P x \<longleftrightarrow> (x ispartof t))))"
+and  Postulate_a: "\<And>P. (\<exists>x. P x) \<Longrightarrow> (\<exists>w. (\<forall>x.(P x \<longleftrightarrow> (x ispartof w))))"
 and  Axiom1: " \<And>x. (is_moved(x)) \<longrightarrow> ( \<exists>y. (y moves x))"  
 and Axiom3: "\<And>y. (\<forall>x. (x ispartof y \<longrightarrow> is_moved x)) \<longrightarrow> is_moved y" 
 and  Axiom4: "\<forall>x. ((body x) \<longrightarrow> (has_infinite_parts x))" 
@@ -158,7 +158,7 @@ shows "\<exists>x. God x" nitpick[verbose] (*Nitpick finds a counterexample*)
     
 lemma WOAx3:
 assumes inf: "\<And>y x. has_infinite_parts y \<Longrightarrow> x moves y \<Longrightarrow> moves_the_infinite x"  
-and  Postulate_a: "\<And>P. (\<exists>x. P x) \<Longrightarrow> (\<exists>t. (\<forall>x.(P x \<longleftrightarrow> (x ispartof t))))"
+and  Postulate_a: "\<And>P. (\<exists>x. P x) \<Longrightarrow> (\<exists>w. (\<forall>x.(P x \<longleftrightarrow> (x ispartof w))))"
 and  Axiom1: " \<And>x. (is_moved(x)) \<longrightarrow> ( \<exists>y. (y moves x))"  
 and Axiom2: "\<forall>x. (moving x \<and> body x) \<longrightarrow> is_moved x"
 and  Axiom4: "\<forall>x. ((body x) \<longrightarrow> (has_infinite_parts x))" 
@@ -172,7 +172,7 @@ shows "\<exists>x. God x" nitpick[verbose] (*Nitpick finds NO counterexample*)
 
 lemma WOAx4:
 assumes inf: "\<And>y x. has_infinite_parts y \<Longrightarrow> x moves y \<Longrightarrow> moves_the_infinite x"  
-and  Postulate_a: "\<And>P. (\<exists>x. P x) \<Longrightarrow> (\<exists>t. (\<forall>x.(P x \<longleftrightarrow> (x ispartof t))))"
+and  Postulate_a: "\<And>P. (\<exists>x. P x) \<Longrightarrow> (\<exists>w. (\<forall>x.(P x \<longleftrightarrow> (x ispartof w))))"
 and  Axiom1: " \<And>x. (is_moved(x)) \<longrightarrow> ( \<exists>y. (y moves x))"  
 and Axiom2: "\<forall>x. (moving x \<and> body x) \<longrightarrow> is_moved x"
 and Axiom3: "\<And>y. (\<forall>x. (x ispartof y \<longrightarrow> is_moved x)) \<longrightarrow> is_moved y" 
@@ -189,7 +189,7 @@ moves the infinite, therefore nothing does therefore no god.*)
 
 lemma WOObs:
 assumes inf: "\<And>y x. has_infinite_parts y \<Longrightarrow> x moves y \<Longrightarrow> moves_the_infinite x"  
-and  Postulate_a: "\<And>P. (\<exists>x. P x) \<Longrightarrow> (\<exists>t. (\<forall>x.(P x \<longleftrightarrow> (x ispartof t))))"
+and  Postulate_a: "\<And>P. (\<exists>x. P x) \<Longrightarrow> (\<exists>w. (\<forall>x.(P x \<longleftrightarrow> (x ispartof w))))"
 and  Axiom1: " \<And>x. (is_moved(x)) \<longrightarrow> ( \<exists>y. (y moves x))"  
 and Axiom2: "\<forall>x. (moving x \<and> body x) \<longrightarrow> is_moved x"
 and Axiom3: "\<And>y. (\<forall>x. (x ispartof y \<longrightarrow> is_moved x)) \<longrightarrow> is_moved y" 
@@ -203,7 +203,7 @@ shows "\<exists>x. God x" nitpick[verbose] (*Nitpick finds a counterexample*)
 
 lemma WOAdd1:
 assumes inf: "\<And>y x. has_infinite_parts y \<Longrightarrow> x moves y \<Longrightarrow> moves_the_infinite x"  
-and  Postulate_a: "\<And>P. (\<exists>x. P x) \<Longrightarrow> (\<exists>t. (\<forall>x.(P x \<longleftrightarrow> (x ispartof t))))"
+and  Postulate_a: "\<And>P. (\<exists>x. P x) \<Longrightarrow> (\<exists>w. (\<forall>x.(P x \<longleftrightarrow> (x ispartof w))))"
 and  Axiom1: " \<And>x. (is_moved(x)) \<longrightarrow> ( \<exists>y. (y moves x))"  
 and Axiom2: "\<forall>x. (moving x \<and> body x) \<longrightarrow> is_moved x"
 and Axiom3: "\<And>y. (\<forall>x. (x ispartof y \<longrightarrow> is_moved x)) \<longrightarrow> is_moved y" 
@@ -217,7 +217,7 @@ shows "\<exists>x. God x" nitpick[verbose] (*Nitpick finds NO counterexample*)
     
 lemma WOAdd2:
 assumes inf: "\<And>y x. has_infinite_parts y \<Longrightarrow> x moves y \<Longrightarrow> moves_the_infinite x"  
-and  Postulate_a: "\<And>P. (\<exists>x. P x) \<Longrightarrow> (\<exists>t. (\<forall>x.(P x \<longleftrightarrow> (x ispartof t))))"
+and  Postulate_a: "\<And>P. (\<exists>x. P x) \<Longrightarrow> (\<exists>w. (\<forall>x.(P x \<longleftrightarrow> (x ispartof w))))"
 and  Axiom1: " \<And>x. (is_moved(x)) \<longrightarrow> ( \<exists>y. (y moves x))"  
 and Axiom2: "\<forall>x. (moving x \<and> body x) \<longrightarrow> is_moved x"
 and Axiom3: "\<And>y. (\<forall>x. (x ispartof y \<longrightarrow> is_moved x)) \<longrightarrow> is_moved y" 
@@ -231,7 +231,7 @@ shows "\<exists>x. God x" nitpick[verbose] (*Nitpick finds NO counterexample*)
 
 lemma WOAdd3:
 assumes inf: "\<And>y x. has_infinite_parts y \<Longrightarrow> x moves y \<Longrightarrow> moves_the_infinite x"  
-and  Postulate_a: "\<And>P. (\<exists>x. P x) \<Longrightarrow> (\<exists>t. (\<forall>x.(P x \<longleftrightarrow> (x ispartof t))))"
+and  Postulate_a: "\<And>P. (\<exists>x. P x) \<Longrightarrow> (\<exists>w. (\<forall>x.(P x \<longleftrightarrow> (x ispartof w))))"
 and  Axiom1: " \<And>x. (is_moved(x)) \<longrightarrow> ( \<exists>y. (y moves x))"  
 and Axiom2: "\<forall>x. (moving x \<and> body x) \<longrightarrow> is_moved x"
 and Axiom3: "\<And>y. (\<forall>x. (x ispartof y \<longrightarrow> is_moved x)) \<longrightarrow> is_moved y" 
@@ -245,7 +245,7 @@ shows "\<exists>x. God x" nitpick[verbose] (*Nitpick finds no counterexample*)
 
 lemma WOAdd4:
 assumes inf: "\<And>y x. has_infinite_parts y \<Longrightarrow> x moves y \<Longrightarrow> moves_the_infinite x"  
-and  Postulate_a: "\<And>P. (\<exists>x. P x) \<Longrightarrow> (\<exists>t. (\<forall>x.(P x \<longleftrightarrow> (x ispartof t))))"
+and  Postulate_a: "\<And>P. (\<exists>x. P x) \<Longrightarrow> (\<exists>w. (\<forall>x.(P x \<longleftrightarrow> (x ispartof w))))"
 and  Axiom1: " \<And>x. (is_moved(x)) \<longrightarrow> ( \<exists>y. (y moves x))"  
 and Axiom2: "\<forall>x. (moving x \<and> body x) \<longrightarrow> is_moved x"
 and Axiom3: "\<And>y. (\<forall>x. (x ispartof y \<longrightarrow> is_moved x)) \<longrightarrow> is_moved y" 
@@ -266,7 +266,7 @@ for combinations of those 5 axioms."
 subsection "Without Axiom 3"   
    lemma WOAx3Add1:
 assumes inf: "\<And>y x. has_infinite_parts y \<Longrightarrow> x moves y \<Longrightarrow> moves_the_infinite x"  
-and  Postulate_a: "\<And>P. (\<exists>x. P x) \<Longrightarrow> (\<exists>t. (\<forall>x.(P x \<longleftrightarrow> (x ispartof t))))"
+and  Postulate_a: "\<And>P. (\<exists>x. P x) \<Longrightarrow> (\<exists>w. (\<forall>x.(P x \<longleftrightarrow> (x ispartof w))))"
 and  Axiom1: " \<And>x. (is_moved(x)) \<longrightarrow> ( \<exists>y. (y moves x))"  
 and Axiom2: "\<forall>x. (moving x \<and> body x) \<longrightarrow> is_moved x"
 and  Axiom4: "\<forall>x. ((body x) \<longrightarrow> (has_infinite_parts x))" 
@@ -279,7 +279,7 @@ shows "\<exists>x. God x" nitpick[verbose] (*Nitpick finds NO counterexample*)
 
 lemma WOAx3Add2:
 assumes inf: "\<And>y x. has_infinite_parts y \<Longrightarrow> x moves y \<Longrightarrow> moves_the_infinite x"  
-and  Postulate_a: "\<And>P. (\<exists>x. P x) \<Longrightarrow> (\<exists>t. (\<forall>x.(P x \<longleftrightarrow> (x ispartof t))))"
+and  Postulate_a: "\<And>P. (\<exists>x. P x) \<Longrightarrow> (\<exists>w. (\<forall>x.(P x \<longleftrightarrow> (x ispartof w))))"
 and  Axiom1: " \<And>x. (is_moved(x)) \<longrightarrow> ( \<exists>y. (y moves x))"  
 and Axiom2: "\<forall>x. (moving x \<and> body x) \<longrightarrow> is_moved x"
 and  Axiom4: "\<forall>x. ((body x) \<longrightarrow> (has_infinite_parts x))" 
@@ -292,7 +292,7 @@ shows "\<exists>x. God x" nitpick[verbose] (*Nitpick finds NO counterexample*)
 
 lemma WOAx3Add3:
 assumes inf: "\<And>y x. has_infinite_parts y \<Longrightarrow> x moves y \<Longrightarrow> moves_the_infinite x"  
-and  Postulate_a: "\<And>P. (\<exists>x. P x) \<Longrightarrow> (\<exists>t. (\<forall>x.(P x \<longleftrightarrow> (x ispartof t))))"
+and  Postulate_a: "\<And>P. (\<exists>x. P x) \<Longrightarrow> (\<exists>w. (\<forall>x.(P x \<longleftrightarrow> (x ispartof w))))"
 and  Axiom1: " \<And>x. (is_moved(x)) \<longrightarrow> ( \<exists>y. (y moves x))"  
 and Axiom2: "\<forall>x. (moving x \<and> body x) \<longrightarrow> is_moved x"
 and  Axiom4: "\<forall>x. ((body x) \<longrightarrow> (has_infinite_parts x))" 
@@ -305,7 +305,7 @@ shows "\<exists>x. God x" nitpick[verbose] (*Nitpick finds NO counterexample*)
 
 lemma WOAx3Add4:
 assumes inf: "\<And>y x. has_infinite_parts y \<Longrightarrow> x moves y \<Longrightarrow> moves_the_infinite x"  
-and  Postulate_a: "\<And>P. (\<exists>x. P x) \<Longrightarrow> (\<exists>t. (\<forall>x.(P x \<longleftrightarrow> (x ispartof t))))"
+and  Postulate_a: "\<And>P. (\<exists>x. P x) \<Longrightarrow> (\<exists>w. (\<forall>x.(P x \<longleftrightarrow> (x ispartof w))))"
 and  Axiom1: " \<And>x. (is_moved(x)) \<longrightarrow> ( \<exists>y. (y moves x))"  
 and Axiom2: "\<forall>x. (moving x \<and> body x) \<longrightarrow> is_moved x"
 and  Axiom4: "\<forall>x. ((body x) \<longrightarrow> (has_infinite_parts x))" 
@@ -318,7 +318,7 @@ shows "\<exists>x. God x" nitpick[verbose] (*Nitpick finds NO counterexample*)
 
 lemma WOAx3Add4:
 assumes inf: "\<And>y x. has_infinite_parts y \<Longrightarrow> x moves y \<Longrightarrow> moves_the_infinite x"  
-and  Postulate_a: "\<And>P. (\<exists>x. P x) \<Longrightarrow> (\<exists>t. (\<forall>x.(P x \<longleftrightarrow> (x ispartof t))))"
+and  Postulate_a: "\<And>P. (\<exists>x. P x) \<Longrightarrow> (\<exists>w. (\<forall>x.(P x \<longleftrightarrow> (x ispartof w))))"
 and  Axiom1: " \<And>x. (is_moved(x)) \<longrightarrow> ( \<exists>y. (y moves x))"  
 and Axiom2: "\<forall>x. (moving x \<and> body x) \<longrightarrow> is_moved x"
 and  Axiom4: "\<forall>x. ((body x) \<longrightarrow> (has_infinite_parts x))" 
@@ -335,7 +335,7 @@ countermodel."
 subsection "Without Add1"
 lemma WOAdd1Add2:
 assumes inf: "\<And>y x. has_infinite_parts y \<Longrightarrow> x moves y \<Longrightarrow> moves_the_infinite x"  
-and  Postulate_a: "\<And>P. (\<exists>x. P x) \<Longrightarrow> (\<exists>t. (\<forall>x.(P x \<longleftrightarrow> (x ispartof t))))"
+and  Postulate_a: "\<And>P. (\<exists>x. P x) \<Longrightarrow> (\<exists>w. (\<forall>x.(P x \<longleftrightarrow> (x ispartof w))))"
 and  Axiom1: " \<And>x. (is_moved(x)) \<longrightarrow> ( \<exists>y. (y moves x))"  
 and Axiom2: "\<forall>x. (moving x \<and> body x) \<longrightarrow> is_moved x"
 and Axiom3: "\<And>y. (\<forall>x. (x ispartof y \<longrightarrow> is_moved x)) \<longrightarrow> is_moved y" 
@@ -348,7 +348,7 @@ shows "\<exists>x. God x" nitpick[verbose] (*Nitpick finds NO counterexample*)
 
 lemma WOAdd1Add3:
 assumes inf: "\<And>y x. has_infinite_parts y \<Longrightarrow> x moves y \<Longrightarrow> moves_the_infinite x"  
-and  Postulate_a: "\<And>P. (\<exists>x. P x) \<Longrightarrow> (\<exists>t. (\<forall>x.(P x \<longleftrightarrow> (x ispartof t))))"
+and  Postulate_a: "\<And>P. (\<exists>x. P x) \<Longrightarrow> (\<exists>w. (\<forall>x.(P x \<longleftrightarrow> (x ispartof w))))"
 and  Axiom1: " \<And>x. (is_moved(x)) \<longrightarrow> ( \<exists>y. (y moves x))"  
 and Axiom2: "\<forall>x. (moving x \<and> body x) \<longrightarrow> is_moved x"
 and Axiom3: "\<And>y. (\<forall>x. (x ispartof y \<longrightarrow> is_moved x)) \<longrightarrow> is_moved y" 
@@ -361,7 +361,7 @@ shows "\<exists>x. God x" nitpick[verbose] (*Nitpick finds NO counterexample*)
     
 lemma WOAdd1Add4:
 assumes inf: "\<And>y x. has_infinite_parts y \<Longrightarrow> x moves y \<Longrightarrow> moves_the_infinite x"  
-and  Postulate_a: "\<And>P. (\<exists>x. P x) \<Longrightarrow> (\<exists>t. (\<forall>x.(P x \<longleftrightarrow> (x ispartof t))))"
+and  Postulate_a: "\<And>P. (\<exists>x. P x) \<Longrightarrow> (\<exists>w. (\<forall>x.(P x \<longleftrightarrow> (x ispartof w))))"
 and  Axiom1: " \<And>x. (is_moved(x)) \<longrightarrow> ( \<exists>y. (y moves x))"  
 and Axiom2: "\<forall>x. (moving x \<and> body x) \<longrightarrow> is_moved x"
 and Axiom3: "\<And>y. (\<forall>x. (x ispartof y \<longrightarrow> is_moved x)) \<longrightarrow> is_moved y" 
@@ -378,7 +378,7 @@ shows "\<exists>x. God x" nitpick[verbose] (*Nitpick finds NO counterexample*)
     
 lemma WOAdd2Add3:
 assumes inf: "\<And>y x. has_infinite_parts y \<Longrightarrow> x moves y \<Longrightarrow> moves_the_infinite x"  
-and  Postulate_a: "\<And>P. (\<exists>x. P x) \<Longrightarrow> (\<exists>t. (\<forall>x.(P x \<longleftrightarrow> (x ispartof t))))"
+and  Postulate_a: "\<And>P. (\<exists>x. P x) \<Longrightarrow> (\<exists>w. (\<forall>x.(P x \<longleftrightarrow> (x ispartof w))))"
 and  Axiom1: " \<And>x. (is_moved(x)) \<longrightarrow> ( \<exists>y. (y moves x))"  
 and Axiom2: "\<forall>x. (moving x \<and> body x) \<longrightarrow> is_moved x"
 and Axiom3: "\<And>y. (\<forall>x. (x ispartof y \<longrightarrow> is_moved x)) \<longrightarrow> is_moved y" 
@@ -391,7 +391,7 @@ shows "\<exists>x. God x" nitpick[verbose] (*Nitpick finds a counterexample*)
 
 lemma WOAdd2Add4:
 assumes inf: "\<And>y x. has_infinite_parts y \<Longrightarrow> x moves y \<Longrightarrow> moves_the_infinite x"  
-and  Postulate_a: "\<And>P. (\<exists>x. P x) \<Longrightarrow> (\<exists>t. (\<forall>x.(P x \<longleftrightarrow> (x ispartof t))))"
+and  Postulate_a: "\<And>P. (\<exists>x. P x) \<Longrightarrow> (\<exists>w. (\<forall>x.(P x \<longleftrightarrow> (x ispartof w))))"
 and  Axiom1: " \<And>x. (is_moved(x)) \<longrightarrow> ( \<exists>y. (y moves x))"  
 and Axiom2: "\<forall>x. (moving x \<and> body x) \<longrightarrow> is_moved x"
 and Axiom3: "\<And>y. (\<forall>x. (x ispartof y \<longrightarrow> is_moved x)) \<longrightarrow> is_moved y" 
@@ -408,7 +408,7 @@ section "Without Add3"
 
 lemma WOAdd3Add4:
 assumes inf: "\<And>y x. has_infinite_parts y \<Longrightarrow> x moves y \<Longrightarrow> moves_the_infinite x"  
-and  Postulate_a: "\<And>P. (\<exists>x. P x) \<Longrightarrow> (\<exists>t. (\<forall>x.(P x \<longleftrightarrow> (x ispartof t))))"
+and  Postulate_a: "\<And>P. (\<exists>x. P x) \<Longrightarrow> (\<exists>w. (\<forall>x.(P x \<longleftrightarrow> (x ispartof w))))"
 and  Axiom1: " \<And>x. (is_moved(x)) \<longrightarrow> ( \<exists>y. (y moves x))"  
 and Axiom2: "\<forall>x. (moving x \<and> body x) \<longrightarrow> is_moved x"
 and Axiom3: "\<And>y. (\<forall>x. (x ispartof y \<longrightarrow> is_moved x)) \<longrightarrow> is_moved y" 
@@ -422,7 +422,7 @@ shows "\<exists>x. God x" nitpick[verbose] (*Nitpick finds no counterexample*)
 subsubsection "Without both Axiom 3 and Add1"   
  lemma WOAx3Add1Add2:
 assumes inf: "\<And>y x. has_infinite_parts y \<Longrightarrow> x moves y \<Longrightarrow> moves_the_infinite x"  
-and  Postulate_a: "\<And>P. (\<exists>x. P x) \<Longrightarrow> (\<exists>t. (\<forall>x.(P x \<longleftrightarrow> (x ispartof t))))"
+and  Postulate_a: "\<And>P. (\<exists>x. P x) \<Longrightarrow> (\<exists>w. (\<forall>x.(P x \<longleftrightarrow> (x ispartof w))))"
 and  Axiom1: " \<And>x. (is_moved(x)) \<longrightarrow> ( \<exists>y. (y moves x))"  
 and Axiom2: "\<forall>x. (moving x \<and> body x) \<longrightarrow> is_moved x"
 and  Axiom4: "\<forall>x. ((body x) \<longrightarrow> (has_infinite_parts x))" 
@@ -434,7 +434,7 @@ shows "\<exists>x. God x" nitpick[verbose] (*Nitpick finds NO counterexample*)
      
  lemma WOAx3Add1Add3:
 assumes inf: "\<And>y x. has_infinite_parts y \<Longrightarrow> x moves y \<Longrightarrow> moves_the_infinite x"  
-and  Postulate_a: "\<And>P. (\<exists>x. P x) \<Longrightarrow> (\<exists>t. (\<forall>x.(P x \<longleftrightarrow> (x ispartof t))))"
+and  Postulate_a: "\<And>P. (\<exists>x. P x) \<Longrightarrow> (\<exists>w. (\<forall>x.(P x \<longleftrightarrow> (x ispartof w))))"
 and  Axiom1: " \<And>x. (is_moved(x)) \<longrightarrow> ( \<exists>y. (y moves x))"  
 and Axiom2: "\<forall>x. (moving x \<and> body x) \<longrightarrow> is_moved x"
 and  Axiom4: "\<forall>x. ((body x) \<longrightarrow> (has_infinite_parts x))" 
@@ -446,7 +446,7 @@ shows "\<exists>x. God x" nitpick[verbose] (*Nitpick finds NO counterexample*)
 
  lemma WOAx3Add1Add4:
 assumes inf: "\<And>y x. has_infinite_parts y \<Longrightarrow> x moves y \<Longrightarrow> moves_the_infinite x"  
-and  Postulate_a: "\<And>P. (\<exists>x. P x) \<Longrightarrow> (\<exists>t. (\<forall>x.(P x \<longleftrightarrow> (x ispartof t))))"
+and  Postulate_a: "\<And>P. (\<exists>x. P x) \<Longrightarrow> (\<exists>w. (\<forall>x.(P x \<longleftrightarrow> (x ispartof w))))"
 and  Axiom1: " \<And>x. (is_moved(x)) \<longrightarrow> ( \<exists>y. (y moves x))"  
 and Axiom2: "\<forall>x. (moving x \<and> body x) \<longrightarrow> is_moved x"
 and  Axiom4: "\<forall>x. ((body x) \<longrightarrow> (has_infinite_parts x))" 
@@ -462,7 +462,7 @@ text "We already know that we need Add3 since we don\<acute>t have Add2"
   
 lemma WOAx3Add2Add4:
 assumes inf: "\<And>y x. has_infinite_parts y \<Longrightarrow> x moves y \<Longrightarrow> moves_the_infinite x"  
-and  Postulate_a: "\<And>P. (\<exists>x. P x) \<Longrightarrow> (\<exists>t. (\<forall>x.(P x \<longleftrightarrow> (x ispartof t))))"
+and  Postulate_a: "\<And>P. (\<exists>x. P x) \<Longrightarrow> (\<exists>w. (\<forall>x.(P x \<longleftrightarrow> (x ispartof w))))"
 and  Axiom1: " \<And>x. (is_moved(x)) \<longrightarrow> ( \<exists>y. (y moves x))"  
 and Axiom2: "\<forall>x. (moving x \<and> body x) \<longrightarrow> is_moved x"
 and  Axiom4: "\<forall>x. ((body x) \<longrightarrow> (has_infinite_parts x))" 
@@ -476,7 +476,7 @@ subsubsection "Without both Axiom 3 and Add3"
 
 lemma WOAx3Add3Add4:
 assumes inf: "\<And>y x. has_infinite_parts y \<Longrightarrow> x moves y \<Longrightarrow> moves_the_infinite x"  
-and  Postulate_a: "\<And>P. (\<exists>x. P x) \<Longrightarrow> (\<exists>t. (\<forall>x.(P x \<longleftrightarrow> (x ispartof t))))"
+and  Postulate_a: "\<And>P. (\<exists>x. P x) \<Longrightarrow> (\<exists>w. (\<forall>x.(P x \<longleftrightarrow> (x ispartof w))))"
 and  Axiom1: " \<And>x. (is_moved(x)) \<longrightarrow> ( \<exists>y. (y moves x))"  
 and Axiom2: "\<forall>x. (moving x \<and> body x) \<longrightarrow> is_moved x"
 and  Axiom4: "\<forall>x. ((body x) \<longrightarrow> (has_infinite_parts x))" 
@@ -494,7 +494,7 @@ text "We already know that we need Add3"
   
 lemma WOAdd1Add2Add4:
 assumes inf: "\<And>y x. has_infinite_parts y \<Longrightarrow> x moves y \<Longrightarrow> moves_the_infinite x"  
-and  Postulate_a: "\<And>P. (\<exists>x. P x) \<Longrightarrow> (\<exists>t. (\<forall>x.(P x \<longleftrightarrow> (x ispartof t))))"
+and  Postulate_a: "\<And>P. (\<exists>x. P x) \<Longrightarrow> (\<exists>w. (\<forall>x.(P x \<longleftrightarrow> (x ispartof w))))"
 and  Axiom1: " \<And>x. (is_moved(x)) \<longrightarrow> ( \<exists>y. (y moves x))"  
 and Axiom2: "\<forall>x. (moving x \<and> body x) \<longrightarrow> is_moved x"
 and Axiom3: "\<And>y. (\<forall>x. (x ispartof y \<longrightarrow> is_moved x)) \<longrightarrow> is_moved y" 
@@ -510,7 +510,7 @@ text "We already know we need Add2"
   
 lemma WOAdd1Add3Add4:
 assumes inf: "\<And>y x. has_infinite_parts y \<Longrightarrow> x moves y \<Longrightarrow> moves_the_infinite x"  
-and  Postulate_a: "\<And>P. (\<exists>x. P x) \<Longrightarrow> (\<exists>t. (\<forall>x.(P x \<longleftrightarrow> (x ispartof t))))"
+and  Postulate_a: "\<And>P. (\<exists>x. P x) \<Longrightarrow> (\<exists>w. (\<forall>x.(P x \<longleftrightarrow> (x ispartof w))))"
 and  Axiom1: " \<And>x. (is_moved(x)) \<longrightarrow> ( \<exists>y. (y moves x))"  
 and Axiom2: "\<forall>x. (moving x \<and> body x) \<longrightarrow> is_moved x"
 and Axiom3: "\<And>y. (\<forall>x. (x ispartof y \<longrightarrow> is_moved x)) \<longrightarrow> is_moved y" 
