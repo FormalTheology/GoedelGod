@@ -1,4 +1,4 @@
-theory LeibnizInconsistent
+theory Leibniz
   
   imports Main 
     
