@@ -33,6 +33,27 @@ We interpret this as: If a property is instantiated then there is something such
 thing that instantiates this property is a part of said thing/the Whole."
 axiomatization where Postulate_a: "(\<exists>x. P x) \<Longrightarrow> (\<exists>w. (\<forall>x.(P x \<longleftrightarrow> (x isPartOf w))))"
 
+text {* 
+Two things are introduced here that are are in need of hermeneutic justification.
+First: the existential guard prevents improper existential import by not allowing
+the empty predicate to create entities that (potentially) don\<acute>t have any parts. Since all bodies have infinite parts such an axiom would introduce a thing
+that is not a body. This precludes a naturalistic universe which is not something that this axiom
+is supposed to do in Leibniz\<acute>argument.
+A second reason to prefer having the guard is that it is sufficient for Leibniz\<acute> argument and 
+strictly weaker than the version without it.
+Lastly it makes sense to interpret Leibniz\<acute> \<acute>having something in common\<acute> as a property that is actually
+instantiated and not just the \<acute>formal\<acute> empty property in its various formulations (e.g. not being
+self-identical).
+
+The second point concerns the question whether the formula should use a biconditional or simple
+(material) implication. A literal interpretation seems to suggest the use of implication. 
+There are however reasons that a biconditional is closer to what Leibniz had in mind.
+Using an implication in conditional with the existential guard makes it possible for there to 
+be a whole even though it is comprised of parts that don\<acute>t have anything in common.
+This doesn\<acute>t seem to be what Leibniz had in mind. Therefore, we prefer the stronger axiom using the
+biconditional.
+ *}
+  
 text "Leibniz Axioms are interpreted in a straight forward manner."
   
 axiomatization where Axiom1: "(isMoved(x)) \<longrightarrow> ( \<exists>y. (y moves x))"  

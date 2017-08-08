@@ -3,7 +3,13 @@ theory LeibnizFurther
   imports Main
     
 begin
-
+(*TODO:
+Find out if it makes a difference (for consistency, proofs, etc.) to change the postulate
+in one of the following ways:
+(1) conditional instead of biconditonal
+(2) no existental guard
+and permutations thereof.
+*)
 text "Because we don\<acute>t want the axioms to hold in this file Leibniz.thy is not imported.
 Instead we define the constants once more."
 
