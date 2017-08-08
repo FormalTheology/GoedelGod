@@ -5,7 +5,7 @@ theory BostromPrel
 begin
 section "On Formalizing Bostrom\<acute>s \<acute>Simulation Argument\<acute>"
 text  {*
-In \<acute>Are you living in a Computer Simulation\<acute> and following that \<acute>A Patch for the Simulation Argument\<acute>
+In \<acute>Are you living in a Computer Simulation\<acute> and -- following that -- \<acute>A Patch for the Simulation Argument\<acute>
 Nick Bostrom argues for the disjunctive Thesis that either: \<acute>the human species is very likely to go
 extinct before reaching a \<acute>posthuman\<acute> stage\<acute> or \<acute>any posthuman civilization is extremely unlikely 
 to run a significant number of simulations of their evolutionary history (or variants thereof)\<acute>
@@ -13,18 +13,18 @@ or \<acute>We are almost certainly living in a computer simulation.\<acute>
 
 The argument relies on a couple of metaphysical and normative assumptions. Most importantly the
 thesis that the simulated forbears in a simulation of \<acute>their evolutionary history\<acute> (henceforth 
-Ancestor simulations) are really conscious (given a fine-grained simulation of their \<acute>brain\<acute> states).
+ancestor simulations) are really conscious (given a fine-grained simulation of their \<acute>brain\<acute> states).
 
 Because Bostrom\<acute>s focus lies on such individuals that are either real or simulated in such a way as
-to be conscious we can identify simulations with the sets of individuals that are fine-grained enough
+to be conscious, we can identify simulations with the sets of individuals that are fine-grained enough
 to be (potentially) conscious. If there is no such finely-grained simulated being in a simulation,
 we will treat the simulation as the empty set. For real persons we can equally well identify their
 societies as sets of (real) individuals. With the exception of the empty set, identity conditions for sets mirror identity conditions for
 simulations and (real) civilizations nicely (i.e. they are the same iff they have the same individuals in them).
 
-first lets introduce a type for those beings that have a sufficiently fine-grained neurological processes
+first lets introduce a type for those beings that have sufficiently fine-grained neurological processes
 i.e. that are real or simulated to great detail. We will call those beings potentially conscious 
-because a functionalist will claim that they are conscious whereas other metaphysical positions 
+[not a term that Bostrom ever uses] because a functionalist will claim that they are conscious whereas other metaphysical positions 
 will deny their consciousness.
 *}
 typedecl b
@@ -37,7 +37,10 @@ We can state Bostrom\<acute>s metaphysical assumptions that such fine-grained si
 /in fact/ conscious explicitly. In the next paragraph we will introduce the predicate "being"
 for those entities whose consciousness is roughly like our own. We will call those individuals
 (simulated or real) "beings".
+*}
+consts being :: "b \<Rightarrow> bool"  
 
+text {*
 Another potential problem for modeling simulations and (real) civilizations as sets is that
 we can not easily model their evolution over time. The set of people living on earth today is 
 disjunct from the set of people that lived 200 years ago, still they are the same civilization 
@@ -45,8 +48,8 @@ disjunct from the set of people that lived 200 years ago, still they are the sam
 For this approach to make sense we will have to identify societies (simulated or real) with the
 set of all people that have ever (or will ever) been part of it.
 There is a clear downside to this as we can not model the /current/ state of our own civilization.
-It seems however that in Bostrom\<acute>s natural language argument the same problem arises.
-This point will be discussed in more detail below.
+It is however not clear, whether this plays a role in Bostrom\<acute>s original paper.
+
 
 Another important thesis is what Bostrom calls the "Bland Indifference Principle". He states it
 most clearly in his original paper: "[...]If we knew that a fraction x of all observers with 
@@ -72,27 +75,16 @@ new premises. They give two possible "patches" that have (as will be seen in the
  their own problems.
 *}
   
-  
-  text "Depending on how one reads Bostrom, the following is a counterexample:
-Suppose that humanity is the only civilization in existence. Suppose further there is a 50% chance
-of humanity reaching a posthuman stage. Suppose further that given that humanity reaches that stage,
-they will run countless simulations of their evolutionary history."
-  
-
-      
-text "First we\<acute>ll define a constant for CONSCIOUS  beings whether they are simulated or not"
-consts being :: "b \<Rightarrow> bool"  
-
 text "Next we will define a predicate for a being that is posthuman or lives in a posthuman society 
 (whether simulated or not)"  
 consts posthuman :: "b \<Rightarrow> bool"
 
-text "All those beings that are not posthuman we will call preposthuman"  
+text "All those beings that are not posthuman we will call preposthuman" 
 abbreviation preposthuman :: "b \<Rightarrow> bool"
   where "preposthuman B \<equiv> \<not> posthuman B" 
     
 text "In the following we will identify simulations and (real) civilizations with the sets of potentially conscious beings in them.
-This has a couple of hidden assumptions such that no quasi-being is part of two civilizations. But a close
+This has a couple of hidden assumptions such that no potentially conscious being is part of two civilizations. But a close
 reading of Bostrom shows that for his argument to succeed he needs these assumptions as well."
 
 text "Note that this makes no metaphysical assumptions about either simulations or civilizations.
@@ -117,7 +109,7 @@ either the first argument is no society or the second not a simulation."
 consts SocRunsSim :: "b set \<Rightarrow> b set \<Rightarrow> bool" ("_Runs_")  
 
 text "In the spirit of what it means to be a simulation we want to make sure that each
-simulation has at least one quasi-being in it. I.e. the empty set is not a simulation in our sense."
+simulation has at least one potentially conscious being in it. I.e. the empty set is not a simulation in our sense."
 axiomatization where emptNotSim: "simulation S \<Longrightarrow> \<exists>B. B\<in>S"
 
 text "We can now define what it means for something (in our case conscious beings) to be simulated."
@@ -178,9 +170,8 @@ axiomatization where DiffVivDiffSim: "(A \<noteq> B) \<Longrightarrow> ((A Runs 
 
 lemma discrSim: "A Runs S \<Longrightarrow> B Runs S \<Longrightarrow> A = B" by (metis DiffVivDiffSim RunsAnc ancsimIsSim emptNotSim emptyE inf.idem)
   
-text "We will call a society posthuman iff there is a member in it that is posthuman."  
-abbreviation posthumansoc:: "b set \<Rightarrow> bool"
-  where "posthumansoc C \<equiv> \<exists>B\<in>C. (posthuman B)"
+text "Next we will introduce a predicate for societies that have reached a \<acute>posthuman stage\<acute>"
+consts posthumansoc:: "b set \<Rightarrow> bool"    
 
 text "We then postulate that only posthuman societies can run (ancestor) simulations."
 axiomatization where OnlyPostSim: "C Runs S \<Longrightarrow> posthumansoc C"    
