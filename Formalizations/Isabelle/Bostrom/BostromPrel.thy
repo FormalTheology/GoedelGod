@@ -3,6 +3,21 @@ theory BostromPrel
   imports BostromMath
     
 begin
+section "Abstract"
+text {*
+The following is a formal argument in Higher-Order-Logic (HOL) inspired by Nick Bostrom\<acute>s \<acute>Simulation Argument\<acute>.
+Bostrom argues that it is either very likely that we live in a simulation or it is very likely that we will go
+extinct before our society reaches a \<acute>posthuman stage\<acute> or that such \<acute>posthuman societies\<acute> are very 
+to run large numbers of simulations of their evolutionary history.
+Using standard set theory and HOL we can model most of Bostrom\<acute>s (sometimes hidden) assumptions. 
+The argument we present here is valid and does not have some of the problems that are present in 
+Bostrom\<acute>s natural language argument. Like Bostrom\<acute>s original argument it may well be the case that
+this argument has unacceptable premises and is therefore not sound.
+Because -- Contrary to Bostrom\<acute>s natural language argument -- these premises are plain to see,
+this formalization may also serve to expose weaknesses in the natural language argument.
+*}
+
+
 section "On Formalizing Bostrom\<acute>s \<acute>Simulation Argument\<acute>"
 text  {*
 In \<acute>Are you living in a Computer Simulation\<acute> and -- following that -- \<acute>A Patch for the Simulation Argument\<acute>
