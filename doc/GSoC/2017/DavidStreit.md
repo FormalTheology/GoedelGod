@@ -1,7 +1,7 @@
 ## Short Summmary
 
-David Streit formalized and automated several philosophical arguments using [Isabelle](https://isabelle.in.tum.de/).
-These include the computational verification and further exploration of already formal arguments by Jan Salamucha, Charles Jarret and others as well as translating natural language arguments into formal logic. Among these are the [Simulation Argument](https://www.simulation-argument.com/) by Nick Bostrom that deals with the possibility that we are living our lives in a simulated reality and arguments for god's existence by Spinoza and Leibniz.
+I have formalized and automated several philosophical arguments using [Isabelle](https://isabelle.in.tum.de/).
+These include the computational verification and further exploration of already formal arguments by Jan Salamucha, Charles Jarret, Joel Friedman and Blum & Malinovich as well as translating natural language arguments into formal logic. These natural language arguments are the [Simulation Argument](https://www.simulation-argument.com/) by Nick Bostrom that deals with the possibility that we are living our lives in a simulated reality and arguments for god's existence by Spinoza and Leibniz.
 
 ## Technical Summary
 
@@ -23,10 +23,11 @@ Besides running the Isabelle file with faster computers, very little remains to 
 
 In Nick Bostrom's [Simulation Argument](https://www.simulation-argument.com/) Bostrom argues that either we (as a civilization) are very likely to go extinct before reaching what he calls a "posthuman stage" or such a posthuman society is very likely not running simulations of their ancestral history or we are very likely living in a simulation.
 
-Bostrom's argument is elliptical and may very well not be valid (for some of these concerns see the linked papers on the website as well as the Isabelle file for Bostrom). In it's original formalization even Bostrom admits that there is a non-sequitur, for which Bostrom and Kulczycki submitted two possible [patches](http://www.simulation-argument.com/patch.pdf).
+Bostrom's argument is elliptical and may very well not be valid (for some of these concerns see the linked papers on the website as well as the Isabelle file for Bostrom). In its original formalization even Bostrom admits that there is a non-sequitur, for which Bostrom and Kulczycki submitted two possible [patches](http://www.simulation-argument.com/patch.pdf) in form of additional premisses.
 
 The simulation argument has been translated to higher order logic where possible. Collections of individuals in civilizations or simulations are modelled with sets. There might be other ways to encode the argument. The set heavy formalization has the advantage of being highly modular so that different sets of premises can easily be implemented and their respective advantages and disadvantages computationally tested.
-Only the first patch has been implemented although the second patch should be easy to add.
+Only the first patch has been implemented because Bostrom & Kulczycki give a clear outline of how they think the proof should be carried out in their paper.
+The second patch uses different (additional) premises to reach the same conclusion. It should not be all that difficult to implement the second patch on top of the already existing set theoretic framework.
 
 It is also of interest to see if there is a better version of this argument, both in formal logic and natural language, and how exploring the first in Isabelle impacts the latter.
 Lastly, it is not clear, what the right version of what Bostrom calls the "Bland Indifference Principle" is. The principle is roughly: Given that you know that there are x percent of A in a given sample that includes you and you have no other information on the likelyhood of you being an A, your subjective probability that you are an A should equal x percent.
@@ -47,7 +48,7 @@ It may be interesting to try to reproduce the proofs that Spinoza gives for his 
 
 ### Gitlab Page
 
-You can finde the project [here](https://gitlab.com/aossie/ComputationalPhilosophy/)
+You can find the project [here](https://gitlab.com/aossie/ComputationalPhilosophy/)
 
 ### GSoC2017 tag
 
