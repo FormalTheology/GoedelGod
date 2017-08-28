@@ -106,8 +106,23 @@ Fixes typos and provides other minor improvements to the aforementioned formaliz
 
 Implements a formalization and automation of Nick Bostrom's [Simulation Argument](https://www.simulation-argument.com/). The formalization models simulations and real civilizations as sets. It lays bare the problematic pieces in the original natural language argument.
 
-[MR 31: Implement the three known formalizations of the first Part of Spinoza's Ethics](https://gitlab.com/aossie/ComputationalPhilosophy/merge_requests/31)
 
-There are (as far as we know) three (partial) formalizations of the first Chapter of Spinoza's ethics.
-In this MR these are implemented in Isabelle and checked for things like consistency.
-At this point in time still work in progress: Find a better formalization for the first Chapter of Spinoza's ethics that avoids the shortcomings of these existing formalizations
+[MR 36: split up first Spinoza formalization](https://gitlab.com/aossie/ComputationalPhilosophy/merge_requests/36)
+
+Implements the formalization of (parts of) the first part of Spinoza's Ethics by Blum & Malinovich. Checks the consistency
+but does not explore the formalization further.
+
+[MR 37:  split up second Spinoza formalization](https://gitlab.com/aossie/ComputationalPhilosophy/merge_requests/37)
+
+Implements the formalization of (parts of) the first part of Spinoza's Ethics by Joel Friedman. Checks the consistency
+but does not explore the formalization further.
+
+[MR 38: split up third Spinoza formalization](https://gitlab.com/aossie/ComputationalPhilosophy/merge_requests/38)
+
+Implements the formalization of the first part of Spinoza's Ethics by Charles Jarret. Checks the consistency
+but does not explore the formalization further.
+
+[MR 39:  WIP: Split up new formalization](https://gitlab.com/aossie/ComputationalPhilosophy/merge_requests/39)
+
+At this point still a work in progress: tries to find a more faithful formalization of the first chapter of Spinoza's Ethics.
+Relies heavily on the work done by Charles Jarret.
