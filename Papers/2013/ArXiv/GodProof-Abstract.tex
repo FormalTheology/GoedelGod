@@ -14,6 +14,18 @@
 \newcommand{\NE}{\mathit{NE}}
 
 
+\usepackage[
+    firstinits=true,
+     backend=biber, 
+     natbib=true,
+     isbn=false,
+     doi=true,
+     url=false,
+    style=numeric
+]{biblatex}
+\addbibresource[label=bibs]{Bibliography.bib}
+\addbibresource[label=bibs]{chris.bib}
+
 \title{Formalization, Mechanization and Automation % of Variants
   of \\ G\"{o}del's Proof of God's Existence\thanks{This work has been
     supported by the German Research Foundation under grant
@@ -43,7 +55,12 @@
 \bigskip
 
 \noindent
-\textbf{Update (16/08/2017):} The abstract below, uploaded to arXiv on 21/08/2013, was the first communication of the computer-assisted formalization of G\"odel's ontological proof. Since then, the following longer papers have been published: \cite{B39,B40,B45,B47,B49,B52,B56,B57,B60,B61,B62,B63,B64,B65,B66}.
+\textbf{Update (31/08/2017):} The abstract below, uploaded to arXiv on
+21/08/2013, was the first communication of the computer-assisted
+formalization of G\"odel's ontological proof. Since then, the
+following longer papers have been published:
+%\cite{B39,B40,B45,B47,B49,B52,B56,B57,B60,B61,B62,B63,B64,B65,B66}.
+\cite{W50,J28,B15,C39,C40,C41,C42,C44,C46,C52,W55,J32,C55,C60,B16,B66,,J35,J36,C65}.
 
 \bigskip
 \bigskip
@@ -158,10 +175,13 @@ logico-philosophical disputes, the computer can check the disputing
 arguments and partially fulfill Leibniz' dictum: Calculemus --- Let us
 calculate!
 
+\small
+
+\printbibliography
 
 %\footnotesize
-\bibliographystyle{plain}
-\bibliography{Bibliography}
+%\bibliographystyle{plain}
+%\bibliography{Bibliography,chris}
 % \begin{thebibliography}{10}
 
 % \bibitem{Adams}
