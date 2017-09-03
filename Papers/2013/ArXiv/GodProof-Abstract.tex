@@ -14,17 +14,17 @@
 \newcommand{\NE}{\mathit{NE}}
 
 
-\usepackage[
-    firstinits=true,
-     backend=biber, 
-     natbib=true,
-     isbn=false,
-     doi=true,
-     url=false,
-    style=numeric
-]{biblatex}
-\addbibresource[label=bibs]{Bibliography.bib}
-\addbibresource[label=bibs]{chris.bib}
+% \usepackage[
+%     firstinits=true,
+%      backend=bibtex, 
+%      natbib=true,
+%      isbn=false,
+%      doi=true,
+%      url=false,
+%     style=numeric
+% ]{biblatex}
+% \addbibresource[label=bibs]{Bibliography.bib}
+% \addbibresource[label=bibs]{chris.bib}
 
 \title{Formalization, Mechanization and Automation % of Variants
   of \\ G\"{o}del's Proof of God's Existence\thanks{This work has been
@@ -175,9 +175,284 @@ logico-philosophical disputes, the computer can check the disputing
 arguments and partially fulfill Leibniz' dictum: Calculemus --- Let us
 calculate!
 
-\small
+\footnotesize
 
-\printbibliography
+\begin{thebibliography}{10}
+
+\bibitem{Adams}
+R.M. Adams.
+\newblock Introductory note to *1970.
+\newblock In {\em {Kurt G\"odel: Collected Works Vol. 3: Unpublished Essays and
+  Letters}}. Oxford University Press, 1995.
+
+\bibitem{AndersonGettings}
+A.C. Anderson and M.~Gettings.
+\newblock G\"odel ontological proof revisited.
+\newblock In {\em {G\"odel'96: Logical Foundations of Mathematics, Computer
+  Science, and Physics: Lecture Notes in Logic 6}}, pages 167--172. {Springer},
+  1996.
+
+\bibitem{B16}
+Matthias Bentert, Christoph Benzm{\"u}ller, David Streit, and Bruno
+  Woltzenlogel~Paleo.
+\newblock Analysis of an ontological proof proposed by {Leibniz}.
+\newblock In Charles Tandy, editor, {\em Death and Anti-Death, Volume 14: Four
+  Decades after Michael Polanyi, Three Centuries after G.W. Leibniz}. Ria
+  University Press, 2016.
+
+\bibitem{B9}
+C.~Benzm{\"u}ller and L.C. Paulson.
+\newblock Exploring properties of normal multimodal logics in simple type
+  theory with {LEO-II}.
+\newblock In {\em {Festschrift in Honor of {Peter B. Andrews} on His 70th
+  Birthday}}, pages 386--406. College Publications, 2008.
+
+\bibitem{J23}
+C.~Benzm{\"u}ller and L.C. Paulson.
+\newblock Quantified multimodal logics in simple type theory.
+\newblock {\em Logica Universalis (Special Issue on Multimodal Logics)},
+  7(1):7--20, 2013.
+
+\bibitem{LEO-II}
+C.~Benzm{\"u}ller, F.~Theiss, L.~Paulson, and A.~Fietzke.
+\newblock {LEO-II} - a cooperative automatic theorem prover for higher-order
+  logic.
+\newblock In {\em Proc. of IJCAR 2008}, volume 5195 of {\em LNAI}, pages
+  162--170. Springer, 2008.
+
+\bibitem{C42}
+Christoph Benzm{\"u}ller.
+\newblock {G\"{o}del's} ontological argument revisited -- findings from a
+  computer-supported analysis (invited).
+\newblock In Ricardo~Souza Silvestre and Jean-Yves B\'eziau, editors, {\em
+  Handbook of the 1st World Congress on Logic and Religion, Jo\~ao Pessoa,
+  Brazil}, page~13, 2015.
+\newblock (Invited abstract).
+
+\bibitem{C41}
+Christoph Benzm{\"u}ller, Leon Weber, and Bruno Woltzenlogel~Paleo.
+\newblock Computer-assisted analysis of the {Anderson-H\'{a}jek} ontological
+  controversy.
+\newblock In Ricardo~Souza Silvestre and Jean-Yves B\'eziau, editors, {\em
+  Handbook of the 1st World Congress on Logic and Religion, Joao Pessoa,
+  Brasil}, pages 53--54, 2015.
+\newblock (superseded by 2016 article in Logica Universalis).
+
+\bibitem{J32}
+Christoph Benzm{\"u}ller, Leon Weber, and Bruno Woltzenlogel~Paleo.
+\newblock Computer-assisted analysis of the {Anderson-H\'{a}jek} controversy.
+\newblock {\em Logica Universalis}, 11(1):139--151, 2017.
+
+\bibitem{J28}
+Christoph Benzm\"uller and Bruno Woltzenlogel~Paleo.
+\newblock {G{\"o}del's God in Isabelle/HOL}.
+\newblock {\em Archive of Formal Proofs}, 2013.
+\newblock (Formally verified).
+
+\bibitem{W50}
+Christoph Benzm\"uller and Bruno Woltzenlogel~Paleo.
+\newblock {G\"odel's} {God} on the computer.
+\newblock In S.~Schulz, G.~Sutcliffe, and B.~Konev, editors, {\em Proceedings
+  of the 10th International Workshop on the Implementation of Logics}, 2013.
+\newblock (Invited paper).
+
+\bibitem{C40}
+Christoph Benzm{\"u}ller and Bruno Woltzenlogel~Paleo.
+\newblock Automating {G\"{o}del's} ontological proof of {God}'s existence with
+  higher-order automated theorem provers.
+\newblock In Torsten Schaub, Gerhard Friedrich, and Barry O'Sullivan, editors,
+  {\em ECAI 2014}, volume 263 of {\em Frontiers in Artificial Intelligence and
+  Applications}, pages 93 -- 98. IOS Press, 2014.
+
+\bibitem{C39}
+Christoph Benzm{\"u}ller and Bruno Woltzenlogel~Paleo.
+\newblock {G\"odel's} proof of {God's} existence.
+\newblock In Jean-Yves Beziau and Katarzyna Gan-Krzywoszynska, editors, {\em
+  Handbook of the World Congress on the Square of Opposition IV}, pages 22--23,
+  2014.
+\newblock (superseded by ECAI-2014 paper).
+
+\bibitem{C52}
+Christoph Benzm{\"u}ller and Bruno Woltzenlogel~Paleo.
+\newblock Experiments in computational metaphysics: {G\"odel's} proof of god's
+  existence.
+\newblock In Subhash~C. Mishram, Ramgopal Uppaluri, and Varun Agarwal, editors,
+  {\em Science \& Spiritual Quest, Proceedings of the 9th All India Students'
+  Conference, 30th October -- 1 November, 2015, IIT Kharagpur, India}, pages
+  23--40. Bhaktivedanta Institute, Kolkata, \url{www.binstitute.org}, 2015.
+\newblock (Invited paper, superseded by article in Savijnanam).
+
+\bibitem{C46}
+Christoph Benzm{\"u}ller and Bruno Woltzenlogel~Paleo.
+\newblock Higher-order modal logics: Automation and applications.
+\newblock In Adrian Paschke and Wolfgang Faber, editors, {\em Reasoning Web.
+  Web Logic Rules - 11th International Summer School 2015, Berlin, Germany,
+  July 31 - August 4, 2015, Tutorial Lectures}, number 9203 in LNCS, pages
+  32--74, Berlin, Germany, 2015. Springer.
+
+\bibitem{C44}
+Christoph Benzm{\"{u}}ller and Bruno Woltzenlogel~Paleo.
+\newblock Interacting with modal logics in the {Coq} proof assistant.
+\newblock In Lev~D. Beklemishev and Daniil~V. Musatov, editors, {\em Computer
+  Science - Theory and Applications - 10th International Computer Science
+  Symposium in Russia, {CSR} 2015, Listvyanka, Russia, July 13-17, 2015,
+  Proceedings}, volume 9139 of {\em LNCS}, pages 398--411. Springer, 2015.
+
+\bibitem{W55}
+Christoph Benzm{\"u}ller and Bruno Woltzenlogel~Paleo.
+\newblock On logic embeddings and {G\"odel's} {God}.
+\newblock In Mihai Codescu, Razvan Diaconescu, and Ionut Tutu, editors, {\em
+  Recent Trends in Algebraic Development Techniques: 22nd International
+  Workshop, WADT 2014, Sinaia, Romania, September 4-7, 2014, Revised Selected
+  Papers}, number 9563 in LNCS, pages 3--6, Sinaia, Romania, 2015. Springer.
+\newblock (Invited paper).
+
+\bibitem{C55}
+Christoph Benzm{\"u}ller and Bruno Woltzenlogel~Paleo.
+\newblock The inconsistency in {G{\"o}del's} ontological argument: A success
+  story for {AI} in metaphysics.
+\newblock In Subbarao Kambhampati, editor, {\em IJCAI 2016}, volume 1-3, pages
+  936--942. AAAI Press, 2016.
+
+\bibitem{B15}
+Christoph Benzm{\"u}ller and Bruno Woltzenlogel~Paleo.
+\newblock The modal collapse as a collapse of the modal square of opposition.
+\newblock In Jean-Yves B\'{e}ziau and Gianfranco Basti, editors, {\em The
+  Square of Opposition: A Cornerstone of Thought (Collection of papers related
+  to the World Congress on the Square of Opposition IV, Vatican, 2014),
+  \url{http://www.springer.com/us/book/9783319450612}}, Studies in Universal
+  Logic. Springer International Publishing Switzerland, 2016.
+
+\bibitem{C60}
+Christoph Benzm{\"u}ller and Bruno Woltzenlogel~Paleo.
+\newblock An object-logic explanation for the inconsistency in {G\"odel's}
+  ontological theory (extended abstract, sister conferences).
+\newblock In Malte Helmert and Franz Wotawa, editors, {\em KI 2016: Advances in
+  Artificial Intelligence, Proceedings}, LNCS, pages 244--250, Berlin, Germany,
+  2016. Springer.
+
+\bibitem{J36}
+Christoph Benzm{\"u}ller and Bruno Woltzenlogel~Paleo.
+\newblock Experiments in {Computational Metaphysics}: {G\"odel's} proof of
+  {God's} existence.
+\newblock {\em Savijnanam: scientific exploration for a spiritual paradigm.
+  Journal of the Bhaktivedanta Institute}, 9:43--57, 2017.
+
+\bibitem{Coq}
+Y.~Bertot and P.~Casteran.
+\newblock {\em {Interactive Theorem Proving and Program Development}}.
+\newblock Springer, 2004.
+
+\bibitem{Sledgehammer}
+J.C. Blanchette, S.~B\"ohme, and L.C. Paulson.
+\newblock Extending {Sledgehammer} with {SMT} solvers.
+\newblock {\em Journal of Automated Reasoning}, 51(1):109--128, 2013.
+
+\bibitem{Nitpick}
+J.C. Blanchette and T.~Nipkow.
+\newblock Nitpick: A counterexample generator for higher-order logic based on a
+  relational model finder.
+\newblock In {\em Proc. of ITP 2010}, number 6172 in LNCS, pages 131--146.
+  Springer, 2010.
+
+\bibitem{Satallax}
+C.E. Brown.
+\newblock Satallax: An automated higher-order prover.
+\newblock In {\em Proc. of IJCAR 2012}, number 7364 in LNAI, pages 111 -- 117.
+  Springer, 2012.
+
+\bibitem{ContemporaryBibliography}
+R.~Corazzon.
+\newblock Contemporary bibligraphy on the ontological proof
+  (\url{http://www.ontology.co/biblio/ontological-proof-contemporary-biblio.htm}).
+
+\bibitem{Fitting}
+M.~Fitting.
+\newblock {\em {Types, Tableaux and G\"odel's God}}.
+\newblock Kluver Academic Press, 2002.
+
+\bibitem{C65}
+David Fuenmayor and Christoph Benzm{\"u}ller.
+\newblock Automating emendations of the ontological argument in intensional
+  higher-order modal logic.
+\newblock In {\em KI 2017: Advances in Artificial Intelligence 40th Annual
+  German Conference on AI}, LNAI. Springer, 2017.
+
+\bibitem{J35}
+David Fuenmayor and Christoph Benzm\"uller.
+\newblock {Types, Tableaus and G{\"o}del's God in Isabelle/HOL}.
+\newblock {\em Archive of Formal Proofs}, 2017.
+\newblock Formally verified with Isabelle/HOL.
+
+\bibitem{Goedel1970}
+K.~G\"odel.
+\newblock Ontological proof.
+\newblock In {\em {Kurt G\"odel: Collected Works Vol. 3: Unpublished Essays and
+  Letters}}. Oxford University Press, 1970.
+
+\bibitem{GoedelNotes}
+K.~G\"odel.
+\newblock {\em Appendix A. Notes in Kurt G\"odel's Hand}, pages 144--145.
+\newblock In  \cite{sobel2004logic}, 2004.
+
+\bibitem{Hazen}
+A.P. Hazen.
+\newblock On g\"odel's ontological proof.
+\newblock {\em Australasian Journal of Philosophy}, 76:361--377, 1998.
+
+\bibitem{Hurd03first-orderproof}
+J.~Hurd.
+\newblock First-order proof tactics in higher-order logic theorem provers.
+\newblock In {\em Design and Application of Strategies/Tactics in Higher Order
+  Logics, NASA Tech. Rep. NASA/CP-2003-212448}, pages 56--68, 2003.
+
+\bibitem{Isabelle}
+T.~Nipkow, L.C. Paulson, and M.~Wenzel.
+\newblock {\em {Isabelle/HOL: A Proof Assistant for Higher-Order Logic}}.
+\newblock Number 2283 in LNCS. Springer, 2002.
+
+\bibitem{ScottNotes}
+D.~Scott.
+\newblock {\em Appendix B. Notes in Dana Scott's Hand}, pages 145--146.
+\newblock In  \cite{sobel2004logic}, 2004.
+
+\bibitem{sobel2004logic}
+J.H. Sobel.
+\newblock {\em Logic and Theism: Arguments for and Against Beliefs in God}.
+\newblock Cambridge U. Press, 2004.
+
+\bibitem{J22}
+G.~Sutcliffe and C.~Benzm{\"u}ller.
+\newblock Automated reasoning in higher-order logic using the {TPTP THF}
+  infrastructure.
+\newblock {\em Journal of Formalized Reasoning}, 3(1):1--27, 2010.
+
+\bibitem{B66}
+B.~Woltzenlogel~Paleo.
+\newblock Leibniz's characteristica universalis and calculus ratiocinator
+  today.
+\newblock In Charles Tandy, editor, {\em Death and Anti-Death, Volume 14: Four
+  Decades after Michael Polanyi, Three Centuries after G. W. Leibniz}. Ria
+  University Press, 2016.
+
+\bibitem{ComputationalPhilosophyRepository}
+B.~Woltzenlogel~Paleo and C.~Benzm\"uller.
+\newblock Computational philosophy repository
+  (\url{https://gitlab.com/aossie/ComputationalPhilosophy/}).
+
+\bibitem{FormalTheologyRepository}
+B.~Woltzenlogel~Paleo and C.~Benzm\"uller.
+\newblock Formal theology repository
+  (\url{https://github.com/FormalTheology/GoedelGod}).
+
+\end{thebibliography}
+
+
+
+%\bibliographystyle{plain}
+%\bibliography{Bibliography,chris}
+
+%\printbibliography
 
 %\footnotesize
 %\bibliographystyle{plain}
