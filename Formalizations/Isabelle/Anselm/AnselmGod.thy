@@ -9,7 +9,7 @@ reconstructed by Paul Oppenheimer and Edward Zalta @{cite "oppenheimer_logic_199
 Isabelle/HOL, an interactive theorem prover for higher-order logic. Previously, the argument has being
 automated by Oppenheimer and Zalta in Prover9 @{cite "oppenheimer_computationally-discovered_2011"},
 an automated theorem prover for first-order logic, and by John Rushby in PVS
-@{cite "rushby_ontological_2013"}, an automated theorem prover for higher-order logic. Automations of
+@{cite "rushby_ontological_2013"}, another interactive theorem prover for higher-order logic. Automations of
 other versions of the argument include @{cite "benzmuller_godels_2013"}, @{cite "rushby_mechanized_2016"} 
 and @{cite "fuenmayor_types_2017"}. My purpose here is to present a basis for comparison in the spirit 
 of @{cite "wiedijk_seventeen_2006"}, which compares automated proofs of the irrationality 
